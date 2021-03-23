@@ -1,0 +1,46 @@
+// Copyright (c) 2021 LootLocker
+
+#pragma once
+
+#include "LootLockerServerConfig.h"
+
+#include "LootLockerServerGameEndpoints.generated.h"
+
+UCLASS()
+class LOOTLOCKERSERVERSDK_API ULootLockerServerGameEndpoints : public UObject
+{
+    GENERATED_BODY()
+public:
+    //Auth
+    static FLootLockerServerEndPoints StartSessionEndpoint;
+    static FLootLockerServerEndPoints MaintainingSessionEndpoint;
+    //Assets
+    static FLootLockerServerEndPoints GetAssetsToGameEndpoint;
+    //Player Inventory
+    static FLootLockerServerEndPoints GetPlayerInventoryEndpoint;
+    static FLootLockerServerEndPoints AddAssetsToPlayerInventoryEndpoint;
+    static FLootLockerServerEndPoints GetPlayerLoadoutEndpoint;
+    static FLootLockerServerEndPoints EquipAssetToPlayerLoadoutEndpoint;
+    static FLootLockerServerEndPoints UnEquipAssetToPlayerLoadoutEndpoint;
+    //Player persisitent storage
+    static FLootLockerServerEndPoints GetPersistentStorageEndpoint;
+    static FLootLockerServerEndPoints UpdatePersistentStorageEndpoint;
+    //Characters & Heroes
+    static FLootLockerServerEndPoints GetPlayerCharactersEndpoint;
+    static FLootLockerServerEndPoints GetInventorytoCharacterEndpoint;
+    static FLootLockerServerEndPoints GetCharacterLoadoutEndpoint;
+    static FLootLockerServerEndPoints EquipAssetforCharacterLoadoutEndpoint;
+    static FLootLockerServerEndPoints UnequipAssetforCharacterLoadoutEndpoint;
+    static FLootLockerServerEndPoints GetPlayerHeroesEndpoint;
+    static FLootLockerServerEndPoints GetInventorytoHeroEndpoint;
+    static FLootLockerServerEndPoints GetHeroLoadoutEndpoint;
+    static FLootLockerServerEndPoints EquipAssetforHeroLoadoutEndpoint;
+    static FLootLockerServerEndPoints UnequipAssetforHeroLoadoutEndpoint;
+    //Trigger
+    static FLootLockerServerEndPoints InvokeTriggeronBehalfofPlayerEndpoint;
+
+private:
+    static FString GameBaseUrl;
+
+    static FLootLockerServerEndPoints InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method);
+};
