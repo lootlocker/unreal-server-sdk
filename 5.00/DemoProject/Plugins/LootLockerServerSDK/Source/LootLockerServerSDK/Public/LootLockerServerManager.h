@@ -10,6 +10,7 @@
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 #include "ServerAPI/LootLockerServerTriggerRequest.h"
+#include "ServerAPI/LootLockerLeaderboardRequestHandler.h"
 
 
 
@@ -174,4 +175,80 @@ public:
 	 */ 
 	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Players")
 	static void InvokeTriggerOnBehalfOfPlayer(const FInvokeTriggerResponseBP& OnCompletedRequestBP, FString Name, int PlayerId);
+
+
+    //==================================================
+    //Leaderboard
+    //==================================================
+
+     /**
+    * Get rank for single member for a leaderboard. If leaderboard is of type player a player will also be in the response.
+    *
+    * @param LeaderboardId - the id of the leaderboard you need to connect to.
+    * @param MemberId - the id of player in the leaderboard
+    *
+    * https://ref.lootlocker.io/game-api/#get-member-rank
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void CreateLeaderboard(const FLootLockerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerCreateLeaderboardResponseBP& OnCompletedRequestBP);
+
+
+    /**
+   * Get ranks for list of members for a leaderboard. This can be helpful when getting a players friends on leaderboard.
+   * If leaderboard is of type player a player will also be in the response.
+   * @param Members - the ids of all leaderboard members you need to get info on.
+   *
+   * https://ref.lootlocker.io/game-api/#get-by-list-of-members
+   */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void UpdateLeaderboard(const FLootLockerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerUpdateLeaderboardResponseBP& OnCompletedRequestBP );
+
+    /**
+   * Get list of members in rank range. Result is sorted by rank ascending.
+   * Maximum allowed members to query for at a time is currently 2000. If leaderboard is of type player a player will also be in the response.
+   * @param LeaderboardId - the id of the leaderboard you need to connect to.
+   * @param Count - Number of members returned per page
+   * @param After - Curser for pagination, a cursor will be returned in the response
+   *
+   * https://ref.lootlocker.io/game-api/#get-score-list
+   */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void DeleteLeaderboard(int LeaderboardId, const FLootLockerDeleteLeaderboardResponseBP& OnCompletedRequestBP );
+
+    /**
+   * Submit scores for member on leaderboard.
+   * @param LeaderboardId - the id of the leaderboard you need to connect to.
+   * @param MemberId - the id of player in the leaderboard.
+   * @param Score - the score to be submitted.
+   *
+   * https://ref.lootlocker.io/game-api/#submit-scorem
+   */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerSubmitScoreResponseBP& OnCompletedRequestBP);
+   // //==================================================
+   // //Drop Table
+   // //==================================================
+   // /**
+   // * Collecting an Item is done by calling this endpoint with a payload equal to the slug of the Item.
+   // * The slug is a combination of the name of the Collectable, the Group and the Item. Simply concatenate them with a . as a seperator.
+   // * @param LeaderboardId - the id of the leaderboard you need to connect to.
+   // * @param MemberId - the id of player in the leaderboard.
+   // * @param Score - the score to be submitted.
+   // *
+   // * https://ref.lootlocker.io/game-api/#compute-and-lock-drop-table
+   // */
+   // UFUNCTION(BlueprintCallable, Category = "LootLocker Methods | DropTable")
+   // static void ComputeAndLockDropTable(int TableId, const FLootLockerComputeAndLockDropTableResponseBP& OnCompletedRequestBP);
+
+   // /**
+   //* Collecting an Item is done by calling this endpoint with a payload equal to the slug of the Item.
+   //* The slug is a combination of the name of the Collectable, the Group and the Item. Simply concatenate them with a . as a seperator.
+   //* @param LeaderboardId - the id of the leaderboard you need to connect to.
+   //* @param MemberId - the id of player in the leaderboard.
+   //* @param Score - the score to be submitted.
+   //*
+   //* https://ref.lootlocker.io/game-api/#pick-drops-from-drop-table
+   //*/
+   // UFUNCTION(BlueprintCallable, Category = "LootLocker Methods | DropTable")
+   // static void PickDropsFromDropTable(TArray<int> picks, int TableId, const FFLootLockerPickDropsFromDropTableResponseBP& OnCompletedRequestBP);
 };
