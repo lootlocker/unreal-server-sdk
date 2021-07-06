@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ServerAPI/LootLockerLeaderboardRequestHandler.h"
+#include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 
 #include "DemoLeaderboard.generated.h"
 

@@ -10,7 +10,7 @@
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 #include "ServerAPI/LootLockerServerTriggerRequest.h"
-#include "ServerAPI/LootLockerLeaderboardRequestHandler.h"
+#include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 
 
 #include "LootLockerServerSDKManager.generated.h"
