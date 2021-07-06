@@ -34,6 +34,16 @@ FLootLockerServerEndPoints ULootLockerServerGameEndpoints::UnequipAssetforHeroLo
 //Trigger
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::InvokeTriggeronBehalfofPlayerEndpoint = InitEndpoint("trigger", ELootLockerServerHTTPMethod::POST);
 
+//Leaderboards
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::CreateLeaderboardEndpoint = InitEndpoint("leaderboards", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::UpdateLeaderboardEndpoint = InitEndpoint("leaderboards/{0}", ELootLockerServerHTTPMethod::PUT);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::DeleteLeaderboardEndpoint = InitEndpoint("leaderboards/{0}", ELootLockerServerHTTPMethod::DELETE);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::SubmitScoreEndpoint = InitEndpoint("leaderboards/{0}/submit", ELootLockerServerHTTPMethod::POST);
+
+//DropTables
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::ComputeAndLockDropTableEndpoint = InitEndpoint("v1/player/droptables/{0}/compute", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::PickDropsFromDropTableEndpoint = InitEndpoint("v1/player/droptables/{0}/pick", ELootLockerServerHTTPMethod::POST);
+
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method)
 {
 	FLootLockerServerEndPoints Result;

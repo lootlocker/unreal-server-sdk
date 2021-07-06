@@ -10,7 +10,7 @@
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 #include "ServerAPI/LootLockerServerTriggerRequest.h"
-
+#include "ServerAPI/LootLockerLeaderboardRequestHandler.h"
 
 
 #include "LootLockerServerSDKManager.generated.h"
@@ -208,4 +208,48 @@ public:
 	 * https://docs.lootlocker.io/server-api/#invoke-trigger-on-behalf-of-player
 	 */ 
     static void InvokeTriggerOnBehalfOfPlayer(const FInvokeTriggerResponse& OnCompletedRequest, FString Name, int PlayerId);
+	//==================================================
+//Leaderboard
+//==================================================
+
+ /**
+* Get rank for single member for a leaderboard. If leaderboard is of type player a player will also be in the response.
+*
+* @param LeaderboardId - the id of the leaderboard you need to connect to.
+* @param MemberId - the id of player in the leaderboard
+*
+* https://ref.lootlocker.io/game-api/#get-member-rank
+*/
+	static void CreateLeaderboard(const FLootLockerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerCreateLeaderboardResponseDelegate& OnCompletedRequest);
+
+
+	/**
+   * Get ranks for list of members for a leaderboard. This can be helpful when getting a players friends on leaderboard.
+   * If leaderboard is of type player a player will also be in the response.
+   * @param Members - the ids of all leaderboard members you need to get info on.
+   *
+   * https://ref.lootlocker.io/game-api/#get-by-list-of-members
+   */
+	static void UpdateLeaderboard(const FLootLockerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerUpdateLeaderboardResponseDelegate& OnCompletedRequest);
+
+	/**
+   * Get list of members in rank range. Result is sorted by rank ascending.
+   * Maximum allowed members to query for at a time is currently 2000. If leaderboard is of type player a player will also be in the response.
+   * @param LeaderboardId - the id of the leaderboard you need to connect to.
+   * @param Count - Number of members returned per page
+   * @param After - Curser for pagination, a cursor will be returned in the response
+   *
+   * https://ref.lootlocker.io/game-api/#get-score-list
+   */
+	static void DeleteLeaderboard(int LeaderboardId, const FLootLockerDeleteLeaderboardResponseDelegate& OnCompletedRequest);
+
+	/**
+   * Submit scores for member on leaderboard.
+   * @param LeaderboardId - the id of the leaderboard you need to connect to.
+   * @param MemberId - the id of player in the leaderboard.
+   * @param Score - the score to be submitted.
+   *
+   * https://ref.lootlocker.io/game-api/#submit-scorem
+   */
+	static void SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerSubmitScoreResponseDelegate& OnCompletedRequest);
 };

@@ -10,7 +10,7 @@
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 #include "ServerAPI/LootLockerServerTriggerRequest.h"
-
+#include "ServerAPI/LootLockerLeaderboardRequestHandler.h"
 
 
 #include "LootLockerServerManager.generated.h"
@@ -21,7 +21,9 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerManager : public UObject
     GENERATED_BODY()
  
 public:
-    
+	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Set Configuration")
+		static void SetConfig(FString LootLockerServerKey, bool OnDevelopmentMode, FString GameVersion, FString LootLockerVersion);
+
     //==================================================
     //Authentication
     //==================================================

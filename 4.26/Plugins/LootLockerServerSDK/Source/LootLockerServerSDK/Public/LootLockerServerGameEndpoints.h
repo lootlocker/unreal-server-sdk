@@ -39,6 +39,15 @@ public:
     //Trigger
     static FLootLockerServerEndPoints InvokeTriggeronBehalfofPlayerEndpoint;
 
+    //Leaderboard
+    static FLootLockerServerEndPoints CreateLeaderboardEndpoint;
+    static FLootLockerServerEndPoints UpdateLeaderboardEndpoint;
+    static FLootLockerServerEndPoints DeleteLeaderboardEndpoint;
+    static FLootLockerServerEndPoints SubmitScoreEndpoint;
+
+    //DropTables
+    static FLootLockerServerEndPoints ComputeAndLockDropTableEndpoint;
+    static FLootLockerServerEndPoints PickDropsFromDropTableEndpoint;
 private:
     static FString GameBaseUrl;
 
