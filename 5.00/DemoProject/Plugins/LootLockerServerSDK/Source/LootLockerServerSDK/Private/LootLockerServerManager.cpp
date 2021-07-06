@@ -2,6 +2,16 @@
 
 #include "LootLockerServerManager.h"
 
+void ULootLockerServerManager::SetConfig(FString LootLockerServerKey, bool OnDevelopmentMode, FString GameVersion, FString LootLockerVersion)
+{
+    ULootLockerServerConfig* config = GetMutableDefault<ULootLockerServerConfig>();
+    config->LootLockerServerKey = LootLockerServerKey;
+    config->OnDevelopmentMode = OnDevelopmentMode;
+    config->GameVersion = GameVersion;
+    config->LootLockerVersion = LootLockerVersion;
+    config->SaveConfig();
+}
+
 void ULootLockerServerManager::StartSession(const FServerAuthResponseBP& OnStartedSessionRequestCompleted)
 {
     ULootLockerServerAuthRequest::StartSession(OnStartedSessionRequestCompleted);

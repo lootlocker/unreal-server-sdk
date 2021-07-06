@@ -22,7 +22,10 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerManager : public UObject
     GENERATED_BODY()
  
 public:
-    
+	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Set Configuration")
+		static void SetConfig(FString LootLockerServerKey, bool OnDevelopmentMode, FString GameVersion, FString LootLockerVersion);
+
+
     //==================================================
     //Authentication
     //==================================================
