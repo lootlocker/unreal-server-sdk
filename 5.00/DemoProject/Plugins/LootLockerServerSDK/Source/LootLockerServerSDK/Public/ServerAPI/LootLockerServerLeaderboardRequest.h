@@ -30,7 +30,7 @@ struct FLootLockerServerCreateLeaderboardResponse : public FLootLockerServerResp
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString id;
+    int id;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString name;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -50,7 +50,7 @@ struct FLootLockerServerUpdateLeaderboardResponse : public FLootLockerServerResp
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString id;
+    int id;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString name;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -70,7 +70,7 @@ struct FLootLockerServerDeleteLeaderboardResponse : public FLootLockerServerResp
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString id;
+    int id;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString name;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
