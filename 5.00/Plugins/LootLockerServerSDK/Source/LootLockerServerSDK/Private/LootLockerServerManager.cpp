@@ -134,26 +134,26 @@ void ULootLockerServerManager::InvokeTriggerOnBehalfOfPlayer(const FInvokeTrigge
 
  void ULootLockerServerManager::CreateLeaderboard(const FLootLockerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerCreateLeaderboardResponseBP& OnCompletedRequestBP )
  {
-     ULootLockerLeaderboardRequestHandler::CreateLeaderboard(CreateLeaderboardRequest, OnCompletedRequestBP, FLootLockerCreateLeaderboardResponseDelegate());
+     ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, OnCompletedRequestBP, FLootLockerCreateLeaderboardResponseDelegate());
  }
 
  void ULootLockerServerManager::UpdateLeaderboard(const FLootLockerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerUpdateLeaderboardResponseBP& OnCompletedRequestBP)
  {
-     ULootLockerLeaderboardRequestHandler::UpdateLeaderboard(UpdateLeaderboardRequests, LeaderboardId, OnCompletedRequestBP, FLootLockerUpdateLeaderboardResponseDelegate());
+     ULootLockerServerLeaderboardRequest::UpdateLeaderboard(UpdateLeaderboardRequests, LeaderboardId, OnCompletedRequestBP, FLootLockerUpdateLeaderboardResponseDelegate());
  }
 
  void ULootLockerServerManager::DeleteLeaderboard(int LeaderboardId, const FLootLockerDeleteLeaderboardResponseBP& OnCompletedRequestBP )
  {
-     ULootLockerLeaderboardRequestHandler::DeleteLeaderboard(LeaderboardId, OnCompletedRequestBP, FLootLockerDeleteLeaderboardResponseDelegate());
+     ULootLockerServerLeaderboardRequest::DeleteLeaderboard(LeaderboardId, OnCompletedRequestBP, FLootLockerDeleteLeaderboardResponseDelegate());
  }
 
  void ULootLockerServerManager::SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerSubmitScoreResponseBP& OnCompletedRequestBP)
  {
-     FLootLockerSubmitScoreRequest score = FLootLockerSubmitScoreRequest();
+     FLootLockerServerSubmitScoreRequest score = FLootLockerServerSubmitScoreRequest();
      score.member_id = MemberId;
      score.score = Score;
 
-     ULootLockerLeaderboardRequestHandler::SubmitScore(score, LeaderboardId, OnCompletedRequestBP, FLootLockerSubmitScoreResponseDelegate());
+     ULootLockerServerLeaderboardRequest::SubmitScore(score, LeaderboardId, OnCompletedRequestBP, FLootLockerSubmitScoreResponseDelegate());
  }
 
  //void ComputeAndLockDropTable(int TableId, const FLootLockerComputeAndLockDropTableResponseBP& OnCompletedRequestBP)

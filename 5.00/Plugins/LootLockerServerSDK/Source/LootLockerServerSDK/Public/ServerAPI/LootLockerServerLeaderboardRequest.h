@@ -7,18 +7,18 @@
 #include "LootLockerServerConfig.h"
 #include "LootLockerServerHttpClient.h"
 #include "JsonObjectConverter.h"
-#include "LootLockerLeaderboardRequestHandler.generated.h"
+#include "LootLockerServerLeaderboardRequest.generated.h"
 
 
 UENUM(BlueprintType)
-enum class ELootLockerLeaderboardType : uint8
+enum class ELootLockerServerLeaderboardType : uint8
 {
     player = 0         UMETA(DisplayName = "Player"),
     generic = 1        UMETA(DisplayName = "Generic"),
 };
 
 UENUM(BlueprintType)
-enum class ELootLockerLeaderboardDirection : uint8
+enum class ELootLockerServerLeaderboardDirection : uint8
 {
     ascending = 0         UMETA(DisplayName = "Ascending"),
     descending = 1        UMETA(DisplayName = "Descending"),
@@ -26,7 +26,7 @@ enum class ELootLockerLeaderboardDirection : uint8
 
 
 USTRUCT(BlueprintType)
-struct FLootLockerCreateLeaderboardResponse : public FLootLockerServerResponse
+struct FLootLockerServerCreateLeaderboardResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -44,7 +44,7 @@ struct FLootLockerCreateLeaderboardResponse : public FLootLockerServerResponse
 };
 
 USTRUCT(BlueprintType)
-struct FLootLockerUpdateLeaderboardResponse : public FLootLockerServerResponse
+struct FLootLockerServerUpdateLeaderboardResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -62,7 +62,7 @@ struct FLootLockerUpdateLeaderboardResponse : public FLootLockerServerResponse
 };
 
 USTRUCT(BlueprintType)
-struct FLootLockerDeleteLeaderboardResponse : public FLootLockerServerResponse
+struct FLootLockerServerDeleteLeaderboardResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -81,7 +81,7 @@ struct FLootLockerDeleteLeaderboardResponse : public FLootLockerServerResponse
 
 
 USTRUCT(BlueprintType)
-struct FLootLockerSubmitScoreResponse : public FLootLockerServerResponse
+struct FLootLockerServerSubmitScoreResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -93,7 +93,7 @@ struct FLootLockerSubmitScoreResponse : public FLootLockerServerResponse
 };
 
 USTRUCT(BlueprintType)
-struct FLootLockerSubmitScoreRequest
+struct FLootLockerServerSubmitScoreRequest
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -150,29 +150,29 @@ struct FLootLockerUpdateLeaderboardRequest
     bool overwrite_score_on_submit;
 };
 
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerCreateLeaderboardResponseBP, FLootLockerCreateLeaderboardResponse, Response);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerUpdateLeaderboardResponseBP, FLootLockerUpdateLeaderboardResponse, Response);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerDeleteLeaderboardResponseBP, FLootLockerDeleteLeaderboardResponse, Response);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerSubmitScoreResponseBP, FLootLockerSubmitScoreResponse, Response);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerCreateLeaderboardResponseBP, FLootLockerServerCreateLeaderboardResponse, Response);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerUpdateLeaderboardResponseBP, FLootLockerServerUpdateLeaderboardResponse, Response);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerDeleteLeaderboardResponseBP, FLootLockerServerDeleteLeaderboardResponse, Response);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerSubmitScoreResponseBP, FLootLockerServerSubmitScoreResponse, Response);
 
-DECLARE_DELEGATE_OneParam(FLootLockerCreateLeaderboardResponseDelegate, FLootLockerCreateLeaderboardResponse);
-DECLARE_DELEGATE_OneParam(FLootLockerUpdateLeaderboardResponseDelegate, FLootLockerUpdateLeaderboardResponse);
-DECLARE_DELEGATE_OneParam(FLootLockerDeleteLeaderboardResponseDelegate, FLootLockerDeleteLeaderboardResponse);
-DECLARE_DELEGATE_OneParam(FLootLockerSubmitScoreResponseDelegate, FLootLockerSubmitScoreResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerCreateLeaderboardResponseDelegate, FLootLockerServerCreateLeaderboardResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerUpdateLeaderboardResponseDelegate, FLootLockerServerUpdateLeaderboardResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerDeleteLeaderboardResponseDelegate, FLootLockerServerDeleteLeaderboardResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerSubmitScoreResponseDelegate, FLootLockerServerSubmitScoreResponse);
 
 UCLASS()
-class LOOTLOCKERSERVERSDK_API ULootLockerLeaderboardRequestHandler : public UObject
+class LOOTLOCKERSERVERSDK_API ULootLockerServerLeaderboardRequest : public UObject
 {
 	GENERATED_BODY()
 public:
     static void CreateLeaderboard(const FLootLockerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerCreateLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerCreateLeaderboardResponseBP(), const FLootLockerCreateLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerCreateLeaderboardResponseDelegate());
     static void UpdateLeaderboard(const FLootLockerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerUpdateLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerUpdateLeaderboardResponseBP(), const FLootLockerUpdateLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerUpdateLeaderboardResponseDelegate());
     static void DeleteLeaderboard(int LeaderboardId, const FLootLockerDeleteLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerDeleteLeaderboardResponseBP(), const FLootLockerDeleteLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerDeleteLeaderboardResponseDelegate());
-    static void SubmitScore(const FLootLockerSubmitScoreRequest& SubmitScoreRequests, int LeaderboardId, const FLootLockerSubmitScoreResponseBP& OnCompletedRequestBP = FLootLockerSubmitScoreResponseBP(), const FLootLockerSubmitScoreResponseDelegate& OnCompletedRequest = FLootLockerSubmitScoreResponseDelegate());
+    static void SubmitScore(const FLootLockerServerSubmitScoreRequest& SubmitScoreRequests, int LeaderboardId, const FLootLockerSubmitScoreResponseBP& OnCompletedRequestBP = FLootLockerSubmitScoreResponseBP(), const FLootLockerSubmitScoreResponseDelegate& OnCompletedRequest = FLootLockerSubmitScoreResponseDelegate());
 
 
 public:
-    ULootLockerLeaderboardRequestHandler();
+    ULootLockerServerLeaderboardRequest();
     static ULootLockerServerHttpClient* HttpClient;
 
 };
