@@ -11,8 +11,8 @@ void ADemoLeaderboard::CreateLeaderboard()
 	FLootLockerCreateLeaderboardRequest request = FLootLockerCreateLeaderboardRequest();
 	request.name = name;
 	request.key = key;
-	FString localType = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerLeaderboardType"), static_cast<int32>(type));
-	FString localDirection = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerLeaderboardDirection"), static_cast<int32>(direction_method));
+	FString localType = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerLeaderboardType"), static_cast<int32>(type));
+	FString localDirection = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerLeaderboardDirection"), static_cast<int32>(direction_method));
 
 
 	request.direction_method = localDirection;
@@ -27,8 +27,8 @@ void ADemoLeaderboard::UpdateLeaderboard()
 {
 	FLootLockerUpdateLeaderboardRequest request = FLootLockerUpdateLeaderboardRequest();
 	request.name = name;
-	FString localType = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerLeaderboardType"), static_cast<int32>(type));
-	FString localDirection = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerLeaderboardDirection"), static_cast<int32>(direction_method));
+	FString localType = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerLeaderboardType"), static_cast<int32>(type));
+	FString localDirection = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerLeaderboardDirection"), static_cast<int32>(direction_method));
 
 	
 	request.direction_method = localDirection;
@@ -50,7 +50,7 @@ void ADemoLeaderboard::SubmitScore()
 	ULootLockerServerSDKManager::SubmitScore(member_id,leaderboardId, score, FLootLockerSubmitScoreResponseDelegate::CreateUObject(this, &ADemoLeaderboard::OnSubmitScoreCompleted));
 }
 
-void ADemoLeaderboard::OnCreateLeaderboardCompleted(FLootLockerCreateLeaderboardResponse Response)
+void ADemoLeaderboard::OnCreateLeaderboardCompleted(FLootLockerServerCreateLeaderboardResponse Response)
 {
 	if (Response.success)
 	{
@@ -62,7 +62,7 @@ void ADemoLeaderboard::OnCreateLeaderboardCompleted(FLootLockerCreateLeaderboard
 	}
 }
 
-void ADemoLeaderboard::OnUpdateLeaderboardCompleted(FLootLockerUpdateLeaderboardResponse Response)
+void ADemoLeaderboard::OnUpdateLeaderboardCompleted(FLootLockerServerUpdateLeaderboardResponse Response)
 {
 	if (Response.success)
 	{
@@ -74,7 +74,7 @@ void ADemoLeaderboard::OnUpdateLeaderboardCompleted(FLootLockerUpdateLeaderboard
 	}
 }
 
-void ADemoLeaderboard::OnDeleteLeaderboardCompleted(FLootLockerDeleteLeaderboardResponse Response)
+void ADemoLeaderboard::OnDeleteLeaderboardCompleted(FLootLockerServerDeleteLeaderboardResponse Response)
 {
 	if (Response.success)
 	{

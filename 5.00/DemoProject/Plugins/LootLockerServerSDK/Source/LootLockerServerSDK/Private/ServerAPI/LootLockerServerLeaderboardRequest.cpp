@@ -21,10 +21,10 @@ void ULootLockerServerLeaderboardRequest::CreateLeaderboard(const FLootLockerCre
 
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
 		{
-			FLootLockerCreateLeaderboardResponse ResponseStruct;
+			FLootLockerServerCreateLeaderboardResponse ResponseStruct;
 			if (response.success)
 			{
-				FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerCreateLeaderboardResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
+				FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerCreateLeaderboardResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 				ResponseStruct.success = true;
 			}
 			else {
@@ -48,10 +48,10 @@ void ULootLockerServerLeaderboardRequest::UpdateLeaderboard(const FLootLockerUpd
 
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
 		{
-			FLootLockerUpdateLeaderboardResponse ResponseStruct;
+			FLootLockerServerUpdateLeaderboardResponse ResponseStruct;
 			if (response.success)
 			{
-				FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerUpdateLeaderboardResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
+				FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerUpdateLeaderboardResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 				ResponseStruct.success = true;
 			}
 			else {
@@ -75,10 +75,10 @@ void ULootLockerServerLeaderboardRequest::DeleteLeaderboard(int LeaderboardId, c
 
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
 		{
-			FLootLockerDeleteLeaderboardResponse ResponseStruct;
+			FLootLockerServerDeleteLeaderboardResponse ResponseStruct;
 			if (response.success)
 			{
-				FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerDeleteLeaderboardResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
+				FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerDeleteLeaderboardResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 				ResponseStruct.success = true;
 			}
 			else {

@@ -19,9 +19,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString key;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	ELootLockerLeaderboardType type;
+	ELootLockerServerLeaderboardType type;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	ELootLockerLeaderboardDirection direction_method;
+	ELootLockerServerLeaderboardDirection direction_method;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	bool enable_game_api_writes;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -44,9 +44,9 @@ public:
 	 UFUNCTION(BlueprintCallable, CallInEditor, Category = "LootLocker Demo | Leaderboard")
 	 void SubmitScore();
 
-	void OnCreateLeaderboardCompleted(FLootLockerCreateLeaderboardResponse Response);
-	void OnUpdateLeaderboardCompleted(FLootLockerUpdateLeaderboardResponse Response);
-	void OnDeleteLeaderboardCompleted(FLootLockerDeleteLeaderboardResponse Response);
+	void OnCreateLeaderboardCompleted(FLootLockerServerCreateLeaderboardResponse Response);
+	void OnUpdateLeaderboardCompleted(FLootLockerServerUpdateLeaderboardResponse Response);
+	void OnDeleteLeaderboardCompleted(FLootLockerServerDeleteLeaderboardResponse Response);
 	void OnSubmitScoreCompleted(FLootLockerServerSubmitScoreResponse Response);
 
 };
