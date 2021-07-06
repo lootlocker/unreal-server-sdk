@@ -86,7 +86,7 @@ void ADemoLeaderboard::OnDeleteLeaderboardCompleted(FLootLockerDeleteLeaderboard
 	}
 }
 
-void ADemoLeaderboard::OnSubmitScoreCompleted(FLootLockerSubmitScoreResponse Response)
+void ADemoLeaderboard::OnSubmitScoreCompleted(FLootLockerServerSubmitScoreResponse Response)
 {
 	if (Response.success)
 	{

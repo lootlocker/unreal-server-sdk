@@ -144,7 +144,7 @@ void ULootLockerServerSDKManager::DeleteLeaderboard(int LeaderboardId, const FLo
 
 void ULootLockerServerSDKManager::SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerSubmitScoreResponseDelegate& OnCompletedRequest)
 {
-	FLootLockerSubmitScoreRequest score = FLootLockerSubmitScoreRequest();
+	FLootLockerServerSubmitScoreRequest score = FLootLockerServerSubmitScoreRequest();
 	score.member_id = MemberId;
 	score.score = Score;
 

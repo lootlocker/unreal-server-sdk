@@ -47,6 +47,6 @@ public:
 	void OnCreateLeaderboardCompleted(FLootLockerCreateLeaderboardResponse Response);
 	void OnUpdateLeaderboardCompleted(FLootLockerUpdateLeaderboardResponse Response);
 	void OnDeleteLeaderboardCompleted(FLootLockerDeleteLeaderboardResponse Response);
-	void OnSubmitScoreCompleted(FLootLockerSubmitScoreResponse Response);
+	void OnSubmitScoreCompleted(FLootLockerServerSubmitScoreResponse Response);
 
 };

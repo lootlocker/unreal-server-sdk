@@ -149,7 +149,7 @@ void ULootLockerServerManager::InvokeTriggerOnBehalfOfPlayer(const FInvokeTrigge
 
  void ULootLockerServerManager::SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerSubmitScoreResponseBP& OnCompletedRequestBP)
  {
-     FLootLockerSubmitScoreRequest score = FLootLockerSubmitScoreRequest();
+     FLootLockerServerSubmitScoreRequest score = FLootLockerServerSubmitScoreRequest();
      score.member_id = MemberId;
      score.score = Score;
 
