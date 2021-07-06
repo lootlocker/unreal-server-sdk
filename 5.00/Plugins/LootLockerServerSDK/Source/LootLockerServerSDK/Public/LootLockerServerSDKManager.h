@@ -221,7 +221,7 @@ public:
     *
     * https://ref.lootlocker.io/game-api/#get-member-rank
     */
-    static void CreateLeaderboard(const FLootLockerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerCreateLeaderboardResponseDelegate& OnCompletedRequest);
+    static void CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest);
 
 
     /**
@@ -231,7 +231,7 @@ public:
    *
    * https://ref.lootlocker.io/game-api/#get-by-list-of-members
    */
-    static void UpdateLeaderboard(const FLootLockerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerUpdateLeaderboardResponseDelegate& OnCompletedRequest);
+    static void UpdateLeaderboard(const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
    * Get list of members in rank range. Result is sorted by rank ascending.
@@ -242,7 +242,7 @@ public:
    *
    * https://ref.lootlocker.io/game-api/#get-score-list
    */
-    static void DeleteLeaderboard(int LeaderboardId, const FLootLockerDeleteLeaderboardResponseDelegate& OnCompletedRequest);
+    static void DeleteLeaderboard(int LeaderboardId, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
    * Submit scores for member on leaderboard.
@@ -252,5 +252,5 @@ public:
    *
    * https://ref.lootlocker.io/game-api/#submit-scorem
    */
-    static void SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerSubmitScoreResponseDelegate& OnCompletedRequest);
+    static void SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerServerSubmitScoreResponseDelegate& OnCompletedRequest);
 };

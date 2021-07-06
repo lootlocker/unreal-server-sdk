@@ -193,7 +193,7 @@ public:
     * https://ref.lootlocker.io/game-api/#get-member-rank
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
-    static void CreateLeaderboard(const FLootLockerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerCreateLeaderboardResponseBP& OnCompletedRequestBP);
+    static void CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequestBP);
 
 
     /**
@@ -204,7 +204,7 @@ public:
    * https://ref.lootlocker.io/game-api/#get-by-list-of-members
    */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
-    static void UpdateLeaderboard(const FLootLockerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerUpdateLeaderboardResponseBP& OnCompletedRequestBP );
+    static void UpdateLeaderboard(const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerServerUpdateLeaderboardResponseBP& OnCompletedRequestBP );
 
     /**
    * Get list of members in rank range. Result is sorted by rank ascending.
@@ -216,7 +216,7 @@ public:
    * https://ref.lootlocker.io/game-api/#get-score-list
    */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
-    static void DeleteLeaderboard(int LeaderboardId, const FLootLockerDeleteLeaderboardResponseBP& OnCompletedRequestBP );
+    static void DeleteLeaderboard(int LeaderboardId, const FLootLockerServerDeleteLeaderboardResponseBP& OnCompletedRequestBP );
 
     /**
    * Submit scores for member on leaderboard.
@@ -227,7 +227,7 @@ public:
    * https://ref.lootlocker.io/game-api/#submit-scorem
    */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
-    static void SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerSubmitScoreResponseBP& OnCompletedRequestBP);
+    static void SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerServerSubmitScoreResponseBP& OnCompletedRequestBP);
    // //==================================================
    // //Drop Table
    // //==================================================

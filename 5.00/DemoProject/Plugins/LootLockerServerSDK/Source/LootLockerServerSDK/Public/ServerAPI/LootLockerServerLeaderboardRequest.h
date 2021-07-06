@@ -30,6 +30,8 @@ struct FLootLockerServerCreateLeaderboardResponse : public FLootLockerServerResp
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    FString id;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString name;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString key;
@@ -48,6 +50,8 @@ struct FLootLockerServerUpdateLeaderboardResponse : public FLootLockerServerResp
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    FString id;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString name;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString key;
@@ -65,6 +69,8 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerDeleteLeaderboardResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    FString id;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString name;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -103,7 +109,7 @@ struct FLootLockerServerSubmitScoreRequest
 };
 
 USTRUCT(BlueprintType)
-struct FLootLockerCreateLeaderboardRequest
+struct FLootLockerServerCreateLeaderboardRequest
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -121,7 +127,7 @@ struct FLootLockerCreateLeaderboardRequest
 };
 
 USTRUCT(BlueprintType)
-struct FLootLockerDeleteLeaderboardRequest
+struct FLootLockerServerDeleteLeaderboardRequest
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -133,7 +139,7 @@ struct FLootLockerDeleteLeaderboardRequest
 };
 
 USTRUCT(BlueprintType)
-struct FLootLockerUpdateLeaderboardRequest
+struct FLootLockerServerUpdateLeaderboardRequest
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -150,25 +156,25 @@ struct FLootLockerUpdateLeaderboardRequest
     bool overwrite_score_on_submit;
 };
 
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerCreateLeaderboardResponseBP, FLootLockerServerCreateLeaderboardResponse, Response);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerUpdateLeaderboardResponseBP, FLootLockerServerUpdateLeaderboardResponse, Response);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerDeleteLeaderboardResponseBP, FLootLockerServerDeleteLeaderboardResponse, Response);
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerSubmitScoreResponseBP, FLootLockerServerSubmitScoreResponse, Response);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreateLeaderboardResponseBP, FLootLockerServerCreateLeaderboardResponse, Response);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUpdateLeaderboardResponseBP, FLootLockerServerUpdateLeaderboardResponse, Response);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardResponseBP, FLootLockerServerDeleteLeaderboardResponse, Response);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSubmitScoreResponseBP, FLootLockerServerSubmitScoreResponse, Response);
 
-DECLARE_DELEGATE_OneParam(FLootLockerCreateLeaderboardResponseDelegate, FLootLockerServerCreateLeaderboardResponse);
-DECLARE_DELEGATE_OneParam(FLootLockerUpdateLeaderboardResponseDelegate, FLootLockerServerUpdateLeaderboardResponse);
-DECLARE_DELEGATE_OneParam(FLootLockerDeleteLeaderboardResponseDelegate, FLootLockerServerDeleteLeaderboardResponse);
-DECLARE_DELEGATE_OneParam(FLootLockerSubmitScoreResponseDelegate, FLootLockerServerSubmitScoreResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerServerCreateLeaderboardResponseDelegate, FLootLockerServerCreateLeaderboardResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerServerUpdateLeaderboardResponseDelegate, FLootLockerServerUpdateLeaderboardResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardResponseDelegate, FLootLockerServerDeleteLeaderboardResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerServerSubmitScoreResponseDelegate, FLootLockerServerSubmitScoreResponse);
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerLeaderboardRequest : public UObject
 {
 	GENERATED_BODY()
 public:
-    static void CreateLeaderboard(const FLootLockerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerCreateLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerCreateLeaderboardResponseBP(), const FLootLockerCreateLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerCreateLeaderboardResponseDelegate());
-    static void UpdateLeaderboard(const FLootLockerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerUpdateLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerUpdateLeaderboardResponseBP(), const FLootLockerUpdateLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerUpdateLeaderboardResponseDelegate());
-    static void DeleteLeaderboard(int LeaderboardId, const FLootLockerDeleteLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerDeleteLeaderboardResponseBP(), const FLootLockerDeleteLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerDeleteLeaderboardResponseDelegate());
-    static void SubmitScore(const FLootLockerServerSubmitScoreRequest& SubmitScoreRequests, int LeaderboardId, const FLootLockerSubmitScoreResponseBP& OnCompletedRequestBP = FLootLockerSubmitScoreResponseBP(), const FLootLockerSubmitScoreResponseDelegate& OnCompletedRequest = FLootLockerSubmitScoreResponseDelegate());
+    static void CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerServerCreateLeaderboardResponseBP(), const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerCreateLeaderboardResponseDelegate());
+    static void UpdateLeaderboard(const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerServerUpdateLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerServerUpdateLeaderboardResponseBP(), const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerUpdateLeaderboardResponseDelegate());
+    static void DeleteLeaderboard(int LeaderboardId, const FLootLockerServerDeleteLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerServerDeleteLeaderboardResponseBP(), const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerDeleteLeaderboardResponseDelegate());
+    static void SubmitScore(const FLootLockerServerSubmitScoreRequest& SubmitScoreRequests, int LeaderboardId, const FLootLockerServerSubmitScoreResponseBP& OnCompletedRequestBP = FLootLockerServerSubmitScoreResponseBP(), const FLootLockerServerSubmitScoreResponseDelegate& OnCompletedRequest = FLootLockerServerSubmitScoreResponseDelegate());
 
 
 public:

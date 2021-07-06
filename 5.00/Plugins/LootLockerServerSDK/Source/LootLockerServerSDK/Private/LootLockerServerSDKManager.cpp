@@ -126,29 +126,29 @@ void ULootLockerServerSDKManager::InvokeTriggerOnBehalfOfPlayer(const FInvokeTri
 	ULootLockerServerTriggerRequest::InvokeTriggerOnBehalfOfPlayer(Name, PlayerId, FInvokeTriggerResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::CreateLeaderboard(const FLootLockerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerCreateLeaderboardResponseDelegate& OnCompletedRequest)
+void ULootLockerServerSDKManager::CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, FLootLockerCreateLeaderboardResponseBP(), OnCompletedRequest);
+	ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, FLootLockerServerCreateLeaderboardResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::UpdateLeaderboard(const FLootLockerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
+void ULootLockerServerSDKManager::UpdateLeaderboard(const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerLeaderboardRequest::UpdateLeaderboard(UpdateLeaderboardRequests, LeaderboardId, FLootLockerUpdateLeaderboardResponseBP(), OnCompletedRequest);
+	ULootLockerServerLeaderboardRequest::UpdateLeaderboard(UpdateLeaderboardRequests, LeaderboardId, FLootLockerServerUpdateLeaderboardResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::DeleteLeaderboard(int LeaderboardId, const FLootLockerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
+void ULootLockerServerSDKManager::DeleteLeaderboard(int LeaderboardId, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerLeaderboardRequest::DeleteLeaderboard(LeaderboardId, FLootLockerDeleteLeaderboardResponseBP(), OnCompletedRequest);
+	ULootLockerServerLeaderboardRequest::DeleteLeaderboard(LeaderboardId, FLootLockerServerDeleteLeaderboardResponseBP(), OnCompletedRequest);
 
 }
 
-void ULootLockerServerSDKManager::SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerSubmitScoreResponseDelegate& OnCompletedRequest)
+void ULootLockerServerSDKManager::SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerServerSubmitScoreResponseDelegate& OnCompletedRequest)
 {
 	FLootLockerServerSubmitScoreRequest score = FLootLockerServerSubmitScoreRequest();
 	score.member_id = MemberId;
 	score.score = Score;
 
-	ULootLockerServerLeaderboardRequest::SubmitScore(score, LeaderboardId, FLootLockerSubmitScoreResponseBP(), OnCompletedRequest);
+	ULootLockerServerLeaderboardRequest::SubmitScore(score, LeaderboardId, FLootLockerServerSubmitScoreResponseBP(), OnCompletedRequest);
 }
 
 

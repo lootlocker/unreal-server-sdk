@@ -8,7 +8,7 @@
 
 void ADemoLeaderboard::CreateLeaderboard()
 {
-	FLootLockerCreateLeaderboardRequest request = FLootLockerCreateLeaderboardRequest();
+	FLootLockerServerCreateLeaderboardRequest request = FLootLockerServerCreateLeaderboardRequest();
 	request.name = name;
 	request.key = key;
 	FString localType = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerLeaderboardType"), static_cast<int32>(type));
@@ -20,12 +20,12 @@ void ADemoLeaderboard::CreateLeaderboard()
 	request.enable_game_api_writes = enable_game_api_writes;
 	request.overwrite_score_on_submit = overwrite_score_on_submit;
 
-	ULootLockerServerSDKManager::CreateLeaderboard(request, FLootLockerCreateLeaderboardResponseDelegate::CreateUObject(this, &ADemoLeaderboard::OnCreateLeaderboardCompleted));
+	ULootLockerServerSDKManager::CreateLeaderboard(request, FLootLockerServerCreateLeaderboardResponseDelegate::CreateUObject(this, &ADemoLeaderboard::OnCreateLeaderboardCompleted));
 }
 
 void ADemoLeaderboard::UpdateLeaderboard()
 {
-	FLootLockerUpdateLeaderboardRequest request = FLootLockerUpdateLeaderboardRequest();
+	FLootLockerServerUpdateLeaderboardRequest request = FLootLockerServerUpdateLeaderboardRequest();
 	request.name = name;
 	FString localType = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerLeaderboardType"), static_cast<int32>(type));
 	FString localDirection = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerLeaderboardDirection"), static_cast<int32>(direction_method));
@@ -37,17 +37,17 @@ void ADemoLeaderboard::UpdateLeaderboard()
 	request.enable_game_api_writes = enable_game_api_writes;
 	request.overwrite_score_on_submit = overwrite_score_on_submit;
 
-	ULootLockerServerSDKManager::UpdateLeaderboard(request,leaderboardId ,FLootLockerUpdateLeaderboardResponseDelegate::CreateUObject(this, &ADemoLeaderboard::OnUpdateLeaderboardCompleted));
+	ULootLockerServerSDKManager::UpdateLeaderboard(request,leaderboardId ,FLootLockerServerUpdateLeaderboardResponseDelegate::CreateUObject(this, &ADemoLeaderboard::OnUpdateLeaderboardCompleted));
 }
 
 void ADemoLeaderboard::DeleteLeaderboard()
 {
-	ULootLockerServerSDKManager::DeleteLeaderboard( leaderboardId, FLootLockerDeleteLeaderboardResponseDelegate::CreateUObject(this, &ADemoLeaderboard::OnDeleteLeaderboardCompleted));
+	ULootLockerServerSDKManager::DeleteLeaderboard( leaderboardId, FLootLockerServerDeleteLeaderboardResponseDelegate::CreateUObject(this, &ADemoLeaderboard::OnDeleteLeaderboardCompleted));
 }
 
 void ADemoLeaderboard::SubmitScore()
 {
-	ULootLockerServerSDKManager::SubmitScore(member_id,leaderboardId, score, FLootLockerSubmitScoreResponseDelegate::CreateUObject(this, &ADemoLeaderboard::OnSubmitScoreCompleted));
+	ULootLockerServerSDKManager::SubmitScore(member_id,leaderboardId, score, FLootLockerServerSubmitScoreResponseDelegate::CreateUObject(this, &ADemoLeaderboard::OnSubmitScoreCompleted));
 }
 
 void ADemoLeaderboard::OnCreateLeaderboardCompleted(FLootLockerServerCreateLeaderboardResponse Response)

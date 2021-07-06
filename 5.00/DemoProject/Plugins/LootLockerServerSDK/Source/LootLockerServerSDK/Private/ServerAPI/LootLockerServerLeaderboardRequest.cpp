@@ -14,10 +14,10 @@ ULootLockerServerLeaderboardRequest::ULootLockerServerLeaderboardRequest()
 }
 
 
-void ULootLockerServerLeaderboardRequest::CreateLeaderboard(const FLootLockerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerCreateLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerCreateLeaderboardResponseDelegate& OnCompletedRequest)
+void ULootLockerServerLeaderboardRequest::CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
 {
 	FString ContentString;
-	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerCreateLeaderboardRequest::StaticStruct(), &CreateLeaderboardRequest, ContentString, 0, 0);
+	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerServerCreateLeaderboardRequest::StaticStruct(), &CreateLeaderboardRequest, ContentString, 0, 0);
 
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
 		{
@@ -41,10 +41,10 @@ void ULootLockerServerLeaderboardRequest::CreateLeaderboard(const FLootLockerCre
 	HttpClient->SendApi(Endpoint.endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
-void ULootLockerServerLeaderboardRequest::UpdateLeaderboard(const FLootLockerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerUpdateLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
+void ULootLockerServerLeaderboardRequest::UpdateLeaderboard(const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequests, int LeaderboardId, const FLootLockerServerUpdateLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
 {
 	FString ContentString;
-	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerUpdateLeaderboardRequest::StaticStruct(), &UpdateLeaderboardRequests, ContentString, 0, 0);
+	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerServerUpdateLeaderboardRequest::StaticStruct(), &UpdateLeaderboardRequests, ContentString, 0, 0);
 
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
 		{
@@ -69,7 +69,7 @@ void ULootLockerServerLeaderboardRequest::UpdateLeaderboard(const FLootLockerUpd
 	HttpClient->SendApi(newEndpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
-void ULootLockerServerLeaderboardRequest::DeleteLeaderboard(int LeaderboardId, const FLootLockerDeleteLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
+void ULootLockerServerLeaderboardRequest::DeleteLeaderboard(int LeaderboardId, const FLootLockerServerDeleteLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
 {
 	FString ContentString;
 
@@ -98,7 +98,7 @@ void ULootLockerServerLeaderboardRequest::DeleteLeaderboard(int LeaderboardId, c
 	HttpClient->SendApi(newEndpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
-void ULootLockerServerLeaderboardRequest::SubmitScore(const FLootLockerServerSubmitScoreRequest& SubmitScoreRequests, int LeaderboardId, const FLootLockerSubmitScoreResponseBP& OnCompletedRequestBP, const FLootLockerSubmitScoreResponseDelegate& OnCompletedRequest)
+void ULootLockerServerLeaderboardRequest::SubmitScore(const FLootLockerServerSubmitScoreRequest& SubmitScoreRequests, int LeaderboardId, const FLootLockerServerSubmitScoreResponseBP& OnCompletedRequestBP, const FLootLockerServerSubmitScoreResponseDelegate& OnCompletedRequest)
 {
 	FString ContentString;
 	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerServerSubmitScoreRequest::StaticStruct(), &SubmitScoreRequests, ContentString, 0, 0);
