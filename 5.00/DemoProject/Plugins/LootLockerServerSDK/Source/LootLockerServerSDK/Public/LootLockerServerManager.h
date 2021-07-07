@@ -11,7 +11,7 @@
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 #include "ServerAPI/LootLockerServerTriggerRequest.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
-
+#include "ServerAPI/LLServerDropTablesRequestHandler.h"
 
 
 #include "LootLockerServerManager.generated.h"
@@ -240,8 +240,8 @@ public:
    // *
    // * https://ref.lootlocker.io/game-api/#compute-and-lock-drop-table
    // */
-   // UFUNCTION(BlueprintCallable, Category = "LootLocker Methods | DropTable")
-   // static void ComputeAndLockDropTable(int TableId, const FLootLockerComputeAndLockDropTableResponseBP& OnCompletedRequestBP);
+    UFUNCTION(BlueprintCallable, Category = "LootLocker Methods | DropTable")
+	static void ComputeAndLockDropTable(int TableId, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequestBP);
 
    // /**
    //* Collecting an Item is done by calling this endpoint with a payload equal to the slug of the Item.
@@ -252,6 +252,6 @@ public:
    //*
    //* https://ref.lootlocker.io/game-api/#pick-drops-from-drop-table
    //*/
-   // UFUNCTION(BlueprintCallable, Category = "LootLocker Methods | DropTable")
-   // static void PickDropsFromDropTable(TArray<int> picks, int TableId, const FFLootLockerPickDropsFromDropTableResponseBP& OnCompletedRequestBP);
+    UFUNCTION(BlueprintCallable, Category = "LootLocker Methods | DropTable")
+    static void PickDropsFromDropTable(TArray<int> picks, int TableId, const FLootLockerServerPickDropsFromDropTableResponseBP& OnCompletedRequestBP);
 };
