@@ -240,7 +240,7 @@ public:
    // *
    // * https://ref.lootlocker.io/game-api/#compute-and-lock-drop-table
    // */
-    UFUNCTION(BlueprintCallable, Category = "LootLocker Methods | DropTable")
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | DropTable")
 	static void ComputeAndLockDropTable(int TableId, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequestBP);
 
    // /**
@@ -252,6 +252,6 @@ public:
    //*
    //* https://ref.lootlocker.io/game-api/#pick-drops-from-drop-table
    //*/
-    UFUNCTION(BlueprintCallable, Category = "LootLocker Methods | DropTable")
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | DropTable")
     static void PickDropsFromDropTable(TArray<int> picks, int TableId, const FLootLockerServerPickDropsFromDropTableResponseBP& OnCompletedRequestBP);
 };

@@ -13,7 +13,9 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerComputeAndLockDropTableResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
+        UPROPERTY(BlueprintReadWrite, EditAnywhere)
     bool success;
+    //UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     TArray<FLootLockerServerComputeAndLockItem> items;
 };
 
@@ -32,6 +34,7 @@ struct FLootLockerServerPickDropsFromDropTableResponse : public FLootLockerServe
 {
     GENERATED_BODY()
     bool success;
+public:
     TArray <FLootLockerServerPickDropsFromDropTableItem> items;
 };
 
