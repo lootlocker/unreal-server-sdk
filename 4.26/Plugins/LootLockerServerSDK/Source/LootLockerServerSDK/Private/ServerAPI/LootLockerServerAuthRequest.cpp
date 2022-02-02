@@ -17,7 +17,7 @@ void ULootLockerServerAuthRequest::StartSession(const FServerAuthResponseBP& OnC
 {
 	FLootLockerServerAuthenticationRequest authRequest;
 	const ULootLockerServerConfig* config = GetDefault<ULootLockerServerConfig>();
-	authRequest.development_mode = config->OnDevelopmentMode;
+	authRequest.is_development = config->OnDevelopmentMode;
 	authRequest.game_version = config->GameVersion;
 	FString AuthContentString;
 	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerServerAuthenticationRequest::StaticStruct(), &authRequest, AuthContentString, 0, 0);
@@ -50,7 +50,7 @@ void ULootLockerServerAuthRequest::MaintainSession(const FServerAuthResponseBP& 
 {
 	FLootLockerServerAuthenticationRequest authRequest;
 	const ULootLockerServerConfig* config = GetDefault<ULootLockerServerConfig>();
-	authRequest.development_mode = config->OnDevelopmentMode;
+	authRequest.is_development = config->OnDevelopmentMode;
 	authRequest.game_version = config->GameVersion;
 	FString AuthContentString;
 	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerServerAuthenticationRequest::StaticStruct(), &authRequest, AuthContentString, 0, 0);
