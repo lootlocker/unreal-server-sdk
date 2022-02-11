@@ -115,7 +115,7 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FAddAssetResponseBP, FLootLockerServerAddAsset
 DECLARE_DYNAMIC_DELEGATE_OneParam(FGetPlayerLoadoutResponseBP, FLootLockerServerGetPlayerLoadoutResponse, GetPlayerLoadoutResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FEquipAssetResponseBP, FLootLockerServerEquipAssetForPlayerLoadoutResponse, EquipAssetResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FUnequipAssetResponseBP, FLootLockerServerUnequipAssetForPlayerLoadoutResponse, UnequipAssetResponse);
-DECLARE_DELEGATE_OneParam(FInventoryResponse, FLootLockerServerInventoryResponse);
+DECLARE_DELEGATE_OneParam(FServerInventoryResponse, FLootLockerServerInventoryResponse);
 DECLARE_DELEGATE_OneParam(FAddAssetResponse, FLootLockerServerAddAssetResponse);
 DECLARE_DELEGATE_OneParam(FGetPlayerLoadoutResponse, FLootLockerServerGetPlayerLoadoutResponse);
 DECLARE_DELEGATE_OneParam(FEquipAssetResponse, FLootLockerServerEquipAssetForPlayerLoadoutResponse);
@@ -132,7 +132,7 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerRequest : public UObject
 public:	
 	ULootLockerServerPlayerRequest();
 
-	static void GetInventory(int PlayerId, int StartFromIndex, int ItemsCount, const FInventoryResponseBP& OnCompletedRequestBP = FInventoryResponseBP(), const FInventoryResponse& OnCompletedRequest = FInventoryResponse());
+	static void GetInventory(int PlayerId, int StartFromIndex, int ItemsCount, const FInventoryResponseBP& OnCompletedRequestBP = FInventoryResponseBP(), const FServerInventoryResponse& OnCompletedRequest = FServerInventoryResponse());
 
 	static void AddAssetToPlayerInventory(int PlayerId, FLootLockerServerAddAssetData AddAssetData, const FAddAssetResponseBP& OnCompletedRequestBP = FAddAssetResponseBP(), const FAddAssetResponse& OnCompletedRequest = FAddAssetResponse());
 

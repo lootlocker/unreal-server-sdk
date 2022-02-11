@@ -44,7 +44,7 @@ void ULootLockerServerCharacterRequest::GetPlayerCharacters(int PlayerId,
 }
 
 void ULootLockerServerCharacterRequest::GetInventoryToCharacter(int PlayerId, int CharacterId,
-	const FCharacterInventoryResponseBP& OnCompletedRequestBP, const FCharacterInventoryResponse& OnCompletedRequest)
+	const FCharacterInventoryResponseBP& OnCompletedRequestBP, const FServerCharacterInventoryResponse& OnCompletedRequest)
 {
 	FString data;
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
@@ -71,7 +71,7 @@ void ULootLockerServerCharacterRequest::GetInventoryToCharacter(int PlayerId, in
 }
 
 void ULootLockerServerCharacterRequest::GetCharacterLoadout(int PlayerId, int CharacterId,
-	const FCharacterLoadoutResponseBP& OnCompletedRequestBP, const FCharacterLoadoutResponse& OnCompletedRequest)
+	const FCharacterLoadoutResponseBP& OnCompletedRequestBP, const FServerCharacterLoadoutResponse& OnCompletedRequest)
 {
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
         {

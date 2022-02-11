@@ -14,7 +14,7 @@ ULootLockerServerHeroesRequest::ULootLockerServerHeroesRequest()
 }
 
 void ULootLockerServerHeroesRequest::GetPlayerHeroes(int PlayerId,
-	const FHeroesResponseBP& OnCompletedRequestBP, const FHeroesResponse& OnCompletedRequest)
+	const FHeroesResponseBP& OnCompletedRequestBP, const FServerHeroesResponse& OnCompletedRequest)
 {
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
         {
@@ -43,7 +43,7 @@ void ULootLockerServerHeroesRequest::GetPlayerHeroes(int PlayerId,
 }
 
 void ULootLockerServerHeroesRequest::GetInventoryToHero(int PlayerId, int HeroId,
-	const FHeroInventoryResponseBP& OnCompletedRequestBP, const FHeroInventoryResponse& OnCompletedRequest)
+	const FHeroInventoryResponseBP& OnCompletedRequestBP, const FServerHeroInventoryResponse& OnCompletedRequest)
 {
 	FString data;
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
@@ -70,7 +70,7 @@ void ULootLockerServerHeroesRequest::GetInventoryToHero(int PlayerId, int HeroId
 }
 
 void ULootLockerServerHeroesRequest::GetHeroLoadout(int PlayerId, int HeroId,
-	const FHeroLoadoutResponseBP& OnCompletedRequestBP, const FHeroLoadoutResponse& OnCompletedRequest)
+	const FHeroLoadoutResponseBP& OnCompletedRequestBP, const FServerHeroLoadoutResponse& OnCompletedRequest)
 {
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
         {

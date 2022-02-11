@@ -14,7 +14,7 @@ ULootLockerServerPlayerRequest::ULootLockerServerPlayerRequest()
 }
 
 void ULootLockerServerPlayerRequest::GetInventory(int PlayerId, int StartFromIndex, int ItemsCount,
-                                                  const FInventoryResponseBP& OnCompletedRequestBP, const FInventoryResponse& OnCompletedRequest)
+                                                  const FInventoryResponseBP& OnCompletedRequestBP, const FServerInventoryResponse& OnCompletedRequest)
 {
 	FString data;
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
