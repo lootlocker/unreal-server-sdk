@@ -27,10 +27,10 @@ FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetCharacterLoadoutEn
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::EquipAssetforCharacterLoadoutEndpoint = InitEndpoint("player/{0}/character/{1}/loadout", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::UnequipAssetforCharacterLoadoutEndpoint = InitEndpoint("player/{0}/character/{1}/loadout/{2}", ELootLockerServerHTTPMethod::DELETE);
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetPlayerHeroesEndpoint = InitEndpoint("player/{0}/heroes", ELootLockerServerHTTPMethod::GET);
-FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetInventorytoHeroEndpoint = InitEndpoint("player/{0}/hero/{1}/inventory", ELootLockerServerHTTPMethod::GET);
-FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetHeroLoadoutEndpoint = InitEndpoint("player/{0}/hero/{1}/loadout", ELootLockerServerHTTPMethod::GET);
-FLootLockerServerEndPoints ULootLockerServerGameEndpoints::EquipAssetforHeroLoadoutEndpoint = InitEndpoint("player/{0}/hero/{1}/loadout", ELootLockerServerHTTPMethod::POST);
-FLootLockerServerEndPoints ULootLockerServerGameEndpoints::UnequipAssetforHeroLoadoutEndpoint = InitEndpoint("player/{0}/hero/{1}/loadout/{2}", ELootLockerServerHTTPMethod::DELETE);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetInventorytoHeroEndpoint = InitEndpoint("player/{0}/heroes/{1}/inventory", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetHeroLoadoutEndpoint = InitEndpoint("player/{0}/heroes/{1}/loadout", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::EquipAssetforHeroLoadoutEndpoint = InitEndpoint("player/{0}/heroes/{1}/loadout", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::UnequipAssetforHeroLoadoutEndpoint = InitEndpoint("player/{0}/heroes/{1}/loadout/{2}", ELootLockerServerHTTPMethod::DELETE);
 //Trigger
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::InvokeTriggeronBehalfofPlayerEndpoint = InitEndpoint("trigger", ELootLockerServerHTTPMethod::POST);
 
