@@ -22,12 +22,12 @@ void ULootLockerServerPlayerRequest::GetInventory(int PlayerId, int StartFromInd
             FLootLockerServerInventoryResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerInventoryResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -48,12 +48,12 @@ void ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(int PlayerId, FLo
             FLootLockerServerAddAssetResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerAddAssetResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -82,12 +82,12 @@ void ULootLockerServerPlayerRequest::GetPlayerLoadout(int PlayerId,
             FLootLockerServerGetPlayerLoadoutResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerGetPlayerLoadoutResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -112,12 +112,12 @@ void ULootLockerServerPlayerRequest::EquipAssetForPlayerLoadout(int PlayerId, in
             FLootLockerServerEquipAssetForPlayerLoadoutResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerEquipAssetForPlayerLoadoutResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -146,12 +146,12 @@ void ULootLockerServerPlayerRequest::UnequipAssetForPlayerLoadout(int PlayerId, 
             FLootLockerServerUnequipAssetForPlayerLoadoutResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerUnequipAssetForPlayerLoadoutResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
