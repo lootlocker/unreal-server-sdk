@@ -38,8 +38,14 @@ void ULootLockerServerManager::AddAssetToPlayerInventory(const FAddAssetResponse
     ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(PlayerId, AddAssetData, OnAddAssetRequestCompleted, FAddAssetResponse());
 }
 
+void ULootLockerServerManager::AlterPlayerInventory(const FAlterInventoryResponseBP& OnAlterInventoryRequestCompleted,
+	int32 PlayerId, const FLootLockerServerAlterInventoryRequestData& AlterInventoryData)
+{
+	ULootLockerServerPlayerRequest::AlterPlayerInventory(PlayerId, AlterInventoryData, OnAlterInventoryRequestCompleted, FAlterInventoryResponse());
+}
+
 void ULootLockerServerManager::GetPlayerLoadout(const FGetPlayerLoadoutResponseBP& OnGetPlayerLoadoutRequestCompleted,
-    int PlayerId)
+                                                int PlayerId)
 {
     ULootLockerServerPlayerRequest::GetPlayerLoadout(PlayerId, OnGetPlayerLoadoutRequestCompleted, FGetPlayerLoadoutResponse());
 }

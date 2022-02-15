@@ -32,8 +32,14 @@ void ULootLockerServerSDKManager::AddAssetToPlayerInventory(const FAddAssetRespo
 	ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(PlayerId, AddAssetData, FAddAssetResponseBP(), OnAddAssetRequestCompleted);
 }
 
+void ULootLockerServerSDKManager::AlterPlayerInventory(const FAlterInventoryResponse& OnAlterInventoryRequestCompleted,
+	int PlayerId, FLootLockerServerAlterInventoryRequestData AlterInventoryData)
+{
+	ULootLockerServerPlayerRequest::AlterPlayerInventory(PlayerId, AlterInventoryData, FAlterInventoryResponseBP(), OnAlterInventoryRequestCompleted);
+}
+
 void ULootLockerServerSDKManager::GetPlayerLoadout(const FGetPlayerLoadoutResponse& OnGetPlayerLoadoutRequestCompleted,
-	int PlayerId)
+                                                   int PlayerId)
 {
 	ULootLockerServerPlayerRequest::GetPlayerLoadout(PlayerId, FGetPlayerLoadoutResponseBP(), OnGetPlayerLoadoutRequestCompleted);
 }

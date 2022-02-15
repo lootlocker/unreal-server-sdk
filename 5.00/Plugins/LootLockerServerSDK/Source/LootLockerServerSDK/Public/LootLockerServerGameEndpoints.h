@@ -19,6 +19,7 @@ public:
     //Player Inventory
     static FLootLockerServerEndPoints GetPlayerInventoryEndpoint;
     static FLootLockerServerEndPoints AddAssetsToPlayerInventoryEndpoint;
+    static FLootLockerServerEndPoints AlterPlayerInventoryEndpoint;
     static FLootLockerServerEndPoints GetPlayerLoadoutEndpoint;
     static FLootLockerServerEndPoints EquipAssetToPlayerLoadoutEndpoint;
     static FLootLockerServerEndPoints UnEquipAssetToPlayerLoadoutEndpoint;

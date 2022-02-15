@@ -67,6 +67,15 @@ public:
 	static void AddAssetToPlayerInventory(const FAddAssetResponse& OnAddAssetRequestCompleted, int PlayerId, FLootLockerServerAddAssetData AddAssetData);
 
 	/**
+	 * Add or remove assets from a player's inventory
+	 * @param OnAlterInventoryRequestCompleted - callback to be invoked with the server response
+	 * @param PlayerId - Player identifier
+	 * @param AlterInventoryData - Data about the assets added or removed
+	 * https://ref.lootlocker.io/server-api/#alter-player-inventory
+	 */
+	static void AlterPlayerInventory(const FAlterInventoryResponse& OnAlterInventoryRequestCompleted, int PlayerId, FLootLockerServerAlterInventoryRequestData AlterInventoryData);
+
+	/**
 	 * Return the players default characters loadout
 	 * @param OnGetPlayerLoadoutRequestCompleted - callback to be invoked with the server response
 	 * @param PlayerId - Player identifier

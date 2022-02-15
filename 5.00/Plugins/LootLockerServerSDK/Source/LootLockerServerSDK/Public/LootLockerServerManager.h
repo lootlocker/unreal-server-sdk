@@ -68,6 +68,12 @@ public:
     static void AddAssetToPlayerInventory(const FAddAssetResponseBP& OnAddAssetRequestCompleted, int32 PlayerId, FLootLockerServerAddAssetData AddAssetData);
 
 	/**
+	 * Add or remove assets from a player's inventory
+	 * https://ref.lootlocker.io/server-api/#alter-player-inventory
+	 */
+    static void AlterPlayerInventory(const FAlterInventoryResponseBP& OnAlterInventoryRequestCompleted, int32 PlayerId, const FLootLockerServerAlterInventoryRequestData& AlterInventoryData);
+	
+	/**
 	 * Return the players default characters loadout
 	 * https://docs.lootlocker.io/server-api/#get-player-loadout 
 	 */

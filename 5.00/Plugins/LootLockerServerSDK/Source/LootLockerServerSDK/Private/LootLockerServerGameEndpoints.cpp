@@ -14,6 +14,7 @@ FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetAssetsToGameEndpoi
 //Player Inventory
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetPlayerInventoryEndpoint = InitEndpoint("player/{0}/inventory", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::AddAssetsToPlayerInventoryEndpoint = InitEndpoint("player/{0}/inventory", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::AlterPlayerInventoryEndpoint = InitEndpoint("player/{0}/inventory", ELootLockerServerHTTPMethod::PATCH);
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetPlayerLoadoutEndpoint = InitEndpoint("player/{0}/loadout", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::EquipAssetToPlayerLoadoutEndpoint = InitEndpoint("player/{0}/loadout", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::UnEquipAssetToPlayerLoadoutEndpoint = InitEndpoint("player/{0}/loadout/{1}", ELootLockerServerHTTPMethod::DELETE);

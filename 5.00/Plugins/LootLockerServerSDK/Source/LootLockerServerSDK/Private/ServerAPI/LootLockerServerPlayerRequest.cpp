@@ -80,11 +80,44 @@ void ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(int PlayerId, FLo
 
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
+
+void ULootLockerServerPlayerRequest::AlterPlayerInventory(int PlayerId,
+															const FLootLockerServerAlterInventoryRequestData& RequestData,
+															const FAlterInventoryResponseBP& OnCompletedRequestBP, const FAlterInventoryResponse& OnCompletedRequest)
+{
+	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
+		{
+			FLootLockerServerAlterInventoryResponse ResponseStruct;
+			if (response.success)
+			{
+				ResponseStruct.success = true;
+				FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerAlterInventoryResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
+
+			}
+			else {
+				ResponseStruct.success = false;
+				UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
+			}
+			ResponseStruct.FullTextFromServer = response.FullTextFromServer;
+			OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
+			OnCompletedRequest.ExecuteIfBound(ResponseStruct);
+		});
+
+	TSharedRef<FJsonObject> ItemJson = MakeShareable(new FJsonObject());
+	FJsonObjectConverter::UStructToJsonObject(FLootLockerServerAlterInventoryRequestData::StaticStruct(), &RequestData, ItemJson, 0, 0);
+	FString ContentString;
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&ContentString);
+	FJsonSerializer::Serialize(ItemJson, Writer);
+	
+	FLootLockerServerEndPoints Endpoint = ULootLockerServerGameEndpoints::AlterPlayerInventoryEndpoint;
+	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
+	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
+
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
 void ULootLockerServerPlayerRequest::GetPlayerLoadout(int PlayerId,
-	const FGetPlayerLoadoutResponseBP& OnCompletedRequestBP, const FGetPlayerLoadoutResponse& OnCompletedRequest)
+                                                      const FGetPlayerLoadoutResponseBP& OnCompletedRequestBP, const FGetPlayerLoadoutResponse& OnCompletedRequest)
 {
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
         {
@@ -142,8 +175,7 @@ void ULootLockerServerPlayerRequest::EquipAssetForPlayerLoadout(int PlayerId, in
 	FLootLockerServerEndPoints Endpoint = ULootLockerServerGameEndpoints::EquipAssetToPlayerLoadoutEndpoint;
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
-
-	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
+	
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
