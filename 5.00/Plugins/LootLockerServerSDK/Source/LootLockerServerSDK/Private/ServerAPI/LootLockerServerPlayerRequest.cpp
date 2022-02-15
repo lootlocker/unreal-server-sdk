@@ -62,7 +62,15 @@ void ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(int PlayerId, FLo
         });
 
 	TSharedRef<FJsonObject> ItemJson = MakeShareable(new FJsonObject());
-	FJsonObjectConverter::UStructToJsonObject(FLootLockerServerAddAssetData::StaticStruct(), &AddAssetData, ItemJson, 0, 0);
+	ItemJson->SetStringField(FString(TEXT("asset_id")), FString::FromInt(AddAssetData.asset_id));
+	if(AddAssetData.asset_variation_id > 0)
+	{
+		ItemJson->SetStringField(FString(TEXT("asset_variation_id")), FString::FromInt(AddAssetData.asset_variation_id));
+	}
+	if(AddAssetData.asset_rental_option_id > 0)
+	{
+		ItemJson->SetStringField(FString(TEXT("asset_rental_option_id")), FString::FromInt(AddAssetData.asset_rental_option_id));
+	}
 	FString ContentString;
 	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&ContentString);
 	FJsonSerializer::Serialize(ItemJson, Writer);
@@ -70,7 +78,8 @@ void ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(int PlayerId, FLo
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
 
-	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
+	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
+}
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
