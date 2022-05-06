@@ -17,9 +17,14 @@ FLootLockerServerEndPoints ULootLockerServerGameEndpoints::AddAssetsToPlayerInve
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetPlayerLoadoutEndpoint = InitEndpoint("player/{0}/loadout", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::EquipAssetToPlayerLoadoutEndpoint = InitEndpoint("player/{0}/loadout", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::UnEquipAssetToPlayerLoadoutEndpoint = InitEndpoint("player/{0}/loadout/{1}", ELootLockerServerHTTPMethod::DELETE);
-//Player persisitent storage
+//Player persistent storage
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetPersistentStorageEndpoint = InitEndpoint("players/storage?player_ids={0}", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::UpdatePersistentStorageEndpoint = InitEndpoint("players/storage", ELootLockerServerHTTPMethod::PATCH);
+//Player files
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::ListFilesForPlayerEndpoint = InitEndpoint("players/{0}/files", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetFileByIdForPlayerEndpoint = InitEndpoint("players/{0}/files/{1}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::DeleteFileForPlayerEndpoint = InitEndpoint("players/{0}/files/{1}", ELootLockerServerHTTPMethod::DELETE);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::UploadFileForPlayerEndpoint = InitEndpoint("players/{0}/files", ELootLockerServerHTTPMethod::POST);
 //Characters & Heroes
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetPlayerCharactersEndpoint = InitEndpoint("player/{0}/characters", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetInventorytoCharacterEndpoint = InitEndpoint("player/{0}/character/{1}/inventory", ELootLockerServerHTTPMethod::GET);

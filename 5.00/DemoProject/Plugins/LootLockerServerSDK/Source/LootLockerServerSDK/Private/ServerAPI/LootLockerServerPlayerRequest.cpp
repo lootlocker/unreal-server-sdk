@@ -74,6 +74,66 @@ void ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(int PlayerId, FLo
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
+void ULootLockerServerPlayerRequest::ListFilesForPlayer(int PlayerId,
+    const FListFilesForPlayerResponseBP& OnCompletedRequestBP, const FListFilesForPlayerResponse& OnCompletedRequest)
+{
+    FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
+        {
+            FLootLockerServerListFilesForPlayerResponse ResponseStruct;
+            if (response.success)
+            {
+                ResponseStruct.success = true;
+                FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerListFilesForPlayerResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
+
+            }
+            else {
+                ResponseStruct.success = false;
+                UE_LOG(LogTemp, Error, TEXT("Listing player files from lootlocker failed"));
+            }
+            ResponseStruct.FullTextFromServer = response.FullTextFromServer;
+            OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
+            OnCompletedRequest.ExecuteIfBound(ResponseStruct);
+        });
+
+    FString ContentString;
+    FLootLockerServerEndPoints Endpoint = ULootLockerServerGameEndpoints::ListFilesForPlayerEndpoint;
+    FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
+    FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
+
+    UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
+    HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
+}
+
+void ULootLockerServerPlayerRequest::GetFileByIdForPlayer(int PlayerId, int FileId,
+    const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP, const FGetFileByIdForPlayerResponse& OnCompletedRequest)
+{
+    FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
+        {
+            FLootLockerServerGetFileByIdForPlayerResponse ResponseStruct;
+            if (response.success)
+            {
+                ResponseStruct.success = true;
+                FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerPlayerFile>(response.FullTextFromServer, &ResponseStruct.item, 0, 0);
+
+            }
+            else {
+                ResponseStruct.success = false;
+                UE_LOG(LogTemp, Error, TEXT("Getting player file from lootlocker failed"));
+            }
+            ResponseStruct.FullTextFromServer = response.FullTextFromServer;
+            OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
+            OnCompletedRequest.ExecuteIfBound(ResponseStruct);
+        });
+
+    FString ContentString;
+    FLootLockerServerEndPoints Endpoint = ULootLockerServerGameEndpoints::GetFileByIdForPlayerEndpoint;
+    FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId, FileId });
+    FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
+
+    UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
+    HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
+}
+
 void ULootLockerServerPlayerRequest::GetPlayerLoadout(int PlayerId,
 	const FGetPlayerLoadoutResponseBP& OnCompletedRequestBP, const FGetPlayerLoadoutResponse& OnCompletedRequest)
 {
@@ -88,7 +148,7 @@ void ULootLockerServerPlayerRequest::GetPlayerLoadout(int PlayerId,
             }
             else {
                 response.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
+                UE_LOG(LogTemp, Error, TEXT("Getting player loadout failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
             OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
