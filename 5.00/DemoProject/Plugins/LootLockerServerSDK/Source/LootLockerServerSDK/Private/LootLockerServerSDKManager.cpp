@@ -20,7 +20,7 @@ void ULootLockerServerSDKManager::GetAssetsToGame(const FServerAssetsResponseDel
 	ULootLockerServerAssetRequest::GetAssetsToGame(StartFromIndex, ItemsCount, AssetFilter, IncludeUGC, FServerAssetsResponseDelegateBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::GetInventory(const FInventoryResponse& OnGetInventoryRequestCompleted,
+void ULootLockerServerSDKManager::GetInventory(const FServerInventoryResponse& OnGetInventoryRequestCompleted,
 	int PlayerId, int StartFromIndex, int ItemsCount)
 {
 	ULootLockerServerPlayerRequest::GetInventory(PlayerId, StartFromIndex, ItemsCount, FInventoryResponseBP(), OnGetInventoryRequestCompleted);
@@ -30,6 +30,12 @@ void ULootLockerServerSDKManager::AddAssetToPlayerInventory(const FAddAssetRespo
 	int PlayerId, FLootLockerServerAddAssetData AddAssetData)
 {
 	ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(PlayerId, AddAssetData, FAddAssetResponseBP(), OnAddAssetRequestCompleted);
+}
+
+void ULootLockerServerSDKManager::AlterPlayerInventory(const FAlterInventoryResponse& OnAlterInventoryRequestCompleted,
+	int PlayerId, FLootLockerServerAlterInventoryRequestData AlterInventoryData)
+{
+	ULootLockerServerPlayerRequest::AlterPlayerInventory(PlayerId, AlterInventoryData, FAlterInventoryResponseBP(), OnAlterInventoryRequestCompleted);
 }
 
 void ULootLockerServerSDKManager::GetPlayerLoadout(const FGetPlayerLoadoutResponse& OnGetPlayerLoadoutRequestCompleted,
@@ -67,13 +73,13 @@ void ULootLockerServerSDKManager::GetPlayerCharacters(const FCharactersResponse&
 	ULootLockerServerCharacterRequest::GetPlayerCharacters(PlayerId, FCharactersResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::GetInventoryToCharacter(const FCharacterInventoryResponse& OnCompletedRequest,
+void ULootLockerServerSDKManager::GetInventoryToCharacter(const FServerCharacterInventoryResponse& OnCompletedRequest,
 	int PlayerId, int CharacterId)
 {
 	ULootLockerServerCharacterRequest::GetInventoryToCharacter(PlayerId, CharacterId, FCharacterInventoryResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::GetCharacterLoadout(const FCharacterLoadoutResponse& OnCompletedRequest, int PlayerId,
+void ULootLockerServerSDKManager::GetCharacterLoadout(const FServerCharacterLoadoutResponse& OnCompletedRequest, int PlayerId,
 	int CharacterId)
 {
 	ULootLockerServerCharacterRequest::GetCharacterLoadout(PlayerId, CharacterId, FCharacterLoadoutResponseBP(), OnCompletedRequest);
@@ -91,18 +97,18 @@ void ULootLockerServerSDKManager::UnequipAssetForCharacterLoadout(const FUnequip
 	ULootLockerServerCharacterRequest::UnequipAssetForCharacterLoadout(PlayerId, CharacterId, InstanceId, FUnequipResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::GetPlayerHeroes(const FHeroesResponse& OnCompletedRequest, int PlayerId)
+void ULootLockerServerSDKManager::GetPlayerHeroes(const FServerHeroesResponse& OnCompletedRequest, int PlayerId)
 {
 	ULootLockerServerHeroesRequest::GetPlayerHeroes(PlayerId, FHeroesResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::GetInventoryToHero(const FHeroInventoryResponse& OnCompletedRequest,
+void ULootLockerServerSDKManager::GetInventoryToHero(const FServerHeroInventoryResponse& OnCompletedRequest,
     int PlayerId, int HeroId)
 {
 	ULootLockerServerHeroesRequest::GetInventoryToHero(PlayerId, HeroId, FHeroInventoryResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::GetHeroLoadout(const FHeroLoadoutResponse& OnCompletedRequest, int PlayerId,
+void ULootLockerServerSDKManager::GetHeroLoadout(const FServerHeroLoadoutResponse& OnCompletedRequest, int PlayerId,
     int HeroId)
 {
 	ULootLockerServerHeroesRequest::GetHeroLoadout(PlayerId, HeroId, FHeroLoadoutResponseBP(), OnCompletedRequest);

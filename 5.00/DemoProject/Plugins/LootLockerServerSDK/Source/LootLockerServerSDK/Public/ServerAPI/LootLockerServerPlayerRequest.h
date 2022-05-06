@@ -114,6 +114,28 @@ struct FLootLockerServerGetFileByIdForPlayerResponse : public FLootLockerServerR
 };
 
 USTRUCT(BlueprintType)
+struct FLootLockerServerAlterInventoryRequestData
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+	TArray<FLootLockerServerAddAssetData> add;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+	TArray<int> remove;
+};
+
+USTRUCT(BlueprintType)
+struct FLootLockerServerAlterInventoryResponse : public FLootLockerServerResponse
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+	TArray<FLootLockerServerInventory> added;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+	TArray<int> removed;
+};
+
+USTRUCT(BlueprintType)
 struct FLootLockerServerGetPlayerLoadoutResponse : public FLootLockerServerResponse
 {
 	GENERATED_BODY()
@@ -148,15 +170,17 @@ struct FLootLockerServerUnequipAssetForPlayerLoadoutResponse : public FLootLocke
 
 DECLARE_DYNAMIC_DELEGATE_OneParam(FInventoryResponseBP, FLootLockerServerInventoryResponse, InventoryResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FAddAssetResponseBP, FLootLockerServerAddAssetResponse, AddAssetResponse);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FAlterInventoryResponseBP, FLootLockerServerAlterInventoryResponse, AlterInventoryResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FGetPlayerLoadoutResponseBP, FLootLockerServerGetPlayerLoadoutResponse, GetPlayerLoadoutResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FListFilesForPlayerResponseBP, FLootLockerServerListFilesForPlayerResponse, ListFilesForPlayerResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FGetFileByIdForPlayerResponseBP, FLootLockerServerGetFileByIdForPlayerResponse, GetFileByIdForPlayerResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FEquipAssetResponseBP, FLootLockerServerEquipAssetForPlayerLoadoutResponse, EquipAssetResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FUnequipAssetResponseBP, FLootLockerServerUnequipAssetForPlayerLoadoutResponse, UnequipAssetResponse);
-DECLARE_DELEGATE_OneParam(FInventoryResponse, FLootLockerServerInventoryResponse);
+DECLARE_DELEGATE_OneParam(FServerInventoryResponse, FLootLockerServerInventoryResponse);
 DECLARE_DELEGATE_OneParam(FAddAssetResponse, FLootLockerServerAddAssetResponse);
 DECLARE_DELEGATE_OneParam(FListFilesForPlayerResponse, FLootLockerServerListFilesForPlayerResponse);
 DECLARE_DELEGATE_OneParam(FGetFileByIdForPlayerResponse, FLootLockerServerGetFileByIdForPlayerResponse);
+DECLARE_DELEGATE_OneParam(FAlterInventoryResponse, FLootLockerServerAlterInventoryResponse);
 DECLARE_DELEGATE_OneParam(FGetPlayerLoadoutResponse, FLootLockerServerGetPlayerLoadoutResponse);
 DECLARE_DELEGATE_OneParam(FEquipAssetResponse, FLootLockerServerEquipAssetForPlayerLoadoutResponse);
 DECLARE_DELEGATE_OneParam(FUnequipAssetResponse, FLootLockerServerUnequipAssetForPlayerLoadoutResponse);
@@ -172,14 +196,16 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerRequest : public UObject
 public:	
 	ULootLockerServerPlayerRequest();
 
-	static void GetInventory(int PlayerId, int StartFromIndex, int ItemsCount, const FInventoryResponseBP& OnCompletedRequestBP = FInventoryResponseBP(), const FInventoryResponse& OnCompletedRequest = FInventoryResponse());
+	static void GetInventory(int PlayerId, int StartFromIndex, int ItemsCount, const FInventoryResponseBP& OnCompletedRequestBP = FInventoryResponseBP(), const FServerInventoryResponse& OnCompletedRequest = FServerInventoryResponse());
 
 	static void AddAssetToPlayerInventory(int PlayerId, FLootLockerServerAddAssetData AddAssetData, const FAddAssetResponseBP& OnCompletedRequestBP = FAddAssetResponseBP(), const FAddAssetResponse& OnCompletedRequest = FAddAssetResponse());
 
 	static void ListFilesForPlayer(int PlayerId, const FListFilesForPlayerResponseBP& OnCompletedRequestBP = FListFilesForPlayerResponseBP(), const FListFilesForPlayerResponse& OnCompletedRequest = FListFilesForPlayerResponse());
-	
+
 	static void GetFileByIdForPlayer(int PlayerId, int FileId, const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP = FGetFileByIdForPlayerResponseBP(), const FGetFileByIdForPlayerResponse& OnCompletedRequest = FGetFileByIdForPlayerResponse());
 
+	static void AlterPlayerInventory(int PlayerId, const FLootLockerServerAlterInventoryRequestData& RequestData, const FAlterInventoryResponseBP& OnCompletedRequestBP = FAlterInventoryResponseBP(), const FAlterInventoryResponse& OnCompletedRequest = FAlterInventoryResponse());
+	
 	static void GetPlayerLoadout(int PlayerId, const FGetPlayerLoadoutResponseBP& OnCompletedRequestBP = FGetPlayerLoadoutResponseBP(), const FGetPlayerLoadoutResponse& OnCompletedRequest = FGetPlayerLoadoutResponse());
 
 	static void EquipAssetForPlayerLoadout(int PlayerId, int InstanceId, const FEquipAssetResponseBP& OnCompletedRequestBP = FEquipAssetResponseBP(), const FEquipAssetResponse& OnCompletedRequest = FEquipAssetResponse());

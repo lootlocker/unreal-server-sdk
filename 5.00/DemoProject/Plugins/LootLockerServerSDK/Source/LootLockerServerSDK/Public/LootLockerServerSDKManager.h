@@ -55,7 +55,7 @@ public:
 	* @param ItemsCount - number of items to receive (50-200)
 	* https://docs.lootlocker.io/server-api/#get-player-inventory
 	*/
-    static void GetInventory(const FInventoryResponse& OnGetInventoryRequestCompleted, int PlayerId, int StartFromIndex = 0, int ItemsCount = 50);
+    static void GetInventory(const FServerInventoryResponse& OnGetInventoryRequestCompleted, int PlayerId, int StartFromIndex = 0, int ItemsCount = 50);
 
 	/**
 	 * Grant an asset to a player as you see fit
@@ -65,6 +65,15 @@ public:
 	 * https://docs.lootlocker.io/server-api/#add-asset-to-player-inventory
 	 */
 	static void AddAssetToPlayerInventory(const FAddAssetResponse& OnAddAssetRequestCompleted, int PlayerId, FLootLockerServerAddAssetData AddAssetData);
+
+	/**
+	 * Add or remove assets from a player's inventory
+	 * @param OnAlterInventoryRequestCompleted - callback to be invoked with the server response
+	 * @param PlayerId - Player identifier
+	 * @param AlterInventoryData - Data about the assets added or removed
+	 * https://ref.lootlocker.io/server-api/#alter-player-inventory
+	 */
+	static void AlterPlayerInventory(const FAlterInventoryResponse& OnAlterInventoryRequestCompleted, int PlayerId, FLootLockerServerAlterInventoryRequestData AlterInventoryData);
 
 	/**
 	 * Return the players default characters loadout
@@ -123,7 +132,7 @@ public:
 	 * @param CharacterId - character identifier
 	 * https://docs.lootlocker.io/server-api/#get-inventory-to-character
 	 */
-    static void GetInventoryToCharacter(const FCharacterInventoryResponse& OnCompletedRequest, int PlayerId, int CharacterId);
+    static void GetInventoryToCharacter(const FServerCharacterInventoryResponse& OnCompletedRequest, int PlayerId, int CharacterId);
 
 	/**
 	 * Get a characters full loadout.
@@ -132,7 +141,7 @@ public:
 	 * @param CharacterId - character identifier 
 	 * https://docs.lootlocker.io/server-api/#get-character-loadout
 	 */
-    static void GetCharacterLoadout(const FCharacterLoadoutResponse& OnCompletedRequest, int PlayerId, int CharacterId);
+    static void GetCharacterLoadout(const FServerCharacterLoadoutResponse& OnCompletedRequest, int PlayerId, int CharacterId);
 
 	/**
 	 * Equip an asset instance to a specific character
@@ -160,7 +169,7 @@ public:
 	 * @param PlayerId - player identifier
 	 * https://docs.lootlocker.io/server-api/#get-player-heroes
 	 */
-    static void GetPlayerHeroes(const FHeroesResponse& OnCompletedRequest, int PlayerId);
+    static void GetPlayerHeroes(const FServerHeroesResponse& OnCompletedRequest, int PlayerId);
 
 	/**
 	 * Get the inventory for a specific hero belonging to a player
@@ -169,7 +178,7 @@ public:
 	 * @param HeroId - hero identifier
 	 * https://docs.lootlocker.io/server-api/#get-inventory-to-hero
 	 */
-    static void GetInventoryToHero(const FHeroInventoryResponse& OnCompletedRequest, int PlayerId, int HeroId);
+    static void GetInventoryToHero(const FServerHeroInventoryResponse& OnCompletedRequest, int PlayerId, int HeroId);
 
 	/**
 	 * Get a heroes full loadout.
@@ -178,7 +187,7 @@ public:
 	 * @param HeroId - hero identifier 
 	 * https://docs.lootlocker.io/server-api/#get-hero-loadout
 	 */
-    static void GetHeroLoadout(const FHeroLoadoutResponse& OnCompletedRequest, int PlayerId, int HeroId);
+    static void GetHeroLoadout(const FServerHeroLoadoutResponse& OnCompletedRequest, int PlayerId, int HeroId);
 
 	/**
 	 * Equip an asset instance to a specific hero

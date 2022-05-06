@@ -7,7 +7,7 @@
 
 void ADemoPlayerInventory::DemoGetPlayerInventory()
 {
-	ULootLockerServerSDKManager::GetInventory(FInventoryResponse::CreateUObject(this, &ADemoPlayerInventory::OnGetPlayerInventoryCompleted), PlayerId, StartFromIndex, ItemsCount);
+	ULootLockerServerSDKManager::GetInventory(FServerInventoryResponse::CreateUObject(this, &ADemoPlayerInventory::OnGetPlayerInventoryCompleted), PlayerId, StartFromIndex, ItemsCount);
 }
 
 void ADemoPlayerInventory::DemoAddAssetToPlayerInventory()

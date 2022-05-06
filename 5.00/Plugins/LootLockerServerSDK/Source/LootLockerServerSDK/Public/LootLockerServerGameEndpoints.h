@@ -23,9 +23,14 @@ public:
     static FLootLockerServerEndPoints GetPlayerLoadoutEndpoint;
     static FLootLockerServerEndPoints EquipAssetToPlayerLoadoutEndpoint;
     static FLootLockerServerEndPoints UnEquipAssetToPlayerLoadoutEndpoint;
-    //Player persisitent storage
+    //Player persistent storage
     static FLootLockerServerEndPoints GetPersistentStorageEndpoint;
     static FLootLockerServerEndPoints UpdatePersistentStorageEndpoint;
+    //Player files
+    static FLootLockerServerEndPoints ListFilesForPlayerEndpoint;
+    static FLootLockerServerEndPoints GetFileByIdForPlayerEndpoint;
+    static FLootLockerServerEndPoints DeleteFileForPlayerEndpoint;
+    static FLootLockerServerEndPoints UploadFileForPlayerEndpoint;
     //Characters & Heroes
     static FLootLockerServerEndPoints GetPlayerCharactersEndpoint;
     static FLootLockerServerEndPoints GetInventorytoCharacterEndpoint;
