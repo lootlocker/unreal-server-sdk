@@ -20,7 +20,7 @@
 			"Name": "LootLockerServerSDK",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
-			"WhitelistPlatforms": [ "Win64", "Mac", "Android", "PS4", "IOS", "Switch" ]
+			"WhitelistPlatforms": [ "Win64", "Mac", "Android", "IOS" ]
 		}
 	]
 }

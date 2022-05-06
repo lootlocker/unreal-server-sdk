@@ -156,15 +156,10 @@ void ULootLockerServerManager::InvokeTriggerOnBehalfOfPlayer(const FInvokeTrigge
      ULootLockerServerLeaderboardRequest::SubmitScore(score, LeaderboardId, OnCompletedRequestBP, FLootLockerServerSubmitScoreResponseDelegate());
  }
 
+ //void ComputeAndLockDropTable(int TableId, const FLootLockerComputeAndLockDropTableResponseBP& OnCompletedRequestBP)
+ //{
+ //}
 
- void ULootLockerServerManager::ComputeAndLockDropTable(int TableId , const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequestBP)
- {
-     ULLServerDropTablesRequestHandler::ComputeAndLockDropTable(TableId, OnCompletedRequestBP);
- }
-
- void ULootLockerServerManager::PickDropsFromDropTable(TArray<int> picks, int TableId, const FLootLockerServerPickDropsFromDropTableResponseBP& OnCompletedRequestBP)
- {
-     FLootLockerServerPickDropsFromDropTableRequest request;
-     request.picks = picks;
-     ULLServerDropTablesRequestHandler::PickDropsFromDropTable(request, TableId, OnCompletedRequestBP);
- }
+ //void PickDropsFromDropTable(TArray<int> picks, int TableId, const FFLootLockerPickDropsFromDropTableResponseBP& OnCompletedRequestBP)
+ //{
+ //}

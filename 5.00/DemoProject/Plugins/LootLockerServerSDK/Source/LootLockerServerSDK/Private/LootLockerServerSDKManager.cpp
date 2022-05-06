@@ -152,14 +152,3 @@ void ULootLockerServerSDKManager::SubmitScore(FString MemberId, int LeaderboardI
 }
 
 
-void ULootLockerServerSDKManager::ComputeAndLockDropTable(int TableId, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
-{
-	ULLServerDropTablesRequestHandler::ComputeAndLockDropTable(TableId, FLootLockerServerComputeAndLockDropTableResponseBP(), OnCompletedRequest);
-}
-
-void ULootLockerServerSDKManager::PickDropsFromDropTable(TArray<int> picks, int TableId, const FLootLockerServerPickDropsFromDropTableResponseDelegate& OnCompletedRequest)
-{
-	FLootLockerServerPickDropsFromDropTableRequest request;
-	request.picks = picks;
-	ULLServerDropTablesRequestHandler::PickDropsFromDropTable(request, TableId, FLootLockerServerPickDropsFromDropTableResponseBP(), OnCompletedRequest);
-}
