@@ -81,3 +81,7 @@ DemoProject/DerivedDataCache/*
 # Files containing API keys
 DefaultLootLockerServerSDK.ini
 DefaultLootLockerSDK.ini
+Logs/
+Binaries/
+Intermediate/
+Saved/
