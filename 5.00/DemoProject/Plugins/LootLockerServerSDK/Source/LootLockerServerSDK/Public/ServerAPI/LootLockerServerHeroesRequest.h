@@ -131,7 +131,7 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerHeroesRequest : public UObject
 	static void EquipAssetForHeroLoadout(int PlayerId, int HeroId, int InstanceId, const FEquipHeroResponseBP& OnCompletedRequestBP = FEquipHeroResponseBP(), const FEquipHeroResponse& OnCompletedRequest = FEquipHeroResponse());
 
 	static void UnequipAssetForHeroLoadout(int PlayerId, int HeroId, int InstanceId, const FUnequipHeroResponseBP& OnCompletedRequestBP = FUnequipHeroResponseBP(), const FUnequipHeroResponse& OnCompletedRequest = FUnequipHeroResponse());
-
+protected:
 	static ULootLockerServerHttpClient* HttpClient;
 	
 };

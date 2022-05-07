@@ -138,6 +138,26 @@ void ULootLockerServerManager::InvokeTriggerOnBehalfOfPlayer(const FInvokeTrigge
     ULootLockerServerTriggerRequest::InvokeTriggerOnBehalfOfPlayer(Name, PlayerId, OnCompletedRequestBP, FInvokeTriggerResponse());
 }
 
+void ULootLockerServerManager::ListFilesForPlayer(const FListFilesForPlayerResponseBP& OnCompletedRequestBP, int PlayerId)
+{
+    ULootLockerServerFilesRequest::ListFilesForPlayer(PlayerId, OnCompletedRequestBP);
+}
+
+void ULootLockerServerManager::GetFileByIdForPlayer(const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, int FileId)
+{
+    ULootLockerServerFilesRequest::GetFileByIdForPlayer(PlayerId, FileId, OnCompletedRequestBP);
+}
+
+void ULootLockerServerManager::UploadFileForPlayer(const FUploadFileForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, const FString& FilePath, const FString& Purpose)
+{
+    ULootLockerServerFilesRequest::UploadFileForPlayer(PlayerId, FilePath, Purpose, OnCompletedRequestBP);
+}
+
+void ULootLockerServerManager::DeleteFileForPlayer(const FDeleteFileForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, int FileId)
+{
+    ULootLockerServerFilesRequest::DeleteFileForPlayer(PlayerId, FileId, OnCompletedRequestBP);
+}
+
  void ULootLockerServerManager::CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequestBP )
  {
      ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, OnCompletedRequestBP, FLootLockerServerCreateLeaderboardResponseDelegate());
