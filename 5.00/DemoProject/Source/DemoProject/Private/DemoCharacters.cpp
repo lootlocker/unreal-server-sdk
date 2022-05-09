@@ -12,12 +12,12 @@ void ADemoCharacters::DemoGetPlayerCharacters()
 
 void ADemoCharacters::DemoGetInventoryToCharacter()
 {
-	ULootLockerServerSDKManager::GetInventoryToCharacter(FCharacterInventoryResponse::CreateUObject(this, &ADemoCharacters::OnGetInventoryToCharacterCompleted), PlayerId, CharacterId);
+	ULootLockerServerSDKManager::GetInventoryToCharacter(FServerCharacterInventoryResponse::CreateUObject(this, &ADemoCharacters::OnGetInventoryToCharacterCompleted), PlayerId, CharacterId);
 }
 
 void ADemoCharacters::DemoGetCharacterLoadout()
 {
-	ULootLockerServerSDKManager::GetCharacterLoadout(FCharacterLoadoutResponse::CreateUObject(this, &ADemoCharacters::OnGetGetCharacterLoadoutCompleted), PlayerId, CharacterId);
+	ULootLockerServerSDKManager::GetCharacterLoadout(FServerCharacterLoadoutResponse::CreateUObject(this, &ADemoCharacters::OnGetGetCharacterLoadoutCompleted), PlayerId, CharacterId);
 }
 
 void ADemoCharacters::DemoEquipAssetForCharacterLoadout()

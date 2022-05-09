@@ -21,12 +21,12 @@ void ULootLockerServerCharacterRequest::GetPlayerCharacters(int PlayerId,
             FLootLockerServerGetPlayerCharactersResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerGetPlayerCharactersResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -39,12 +39,11 @@ void ULootLockerServerCharacterRequest::GetPlayerCharacters(int PlayerId,
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
 
-	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
 void ULootLockerServerCharacterRequest::GetInventoryToCharacter(int PlayerId, int CharacterId,
-	const FCharacterInventoryResponseBP& OnCompletedRequestBP, const FCharacterInventoryResponse& OnCompletedRequest)
+	const FCharacterInventoryResponseBP& OnCompletedRequestBP, const FServerCharacterInventoryResponse& OnCompletedRequest)
 {
 	FString data;
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
@@ -52,12 +51,12 @@ void ULootLockerServerCharacterRequest::GetInventoryToCharacter(int PlayerId, in
             FLootLockerServerCharacterInventoryResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerCharacterInventoryResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -71,19 +70,19 @@ void ULootLockerServerCharacterRequest::GetInventoryToCharacter(int PlayerId, in
 }
 
 void ULootLockerServerCharacterRequest::GetCharacterLoadout(int PlayerId, int CharacterId,
-	const FCharacterLoadoutResponseBP& OnCompletedRequestBP, const FCharacterLoadoutResponse& OnCompletedRequest)
+	const FCharacterLoadoutResponseBP& OnCompletedRequestBP, const FServerCharacterLoadoutResponse& OnCompletedRequest)
 {
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
         {
             FLootLockerServerGetCharacterLoadoutResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerGetCharacterLoadoutResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -107,12 +106,12 @@ void ULootLockerServerCharacterRequest::EquipAssetForCharacterLoadout(int Player
             FLootLockerServerEquipCharacterResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerEquipCharacterResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -129,6 +128,7 @@ void ULootLockerServerCharacterRequest::EquipAssetForCharacterLoadout(int Player
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId, CharacterId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
 
+	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
@@ -140,12 +140,12 @@ void ULootLockerServerCharacterRequest::UnequipAssetForCharacterLoadout(int Play
             FLootLockerServerUnequipCharacterResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerUnequipCharacterResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;

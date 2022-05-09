@@ -117,7 +117,7 @@ void ULootLockerServerPlayerRequest::AlterPlayerInventory(int PlayerId,
 }
 
 void ULootLockerServerPlayerRequest::GetPlayerLoadout(int PlayerId,
-                                                      const FGetPlayerLoadoutResponseBP& OnCompletedRequestBP, const FGetPlayerLoadoutResponse& OnCompletedRequest)
+	const FGetPlayerLoadoutResponseBP& OnCompletedRequestBP, const FGetPlayerLoadoutResponse& OnCompletedRequest)
 {
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
         {

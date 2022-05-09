@@ -29,7 +29,7 @@ public class LootLockerServerSDK : ModuleRules
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
-		PrivateDependencyModuleNames.AddRange(new string[] { "Http", "Json", "JsonUtilities" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "HTTP", "Json", "JsonUtilities" });
 
 		PrivateDependencyModuleNames.AddRange(
 			new string[]

@@ -96,8 +96,8 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FCharacterLoadoutResponseBP, FLootLockerServer
 DECLARE_DYNAMIC_DELEGATE_OneParam(FEquipResponseBP, FLootLockerServerEquipCharacterResponse, EquipResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FUnequipResponseBP, FLootLockerServerUnequipCharacterResponse, UnequipResponse);
 DECLARE_DELEGATE_OneParam(FCharactersResponse, FLootLockerServerGetPlayerCharactersResponse);
-DECLARE_DELEGATE_OneParam(FCharacterInventoryResponse, FLootLockerServerCharacterInventoryResponse);
-DECLARE_DELEGATE_OneParam(FCharacterLoadoutResponse, FLootLockerServerGetCharacterLoadoutResponse);
+DECLARE_DELEGATE_OneParam(FServerCharacterInventoryResponse, FLootLockerServerCharacterInventoryResponse);
+DECLARE_DELEGATE_OneParam(FServerCharacterLoadoutResponse, FLootLockerServerGetCharacterLoadoutResponse);
 DECLARE_DELEGATE_OneParam(FEquipResponse, FLootLockerServerEquipCharacterResponse);
 DECLARE_DELEGATE_OneParam(FUnequipResponse, FLootLockerServerUnequipCharacterResponse);
 
@@ -113,9 +113,9 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerCharacterRequest : public UObject
 
 	static void GetPlayerCharacters(int PlayerId, const FCharactersResponseBP& OnCompletedRequestBP = FCharactersResponseBP(), const FCharactersResponse& OnCompletedRequest = FCharactersResponse());
 
-	static void GetInventoryToCharacter(int PlayerId, int CharacterId, const FCharacterInventoryResponseBP& OnCompletedRequestBP = FCharacterInventoryResponseBP(), const FCharacterInventoryResponse& OnCompletedRequest = FCharacterInventoryResponse());
+	static void GetInventoryToCharacter(int PlayerId, int CharacterId, const FCharacterInventoryResponseBP& OnCompletedRequestBP = FCharacterInventoryResponseBP(), const FServerCharacterInventoryResponse& OnCompletedRequest = FServerCharacterInventoryResponse());
 
-	static void GetCharacterLoadout(int PlayerId, int CharacterId, const FCharacterLoadoutResponseBP& OnCompletedRequestBP = FCharacterLoadoutResponseBP(), const FCharacterLoadoutResponse& OnCompletedRequest = FCharacterLoadoutResponse());
+	static void GetCharacterLoadout(int PlayerId, int CharacterId, const FCharacterLoadoutResponseBP& OnCompletedRequestBP = FCharacterLoadoutResponseBP(), const FServerCharacterLoadoutResponse& OnCompletedRequest = FServerCharacterLoadoutResponse());
 
 	static void EquipAssetForCharacterLoadout(int PlayerId, int CharacterId, int InstanceId, const FEquipResponseBP& OnCompletedRequestBP = FEquipResponseBP(), const FEquipResponse& OnCompletedRequest = FEquipResponse());
 

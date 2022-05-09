@@ -39,7 +39,7 @@ void ULootLockerServerSDKManager::AlterPlayerInventory(const FAlterInventoryResp
 }
 
 void ULootLockerServerSDKManager::GetPlayerLoadout(const FGetPlayerLoadoutResponse& OnGetPlayerLoadoutRequestCompleted,
-                                                   int PlayerId)
+	int PlayerId)
 {
 	ULootLockerServerPlayerRequest::GetPlayerLoadout(PlayerId, FGetPlayerLoadoutResponseBP(), OnGetPlayerLoadoutRequestCompleted);
 }

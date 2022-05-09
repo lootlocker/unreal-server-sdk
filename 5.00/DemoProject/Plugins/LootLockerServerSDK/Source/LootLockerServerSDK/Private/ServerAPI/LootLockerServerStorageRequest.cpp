@@ -23,12 +23,12 @@ void ULootLockerServerStorageRequest::GetPersistentStorage(TArray<int> PlayerIds
             FLootLockerServerGetPersistentStorageResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerGetPersistentStorageResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting players failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -56,12 +56,12 @@ void ULootLockerServerStorageRequest::UpdatePersistentStorage(FLootLockerServerP
             FLootLockerServerUpdatePersistentStorageResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerUpdatePersistentStorageResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Failed to update persisten storage"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;

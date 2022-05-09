@@ -29,13 +29,19 @@ void ULootLockerServerManager::GetAssetsToGame(const FServerAssetsResponseDelega
 
 void ULootLockerServerManager::GetInventory(const FInventoryResponseBP& OnGetInventoryRequestCompleted, int PlayerId, int StartFromIndex, int ItemsCount)
 {
-    ULootLockerServerPlayerRequest::GetInventory(PlayerId, StartFromIndex, ItemsCount, OnGetInventoryRequestCompleted, FInventoryResponse());
+    ULootLockerServerPlayerRequest::GetInventory(PlayerId, StartFromIndex, ItemsCount, OnGetInventoryRequestCompleted, FServerInventoryResponse());
 }
 
 void ULootLockerServerManager::AddAssetToPlayerInventory(const FAddAssetResponseBP& OnAddAssetRequestCompleted,
     int32 PlayerId, FLootLockerServerAddAssetData AddAssetData)
 {
     ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(PlayerId, AddAssetData, OnAddAssetRequestCompleted, FAddAssetResponse());
+}
+
+void ULootLockerServerManager::AlterPlayerInventory(const FAlterInventoryResponseBP& OnAlterInventoryRequestCompleted,
+	int32 PlayerId, const FLootLockerServerAlterInventoryRequestData& AlterInventoryData)
+{
+	ULootLockerServerPlayerRequest::AlterPlayerInventory(PlayerId, AlterInventoryData, OnAlterInventoryRequestCompleted, FAlterInventoryResponse());
 }
 
 void ULootLockerServerManager::GetPlayerLoadout(const FGetPlayerLoadoutResponseBP& OnGetPlayerLoadoutRequestCompleted,
@@ -76,13 +82,13 @@ void ULootLockerServerManager::GetPlayerCharacters(const FCharactersResponseBP& 
 void ULootLockerServerManager::GetInventoryToCharacter(const FCharacterInventoryResponseBP& OnCompletedRequestBP, int PlayerId,
     int CharacterId)
 {
-    ULootLockerServerCharacterRequest::GetInventoryToCharacter(PlayerId, CharacterId, OnCompletedRequestBP, FCharacterInventoryResponse());
+    ULootLockerServerCharacterRequest::GetInventoryToCharacter(PlayerId, CharacterId, OnCompletedRequestBP, FServerCharacterInventoryResponse());
 }
 
 void ULootLockerServerManager::GetCharacterLoadout(const FCharacterLoadoutResponseBP& OnCompletedRequestBP,
     int PlayerId, int CharacterId)
 {
-    ULootLockerServerCharacterRequest::GetCharacterLoadout(PlayerId, CharacterId, OnCompletedRequestBP, FCharacterLoadoutResponse());
+    ULootLockerServerCharacterRequest::GetCharacterLoadout(PlayerId, CharacterId, OnCompletedRequestBP, FServerCharacterLoadoutResponse());
 }
 
 void ULootLockerServerManager::EquipAssetForCharacterLoadout(const FEquipResponseBP& OnCompletedRequestBP, int PlayerId,
@@ -99,19 +105,19 @@ void ULootLockerServerManager::UnequipAssetForCharacterLoadout(const FUnequipRes
 
 void ULootLockerServerManager::GetPlayerHeroes(const FHeroesResponseBP& OnCompletedRequestBP, int PlayerId)
 {
-    ULootLockerServerHeroesRequest::GetPlayerHeroes(PlayerId, OnCompletedRequestBP, FHeroesResponse());
+    ULootLockerServerHeroesRequest::GetPlayerHeroes(PlayerId, OnCompletedRequestBP, FServerHeroesResponse());
 }
 
 void ULootLockerServerManager::GetInventoryToHero(const FHeroInventoryResponseBP& OnCompletedRequestBP, int PlayerId,
     int HeroId)
 {
-    ULootLockerServerHeroesRequest::GetInventoryToHero(PlayerId, HeroId, OnCompletedRequestBP, FHeroInventoryResponse());
+    ULootLockerServerHeroesRequest::GetInventoryToHero(PlayerId, HeroId, OnCompletedRequestBP, FServerHeroInventoryResponse());
 }
 
 void ULootLockerServerManager::GetHeroLoadout(const FHeroLoadoutResponseBP& OnCompletedRequestBP,
     int PlayerId, int HeroId)
 {
-    ULootLockerServerHeroesRequest::GetHeroLoadout(PlayerId, HeroId, OnCompletedRequestBP, FHeroLoadoutResponse());
+    ULootLockerServerHeroesRequest::GetHeroLoadout(PlayerId, HeroId, OnCompletedRequestBP, FServerHeroLoadoutResponse());
 }
 
 void ULootLockerServerManager::EquipAssetForHeroLoadout(const FEquipHeroResponseBP& OnCompletedRequestBP, int PlayerId,
@@ -130,6 +136,26 @@ void ULootLockerServerManager::InvokeTriggerOnBehalfOfPlayer(const FInvokeTrigge
     FString Name, int PlayerId)
 {
     ULootLockerServerTriggerRequest::InvokeTriggerOnBehalfOfPlayer(Name, PlayerId, OnCompletedRequestBP, FInvokeTriggerResponse());
+}
+
+void ULootLockerServerManager::ListFilesForPlayer(const FListFilesForPlayerResponseBP& OnCompletedRequestBP, int PlayerId)
+{
+    ULootLockerServerFilesRequest::ListFilesForPlayer(PlayerId, OnCompletedRequestBP);
+}
+
+void ULootLockerServerManager::GetFileByIdForPlayer(const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, int FileId)
+{
+    ULootLockerServerFilesRequest::GetFileByIdForPlayer(PlayerId, FileId, OnCompletedRequestBP);
+}
+
+void ULootLockerServerManager::UploadFileForPlayer(const FUploadFileForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, const FString& FilePath, const FString& Purpose)
+{
+    ULootLockerServerFilesRequest::UploadFileForPlayer(PlayerId, FilePath, Purpose, OnCompletedRequestBP);
+}
+
+void ULootLockerServerManager::DeleteFileForPlayer(const FDeleteFileForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, int FileId)
+{
+    ULootLockerServerFilesRequest::DeleteFileForPlayer(PlayerId, FileId, OnCompletedRequestBP);
 }
 
  void ULootLockerServerManager::CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequestBP )
@@ -156,15 +182,10 @@ void ULootLockerServerManager::InvokeTriggerOnBehalfOfPlayer(const FInvokeTrigge
      ULootLockerServerLeaderboardRequest::SubmitScore(score, LeaderboardId, OnCompletedRequestBP, FLootLockerServerSubmitScoreResponseDelegate());
  }
 
+ //void ComputeAndLockDropTable(int TableId, const FLootLockerComputeAndLockDropTableResponseBP& OnCompletedRequestBP)
+ //{
+ //}
 
- void ULootLockerServerManager::ComputeAndLockDropTable(int TableId , const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequestBP)
- {
-     ULLServerDropTablesRequestHandler::ComputeAndLockDropTable(TableId, OnCompletedRequestBP);
- }
-
- void ULootLockerServerManager::PickDropsFromDropTable(TArray<int> picks, int TableId, const FLootLockerServerPickDropsFromDropTableResponseBP& OnCompletedRequestBP)
- {
-     FLootLockerServerPickDropsFromDropTableRequest request;
-     request.picks = picks;
-     ULLServerDropTablesRequestHandler::PickDropsFromDropTable(request, TableId, OnCompletedRequestBP);
- }
+ //void PickDropsFromDropTable(TArray<int> picks, int TableId, const FFLootLockerPickDropsFromDropTableResponseBP& OnCompletedRequestBP)
+ //{
+ //}

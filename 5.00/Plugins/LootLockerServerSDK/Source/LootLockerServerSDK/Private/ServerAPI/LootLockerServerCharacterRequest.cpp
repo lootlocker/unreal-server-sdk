@@ -39,7 +39,6 @@ void ULootLockerServerCharacterRequest::GetPlayerCharacters(int PlayerId,
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
 
-	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
@@ -129,6 +128,7 @@ void ULootLockerServerCharacterRequest::EquipAssetForCharacterLoadout(int Player
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId, CharacterId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
 
+	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 

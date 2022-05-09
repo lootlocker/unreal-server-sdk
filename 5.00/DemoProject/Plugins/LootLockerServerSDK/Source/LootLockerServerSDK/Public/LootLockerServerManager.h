@@ -3,15 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ServerAPI/LootLockerServerAssetRequest.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
-#include "ServerAPI/LootLockerServerCharacterRequest.h"
-#include "ServerAPI/LootLockerServerHeroesRequest.h"
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
+#include "ServerAPI/LootLockerServerAssetRequest.h"
+#include "ServerAPI/LootLockerServerCharacterRequest.h"
+#include "ServerAPI/LootLockerServerFilesRequest.h"
+#include "ServerAPI/LootLockerServerHeroesRequest.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 #include "ServerAPI/LootLockerServerTriggerRequest.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
-#include "ServerAPI/LLServerDropTablesRequestHandler.h"
 
 
 #include "LootLockerServerManager.generated.h"
@@ -67,6 +67,12 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Players")
     static void AddAssetToPlayerInventory(const FAddAssetResponseBP& OnAddAssetRequestCompleted, int32 PlayerId, FLootLockerServerAddAssetData AddAssetData);
 
+	/**
+	 * Add or remove assets from a player's inventory
+	 * https://ref.lootlocker.io/server-api/#alter-player-inventory
+	 */
+    static void AlterPlayerInventory(const FAlterInventoryResponseBP& OnAlterInventoryRequestCompleted, int32 PlayerId, const FLootLockerServerAlterInventoryRequestData& AlterInventoryData);
+	
 	/**
 	 * Return the players default characters loadout
 	 * https://docs.lootlocker.io/server-api/#get-player-loadout 
@@ -179,6 +185,34 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Players")
 	static void InvokeTriggerOnBehalfOfPlayer(const FInvokeTriggerResponseBP& OnCompletedRequestBP, FString Name, int PlayerId);
 
+	/**
+	 * List all files currently associated with the player
+	 * https://docs.lootlocker.io/server-api/#list-files-for-player
+	 */ 
+	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
+	static void ListFilesForPlayer(const FListFilesForPlayerResponseBP& OnCompletedRequestBP, int PlayerId);
+
+	/**
+	 * Get a file by its ID.
+	 * https://docs.lootlocker.io/server-api/#get-file-by-id-for-player
+	 */ 
+	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
+	static void GetFileByIdForPlayer(const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, int FileId);
+
+	/**
+	 * Upload a file to a player's file storage.
+	 * https://docs.lootlocker.io/server-api/#upload-file-for-player
+	 */ 
+	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
+	static void UploadFileForPlayer(const FUploadFileForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, const FString &FilePath, const FString& Purpose);
+
+	/**
+	 * Delete a file from a player's file storage.
+	 * https://docs.lootlocker.io/server-api/#delete-file-for-player
+	 */
+	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
+		static void DeleteFileForPlayer(const FDeleteFileForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, int FileId);
+
 
     //==================================================
     //Leaderboard
@@ -240,8 +274,8 @@ public:
    // *
    // * https://ref.lootlocker.io/game-api/#compute-and-lock-drop-table
    // */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | DropTable")
-	static void ComputeAndLockDropTable(int TableId, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequestBP);
+   // UFUNCTION(BlueprintCallable, Category = "LootLocker Methods | DropTable")
+   // static void ComputeAndLockDropTable(int TableId, const FLootLockerComputeAndLockDropTableResponseBP& OnCompletedRequestBP);
 
    // /**
    //* Collecting an Item is done by calling this endpoint with a payload equal to the slug of the Item.
@@ -252,6 +286,6 @@ public:
    //*
    //* https://ref.lootlocker.io/game-api/#pick-drops-from-drop-table
    //*/
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | DropTable")
-    static void PickDropsFromDropTable(TArray<int> picks, int TableId, const FLootLockerServerPickDropsFromDropTableResponseBP& OnCompletedRequestBP);
+   // UFUNCTION(BlueprintCallable, Category = "LootLocker Methods | DropTable")
+   // static void PickDropsFromDropTable(TArray<int> picks, int TableId, const FFLootLockerPickDropsFromDropTableResponseBP& OnCompletedRequestBP);
 };

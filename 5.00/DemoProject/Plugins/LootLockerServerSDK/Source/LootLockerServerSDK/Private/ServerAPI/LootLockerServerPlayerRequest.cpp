@@ -14,7 +14,7 @@ ULootLockerServerPlayerRequest::ULootLockerServerPlayerRequest()
 }
 
 void ULootLockerServerPlayerRequest::GetInventory(int PlayerId, int StartFromIndex, int ItemsCount,
-                                                  const FInventoryResponseBP& OnCompletedRequestBP, const FInventoryResponse& OnCompletedRequest)
+                                                  const FInventoryResponseBP& OnCompletedRequestBP, const FServerInventoryResponse& OnCompletedRequest)
 {
 	FString data;
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
@@ -22,12 +22,12 @@ void ULootLockerServerPlayerRequest::GetInventory(int PlayerId, int StartFromInd
             FLootLockerServerInventoryResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerInventoryResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -48,12 +48,12 @@ void ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(int PlayerId, FLo
             FLootLockerServerAddAssetResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerAddAssetResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -62,7 +62,15 @@ void ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(int PlayerId, FLo
         });
 
 	TSharedRef<FJsonObject> ItemJson = MakeShareable(new FJsonObject());
-	FJsonObjectConverter::UStructToJsonObject(FLootLockerServerAddAssetData::StaticStruct(), &AddAssetData, ItemJson, 0, 0);
+	ItemJson->SetStringField(FString(TEXT("asset_id")), FString::FromInt(AddAssetData.asset_id));
+	if(AddAssetData.asset_variation_id > 0)
+	{
+		ItemJson->SetStringField(FString(TEXT("asset_variation_id")), FString::FromInt(AddAssetData.asset_variation_id));
+	}
+	if(AddAssetData.asset_rental_option_id > 0)
+	{
+		ItemJson->SetStringField(FString(TEXT("asset_rental_option_id")), FString::FromInt(AddAssetData.asset_rental_option_id));
+	}
 	FString ContentString;
 	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&ContentString);
 	FJsonSerializer::Serialize(ItemJson, Writer);
@@ -70,7 +78,41 @@ void ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(int PlayerId, FLo
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
 
-	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
+	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
+}
+
+void ULootLockerServerPlayerRequest::AlterPlayerInventory(int PlayerId,
+															const FLootLockerServerAlterInventoryRequestData& RequestData,
+															const FAlterInventoryResponseBP& OnCompletedRequestBP, const FAlterInventoryResponse& OnCompletedRequest)
+{
+	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
+		{
+			FLootLockerServerAlterInventoryResponse ResponseStruct;
+			if (response.success)
+			{
+				ResponseStruct.success = true;
+				FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerAlterInventoryResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
+
+			}
+			else {
+				ResponseStruct.success = false;
+				UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
+			}
+			ResponseStruct.FullTextFromServer = response.FullTextFromServer;
+			OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
+			OnCompletedRequest.ExecuteIfBound(ResponseStruct);
+		});
+
+	TSharedRef<FJsonObject> ItemJson = MakeShareable(new FJsonObject());
+	FJsonObjectConverter::UStructToJsonObject(FLootLockerServerAlterInventoryRequestData::StaticStruct(), &RequestData, ItemJson, 0, 0);
+	FString ContentString;
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&ContentString);
+	FJsonSerializer::Serialize(ItemJson, Writer);
+	
+	FLootLockerServerEndPoints Endpoint = ULootLockerServerGameEndpoints::AlterPlayerInventoryEndpoint;
+	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
+	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
+
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
@@ -82,12 +124,12 @@ void ULootLockerServerPlayerRequest::GetPlayerLoadout(int PlayerId,
             FLootLockerServerGetPlayerLoadoutResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerGetPlayerLoadoutResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -112,12 +154,12 @@ void ULootLockerServerPlayerRequest::EquipAssetForPlayerLoadout(int PlayerId, in
             FLootLockerServerEquipAssetForPlayerLoadoutResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerEquipAssetForPlayerLoadoutResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -133,8 +175,7 @@ void ULootLockerServerPlayerRequest::EquipAssetForPlayerLoadout(int PlayerId, in
 	FLootLockerServerEndPoints Endpoint = ULootLockerServerGameEndpoints::EquipAssetToPlayerLoadoutEndpoint;
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
-
-	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
+	
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
@@ -146,12 +187,12 @@ void ULootLockerServerPlayerRequest::UnequipAssetForPlayerLoadout(int PlayerId, 
             FLootLockerServerUnequipAssetForPlayerLoadoutResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerUnequipAssetForPlayerLoadoutResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;

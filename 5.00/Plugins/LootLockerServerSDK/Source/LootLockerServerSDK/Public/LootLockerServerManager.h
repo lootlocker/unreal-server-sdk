@@ -3,15 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ServerAPI/LootLockerServerAssetRequest.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
-#include "ServerAPI/LootLockerServerCharacterRequest.h"
-#include "ServerAPI/LootLockerServerHeroesRequest.h"
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
+#include "ServerAPI/LootLockerServerAssetRequest.h"
+#include "ServerAPI/LootLockerServerCharacterRequest.h"
+#include "ServerAPI/LootLockerServerFilesRequest.h"
+#include "ServerAPI/LootLockerServerHeroesRequest.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 #include "ServerAPI/LootLockerServerTriggerRequest.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
-
 
 
 #include "LootLockerServerManager.generated.h"
@@ -184,6 +184,34 @@ public:
 	 */ 
 	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Players")
 	static void InvokeTriggerOnBehalfOfPlayer(const FInvokeTriggerResponseBP& OnCompletedRequestBP, FString Name, int PlayerId);
+
+	/**
+	 * List all files currently associated with the player
+	 * https://docs.lootlocker.io/server-api/#list-files-for-player
+	 */ 
+	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
+	static void ListFilesForPlayer(const FListFilesForPlayerResponseBP& OnCompletedRequestBP, int PlayerId);
+
+	/**
+	 * Get a file by its ID.
+	 * https://docs.lootlocker.io/server-api/#get-file-by-id-for-player
+	 */ 
+	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
+	static void GetFileByIdForPlayer(const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, int FileId);
+
+	/**
+	 * Upload a file to a player's file storage.
+	 * https://docs.lootlocker.io/server-api/#upload-file-for-player
+	 */ 
+	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
+	static void UploadFileForPlayer(const FUploadFileForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, const FString &FilePath, const FString& Purpose);
+
+	/**
+	 * Delete a file from a player's file storage.
+	 * https://docs.lootlocker.io/server-api/#delete-file-for-player
+	 */
+	UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
+		static void DeleteFileForPlayer(const FDeleteFileForPlayerResponseBP& OnCompletedRequestBP, int PlayerId, int FileId);
 
 
     //==================================================

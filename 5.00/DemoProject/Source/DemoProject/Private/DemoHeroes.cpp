@@ -7,17 +7,17 @@
 
 void ADemoHeroes::DemoGetPlayerHeroes()
 {
-	ULootLockerServerSDKManager::GetPlayerHeroes(FHeroesResponse::CreateUObject(this, &ADemoHeroes::OnGetPlayerHeroesCompleted), PlayerId);
+	ULootLockerServerSDKManager::GetPlayerHeroes(FServerHeroesResponse::CreateUObject(this, &ADemoHeroes::OnGetPlayerHeroesCompleted), PlayerId);
 }
 
 void ADemoHeroes::DemoGetInventoryToHero()
 {
-	ULootLockerServerSDKManager::GetInventoryToHero(FHeroInventoryResponse::CreateUObject(this, &ADemoHeroes::OnGetInventoryToHeroCompleted), PlayerId, HeroId);
+	ULootLockerServerSDKManager::GetInventoryToHero(FServerHeroInventoryResponse::CreateUObject(this, &ADemoHeroes::OnGetInventoryToHeroCompleted), PlayerId, HeroId);
 }
 
 void ADemoHeroes::DemoGetHeroLoadout()
 {
-	ULootLockerServerSDKManager::GetHeroLoadout(FHeroLoadoutResponse::CreateUObject(this, &ADemoHeroes::OnGetGetHeroLoadoutCompleted), PlayerId, HeroId);
+	ULootLockerServerSDKManager::GetHeroLoadout(FServerHeroLoadoutResponse::CreateUObject(this, &ADemoHeroes::OnGetGetHeroLoadoutCompleted), PlayerId, HeroId);
 }
 
 void ADemoHeroes::DemoEquipAssetForHeroLoadout()

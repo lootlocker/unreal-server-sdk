@@ -110,7 +110,7 @@ void ULootLockerServerHttpClient::UploadFile(const FString& endPoint, const FStr
 	if (useHeader)
 	{
 		if (!useAdmin) {
-			Request->SetHeader(TEXT("x-session-token"), ULootLockerSrvPersitentDataHolder::Token);
+			Request->SetHeader(TEXT("x-auth-token"), ULootLockerSrvPersitentDataHolder::ServerToken);
 		}
 		else {
 			Request->SetHeader(TEXT("x-auth-token"), ULootLockerSrvPersitentDataHolder::AdminToken);

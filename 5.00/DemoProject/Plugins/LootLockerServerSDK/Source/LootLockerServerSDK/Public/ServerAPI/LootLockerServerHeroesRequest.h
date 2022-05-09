@@ -106,9 +106,9 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FHeroInventoryResponseBP, FLootLockerServerHer
 DECLARE_DYNAMIC_DELEGATE_OneParam(FHeroLoadoutResponseBP, FLootLockerServerGetHeroLoadoutResponse, LoadoutResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FEquipHeroResponseBP, FLootLockerServerEquipHeroResponse, EquipResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FUnequipHeroResponseBP, FLootLockerServerUnequipHeroResponse, UnequipResponse);
-DECLARE_DELEGATE_OneParam(FHeroesResponse, FLootLockerServerGetPlayerHeroesResponse);
-DECLARE_DELEGATE_OneParam(FHeroInventoryResponse, FLootLockerServerHeroInventoryResponse);
-DECLARE_DELEGATE_OneParam(FHeroLoadoutResponse, FLootLockerServerGetHeroLoadoutResponse);
+DECLARE_DELEGATE_OneParam(FServerHeroesResponse, FLootLockerServerGetPlayerHeroesResponse);
+DECLARE_DELEGATE_OneParam(FServerHeroInventoryResponse, FLootLockerServerHeroInventoryResponse);
+DECLARE_DELEGATE_OneParam(FServerHeroLoadoutResponse, FLootLockerServerGetHeroLoadoutResponse);
 DECLARE_DELEGATE_OneParam(FEquipHeroResponse, FLootLockerServerEquipHeroResponse);
 DECLARE_DELEGATE_OneParam(FUnequipHeroResponse, FLootLockerServerUnequipHeroResponse);
 
@@ -122,16 +122,16 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerHeroesRequest : public UObject
 	public:
 	ULootLockerServerHeroesRequest();
 
-	static void GetPlayerHeroes(int PlayerId, const FHeroesResponseBP& OnCompletedRequestBP = FHeroesResponseBP(), const FHeroesResponse& OnCompletedRequest = FHeroesResponse());
+	static void GetPlayerHeroes(int PlayerId, const FHeroesResponseBP& OnCompletedRequestBP = FHeroesResponseBP(), const FServerHeroesResponse& OnCompletedRequest = FServerHeroesResponse());
 
-	static void GetInventoryToHero(int PlayerId, int HeroId, const FHeroInventoryResponseBP& OnCompletedRequestBP = FHeroInventoryResponseBP(), const FHeroInventoryResponse& OnCompletedRequest = FHeroInventoryResponse());
+	static void GetInventoryToHero(int PlayerId, int HeroId, const FHeroInventoryResponseBP& OnCompletedRequestBP = FHeroInventoryResponseBP(), const FServerHeroInventoryResponse& OnCompletedRequest = FServerHeroInventoryResponse());
 
-	static void GetHeroLoadout(int PlayerId, int HeroId, const FHeroLoadoutResponseBP& OnCompletedRequestBP = FHeroLoadoutResponseBP(), const FHeroLoadoutResponse& OnCompletedRequest = FHeroLoadoutResponse());
+	static void GetHeroLoadout(int PlayerId, int HeroId, const FHeroLoadoutResponseBP& OnCompletedRequestBP = FHeroLoadoutResponseBP(), const FServerHeroLoadoutResponse& OnCompletedRequest = FServerHeroLoadoutResponse());
 
 	static void EquipAssetForHeroLoadout(int PlayerId, int HeroId, int InstanceId, const FEquipHeroResponseBP& OnCompletedRequestBP = FEquipHeroResponseBP(), const FEquipHeroResponse& OnCompletedRequest = FEquipHeroResponse());
 
 	static void UnequipAssetForHeroLoadout(int PlayerId, int HeroId, int InstanceId, const FUnequipHeroResponseBP& OnCompletedRequestBP = FUnequipHeroResponseBP(), const FUnequipHeroResponse& OnCompletedRequest = FUnequipHeroResponse());
-
+protected:
 	static ULootLockerServerHttpClient* HttpClient;
 	
 };

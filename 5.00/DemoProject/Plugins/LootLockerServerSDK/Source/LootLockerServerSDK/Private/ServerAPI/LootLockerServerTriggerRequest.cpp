@@ -21,12 +21,12 @@ void ULootLockerServerTriggerRequest::InvokeTriggerOnBehalfOfPlayer(FString name
             FLootLockerServerInvokeTriggerResponse ResponseStruct;
             if (response.success)
             {
-                response.success = true;
+                ResponseStruct.success = true;
                 FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerInvokeTriggerResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 
             }
             else {
-                response.success = false;
+                ResponseStruct.success = false;
                 UE_LOG(LogTemp, Error, TEXT("Invoking trigger failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
