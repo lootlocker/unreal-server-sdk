@@ -14,7 +14,7 @@ ULootLockerServerFilesRequest::ULootLockerServerFilesRequest()
 }
 
 void ULootLockerServerFilesRequest::ListFilesForPlayer(int PlayerId,
-    const FListFilesForPlayerResponseBP& OnCompletedRequestBP, const FListFilesForPlayerResponse& OnCompletedRequest)
+    const FListFilesForPlayerResponseBP& OnCompletedRequestBP, const FServerListFilesForPlayerResponseDelegate& OnCompletedRequest)
 {
     const FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse Response)
         {
@@ -43,7 +43,7 @@ void ULootLockerServerFilesRequest::ListFilesForPlayer(int PlayerId,
 }
 
 void ULootLockerServerFilesRequest::GetFileByIdForPlayer(int PlayerId, int FileId,
-    const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP, const FGetFileByIdForPlayerResponse& OnCompletedRequest)
+    const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP, const FServerGetFileByIdForPlayerResponseDelegate& OnCompletedRequest)
 {
     const FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse Response)
         {
@@ -72,7 +72,7 @@ void ULootLockerServerFilesRequest::GetFileByIdForPlayer(int PlayerId, int FileI
 }
 
 void ULootLockerServerFilesRequest::UploadFileForPlayer(int PlayerId, const FString& FilePath, const FString& Purpose,
-    const FUploadFileForPlayerResponseBP& OnCompletedRequestBP, const FUploadFileForPlayerResponse& OnCompletedRequest)
+    const FUploadFileForPlayerResponseBP& OnCompletedRequestBP, const FServerUploadFileForPlayerResponseDelegate& OnCompletedRequest)
 {
     const FServerResponseCallback SessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse Response)
         {
@@ -103,7 +103,8 @@ void ULootLockerServerFilesRequest::UploadFileForPlayer(int PlayerId, const FStr
     HttpClient->UploadFile(Endpoint, RequestMethod, FilePath, AdditionalFields, SessionResponse, true);
 }
 
-void ULootLockerServerFilesRequest::DeleteFileForPlayer(int PlayerId, int FileId, const FDeleteFileForPlayerResponseBP& OnCompletedRequestBP, const FDeleteFileForPlayerResponse& OnCompletedRequest)
+void ULootLockerServerFilesRequest::DeleteFileForPlayer(int PlayerId, int FileId,
+    const FDeleteFileForPlayerResponseBP& OnCompletedRequestBP, const FServerDeleteFileForPlayerResponseDelegate& OnCompletedRequest)
 {
     const FServerResponseCallback SessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse Response)
         {

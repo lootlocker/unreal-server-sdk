@@ -157,4 +157,26 @@ void ULootLockerServerSDKManager::SubmitScore(FString MemberId, int LeaderboardI
 	ULootLockerServerLeaderboardRequest::SubmitScore(score, LeaderboardId, FLootLockerServerSubmitScoreResponseBP(), OnCompletedRequest);
 }
 
+void ULootLockerServerSDKManager::ListFilesForPlayer(int PlayerId,
+	const FServerListFilesForPlayerResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerFilesRequest::ListFilesForPlayer(PlayerId, FListFilesForPlayerResponseBP(), OnCompletedRequest);
+}
 
+void ULootLockerServerSDKManager::GetFileByIdForPlayer(int PlayerId, int FileId,
+	const FServerGetFileByIdForPlayerResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerFilesRequest::GetFileByIdForPlayer(PlayerId, FileId, FGetFileByIdForPlayerResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerSDKManager::DeleteFileForPlayer(int PlayerId, int FileId,
+	const FServerDeleteFileForPlayerResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerFilesRequest::DeleteFileForPlayer(PlayerId, FileId, FDeleteFileForPlayerResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerSDKManager::UploadFileForPlayer(int PlayerId, const FString& FileName, const FString& Purpose,
+	const FServerUploadFileForPlayerResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerFilesRequest::UploadFileForPlayer(PlayerId, FileName, Purpose, FUploadFileForPlayerResponseBP(), OnCompletedRequest);
+}
