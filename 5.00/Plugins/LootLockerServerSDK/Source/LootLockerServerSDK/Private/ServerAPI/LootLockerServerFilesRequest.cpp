@@ -46,22 +46,21 @@ void ULootLockerServerFilesRequest::GetFileByIdForPlayer(int PlayerId, int FileI
     const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP, const FServerGetFileByIdForPlayerResponseDelegate& OnCompletedRequest)
 {
     const FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse Response)
+    {
+        FLootLockerServerGetFileByIdForPlayerResponse ResponseStruct;
+        if (Response.success)
         {
-            FLootLockerServerGetFileByIdForPlayerResponse ResponseStruct;
-            if (Response.success)
-            {
-                ResponseStruct.success = true;
-                FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerPlayerFile>(Response.FullTextFromServer, &ResponseStruct.item, 0, 0);
-
-            }
-            else {
-                ResponseStruct.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Getting player file from lootlocker failed"));
-            }
-            ResponseStruct.FullTextFromServer = Response.FullTextFromServer;
-            OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
-            OnCompletedRequest.ExecuteIfBound(ResponseStruct);
-        });
+            ResponseStruct.success = true;
+            FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerPlayerFile>(Response.FullTextFromServer, &ResponseStruct.item, 0, 0);
+        }
+        else {
+            ResponseStruct.success = false;
+            UE_LOG(LogTemp, Error, TEXT("Getting player file from lootlocker failed"));
+        }
+        ResponseStruct.FullTextFromServer = Response.FullTextFromServer;
+        OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
+        OnCompletedRequest.ExecuteIfBound(ResponseStruct);
+    });
 
     FLootLockerServerEndPoints ServerEndpoint = ULootLockerServerGameEndpoints::GetFileByIdForPlayerEndpoint;
     const FString Endpoint = FString::Format(*(ServerEndpoint.endpoint), { PlayerId, FileId });
@@ -75,22 +74,22 @@ void ULootLockerServerFilesRequest::UploadFileForPlayer(int PlayerId, const FStr
     const FUploadFileForPlayerResponseBP& OnCompletedRequestBP, const FServerUploadFileForPlayerResponseDelegate& OnCompletedRequest)
 {
     const FServerResponseCallback SessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse Response)
+    {
+        FLootLockerServerUploadFileForPlayerResponse ResponseStruct;
+        if (Response.success)
         {
-            FLootLockerServerUploadFileForPlayerResponse ResponseStruct;
-            if (Response.success)
-            {
-                ResponseStruct.success = true;
-                FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerPlayerFile>(Response.FullTextFromServer, &ResponseStruct.item, 0, 0);
+            ResponseStruct.success = true;
+            FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerPlayerFile>(Response.FullTextFromServer, &ResponseStruct.item, 0, 0);
 
-            }
-            else {
-                ResponseStruct.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Uploading player file to lootlocker failed"));
-            }
-            ResponseStruct.FullTextFromServer = Response.FullTextFromServer;
-            OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
-            OnCompletedRequest.ExecuteIfBound(ResponseStruct);
-        });
+        }
+        else {
+            ResponseStruct.success = false;
+            UE_LOG(LogTemp, Error, TEXT("Uploading player file to lootlocker failed"));
+        }
+        ResponseStruct.FullTextFromServer = Response.FullTextFromServer;
+        OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
+        OnCompletedRequest.ExecuteIfBound(ResponseStruct);
+    });
 
     const FLootLockerServerEndPoints ServerEndpoint = ULootLockerServerGameEndpoints::UploadFileForPlayerEndpoint;
     const FString Endpoint = FString::Format(*(ServerEndpoint.endpoint), { PlayerId });
@@ -107,21 +106,22 @@ void ULootLockerServerFilesRequest::DeleteFileForPlayer(int PlayerId, int FileId
     const FDeleteFileForPlayerResponseBP& OnCompletedRequestBP, const FServerDeleteFileForPlayerResponseDelegate& OnCompletedRequest)
 {
     const FServerResponseCallback SessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse Response)
+    {
+        FLootLockerServerDeleteFileForPlayerResponse ResponseStruct; 
+        if (Response.success)
         {
-            FLootLockerServerDeleteFileForPlayerResponse ResponseStruct;
-            if (Response.success)
-            {
-                FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerDeleteFileForPlayerResponse>(Response.FullTextFromServer, &ResponseStruct, 0, 0);
-                ResponseStruct.success = true;
-            }
-            else {
-                ResponseStruct.success = false;
-                UE_LOG(LogTemp, Error, TEXT("DeleteFileForPlayer failed from lootlocker"));
-            }
-            ResponseStruct.FullTextFromServer = Response.FullTextFromServer;
-            OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
-            OnCompletedRequest.ExecuteIfBound(ResponseStruct);
-        });
+            ResponseStruct.success = true;
+        }
+        else {
+            ResponseStruct.success = false;
+            UE_LOG(LogTemp, Error, TEXT("DeleteFileForPlayer failed from lootlocker"));
+        }
+        ResponseStruct.ServerCallStatusCode = Response.ServerCallStatusCode;
+        ResponseStruct.ServerCallHasError = Response.ServerCallHasError;
+        ResponseStruct.FullTextFromServer = Response.FullTextFromServer;
+        OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
+        OnCompletedRequest.ExecuteIfBound(ResponseStruct);
+    });
 
     FLootLockerServerEndPoints ServerEndpoint = ULootLockerServerGameEndpoints::DeleteFileForPlayerEndpoint;
     const FString Endpoint = FString::Format(*ServerEndpoint.endpoint, { PlayerId, FileId });
