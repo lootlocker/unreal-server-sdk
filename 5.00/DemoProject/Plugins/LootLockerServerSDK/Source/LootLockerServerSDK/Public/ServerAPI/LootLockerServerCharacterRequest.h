@@ -16,11 +16,11 @@ struct FLootLockerServerCharacter
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int id;
+	int Id;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool default;
+	bool Default;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	FString name;
+	FString Name;
 };
 
 USTRUCT(BlueprintType)
