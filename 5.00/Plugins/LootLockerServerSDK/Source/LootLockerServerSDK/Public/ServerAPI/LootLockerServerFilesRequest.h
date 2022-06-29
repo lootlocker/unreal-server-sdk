@@ -17,11 +17,11 @@ struct FLootLockerServerPlayerFile {
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 id;
+	int32 id = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString name;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 size;
+	int32 size = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString purpose;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -65,10 +65,10 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FListFilesForPlayerResponseBP, FLootLockerServ
 DECLARE_DYNAMIC_DELEGATE_OneParam(FGetFileByIdForPlayerResponseBP, FLootLockerServerGetFileByIdForPlayerResponse, GetFileByIdForPlayerResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FUploadFileForPlayerResponseBP, FLootLockerServerUploadFileForPlayerResponse, UploadFileForPlayerResponse);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FDeleteFileForPlayerResponseBP, FLootLockerServerDeleteFileForPlayerResponse, DeleteFileForPlayerResponse);
-DECLARE_DELEGATE_OneParam(FListFilesForPlayerResponse, FLootLockerServerListFilesForPlayerResponse);
-DECLARE_DELEGATE_OneParam(FGetFileByIdForPlayerResponse, FLootLockerServerGetFileByIdForPlayerResponse);
-DECLARE_DELEGATE_OneParam(FUploadFileForPlayerResponse, FLootLockerServerUploadFileForPlayerResponse);
-DECLARE_DELEGATE_OneParam(FDeleteFileForPlayerResponse, FLootLockerServerDeleteFileForPlayerResponse);
+DECLARE_DELEGATE_OneParam(FServerListFilesForPlayerResponseDelegate, FLootLockerServerListFilesForPlayerResponse);
+DECLARE_DELEGATE_OneParam(FServerGetFileByIdForPlayerResponseDelegate, FLootLockerServerGetFileByIdForPlayerResponse);
+DECLARE_DELEGATE_OneParam(FServerUploadFileForPlayerResponseDelegate, FLootLockerServerUploadFileForPlayerResponse);
+DECLARE_DELEGATE_OneParam(FServerDeleteFileForPlayerResponseDelegate, FLootLockerServerDeleteFileForPlayerResponse);
 
 /**
  * 
@@ -81,13 +81,13 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerFilesRequest : public UObject
 public:	
 	ULootLockerServerFilesRequest();
 
-	static void ListFilesForPlayer(int PlayerId, const FListFilesForPlayerResponseBP& OnCompletedRequestBP = FListFilesForPlayerResponseBP(), const FListFilesForPlayerResponse& OnCompletedRequest = FListFilesForPlayerResponse());
+	static void ListFilesForPlayer(int PlayerId, const FListFilesForPlayerResponseBP& OnCompletedRequestBP = FListFilesForPlayerResponseBP(), const FServerListFilesForPlayerResponseDelegate& OnCompletedRequest = FServerListFilesForPlayerResponseDelegate());
 
-	static void GetFileByIdForPlayer(int PlayerId, int FileId, const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP = FGetFileByIdForPlayerResponseBP(), const FGetFileByIdForPlayerResponse& OnCompletedRequest = FGetFileByIdForPlayerResponse());
+	static void GetFileByIdForPlayer(int PlayerId, int FileId, const FGetFileByIdForPlayerResponseBP& OnCompletedRequestBP = FGetFileByIdForPlayerResponseBP(), const FServerGetFileByIdForPlayerResponseDelegate& OnCompletedRequest = FServerGetFileByIdForPlayerResponseDelegate());
 
-	static void UploadFileForPlayer(int PlayerId, const FString &FilePath, const FString& Purpose, const FUploadFileForPlayerResponseBP& OnCompletedRequestBP = FUploadFileForPlayerResponseBP(), const FUploadFileForPlayerResponse& OnCompletedRequest = FUploadFileForPlayerResponse());
+	static void UploadFileForPlayer(int PlayerId, const FString &FilePath, const FString& Purpose, const FUploadFileForPlayerResponseBP& OnCompletedRequestBP = FUploadFileForPlayerResponseBP(), const FServerUploadFileForPlayerResponseDelegate& OnCompletedRequest = FServerUploadFileForPlayerResponseDelegate());
 
-	static void DeleteFileForPlayer(int PlayerId, int FileId, const FDeleteFileForPlayerResponseBP& OnCompletedRequestBP = FDeleteFileForPlayerResponseBP(), const FDeleteFileForPlayerResponse& OnCompletedRequest = FDeleteFileForPlayerResponse());
+	static void DeleteFileForPlayer(int PlayerId, int FileId, const FDeleteFileForPlayerResponseBP& OnCompletedRequestBP = FDeleteFileForPlayerResponseBP(), const FServerDeleteFileForPlayerResponseDelegate& OnCompletedRequest = FServerDeleteFileForPlayerResponseDelegate());
 
 protected:
 	static ULootLockerServerHttpClient* HttpClient;

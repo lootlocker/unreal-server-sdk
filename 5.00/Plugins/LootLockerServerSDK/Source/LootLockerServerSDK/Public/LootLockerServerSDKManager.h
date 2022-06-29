@@ -6,6 +6,7 @@
 #include "ServerAPI/LootLockerServerAssetRequest.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
 #include "ServerAPI/LootLockerServerCharacterRequest.h"
+#include "ServerAPI/LootLockerServerFilesRequest.h"
 #include "ServerAPI/LootLockerServerHeroesRequest.h"
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
@@ -262,4 +263,13 @@ public:
    * https://ref.lootlocker.io/game-api/#submit-scorem
    */
     static void SubmitScore(FString MemberId, int LeaderboardId, int Score, const FLootLockerServerSubmitScoreResponseDelegate& OnCompletedRequest);
+
+	//==================================================
+	//Player Files
+	//==================================================
+
+	static void ListFilesForPlayer(int PlayerId, const FServerListFilesForPlayerResponseDelegate& OnCompletedRequest);
+	static void GetFileByIdForPlayer(int PlayerId, int FileId, const FServerGetFileByIdForPlayerResponseDelegate& OnCompletedRequest);
+	static void DeleteFileForPlayer(int PlayerId, int FileId, const FServerDeleteFileForPlayerResponseDelegate& OnCompletedRequest);
+	static void UploadFileForPlayer(int PlayerId, const FString& FileName, const FString& Purpose, const FServerUploadFileForPlayerResponseDelegate& OnCompletedRequest);
 };

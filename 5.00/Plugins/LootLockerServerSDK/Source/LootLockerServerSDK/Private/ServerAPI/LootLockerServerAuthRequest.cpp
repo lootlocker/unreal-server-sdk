@@ -21,7 +21,7 @@ void ULootLockerServerAuthRequest::StartSession(const FServerAuthResponseBP& OnC
 	authRequest.game_version = config->GameVersion;
 	FString AuthContentString;
 	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerServerAuthenticationRequest::StaticStruct(), &authRequest, AuthContentString, 0, 0);
-	UE_LOG(LogTemp, Error, TEXT("Content %s"), *AuthContentString);
+	UE_LOG(LogTemp, Verbose, TEXT("Content %s"), *AuthContentString);
 
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest, config](FLootLockerServerResponse response)
 		{
