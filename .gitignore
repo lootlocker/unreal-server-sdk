@@ -77,3 +77,12 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DemoProject/DerivedDataCache/*
+5.00/DemoProject/Binaries
+5.00/DemoProject/Saved/Config/CrashReportClient
+5.00/DemoProject/Saved/Logs
+5.00/DemoProject/Saved
+5.00/DemoProject/Plugins/LootLockerServerSDK/Intermediate
+5.00/DemoProject/Plugins/LootLockerServerSDK/Binaries
+5.00/DemoProject/Intermediate
+5.00/DemoProject/Plugins/Developer
+5.00/DemoProject/Config/HoloLens

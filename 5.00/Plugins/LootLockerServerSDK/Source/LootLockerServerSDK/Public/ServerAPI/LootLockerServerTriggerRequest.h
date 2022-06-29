@@ -16,11 +16,11 @@ struct FLootLockerServerLevel
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int level;
+	int level = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool is_prestige;
+	bool is_prestige = false;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int xp_threshold;
+	int xp_threshold = 0;
 	
 };
 
@@ -30,9 +30,9 @@ struct FLootLockerServerXP
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int previous;
+	int previous = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int current;
+	int current = 0;
 };
 
 USTRUCT(BlueprintType)

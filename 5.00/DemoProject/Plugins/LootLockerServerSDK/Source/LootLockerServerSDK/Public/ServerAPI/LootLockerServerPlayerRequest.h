@@ -15,7 +15,7 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerRental {
 	GENERATED_BODY()
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool is_rental;
+	bool is_rental = false;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString time_left;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -28,9 +28,9 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerInventory {
 	GENERATED_BODY()
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 instance_id;
+	int32 instance_id = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 variation_id;
+	int32 variation_id = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString rental_option_id;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -46,7 +46,7 @@ struct FLootLockerServerInventoryResponse : public FLootLockerServerResponse {
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 total;
+	int32 total = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	TArray<FLootLockerServerInventory> items;
 };
@@ -57,13 +57,13 @@ struct FLootLockerServerAddAssetData
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 asset_id;
+	int32 asset_id = 0;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 asset_variation_id;
+	int32 asset_variation_id = 0;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 asset_rental_option_id;
+	int32 asset_rental_option_id = 0;
 };
 
 USTRUCT(BlueprintType)
@@ -72,7 +72,7 @@ struct FLootLockerServerAddAssetResponse : public FLootLockerServerResponse
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 total;
+	int32 total = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	TArray<FLootLockerServerInventory> items;
 };
@@ -83,7 +83,7 @@ struct FLootLockerServerGetPlayerLoadoutResponse : public FLootLockerServerRespo
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 total;
+	int32 total = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	TArray<FLootLockerServerInventory> items;
 };
@@ -94,7 +94,7 @@ struct FLootLockerServerEquipAssetForPlayerLoadoutResponse : public FLootLockerS
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 total;
+	int32 total = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	TArray<FLootLockerServerInventory> items;
 };
@@ -105,7 +105,7 @@ struct FLootLockerServerUnequipAssetForPlayerLoadoutResponse : public FLootLocke
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 total;
+	int32 total = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	TArray<FLootLockerServerInventory> items;
 };

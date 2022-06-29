@@ -13,11 +13,11 @@ struct FLootLockerServerResponse
 	GENERATED_BODY()
 public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	bool success;
+	bool success = false;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	bool ServerCallHasError;
+	bool ServerCallHasError = false;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	int ServerCallStatusCode;
+	int ServerCallStatusCode = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	FString FullTextFromServer;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -46,7 +46,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	FString endpoint;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	ELootLockerServerHTTPMethod requestMethod;
+	ELootLockerServerHTTPMethod requestMethod = ELootLockerServerHTTPMethod::GET;
 };
 
 DECLARE_DELEGATE_OneParam(FServerResponseCallback, FLootLockerServerResponse);
