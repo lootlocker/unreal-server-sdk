@@ -20,7 +20,7 @@ struct FLootLockerServerPlayerStorageItemData
 	FString value;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool is_public;
+	bool is_public = false;
 };
 
 USTRUCT(BlueprintType)
@@ -29,7 +29,7 @@ struct FLootLockerServerPlayerStorageItem
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int player_id;
+	int player_id = 0;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	TArray<FLootLockerServerPlayerStorageItemData> items;
@@ -56,10 +56,10 @@ struct FLootLockerServerKeyValueSet
 	FString value;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool is_public;
+	bool is_public = false;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int order;
+	int order = 0;
 };
 
 USTRUCT(BlueprintType)
@@ -68,7 +68,7 @@ struct FLootLockerServerPlayerStorageData
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int player_id;
+	int player_id = 0;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	TArray<FLootLockerServerKeyValueSet> sets;

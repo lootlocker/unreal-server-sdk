@@ -30,7 +30,7 @@ struct FLootLockerServerCreateLeaderboardResponse : public FLootLockerServerResp
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int id;
+    int id = 0;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString name;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -40,9 +40,9 @@ struct FLootLockerServerCreateLeaderboardResponse : public FLootLockerServerResp
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString direction_method;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool enable_game_api_writes;
+    bool enable_game_api_writes = false;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool overwrite_score_on_submit;
+    bool overwrite_score_on_submit = false;
 };
 
 USTRUCT(BlueprintType)
@@ -50,7 +50,7 @@ struct FLootLockerServerUpdateLeaderboardResponse : public FLootLockerServerResp
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int id;
+    int id = 0;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString name;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -60,9 +60,9 @@ struct FLootLockerServerUpdateLeaderboardResponse : public FLootLockerServerResp
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString direction_method;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool enable_game_api_writes;
+    bool enable_game_api_writes = false;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool overwrite_score_on_submit;
+    bool overwrite_score_on_submit = false;
 };
 
 USTRUCT(BlueprintType)
@@ -70,7 +70,7 @@ struct FLootLockerServerDeleteLeaderboardResponse : public FLootLockerServerResp
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int id;
+    int id = 0;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString name;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -80,9 +80,9 @@ struct FLootLockerServerDeleteLeaderboardResponse : public FLootLockerServerResp
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString direction_method;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool enable_game_api_writes;
+    bool enable_game_api_writes = false;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool overwrite_score_on_submit;
+    bool overwrite_score_on_submit = false;
 };
 
 
@@ -93,9 +93,9 @@ struct FLootLockerServerSubmitScoreResponse : public FLootLockerServerResponse
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString member_id;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int rank;
+    int rank = 0;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int score;
+    int score = 0;
 };
 
 USTRUCT(BlueprintType)
@@ -105,7 +105,7 @@ struct FLootLockerServerSubmitScoreRequest
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString member_id;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int score;
+    int score = 0;
 };
 
 USTRUCT(BlueprintType)
@@ -121,9 +121,9 @@ struct FLootLockerServerCreateLeaderboardRequest
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString direction_method;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool enable_game_api_writes;
+    bool enable_game_api_writes = false;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool overwrite_score_on_submit;
+    bool overwrite_score_on_submit = false;
 };
 
 USTRUCT(BlueprintType)
@@ -131,11 +131,11 @@ struct FLootLockerServerDeleteLeaderboardRequest
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int leaderboardId;
+    int leaderboardId = 0;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int count;
+    int count = 0;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int after;
+    int after = 0;
 };
 
 USTRUCT(BlueprintType)
@@ -151,9 +151,9 @@ struct FLootLockerServerUpdateLeaderboardRequest
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString direction_method;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool enable_game_api_writes;
+    bool enable_game_api_writes = false;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool overwrite_score_on_submit;
+    bool overwrite_score_on_submit = false;
 };
 
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreateLeaderboardResponseBP, FLootLockerServerCreateLeaderboardResponse, Response);

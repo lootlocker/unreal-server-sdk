@@ -63,7 +63,7 @@ struct FLootLockerServerPsn {
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString entitlement_id;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 service_label;
+	int32 service_label = 0;
 };
 
 USTRUCT(BlueprintType)
@@ -99,13 +99,13 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerRentalOption {
 	GENERATED_BODY()
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 id;
+	int32 id = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString name;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 duration;
+	int32 duration = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 price;
+	int32 price = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString sales_price;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -135,7 +135,7 @@ struct FLootLockerServerAssetCandidate
 {
 	GENERATED_BODY()
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int created_by_player_id;
+	int created_by_player_id = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString created_by_player_uid;
 };
@@ -145,7 +145,7 @@ struct FLootLockerServerVariation
 {
 	GENERATED_BODY()
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 id;
+	int32 id = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString name;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -163,15 +163,15 @@ struct FLootLockerServerAsset
 {
     GENERATED_BODY()
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int32 id;
+    int32 id = 0;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
     FString name;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    bool active;
+    bool active = false;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool purchasable;
+	bool purchasable = false;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 price;
+	int32 price = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString sales_price;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -181,13 +181,13 @@ struct FLootLockerServerAsset
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString unlocks_context;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool detachable;
+	bool detachable = false;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString updated;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FString marked_new;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 default_variation_id;
+	int32 default_variation_id = 0;
 	//TODO: implement default loadouts
 	// UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	// FLootLockerServerDefaultLoadouts default_loadouts;
@@ -200,11 +200,11 @@ struct FLootLockerServerAsset
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FLootLockerServerRarity rarity;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool popular;
+	bool popular = false;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	int32 popularity_score;
+	int32 popularity_score = 0;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool unique_instance;
+	bool unique_instance = false;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	FLootLockerServerExternalIdentifiers external_identifiers;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
@@ -220,11 +220,11 @@ struct FLootLockerServerAsset
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
 	TArray<FLootLockerServerVariation> variations;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool featured;
+	bool featured = false;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool context_locked;
+	bool context_locked = false;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	bool initially_purchasable;
+	bool initially_purchasable = false;
 };
 
 USTRUCT(BlueprintType)
@@ -235,7 +235,7 @@ struct FLootLockerServerGetAssetsToGameResponse : public FLootLockerServerRespon
 	TArray<FLootLockerServerAsset> items;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int32 total;
+    int32 total = 0;
 };
 
 DECLARE_DYNAMIC_DELEGATE_OneParam(FServerAssetsResponseDelegateBP, FLootLockerServerGetAssetsToGameResponse, AssetsResponse);

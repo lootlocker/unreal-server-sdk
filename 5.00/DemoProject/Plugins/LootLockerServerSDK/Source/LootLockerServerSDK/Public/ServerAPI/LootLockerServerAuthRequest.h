@@ -18,7 +18,7 @@ struct FLootLockerServerAuthenticationRequest
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Startup Item")
 	FString game_version;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Startup Item")
-	bool is_development;
+	bool is_development = false;
 };
 
 USTRUCT(BlueprintType)

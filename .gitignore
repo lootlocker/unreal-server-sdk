@@ -77,13 +77,22 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DemoProject/DerivedDataCache/*
-
-# Files containing API keys
-DefaultLootLockerServerSDK.ini
-DefaultLootLockerSDK.ini
 Logs/
 Binaries/
 Intermediate/
 Saved/
 5.00/DemoProject/Config/HoloLens/HoloLensEngine.ini
 5.00/DemoProject/Plugins/Developer
+5.00/DemoProject/Binaries
+5.00/DemoProject/Saved/Config/CrashReportClient
+5.00/DemoProject/Saved/Logs
+5.00/DemoProject/Saved
+5.00/DemoProject/Plugins/LootLockerServerSDK/Intermediate
+5.00/DemoProject/Plugins/LootLockerServerSDK/Binaries
+5.00/DemoProject/Intermediate
+5.00/DemoProject/Plugins/Developer
+5.00/DemoProject/Config/HoloLens
+
+# Files containing API keys
+DefaultLootLockerServerSDK.ini
+DefaultLootLockerSDK.ini
