@@ -21,7 +21,7 @@ void ULootLockerServerAuthRequest::StartSession(const FServerAuthResponseBP& OnC
 	authRequest.game_version = config->GameVersion;
 	FString AuthContentString;
 	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerServerAuthenticationRequest::StaticStruct(), &authRequest, AuthContentString, 0, 0);
-	UE_LOG(LogTemp, Error, TEXT("Content %s"), *AuthContentString);
+	UE_LOG(LogLootLockerServer, Error, TEXT("Content %s"), *AuthContentString);
 
 	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest, config](FLootLockerServerResponse response)
 		{
@@ -35,7 +35,7 @@ void ULootLockerServerAuthRequest::StartSession(const FServerAuthResponseBP& OnC
 			else
 			{
 				ResponseStruct.success = false;
-				UE_LOG(LogTemp, Error, TEXT("Starting of Session failed"));
+				UE_LOG(LogLootLockerServer, Error, TEXT("Starting of Session failed"));
 			}
 
 			ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -67,7 +67,7 @@ void ULootLockerServerAuthRequest::MaintainSession(const FServerAuthResponseBP& 
 			else
 			{
 				ResponseStruct.success = false;
-				UE_LOG(LogTemp, Error, TEXT("Starting of Session failed"));
+				UE_LOG(LogLootLockerServer, Error, TEXT("Starting of Session failed"));
 			}
 
 			ResponseStruct.FullTextFromServer = response.FullTextFromServer;

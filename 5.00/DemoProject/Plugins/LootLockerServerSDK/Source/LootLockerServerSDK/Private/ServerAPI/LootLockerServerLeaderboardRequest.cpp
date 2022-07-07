@@ -29,7 +29,7 @@ void ULootLockerServerLeaderboardRequest::CreateLeaderboard(const FLootLockerSer
 			}
 			else {
 				ResponseStruct.success = false;
-				UE_LOG(LogTemp, Error, TEXT("CreateLeaderboard failed from lootlocker"));
+				UE_LOG(LogLootLockerServer, Error, TEXT("CreateLeaderboard failed from lootlocker"));
 			}
 			ResponseStruct.FullTextFromServer = response.FullTextFromServer;
 			OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
@@ -56,7 +56,7 @@ void ULootLockerServerLeaderboardRequest::UpdateLeaderboard(const FLootLockerSer
 			}
 			else {
 				ResponseStruct.success = false;
-				UE_LOG(LogTemp, Error, TEXT("UpdateLeaderboard failed from lootlocker"));
+				UE_LOG(LogLootLockerServer, Error, TEXT("UpdateLeaderboard failed from lootlocker"));
 			}
 			ResponseStruct.FullTextFromServer = response.FullTextFromServer;
 			OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
@@ -83,7 +83,7 @@ void ULootLockerServerLeaderboardRequest::DeleteLeaderboard(int LeaderboardId, c
 			}
 			else {
 				ResponseStruct.success = false;
-				UE_LOG(LogTemp, Error, TEXT("DeleteLeaderboard failed from lootlocker"));
+				UE_LOG(LogLootLockerServer, Error, TEXT("DeleteLeaderboard failed from lootlocker"));
 			}
 			ResponseStruct.FullTextFromServer = response.FullTextFromServer;
 			OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
@@ -113,7 +113,7 @@ void ULootLockerServerLeaderboardRequest::SubmitScore(const FLootLockerServerSub
 			}
 			else {
 				ResponseStruct.success = false;
-				UE_LOG(LogTemp, Error, TEXT("SubmitScore failed from lootlocker"));
+				UE_LOG(LogLootLockerServer, Error, TEXT("SubmitScore failed from lootlocker"));
 			}
 			ResponseStruct.FullTextFromServer = response.FullTextFromServer;
 			OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);

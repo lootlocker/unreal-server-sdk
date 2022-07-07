@@ -57,7 +57,7 @@ void ULootLockerServerHttpClient::SendApi(const FString& endPoint, const FString
 				return;
 			}
 
-			UE_LOG(LogTemp, Warning, TEXT("Response code: %d; Response content:\n%s"), Response->GetResponseCode(), *ResponseString);
+			UE_LOG(LogLootLockerServer, Warning, TEXT("Response code: %d; Response content:\n%s"), Response->GetResponseCode(), *ResponseString);
 			response.success = true;
 			response.FullTextFromServer = Response->GetContentAsString();
 			response.ServerCallHasError = false;
@@ -81,11 +81,11 @@ bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResp
 	{
 		if (InResponse->GetResponseCode() == 401)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Token has expirred"));
+			UE_LOG(LogLootLockerServer, Warning, TEXT("Token has expirred"));
 			return false;
 		}
-		UE_LOG(LogTemp, Warning, TEXT("Http Response returned error code: %d"), InResponse->GetResponseCode());
-		UE_LOG(LogTemp, Warning, TEXT("Http Response content:\n%s"), *InResponse->GetContentAsString());
+		UE_LOG(LogLootLockerServer, Warning, TEXT("Http Response returned error code: %d"), InResponse->GetResponseCode());
+		UE_LOG(LogLootLockerServer, Warning, TEXT("Http Response content:\n%s"), *InResponse->GetContentAsString());
 		return false;
 	}
 }
@@ -121,7 +121,7 @@ void ULootLockerServerHttpClient::UploadFile(const FString& endPoint, const FStr
 
 	TArray<uint8> UpFileRawData;
 	if (!FFileHelper::LoadFileToArray(UpFileRawData, *FilePath)) {
-		UE_LOG(LogTemp, Error, TEXT("FILE NOT READ!"));
+		UE_LOG(LogLootLockerServer, Error, TEXT("FILE NOT READ!"));
 		return;
 	}
 
@@ -168,7 +168,7 @@ void ULootLockerServerHttpClient::UploadFile(const FString& endPoint, const FStr
 			response.ServerCallStatusCode = Response->GetResponseCode();
 			response.ServerError = Response->GetContentAsString();
 
-			UE_LOG(LogTemp, Warning, TEXT("Response code: %d; Response content:\n%s"), Response->GetResponseCode(), *ResponseString);
+			UE_LOG(LogLootLockerServer, Warning, TEXT("Response code: %d; Response content:\n%s"), Response->GetResponseCode(), *ResponseString);
 			bool success = ResponseIsValid(Response, bWasSuccessful);
 
 			response.success = success;

@@ -28,7 +28,7 @@ void ULootLockerServerPlayerRequest::GetInventory(int PlayerId, int StartFromInd
             }
             else {
                 response.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
+                UE_LOG(LogLootLockerServer, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
             OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
@@ -54,7 +54,7 @@ void ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(int PlayerId, FLo
             }
             else {
                 response.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
+                UE_LOG(LogLootLockerServer, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
             OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
@@ -70,7 +70,7 @@ void ULootLockerServerPlayerRequest::AddAssetToPlayerInventory(int PlayerId, FLo
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
 
-	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
+	UE_LOG(LogLootLockerServer, Log, TEXT("data=%s"), *ContentString);
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
@@ -88,7 +88,7 @@ void ULootLockerServerPlayerRequest::GetPlayerLoadout(int PlayerId,
             }
             else {
                 response.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
+                UE_LOG(LogLootLockerServer, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
             OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
@@ -100,7 +100,7 @@ void ULootLockerServerPlayerRequest::GetPlayerLoadout(int PlayerId,
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
 
-	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
+	UE_LOG(LogLootLockerServer, Log, TEXT("data=%s"), *ContentString);
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
@@ -118,7 +118,7 @@ void ULootLockerServerPlayerRequest::EquipAssetForPlayerLoadout(int PlayerId, in
             }
             else {
                 response.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
+                UE_LOG(LogLootLockerServer, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
             OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
@@ -134,7 +134,7 @@ void ULootLockerServerPlayerRequest::EquipAssetForPlayerLoadout(int PlayerId, in
 	FString endpoint = FString::Format(*(Endpoint.endpoint), { PlayerId });
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(Endpoint.requestMethod));
 
-	UE_LOG(LogTemp, Log, TEXT("data=%s"), *ContentString);
+	UE_LOG(LogLootLockerServer, Log, TEXT("data=%s"), *ContentString);
 	HttpClient->SendApi(endpoint, requestMethod, ContentString, sessionResponse, true);
 }
 
@@ -152,7 +152,7 @@ void ULootLockerServerPlayerRequest::UnequipAssetForPlayerLoadout(int PlayerId, 
             }
             else {
                 response.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Getting player failed from lootlocker"));
+                UE_LOG(LogLootLockerServer, Error, TEXT("Getting player failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
             OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);

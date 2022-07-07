@@ -2,6 +2,7 @@
 
 #include "LootLockerServerConfig.h"
 
+DEFINE_LOG_CATEGORY(LogLootLockerServer);
 
 FString ULootLockerServerConfig::GetEnum(const TCHAR* Enum, int32 EnumValue)
 {

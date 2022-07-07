@@ -29,7 +29,7 @@ void ULootLockerServerStorageRequest::GetPersistentStorage(TArray<int> PlayerIds
             }
             else {
                 response.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Getting players failed from lootlocker"));
+                UE_LOG(LogLootLockerServer, Error, TEXT("Getting players failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
             OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
@@ -62,7 +62,7 @@ void ULootLockerServerStorageRequest::UpdatePersistentStorage(FLootLockerServerP
             }
             else {
                 response.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Failed to update persisten storage"));
+                UE_LOG(LogLootLockerServer, Error, TEXT("Failed to update persisten storage"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
             OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);

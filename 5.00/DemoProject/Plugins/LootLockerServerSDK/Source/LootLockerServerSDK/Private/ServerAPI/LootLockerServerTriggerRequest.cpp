@@ -27,7 +27,7 @@ void ULootLockerServerTriggerRequest::InvokeTriggerOnBehalfOfPlayer(FString name
             }
             else {
                 response.success = false;
-                UE_LOG(LogTemp, Error, TEXT("Invoking trigger failed from lootlocker"));
+                UE_LOG(LogLootLockerServer, Error, TEXT("Invoking trigger failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
             OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);

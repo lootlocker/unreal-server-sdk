@@ -23,7 +23,7 @@ void ULLServerDropTablesRequestHandler::ComputeAndLockDropTable(int TableId, con
 			}
 			else {
 				ResponseStruct.success = false;
-				UE_LOG(LogTemp, Error, TEXT("Update character failed from lootlocker"));
+				UE_LOG(LogLootLockerServer, Error, TEXT("Update character failed from lootlocker"));
 			}
 			ResponseStruct.FullTextFromServer = response.FullTextFromServer;
 			OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
@@ -52,7 +52,7 @@ void ULLServerDropTablesRequestHandler::PickDropsFromDropTable(const FLootLocker
 			}
 			else {
 				ResponseStruct.success = false;
-				UE_LOG(LogTemp, Error, TEXT("Update character failed from lootlocker"));
+				UE_LOG(LogLootLockerServer, Error, TEXT("Update character failed from lootlocker"));
 			}
 			ResponseStruct.FullTextFromServer = response.FullTextFromServer;
 			OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);

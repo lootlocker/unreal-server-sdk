@@ -26,7 +26,7 @@ void ULootLockerServerAssetRequest::GetAssetsToGame(int StartFromIndex, int Item
             }
             else {
                 ResponseStruct.success = false;
-                UE_LOG(LogTemp, Error, TEXT("GetAssets failed from lootlocker"));
+                UE_LOG(LogLootLockerServer, Error, TEXT("GetAssets failed from lootlocker"));
             }
             ResponseStruct.FullTextFromServer = response.FullTextFromServer;
             OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
