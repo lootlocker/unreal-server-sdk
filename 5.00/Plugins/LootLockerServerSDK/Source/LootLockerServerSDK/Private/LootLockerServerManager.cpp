@@ -16,9 +16,9 @@ void ULootLockerServerManager::StartSession(const FServerAuthResponseBP& OnStart
 {
     ULootLockerServerAuthRequest::StartSession(OnStartedSessionRequestCompleted);
 }
-void ULootLockerServerManager::MaintainSession(const FServerAuthResponseBP& OnStartedSessionRequestCompleted)
+void ULootLockerServerManager::MaintainSession(const FServerPingResponseBP& OnPingRequestCompleted)
 {
-    ULootLockerServerAuthRequest::MaintainSession(OnStartedSessionRequestCompleted);
+    ULootLockerServerAuthRequest::MaintainSession(OnPingRequestCompleted);
 }
 
 void ULootLockerServerManager::GetAssetsToGame(const FServerAssetsResponseDelegateBP& OnGetAssetsRequestCompleted,

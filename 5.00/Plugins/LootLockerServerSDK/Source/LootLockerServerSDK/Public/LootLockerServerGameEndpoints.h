@@ -13,7 +13,7 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerGameEndpoints : public UObject
 public:
     //Auth
     static FLootLockerServerEndPoints StartSessionEndpoint;
-    static FLootLockerServerEndPoints MaintainingSessionEndpoint;
+    static FLootLockerServerEndPoints MaintainSessionEndpoint;
     //Assets
     static FLootLockerServerEndPoints GetAssetsToGameEndpoint;
     //Player Inventory
