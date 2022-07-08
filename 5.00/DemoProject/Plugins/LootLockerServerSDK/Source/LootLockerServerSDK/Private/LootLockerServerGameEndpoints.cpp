@@ -8,7 +8,7 @@ FString ULootLockerServerGameEndpoints::GameBaseUrl = "https://api.lootlocker.io
 
 //Auth
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::StartSessionEndpoint = InitEndpoint("session", ELootLockerServerHTTPMethod::POST);
-FLootLockerServerEndPoints ULootLockerServerGameEndpoints::MaintainingSessionEndpoint = InitEndpoint("ping", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoints ULootLockerServerGameEndpoints::MaintainSessionEndpoint = InitEndpoint("ping", ELootLockerServerHTTPMethod::GET);
 
 FLootLockerServerEndPoints ULootLockerServerGameEndpoints::GetAssetsToGameEndpoint = InitEndpoint("assets", ELootLockerServerHTTPMethod::GET);
 //Player Inventory

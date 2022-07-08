@@ -20,6 +20,6 @@ public:
     void DemoMaintainSession();
     
 	void OnStartSessionCompleted(FLootLockerServerAuthenticationResponse Response);
-	void OnMaintainSessionCompleted(FLootLockerServerAuthenticationResponse Response);
+	void OnMaintainSessionCompleted(FLootLockerServerPingResponse Response);
 
 };

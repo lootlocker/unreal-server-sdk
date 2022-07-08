@@ -22,6 +22,18 @@ struct FLootLockerServerAuthenticationRequest
 };
 
 USTRUCT(BlueprintType)
+struct FLootLockerServerPingResponse : public FLootLockerServerResponse
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+	int32 pong;
+};
+
+DECLARE_DYNAMIC_DELEGATE_OneParam(FServerPingResponseBP, FLootLockerServerPingResponse, Var);
+DECLARE_DELEGATE_OneParam(FServerPingResponse, FLootLockerServerPingResponse);
+
+USTRUCT(BlueprintType)
 struct FLootLockerServerAuthenticationResponse : public FLootLockerServerResponse
 {
 	GENERATED_BODY()
@@ -46,6 +58,6 @@ public:
 
 public:
 	static void StartSession(const FServerAuthResponseBP& OnCompletedRequestBP = FServerAuthResponseBP(), const FServerAuthResponse& OnCompletedRequest = FServerAuthResponse());
-	static void MaintainSession(const FServerAuthResponseBP& OnCompletedRequestBP = FServerAuthResponseBP(), const FServerAuthResponse& OnCompletedRequest = FServerAuthResponse());
+	static void MaintainSession(const FServerPingResponseBP& OnCompletedRequestBP = FServerPingResponseBP(), const FServerPingResponse& OnCompletedRequest = FServerPingResponse());
 	static ULootLockerServerHttpClient* HttpClient;
 };

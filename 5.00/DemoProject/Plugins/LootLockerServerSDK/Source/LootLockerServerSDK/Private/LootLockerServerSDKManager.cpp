@@ -9,9 +9,9 @@ void ULootLockerServerSDKManager::StartSession(const FServerAuthResponse& OnComp
 	ULootLockerServerAuthRequest::StartSession( FServerAuthResponseBP(), OnCompleteRequest);
 }
 
-void ULootLockerServerSDKManager::MaintainSession(const FServerAuthResponse& OnCompleteRequest)
+void ULootLockerServerSDKManager::MaintainSession(const FServerPingResponse& OnCompleteRequest)
 {
-	ULootLockerServerAuthRequest::MaintainSession(FServerAuthResponseBP(), OnCompleteRequest);
+	ULootLockerServerAuthRequest::MaintainSession(FServerPingResponseBP(), OnCompleteRequest);
 }
 
 void ULootLockerServerSDKManager::GetAssetsToGame(const FServerAssetsResponseDelegate& OnCompletedRequest, int StartFromIndex,

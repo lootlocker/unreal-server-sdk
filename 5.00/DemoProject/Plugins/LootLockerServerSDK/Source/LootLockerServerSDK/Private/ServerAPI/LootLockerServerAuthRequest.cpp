@@ -23,7 +23,7 @@ void ULootLockerServerAuthRequest::StartSession(const FServerAuthResponseBP& OnC
 	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerServerAuthenticationRequest::StaticStruct(), &authRequest, AuthContentString, 0, 0);
 	UE_LOG(LogTemp, Error, TEXT("Content %s"), *AuthContentString);
 
-	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest, config](FLootLockerServerResponse response)
+	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
 		{
 			FLootLockerServerAuthenticationResponse ResponseStruct;
 			if (response.success)
@@ -35,7 +35,7 @@ void ULootLockerServerAuthRequest::StartSession(const FServerAuthResponseBP& OnC
 			else
 			{
 				ResponseStruct.success = false;
-				UE_LOG(LogTemp, Error, TEXT("Starting of Session failed"));
+				UE_LOG(LogTemp, Error, TEXT("Starting of session failed"));
 			}
 
 			ResponseStruct.FullTextFromServer = response.FullTextFromServer;
@@ -47,21 +47,14 @@ void ULootLockerServerAuthRequest::StartSession(const FServerAuthResponseBP& OnC
 	HttpClient->SendApi(endpoint.endpoint, requestMethod, AuthContentString, sessionResponse);
 }
 
-void ULootLockerServerAuthRequest::MaintainSession(const FServerAuthResponseBP& OnCompletedRequestBP, const FServerAuthResponse& OnCompletedRequest)
+void ULootLockerServerAuthRequest::MaintainSession(const FServerPingResponseBP& OnCompletedRequestBP, const FServerPingResponse& OnCompletedRequest)
 {
-	FLootLockerServerAuthenticationRequest authRequest;
-	const ULootLockerServerConfig* config = GetDefault<ULootLockerServerConfig>();
-	authRequest.is_development = config->OnDevelopmentMode;
-	authRequest.game_version = config->GameVersion;
-	FString AuthContentString;
-	FJsonObjectConverter::UStructToJsonObjectString(FLootLockerServerAuthenticationRequest::StaticStruct(), &authRequest, AuthContentString, 0, 0);
-
-	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest, config](FLootLockerServerResponse response)
+	FServerResponseCallback sessionResponse = FServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest](FLootLockerServerResponse response)
 		{
-			FLootLockerServerAuthenticationResponse ResponseStruct;
+			FLootLockerServerPingResponse ResponseStruct;
 			if (response.success)
 			{
-				FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerAuthenticationResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
+				FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerPingResponse>(response.FullTextFromServer, &ResponseStruct, 0, 0);
 				ResponseStruct.success = true;
 			}
 			else
@@ -74,7 +67,8 @@ void ULootLockerServerAuthRequest::MaintainSession(const FServerAuthResponseBP& 
 			OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
 			OnCompletedRequest.ExecuteIfBound(ResponseStruct);
 		});
-	FLootLockerServerEndPoints endpoint = ULootLockerServerGameEndpoints::StartSessionEndpoint;
+	FLootLockerServerEndPoints endpoint = ULootLockerServerGameEndpoints::MaintainSessionEndpoint;
 	FString requestMethod = ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(endpoint.requestMethod));
-	HttpClient->SendApi(endpoint.endpoint, requestMethod, AuthContentString, sessionResponse,true);
+	FString data;
+	HttpClient->SendApi(endpoint.endpoint, requestMethod, data, sessionResponse, true);
 }

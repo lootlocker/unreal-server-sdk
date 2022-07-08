@@ -10,7 +10,7 @@ void ADemoAuth::DemoStartSession()
 
 void ADemoAuth::DemoMaintainSession()
 {
-	ULootLockerServerSDKManager::MaintainSession(FServerAuthResponse::CreateUObject(this, &ADemoAuth::OnMaintainSessionCompleted));
+	ULootLockerServerSDKManager::MaintainSession(FServerPingResponse::CreateUObject(this, &ADemoAuth::OnMaintainSessionCompleted));
 }
 
 void ADemoAuth::OnStartSessionCompleted(FLootLockerServerAuthenticationResponse Response)
@@ -25,7 +25,7 @@ void ADemoAuth::OnStartSessionCompleted(FLootLockerServerAuthenticationResponse 
 	}
 }
 
-void ADemoAuth::OnMaintainSessionCompleted(FLootLockerServerAuthenticationResponse Response)
+void ADemoAuth::OnMaintainSessionCompleted(FLootLockerServerPingResponse Response)
 {
 	if (Response.success)
 	{

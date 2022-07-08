@@ -39,7 +39,7 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Authentication")
     static void StartSession(const FServerAuthResponseBP& OnStartedSessionRequestCompleted);
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Authentication")
-    static void MaintainSession(const FServerAuthResponseBP& OnStartedSessionRequestCompleted);
+    static void MaintainSession(const FServerPingResponseBP& OnPingRequestCompleted);
 
     /**
     * Get all assets in a paginated form.
