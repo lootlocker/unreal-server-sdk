@@ -2,6 +2,8 @@
 
 
 #include "ServerAPI/LLServerDropTablesRequestHandler.h"
+
+#include "JsonObjectConverter.h"
 #include "LootLockerServerGameEndpoints.h"
 ULootLockerServerHttpClient* ULLServerDropTablesRequestHandler::HttpClient = nullptr;
 
