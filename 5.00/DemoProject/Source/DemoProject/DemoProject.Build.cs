@@ -10,7 +10,7 @@ public class DemoProject : ModuleRules
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "LootLockerServerSDK"});
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "Http", "Json", "JsonUtilities" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "HTTP", "Json", "JsonUtilities" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

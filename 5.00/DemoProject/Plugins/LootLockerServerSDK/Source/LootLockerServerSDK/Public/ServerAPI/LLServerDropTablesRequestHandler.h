@@ -10,23 +10,21 @@
 #include "LLServerDropTablesRequestHandler.generated.h"
 
 USTRUCT(BlueprintType)
-struct FLootLockerServerComputeAndLockDropTableResponse : public FLootLockerServerResponse
-{
-    GENERATED_BODY()
-        UPROPERTY(BlueprintReadWrite, EditAnywhere)
-    bool success;
-    //UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    TArray<FLootLockerServerComputeAndLockItem> items;
-};
-
-USTRUCT(BlueprintType)
 struct FLootLockerServerComputeAndLockItem
 {
     GENERATED_BODY()
     int asset_id;
-    int  asset_variation_id;
-    int  asset_rental_option_id;
+    int asset_variation_id;
+    int asset_rental_option_id;
     int id;
+};
+
+USTRUCT(BlueprintType)
+struct FLootLockerServerComputeAndLockDropTableResponse : public FLootLockerServerResponse
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    TArray<FLootLockerServerComputeAndLockItem> items;
 };
 
 USTRUCT(BlueprintType)
