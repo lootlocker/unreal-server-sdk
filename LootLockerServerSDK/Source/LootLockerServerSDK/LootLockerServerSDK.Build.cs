@@ -29,7 +29,6 @@ public class LootLockerServerSDK : ModuleRules
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
-		PrivateDependencyModuleNames.AddRange(new string[] { "Http", "Json", "JsonUtilities" });
 
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
@@ -37,7 +36,10 @@ public class LootLockerServerSDK : ModuleRules
 				"CoreUObject",
 				"Engine",
 				"Slate",
-				"SlateCore" 
+				"SlateCore",
+				"HTTP",
+				"Json",
+				"JsonUtilities"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
