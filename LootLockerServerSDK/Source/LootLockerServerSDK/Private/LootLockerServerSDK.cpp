@@ -21,8 +21,8 @@ void FLootLockerServerSDKModule::StartupModule()
 	if (SettingsModule != nullptr)
 	{
 		ISettingsSectionPtr SettingsSection = SettingsModule->RegisterSettings("Project", "Plugins", "LootLocker Server",
-			LOCTEXT("LootLockerSDKSettingsName", "LootLockerServerSDK"),
-			LOCTEXT("LootLockerSDKSettingsDescription", "Configure LootLockerServer SDK."),
+			LOCTEXT("LootLockerServerSDKSettingsName", "LootLockerServerSDK"),
+			LOCTEXT("LootLockerServerSDKSettingsDescription", "Configure LootLockerServer SDK."),
 			GetMutableDefault<ULootLockerServerConfig>()
 		);
 	}

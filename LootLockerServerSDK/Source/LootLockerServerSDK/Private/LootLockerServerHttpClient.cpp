@@ -3,72 +3,61 @@
 
 #include "LootLockerServerHttpClient.h"
 #include "JsonObjectConverter.h"
-#include "LootLockerSrvPersitentDataHolder.h"
 #include "Interfaces/IHttpResponse.h"
 #include "Misc/FileHelper.h"
+#include "Utils/LootLockerServerUtilities.h"
 
 ULootLockerServerHttpClient::ULootLockerServerHttpClient()
 {
 
 }
 
-void ULootLockerServerHttpClient::SendApi(const FString& endPoint, const FString& requestType, const FString& data, const FServerResponseCallback& onCompleteRequest, bool useHeader)
+void ULootLockerServerHttpClient::SendApi(const FString& endPoint, const FString& requestType, const FString& data, const FLootLockerServerResponseCallback& onCompleteRequest, TMap<FString, FString> customHeaders /*= TMap<FString, FString>()*/) const
 {
 	FHttpModule* HttpModule = &FHttpModule::Get();
 
+#if ENGINE_MAJOR_VERSION <= 4 && ENGINE_MINOR_VERSION <= 25
+	TSharedRef<IHttpRequest> Request = HttpModule->CreateRequest();
+#else
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = HttpModule->CreateRequest();
+#endif
 
 	Request->SetURL(endPoint);
-
-	ULootLockerSrvPersitentDataHolder::CachedLastEndpointUsed = endPoint;
-	ULootLockerSrvPersitentDataHolder::CachedLastRequestTypeUsed = requestType;
-	ULootLockerSrvPersitentDataHolder::CachedLastDataSentToServer = data;
-
 
 	Request->SetHeader(TEXT("User-Agent"), TEXT("X-UnrealEngine-Agent"));
 	Request->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
 	Request->SetHeader(TEXT("Accepts"), TEXT("application/json"));
 
-	const ULootLockerServerConfig* config = GetDefault<ULootLockerServerConfig>();
-	Request->SetHeader(TEXT("LL-Version"), config->LootLockerVersion);
-	Request->SetHeader(TEXT("x-server-key"), config->LootLockerServerKey);
+	/*const ULootLockerServerConfig* config = GetDefault<ULootLockerServerConfig>();
+	Request->SetHeader(TEXT("LL-Version"), config->LootLockerVersion);*/
 
-	if (useHeader)
+	for (TTuple<FString, FString> CustomHeader : customHeaders)
 	{
-		Request->SetHeader(TEXT("x-auth-token"), ULootLockerSrvPersitentDataHolder::ServerToken);
+		Request->SetHeader(CustomHeader.Key, CustomHeader.Value);
 	}
 
 	Request->SetVerb(requestType);
 	Request->SetContentAsString(data);
 
-	Request->OnProcessRequestComplete().BindLambda([onCompleteRequest, this](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
+	Request->OnProcessRequestComplete().BindLambda([onCompleteRequest, this, endPoint, requestType, data](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString ResponseString = Response->GetContentAsString();
 			FLootLockerServerResponse response;
 
-			if (!ResponseIsValid(Response, bWasSuccessful))
-			{
-				response.success = false;
-				response.FullTextFromServer = Response->GetContentAsString();
-				response.ServerCallHasError = true;
-				response.ServerCallStatusCode = Response->GetResponseCode();
-				response.ServerError = Response->GetContentAsString();
-				onCompleteRequest.ExecuteIfBound(response);
-				return;
-			}
-
-			UE_LOG(LogTemp, Warning, TEXT("Response code: %d; Response content:\n%s"), Response->GetResponseCode(), *ResponseString);
-			response.success = true;
+			response.Success = ResponseIsValid(Response, bWasSuccessful, requestType, endPoint, data);
 			response.FullTextFromServer = Response->GetContentAsString();
-			response.ServerCallHasError = false;
 			response.ServerCallStatusCode = Response->GetResponseCode();
-			response.ServerError = Response->GetContentAsString();
+			if(!response.Success)
+			{
+				const TSharedPtr<FJsonObject> JsonObject = LootLockerServerUtilities::JsonObjectFromFString(response.FullTextFromServer);
+				response.Error = FString::Format(TEXT("{0}: {1}. Trace Id: {2}"), { JsonObject->GetStringField("Error").IsEmpty() ? "UNKNOWN" : JsonObject->GetStringField("Error"), JsonObject->GetStringField("Message").IsEmpty() ? "N/A" : JsonObject->GetStringField("Message"), JsonObject->GetStringField("Trace_ID").IsEmpty() ? "N/A" : JsonObject->GetStringField("Trace_ID") });
+			}
 			onCompleteRequest.ExecuteIfBound(response);
 		});
 	Request->ProcessRequest();
 }
 
-bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful)
+bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful, FString RequestMethod, FString Endpoint, FString Data)
 {
 	if (!bWasSuccessful || !InResponse.IsValid())
 		return false;
@@ -77,51 +66,47 @@ bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResp
 	{
 		return true;
 	}
-	else
-	{
-		if (InResponse->GetResponseCode() == 401)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Token has expirred"));
-			return false;
-		}
-		UE_LOG(LogTemp, Warning, TEXT("Http Response returned error code: %d"), InResponse->GetResponseCode());
-		UE_LOG(LogTemp, Warning, TEXT("Http Response content:\n%s"), *InResponse->GetContentAsString());
-		return false;
-	}
+
+	UE_LOG(LogLootLockerServerSDK, Warning, TEXT("Http Response returned error code: %d"), InResponse->GetResponseCode());
+	UE_LOG(LogLootLockerServerSDK, Warning, TEXT("Http Response content:\n%s"), *InResponse->GetContentAsString());
+	UE_LOG(LogLootLockerServerSDK, Warning, TEXT("Http Request endpoint: %s to %s"), *RequestMethod, *Endpoint);
+	UE_LOG(LogLootLockerServerSDK, Warning, TEXT("Http Request data: %s"), *Data);
+	return false;
 }
 
-void ULootLockerServerHttpClient::UploadFile(const FString& endPoint, const FString& requestType, const FString& FilePath, const TMap<FString, FString> AdditionalFields, const FServerResponseCallback& onCompleteRequest, bool useHeader, bool useAdmin)
+void ULootLockerServerHttpClient::UploadFile(const FString& endPoint, const FString& requestType, const FString& FilePath, const TMap<FString, FString> AdditionalFields, const FLootLockerServerResponseCallback& onCompleteRequest, TMap<FString, FString> customHeaders /*= TMap<FString, FString>()*/) const
 {
 	FHttpModule* HttpModule = &FHttpModule::Get();
 
+#if ENGINE_MAJOR_VERSION <= 4 && ENGINE_MINOR_VERSION <= 25
+	TSharedRef<IHttpRequest> Request = HttpModule->CreateRequest();
+#else
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = HttpModule->CreateRequest();
+#endif
 
 
 	Request->SetURL(endPoint);
-
-	ULootLockerSrvPersitentDataHolder::CachedLastEndpointUsed = endPoint;
-	ULootLockerSrvPersitentDataHolder::CachedLastRequestTypeUsed = requestType;
 
 	FString Boundary = "lootlockerboundary";
 
 	Request->SetHeader(TEXT("User-Agent"), TEXT("X-UnrealEngine-Agent"));
 	Request->SetHeader(TEXT("Content-Type"), TEXT("multipart/form-data; boundary=" + Boundary));
 
-	if (useHeader)
+	for (TTuple<FString, FString> CustomHeader : customHeaders)
 	{
-		if (!useAdmin) {
-			Request->SetHeader(TEXT("x-session-token"), ULootLockerSrvPersitentDataHolder::Token);
-		}
-		else {
-			Request->SetHeader(TEXT("x-auth-token"), ULootLockerSrvPersitentDataHolder::AdminToken);
-		}
+		Request->SetHeader(CustomHeader.Key, CustomHeader.Value);
 	}
 
 	Request->SetVerb(requestType);
 
 	TArray<uint8> UpFileRawData;
 	if (!FFileHelper::LoadFileToArray(UpFileRawData, *FilePath)) {
-		UE_LOG(LogTemp, Error, TEXT("FILE NOT READ!"));
+		FLootLockerServerResponse FailResponse;
+		FailResponse.Success = false;
+		FailResponse.FullTextFromServer = FString::Format(TEXT("Could not read file {0}"), { FilePath });
+		FailResponse.Error = FailResponse.FullTextFromServer;
+
+		onCompleteRequest.ExecuteIfBound(FailResponse);
 		return;
 	}
 
@@ -159,20 +144,20 @@ void ULootLockerServerHttpClient::UploadFile(const FString& endPoint, const FStr
 
 	Request->SetContent(Data);
 
-	Request->OnProcessRequestComplete().BindLambda([onCompleteRequest, this](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
+	Request->OnProcessRequestComplete().BindLambda([onCompleteRequest, this, requestType, endPoint](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString ResponseString = Response->GetContentAsString();
 			FLootLockerServerResponse response;
 
 			response.FullTextFromServer = Response->GetContentAsString();
 			response.ServerCallStatusCode = Response->GetResponseCode();
-			response.ServerError = Response->GetContentAsString();
 
-			UE_LOG(LogTemp, Warning, TEXT("Response code: %d; Response content:\n%s"), Response->GetResponseCode(), *ResponseString);
-			bool success = ResponseIsValid(Response, bWasSuccessful);
-
-			response.success = success;
-			response.ServerCallHasError = !success;
+			response.Success = ResponseIsValid(Response, bWasSuccessful, requestType, endPoint, FString("Data Stream"));
+			if (!response.Success)
+			{
+				const TSharedPtr<FJsonObject> JsonObject = LootLockerServerUtilities::JsonObjectFromFString(response.FullTextFromServer);
+				response.Error = FString::Format(TEXT("{0}: {1}. Trace Id: {2}"), { JsonObject->GetStringField("Error").IsEmpty() ? "UNKNOWN" : JsonObject->GetStringField("Error"), JsonObject->GetStringField("Message").IsEmpty() ? "N/A" : JsonObject->GetStringField("Message"), JsonObject->GetStringField("Trace_ID").IsEmpty() ? "N/A" : JsonObject->GetStringField("Trace_ID") });
+			}
 
 			onCompleteRequest.ExecuteIfBound(response);
 		});

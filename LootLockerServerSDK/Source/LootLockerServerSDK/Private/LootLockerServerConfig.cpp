@@ -2,10 +2,15 @@
 
 #include "LootLockerServerConfig.h"
 
+DEFINE_LOG_CATEGORY(LogLootLockerServerSDK);
 
 FString ULootLockerServerConfig::GetEnum(const TCHAR* Enum, int32 EnumValue)
 {
-	const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, Enum, true);
+#if ENGINE_MAJOR_VERSION <= 4 && ENGINE_MINOR_VERSION <= 27
+    const UEnum* EnumPtr = FindObject<UEnum>(StaticClass()->GetOuter(), Enum, true);
+#else
+    const UEnum* EnumPtr = FindObject<UEnum>(StaticClass()->GetOuterUPackage(), Enum, true);
+#endif
 	if (!EnumPtr)
 		return NSLOCTEXT("Invalid", "Invalid", "Invalid").ToString();
 
