@@ -6,6 +6,7 @@
 #include "Interfaces/IHttpRequest.h"
 #include "UObject/NoExportTypes.h"
 #include "LootLockerServerConfig.h"
+#include "LootLockerServerResponse.h"
 #include "LootLockerServerHttpClient.generated.h"
 
 UCLASS()
@@ -15,10 +16,13 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerHttpClient : public UObject
     
 public:
     ULootLockerServerHttpClient();
-    void SendApi(const FString& endPoint, const FString& requestType, const FString& data, const FServerResponseCallback& onCompleteRequest, bool useHeader = false);
-    void UploadFile(const FString& endPoint, const FString& requestType, const FString& FilePath, const TMap<FString, FString> AdditionalFields, const FServerResponseCallback& onCompleteRequest, bool useHeader = false, bool useAdmin = false);
+    void SendApi(const FString& endPoint, const FString& requestType, const FString& data, const FLootLockerServerResponseCallback&
+                 onCompleteRequest, TMap<FString, FString> customHeaders = TMap<FString, FString>()) const;
+    void UploadFile(const FString& endPoint, const FString& requestType, const FString& FilePath, const TMap<FString, FString>
+                    AdditionalFields, const FLootLockerServerResponseCallback& onCompleteRequest, TMap<FString, FString> customHeaders =
+	                    TMap<FString, FString>()) const;
 public:
-    bool ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful);
+	static bool ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful, FString RequestMethod, FString Endpoint, FString Data);
 };
 
 
