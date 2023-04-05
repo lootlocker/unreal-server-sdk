@@ -50,7 +50,10 @@ void ULootLockerServerHttpClient::SendApi(const FString& endPoint, const FString
 			if(!response.Success)
 			{
 				const TSharedPtr<FJsonObject> JsonObject = LootLockerServerUtilities::JsonObjectFromFString(response.FullTextFromServer);
-				response.Error = FString::Format(TEXT("{0}: {1}. Trace Id: {2}"), { JsonObject->GetStringField("Error").IsEmpty() ? "UNKNOWN" : JsonObject->GetStringField("Error"), JsonObject->GetStringField("Message").IsEmpty() ? "N/A" : JsonObject->GetStringField("Message"), JsonObject->GetStringField("Trace_ID").IsEmpty() ? "N/A" : JsonObject->GetStringField("Trace_ID") });
+				const FString ErrorFieldString = JsonObject->HasField("error") && !JsonObject->GetStringField("error").IsEmpty() ? JsonObject->GetStringField("error") : "N/A";
+				const FString MessageFieldString = JsonObject->HasField("message") && !JsonObject->GetStringField("message").IsEmpty() ? JsonObject->GetStringField("message") : "N/A";
+				const FString TraceIDFieldString = JsonObject->HasField("trace_id") && !JsonObject->GetStringField("trace_id").IsEmpty() ? JsonObject->GetStringField("trace_id") : "N/A";
+				response.Error = FString::Format(TEXT("Error {0} with message \"{1}\". Trace Id: {2}"), { ErrorFieldString, MessageFieldString, TraceIDFieldString });
 			}
 			onCompleteRequest.ExecuteIfBound(response);
 		});
@@ -156,7 +159,10 @@ void ULootLockerServerHttpClient::UploadFile(const FString& endPoint, const FStr
 			if (!response.Success)
 			{
 				const TSharedPtr<FJsonObject> JsonObject = LootLockerServerUtilities::JsonObjectFromFString(response.FullTextFromServer);
-				response.Error = FString::Format(TEXT("{0}: {1}. Trace Id: {2}"), { JsonObject->GetStringField("Error").IsEmpty() ? "UNKNOWN" : JsonObject->GetStringField("Error"), JsonObject->GetStringField("Message").IsEmpty() ? "N/A" : JsonObject->GetStringField("Message"), JsonObject->GetStringField("Trace_ID").IsEmpty() ? "N/A" : JsonObject->GetStringField("Trace_ID") });
+				const FString ErrorFieldString = JsonObject->HasField("error") && !JsonObject->GetStringField("error").IsEmpty() ? JsonObject->GetStringField("error") : "N/A";
+				const FString MessageFieldString = JsonObject->HasField("message") && !JsonObject->GetStringField("message").IsEmpty() ? JsonObject->GetStringField("message") : "N/A";
+				const FString TraceIDFieldString = JsonObject->HasField("trace_id") && !JsonObject->GetStringField("trace_id").IsEmpty() ? JsonObject->GetStringField("trace_id") : "N/A";
+				response.Error = FString::Format(TEXT("Error {0} with message \"{1}\". Trace Id: {2}"), { ErrorFieldString, MessageFieldString, TraceIDFieldString });
 			}
 
 			onCompleteRequest.ExecuteIfBound(response);

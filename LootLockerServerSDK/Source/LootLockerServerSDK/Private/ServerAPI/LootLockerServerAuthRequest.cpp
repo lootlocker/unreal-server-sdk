@@ -23,8 +23,5 @@ void ULootLockerServerAuthRequest::StartSession(const FLootLockerServerAuthRespo
 
 void ULootLockerServerAuthRequest::MaintainSession(const FLootLockerServerAuthResponseBP& OnCompletedRequestBP, const FLootLockerServerAuthResponseDelegate& OnCompletedRequest)
 {
-	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
-	const FLootLockerServerAuthenticationRequest authRequest{ Config->GameVersion };
-
-	LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::CallAPI(HttpClient, authRequest, ULootLockerServerEndpoints::MaintainingSession, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
+	LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::CallAPI(HttpClient, FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::MaintainingSession, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
 }

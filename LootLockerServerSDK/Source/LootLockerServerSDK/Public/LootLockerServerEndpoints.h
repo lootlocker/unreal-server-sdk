@@ -48,6 +48,8 @@ public:
     static FLootLockerServerEndPoint UpdateLeaderboard;
     static FLootLockerServerEndPoint DeleteLeaderboard;
     static FLootLockerServerEndPoint SubmitScore;
+    static FLootLockerServerEndPoint GetAllMemberRanks;
+    static FLootLockerServerEndPoint GetScoresFromLeaderboard;
 
 private:
     static FString GameBaseUrl;

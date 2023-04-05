@@ -32,3 +32,28 @@ void ULootLockerServerLeaderboardRequest::SubmitScore(const FString& Leaderboard
 {
 	LootLockerServerAPIUtilities<FLootLockerServerLeaderboardSubmitScoreResponse>::CallAPI(HttpClient, SubmitScoreRequest, ULootLockerServerEndpoints::SubmitScore, { LeaderboardKey }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
+
+void ULootLockerServerLeaderboardRequest::GetAllMemberRanks(const FString& MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequestBP, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
+{
+	TMultiMap<FString, FString> QueryParams;
+	if(Count > 0)
+	{
+		QueryParams.Add("count", FString::FromInt(Count));
+	}
+	if (After > 0)
+	{
+		QueryParams.Add("after", FString::FromInt(After));
+	}
+	LootLockerServerAPIUtilities<FLootLockerServerGetAllMemberRanksResponse>::CallAPI(HttpClient, FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllMemberRanks, { MemberID }, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
+}
+
+void ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(const FString LeaderboardKey, const int Count, const int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest)
+{
+	TMultiMap<FString, FString> QueryParams;
+	QueryParams.Add("count", FString::FromInt(Count > 0 ? Count : 50));
+	if (After > 0)
+	{
+		QueryParams.Add("after", FString::FromInt(After));
+	}
+	LootLockerServerAPIUtilities<FLootLockerServerGetScoresFromLeaderboardResponse>::CallAPI(HttpClient, FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetScoresFromLeaderboard, { LeaderboardKey }, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
+}
