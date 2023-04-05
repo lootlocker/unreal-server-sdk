@@ -31,7 +31,7 @@ void ULootLockerServerHttpClient::SendApi(const FString& endPoint, const FString
 	const ULootLockerServerConfig* config = GetDefault<ULootLockerServerConfig>();
 	Request->SetHeader(TEXT("LL-Version"), config->LootLockerVersion);
 
-	for (TTuple<FString, FString> CustomHeader : customHeaders)
+	for (const TTuple<FString, FString>& CustomHeader : customHeaders)
 	{
 		Request->SetHeader(CustomHeader.Key, CustomHeader.Value);
 	}
@@ -95,7 +95,7 @@ void ULootLockerServerHttpClient::UploadFile(const FString& endPoint, const FStr
 	Request->SetHeader(TEXT("User-Agent"), TEXT("X-UnrealEngine-Agent"));
 	Request->SetHeader(TEXT("Content-Type"), TEXT("multipart/form-data; boundary=" + Boundary));
 
-	for (TTuple<FString, FString> CustomHeader : customHeaders)
+	for (const TTuple<FString, FString>& CustomHeader : customHeaders)
 	{
 		Request->SetHeader(CustomHeader.Key, CustomHeader.Value);
 	}
@@ -118,7 +118,7 @@ void ULootLockerServerHttpClient::UploadFile(const FString& endPoint, const FStr
 	const FString BeginBoundary = TEXT("\r\n--" + Boundary + "\r\n");
 	const FString EndBoundary = TEXT("\r\n--" + Boundary + "--\r\n");
 
-	for (auto KeyValuePair : AdditionalFields) {
+	for (const TTuple<FString, FString>& KeyValuePair : AdditionalFields) {
 		Data.Append((uint8*)TCHAR_TO_ANSI(*BeginBoundary), BeginBoundary.Len());
 
 		FString ParameterEntry = "Content-Type: text/plain; charset=\"utf-8\"\r\n";

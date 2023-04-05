@@ -2,23 +2,13 @@
 
 #include "LootLockerServerManager.h"
 
-void ULootLockerServerManager::SetConfig(FString LootLockerServerKey, FString LootLockerDomainKey, FString GameVersion, FString LootLockerVersion)
+void ULootLockerServerManager::StartSession(const FLootLockerServerAuthResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerConfig* config = GetMutableDefault<ULootLockerServerConfig>();
-    config->LootLockerServerKey = LootLockerServerKey;
-    config->LootLockerDomainKey = LootLockerDomainKey;
-    config->GameVersion = GameVersion;
-    config->LootLockerVersion = LootLockerVersion;
-    config->SaveConfig();
+    ULootLockerServerAuthRequest::StartSession(OnCompletedRequest);
 }
-
-void ULootLockerServerManager::StartSession(const FLootLockerServerAuthResponseBP& OnStartedSessionRequestCompleted)
+void ULootLockerServerManager::MaintainSession(const FLootLockerServerMaintainSessionResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerAuthRequest::StartSession(OnStartedSessionRequestCompleted);
-}
-void ULootLockerServerManager::MaintainSession(const FLootLockerServerAuthResponseBP& OnStartedSessionRequestCompleted)
-{
-    ULootLockerServerAuthRequest::MaintainSession(OnStartedSessionRequestCompleted);
+    ULootLockerServerAuthRequest::MaintainSession(OnCompletedRequest);
 }
 
 void ULootLockerServerManager::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequest)

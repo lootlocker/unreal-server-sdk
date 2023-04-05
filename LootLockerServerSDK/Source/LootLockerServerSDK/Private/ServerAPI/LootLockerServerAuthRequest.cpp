@@ -21,7 +21,7 @@ void ULootLockerServerAuthRequest::StartSession(const FLootLockerServerAuthRespo
 	LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::CallAPI(HttpClient, authRequest, ULootLockerServerEndpoints::StartSession, {}, {}, OnCompletedRequestBP, OnCompletedRequest, LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::FServerResponseInspectorCallback(), {{"x-server-key", Config->LootLockerServerKey}});
 }
 
-void ULootLockerServerAuthRequest::MaintainSession(const FLootLockerServerAuthResponseBP& OnCompletedRequestBP, const FLootLockerServerAuthResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAuthRequest::MaintainSession(const FLootLockerServerMaintainSessionResponseBP& OnCompletedRequestBP, const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest)
 {
-	LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::CallAPI(HttpClient, FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::MaintainingSession, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
+	LootLockerServerAPIUtilities<FLootLockerServerMaintainSessionResponse>::CallAPI(HttpClient, FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::MaintainingSession, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
