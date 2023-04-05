@@ -18,7 +18,7 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerStateData : public UObject
 	static const FString SaveSlot;
     static constexpr int SaveIndex = 0;
 #else
-    inline static const FString SaveSlot = "LootLocker";
+    inline static const FString SaveSlot = "LootLockerServer";
     inline static constexpr int SaveIndex = 0;
 #endif
 	static bool StateLoaded;

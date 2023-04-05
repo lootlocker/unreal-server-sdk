@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
+#include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 
 #include "LootLockerServerSDKManager.generated.h"
 
@@ -15,16 +16,41 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerSDKManager : public UObject
 public:
     
     //==================================================
-    //Authentication
+    // Authentication
     //==================================================
     
     /**
-     * Register a session.
-     * @param PlayerId - the ID of the player on the platform the game is currently running on.
-     * @param OnCompletedRequest - callback to be invoked with the server response.
-     * https://docs.lootlocker.io/game-api/#authentication-request
+     * TODO: Document
      */
-	static void StartSession(const FServerAuthResponse& OnCompletedRequest);
+	static void StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest);
 
-    static void MaintainSession(const FServerAuthResponse& OnCompletedRequest);
+    /**
+     * TODO: Document
+     */
+    static void MaintainSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest);
+
+    //==================================================
+    // Leaderboards
+    //==================================================
+
+    /**
+     * TODO: Document
+     */
+    static void CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection
+                                  DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest);
+
+    /**
+     * TODO: Document
+     */
+    static void UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest);
+
+    /**
+     * TODO: Document
+     */
+    static void DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest);
+
+    /**
+     * TODO: Document
+     */
+    static void SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest);
 };

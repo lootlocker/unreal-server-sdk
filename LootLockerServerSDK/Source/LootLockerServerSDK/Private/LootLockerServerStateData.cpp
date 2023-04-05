@@ -12,7 +12,7 @@ FString ULootLockerServerStateData::ServerToken = "";
 bool ULootLockerServerStateData::StateLoaded = false;
 
 #if ENGINE_MAJOR_VERSION < 5
-const FString ULootLockerStateData::SaveSlot = "LootLocker";
+const FString ULootLockerStateData::SaveSlot = "LootLockerServer";
 #endif
 
 void ULootLockerServerStateData::LoadStateFromDiskIfNeeded() 
@@ -54,7 +54,7 @@ FString ULootLockerServerStateData::GetServerToken()
 
 void ULootLockerServerStateData::SetServerToken(FString InServerToken) {
 	LoadStateFromDiskIfNeeded();
-	if(InServerToken.Equals(InServerToken)) {
+	if(ServerToken.Equals(InServerToken)) {
 		return;
 	}
 	ServerToken = InServerToken;

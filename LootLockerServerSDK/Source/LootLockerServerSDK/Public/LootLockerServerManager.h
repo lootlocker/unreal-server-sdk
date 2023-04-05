@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
+#include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 
 #include "LootLockerServerManager.generated.h"
 
@@ -24,7 +25,39 @@ public:
     * TODO: Document
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer | Authentication")
-    static void StartSession(const FServerAuthResponseBP& OnStartedSessionRequestCompleted);
+    static void StartSession(const FLootLockerServerAuthResponseBP& OnStartedSessionRequestCompleted);
+
+    /**
+     * TODO: Document
+     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer | Authentication")
-    static void MaintainSession(const FServerAuthResponseBP& OnStartedSessionRequestCompleted);
+    static void MaintainSession(const FLootLockerServerAuthResponseBP& OnStartedSessionRequestCompleted);
+
+    //==================================================
+    // Leaderboards
+    //==================================================
+
+    /**
+     * TODO: Document
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer | Leaderboards")
+    static void CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequest);
+
+    /**
+     * TODO: Document
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer | Leaderboards")
+    static void UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseBP& OnCompletedRequest);
+
+    /**
+     * TODO: Document
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer | Leaderboards")
+    static void DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseBP& OnCompletedRequest);
+
+    /**
+     * TODO: Document
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer | Leaderboards")
+    static void SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseBP& OnCompletedRequest);
 };

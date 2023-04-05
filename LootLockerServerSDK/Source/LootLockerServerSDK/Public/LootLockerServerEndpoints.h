@@ -42,8 +42,12 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerEndpoints : public UObject
     GENERATED_BODY()
 public:
     //Auth
-    static FLootLockerServerEndPoint StartSessionEndpoint;
-    static FLootLockerServerEndPoint MaintainingSessionEndpoint;
+    static FLootLockerServerEndPoint StartSession;
+    static FLootLockerServerEndPoint MaintainingSession;
+    static FLootLockerServerEndPoint CreateLeaderboard;
+    static FLootLockerServerEndPoint UpdateLeaderboard;
+    static FLootLockerServerEndPoint DeleteLeaderboard;
+    static FLootLockerServerEndPoint SubmitScore;
 
 private:
     static FString GameBaseUrl;

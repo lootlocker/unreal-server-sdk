@@ -28,8 +28,8 @@ void ULootLockerServerHttpClient::SendApi(const FString& endPoint, const FString
 	Request->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
 	Request->SetHeader(TEXT("Accepts"), TEXT("application/json"));
 
-	/*const ULootLockerServerConfig* config = GetDefault<ULootLockerServerConfig>();
-	Request->SetHeader(TEXT("LL-Version"), config->LootLockerVersion);*/
+	const ULootLockerServerConfig* config = GetDefault<ULootLockerServerConfig>();
+	Request->SetHeader(TEXT("LL-Version"), config->LootLockerVersion);
 
 	for (TTuple<FString, FString> CustomHeader : customHeaders)
 	{

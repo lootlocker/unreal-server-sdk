@@ -35,8 +35,10 @@ struct LootLockerServerAPIUtilities
             if (response.ServerCallStatusCode == 200 || response.ServerCallStatusCode == 204)
             {
                 ResponseStruct.Success = true;
-                if (ResponseStruct.Token != "")
+                if (ResponseStruct.Token.IsEmpty())
                 {
+	                ResponseStruct.Token = ULootLockerServerStateData::GetServerToken();
+                } else {
                     ULootLockerServerStateData::SetServerToken(ResponseStruct.Token);
                 }
             }
@@ -78,6 +80,10 @@ struct LootLockerServerAPIUtilities
     	const FString optionalToken = ULootLockerServerStateData::GetServerToken();
         if (!optionalToken.IsEmpty()) {
             CustomHeaders.Add(TEXT("x-auth-token"), optionalToken);
+        }
+        if(!CustomHeaders.Contains("x-server-key"))
+        {
+	        //CustomHeaders.Add(TEXT("x-server-key"), Config->LootLockerServerKey);
         }
 
     	EndpointWithArguments = LootLockerServerUtilities::AppendParametersToUrl(EndpointWithArguments, QueryParams);

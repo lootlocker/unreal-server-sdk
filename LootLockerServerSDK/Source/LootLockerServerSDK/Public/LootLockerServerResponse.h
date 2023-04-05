@@ -13,14 +13,16 @@ struct FLootLockerServerResponse
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
 	bool Success;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
 	int ServerCallStatusCode;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
 	FString FullTextFromServer;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
 	FString Error;
+	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
+	FString Token;
 };
 
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerResponseCallbackBP, FLootLockerServerResponse, Response);
