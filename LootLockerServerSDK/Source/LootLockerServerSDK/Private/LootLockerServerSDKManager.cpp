@@ -9,9 +9,9 @@ void ULootLockerServerSDKManager::StartSession(const FLootLockerServerAuthRespon
 	ULootLockerServerAuthRequest::StartSession( FLootLockerServerAuthResponseBP(), OnCompleteRequest);
 }
 
-void ULootLockerServerSDKManager::MaintainSession(const FLootLockerServerAuthResponseDelegate& OnCompleteRequest)
+void ULootLockerServerSDKManager::MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompleteRequest)
 {
-	ULootLockerServerAuthRequest::MaintainSession(FLootLockerServerAuthResponseBP(), OnCompleteRequest);
+	ULootLockerServerAuthRequest::MaintainSession(FLootLockerServerMaintainSessionResponseBP(), OnCompleteRequest);
 }
 
 void ULootLockerServerSDKManager::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
@@ -63,7 +63,6 @@ void ULootLockerServerSDKManager::GetAllMemberRanks(const FString MemberID, cons
 	ULootLockerServerLeaderboardRequest::GetAllMemberRanks(MemberID, Count, After, FLootLockerServerGetAllMemberRanksResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::GetScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest)
-{
+void ULootLockerServerSDKManager::GetScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest) {
 	ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(LeaderboardKey, Count, After, FLootLockerServerGetScoresFromLeaderboardResponseBP(), OnCompletedRequest);
 }
