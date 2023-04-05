@@ -60,4 +60,16 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer | Leaderboards")
     static void SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseBP& OnCompletedRequest);
+
+    /**
+     * TODO: Document
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer | Leaderboards")
+    static void GetAllMemberRanks(FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequest);
+
+    /**
+     * TODO: Document
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer | Leaderboards")
+    static void GetScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest);
 };

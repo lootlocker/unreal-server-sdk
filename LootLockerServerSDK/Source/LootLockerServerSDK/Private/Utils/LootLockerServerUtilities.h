@@ -81,10 +81,6 @@ struct LootLockerServerAPIUtilities
         if (!optionalToken.IsEmpty()) {
             CustomHeaders.Add(TEXT("x-auth-token"), optionalToken);
         }
-        if(!CustomHeaders.Contains("x-server-key"))
-        {
-	        //CustomHeaders.Add(TEXT("x-server-key"), Config->LootLockerServerKey);
-        }
 
     	EndpointWithArguments = LootLockerServerUtilities::AppendParametersToUrl(EndpointWithArguments, QueryParams);
 
