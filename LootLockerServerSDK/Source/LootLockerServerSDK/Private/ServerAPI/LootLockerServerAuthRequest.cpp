@@ -14,17 +14,17 @@ ULootLockerServerAuthRequest::ULootLockerServerAuthRequest()
 	HttpClient = NewObject<ULootLockerServerHttpClient>();
 }
 
-void ULootLockerServerAuthRequest::StartSession(const FServerAuthResponseBP& OnCompletedRequestBP, const FServerAuthResponse& OnCompletedRequest)
+void ULootLockerServerAuthRequest::StartSession(const FLootLockerServerAuthResponseBP& OnCompletedRequestBP, const FLootLockerServerAuthResponseDelegate& OnCompletedRequest)
 {
 	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
 	const FLootLockerServerAuthenticationRequest authRequest{ Config->GameVersion };
-	LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::CallAPI(HttpClient, authRequest, ULootLockerServerEndpoints::StartSessionEndpoint, {}, {}, OnCompletedRequestBP, OnCompletedRequest, LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::FServerResponseInspectorCallback(), {{"x-server-key", Config->LootLockerServerKey}});
+	LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::CallAPI(HttpClient, authRequest, ULootLockerServerEndpoints::StartSession, {}, {}, OnCompletedRequestBP, OnCompletedRequest, LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::FServerResponseInspectorCallback(), {{"x-server-key", Config->LootLockerServerKey}});
 }
 
-void ULootLockerServerAuthRequest::MaintainSession(const FServerAuthResponseBP& OnCompletedRequestBP, const FServerAuthResponse& OnCompletedRequest)
+void ULootLockerServerAuthRequest::MaintainSession(const FLootLockerServerAuthResponseBP& OnCompletedRequestBP, const FLootLockerServerAuthResponseDelegate& OnCompletedRequest)
 {
 	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
 	const FLootLockerServerAuthenticationRequest authRequest{ Config->GameVersion };
 
-	LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::CallAPI(HttpClient, authRequest, ULootLockerServerEndpoints::StartSessionEndpoint, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
+	LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::CallAPI(HttpClient, authRequest, ULootLockerServerEndpoints::MaintainingSession, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
 }

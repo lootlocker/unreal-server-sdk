@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright (c) 2021 LootLocker
 
 #pragma once
 
@@ -8,9 +8,7 @@
 #include "JsonObjectConverter.h"
 #include "LootLockerServerAuthRequest.generated.h"
 
-/**
- * 
- */
+
 USTRUCT(BlueprintType)
 struct FLootLockerServerAuthenticationRequest
 {
@@ -23,15 +21,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAuthenticationResponse : public FLootLockerServerResponse
 {
 	GENERATED_BODY()
-	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Token;
 };
 
-DECLARE_DYNAMIC_DELEGATE_OneParam(FServerAuthResponseBP, FLootLockerServerAuthenticationResponse, Var);
-DECLARE_DELEGATE_OneParam(FServerAuthResponse, FLootLockerServerAuthenticationResponse);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAuthResponseBP, FLootLockerServerAuthenticationResponse, Var);
+DECLARE_DELEGATE_OneParam(FLootLockerServerAuthResponseDelegate, FLootLockerServerAuthenticationResponse);
 
-UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
+UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerAuthRequest : public UObject
 {
 public:
@@ -40,7 +35,7 @@ public:
 	ULootLockerServerAuthRequest();
 
 public:
-	static void StartSession(const FServerAuthResponseBP& OnCompletedRequestBP = FServerAuthResponseBP(), const FServerAuthResponse& OnCompletedRequest = FServerAuthResponse());
-	static void MaintainSession(const FServerAuthResponseBP& OnCompletedRequestBP = FServerAuthResponseBP(), const FServerAuthResponse& OnCompletedRequest = FServerAuthResponse());
+	static void StartSession(const FLootLockerServerAuthResponseBP& OnCompletedRequestBP = FLootLockerServerAuthResponseBP(), const FLootLockerServerAuthResponseDelegate& OnCompletedRequest = FLootLockerServerAuthResponseDelegate());
+	static void MaintainSession(const FLootLockerServerAuthResponseBP& OnCompletedRequestBP = FLootLockerServerAuthResponseBP(), const FLootLockerServerAuthResponseDelegate& OnCompletedRequest = FLootLockerServerAuthResponseDelegate());
 	static ULootLockerServerHttpClient* HttpClient;
 };

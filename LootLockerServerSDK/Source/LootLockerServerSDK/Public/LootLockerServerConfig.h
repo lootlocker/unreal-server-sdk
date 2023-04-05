@@ -24,7 +24,7 @@ public:
 	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
 	FString GameVersion;
 	UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Meta = (EditCondition = "false", EditConditionHides), Category = "LootLockerServer")
-	FString LootLockerVersion = "2021-03-01";
+	FString LootLockerVersion = "2021-06-01";
 
 	static FString GetEnum(const TCHAR* Enum, int32 EnumValue);
 	
