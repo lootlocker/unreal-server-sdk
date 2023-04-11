@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ServerAPI/LootLockerServerAuthRequest.h"
-#include "ServerAPI/LootLockerServerLeaderboardRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAuthRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerLeaderboardRequest.h"
 
 #include "LootLockerServerSDKManager.generated.h"
 
