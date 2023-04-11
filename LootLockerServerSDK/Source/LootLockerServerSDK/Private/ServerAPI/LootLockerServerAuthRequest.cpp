@@ -3,24 +3,36 @@
 
 #include "LootLockerServerAuthRequest.h"
 #include "LootLockerServerEndpoints.h"
-#include "Utils/LootLockerServerUtilities.h"
-
-
-ULootLockerServerHttpClient* ULootLockerServerAuthRequest::HttpClient = nullptr;
+#include "LootLockerServerHttpClient.h"
 
 ULootLockerServerAuthRequest::ULootLockerServerAuthRequest()
 {
-	HttpClient = NewObject<ULootLockerServerHttpClient>();
 }
 
 void ULootLockerServerAuthRequest::StartSession(const FLootLockerServerAuthResponseBP& OnCompletedRequestBP, const FLootLockerServerAuthResponseDelegate& OnCompletedRequest)
 {
 	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
 	const FLootLockerServerAuthenticationRequest authRequest{ Config->GameVersion };
-	LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::CallAPI(HttpClient, authRequest, ULootLockerServerEndpoints::StartSession, {}, {}, OnCompletedRequestBP, OnCompletedRequest, LootLockerServerAPIUtilities<FLootLockerServerAuthenticationResponse>::FServerResponseInspectorCallback(), {{"x-server-key", Config->LootLockerServerKey}});
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerAuthenticationResponse>(
+		authRequest, 
+		ULootLockerServerEndpoints::StartSession,
+		{},
+		{}, 
+		OnCompletedRequestBP, 
+		OnCompletedRequest, 
+		ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerAuthenticationResponse>::FLootLockerServerResponseInspectorCallback(), 
+		{ {"x-server-key", Config->LootLockerServerKey} }
+	);
 }
 
 void ULootLockerServerAuthRequest::MaintainSession(const FLootLockerServerMaintainSessionResponseBP& OnCompletedRequestBP, const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest)
 {
-	LootLockerServerAPIUtilities<FLootLockerServerMaintainSessionResponse>::CallAPI(HttpClient, FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::MaintainingSession, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerMaintainSessionResponse>(
+		FLootLockerServerEmptyRequest(),
+		ULootLockerServerEndpoints::MaintainingSession,
+		{},
+		{},
+		OnCompletedRequestBP,
+		OnCompletedRequest
+	);
 }

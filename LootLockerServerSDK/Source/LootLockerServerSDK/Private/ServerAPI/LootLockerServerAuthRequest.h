@@ -6,7 +6,6 @@
 #include "LootLockerServerConfig.h"
 #include "JsonObjectConverter.h"
 #include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
-#include "LootLockerServerSDK/Private/LootLockerServerHttpClient.h"
 #include "LootLockerServerAuthRequest.generated.h"
 
 //==================================================
@@ -79,5 +78,4 @@ public:
 public:
 	static void StartSession(const FLootLockerServerAuthResponseBP& OnCompletedRequestBP = FLootLockerServerAuthResponseBP(), const FLootLockerServerAuthResponseDelegate& OnCompletedRequest = FLootLockerServerAuthResponseDelegate());
 	static void MaintainSession(const FLootLockerServerMaintainSessionResponseBP& OnCompletedRequestBP = FLootLockerServerMaintainSessionResponseBP(), const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest = FLootLockerServerMaintainSessionResponseDelegate());
-	static ULootLockerServerHttpClient* HttpClient;
 };
