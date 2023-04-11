@@ -4,8 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "LootLockerServerConfig.h"
-#include "LootLockerServerHttpClient.h"
 #include "JsonObjectConverter.h"
+#include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
+#include "LootLockerServerSDK/Private/LootLockerServerHttpClient.h"
 #include "LootLockerServerAuthRequest.generated.h"
 
 //==================================================

@@ -1,9 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ServerAPI/LootLockerServerAuthRequest.h"
+#include "LootLockerServerAuthRequest.h"
 #include "LootLockerServerEndpoints.h"
-#include "LootLockerServerStateData.h"
 #include "Utils/LootLockerServerUtilities.h"
 
 
