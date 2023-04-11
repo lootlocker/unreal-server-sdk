@@ -1,20 +1,20 @@
 // Copyright (c) 2021 LootLocker
 
 
-#include "LootLockerServerSDKManager.h"
+#include "LootLockerServerCppInterface.h"
 
 //Authentication
-void ULootLockerServerSDKManager::StartSession(const FLootLockerServerAuthResponseDelegate& OnCompleteRequest)
+void ULootLockerServerCppInterface::StartSession(const FLootLockerServerAuthResponseDelegate& OnCompleteRequest)
 {
 	ULootLockerServerAuthRequest::StartSession( FLootLockerServerAuthResponseBP(), OnCompleteRequest);
 }
 
-void ULootLockerServerSDKManager::MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompleteRequest)
+void ULootLockerServerCppInterface::MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompleteRequest)
 {
 	ULootLockerServerAuthRequest::MaintainSession(FLootLockerServerMaintainSessionResponseBP(), OnCompleteRequest);
 }
 
-void ULootLockerServerSDKManager::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
+void ULootLockerServerCppInterface::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
 {
 	const FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest
 	{
@@ -29,7 +29,7 @@ void ULootLockerServerSDKManager::CreateLeaderboard(FString LeaderboardKey, FStr
 	ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, FLootLockerServerCreateLeaderboardResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
+void ULootLockerServerCppInterface::UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
 {
 	const FLootLockerServerUpdateLeaderboardRequest UpdateLeaderboardRequest
 	{
@@ -42,12 +42,12 @@ void ULootLockerServerSDKManager::UpdateLeaderboard(FString LeaderboardKey, FStr
 	ULootLockerServerLeaderboardRequest::UpdateLeaderboard(LeaderboardKey, UpdateLeaderboardRequest, FLootLockerServerUpdateLeaderboardResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
+void ULootLockerServerCppInterface::DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
 {
 	ULootLockerServerLeaderboardRequest::DeleteLeaderboard(LeaderboardKey, FLootLockerServerDeleteLeaderboardResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest)
+void ULootLockerServerCppInterface::SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest)
 {
 	const FLootLockerServerLeaderboardSubmitScoreRequest SubmitScoreRequest
 	{
@@ -58,11 +58,11 @@ void ULootLockerServerSDKManager::SubmitScore(FString LeaderboardKey, FString Me
 	ULootLockerServerLeaderboardRequest::SubmitScore(LeaderboardKey, SubmitScoreRequest, FLootLockerServerLeaderboardSubmitScoreResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::GetAllMemberRanks(const FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
+void ULootLockerServerCppInterface::GetAllMemberRanks(const FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
 {
 	ULootLockerServerLeaderboardRequest::GetAllMemberRanks(MemberID, Count, After, FLootLockerServerGetAllMemberRanksResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerSDKManager::GetScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest) {
+void ULootLockerServerCppInterface::GetScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest) {
 	ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(LeaderboardKey, Count, After, FLootLockerServerGetScoresFromLeaderboardResponseBP(), OnCompletedRequest);
 }
