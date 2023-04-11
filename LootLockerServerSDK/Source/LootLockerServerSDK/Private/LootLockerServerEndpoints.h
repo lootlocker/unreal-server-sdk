@@ -50,6 +50,24 @@ public:
     static FLootLockerServerEndPoint SubmitScore;
     static FLootLockerServerEndPoint GetAllMemberRanks;
     static FLootLockerServerEndPoint GetScoresFromLeaderboard;
+    static FLootLockerServerEndPoint LookupMultiplePlayerNamesUsingIDs;
+    static FLootLockerServerEndPoint GetPlayerInventory;
+    static FLootLockerServerEndPoint GetUniversalInventory;
+    static FLootLockerServerEndPoint AddAssetToPlayerInventory;
+    static FLootLockerServerEndPoint AlterPlayerInventory;
+    static FLootLockerServerEndPoint GetPlayerLoadout;
+    static FLootLockerServerEndPoint EquipAssetToPlayerLoadout;
+    static FLootLockerServerEndPoint UnEquipAssetFromPlayerLoadout;
+    static FLootLockerServerEndPoint GetPlayerPersistentStorage;
+    static FLootLockerServerEndPoint GetMultiplePlayersPublicPersistentStorageValues;
+    static FLootLockerServerEndPoint UpdatePlayerPersistentStorage;
+    static FLootLockerServerEndPoint DeletePlayerPersistentStorage;
+    static FLootLockerServerEndPoint ListPlayerFiles;
+    static FLootLockerServerEndPoint GetPlayerFileById;
+    static FLootLockerServerEndPoint DeletePlayerFile;
+    static FLootLockerServerEndPoint UploadPlayerFile;
+    static FLootLockerServerEndPoint UpdatePlayerFile;
+    static FLootLockerServerEndPoint InvokeTriggerForPlayer;
 
 private:
     static FString GameBaseUrl;

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
+#include "ServerAPI/LootLockerServerTriggerRequest.h"
 
 #include "LootLockerServerForBlueprints.generated.h"
 
@@ -120,4 +121,20 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
     static void GetScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Triggers https://ref.lootlocker.com/server-api/#triggers
+    //==================================================
+
+    /**
+     * Trigger the requested trigger on behalf of the provided player
+     * https://ref.lootlocker.com/server-api/#invoke-trigger-on-behalf-of-player
+     *
+     * To see the configured triggers for your game, go here: https://console.lootlocker.com/triggers
+     *
+     * @param TriggerName The name of the trigger to invoke for the provided player
+     * @param PlayerID The ID of the player to invoke the trigger for
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseBP& OnCompletedRequest);
 };
