@@ -71,7 +71,7 @@ struct FLootLockerServerLeaderboardEntry
     GENERATED_BODY()
     /*
      The Identifying member ID for this entry in the leaderboard.
-     For player leaderboards this will be the Public_UID, for generic leaderboards this will be the member_id you submitted
+     For player leaderboards this will be the Player ID, for generic leaderboards this will be the member_id you submitted
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Member_ID;
