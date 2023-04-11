@@ -6,7 +6,7 @@
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAuthRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerLeaderboardRequest.h"
 
-#include "LootLockerServerCppInterface.generated.h"
+//#include "LootLockerServerCppInterface.generated.h"
 
 class LOOTLOCKERSERVERSDK_API ULootLockerServerCppInterface : public UObject
 {

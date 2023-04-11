@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "LootLockerServerSDK/Private/LootLockerServerHttpClient.h"
 #include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
 #include "LootLockerServerLeaderboardRequest.generated.h"
 
@@ -412,6 +411,4 @@ public:
 
 public:
     ULootLockerServerLeaderboardRequest();
-    static ULootLockerServerHttpClient* HttpClient;
-
 };
