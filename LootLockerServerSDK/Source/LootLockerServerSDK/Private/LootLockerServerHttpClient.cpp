@@ -7,12 +7,20 @@
 #include "Misc/FileHelper.h"
 #include "Utils/LootLockerServerUtilities.h"
 
-ULootLockerServerHttpClient::ULootLockerServerHttpClient()
-{
+ULootLockerServerHttpClient* ULootLockerServerHttpClient::Instance = nullptr;
 
+ULootLockerServerHttpClient& ULootLockerServerHttpClient::GetInstance()
+{
+	if (Instance != nullptr)
+	{
+		Instance = NewObject<ULootLockerServerHttpClient>();
+
+		Instance->AddToRoot();
+	}
+	return *Instance;
 }
 
-void ULootLockerServerHttpClient::SendApi(const FString& endPoint, const FString& requestType, const FString& data, const FLootLockerServerResponseCallback& onCompleteRequest, TMap<FString, FString> customHeaders /*= TMap<FString, FString>()*/) const
+void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) const
 {
 	FHttpModule* HttpModule = &FHttpModule::Get();
 
@@ -22,7 +30,7 @@ void ULootLockerServerHttpClient::SendApi(const FString& endPoint, const FString
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = HttpModule->CreateRequest();
 #endif
 
-	Request->SetURL(endPoint);
+	Request->SetURL(InRequest.EndPoint);
 
 	Request->SetHeader(TEXT("User-Agent"), TEXT("X-UnrealEngine-Agent"));
 	Request->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
@@ -31,20 +39,31 @@ void ULootLockerServerHttpClient::SendApi(const FString& endPoint, const FString
 	const ULootLockerServerConfig* config = GetDefault<ULootLockerServerConfig>();
 	Request->SetHeader(TEXT("LL-Version"), config->LootLockerVersion);
 
-	for (const TTuple<FString, FString>& CustomHeader : customHeaders)
+	for (const TTuple<FString, FString>& CustomHeader : InRequest.CustomHeaders)
 	{
 		Request->SetHeader(CustomHeader.Key, CustomHeader.Value);
 	}
 
-	Request->SetVerb(requestType);
-	Request->SetContentAsString(data);
+	Request->SetVerb(InRequest.RequestType);
+	Request->SetContentAsString(InRequest.Data);
 
-	Request->OnProcessRequestComplete().BindLambda([onCompleteRequest, this, endPoint, requestType, data](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
+
+#if WITH_EDITOR
+	FString DelimitedHeaders;
+	TArray<FString> AllHeaders = Request->GetAllHeaders();
+	for (auto Header : AllHeaders)
+	{
+		DelimitedHeaders += TEXT("____") + Header + TEXT("\n")
+	}
+	UE_LOG(LogLootLockerServerSDK, Log, TEXT("Request to endpoint %s\n__With headers %s\n__And with content: %s"), *Request->GetURL(), *DelimitedHeaders, *InRequest.Data);
+#endif //WITH_EDITOR
+
+	Request->OnProcessRequestComplete().BindLambda([InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString ResponseString = Response->GetContentAsString();
 			FLootLockerServerResponse response;
 
-			response.Success = ResponseIsValid(Response, bWasSuccessful, requestType, endPoint, data);
+			response.Success = ResponseIsValid(Response, bWasSuccessful, InRequest.RequestType, InRequest.EndPoint, InRequest.Data);
 			response.FullTextFromServer = Response->GetContentAsString();
 			response.ServerCallStatusCode = Response->GetResponseCode();
 			if(!response.Success)
@@ -55,7 +74,7 @@ void ULootLockerServerHttpClient::SendApi(const FString& endPoint, const FString
 				const FString TraceIDFieldString = JsonObject->HasField("trace_id") && !JsonObject->GetStringField("trace_id").IsEmpty() ? JsonObject->GetStringField("trace_id") : "N/A";
 				response.Error = FString::Format(TEXT("Error {0} with message \"{1}\". Trace Id: {2}"), { ErrorFieldString, MessageFieldString, TraceIDFieldString });
 			}
-			onCompleteRequest.ExecuteIfBound(response);
+			InRequest.OnCompleteRequest.ExecuteIfBound(response);
 		});
 	Request->ProcessRequest();
 }
@@ -77,7 +96,7 @@ bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResp
 	return false;
 }
 
-void ULootLockerServerHttpClient::UploadFile(const FString& endPoint, const FString& requestType, const FString& FilePath, const TMap<FString, FString> AdditionalFields, const FLootLockerServerResponseCallback& onCompleteRequest, TMap<FString, FString> customHeaders /*= TMap<FString, FString>()*/) const
+void ULootLockerServerHttpClient::UploadFile_Internal(const FString& endPoint, const FString& requestType, const FString& FilePath, const TMap<FString, FString> AdditionalFields, const FLootLockerServerResponseCallback& onCompleteRequest, TMap<FString, FString> customHeaders /*= TMap<FString, FString>()*/) const
 {
 	FHttpModule* HttpModule = &FHttpModule::Get();
 
