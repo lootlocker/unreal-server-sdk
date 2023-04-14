@@ -32,7 +32,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::UnEquipAssetFromPlayerLoad
 
 //Player persistent storage
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerPersistentStorage = InitEndpoint("players/storage", ELootLockerServerHTTPMethod::GET);
-FLootLockerServerEndPoint ULootLockerServerEndpoints::GetMultiplePlayersPublicPersistentStorageValues = InitEndpoint("players/storage/lookup", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetMultiplePlayersPublicPersistentStorageValues = InitEndpoint("players/storage/lookup", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::UpdatePlayerPersistentStorage = InitEndpoint("players/storage", ELootLockerServerHTTPMethod::PATCH);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerPersistentStorage = InitEndpoint("players/storage", ELootLockerServerHTTPMethod::DELETE);
 
