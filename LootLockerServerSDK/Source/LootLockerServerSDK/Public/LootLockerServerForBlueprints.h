@@ -6,6 +6,7 @@
 #include "ServerAPI/LootLockerServerAuthRequest.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerTriggerRequest.h"
+#include "ServerAPI/LootLockerServerStorageRequest.h"
 
 #include "LootLockerServerForBlueprints.generated.h"
 
@@ -136,5 +137,73 @@ public:
      * @param PlayerID The ID of the player to invoke the trigger for
      * @param OnCompletedRequest Delegate for handling the server response
      */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Triggers")
     static void InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Player Persistent Storage https://ref.lootlocker.com/server-api/#player-persistent-storage
+    //==================================================
+
+    /**
+     * Get the persistent storage for the provided player
+     * https://ref.lootlocker.com/server-api/#get-persistent-storage
+     *
+     * @param PlayerID The ID of the player to fetch the persistent storage for
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Triggers")
+    static void GetPersistentStorageForPlayer(int PlayerID, const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompletedRequest);
+
+    /**
+     * Get the persistent storage for all the player ids provided
+     * https://ref.lootlocker.com/server-api/#get-persistent-storage
+     *
+     * @param PlayerIDs The IDs of the players to fetch the persistent storage for
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
+    static void GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompletedRequest);
+
+    /**
+     * Get all the public (if any) persistent storage for the provided players
+     * https://ref.lootlocker.com/server-api/#get-multiple-players-public-persistent-storage-values
+     *
+     * @param PlayerIDs The IDs of the players to fetch the persistent storage for
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
+    static void GetEntirePublicPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
+
+    /**
+     * Get all the public (if any) persistent storage for the provided players, but filter the list by the provided keys
+     * https://ref.lootlocker.com/server-api/#get-multiple-players-public-persistent-storage-values
+     *
+     * @param PlayerIDs The IDs of the players to fetch the persistent storage for
+     * @param Keys The keys to filter the persistent storage by, if empty all keys will be returned.
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
+    static void GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
+
+    /**
+     * Update the persistent storage for the provided player according to the objects provided
+     * https://ref.lootlocker.com/server-api/#update-persistent-storage
+     *
+     * @param StorageEntriesToUpdate The data to update the persistent storage with
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
+    static void UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
+
+    /**
+     * Delete the persistent storage for the provided keys on the provided players
+     * If the request fails you will be given an error message. We recommend you make a get request on the players and keys to see what keys failed to delete.
+     * https://ref.lootlocker.com/server-api/#delete-persistent-storage
+     *
+     * @param PlayerIDs The IDs of the players for whom to apply the delete
+     * @param Keys The keys to delete for the provided players
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
+    static void DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
 };

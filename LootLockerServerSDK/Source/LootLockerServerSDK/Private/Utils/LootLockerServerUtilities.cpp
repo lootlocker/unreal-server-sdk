@@ -18,6 +18,32 @@ namespace LootLockerServerUtilities
         return Url;
     }
 
+    FString IntArrayToCommaSeparatedString(TArray<int> IntArray)
+    {
+        FStringBuilderBase StringBuilder;
+        for (int i = 0; i < IntArray.Num(); ++i)
+        {
+            if (i > 0) {
+                StringBuilder.Append(TEXT(","));
+            }
+            StringBuilder.Append(FString::FromInt(IntArray[i]));
+        }
+        return StringBuilder.ToString();
+    }
+
+    FString FStringArrayToCommaSeparatedString(TArray<FString> FStringArray)
+    {
+        FStringBuilderBase StringBuilder;
+        for (int i = 0; i < FStringArray.Num(); ++i)
+        {
+            if (i > 0) {
+                StringBuilder.Append(TEXT(","));
+            }
+            StringBuilder.Append(FStringArray[i]);
+        }
+        return StringBuilder.ToString();
+    }
+
     TSharedPtr<FJsonObject> JsonObjectFromFString(const FString& JsonString)
     {
         TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());

@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
 
-#include "UObject/NoExportTypes.h"
 #include "LootLockerServerTriggerRequest.generated.h"
 
 //==================================================
@@ -97,7 +96,6 @@ struct FLootLockerServerInvokeTriggerForPlayerRequest
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	int Player_ID;
 };
-
 
 //==================================================
 // Response Definitions
