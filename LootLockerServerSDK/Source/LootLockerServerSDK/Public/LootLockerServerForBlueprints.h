@@ -6,10 +6,10 @@
 #include "ServerAPI/LootLockerServerAuthRequest.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 
-#include "LootLockerServerBlueprintInterface.generated.h"
+#include "LootLockerServerForBlueprints.generated.h"
 
 UCLASS(Blueprintable)
-class LOOTLOCKERSERVERSDK_API ULootLockerServerBlueprintInterface : public UObject
+class LOOTLOCKERSERVERSDK_API ULootLockerServerForBlueprints : public UObject
 {
     GENERATED_BODY()
  
