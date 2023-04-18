@@ -8,7 +8,7 @@
 
 //#include "LootLockerServerCppInterface.generated.h"
 
-class LOOTLOCKERSERVERSDK_API ULootLockerServerCppInterface : public UObject
+class LOOTLOCKERSERVERSDK_API ULootLockerServerForCpp : public UObject
 {
 public:
     
