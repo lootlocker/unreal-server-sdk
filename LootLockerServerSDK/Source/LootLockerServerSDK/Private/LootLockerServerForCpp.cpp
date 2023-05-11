@@ -18,11 +18,11 @@ void ULootLockerServerForCpp::CreateLeaderboard(FString LeaderboardKey, FString 
 {
 	const FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest
 	{
-		LeaderboardKey,
-		Name,
-		DirectionMethod,
-		EnableGameApiWrites,
-		OverwriteScoreOnSubmit,
+        { LeaderboardKey,
+            Name,
+            DirectionMethod,
+            EnableGameApiWrites,
+            OverwriteScoreOnSubmit },
 		Type,
 		HasMetadata,
 	};

@@ -57,7 +57,7 @@ struct FLootLockerServerLeaderboardPlayer
     The public UID of the player
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Public_UID;
+    FString Public_uid;
     /*
     The name of the player
      */
@@ -74,7 +74,7 @@ struct FLootLockerServerLeaderboardEntry
      For player leaderboards this will be the Player ID, for generic leaderboards this will be the member_id you submitted
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Member_ID;
+    FString Member_id;
     /*
     The rank for this entry in the leaderboard
      */
@@ -106,12 +106,12 @@ struct FLootLockerServerLeaderboardEntryWithLeaderboardData
     The ID of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Leaderboard_ID = 0;
+    int Leaderboard_id = 0;
     /*
     The unique key for this leaderboard, used 
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Leaderboard_Key;
+    FString Leaderboard_key;
     /*
      The entry of the player in this leaderboard
      */
@@ -132,7 +132,7 @@ struct FLootLockerServerLeaderboardSubmitScoreRequest
      For player leaderboards this will be the Public_UID, for generic leaderboards you can send in any string and that will be the identifier. We recommend using the player's Public_UID or Name.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Member_ID;
+    FString Member_id;
     /*
     The Score to submit for this entry in the leaderboard
      */
@@ -164,17 +164,17 @@ struct FLootLockerServerLeaderboardBaseRequest
     The sort order of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerLeaderboardDirection Direction_Method;
+    ELootLockerServerLeaderboardDirection Direction_method;
     /*
     Allow the game api to write to this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Enable_Game_Api_Writes;
+    bool Enable_game_api_writes;
     /*
     Always overwrite existing scores for members on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Overwrite_Score_On_Submit;
+    bool Overwrite_score_on_submit;
 };
 
 USTRUCT(BlueprintType)
@@ -190,7 +190,7 @@ struct FLootLockerServerCreateLeaderboardRequest : public FLootLockerServerLeade
     Enable metadata on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Has_Metadata;
+    bool Has_metadata;
 };
 
 USTRUCT(BlueprintType)
@@ -216,7 +216,7 @@ struct FLootLockerServerLeaderboardBaseResponse : public FLootLockerServerRespon
     The ID of the game this leaderboard is in
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Game_ID;
+    int Game_id;
     /*
     The unique key of this leaderboard
      */
@@ -236,22 +236,22 @@ struct FLootLockerServerLeaderboardBaseResponse : public FLootLockerServerRespon
     The sort order of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerLeaderboardDirection Direction_Method;
+    ELootLockerServerLeaderboardDirection Direction_method;
     /*
     Is the game api allowed to write to this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Enable_Game_Api_Writes;
+    bool Enable_game_api_writes;
     /*
     Do new submits overwrite existing scores for members on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Overwrite_Score_On_Submit;
+    bool Overwrite_score_on_submit;
     /*
     Is metadata enabled on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Has_Metadata;
+    bool Has_metadata;
     /*
     The creation time of this leaderboard
      */
@@ -285,7 +285,7 @@ struct FLootLockerServerLeaderboardSubmitScoreResponse : public FLootLockerServe
      For player leaderboards this will be the Public_UID, for generic leaderboards this will be the member_id you submitted
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Member_ID;
+    FString Member_id;
     /*
     The rank for this entry in the leaderboard
      */

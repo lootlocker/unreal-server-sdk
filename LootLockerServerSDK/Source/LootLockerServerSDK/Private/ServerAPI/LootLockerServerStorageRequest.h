@@ -30,7 +30,7 @@ struct FLootLockerServerPlayerPersistentStorageKeyValueSet
 	 Whether this key is public or not. If it is public, other players can read this storage.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	bool Is_Public;
+	bool Is_public;
 };
 
 USTRUCT(BlueprintType)
@@ -55,7 +55,7 @@ struct FLootLockerServerPlayerPersistentStorageEntry_NamedSets
 	 The player ID for which these sets are being stored
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_ID;
+	int Player_id;
 	/*
 	 A list of key value pairs that are stored for the player
 	 */
@@ -74,7 +74,7 @@ struct FLootLockerServerPlayerPersistentStorageEntry_NamedItems
 	 The player ID for which these items are being stored
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_ID;
+	int Player_id;
 	/*
 	 A list of key value pairs that are stored for the player
 	 */
@@ -93,7 +93,7 @@ struct FLootLockerServerPlayerPersistentStorageEntry_NamedStorage
 	 The player ID for which this storage applies
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_ID;
+	int Player_id;
 	/*
 	 A list of key value pairs that are stored for the player
 	 */
@@ -113,7 +113,7 @@ struct FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered
 	 The player ID for which this storage applies
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_ID;
+	int Player_id;
 	/*
 	 A list of key value pairs that are stored for the player
 	 */
@@ -144,7 +144,7 @@ struct FLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeys
 	 A list of Player IDs for whom to retrieve the public storage
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	TArray<int> Player_IDs;
+	TArray<int> Player_ids;
 	/*
 	 A filter for the keys to retrieve for the requested players. If this is empty, all keys for that player will be retrieved.
 	 */

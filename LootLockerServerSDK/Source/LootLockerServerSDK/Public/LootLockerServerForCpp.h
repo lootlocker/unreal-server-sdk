@@ -10,8 +10,7 @@
 
 class LOOTLOCKERSERVERSDK_API ULootLockerServerForCpp : public UObject
 {
-public:
-    
+public:    
     //==================================================
     // Authentication https://ref.lootlocker.com/server-api/#authentication
     //==================================================

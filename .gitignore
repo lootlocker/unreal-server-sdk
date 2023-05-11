@@ -77,3 +77,6 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DemoProject/DerivedDataCache/*
+
+# System files
+\.DS_Store

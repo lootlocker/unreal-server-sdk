@@ -16,7 +16,7 @@ struct FLootLockerServerAuthenticationRequest
 {
 	GENERATED_BODY()
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	FString Game_Version;
+	FString Game_version;
 };
 
 //==================================================
