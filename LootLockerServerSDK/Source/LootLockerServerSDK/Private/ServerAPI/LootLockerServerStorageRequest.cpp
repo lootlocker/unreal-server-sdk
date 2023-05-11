@@ -30,9 +30,9 @@ void ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(T
 		TArray<FLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder> UpdateSets;
 		for (const auto& StorageKeyValueSet : EntryToUpdate.Sets)
 		{
-			UpdateSets.Add(FLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder{ StorageKeyValueSet.Key, StorageKeyValueSet.Value, StorageKeyValueSet.Is_Public, i++ });
+            UpdateSets.Add(FLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder{ { StorageKeyValueSet.Key, StorageKeyValueSet.Value, StorageKeyValueSet.Is_public }, i++ });
 		}
-		UpdateEntriesWithOrder.Add(FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered{ EntryToUpdate.Player_ID, UpdateSets });
+		UpdateEntriesWithOrder.Add(FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered{ EntryToUpdate.Player_id, UpdateSets });
 	}
 	
 	ULootLockerServerHttpClient::SendRequest<FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse>(FLootLockerServerPlayerPersistentStorageUpdateRequest{ UpdateEntriesWithOrder }, ULootLockerServerEndpoints::UpdatePlayerPersistentStorage, {}, {}, OnCompleteRequestBP, OnCompleteResponse);

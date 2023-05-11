@@ -53,7 +53,7 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 	TArray<FString> AllHeaders = Request->GetAllHeaders();
 	for (auto Header : AllHeaders)
 	{
-		DelimitedHeaders += TEXT("____") + Header + TEXT("\n")
+        DelimitedHeaders += TEXT("____") + Header + TEXT("\n");
 	}
 	UE_LOG(LogLootLockerServerSDK, Log, TEXT("Request to endpoint %s\n__With headers %s\n__And with content: %s"), *Request->GetURL(), *DelimitedHeaders, *InRequest.Data);
 #endif //WITH_EDITOR

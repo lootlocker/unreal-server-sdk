@@ -15,11 +15,11 @@ void ULootLockerServerForBlueprints::CreateLeaderboard(FString LeaderboardKey, F
 {
 	const FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest
 	{
-		LeaderboardKey,
-		Name,
-		DirectionMethod,
-		EnableGameApiWrites,
-		OverwriteScoreOnSubmit,
+        { LeaderboardKey,
+            Name,
+            DirectionMethod,
+            EnableGameApiWrites,
+            OverwriteScoreOnSubmit },
 		Type,
 		HasMetadata,
 	};
