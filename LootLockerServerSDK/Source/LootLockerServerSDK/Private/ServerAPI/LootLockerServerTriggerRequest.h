@@ -24,12 +24,12 @@ struct FLootLockerServerTriggeredLevel
 	 Whether the level is a prestige level.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	bool Is_Prestige;
+	bool Is_prestige;
 	/*
 	 The XP threshold for the level.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int XP_Threshold;
+	int XP_threshold;
 	
 };
 
@@ -94,7 +94,7 @@ struct FLootLockerServerInvokeTriggerForPlayerRequest
 	The player id of the player for whom to invoke the trigger.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_ID;
+	int Player_id;
 };
 
 //==================================================
@@ -120,7 +120,7 @@ struct FLootLockerServerInvokeTriggerResponse : public FLootLockerServerResponse
 	 Information on of the assets rewarded by the trigger.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	TArray<FLootLockerServerTriggeredAsset> Granted_Assets; //TODO: Asset Support not yet fully implemented
+	TArray<FLootLockerServerTriggeredAsset> Granted_assets; //TODO: Asset Support not yet fully implemented
 };
 
 //==================================================
