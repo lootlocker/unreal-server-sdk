@@ -68,6 +68,18 @@ public:
     static FLootLockerServerEndPoint UploadPlayerFile;
     static FLootLockerServerEndPoint UpdatePlayerFile;
     static FLootLockerServerEndPoint InvokeTriggerForPlayer;
+    static FLootLockerServerEndPoint GetPlayerCharacters;
+    static FLootLockerServerEndPoint GetCharacterInventory;
+    static FLootLockerServerEndPoint GetCharacterLoadout;
+    static FLootLockerServerEndPoint EquipAssetToCharacterLoadout;
+    static FLootLockerServerEndPoint UnequipAssetFromCharacterLoadout;
+    static FLootLockerServerEndPoint GetPlayerHeroes;
+    static FLootLockerServerEndPoint GetHeroInventory;
+    static FLootLockerServerEndPoint GetHeroLoadout;
+    static FLootLockerServerEndPoint EquipAssetToHeroLoadout;
+    static FLootLockerServerEndPoint UnequipAssetFromHeroLoadout;
+    
+    static FLootLockerServerEndPoint TBD;
 
 private:
     static FString GameBaseUrl;

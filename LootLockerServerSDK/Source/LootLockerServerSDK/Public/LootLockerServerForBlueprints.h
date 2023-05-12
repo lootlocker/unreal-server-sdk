@@ -7,6 +7,7 @@
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerTriggerRequest.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
+#include "ServerAPI/LootLockerServerCharacterRequest.h"
 
 #include "LootLockerServerForBlueprints.generated.h"
 
@@ -206,4 +207,104 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
     static void DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
+    
+    //==================================================
+    // Characters https://ref.lootlocker.com/server-api/#characters-and-heroes
+    //==================================================
+    
+    /**
+     * List all characters for this player.
+     * If your game uses heroes the characters underlaying the heroes will be listed too.
+     * https://ref.lootlocker.com/server-api/#get-player-characters
+     *
+     * @param PlayerID The ID of the player for whom to get the characters
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
+    static void GetPlayerCharacters(int PlayerID, const FLootLockerServerGetPlayerCharacterResponseBP& OnCompletedRequest);
+    
+    /**
+     * Get the inventory for the specified player and character
+     * https://ref.lootlocker.com/server-api/#get-inventory-to-character
+     *
+     * @param PlayerID The ID of the player for whom to get the character inventory
+     * @param CharacterID The ID of the character on the specified player for which to get the inventory
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
+    static void GetPlayerCharacterInventory(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterInventoryResponseBP& OnCompletedRequest);
+    
+    /**
+     * Get a subset of the inventory for the specified player and character using pagination settings
+     * https://ref.lootlocker.com/server-api/#get-inventory-to-character
+     * Pagination: https://ref.lootlocker.com/server-api/#pagination
+     *
+     * @param PlayerID The ID of the player for whom to get the character inventory
+     * @param CharacterID The ID of the character on the specified player for which to get the inventory
+     * @param Count The number of inventory items to get. Must be a value between 1 and 200
+     * @param After The id of the inventory item from where to start getting inventory items (non inclusive). Set to 0 to start from the first item
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
+    static void GetPaginatedPlayerCharacterInventory(int PlayerID, int CharacterID, int Count, int After, const FLootLockerServerGetCharacterInventoryResponseBP& OnCompletedRequest);
+    
+    /**
+     * Get the full loadout for the specified player and character
+     * https://ref.lootlocker.com/server-api/#get-character-loadout
+     *
+     * @param PlayerID The ID of the player for whom to get the character loadout
+     * @param CharacterID The ID of the character on the specified player for which to get the loadout
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
+    static void GetPlayerCharacterLoadout(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterLoadoutResponseBP& OnCompletedRequest);
+    
+    /**
+     * Equip an asset instance to the loadout of specified player and character using an asset instance id
+     * https://ref.lootlocker.com/server-api/#equip-asset-for-character-loadout
+     *
+     * @param PlayerID The ID of the player for whom to equip the asset instance
+     * @param CharacterID The ID of the character on the specified player for whose loadout to equip the asset instance
+     * @param AssetInstanceID The ID of the asset instance to equip to the specified player character's loadout
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
+    static void EquipAssetToPlayerCharacterLoadoutByAssetInstanceId(int PlayerID, int CharacterID, int AssetInstanceID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequest);
+    
+    /**
+     * Equip an asset instance to the loadout of specified player and character using an asset id and an asset variation id
+     * https://ref.lootlocker.com/server-api/#equip-asset-for-character-loadout
+     *
+     * @param PlayerID The ID of the player for whom to equip the asset instance
+     * @param CharacterID The ID of the character on the specified player for whose loadout to equip the asset instance
+     * @param AssetID The ID of the asset to equip to the specified player character's loadout
+     * @param AssetVariationID The ID of the variation of the specified asset to equip to the specified player character's loadout
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
+    static void EquipAssetToPlayerCharacterLoadoutByAssetIdAndAssetVariationId(int PlayerID, int CharacterID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequest);
+    
+    /**
+     * Equip an asset instance to the loadout of specified player and character using an asset id and a rental option id
+     * https://ref.lootlocker.com/server-api/#equip-asset-for-character-loadout
+     *
+     * @param PlayerID The ID of the player for whom to equip the asset instance
+     * @param CharacterID The ID of the character on the specified player for whose loadout to equip the asset instance
+     * @param AssetID The ID of the asset to equip to the specified player character's loadout
+     * @param RentalOptionID The ID of the rental option of the specified asset to equip to the specified player character's loadout
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
+    static void EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(int PlayerID, int CharacterID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequest);
+    /**
+     * Unequip an asset instance from the loadout of specified player and character using the instance id
+     * https://ref.lootlocker.com/server-api/#equip-asset-for-character-loadout
+     *
+     * @param PlayerID The ID of the player for whom to unequip the asset instance
+     * @param CharacterID The ID of the character on the specified player for whose loadout to unequip the asset instance
+     * @param InstanceID The ID of the asset instance to unequip from the specified player character's loadout
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
+    static void UnequipAssetFromPlayerLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP& OnCompletedRequest);
 };
