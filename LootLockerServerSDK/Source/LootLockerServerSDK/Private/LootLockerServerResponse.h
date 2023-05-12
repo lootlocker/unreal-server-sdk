@@ -4,11 +4,12 @@
 #include "LootLockerServerResponse.generated.h"
 
 /*
- A generic empty request
+ An empty type to use as empty request bodies
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerEmptyRequest {
-	GENERATED_BODY()
+struct FLootLockerServerEmptyRequest
+{
+    GENERATED_BODY()
 };
 
 /*
