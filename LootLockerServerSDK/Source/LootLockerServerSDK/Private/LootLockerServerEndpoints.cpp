@@ -46,6 +46,23 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::UpdatePlayerFile = InitEnd
 //Triggers
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InvokeTriggerForPlayer = InitEndpoint("trigger", ELootLockerServerHTTPMethod::POST);
 
+// Characters
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerCharacters = InitEndpoint("player/{0}/characters", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetCharacterInventory = InitEndpoint("player/{0}/character/{1}/inventory", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetCharacterLoadout = InitEndpoint("player/{0}/characters/{1}/loadout", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::EquipAssetToCharacterLoadout = InitEndpoint("player/{0}/characters/{1}/loadout", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::UnequipAssetFromCharacterLoadout = InitEndpoint("player/{0}/characters/{1}/loadout/{2}", ELootLockerServerHTTPMethod::DELETE);
+
+// Heroes
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerHeroes = InitEndpoint("player/{0}/heroes", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetHeroInventory = InitEndpoint("player/{0}/heroes{1}/inventory", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetHeroLoadout = InitEndpoint("player/{0}/heroes/{1}/loadout", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::EquipAssetToHeroLoadout = InitEndpoint("player/{0}/heroes/{1}/loadout", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::UnequipAssetFromHeroLoadout = InitEndpoint("player/{0}/heroes/{1}/loadout/{2}", ELootLockerServerHTTPMethod::GET);
+
+// TODO: Remove
+FLootLockerServerEndPoint ULootLockerServerEndpoints::TBD = InitEndpoint("tbd", ELootLockerServerHTTPMethod::GET);
+
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method)
 {
 	FLootLockerServerEndPoint Result;
