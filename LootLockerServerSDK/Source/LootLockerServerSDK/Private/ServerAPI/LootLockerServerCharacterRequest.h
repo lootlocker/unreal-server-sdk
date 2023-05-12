@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
-#include "Misc/Optional.h"
 
 #include "LootLockerServerCharacterRequest.generated.h"
 
@@ -249,7 +248,7 @@ struct FLootLockerServerGetCharacterInventoryResponse : public FLootLockerServer
  *
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerFullLoadoutLoadoutResponse : public FLootLockerServerResponse
+struct FLootLockerServerFullCharacterLoadoutResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
 
@@ -264,7 +263,7 @@ struct FLootLockerServerFullLoadoutLoadoutResponse : public FLootLockerServerRes
  *
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerGetCharacterLoadoutResponse : public FLootLockerServerFullLoadoutLoadoutResponse
+struct FLootLockerServerGetCharacterLoadoutResponse : public FLootLockerServerFullCharacterLoadoutResponse
 {
     GENERATED_BODY()
 };
@@ -273,7 +272,7 @@ struct FLootLockerServerGetCharacterLoadoutResponse : public FLootLockerServerFu
  *
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerEquipAssetToCharacterLoadoutResponse : public FLootLockerServerFullLoadoutLoadoutResponse
+struct FLootLockerServerEquipAssetToCharacterLoadoutResponse : public FLootLockerServerFullCharacterLoadoutResponse
 {
     GENERATED_BODY()
 };
@@ -282,7 +281,7 @@ struct FLootLockerServerEquipAssetToCharacterLoadoutResponse : public FLootLocke
  *
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerUnequipAssetFromCharacterLoadoutResponse : public FLootLockerServerFullLoadoutLoadoutResponse
+struct FLootLockerServerUnequipAssetFromCharacterLoadoutResponse : public FLootLockerServerFullCharacterLoadoutResponse
 {
     GENERATED_BODY()
 };
@@ -354,5 +353,5 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerCharacterRequest : public UObject
     static void EquipAssetToPlayerCharacterLoadoutByAssetInstanceId(int PlayerID, int CharacterID, int AssetInstanceID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequestBP = FLootLockerServerEquipAssetToCharacterLoadoutResponseBP(), const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest = FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate());
     static void EquipAssetToPlayerCharacterLoadoutByAssetIdAndAssetVariationId(int PlayerID, int CharacterID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequestBP = FLootLockerServerEquipAssetToCharacterLoadoutResponseBP(), const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest = FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate());
     static void EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(int PlayerID, int CharacterID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequestBP = FLootLockerServerEquipAssetToCharacterLoadoutResponseBP(), const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest = FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate());
-	static void UnequipAssetFromPlayerLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP& OnCompletedRequestBP = FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP(), const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate& OnCompletedRequest = FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate());
+	static void UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP& OnCompletedRequestBP = FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP(), const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate& OnCompletedRequest = FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate());
 };
