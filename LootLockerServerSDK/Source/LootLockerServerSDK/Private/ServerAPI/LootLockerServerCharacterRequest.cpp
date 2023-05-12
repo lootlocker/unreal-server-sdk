@@ -1,5 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+// Copyright (c) 2021 LootLocker
 
 #include "ServerAPI/LootLockerServerCharacterRequest.h"
 
@@ -53,7 +52,7 @@ void ULootLockerServerCharacterRequest::EquipAssetToPlayerCharacterLoadoutByAsse
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToCharacterLoadoutResponse>(FLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndRentalOptionIdRequest{AssetID, RentalOptionID}, ULootLockerServerEndpoints::EquipAssetToCharacterLoadout, { PlayerID, CharacterID }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
-void ULootLockerServerCharacterRequest::UnequipAssetFromPlayerLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP& OnCompletedRequestBP, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate& OnCompletedRequest)
+void ULootLockerServerCharacterRequest::UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP& OnCompletedRequestBP, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate& OnCompletedRequest)
 {
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerUnequipAssetFromCharacterLoadoutResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::UnequipAssetFromCharacterLoadout, { PlayerID, CharacterID, InstanceID}, {}, OnCompletedRequestBP, OnCompletedRequest);
 }

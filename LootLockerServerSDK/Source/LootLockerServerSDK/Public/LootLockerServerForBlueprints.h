@@ -8,6 +8,7 @@
 #include "ServerAPI/LootLockerServerTriggerRequest.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 #include "ServerAPI/LootLockerServerCharacterRequest.h"
+#include "ServerAPI/LootLockerServerHeroRequest.h"
 
 #include "LootLockerServerForBlueprints.generated.h"
 
@@ -306,5 +307,104 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
-    static void UnequipAssetFromPlayerLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP& OnCompletedRequest);
+    static void UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP& OnCompletedRequest);
+    
+    //==================================================
+    // Heroes https://ref.lootlocker.com/server-api/#characters-and-heroes
+    //==================================================
+    
+    /**
+     * List all heroes for this player.
+     * https://ref.lootlocker.com/server-api/#get-player-heroes
+     *
+     * @param PlayerID The ID of the player for whom to get the heroes
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
+    static void GetPlayerHeroes(int PlayerID, const FLootLockerServerGetPlayerHeroResponseBP& OnCompletedRequest);
+    
+    /**
+     * Get the inventory for the specified player and hero
+     * https://ref.lootlocker.com/server-api/#get-inventory-to-hero
+     *
+     * @param PlayerID The ID of the player for whom to get the hero inventory
+     * @param HeroID The ID of the hero on the specified player for which to get the inventory
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
+    static void GetPlayerHeroInventory(int PlayerID, int HeroID, const FLootLockerServerGetHeroInventoryResponseBP& OnCompletedRequest);
+    
+    /**
+     * Get a subset of the inventory for the specified player and hero using pagination settings
+     * https://ref.lootlocker.com/server-api/#get-inventory-to-hero
+     * Pagination: https://ref.lootlocker.com/server-api/#pagination
+     *
+     * @param PlayerID The ID of the player for whom to get the hero inventory
+     * @param HeroID The ID of the hero on the specified player for which to get the inventory
+     * @param Count The number of inventory items to get. Must be a value between 1 and 200
+     * @param After The id of the inventory item from where to start getting inventory items (non inclusive). Set to 0 to start from the first item
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
+    static void GetPaginatedPlayerHeroInventory(int PlayerID, int HeroID, int Count, int After, const FLootLockerServerGetHeroInventoryResponseBP& OnCompletedRequest);
+    
+    /**
+     * Get the full loadout for the specified player and hero
+     * https://ref.lootlocker.com/server-api/#get-hero-loadout
+     *
+     * @param PlayerID The ID of the player for whom to get the hero loadout
+     * @param HeroID The ID of the hero on the specified player for which to get the loadout
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
+    static void GetPlayerHeroLoadout(int PlayerID, int HeroID, const FLootLockerServerGetHeroLoadoutResponseBP& OnCompletedRequest);
+    
+    /**
+     * Equip an asset instance to the loadout of specified player and hero using an asset instance id
+     * https://ref.lootlocker.com/server-api/#equip-asset-for-hero-loadout
+     *
+     * @param PlayerID The ID of the player for whom to equip the asset instance
+     * @param HeroID The ID of the hero on the specified player for whose loadout to equip the asset instance
+     * @param AssetInstanceID The ID of the asset instance to equip to the specified player hero's loadout
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
+    static void EquipAssetToPlayerHeroLoadoutByAssetInstanceId(int PlayerID, int HeroID, int AssetInstanceID, const FLootLockerServerEquipAssetToHeroLoadoutResponseBP& OnCompletedRequest);
+    
+    /**
+     * Equip an asset instance to the loadout of specified player and hero using an asset id and an asset variation id
+     * https://ref.lootlocker.com/server-api/#equip-asset-for-hero-loadout
+     *
+     * @param PlayerID The ID of the player for whom to equip the asset instance
+     * @param HeroID The ID of the hero on the specified player for whose loadout to equip the asset instance
+     * @param AssetID The ID of the asset to equip to the specified player hero's loadout
+     * @param AssetVariationID The ID of the variation of the specified asset to equip to the specified player hero's loadout
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
+    static void EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(int PlayerID, int HeroID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToHeroLoadoutResponseBP& OnCompletedRequest);
+    
+    /**
+     * Equip an asset instance to the loadout of specified player and hero using an asset id and a rental option id
+     * https://ref.lootlocker.com/server-api/#equip-asset-for-hero-loadout
+     *
+     * @param PlayerID The ID of the player for whom to equip the asset instance
+     * @param HeroID The ID of the hero on the specified player for whose loadout to equip the asset instance
+     * @param AssetID The ID of the asset to equip to the specified player hero's loadout
+     * @param RentalOptionID The ID of the rental option of the specified asset to equip to the specified player hero's loadout
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
+    static void EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseBP& OnCompletedRequest);
+    /**
+     * Unequip an asset instance from the loadout of specified player and hero using the instance id
+     * https://ref.lootlocker.com/server-api/#equip-asset-for-hero-loadout
+     *
+     * @param PlayerID The ID of the player for whom to unequip the asset instance
+     * @param HeroID The ID of the hero on the specified player for whose loadout to unequip the asset instance
+     * @param InstanceID The ID of the asset instance to unequip from the specified player hero's loadout
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
+    static void UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseBP& OnCompletedRequest);
 };
