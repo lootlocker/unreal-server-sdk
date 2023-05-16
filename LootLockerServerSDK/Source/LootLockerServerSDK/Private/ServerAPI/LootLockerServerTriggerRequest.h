@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
 
 #include "LootLockerServerTriggerRequest.generated.h"
 
@@ -51,30 +52,9 @@ struct FLootLockerServerTriggeredXP
 };
 
 USTRUCT(BlueprintType)
-struct FLootLockerServerTriggeredAsset
+struct FLootLockerServerTriggeredAsset : public FLootLockerServerAsset
 {
 	GENERATED_BODY()
-
-	/*
-	 The ID of the asset granted by the trigger.
-	 */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int ID;
-	/*
-	 The UUID of the asset granted by the trigger.
-	 */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString UUID;
-	/*
-	 The Name of the asset granted by the trigger.
-	 */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Name;
-	/*
-	 Whether the asset granted by the trigger is active.
-	 */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	bool Active;
 };
 
 //==================================================
@@ -120,7 +100,7 @@ struct FLootLockerServerInvokeTriggerResponse : public FLootLockerServerResponse
 	 Information on of the assets rewarded by the trigger.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	TArray<FLootLockerServerTriggeredAsset> Granted_assets; //TODO: Asset Support not yet fully implemented
+	TArray<FLootLockerServerTriggeredAsset> Granted_assets;
 };
 
 //==================================================

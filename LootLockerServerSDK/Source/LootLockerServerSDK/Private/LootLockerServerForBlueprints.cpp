@@ -262,10 +262,12 @@ void ULootLockerServerForBlueprints::AlterPlayerInventoryAddAssetsByAssetIDAndRe
 }
 
 // Assets
-void ULootLockerServerForBlueprints::GetAssets(const FLootLockerServerGetAssetsResponseBP &OnCompletedRequest) {
+void ULootLockerServerForBlueprints::GetAssets(const FLootLockerServerGetAssetsResponseBP &OnCompletedRequest) 
+{
 	ULootLockerServerAssetRequest::GetAssets(OnCompletedRequest);
 }
 
-void ULootLockerServerForBlueprints::GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseBP &OnCompletedRequest) {
+void ULootLockerServerForBlueprints::GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseBP &OnCompletedRequest) 
+{
 	ULootLockerServerAssetRequest::GetPaginatedAssets(Count, After, OnCompletedRequest);
 }
