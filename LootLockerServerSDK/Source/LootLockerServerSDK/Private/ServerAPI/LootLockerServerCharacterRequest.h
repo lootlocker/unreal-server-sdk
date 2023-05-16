@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
 
 #include "LootLockerServerCharacterRequest.generated.h"
 
@@ -105,7 +106,7 @@ struct FLootLockerServerPlayerCharacterInventoryItem
      The asset this item refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Asset; //TODO: Assets not implemented
+    FLootLockerServerAsset Asset;
     /*
      Information about this items rental state
      */
@@ -141,7 +142,7 @@ struct FLootLockerServerPlayerCharacterLoadoutItem
      The asset this item refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Asset; //TODO: Assets not implemented
+    FLootLockerServerAsset Asset;
     /*
      Information about this items rental state
      */
