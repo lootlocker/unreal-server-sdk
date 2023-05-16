@@ -18,6 +18,17 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::SubmitScore = InitEndpoint
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAllMemberRanks = InitEndpoint("leaderboards/member/{0}", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetScoresFromLeaderboard = InitEndpoint("leaderboards/{0}/list", ELootLockerServerHTTPMethod::GET);
 
+// Assets
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAssets = InitEndpoint("assets", ELootLockerServerHTTPMethod::GET);
+
+// Asset Instances
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAssetInstanceKeyValuePairs = InitEndpoint("player/{0}/assets/instances/{1}/storage", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAssetInstanceKeyValuePairById = InitEndpoint("player/{0}/assets/instances/{1}/storage/{2}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::AddKeyValuePairToAssetInstance = InitEndpoint("player/{0}/assets/instances/{1}/storage", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::UpdateKeyValuePairs = InitEndpoint("player/{0}/assets/instances/{1}/storage", ELootLockerServerHTTPMethod::PUT);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::UpdateKeyValuePairById = InitEndpoint("player/{0}/assets/instances/{1}/storage/{2}", ELootLockerServerHTTPMethod::PUT);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteKeyValuePairById = InitEndpoint("player/{0}/assets/instances/{1}/storage/{2}", ELootLockerServerHTTPMethod::DELETE);
+
 //Player Lookup
 FLootLockerServerEndPoint ULootLockerServerEndpoints::LookupMultiplePlayerNamesUsingIDs = InitEndpoint("players/lookup/name", ELootLockerServerHTTPMethod::GET);
 

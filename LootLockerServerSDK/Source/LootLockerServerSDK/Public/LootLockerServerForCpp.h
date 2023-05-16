@@ -10,6 +10,7 @@
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerCharacterRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerHeroRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerInventoryRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
 
 class LOOTLOCKERSERVERSDK_API ULootLockerServerForCpp : public UObject
 {
@@ -545,4 +546,31 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     static void AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
+
+    //==================================================
+    // Assets https://ref.lootlocker.com/server-api/#assets
+    //==================================================
+
+    /**
+     * List all the assets from this game
+     * Note that this is a paginated call and it will likely require multiple calls to LootLocker with a parameter for every call except the first to step forward in the results.
+     * Up to 200 (the default limit is 50 though) assets are returned at a time, and to fetch the next page you have to use the largest ID you've gotten returned in the previous response
+     * https://ref.lootlocker.com/server-api/#get-assets-to-game
+     *
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetAssets(const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest);
+
+    /**
+     * List a set of assets from this game according to the supplied pagination options
+     * https://ref.lootlocker.com/server-api/#get-assets-to-game
+     * Note that this is a paginated call and it will likely require multiple calls to LootLocker with a parameter for every call except the first to step forward in the results.
+     * Up to 200 (the default limit is 50 though) assets are returned at a time, and to fetch the next page you have to use the largest ID you've gotten returned in the previous response
+     * https://ref.lootlocker.com/server-api/#pagination
+     *
+     * @param Count The number of assets to get. Must be a value between 1 and 200
+     * @param After The id of the asset from where to start getting assets (non inclusive). Set to 0 to start from the first item
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest);
 };
