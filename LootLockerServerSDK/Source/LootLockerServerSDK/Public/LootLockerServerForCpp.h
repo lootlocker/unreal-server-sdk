@@ -573,4 +573,74 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     static void GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest);
+
+    //==================================================
+    // Asset Instances https://ref.lootlocker.com/server-api/#asset-instances
+    //==================================================
+
+    /**
+     * Get a list of key value pairs from the specified asset instance
+     * https://ref.lootlocker.com/server-api/#getting-all-key-value-pairs-to-an-instance
+     *
+     * @param PlayerID The player ID of the player that this player asset instance belongs to
+     * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Get a single Key Value Pair from the specified asset instance by key value pair id
+     * https://ref.lootlocker.com/server-api/#getting-a-key-value-pair-by-id
+     *
+     * @param PlayerID The player ID of the player that this player asset instance belongs to
+     * @param AssetInstanceID The ID of the asset instance on this player for which to complete the operation
+     * @param KeyValuePairID The ID of the specific key value pair to get
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Create a key value pair on the specified asset instance
+     * https://ref.lootlocker.com/server-api/#creating-a-key-value-pair
+     *
+     * @param PlayerID The player ID of the player that this player asset instance belongs to
+     * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
+     * @param Key The key to add
+     * @param Value The value to set for the added key
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Create or update a list of key value pairs on the specified asset instance
+     * https://ref.lootlocker.com/server-api/#updating-one-or-more-key-value-pairs
+     *
+     * @param PlayerID The player ID of the player that this player asset instance belongs to
+     * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
+     * @param KeyValuePairs A list of key value pairs to update
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Update a single key value pair on the specified asset instance by key value pair id
+     *
+     * @param PlayerID The player ID of the player that this player asset instance belongs to
+     * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
+     * @param KeyValuePairID The ID of the specific key value pair to update
+     * @param Key The key to set for the key value pair
+     * @param Value The value to set for the updated key
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Delete a key value pair from the specified asset instance by key value pair id
+     *
+     * @param PlayerID The player ID of the player that this player asset instance belongs to
+     * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
+     * @param KeyValuePairID The ID of the specific key value pair to delete
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
 };
