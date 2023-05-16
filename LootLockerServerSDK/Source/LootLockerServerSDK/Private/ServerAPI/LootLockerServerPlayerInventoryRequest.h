@@ -5,6 +5,7 @@
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
 
 #include "LootLockerServerPlayerInventoryRequest.generated.h"
 
@@ -82,7 +83,7 @@ struct FLootLockerServerUniversalInventoryItem
      The asset this item refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Asset; //TODO: Assets not implemented
+    FLootLockerServerAsset Asset;
     /*
      Information about this items rental state
      */
@@ -125,7 +126,7 @@ struct FLootLockerServerPlayerInventoryItem
      The asset this item refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Asset; //TODO: Assets not implemented
+    FLootLockerServerAsset Asset;
     /*
      Information about this items rental state
      */
@@ -161,7 +162,7 @@ struct FLootLockerServerPlayerLoadoutItem
      The asset this item refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Asset; //TODO: Assets not implemented
+    FLootLockerServerAsset Asset;
     /*
      Information about this items rental state
      */
@@ -415,7 +416,7 @@ struct FLootLockerServerAlterPlayerInventoryResponse : public FLootLockerServerR
      List of asset instances added to the specified player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    TArray<int> Added; //TODO: Assets not fully implemented
+    TArray<FLootLockerServerAsset> Added;
     /*
      List of asset instance ids removed from the specified player's inventory
      */
