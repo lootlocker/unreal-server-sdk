@@ -262,3 +262,12 @@ void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOpt
 {
 	ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(PlayerID, AssetsToAdd, AssetsToRemove, FLootLockerServerAlterPlayerInventoryResponseBP(), OnCompletedRequest);
 }
+
+// Assets
+void ULootLockerServerForCpp::GetAssets(const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest) {
+	ULootLockerServerAssetRequest::GetAssets(FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest) {
+	ULootLockerServerAssetRequest::GetPaginatedAssets(Count, After, FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest);
+}

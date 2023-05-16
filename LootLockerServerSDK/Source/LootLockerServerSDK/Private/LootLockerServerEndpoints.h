@@ -41,16 +41,33 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerEndpoints : public UObject
 {
     GENERATED_BODY()
 public:
-    //Auth
+    // Auth
     static FLootLockerServerEndPoint StartSession;
     static FLootLockerServerEndPoint MaintainingSession;
+
+    // Leaderboards
     static FLootLockerServerEndPoint CreateLeaderboard;
     static FLootLockerServerEndPoint UpdateLeaderboard;
     static FLootLockerServerEndPoint DeleteLeaderboard;
     static FLootLockerServerEndPoint SubmitScore;
     static FLootLockerServerEndPoint GetAllMemberRanks;
     static FLootLockerServerEndPoint GetScoresFromLeaderboard;
+
+    // Assets
+    static FLootLockerServerEndPoint GetAssets;
+
+    // Asset Instances
+    static FLootLockerServerEndPoint GetAssetInstanceKeyValuePairs;
+    static FLootLockerServerEndPoint GetAssetInstanceKeyValuePairById;
+    static FLootLockerServerEndPoint AddKeyValuePairToAssetInstance;
+    static FLootLockerServerEndPoint UpdateKeyValuePairs;
+    static FLootLockerServerEndPoint UpdateKeyValuePairById;
+    static FLootLockerServerEndPoint DeleteKeyValuePairById;
+
+    // Player Lookup
     static FLootLockerServerEndPoint LookupMultiplePlayerNamesUsingIDs;
+
+    // Player Inventory
     static FLootLockerServerEndPoint GetPlayerInventory;
     static FLootLockerServerEndPoint GetUniversalInventory;
     static FLootLockerServerEndPoint AddAssetToPlayerInventory;
@@ -58,6 +75,8 @@ public:
     static FLootLockerServerEndPoint GetPlayerLoadout;
     static FLootLockerServerEndPoint EquipAssetToPlayerLoadout;
     static FLootLockerServerEndPoint UnEquipAssetFromPlayerLoadout;
+
+    // Player Persistent Storage
     static FLootLockerServerEndPoint GetPlayerPersistentStorage;
     static FLootLockerServerEndPoint GetMultiplePlayersPublicPersistentStorageValues;
     static FLootLockerServerEndPoint UpdatePlayerPersistentStorage;
@@ -67,18 +86,25 @@ public:
     static FLootLockerServerEndPoint DeletePlayerFile;
     static FLootLockerServerEndPoint UploadPlayerFile;
     static FLootLockerServerEndPoint UpdatePlayerFile;
+
+    // Triggers
     static FLootLockerServerEndPoint InvokeTriggerForPlayer;
+
+    // Characters
     static FLootLockerServerEndPoint GetPlayerCharacters;
     static FLootLockerServerEndPoint GetCharacterInventory;
     static FLootLockerServerEndPoint GetCharacterLoadout;
     static FLootLockerServerEndPoint EquipAssetToCharacterLoadout;
     static FLootLockerServerEndPoint UnequipAssetFromCharacterLoadout;
+
+    // Heroes
     static FLootLockerServerEndPoint GetPlayerHeroes;
     static FLootLockerServerEndPoint GetHeroInventory;
     static FLootLockerServerEndPoint GetHeroLoadout;
     static FLootLockerServerEndPoint EquipAssetToHeroLoadout;
     static FLootLockerServerEndPoint UnequipAssetFromHeroLoadout;
     
+    //TODO: Remove
     static FLootLockerServerEndPoint TBD;
 
 private:
