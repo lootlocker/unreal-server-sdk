@@ -28,6 +28,27 @@ struct FLootLockerServerAssetStorageKeyValueSet
 	FString Value;
 };
 
+USTRUCT(BlueprintType)
+struct FLootLockerServerAssetInstanceStorageKeyValueSet
+{
+	GENERATED_BODY()
+	/*
+	 The id of this key value pair
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	int Id;
+	/*
+	 The key for this set, used to access the value
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Key;
+	/*
+	 The Value of this set, this is the data
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Value;
+};
+
 /**
  *
  */
@@ -457,14 +478,33 @@ struct FLootLockerServerAsset
  *
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerAssetTemplateRequest
+struct FLootLockerServerCreateAssetInstanceKeyValuePairRequest
+{
+    GENERATED_BODY()
+	/*
+	 The key for this set, used to access the value
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Key;
+	/*
+	 The Value of this set, this is the data
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Value;
+};
+
+/**
+ *
+ */
+USTRUCT(BlueprintType)
+struct FLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest
 {
     GENERATED_BODY()
     /*
-     TODO: Document
+     List of key values to update
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Templated;
+    TArray<FLootLockerServerAssetStorageKeyValueSet> Storage;
 };
 
 //==================================================
@@ -491,6 +531,21 @@ struct FLootLockerServerGetAssetsResponse : public FLootLockerServerResponse
     TArray<FLootLockerServerAsset> Items;
 };
 
+/**
+ *
+ */
+USTRUCT(BlueprintType)
+struct FLootLockerServerAssetInstanceKeyValuePairsListResponse : public FLootLockerServerResponse
+{
+    GENERATED_BODY()
+
+    /*
+     List of currently stored key value pairs for this asset instance
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerAssetInstanceStorageKeyValueSet> Storage;
+};
+
 //==================================================
 // Blueprint Delegate Definitions
 //==================================================
@@ -499,6 +554,10 @@ struct FLootLockerServerGetAssetsResponse : public FLootLockerServerResponse
  Blueprint response delegate for getting assets
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetAssetsResponseBP, FLootLockerServerGetAssetsResponse, Response);
+/*
+ Blueprint response delegate for receiving a list of asset instance key value pairs
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAssetInstanceKeyValuePairsListResponseBP, FLootLockerServerAssetInstanceKeyValuePairsListResponse, Response);
 
 //==================================================
 // C++ Delegate Definitions
@@ -508,6 +567,10 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetAssetsResponseBP, FLootLoc
  C++ response delegate for getting assets
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerGetAssetsResponseDelegate, FLootLockerServerGetAssetsResponse);
+/*
+ C++ response delegate for receiving a list of asset instance key value pairs
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate, FLootLockerServerAssetInstanceKeyValuePairsListResponse);
 
 /**
  *
@@ -521,4 +584,11 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerAssetRequest : public UObject
 
     static void GetAssets(const FLootLockerServerGetAssetsResponseBP& OnCompletedRequestBP = FLootLockerServerGetAssetsResponseBP(), const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest = FLootLockerServerGetAssetsResponseDelegate());
     static void GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequestBP = FLootLockerServerGetAssetsResponseBP(), const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest = FLootLockerServerGetAssetsResponseDelegate());
+
+    static void GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate());
+    static void GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate());
+    static void AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate());
+    static void UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate());
+    static void UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate());
+    static void DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate());
 };
