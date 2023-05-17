@@ -185,3 +185,90 @@ void ULootLockerServerForCpp::UnequipAssetFromPlayerHeroLoadout(int PlayerID, in
 {
     ULootLockerServerHeroRequest::UnequipAssetFromPlayerHeroLoadout(PlayerID, HeroID, InstanceID, FLootLockerServerUnequipAssetFromHeroLoadoutResponseBP(), OnCompletedRequest);
 }
+
+// Player Inventory
+
+void ULootLockerServerForCpp::GetUniversalInventory(const FLootLockerServerGetUniversalInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::GetUniversalInventory(FLootLockerServerGetUniversalInventoryResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetPlayerInventory(int PlayerID, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::GetPlayerInventory(PlayerID, FLootLockerServerGetPlayerInventoryResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetPaginatedPlayerInventory(int PlayerID, int Count, int After, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::GetPaginatedPlayerInventory(PlayerID, Count, After, FLootLockerServerGetPlayerInventoryResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetPlayerLoadout(int PlayerID, const FLootLockerServerGetPlayerLoadoutResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::GetPlayerLoadout(PlayerID, FLootLockerServerGetPlayerLoadoutResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetId(int PlayerID, int AssetID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetId(PlayerID, AssetID, FLootLockerServerEquipAssetToPlayerLoadoutResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetInstanceId(int PlayerID, int AssetInstanceID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetInstanceId(PlayerID, AssetInstanceID, FLootLockerServerEquipAssetToPlayerLoadoutResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(int PlayerID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(PlayerID, AssetID, AssetVariationID, FLootLockerServerEquipAssetToPlayerLoadoutResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(PlayerID, AssetID, RentalOptionID, FLootLockerServerEquipAssetToPlayerLoadoutResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::UnequipAssetFromPlayerLoadout(int PlayerID, int InstanceID, const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::UnequipAssetFromPlayerLoadout(PlayerID, InstanceID, FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetID(PlayerID, AssetID, FLootLockerServerAddAssetToPlayerInventoryResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetInstanceID(int PlayerID, int AssetInstanceID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetInstanceID(PlayerID, AssetInstanceID, FLootLockerServerAddAssetToPlayerInventoryResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndVariationID(PlayerID, AssetID, VariationID, FLootLockerServerAddAssetToPlayerInventoryResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(PlayerID, AssetID, RentalOptionID, FLootLockerServerAddAssetToPlayerInventoryResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetID(PlayerID, AssetsToAdd, AssetsToRemove, FLootLockerServerAlterPlayerInventoryResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByInstanceID(int PlayerID, const TArray<FLootLockerServerAssetByInstanceIDRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByInstanceID(PlayerID, AssetsToAdd, AssetsToRemove, FLootLockerServerAlterPlayerInventoryResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(PlayerID, AssetsToAdd, AssetsToRemove, FLootLockerServerAlterPlayerInventoryResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(PlayerID, AssetsToAdd, AssetsToRemove, FLootLockerServerAlterPlayerInventoryResponseBP(), OnCompletedRequest);
+}
