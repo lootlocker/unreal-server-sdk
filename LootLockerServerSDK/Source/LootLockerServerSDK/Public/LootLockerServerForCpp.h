@@ -11,6 +11,7 @@
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerHeroRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerInventoryRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerRequest.h"
 
 class LOOTLOCKERSERVERSDK_API ULootLockerServerForCpp : public UObject
 {
@@ -643,4 +644,16 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     static void DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+
+    //==================================================
+    // Player https://ref.lootlocker.com/server-api/#player-names
+    //==================================================
+
+    /**
+     * Lookup a number of player names from the player's id
+     *
+     * @param IdsToLookUp A list of ids to lookup also specyfying for each id which type of id it is
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest);
 };

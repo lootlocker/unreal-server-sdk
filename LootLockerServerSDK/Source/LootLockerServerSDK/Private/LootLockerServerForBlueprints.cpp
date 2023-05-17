@@ -302,3 +302,9 @@ void ULootLockerServerForBlueprints::DeleteKeyValuePairFromAssetInstanceById(int
 {
 	ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, OnCompletedRequest);
 }
+
+// Player
+void ULootLockerServerForBlueprints::LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseBP& OnCompletedRequest) 
+{
+	ULootLockerServerPlayerRequest::LookupPlayerNames(IdsToLookUp, OnCompletedRequest);
+}
