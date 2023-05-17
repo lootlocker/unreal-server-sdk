@@ -12,6 +12,7 @@
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerInventoryRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerDropTableRequest.h"
 
 #include "LootLockerServerForBlueprints.generated.h"
 
@@ -703,6 +704,68 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Asset Instances")
     static void DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Drop Tables https://ref.lootlocker.com/server-api/#drop-tables
+    //==================================================
+    
+    /**
+     * Use this method to compute and lock the specified drop table item from the specified player's inventory
+     * https://ref.lootlocker.com/server-api/#compute-and-lock-drop-table
+     *
+     * @param PlayerID The id of the player for whom to compute and lock the drop table
+     * @param DropTableID The id of the drop table item to compute and lock
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
+    static void ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+    
+    /**
+     * Use this method to compute and lock the specified drop table item from the specified player's inventory, but only use items with the specified tag
+     * https://ref.lootlocker.com/server-api/#compute-and-lock-drop-table
+     *
+     * @param PlayerID The id of the player for whom to compute and lock the drop table
+     * @param DropTableID The id of the drop table item to compute and lock
+     * @param Tag Which tag to limit drop table computation to
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
+	static void ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+    
+    /**
+     * Use this method to compute and lock the specified drop table item from the specified player's inventory and include the full asset information in the response
+     * https://ref.lootlocker.com/server-api/#compute-and-lock-drop-table
+     *
+     * @param PlayerID The id of the player for whom to compute and lock the drop table
+     * @param DropTableID The id of the drop table item to compute and lock
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
+	static void ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+    
+    /**
+     * Use this method to compute and lock the specified drop table item from the specified player's inventory, but only use items with the specified tag and include the full asset information in the response
+     * https://ref.lootlocker.com/server-api/#compute-and-lock-drop-table
+     *
+     * @param PlayerID The id of the player for whom to compute and lock the drop table
+     * @param DropTableID The id of the drop table item to compute and lock
+     * @param Tag Which tag to limit drop table computation to
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
+	static void ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+
+    /**
+     * Pick drop table items from the specified drop table and player
+     * https://ref.lootlocker.com/server-api/#pick-drops-from-drop-table
+     *
+     * @param PlayerID The id of the player for whom the drop table applies
+     * @param DropTableID The id of the drop table from which to pick items
+     * @param DropTableItemIDsToPick A list of drop table item ids to pick
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
+	static void PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player https://ref.lootlocker.com/server-api/#player-names

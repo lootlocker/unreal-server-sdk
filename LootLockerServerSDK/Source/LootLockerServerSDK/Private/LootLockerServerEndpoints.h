@@ -64,6 +64,10 @@ public:
     static FLootLockerServerEndPoint UpdateKeyValuePairById;
     static FLootLockerServerEndPoint DeleteKeyValuePairById;
 
+    // Drop Tables
+    static FLootLockerServerEndPoint ComputeAndLockDropTable;
+    static FLootLockerServerEndPoint PickDropsFromDropTable;
+
     // Player Lookup
     static FLootLockerServerEndPoint LookupMultiplePlayerNamesUsingIDs;
 
