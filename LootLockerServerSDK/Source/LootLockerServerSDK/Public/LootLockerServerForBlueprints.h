@@ -530,18 +530,6 @@ public:
     static void AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest);
     
     /**
-     * Add the specified asset instance to the specified player's inventory (grant the asset)
-     * If the request is successfull, the returned list contains all assets that were granted to the player
-     * https://ref.lootlocker.com/server-api/#add-asset-to-player-inventory
-     *
-     * @param PlayerID The ID of the player for whom to add the asset
-     * @param AssetInstanceID The ID of the asset instance to add to the specified player's inventory
-     * @param OnCompletedRequest Delegate for handling the server response
-     */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void AddAssetToPlayerInventoryByAssetInstanceID(int PlayerID, int AssetInstanceID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest);
-    
-    /**
      * Add the specified asset to the specified player's inventory (grant the asset) by specifiying an asset id and which variation id of the asset to equip
      * If the request is successfull, the returned list contains all assets that were granted to the player
      * https://ref.lootlocker.com/server-api/#add-asset-to-player-inventory
@@ -580,20 +568,6 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
     static void AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
-    
-    /**
-     * Bulk add (grant) and/or remove assets to/from the specified player's inventory
-     * Add assets by supplying a list of asset instance id's
-     * If the request is successfull, the return will contain two lists; one specifying the id's of all the assets that were removed, one specifying all added assets
-     * https://ref.lootlocker.com/server-api/#alter-player-inventory
-     *
-     * @param PlayerID The ID of the player for whom to alter the inventory
-     * @param AssetsToAdd A list of assets to add to the specified player's inventory
-     * @param AssetsToRemove A list of asset instance id's of assets to remove from the specified player's inventory
-     * @param OnCompletedRequest Delegate for handling the server response
-     */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void AlterPlayerInventoryAddAssetsByInstanceID(int PlayerID, const TArray<FLootLockerServerAssetByInstanceIDRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Bulk add (grant) and/or remove assets to/from the specified player's inventory

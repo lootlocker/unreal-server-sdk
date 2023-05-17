@@ -238,11 +238,6 @@ void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetID(int PlayerID, i
 	ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetID(PlayerID, AssetID, FLootLockerServerAddAssetToPlayerInventoryResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetInstanceID(int PlayerID, int AssetInstanceID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
-{
-	ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetInstanceID(PlayerID, AssetInstanceID, FLootLockerServerAddAssetToPlayerInventoryResponseBP(), OnCompletedRequest);
-}
-
 void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
 	ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndVariationID(PlayerID, AssetID, VariationID, FLootLockerServerAddAssetToPlayerInventoryResponseBP(), OnCompletedRequest);
@@ -256,11 +251,6 @@ void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndRentalOptionI
 void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
 	ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetID(PlayerID, AssetsToAdd, AssetsToRemove, FLootLockerServerAlterPlayerInventoryResponseBP(), OnCompletedRequest);
-}
-
-void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByInstanceID(int PlayerID, const TArray<FLootLockerServerAssetByInstanceIDRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
-{
-	ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByInstanceID(PlayerID, AssetsToAdd, AssetsToRemove, FLootLockerServerAlterPlayerInventoryResponseBP(), OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
