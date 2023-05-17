@@ -67,11 +67,6 @@ void ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetID
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerAddAssetToPlayerInventoryResponse>(FLootLockerServerAssetByAssetIdRequest{ AssetID }, ULootLockerServerEndpoints::AddAssetToPlayerInventory, { PlayerID }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
-void ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetInstanceID(int PlayerID, int AssetInstanceID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequestBP, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
-{
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAddAssetToPlayerInventoryResponse>(FLootLockerServerAssetByAssetInstanceIdRequest{ AssetInstanceID }, ULootLockerServerEndpoints::AddAssetToPlayerInventory, { PlayerID }, {}, OnCompletedRequestBP, OnCompletedRequest);
-}
-
 void ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequestBP, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerAddAssetToPlayerInventoryResponse>(FLootLockerServerAssetByAssetIdAndVariationIdRequest{ AssetID, VariationID }, ULootLockerServerEndpoints::AddAssetToPlayerInventory, { PlayerID }, {}, OnCompletedRequestBP, OnCompletedRequest);
@@ -85,11 +80,6 @@ void ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetID
 void ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequestBP, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerAlterPlayerInventoryResponse>(FLootLockerServerAlterPlayerInventoryByAssetIdRequest{ { AssetsToRemove }, AssetsToAdd }, ULootLockerServerEndpoints::AlterPlayerInventory, { PlayerID }, {}, OnCompletedRequestBP, OnCompletedRequest);
-}
-
-void ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByInstanceID(int PlayerID, const TArray<FLootLockerServerAssetByInstanceIDRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequestBP, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
-{
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAlterPlayerInventoryResponse>(FLootLockerServerAlterPlayerInventoryByAssetInstanceIdRequest{ { AssetsToRemove }, AssetsToAdd }, ULootLockerServerEndpoints::AlterPlayerInventory, { PlayerID }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequestBP, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)

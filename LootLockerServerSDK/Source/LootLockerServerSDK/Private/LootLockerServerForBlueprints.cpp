@@ -236,11 +236,6 @@ void ULootLockerServerForBlueprints::AddAssetToPlayerInventoryByAssetID(int Play
 	ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetID(PlayerID, AssetID, OnCompletedRequest);
 }
 
-void ULootLockerServerForBlueprints::AddAssetToPlayerInventoryByAssetInstanceID(int PlayerID, int AssetInstanceID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest)
-{
-	ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetInstanceID(PlayerID, AssetInstanceID, OnCompletedRequest);
-}
-
 void ULootLockerServerForBlueprints::AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest)
 {
 	ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndVariationID(PlayerID, AssetID, VariationID, OnCompletedRequest);
@@ -254,11 +249,6 @@ void ULootLockerServerForBlueprints::AddAssetToPlayerInventoryByAssetIDAndRental
 void ULootLockerServerForBlueprints::AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest)
 {
 	ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
-}
-
-void ULootLockerServerForBlueprints::AlterPlayerInventoryAddAssetsByInstanceID(int PlayerID, const TArray<FLootLockerServerAssetByInstanceIDRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest)
-{
-	ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByInstanceID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
 }
 
 void ULootLockerServerForBlueprints::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest)
