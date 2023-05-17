@@ -3,6 +3,7 @@
 
 #include "LootLockerServerForCpp.h"
 #include "ServerAPI/LootLockerServerAssetRequest.h"
+#include "ServerAPI/LootLockerServerPlayerRequest.h"
 
 //Authentication
 void ULootLockerServerForCpp::StartSession(const FLootLockerServerAuthResponseDelegate& OnCompleteRequest)
@@ -304,4 +305,10 @@ void ULootLockerServerForCpp::UpdateKeyValuePairOnAssetInstanceById(int PlayerID
 void ULootLockerServerForCpp::DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
 	ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), OnCompletedRequest);
+}
+
+// Player
+void ULootLockerServerForCpp::LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest) 
+{
+	ULootLockerServerPlayerRequest::LookupPlayerNames(IdsToLookUp, FLootLockerServerPlayerNameLookupResponseBP(), OnCompletedRequest);
 }
