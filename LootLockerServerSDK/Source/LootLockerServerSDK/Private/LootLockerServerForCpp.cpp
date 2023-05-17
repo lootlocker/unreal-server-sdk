@@ -3,6 +3,7 @@
 
 #include "LootLockerServerForCpp.h"
 #include "ServerAPI/LootLockerServerAssetRequest.h"
+#include "ServerAPI/LootLockerServerDropTableRequest.h"
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
 
 //Authentication
@@ -305,6 +306,32 @@ void ULootLockerServerForCpp::UpdateKeyValuePairOnAssetInstanceById(int PlayerID
 void ULootLockerServerForCpp::DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
 	ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), OnCompletedRequest);
+}
+
+// Drop Tables
+void ULootLockerServerForCpp::ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerDropTableRequest::ComputeAndLockDropTable(PlayerID, DropTableID, FLootLockerServerComputeAndLockDropTableResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerDropTableRequest::ComputeAndLockDropTableForTag(PlayerID, DropTableID, Tag, FLootLockerServerComputeAndLockDropTableResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerDropTableRequest::ComputeAndLockDropTableWithAssetInformation(PlayerID, DropTableID, FLootLockerServerComputeAndLockDropTableResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerDropTableRequest::ComputeAndLockDropTableForTagWithAssetInformation(PlayerID, DropTableID, Tag, FLootLockerServerComputeAndLockDropTableResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerDropTableRequest::PickDropsFromDropTable(PlayerID, DropTableID, DropTableItemIDsToPick, FLootLockerServerPickFromDropTableResponseBP(), OnCompletedRequest);
 }
 
 // Player
