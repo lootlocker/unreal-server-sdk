@@ -285,20 +285,6 @@ struct FLootLockerServerAlterPlayerInventoryByAssetIdRequest : public FLootLocke
  *
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerAlterPlayerInventoryByAssetInstanceIdRequest : public FLootLockerServerAlterPlayerInventoryRequestBase
-{
-    GENERATED_BODY()
-    /*
-     List of the assets to add to the specified player's inventory
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    TArray<FLootLockerServerAssetByInstanceIDRequest> Add;
-};
-
-/**
- *
- */
-USTRUCT(BlueprintType)
 struct FLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest : public FLootLockerServerAlterPlayerInventoryRequestBase
 {
     GENERATED_BODY()
@@ -523,11 +509,9 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerInventoryRequest : public U
     static void EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequestBP = FLootLockerServerEquipAssetToPlayerLoadoutResponseBP(), const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest = FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate());
     static void UnequipAssetFromPlayerLoadout(int PlayerID, int InstanceID, const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP& OnCompletedRequestBP = FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP(), const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate& OnCompletedRequest = FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate());
     static void AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequestBP = FLootLockerServerAddAssetToPlayerInventoryResponseBP(), const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest = FLootLockerServerAddAssetToPlayerInventoryResponseDelegate());
-    static void AddAssetToPlayerInventoryByAssetInstanceID(int PlayerID, int AssetInstanceID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequestBP = FLootLockerServerAddAssetToPlayerInventoryResponseBP(), const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest = FLootLockerServerAddAssetToPlayerInventoryResponseDelegate());
     static void AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequestBP = FLootLockerServerAddAssetToPlayerInventoryResponseBP(), const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest = FLootLockerServerAddAssetToPlayerInventoryResponseDelegate());
     static void AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequestBP = FLootLockerServerAddAssetToPlayerInventoryResponseBP(), const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest = FLootLockerServerAddAssetToPlayerInventoryResponseDelegate());
     static void AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequestBP = FLootLockerServerAlterPlayerInventoryResponseBP(), const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest = FLootLockerServerAlterPlayerInventoryResponseDelegate());
-    static void AlterPlayerInventoryAddAssetsByInstanceID(int PlayerID, const TArray<FLootLockerServerAssetByInstanceIDRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequestBP = FLootLockerServerAlterPlayerInventoryResponseBP(), const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest = FLootLockerServerAlterPlayerInventoryResponseDelegate());
     static void AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequestBP = FLootLockerServerAlterPlayerInventoryResponseBP(), const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest = FLootLockerServerAlterPlayerInventoryResponseDelegate());
     static void AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequestBP = FLootLockerServerAlterPlayerInventoryResponseBP(), const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest = FLootLockerServerAlterPlayerInventoryResponseDelegate());
 };
