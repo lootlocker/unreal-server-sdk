@@ -164,7 +164,7 @@ struct FLootLockerServerLeaderboardBaseRequest
     The sort order of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerLeaderboardDirection Direction_method;
+    ELootLockerServerLeaderboardDirection Direction_method = ELootLockerServerLeaderboardDirection::ascending;
     /*
     Allow the game api to write to this leaderboard
      */
@@ -185,7 +185,7 @@ struct FLootLockerServerCreateLeaderboardRequest : public FLootLockerServerLeade
     The type of leaderboard to create
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerLeaderboardType Type;
+    ELootLockerServerLeaderboardType Type = ELootLockerServerLeaderboardType::player;
     /*
     Enable metadata on this leaderboard
      */
@@ -231,12 +231,12 @@ struct FLootLockerServerLeaderboardBaseResponse : public FLootLockerServerRespon
     The type of leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerLeaderboardType Type;
+    ELootLockerServerLeaderboardType Type = ELootLockerServerLeaderboardType::player;
     /*
     The sort order of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerLeaderboardDirection Direction_method;
+    ELootLockerServerLeaderboardDirection Direction_method = ELootLockerServerLeaderboardDirection::ascending;
     /*
     Is the game api allowed to write to this leaderboard
      */
