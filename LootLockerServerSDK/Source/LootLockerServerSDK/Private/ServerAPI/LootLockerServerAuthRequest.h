@@ -16,7 +16,7 @@ struct FLootLockerServerAuthenticationRequest
 {
 	GENERATED_BODY()
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	FString Game_version;
+	FString Game_version = "";
 };
 
 //==================================================
@@ -36,7 +36,7 @@ struct FLootLockerServerMaintainSessionResponse : public FLootLockerServerRespon
 	 Current time on the LootLocker Backend
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	FString Pong;
+	FString Pong = "";
 };
 
 //==================================================

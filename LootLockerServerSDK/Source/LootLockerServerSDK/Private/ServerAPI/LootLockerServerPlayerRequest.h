@@ -20,27 +20,27 @@ struct FLootLockerServerPlayerName
 	 The ID of the player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_id;
+	int Player_id = 0;
 	/*
 	 The Public UID of the player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Player_public_uid;
+	FString Player_public_uid = "";
 	/*
 	 The name of the player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Name;
+	FString Name = "";
 	/*
 	 The platform that the player was last active on
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Last_active_platform;
+	FString Last_active_platform = "";
 	/*
 	 Optional: The id of the player on said platform
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Platform_player_id;
+	FString Platform_player_id = "";
 	
 };
 
@@ -72,7 +72,7 @@ struct FLootLockerServerPlayerNameLookupPair
 	 The id you want to look up
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Id;
+	FString Id = "";
 };
 
 //==================================================

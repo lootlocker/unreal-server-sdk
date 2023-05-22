@@ -57,12 +57,12 @@ struct FLootLockerServerLeaderboardPlayer
     The public UID of the player
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Public_uid;
+    FString Public_uid = "";
     /*
     The name of the player
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Name;
+    FString Name = "";
 };
 
 USTRUCT(BlueprintType)
@@ -74,7 +74,7 @@ struct FLootLockerServerLeaderboardEntry
      For player leaderboards this will be the Player ID, for generic leaderboards this will be the member_id you submitted
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Member_id;
+    FString Member_id = "";
     /*
     The rank for this entry in the leaderboard
      */
@@ -95,7 +95,7 @@ struct FLootLockerServerLeaderboardEntry
     This will be empty if the leaderboard does not support metadata
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Metadata;
+    FString Metadata = "";
 };
 
 USTRUCT(BlueprintType)
@@ -111,7 +111,7 @@ struct FLootLockerServerLeaderboardEntryWithLeaderboardData
     The unique key for this leaderboard, used 
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Leaderboard_key;
+    FString Leaderboard_key = "";
     /*
      The entry of the player in this leaderboard
      */
@@ -132,18 +132,18 @@ struct FLootLockerServerLeaderboardSubmitScoreRequest
      For player leaderboards this will be the Public_UID, for generic leaderboards you can send in any string and that will be the identifier. We recommend using the player's Public_UID or Name.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Member_id;
+    FString Member_id = "";
     /*
     The Score to submit for this entry in the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Score;
+    int Score = 0;
     /*
     The Metadata to submit for this entry in the leaderboard.
     If the leaderboard does not support metadata this property will be ignored.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Metadata;
+    FString Metadata = "";
 };
 
 USTRUCT(BlueprintType)
@@ -154,12 +154,12 @@ struct FLootLockerServerLeaderboardBaseRequest
     The unique key of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Key;
+    FString Key = "";
     /*
     The name of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Name;
+    FString Name = "";
     /*
     The sort order of the leaderboard
      */
@@ -169,12 +169,12 @@ struct FLootLockerServerLeaderboardBaseRequest
     Allow the game api to write to this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Enable_game_api_writes;
+    bool Enable_game_api_writes = false;
     /*
     Always overwrite existing scores for members on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Overwrite_score_on_submit;
+    bool Overwrite_score_on_submit = false;
 };
 
 USTRUCT(BlueprintType)
@@ -190,7 +190,7 @@ struct FLootLockerServerCreateLeaderboardRequest : public FLootLockerServerLeade
     Enable metadata on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Has_metadata;
+    bool Has_metadata = false;
 };
 
 USTRUCT(BlueprintType)
@@ -211,22 +211,22 @@ struct FLootLockerServerLeaderboardBaseResponse : public FLootLockerServerRespon
     The ID of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int ID;
+    int ID = 0;
     /*
     The ID of the game this leaderboard is in
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Game_id;
+    int Game_id = 0;
     /*
     The unique key of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Key;
+    FString Key = "";
     /*
     The name of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Name;
+    FString Name = "";
     /*
     The type of leaderboard
      */
@@ -241,27 +241,27 @@ struct FLootLockerServerLeaderboardBaseResponse : public FLootLockerServerRespon
     Is the game api allowed to write to this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Enable_game_api_writes;
+    bool Enable_game_api_writes = false;
     /*
     Do new submits overwrite existing scores for members on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Overwrite_score_on_submit;
+    bool Overwrite_score_on_submit = false;
     /*
     Is metadata enabled on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Has_metadata;
+    bool Has_metadata = false;
     /*
     The creation time of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Created_at;
+    FString Created_at = "";
     /*
     The last time this leaderboard was updated
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Updated_at;
+    FString Updated_at = "";
 };
 
 USTRUCT(BlueprintType)
@@ -285,23 +285,23 @@ struct FLootLockerServerLeaderboardSubmitScoreResponse : public FLootLockerServe
      For player leaderboards this will be the Public_UID, for generic leaderboards this will be the member_id you submitted
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Member_id;
+    FString Member_id = "";
     /*
     The rank for this entry in the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Rank;
+    int Rank = 0;
     /*
     The Score for this entry in the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Score;
+    int Score = 0;
     /*
     The Metadata for this entry in the leaderboard.
     If the leaderboard does not support metadata this property will be empty.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Metadata;
+    FString Metadata = "";
 };
 
 USTRUCT(BlueprintType)

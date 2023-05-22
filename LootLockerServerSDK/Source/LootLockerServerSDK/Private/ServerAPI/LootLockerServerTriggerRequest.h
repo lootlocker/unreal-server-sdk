@@ -20,17 +20,17 @@ struct FLootLockerServerTriggeredLevel
 	 The level rewarded by the trigger.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Level;
+	int Level = 0;
 	/*
 	 Whether the level is a prestige level.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	bool Is_prestige;
+	bool Is_prestige = false;
 	/*
 	 The XP threshold for the level.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int XP_threshold;
+	int XP_threshold = 0;
 	
 };
 
@@ -43,12 +43,12 @@ struct FLootLockerServerTriggeredXP
 	 The XP before trigger was invoked
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Previous;
+	int Previous = 0;
 	/*
 	 The XP after trigger was invoked
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Current;
+	int Current = 0;
 };
 
 USTRUCT(BlueprintType)
@@ -69,12 +69,12 @@ struct FLootLockerServerInvokeTriggerForPlayerRequest
 	 The name of the trigger to invoke.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Name;
+	FString Name = "";
 	/*
 	The player id of the player for whom to invoke the trigger.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_id;
+	int Player_id = 0;
 };
 
 //==================================================

@@ -20,17 +20,17 @@ struct FLootLockerServerPlayerPersistentStorageKeyValueSet
 	 The key for this set, used to access the value
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Key;
+	FString Key = "";
 	/*
 	 The Value of this set, this is the data you want to store
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Value;
+	FString Value = "";
 	/*
 	 Whether this key is public or not. If it is public, other players can read this storage.
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	bool Is_public;
+	bool Is_public = false;
 };
 
 USTRUCT(BlueprintType)
@@ -41,7 +41,7 @@ struct FLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder : public FLo
 	 Used to de-duplicate keys. Can be any sequence of numbers you like. The later keys just need to have a higher number than the early ones. 
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Order;
+	int Order = 0;
 };
 
 /*
@@ -55,7 +55,7 @@ struct FLootLockerServerPlayerPersistentStorageEntry_NamedSets
 	 The player ID for which these sets are being stored
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_id;
+	int Player_id = 0;
 	/*
 	 A list of key value pairs that are stored for the player
 	 */
@@ -74,7 +74,7 @@ struct FLootLockerServerPlayerPersistentStorageEntry_NamedItems
 	 The player ID for which these items are being stored
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_id;
+	int Player_id = 0;
 	/*
 	 A list of key value pairs that are stored for the player
 	 */
@@ -93,7 +93,7 @@ struct FLootLockerServerPlayerPersistentStorageEntry_NamedStorage
 	 The player ID for which this storage applies
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_id;
+	int Player_id = 0;
 	/*
 	 A list of key value pairs that are stored for the player
 	 */
@@ -113,7 +113,7 @@ struct FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered
 	 The player ID for which this storage applies
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Player_id;
+	int Player_id = 0;
 	/*
 	 A list of key value pairs that are stored for the player
 	 */

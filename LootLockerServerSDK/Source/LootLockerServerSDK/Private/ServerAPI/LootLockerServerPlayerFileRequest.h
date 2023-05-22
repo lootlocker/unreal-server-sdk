@@ -23,47 +23,47 @@ struct FLootLockerServerPlayerFile
 	 The file ID
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Id;
+	int Id = 0;
 	/*
 	 The revision ID denoting which version of the file this is. The last 5 revisions are kept
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Revision_id;
+	FString Revision_id = "";
 	/*
 	 The name of the file
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Name;
+	FString Name = "";
 	/*
 	 The size of the file
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Size;
+	int Size = 0;
 	/*
 	 The purpose of the file
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Purpose;
+	FString Purpose = "";
 	/*
 	 Whether this file is readable for other players
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	bool Public;
+	bool Public = false;
 	/*
 	 The URL from where you can download the file
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Url;
+	FString Url = "";
 	/*
 	 A timestamp for when the url expires (stops being usable)
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Url_expires_at;
+	FString Url_expires_at = "";
 	/*
 	 A timestamp showing when the file was first created
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Created_at;	
+	FString Created_at = "";	
 };
 
 //==================================================
@@ -87,47 +87,47 @@ struct FLootLockerServerSinglePlayerFileResponse : public FLootLockerServerRespo
 	 The file ID
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Id;
+	int Id = 0;
 	/*
 	 The revision ID denoting which version of the file this is. The last 5 revisions are kept
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Revision_id;
+	FString Revision_id = "";
 	/*
 	 The name of the file
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Name;
+	FString Name = "";
 	/*
 	 The size of the file
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Size;
+	int Size = 0;
 	/*
 	 The purpose of the file
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Purpose;
+	FString Purpose = "";
 	/*
 	 Whether this file is readable for other players
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	bool Public;
+	bool Public = false;
 	/*
 	 The URL from where you can download the file
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Url;
+	FString Url = "";
 	/*
 	 A timestamp for when the url expires (stops being usable)
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Url_expires_at;
+	FString Url_expires_at = "";
 	/*
 	 A timestamp showing when the file was first created
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Created_at;
+	FString Created_at = "";
 };
 
 /**
