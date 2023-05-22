@@ -12,6 +12,7 @@
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerInventoryRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerDropTableRequest.h"
 
 class LOOTLOCKERSERVERSDK_API ULootLockerServerForCpp : public UObject
@@ -715,4 +716,81 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     static void LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest);
+
+    //==================================================
+    // Player Files https://ref.lootlocker.com/server-api/#player-files
+    //==================================================
+
+    /**
+     * List files currently associated with the specified player
+     *
+     * @param PlayerID ID of the player for whom to list files
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Get the specified file currently associated with the specified player
+     *
+     * @param PlayerID ID of the player for whom to get the specified file
+     * @param FileID ID of the file to get
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Delete the specified file currently associated with the specified player
+     * The response will be empty unless there's an error
+     *
+     * @param PlayerID ID of the player for whom to delete the specified file
+     * @param FileID ID of the file to delete
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Upload the specified file to the specified player
+     * Each file can be a maximum of 5MB and each player can have a maximum of 50 files
+     *
+     * @param PlayerID ID of the player for whom to upload the specified file
+     * @param FilePath The path on disk to the file you want to upload
+     * @param Purpose A tag specifying the purpose of this file
+     * @param IsPublic Whether this file is publically available (accessible for other players)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Upload the supplied raw data as a file to the specified player
+     * Each file can be a maximum of 5MB and each player can have a maximum of 50 files
+     *
+     * @param PlayerID ID of the player for whom to upload the specified file
+     * @param RawData The raw data to upload to a player file
+     * @param FileName The name to set for the file
+     * @param Purpose A tag specifying the purpose of this file
+     * @param IsPublic Whether this file is publically available (accessible for other players)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Update the specified file for the specified player with the supplied file content
+     *
+     * @param PlayerID ID of the player for whom to update the specified file
+     * @param FileID ID of the file to update
+     * @param FilePath The path on disk to the file you want to update the specified file with
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Update the specified file for the specified player with the supplied raw data
+     *
+     * @param PlayerID ID of the player for whom to update the specified file
+     * @param FileID ID of the file to update
+     * @param RawData The raw data to update the specified file with
+     * @param FileName The name to set for the file
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 };
