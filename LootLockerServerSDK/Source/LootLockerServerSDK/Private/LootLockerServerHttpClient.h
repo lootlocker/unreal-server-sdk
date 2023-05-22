@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "JsonObjectConverter.h"
 #include "LootLockerServerConfig.h"
@@ -28,6 +29,18 @@ public:
     	GetInstance().SendRequest_Internal(TemplatedHTTPRequest<ResponseType>::Make(Request, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
 	}
 
+    template<typename ResponseType, typename BlueprintDelegate, typename CppDelegate>
+    static void UploadFile(const FString& FilePath, const TMap<FString, FString> AdditionalFields, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const BlueprintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>()) 
+    {
+        GetInstance().UploadFile_Internal(FilePath, AdditionalFields, TemplatedHTTPRequest<ResponseType>::Make(FLootLockerServerEmptyRequest{}, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
+    }
+
+    template<typename ResponseType, typename BlueprintDelegate, typename CppDelegate>
+    static void UploadRawFile(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const BlueprintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>())
+    {
+        GetInstance().UploadRawFile_Internal(RawData, FileName, AdditionalFields, TemplatedHTTPRequest<ResponseType>::Make(FLootLockerServerEmptyRequest{}, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
+    }
+
 private:
     struct HTTPRequest
     {
@@ -40,9 +53,8 @@ private:
     static ULootLockerServerHttpClient* Instance;
     static bool ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful, FString RequestMethod, FString Endpoint, FString Data);
     void SendRequest_Internal(HTTPRequest InRequest) const;
-    void UploadFile_Internal(const FString& endPoint, const FString& requestType, const FString& FilePath, const TMap<FString, FString>
-        AdditionalFields, const FLootLockerServerResponseCallback& onCompleteRequest, TMap<FString, FString> customHeaders =
-        TMap<FString, FString>()) const;
+    void UploadFile_Internal(const FString& FilePath, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const;
+    void UploadRawFile_Internal(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const;
 
     template<typename ResponseType>
     struct TemplatedHTTPRequest

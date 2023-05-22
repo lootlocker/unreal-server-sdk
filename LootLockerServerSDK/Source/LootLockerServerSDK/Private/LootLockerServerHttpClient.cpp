@@ -2,6 +2,7 @@
 
 
 #include "LootLockerServerHttpClient.h"
+#include "Containers/Array.h"
 #include "JsonObjectConverter.h"
 #include "Interfaces/IHttpResponse.h"
 #include "Misc/FileHelper.h"
@@ -96,7 +97,27 @@ bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResp
 	return false;
 }
 
-void ULootLockerServerHttpClient::UploadFile_Internal(const FString& endPoint, const FString& requestType, const FString& FilePath, const TMap<FString, FString> AdditionalFields, const FLootLockerServerResponseCallback& onCompleteRequest, TMap<FString, FString> customHeaders /*= TMap<FString, FString>()*/) const
+void ULootLockerServerHttpClient::UploadFile_Internal(const FString& FilePath, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const
+{
+	TArray<uint8> RawData;
+	if (!FFileHelper::LoadFileToArray(RawData, *FilePath)) {
+		FLootLockerServerResponse FailResponse;
+		FailResponse.Success = false;
+		FailResponse.FullTextFromServer = FString::Format(TEXT("Could not read file {0}"), { FilePath });
+		FailResponse.Error = FailResponse.FullTextFromServer;
+
+		InRequest.OnCompleteRequest.ExecuteIfBound(FailResponse);
+		return;
+	}
+
+	int32 LastSlashPos;
+	FilePath.FindLastChar('/', LastSlashPos);
+	FString FileName = FilePath.RightChop(LastSlashPos + 1);
+
+	UploadRawFile_Internal(RawData, FileName, AdditionalFields, InRequest);
+}
+
+void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const
 {
 	FHttpModule* HttpModule = &FHttpModule::Get();
 
@@ -106,31 +127,19 @@ void ULootLockerServerHttpClient::UploadFile_Internal(const FString& endPoint, c
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = HttpModule->CreateRequest();
 #endif
 
-
-	Request->SetURL(endPoint);
+	Request->SetURL(*InRequest.EndPoint);
 
 	FString Boundary = "lootlockerboundary";
 
 	Request->SetHeader(TEXT("User-Agent"), TEXT("X-UnrealEngine-Agent"));
 	Request->SetHeader(TEXT("Content-Type"), TEXT("multipart/form-data; boundary=" + Boundary));
 
-	for (const TTuple<FString, FString>& CustomHeader : customHeaders)
+	for (const TTuple<FString, FString>& CustomHeader : InRequest.CustomHeaders)
 	{
 		Request->SetHeader(CustomHeader.Key, CustomHeader.Value);
 	}
 
-	Request->SetVerb(requestType);
-
-	TArray<uint8> UpFileRawData;
-	if (!FFileHelper::LoadFileToArray(UpFileRawData, *FilePath)) {
-		FLootLockerServerResponse FailResponse;
-		FailResponse.Success = false;
-		FailResponse.FullTextFromServer = FString::Format(TEXT("Could not read file {0}"), { FilePath });
-		FailResponse.Error = FailResponse.FullTextFromServer;
-
-		onCompleteRequest.ExecuteIfBound(FailResponse);
-		return;
-	}
+	Request->SetVerb(InRequest.RequestType);
 
 	TArray<uint8> Data;
 
@@ -154,19 +163,15 @@ void ULootLockerServerHttpClient::UploadFile_Internal(const FString& endPoint, c
 	FString FileHeader = (TEXT("Content-Type: application/octet-stream\r\n"));
 	FileHeader.Append(TEXT("Content-disposition: form-data; name=\"file\"; filename=\""));
 
-	int32 LastSlashPos;
-	FilePath.FindLastChar('/', LastSlashPos);
-	FString FileName = FilePath.RightChop(LastSlashPos + 1);
-
 	FileHeader.Append(FileName + "\"\r\n\r\n");
 
 	Data.Append((uint8*)TCHAR_TO_ANSI(*FileHeader), FileHeader.Len());
-	Data.Append(UpFileRawData);
+	Data.Append(RawData);
 	Data.Append((uint8*)TCHAR_TO_ANSI(*EndBoundary), EndBoundary.Len());
 
 	Request->SetContent(Data);
 
-	Request->OnProcessRequestComplete().BindLambda([onCompleteRequest, this, requestType, endPoint](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
+	Request->OnProcessRequestComplete().BindLambda([this, InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString ResponseString = Response->GetContentAsString();
 			FLootLockerServerResponse response;
@@ -174,7 +179,7 @@ void ULootLockerServerHttpClient::UploadFile_Internal(const FString& endPoint, c
 			response.FullTextFromServer = Response->GetContentAsString();
 			response.ServerCallStatusCode = Response->GetResponseCode();
 
-			response.Success = ResponseIsValid(Response, bWasSuccessful, requestType, endPoint, FString("Data Stream"));
+			response.Success = ResponseIsValid(Response, bWasSuccessful, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"));
 			if (!response.Success)
 			{
 				const TSharedPtr<FJsonObject> JsonObject = LootLockerServerUtilities::JsonObjectFromFString(response.FullTextFromServer);
@@ -184,7 +189,7 @@ void ULootLockerServerHttpClient::UploadFile_Internal(const FString& endPoint, c
 				response.Error = FString::Format(TEXT("Error {0} with message \"{1}\". Trace Id: {2}"), { ErrorFieldString, MessageFieldString, TraceIDFieldString });
 			}
 
-			onCompleteRequest.ExecuteIfBound(response);
+			InRequest.OnCompleteRequest.ExecuteIfBound(response);
 		});
 	Request->ProcessRequest();
 }
