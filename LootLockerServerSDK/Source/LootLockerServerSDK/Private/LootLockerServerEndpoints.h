@@ -30,7 +30,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
     ELootLockerServerHTTPMethod requestMethod;
 
-	FString GetRequestMethodString()
+	FString GetRequestMethodString() const
     {
         return GetDefault<ULootLockerServerConfig>()->GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(requestMethod));
     }
