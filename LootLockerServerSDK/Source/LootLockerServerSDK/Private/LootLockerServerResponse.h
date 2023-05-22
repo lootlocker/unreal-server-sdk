@@ -23,29 +23,29 @@ struct FLootLockerServerResponse
      True if the request succeeded
      */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
-	bool Success;
+	bool Success = false;
 	/*
 	 The status code of the response
 	 https://ref.lootlocker.com/server-api/#response-and-error-codes
 	 */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
-	int ServerCallStatusCode;
+	int ServerCallStatusCode = 0;
     /*
      The full response body as a string
      */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
-	FString FullTextFromServer;
+	FString FullTextFromServer = "";
 	/*
 	 A parsed error message, will be empty if the request succeeded
 	 https://ref.lootlocker.com/server-api/#response-and-error-codes
 	 */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
-	FString Error;
+	FString Error = "";
     /*
      An authenticated session token
      */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
-	FString Token;
+	FString Token = "";
 };
 
 //==================================================

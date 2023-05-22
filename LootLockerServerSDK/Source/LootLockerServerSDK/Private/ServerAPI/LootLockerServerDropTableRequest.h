@@ -24,26 +24,26 @@ struct FLootLockerServerDropTableItem
      The id of this drop table item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Id;
+    int Id = 0;
     /*
      The id of this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Asset_id;
+    int Asset_id = 0;
     /*
      Optional: The id of the particular asset variation of the asset that is in the drop table
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Asset_variation_id;
+    FString Asset_variation_id = "";
     /*
      Optional: The id of the particular rental option of the asset that is in the drop table
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Asset_rental_option_id;
+    FString Asset_rental_option_id = "";
     /*
      Optional: The full asset description
      */
@@ -62,26 +62,26 @@ struct FLootLockerServerPickedDropTableItem
      The id of this asset instance
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Instance_id;
+    int Instance_id = 0;
     /*
      Optional: The id of the particular asset variation of this asset instance
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Variation_id;
+    FString Variation_id = "";
     /*
      Optional: The id of the particular rental option of this asset instance
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Rental_option_id;
+    FString Rental_option_id = "";
     /*
      The quantity of this item that was picked
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Quantity;
+    int Quantity = 0;
     /*
      The full asset description
      */

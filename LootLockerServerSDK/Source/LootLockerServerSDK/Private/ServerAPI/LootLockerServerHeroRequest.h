@@ -23,42 +23,42 @@ struct FLootLockerServerPlayerHero
      The ID of this player hero
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Id;
+    int Id = 0;
     /*
      The ID of the hero itself
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Hero_id;
+    int Hero_id = 0;
     /*
      The asset instance id of the hero
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Instance_id;
+    int Instance_id = 0;
     /*
      The name of the hero
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Hero_name;
+    FString Hero_name = "";
     /*
      The name of the character
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Character_name;
+    FString Character_name = "";
     /*
      The name of the class that this hero belongs to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Class_name;
+    FString Class_name = "";
     /*
      Whether this is the players default hero
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Is_default;
+    bool Is_default = false;
     /*
      The asset variation id of the hero
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Asset_variation_id;
+    int Asset_variation_id = 0;
     /*
      The asset this hero refers to
      */
@@ -77,28 +77,28 @@ struct FLootLockerServerPlayerHeroItemRentalData
      Whether this item is a rental item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Is_rental;
+    bool Is_rental = false;
     /*
      Optional: How much time (in seconds) that is left before this rental item expires
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Time_left;
+    FString Time_left = "";
     /*
      Optional: Total duration (in seconds) that this rental item is rented for
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Duration;
+    FString Duration = "";
     /*
      Optional: Whether this rental item is currently active
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it has a valid value and then you can (in code) use .ToBool() or (in blueprint) use a case insensitive string comparison for "true"
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Is_active;
+    FString Is_active = "";
 };
 
 /**
@@ -112,26 +112,26 @@ struct FLootLockerServerPlayerHeroInventoryItem
      The instance id of this item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Instance_id;
+    int Instance_id = 0;
     /*
      Optional: This item's variation id
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Variation_id;
+    FString Variation_id = "";
     /*
      Optional: This item's rental option id
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Rental_option_id;
+    FString Rental_option_id = "";
     /*
      The acquisition source for this item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Acquisition_source;
+    FString Acquisition_source = "";
     /*
      The asset this item refers to
      */
@@ -157,17 +157,17 @@ struct FLootLockerServerPlayerHeroLoadoutItem
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Variation_id;
+    FString Variation_id = "";
     /*
      The instance id of this item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Instance_id;
+    int Instance_id = 0;
     /*
      The time that this item was mounted
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Mounted_at;
+    FString Mounted_at = "";
     /*
      The asset this item refers to
      */
@@ -195,7 +195,7 @@ struct FLootLockerServerEquipAssetToHeroLoadoutRequest
      The id of the asset instance to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Instance_id;
+    int Instance_id = 0;
 };
 
 /**
@@ -209,12 +209,12 @@ struct FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest
      The id of the asset to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Asset_id;
+    int Asset_id = 0;
     /*
      The asset variation id of the asset variation to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Asset_variation_id;
+    int Asset_variation_id = 0;
 };
 
 /**
@@ -228,12 +228,12 @@ struct FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest
      The id of the asset to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Asset_id;
+    int Asset_id = 0;
     /*
      The rental option id of the rental option to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Rental_option_id;
+    int Rental_option_id = 0;
 };
 
 //==================================================
@@ -267,7 +267,7 @@ struct FLootLockerServerGetHeroInventoryResponse : public FLootLockerServerRespo
      The total number of items in this player heroes inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Total;
+    int Total = 0;
     /*
      List of items in this player heroes inventory according to the requested pagination
      */

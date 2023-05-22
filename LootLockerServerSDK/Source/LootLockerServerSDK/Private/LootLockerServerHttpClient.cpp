@@ -50,7 +50,7 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 
 
 #if WITH_EDITOR
-	FString DelimitedHeaders;
+	FString DelimitedHeaders = "";
 	TArray<FString> AllHeaders = Request->GetAllHeaders();
 	for (auto Header : AllHeaders)
 	{

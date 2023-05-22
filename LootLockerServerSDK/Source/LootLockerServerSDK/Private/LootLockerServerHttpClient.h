@@ -44,9 +44,9 @@ public:
 private:
     struct HTTPRequest
     {
-        FString EndPoint;
-        FString RequestType;
-        FString Data;
+        FString EndPoint = "";
+        FString RequestType = "";
+        FString Data = "";
         FLootLockerServerResponseCallback OnCompleteRequest;
         TMap<FString, FString> CustomHeaders;
     };
@@ -97,7 +97,7 @@ private:
         template<typename RequestType, typename BluePrintDelegate, typename CppDelegate>
         static HTTPRequest Make(RequestType RequestStruct, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const BluePrintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = ResponseInspector<ResponseType>::FServerResponseInspectorCallback::CreateLambda([](const ResponseType& Ignored) {}), TMap<FString, FString> CustomHeaders = TMap<FString, FString>())
         {
-            FString ContentString;
+            FString ContentString = "";
 #if ENGINE_MAJOR_VERSION < 5
             FJsonObjectConverter::UStructToJsonObjectString(RequestType::StaticStruct(), &RequestStruct, ContentString, 0, 0);
             if (IsEmptyJsonString(ContentString))
