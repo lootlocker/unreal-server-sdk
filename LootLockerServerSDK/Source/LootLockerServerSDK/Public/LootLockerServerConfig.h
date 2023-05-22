@@ -15,14 +15,14 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerConfig : public UObject
 	GENERATED_BODY()
 public:
 	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	FString LootLockerServerKey;
+	FString LootLockerServerKey = "";
 	UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer", Meta = (EditCondition = "IsLegacyKey", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "WARNING:"), Transient)
 	FString LegacyKeyWarning = "You are using a legacy API Key, please generate a new one here: https://console.lootlocker.com/settings/api-keys";
 	// Domain Key used to talk to LootLocker. The Domain key can be found in `Settings > API Keys` in the Web Console: https://console.lootlocker.com/settings/api-keys
 	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	FString LootLockerDomainKey;
+	FString LootLockerDomainKey = "";
 	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	FString GameVersion;
+	FString GameVersion = "";
 	UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Meta = (EditCondition = "false", EditConditionHides), Category = "LootLockerServer")
 	FString LootLockerVersion = "2021-06-01";
 
@@ -50,5 +50,5 @@ public:
 	}
 private:
 	UPROPERTY(Config, VisibleInstanceOnly, Meta = (EditCondition = "false", EditConditionHides), Transient, Category = "LootLockerServer")
-	bool IsLegacyKey;
+	bool IsLegacyKey = false;
 };

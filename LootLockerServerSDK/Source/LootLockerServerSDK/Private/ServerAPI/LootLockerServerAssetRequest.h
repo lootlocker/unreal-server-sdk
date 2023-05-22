@@ -20,12 +20,12 @@ struct FLootLockerServerAssetStorageKeyValueSet
 	 The key for this set, used to access the value
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Key;
+	FString Key = "";
 	/*
 	 The Value of this set, this is the data
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Value;
+	FString Value = "";
 };
 
 USTRUCT(BlueprintType)
@@ -36,17 +36,17 @@ struct FLootLockerServerAssetInstanceStorageKeyValueSet
 	 The id of this key value pair
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int Id;
+	int Id = 0;
 	/*
 	 The key for this set, used to access the value
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Key;
+	FString Key = "";
 	/*
 	 The Value of this set, this is the data
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Value;
+	FString Value = "";
 };
 
 /**
@@ -60,7 +60,7 @@ struct FLootLockerServerAssetRentalOptionLinks
      URL to storage from where you can download this rental option's thumbnail
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Thumbnail;
+    FString Thumbnail = "";
 };
 
 /**
@@ -74,31 +74,31 @@ struct FLootLockerServerAssetRentalOption
      The id of this rental option
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Id;
+    int Id = 0;
     /*
      The name of this rental option
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Name;
+    FString Name = "";
     /*
      Optional: Total duration (in seconds) that this rental item is rented for
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Duration;
+    FString Duration = "";
     /*
      The price of this rental option
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Price;
+    int Price = 0;
     /*
      Optional: A sales price of this rental option. If it is not null, then there is a sale for this item and this price should be used instead of Price
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Sales_price;
+    FString Sales_price = "";
     /*
      Collection of links related to this rental option
      */
@@ -117,17 +117,17 @@ struct FLootLockerServerAssetRarity
      The name of the rarity this Asset is classed as
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Name;
+    FString Name = "";
     /*
      The short the rarity this Asset is classed as
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Short_name;
+    FString Short_name = "";
     /*
      The color for this rarity class
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Color;
+    FString Color = "";
 };
 
 /**
@@ -141,7 +141,7 @@ struct FLootLockerServerAssetFile
      The url where this file can be downloaded from
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Url;
+    FString Url = "";
     /*
      A list of tags applied to this file
      */
@@ -160,12 +160,12 @@ struct FLootLockerServerAssetCandidateInformation
      The id of the player who created this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Created_by_player_id;
+    int Created_by_player_id = 0;
     /*
      The UID of the player who created this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Created_by_player_uid;
+    FString Created_by_player_uid = "";
 };
 
 /**
@@ -179,7 +179,7 @@ struct FLootLockerServerAssetVariationLinks
      URL to storage from where you can download this asset variation's thumbnail
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Thumbnail;
+    FString Thumbnail = "";
 };
 
 /**
@@ -193,17 +193,17 @@ struct FLootLockerServerAssetVariationProperty
      Path on disk (developer configured) to this asset's material
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Material_path;
+    FString Material_path = "";
     /*
      Path on disk (developer configured) to this asset's binding
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Binding_path;
+    FString Binding_path = "";
     /*
      Id of the bone this property applies to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Bone_id;
+    int Bone_id = 0;
 };
 
 /**
@@ -217,17 +217,17 @@ struct FLootLockerServerAssetHeroEquipException
      Whether this hero can equip this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Can_equip;
+    bool Can_equip = false;
     /*
      The id of the hero that this exception applies to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Hero_id;
+    int Hero_id = 0;
     /*
      The name of the hero that this exception applies to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Hero_name;
+    FString Hero_name = "";
 };
 
 /**
@@ -241,22 +241,22 @@ struct FLootLockerServerAssetVariation
      The id of this asset variation
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Id;
+    int Id = 0;
     /*
      The name of this asset variation
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Name;
+    FString Name = "";
     /*
      The primary color of this asset variation
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Primary_color;
+    FString Primary_color = "";
     /*
      The secondary color of this asset variation
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Secondary_color;
+    FString Secondary_color = "";
     /*
      List of properties configured for this asset variation
      */
@@ -280,7 +280,7 @@ struct FLootLockerServerAssetLinks
      URL to storage from where you can download this rental option's thumbnail
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Thumbnail;
+    FString Thumbnail = "";
 };
 
 /**
@@ -294,54 +294,54 @@ struct FLootLockerServerAsset
      The id of this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Id;
+    int Id = 0;
     /*
      The uuid of this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Uuid;
+    FString Uuid = "";
     /*
      The name of this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Name;
+    FString Name = "";
     /*
      Whether this assset is active
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Active;
+    bool Active = false;
     /*
      The price of this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Price;
+    int Price = 0;
     /*
      Optional: A sales price of this asset. If it is not null, then there is a sale for this item and this price should be used instead of Price
     
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Sales_price;
+    FString Sales_price = "";
     /*
      A string representation of how to display the price in the game
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Display_price;
+    FString Display_price = "";
     /*
      Path of the thumbnail to use in the shop for this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Shop_thumbnail;
+    FString Shop_thumbnail = "";
     /*
      The name of the context this asset lives within
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Context;
+    FString Context = "";
     /*
      The id of the context this asset lives within
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Context_id;
+    int Context_id = 0;
     /*
      List of the character classes that this asset applies to
      */
@@ -351,32 +351,32 @@ struct FLootLockerServerAsset
      Whether this asset is detachable
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Detachable;
+    bool Detachable = false;
     /*
      Whether this asset is purchasable
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Purchasable;
+    bool Purchasable = false;
     /*
      Whether this asset is initially purchaseble
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Initially_purchasable;
+    bool Initially_purchasable = false;
     /*
      Timestamp of when this asset was last updated
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Updated;
+    FString Updated = "";
     /*
      Optional: Timestamp of when this asset was marked new
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Marked_new;
+    FString Marked_new = "";
     /*
      The default variation id to use for this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Default_variation_id;
+    int Default_variation_id = 0;
     /*
      List of variations applicable to this variation
      */
@@ -386,24 +386,24 @@ struct FLootLockerServerAsset
      Description for this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Description;
+    FString Description = "";
     /*
      Whether this asset is featured
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Featured;
+    bool Featured = false;
     /*
      Whether this asset is context locked
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Context_locked;
+    bool Context_locked = false;
     /*
      Optional: Whether this asset unlocks the context it refers to
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it has a valid value and then you can (in code) use .ToBool() or (in blueprint) use a case insensitive string comparison for "true"
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Unlocks_context;
+    FString Unlocks_context = "";
     /*
      The rarity of this asset
      */
@@ -413,17 +413,17 @@ struct FLootLockerServerAsset
      Whether this asset is considered popular
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Popular;
+    bool Popular = false;
     /*
      The popularity score of this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Popularity_score;
+    int Popularity_score = 0;
     /*
      Whether this asset is a unique instance
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Unique_instance;
+    bool Unique_instance = false;
     /*
      List of rental options configured for this asset 
      */
@@ -452,7 +452,7 @@ struct FLootLockerServerAsset
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Drop_table_max_picks;
+    FString Drop_table_max_picks = "";
     /*
      Links related to this asset
      */
@@ -485,12 +485,12 @@ struct FLootLockerServerCreateAssetInstanceKeyValuePairRequest
 	 The key for this set, used to access the value
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Key;
+	FString Key = "";
 	/*
 	 The Value of this set, this is the data
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	FString Value;
+	FString Value = "";
 };
 
 /**
@@ -523,7 +523,7 @@ struct FLootLockerServerGetAssetsResponse : public FLootLockerServerResponse
      The total number of assets present for this game
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Total;
+    int Total = 0;
     /*
      List of assets returned for this specific request, in accordance with the supplied pagination options
      */
