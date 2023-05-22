@@ -6,6 +6,7 @@
 #include "ServerAPI/LootLockerServerDropTableRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
+#include "LootLockerServerLogger.h"
 
 //Authentication
 void ULootLockerServerForCpp::StartSession(const FLootLockerServerAuthResponseDelegate& OnCompleteRequest)

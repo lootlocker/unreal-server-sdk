@@ -67,7 +67,7 @@ struct FLootLockerServerPlayerNameLookupPair
 	 The type of id that you want to look up
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	ELootLockerServerPlayerNameLookupIdType IdType;
+	ELootLockerServerPlayerNameLookupIdType IdType = ELootLockerServerPlayerNameLookupIdType::Player_id;
 	/*
 	 The id you want to look up
 	 */

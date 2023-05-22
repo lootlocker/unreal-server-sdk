@@ -7,6 +7,7 @@
 #include "Interfaces/IHttpResponse.h"
 #include "Misc/FileHelper.h"
 #include "Utils/LootLockerServerUtilities.h"
+#include "LootLockerServerLogger.h"
 
 ULootLockerServerHttpClient* ULootLockerServerHttpClient::Instance = nullptr;
 
@@ -48,16 +49,13 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 	Request->SetVerb(InRequest.RequestType);
 	Request->SetContentAsString(InRequest.Data);
 
-
-#if WITH_EDITOR
 	FString DelimitedHeaders = "";
 	TArray<FString> AllHeaders = Request->GetAllHeaders();
 	for (auto Header : AllHeaders)
 	{
-        DelimitedHeaders += TEXT("____") + Header + TEXT("\n");
+        DelimitedHeaders += TEXT("    ") + Header + TEXT("\n");
 	}
-	UE_LOG(LogLootLockerServerSDK, Log, TEXT("Request to endpoint %s\n__With headers %s\n__And with content: %s"), *Request->GetURL(), *DelimitedHeaders, *InRequest.Data);
-#endif //WITH_EDITOR
+	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("Request to endpoint {0}\n  With headers {1}\n  And with content: {2}"), { *Request->GetURL(), *DelimitedHeaders, *InRequest.Data }));
 
 	Request->OnProcessRequestComplete().BindLambda([InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
@@ -78,23 +76,6 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 			InRequest.OnCompleteRequest.ExecuteIfBound(response);
 		});
 	Request->ProcessRequest();
-}
-
-bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful, FString RequestMethod, FString Endpoint, FString Data)
-{
-	if (!bWasSuccessful || !InResponse.IsValid())
-		return false;
-
-	if (EHttpResponseCodes::IsOk(InResponse->GetResponseCode()))
-	{
-		return true;
-	}
-
-	UE_LOG(LogLootLockerServerSDK, Warning, TEXT("Http Response returned error code: %d"), InResponse->GetResponseCode());
-	UE_LOG(LogLootLockerServerSDK, Warning, TEXT("Http Response content:\n%s"), *InResponse->GetContentAsString());
-	UE_LOG(LogLootLockerServerSDK, Warning, TEXT("Http Request endpoint: %s to %s"), *RequestMethod, *Endpoint);
-	UE_LOG(LogLootLockerServerSDK, Warning, TEXT("Http Request data: %s"), *Data);
-	return false;
 }
 
 void ULootLockerServerHttpClient::UploadFile_Internal(const FString& FilePath, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const
@@ -171,6 +152,14 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 
 	Request->SetContent(Data);
 
+	FString DelimitedHeaders = "";
+	TArray<FString> AllHeaders = Request->GetAllHeaders();
+	for (auto Header : AllHeaders)
+	{
+        DelimitedHeaders += TEXT("    ") + Header + TEXT("\n");
+	}
+	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("Request to endpoint {0}\n  With headers {1}\n  And with content: {2}"), { Request->GetURL(), DelimitedHeaders, FString("File Content") }));
+
 	Request->OnProcessRequestComplete().BindLambda([this, InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
 			const FString ResponseString = Response->GetContentAsString();
@@ -192,4 +181,22 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 			InRequest.OnCompleteRequest.ExecuteIfBound(response);
 		});
 	Request->ProcessRequest();
+}
+
+bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful, FString RequestMethod, FString Endpoint, FString Data)
+{
+	if (!bWasSuccessful || !InResponse.IsValid())
+		return false;
+
+	if (EHttpResponseCodes::IsOk(InResponse->GetResponseCode()))
+	{
+		return true;
+	}
+
+	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, FString::Format(TEXT("Http Request was a {0} to {1}"), { *RequestMethod, *Endpoint }));
+	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, FString::Format(TEXT("Http Request data: {0}"), { *Data }));
+	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, FString::Format(TEXT("Http Response returned error code: {0}"), { InResponse->GetResponseCode() }));
+	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, FString::Format(TEXT("Http Response content:\n{0}"), { *InResponse->GetContentAsString() }));
+
+	return false;
 }

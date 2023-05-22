@@ -28,7 +28,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
     FString endpoint = "";
     UPROPERTY(BlueprintReadWrite, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-    ELootLockerServerHTTPMethod requestMethod;
+    ELootLockerServerHTTPMethod requestMethod = ELootLockerServerHTTPMethod::GET;
 
 	FString GetRequestMethodString() const
     {

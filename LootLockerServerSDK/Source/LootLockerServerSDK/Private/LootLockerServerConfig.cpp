@@ -2,8 +2,6 @@
 
 #include "LootLockerServerConfig.h"
 
-DEFINE_LOG_CATEGORY(LogLootLockerServerSDK);
-
 FString ULootLockerServerConfig::GetEnum(const TCHAR* Enum, int32 EnumValue)
 {
 #if ENGINE_MAJOR_VERSION <= 4 && ENGINE_MINOR_VERSION <= 27
