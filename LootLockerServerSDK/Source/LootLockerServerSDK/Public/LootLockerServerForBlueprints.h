@@ -14,6 +14,7 @@
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerDropTableRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPurchaseRequest.h"
 
 #include "LootLockerServerForBlueprints.generated.h"
 
@@ -864,4 +865,52 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
     static void UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Purchases https://ref.lootlocker.com/server-api/#purchases
+    //==================================================
+
+    /**
+     * Check the status of the specified purchase for the specified player
+     * https://ref.lootlocker.com/server-api/#check-status-of-player-purchase-by-id
+     *
+     * @param PlayerID ID of the player for whom to check the specified player
+     * @param PurchaseID The id of the purchase to check
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases")
+    static void CheckPurchaseStatusForPlayerByID(int PlayerID, int PurchaseID, const FLootLockerServerPurchaseStatusResponseBP& OnCompletedRequest);
+
+    /**
+     * Check the status of the specified purchase for the specified player using the platform transaction id
+     * https://ref.lootlocker.com/server-api/#check-status-of-player-purchase-by-platform-transaction-id
+     *
+     * @param PlayerID ID of the player for whom to check the specified player
+     * @param PlatformTransactionID The transaction id of the purchase from a platform to check
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases")
+    static void CheckPurchaseStatusForPlayerByPlatformTransactionID(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusResponseBP& OnCompletedRequest);
+
+    /**
+     * Check the status of the specified purchase for the specified player but include the related products in the response
+     * https://ref.lootlocker.com/server-api/#check-status-of-player-purchase-by-id
+     *
+     * @param PlayerID ID of the player for whom to check the specified player
+     * @param PurchaseID The id of the purchase to check
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases")
+    static void CheckPurchaseStatusForPlayerByIDWith_IncludeProducts(int PlayerID, int PurchaseID, const FLootLockerServerPurchaseStatusWithProductsResponseBP& OnCompletedRequest);
+
+    /**
+     * Check the status of the specified purchase for the specified player but include the related products in the response
+     * https://ref.lootlocker.com/server-api/#check-status-of-player-purchase-by-platform-transaction-id
+     *
+     * @param PlayerID ID of the player for whom to check the specified player
+     * @param PlatformTransactionID The transaction id of the purchase from a platform to check
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases")
+    static void CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusWithProductsResponseBP& OnCompletedRequest);
 };
