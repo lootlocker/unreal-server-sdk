@@ -108,8 +108,8 @@ public:
     static FLootLockerServerEndPoint EquipAssetToHeroLoadout;
     static FLootLockerServerEndPoint UnequipAssetFromHeroLoadout;
     
-    //TODO: Remove
-    static FLootLockerServerEndPoint TBD;
+    // Purchases
+    static FLootLockerServerEndPoint CheckPurchaseStatus;
 
 private:
     static FString GameBaseUrl;

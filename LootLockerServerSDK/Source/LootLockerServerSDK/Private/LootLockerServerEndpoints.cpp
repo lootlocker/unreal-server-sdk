@@ -75,8 +75,8 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::GetHeroLoadout = InitEndpo
 FLootLockerServerEndPoint ULootLockerServerEndpoints::EquipAssetToHeroLoadout = InitEndpoint("player/{0}/heroes/{1}/loadout", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::UnequipAssetFromHeroLoadout = InitEndpoint("player/{0}/heroes/{1}/loadout/{2}", ELootLockerServerHTTPMethod::GET);
 
-// TODO: Remove
-FLootLockerServerEndPoint ULootLockerServerEndpoints::TBD = InitEndpoint("tbd", ELootLockerServerHTTPMethod::GET);
+// Purchases
+FLootLockerServerEndPoint ULootLockerServerEndpoints::CheckPurchaseStatus = InitEndpoint("player/{0}/purhcase/{1}", ELootLockerServerHTTPMethod::GET);
 
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method)
 {
