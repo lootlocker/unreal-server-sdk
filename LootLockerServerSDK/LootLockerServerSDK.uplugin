@@ -8,7 +8,7 @@
     "DocsURL": "https://docs.lootlocker.com/",
     "SupportURL": "https://discord.lootlocker.io/",
     "Category": "LootLocker",
-    "Description": "LootLocker is a game backend-as-a-service that unlocks cross-platform systems so you can build, ship, and run your best games. For Unreal Engine 4.24 and up. Current SDK version: 2.0.0",
+    "Description": "LootLocker is a game backend-as-a-service that unlocks cross-platform systems so you can build, ship, and run your best games. For Unreal Engine 4.27 and up.",
     "MarketplaceURL": "",
     "Installed": false,
     "IsExperimentalVersion": false,
