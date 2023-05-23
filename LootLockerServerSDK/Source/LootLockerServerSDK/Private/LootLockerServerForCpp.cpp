@@ -7,6 +7,7 @@
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
 #include "LootLockerServerLogger.h"
+#include "ServerAPI/LootLockerServerPurchaseRequest.h"
 
 //Authentication
 void ULootLockerServerForCpp::StartSession(const FLootLockerServerAuthResponseDelegate& OnCompleteRequest)
@@ -343,30 +344,58 @@ void ULootLockerServerForCpp::LookupPlayerNames(TArray<FLootLockerServerPlayerNa
 }
 
 // Player Files
-void ULootLockerServerForCpp::ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseDelegate& OnCompletedRequest) {
+void ULootLockerServerForCpp::ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseDelegate& OnCompletedRequest)
+{
 	ULootLockerServerPlayerFileRequest::ListFilesForPlayer(PlayerID, FLootLockerServerPlayerFileListResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest) {
+void ULootLockerServerForCpp::GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
 	ULootLockerServerPlayerFileRequest::GetFileForPlayerByID(PlayerID, FileID, FLootLockerServerSinglePlayerFileResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest) {
+void ULootLockerServerForCpp::DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest)
+{
 	ULootLockerServerPlayerFileRequest::DeleteFileForPlayerByID(PlayerID, FileID, FLootLockerServerPlayerFileDeleteResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest) {
+void ULootLockerServerForCpp::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
 	ULootLockerServerPlayerFileRequest::UploadFileForPlayer(PlayerID, FilePath, Purpose, IsPublic, FLootLockerServerSinglePlayerFileResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest) {
+void ULootLockerServerForCpp::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
 	ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, FLootLockerServerSinglePlayerFileResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest) {
+void ULootLockerServerForCpp::UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
 	ULootLockerServerPlayerFileRequest::UpdateFileForPlayer(PlayerID, FileID, FilePath, FLootLockerServerSinglePlayerFileResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest) {
+void ULootLockerServerForCpp::UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
 	ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(PlayerID, FileID, RawData, FileName, FLootLockerServerSinglePlayerFileResponseBP(), OnCompletedRequest);
+}
+
+// Purchases
+void ULootLockerServerForCpp::CheckPurchaseStatusForPlayerByID(int PlayerID, int PurchaseID, const FLootLockerServerPurchaseStatusResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByID(PlayerID, PurchaseID, FLootLockerServerPurchaseStatusResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::CheckPurchaseStatusForPlayerByPlatformTransactionID(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByPlatformTransactionID(PlayerID, PlatformTransactionID, FLootLockerServerPurchaseStatusResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::CheckPurchaseStatusForPlayerByIDWith_IncludeProducts(int PlayerID, int PurchaseID, const FLootLockerServerPurchaseStatusWithProductsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByIDWith_IncludeProducts(PlayerID, PurchaseID, FLootLockerServerPurchaseStatusWithProductsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusWithProductsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(PlayerID, PlatformTransactionID, FLootLockerServerPurchaseStatusWithProductsResponseBP(), OnCompletedRequest);
 }
