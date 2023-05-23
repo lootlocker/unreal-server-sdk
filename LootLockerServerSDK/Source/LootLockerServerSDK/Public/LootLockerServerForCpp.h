@@ -808,6 +808,7 @@ public:
      * @param PurchaseID The id of the purchase to check
      * @param OnCompletedRequest Delegate for handling the server response
      */
+    [[deprecated("This method has been deprecated. We will soon release an updated purchase system, so please refrain from using this method.")]]
     static void CheckPurchaseStatusForPlayerByID(int PlayerID, int PurchaseID, const FLootLockerServerPurchaseStatusResponseDelegate& OnCompletedRequest);
 
     /**
@@ -818,6 +819,7 @@ public:
      * @param PlatformTransactionID The transaction id of the purchase from a platform to check
      * @param OnCompletedRequest Delegate for handling the server response
      */
+    [[deprecated("This method has been deprecated. We will soon release an updated purchase system, so please refrain from using this method.")]]
     static void CheckPurchaseStatusForPlayerByPlatformTransactionID(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusResponseDelegate& OnCompletedRequest);
 
     /**
@@ -828,6 +830,7 @@ public:
      * @param PurchaseID The id of the purchase to check
      * @param OnCompletedRequest Delegate for handling the server response
      */
+    [[deprecated("This method has been deprecated. We will soon release an updated purchase system, so please refrain from using this method.")]]
     static void CheckPurchaseStatusForPlayerByIDWith_IncludeProducts(int PlayerID, int PurchaseID, const FLootLockerServerPurchaseStatusWithProductsResponseDelegate& OnCompletedRequest);
 
     /**
@@ -838,5 +841,6 @@ public:
      * @param PlatformTransactionID The transaction id of the purchase from a platform to check
      * @param OnCompletedRequest Delegate for handling the server response
      */
+    [[deprecated("This method has been deprecated. We will soon release an updated purchase system, so please refrain from using this method.")]]
     static void CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusWithProductsResponseDelegate& OnCompletedRequest);
 };
