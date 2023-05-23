@@ -878,7 +878,7 @@ public:
      * @param PurchaseID The id of the purchase to check
      * @param OnCompletedRequest Delegate for handling the server response
      */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases")
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases", meta = (DeprecatedFunction, DeprecationMessage = "This method has been deprecated. We will soon release an updated purchase system, so please refrain from using this method."))
     static void CheckPurchaseStatusForPlayerByID(int PlayerID, int PurchaseID, const FLootLockerServerPurchaseStatusResponseBP& OnCompletedRequest);
 
     /**
@@ -889,7 +889,7 @@ public:
      * @param PlatformTransactionID The transaction id of the purchase from a platform to check
      * @param OnCompletedRequest Delegate for handling the server response
      */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases")
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases", meta = (DeprecatedFunction, DeprecationMessage = "This method has been deprecated. We will soon release an updated purchase system, so please refrain from using this method."))
     static void CheckPurchaseStatusForPlayerByPlatformTransactionID(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusResponseBP& OnCompletedRequest);
 
     /**
@@ -900,7 +900,7 @@ public:
      * @param PurchaseID The id of the purchase to check
      * @param OnCompletedRequest Delegate for handling the server response
      */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases")
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases", meta = (DeprecatedFunction, DeprecationMessage = "This method has been deprecated. We will soon release an updated purchase system, so please refrain from using this method."))
     static void CheckPurchaseStatusForPlayerByIDWith_IncludeProducts(int PlayerID, int PurchaseID, const FLootLockerServerPurchaseStatusWithProductsResponseBP& OnCompletedRequest);
 
     /**
@@ -911,6 +911,6 @@ public:
      * @param PlatformTransactionID The transaction id of the purchase from a platform to check
      * @param OnCompletedRequest Delegate for handling the server response
      */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases")
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases", meta = (DeprecatedFunction, DeprecationMessage = "This method has been deprecated. We will soon release an updated purchase system, so please refrain from using this method."))
     static void CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusWithProductsResponseBP& OnCompletedRequest);
 };
