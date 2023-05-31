@@ -13,16 +13,10 @@ void ULootLockerServerForBlueprints::MaintainSession(const FLootLockerServerMain
 
 void ULootLockerServerForBlueprints::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequest)
 {
-	const FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest
-	{
-        { LeaderboardKey,
-            Name,
-            DirectionMethod,
-            EnableGameApiWrites,
-            OverwriteScoreOnSubmit },
-		Type,
-		HasMetadata,
-	};
+	FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest(LeaderboardKey, Name, DirectionMethod, EnableGameApiWrites, OverwriteScoreOnSubmit);
+	CreateLeaderboardRequest.Type = Type;
+	CreateLeaderboardRequest.Has_metadata = HasMetadata;
+
 	ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, OnCompletedRequest);
 }
 
@@ -82,7 +76,7 @@ void ULootLockerServerForBlueprints::InvokeTriggerForPlayer(FString TriggerName,
 
 void ULootLockerServerForBlueprints::GetPersistentStorageForPlayer(int PlayerID, const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompletedRequest)
 {
-	ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray{ PlayerID }, OnCompletedRequest);
+	ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int>{ PlayerID }, OnCompletedRequest);
 }
 
 void ULootLockerServerForBlueprints::GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompletedRequest)

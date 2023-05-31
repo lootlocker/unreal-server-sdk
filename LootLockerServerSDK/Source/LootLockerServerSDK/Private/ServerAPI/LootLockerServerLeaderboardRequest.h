@@ -150,6 +150,24 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerLeaderboardBaseRequest
 {
     GENERATED_BODY()
+    // Constructor
+public:
+    FLootLockerServerLeaderboardBaseRequest(const FString& InKey,
+        const FString& InName,
+        ELootLockerServerLeaderboardDirection InDirectionMethod,
+        bool InEnableGameApiWrites,
+        bool InOverwriteScoreOnSubmit)
+        : Key(InKey),
+        Name(InName),
+        Direction_method(InDirectionMethod),
+        Enable_game_api_writes(InEnableGameApiWrites),
+        Overwrite_score_on_submit(InOverwriteScoreOnSubmit)
+    {
+    }
+
+    FLootLockerServerLeaderboardBaseRequest()
+    {
+	}
     /*
     The unique key of the leaderboard
      */
@@ -180,7 +198,23 @@ struct FLootLockerServerLeaderboardBaseRequest
 USTRUCT(BlueprintType)
 struct FLootLockerServerCreateLeaderboardRequest : public FLootLockerServerLeaderboardBaseRequest
 {
+
     GENERATED_BODY()
+    // Constructor
+public:
+    FLootLockerServerCreateLeaderboardRequest(const FString& InKey,
+        const FString& InName,
+        ELootLockerServerLeaderboardDirection InDirectionMethod,
+        bool InEnableGameApiWrites,
+        bool InOverwriteScoreOnSubmit)
+        : FLootLockerServerLeaderboardBaseRequest(InKey, InName, InDirectionMethod, InEnableGameApiWrites, InOverwriteScoreOnSubmit)
+    {
+    }
+
+    FLootLockerServerCreateLeaderboardRequest()
+    {
+	}
+    
     /*
     The type of leaderboard to create
      */
@@ -197,6 +231,19 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerUpdateLeaderboardRequest : public FLootLockerServerLeaderboardBaseRequest
 {
 	GENERATED_BODY()
+public:
+    FLootLockerServerUpdateLeaderboardRequest(const FString& InKey,
+        const FString& InName,
+        ELootLockerServerLeaderboardDirection InDirectionMethod,
+        bool InEnableGameApiWrites,
+        bool InOverwriteScoreOnSubmit)
+        : FLootLockerServerLeaderboardBaseRequest(InKey, InName, InDirectionMethod, InEnableGameApiWrites, InOverwriteScoreOnSubmit)
+    {
+    }
+
+    FLootLockerServerUpdateLeaderboardRequest()
+    {
+    }
 };
 
 //==================================================

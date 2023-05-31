@@ -16,6 +16,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerPlayerPersistentStorageKeyValueSet
 {
 	GENERATED_BODY()
+		FLootLockerServerPlayerPersistentStorageKeyValueSet() {}
+
+	FLootLockerServerPlayerPersistentStorageKeyValueSet(const FString& InKey, const FString& InValue, bool InIsPublic)
+		: Key(InKey), Value(InValue), Is_public(InIsPublic)
+	{
+	}
 	/*
 	 The key for this set, used to access the value
 	 */
@@ -37,6 +43,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder : public FLootLockerServerPlayerPersistentStorageKeyValueSet
 {
 	GENERATED_BODY()
+		FLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder() : Order(0) {}
+
+	FLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder(const FString& InKey, const FString& InValue, bool InIsPublic, int32 InOrder)
+		: FLootLockerServerPlayerPersistentStorageKeyValueSet(InKey, InValue, InIsPublic), Order(InOrder)
+	{
+	}
 	/*
 	 Used to de-duplicate keys. Can be any sequence of numbers you like. The later keys just need to have a higher number than the early ones. 
 	 */
