@@ -78,6 +78,14 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::UnequipAssetFromHeroLoadou
 // Purchases
 FLootLockerServerEndPoint ULootLockerServerEndpoints::CheckPurchaseStatus = InitEndpoint("player/{0}/purhcase/{1}", ELootLockerServerHTTPMethod::GET);
 
+// Player Progressions
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetProgressionsForPlayer = InitEndpoint("players/{0}/progressions", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetProgressionsByKeyForPlayer = InitEndpoint("players/{0}/progressions/{1}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::AddPointsToProgressionForPlayer = InitEndpoint("players/{0}/progressions/{1}/points/add", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::SubtractPointsFromProgressionForPlayer = InitEndpoint("players/{0}/progressions/{1}/points/subtract", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ResetProgressionForPlayer = InitEndpoint("players/{0}/progressions/{1}/reset", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteProgressionForPlayer = InitEndpoint("players/{0}/progressions/{1}", ELootLockerServerHTTPMethod::DELETE);
+
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method)
 {
 	FLootLockerServerEndPoint Result;
