@@ -54,9 +54,9 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerPersistentStor
 //Player Files
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListPlayerFiles = InitEndpoint("players/{0}/files", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerFileById = InitEndpoint("players/{0}/files/{1}", ELootLockerServerHTTPMethod::GET);
-FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerFile = InitEndpoint("players/{player_id}/files/{file_id}", ELootLockerServerHTTPMethod::DELETE);
-FLootLockerServerEndPoint ULootLockerServerEndpoints::UploadPlayerFile = InitEndpoint("players/{player_id}/files", ELootLockerServerHTTPMethod::POST);
-FLootLockerServerEndPoint ULootLockerServerEndpoints::UpdatePlayerFile = InitEndpoint("players/{player_id}/files/{file_id}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerFile = InitEndpoint("players/{0}/files/{1}", ELootLockerServerHTTPMethod::DELETE);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::UploadPlayerFile = InitEndpoint("players/{0}/files", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::UpdatePlayerFile = InitEndpoint("players/{0}/files/{1}", ELootLockerServerHTTPMethod::PUT);
 
 //Triggers
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InvokeTriggerForPlayer = InitEndpoint("trigger", ELootLockerServerHTTPMethod::POST);

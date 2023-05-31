@@ -45,10 +45,10 @@ void ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(int PlayerID,
 
 void ULootLockerServerPlayerFileRequest::UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequestBP, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest) 
 {
-    ULootLockerServerHttpClient::UploadFile<FLootLockerServerSinglePlayerFileResponse>(FilePath, TMap<FString, FString>(), ULootLockerServerEndpoints::UploadPlayerFile, { PlayerID, FileID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::UploadFile<FLootLockerServerSinglePlayerFileResponse>(FilePath, TMap<FString, FString>(), ULootLockerServerEndpoints::UpdatePlayerFile, { PlayerID, FileID }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequestBP, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest) 
 {
-    ULootLockerServerHttpClient::UploadRawFile<FLootLockerServerSinglePlayerFileResponse>(RawData, FileName, TMap<FString, FString>(), ULootLockerServerEndpoints::UploadPlayerFile, { PlayerID, FileID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::UploadRawFile<FLootLockerServerSinglePlayerFileResponse>(RawData, FileName, TMap<FString, FString>(), ULootLockerServerEndpoints::UpdatePlayerFile, { PlayerID, FileID }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
