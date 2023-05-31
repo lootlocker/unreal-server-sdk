@@ -22,29 +22,21 @@ void ULootLockerServerForCpp::MaintainSession(const FLootLockerServerMaintainSes
 
 void ULootLockerServerForCpp::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
 {
-	const FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest
-	{
-        { LeaderboardKey,
-            Name,
-            DirectionMethod,
-            EnableGameApiWrites,
-            OverwriteScoreOnSubmit },
-		Type,
-		HasMetadata,
-	};
+	FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest(LeaderboardKey, Name, DirectionMethod, EnableGameApiWrites, OverwriteScoreOnSubmit);
+	CreateLeaderboardRequest.Type = Type;
+	CreateLeaderboardRequest.Has_metadata = HasMetadata;
 	ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, FLootLockerServerCreateLeaderboardResponseBP(), OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
 {
-	const FLootLockerServerUpdateLeaderboardRequest UpdateLeaderboardRequest
-	{
-		NewLeaderboardKey,
+	const FLootLockerServerUpdateLeaderboardRequest UpdateLeaderboardRequest(
+		NewLeaderboardKey.IsEmpty() ? LeaderboardKey : NewLeaderboardKey,
 		Name,
 		DirectionMethod,
 		EnableGameApiWrites,
 		OverwriteScoreOnSubmit
-	};
+	);
 	ULootLockerServerLeaderboardRequest::UpdateLeaderboard(LeaderboardKey, UpdateLeaderboardRequest, FLootLockerServerUpdateLeaderboardResponseBP(), OnCompletedRequest);
 }
 
@@ -89,7 +81,7 @@ void ULootLockerServerForCpp::InvokeTriggerForPlayer(FString TriggerName, int Pl
 
 void ULootLockerServerForCpp::GetPersistentStorageForPlayer(int PlayerID,	const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray{PlayerID}, FLootLockerServerGetPersistentStorageForPlayersResponseBP(), OnCompletedRequest);
+	ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int>{PlayerID}, FLootLockerServerGetPersistentStorageForPlayersResponseBP(), OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompletedRequest)
