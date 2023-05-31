@@ -55,7 +55,7 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 	{
         DelimitedHeaders += TEXT("    ") + Header + TEXT("\n");
 	}
-	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("Request to endpoint {0}\n  With headers {1}\n  And with content: {2}"), { *Request->GetURL(), *DelimitedHeaders, *InRequest.Data }));
+	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("Request {0} to endpoint {1}\n  With headers {2}\n  And with content: {3}"), { Request->GetVerb(), *Request->GetURL(), *DelimitedHeaders, *InRequest.Data }));
 
 	Request->OnProcessRequestComplete().BindLambda([InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 		{
@@ -71,7 +71,7 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 				const FString ErrorFieldString = JsonObject->HasField("error") && !JsonObject->GetStringField("error").IsEmpty() ? JsonObject->GetStringField("error") : "N/A";
 				const FString MessageFieldString = JsonObject->HasField("message") && !JsonObject->GetStringField("message").IsEmpty() ? JsonObject->GetStringField("message") : "N/A";
 				const FString TraceIDFieldString = JsonObject->HasField("trace_id") && !JsonObject->GetStringField("trace_id").IsEmpty() ? JsonObject->GetStringField("trace_id") : "N/A";
-				response.Error = FString::Format(TEXT("Error {0} with message \"{1}\". Trace Id: {2}"), { ErrorFieldString, MessageFieldString, TraceIDFieldString });
+				response.Error = FString::Format(TEXT("Error {0}. With message \"{1}\". Trace Id: {2}"), { ErrorFieldString, MessageFieldString, TraceIDFieldString });
 			}
 			InRequest.OnCompleteRequest.ExecuteIfBound(response);
 		});
@@ -108,7 +108,7 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = HttpModule->CreateRequest();
 #endif
 
-	Request->SetURL(*InRequest.EndPoint);
+	Request->SetURL(InRequest.EndPoint);
 
 	FString Boundary = "lootlockerboundary";
 
@@ -158,7 +158,7 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 	{
         DelimitedHeaders += TEXT("    ") + Header + TEXT("\n");
 	}
-	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("Request to endpoint {0}\n  With headers {1}\n  And with content: {2}"), { Request->GetURL(), DelimitedHeaders, FString("File Content") }));
+	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("Request {0} to endpoint {1}\n  With headers {2}\n  And with content: {3}"), { Request->GetVerb(), Request->GetURL(), DelimitedHeaders, FString("File Content") }));
 
 	Request->OnProcessRequestComplete().BindLambda([this, InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 		{

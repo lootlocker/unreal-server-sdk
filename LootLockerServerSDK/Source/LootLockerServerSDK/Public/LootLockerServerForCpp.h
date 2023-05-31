@@ -98,13 +98,22 @@ public:
      * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player.
      * https://ref.lootlocker.com/server-api/#get-all-member-ranks
      *
-     * @param MemberID The ID of the member to submit the score for
-     * @param Count Number of members returned per page
-     * @param After Cursor for pagination, a cursor will be returned in the response
-     
+     * @param MemberID The ID of the member to submit the score for     
      * @param OnCompletedRequest Delegate for handling the response
      */
-    static void GetAllMemberRanks(FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
+    static void GetAllMemberRanks(FString MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
+
+    /**
+     * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player, using pagination settings.
+     * https://ref.lootlocker.com/server-api/#get-all-member-ranks
+     * Pagination: https://ref.lootlocker.com/server-api/#pagination
+     *
+     * @param MemberID The ID of the member to get the scores for. For player type leaderboards this is the PlayerID, for Generic type leaderboards it can be any string so you need to know what/who you want to submit for.
+     * @param Count Number of members returned per page
+     * @param After Cursor for pagination, a cursor will be returned in the response
+     * @param OnCompletedRequest Delegate for handling the response
+     */
+    static void GetPaginatedAllMemberRanks(FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
 
     /**
      * From the requested leaderboard get <count> number of scores. The list of scores has member information, rank, score, and metadata (if metadata is enabled on that leaderboard) for the given leaderboard. If leaderboard is of type player a player will also be in the response.
@@ -113,11 +122,23 @@ public:
      * https://ref.lootlocker.com/server-api/#get-score-list
      *
      * @param LeaderboardKey the key of the leaderboard you want to connect to.
-     * @param Count Number of members returned per page
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
+
+    /**
+     * From the requested leaderboard get <count> number of scores. The list of scores has member information, rank, score, and metadata (if metadata is enabled on that leaderboard) for the given leaderboard. If leaderboard is of type player a player will also be in the response, using pagination settings.
+     * Results are sorted in ascending order.
+     * Maximum allowed scores to query for at a time is currently 2000.
+     * https://ref.lootlocker.com/server-api/#get-score-list
+     * Pagination: https://ref.lootlocker.com/server-api/#pagination
+     *
+     * @param LeaderboardKey the key of the leaderboard you want to connect to.
+     * @param Count Number of scores returned per page
      * @param After Cursor for pagination, a cursor will be returned in the response
      * @param OnCompletedRequest Delegate for handling the server response
      */
-    static void GetScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
+    static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Triggers https://ref.lootlocker.com/server-api/#triggers

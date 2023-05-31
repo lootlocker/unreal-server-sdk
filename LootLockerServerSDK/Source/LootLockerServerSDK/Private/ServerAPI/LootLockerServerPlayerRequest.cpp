@@ -3,6 +3,7 @@
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
 
 #include "LootLockerServerHttpClient.h"
+#include "LootLockerServerLogger.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerConfig.h"
 
@@ -14,7 +15,9 @@ void ULootLockerServerPlayerRequest::LookupPlayerNames(TArray<FLootLockerServerP
 {
 	TMultiMap<FString, FString> QueryParams;
     for (int i = 0; i < IdsToLookUp.Num(); ++i) {
-		QueryParams.Add(GetDefault<ULootLockerServerConfig>()->GetEnum(TEXT("ELootLockerServerPlayerNameLookupIdType"), static_cast<int32_t>(IdsToLookUp[i].IdType)), IdsToLookUp[i].Id);
+		FString Key = GetDefault<ULootLockerServerConfig>()->GetEnum(TEXT("ELootLockerServerPlayerNameLookupIdType"), static_cast<int32_t>(IdsToLookUp[i].IdType)).ToLower();
+		Key.ReplaceCharInline(TEXT(' '), TEXT('_'));
+		QueryParams.Add(Key, IdsToLookUp[i].Id);
 	}
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerNameLookupResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::LookupMultiplePlayerNamesUsingIDs, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
 }

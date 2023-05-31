@@ -234,6 +234,20 @@ struct FLootLockerServerAssetHeroEquipException
  *
  */
 USTRUCT(BlueprintType)
+struct FLootLockerServerAssetLinks
+{
+    GENERATED_BODY()
+    /*
+     URL to storage from where you can download this rental option's thumbnail
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Thumbnail = "";
+};
+
+/**
+ *
+ */
+USTRUCT(BlueprintType)
 struct FLootLockerServerAssetVariation
 {
     GENERATED_BODY()
@@ -273,21 +287,7 @@ struct FLootLockerServerAssetVariation
  *
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerAssetLinks
-{
-    GENERATED_BODY()
-    /*
-     URL to storage from where you can download this rental option's thumbnail
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Thumbnail = "";
-};
-
-/**
- *
- */
-USTRUCT(BlueprintType)
-struct FLootLockerServerAsset
+struct FLootLockerServerAssetWithoutPackageContent
 {
     GENERATED_BODY()
     /*
@@ -468,6 +468,46 @@ struct FLootLockerServerAsset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerAssetHeroEquipException> Hero_equip_exceptions;
+};
+
+/**
+ *
+ */
+USTRUCT(BlueprintType)
+struct FLootLockerServerPackageContentItem
+{
+    GENERATED_BODY()
+    /*
+     Optional: What variation of this asset's variation
+     
+     This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Variation_id = "";
+    /*
+     The quantity of this package content
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Quantity = 0;
+    /*
+     List of assets in this package content
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerAssetWithoutPackageContent Asset;
+};
+
+/**
+ *
+ */
+USTRUCT(BlueprintType)
+struct FLootLockerServerAsset : public FLootLockerServerAssetWithoutPackageContent
+{
+    GENERATED_BODY()
+    /*
+     Optional: If this is a drop table asset, this contains a list of assets referred to by it
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerPackageContentItem> Package_contents;
 };
 
 //==================================================
