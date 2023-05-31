@@ -111,6 +111,14 @@ public:
     // Purchases
     static FLootLockerServerEndPoint CheckPurchaseStatus;
 
+    // Player Progressions
+    static FLootLockerServerEndPoint GetProgressionsForPlayer;
+    static FLootLockerServerEndPoint GetProgressionsByKeyForPlayer;
+    static FLootLockerServerEndPoint AddPointsToProgressionForPlayer;
+    static FLootLockerServerEndPoint SubtractPointsFromProgressionForPlayer;
+    static FLootLockerServerEndPoint ResetProgressionForPlayer;
+    static FLootLockerServerEndPoint DeleteProgressionForPlayer;
+
 private:
     static FString GameBaseUrl;
 
