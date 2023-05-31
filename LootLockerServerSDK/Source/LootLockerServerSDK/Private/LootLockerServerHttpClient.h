@@ -49,6 +49,14 @@ private:
         FString Data = "";
         FLootLockerServerResponseCallback OnCompleteRequest;
         TMap<FString, FString> CustomHeaders;
+
+        FString ToString() {
+            FString StringRepresentation = FString::Format(TEXT("{0} to {1}, with data {2}"), {RequestType, EndPoint, Data});
+            for (auto& header : CustomHeaders) {
+                StringRepresentation.Append(FString::Format(TEXT("\n  {0} : {1}"), {header.Key, header.Value}));
+            }
+            return StringRepresentation;
+        };
     };
     static ULootLockerServerHttpClient* Instance;
     static bool ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful, FString RequestMethod, FString Endpoint, FString Data);

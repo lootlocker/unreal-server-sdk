@@ -30,7 +30,12 @@ void ULootLockerServerLeaderboardRequest::SubmitScore(const FString& Leaderboard
 	ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardSubmitScoreResponse>(SubmitScoreRequest, ULootLockerServerEndpoints::SubmitScore, { LeaderboardKey }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::GetAllMemberRanks(const FString& MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequestBP, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
+void ULootLockerServerLeaderboardRequest::GetAllMemberRanks(const FString& MemberID, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequestBP, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAllMemberRanksResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllMemberRanks, { MemberID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+}
+
+void ULootLockerServerLeaderboardRequest::GetPaginatedAllMemberRanks(const FString& MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequestBP, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
 {
 	TMultiMap<FString, FString> QueryParams;
 	if(Count > 0)
@@ -44,7 +49,12 @@ void ULootLockerServerLeaderboardRequest::GetAllMemberRanks(const FString& Membe
 	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAllMemberRanksResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllMemberRanks, { MemberID }, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(const FString LeaderboardKey, const int Count, const int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest)
+void ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(const FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetScoresFromLeaderboardResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetScoresFromLeaderboard, { LeaderboardKey }, {}, OnCompletedRequestBP, OnCompletedRequest);
+}
+
+void ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(const FString LeaderboardKey, const int Count, const int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest)
 {
 	TMultiMap<FString, FString> QueryParams;
 	QueryParams.Add("count", FString::FromInt(Count > 0 ? Count : 50));
