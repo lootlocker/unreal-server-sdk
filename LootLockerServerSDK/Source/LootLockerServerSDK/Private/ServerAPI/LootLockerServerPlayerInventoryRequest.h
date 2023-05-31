@@ -261,6 +261,13 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAlterPlayerInventoryRequestBase
 {
     GENERATED_BODY()
+        FLootLockerServerAlterPlayerInventoryRequestBase(const TArray<int>& InRemove)
+        : Remove(InRemove)
+    {
+    }
+    FLootLockerServerAlterPlayerInventoryRequestBase()
+    {
+	}
     /*
      The ids of assets to remove from the specified player's inventory
      */
@@ -275,6 +282,14 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAlterPlayerInventoryByAssetIdRequest : public FLootLockerServerAlterPlayerInventoryRequestBase
 {
     GENERATED_BODY()
+        FLootLockerServerAlterPlayerInventoryByAssetIdRequest(const TArray<int>& InRemove, const TArray<FLootLockerServerAssetByAssetIdRequest>& InAdd)
+        : FLootLockerServerAlterPlayerInventoryRequestBase(InRemove)
+        , Add(InAdd)
+    {
+    }
+
+    FLootLockerServerAlterPlayerInventoryByAssetIdRequest()
+	{}
     /*
      List of the assets to add to the specified player's inventory
      */
@@ -289,6 +304,16 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest : public FLootLockerServerAlterPlayerInventoryRequestBase
 {
     GENERATED_BODY()
+        FLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest(const TArray<int>& InRemove, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& InAdd)
+        : FLootLockerServerAlterPlayerInventoryRequestBase(InRemove)
+        , Add(InAdd)
+    {
+    }
+
+    FLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest()
+    {
+    }
+
     /*
      List of the assets to add to the specified player's inventory
      */
@@ -303,6 +328,15 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest : public FLootLockerServerAlterPlayerInventoryRequestBase
 {
     GENERATED_BODY()
+        FLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest(const TArray<int>& InRemove, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& InAdd)
+        : FLootLockerServerAlterPlayerInventoryRequestBase(InRemove)
+        , Add(InAdd)
+    {
+    }
+
+    FLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest()
+    {
+	}
     /*
      List of the assets to add to the specified player's inventory
      */
