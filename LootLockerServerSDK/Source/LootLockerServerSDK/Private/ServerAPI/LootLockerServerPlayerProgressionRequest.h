@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerProgressionGenericTypes.h"
 #include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
 
@@ -17,170 +18,45 @@ struct FLootLockerServerPlayerProgression
 {
     GENERATED_BODY()
 	/*
-	 TODO: Document
+	 The ID of the progression
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Id = "";
 	/*
-	 TODO: Document
+	 The key of the progression
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Progression_key = "";
 	/*
-	 TODO: Document
+	 The name of the progression
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Progression_name = "";
 	/*
-	 TODO: Document
+	 Which step (steps are configured in the console) of the progression the player is on
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Step = 0;
 	/*
-	 TODO: Document
+	 How many points this player has in this progression
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Points = 0;
 	/*
-	 TODO: Document
+	 The number of points needed to enter the current step of the progression (already cleared by the player)
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Previous_threshold = 0;
 	/*
-	 TODO: Document
+	 The number of points needed to enter the next step of the progression
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Next_threshold = 0;
 	/*
-	 TODO: Document
+	 The time of the last level up
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Last_level_up = "";
-};
-
-USTRUCT(BlueprintType)
-struct FLootLockerServerProgressionPointsReward
-{
-    GENERATED_BODY()
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString Progression_id = "";
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString Progression_key = "";
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString Progression_name = "";
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int32 Amount = 0;
-};
-
-USTRUCT(BlueprintType)
-struct FLootLockerServerProgressionResetReward
-{
-    GENERATED_BODY()
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString Progression_id = "";
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString Progression_key = "";
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString Progression_name = "";
-};
-
-USTRUCT(BlueprintType)
-struct FLootLockerServerAssetReward
-{
-    GENERATED_BODY()
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int Asset_id = 0;
-    /*
-     Optional: TODO: Document
-     
-     This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString Asset_variation_id = "";
-    /*
-     Optional: TODO: Document
-     
-     This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FString Asset_rental_option_id = "";
-};
-
-USTRUCT(BlueprintType)
-struct FLootLockerServerRewards
-{
-    GENERATED_BODY()
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    TArray<FLootLockerServerProgressionPointsReward> Progression_points_rewards;
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    TArray<FLootLockerServerProgressionResetReward> Progression_reset_rewards;
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    TArray<FLootLockerServerAssetReward> Asset_rewards;
-};
-
-USTRUCT(BlueprintType)
-struct FLootLockerServerAwardedTier
-{
-    GENERATED_BODY()
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int32 Step = 0;
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int32 Points_threshold = 0;
-	/*
-	 TODO: Document
-	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    FLootLockerServerRewards Rewards;
-};
-
-//==================================================
-// Request Definitions
-//==================================================
-USTRUCT(BlueprintType)
-struct FLootLockerServerModifyScoreRequest
-{
-    GENERATED_BODY()
-    UPROPERTY()
-    int32 Amount = 0;
 };
 
 //==================================================
@@ -192,44 +68,44 @@ struct FLootLockerServerSinglePlayerProgressionResponse : public FLootLockerServ
 {
     GENERATED_BODY()
 	/*
-	 TODO: Document :: COPY!!!!
+	 The ID of the progression
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Id = "";
 	/*
-	 TODO: Document
+	 The key of the progression
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Progression_key = "";
 	/*
-	 TODO: Document
+	 The name of the progression
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Progression_name = "";
 	/*
-	 TODO: Document
+	 Which step (steps are configured in the console) of the progression the player is on
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Step = 0;
 	/*
-	 TODO: Document
+	 How many points this player has in this progression
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Points = 0;
 	/*
-	 TODO: Document
+	 The number of points needed to enter the current step of the progression (already cleared by the player)
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Previous_threshold = 0;
 	/*
-	 TODO: Document
+	 The number of points needed to enter the next step of the progression
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Next_threshold = 0;
 	/*
-	 TODO: Document
+	 The time of the last level up
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Last_level_up = "";
 };
 
@@ -238,9 +114,9 @@ struct FLootLockerServerSinglePlayerProgressionWithRewardsResponse : public FLoo
 {
     GENERATED_BODY()
 	/*
-	 TODO: Document
+	 A list of the tiers that were awarded as an effect of the progression state change
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerAwardedTier> Awarded_tiers;
 };
 
@@ -249,14 +125,14 @@ struct FLootLockerServerPlayerProgressionListResponse : public FLootLockerServer
 {
     GENERATED_BODY()
 	/*
-	 TODO: Document
+	 The current pagination data of the requested data
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerKeyBasedPagination Pagination;
 	/*
-	 TODO: Document
+	 List of progression items according to the current pagination settings
 	*/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerPlayerProgression> Items;
 };
 
@@ -264,19 +140,19 @@ struct FLootLockerServerPlayerProgressionListResponse : public FLootLockerServer
 // Blueprint Delegate Definitions
 //==================================================
 /*
- Blueprint response delegate for TODO: Document
+ Blueprint response delegate for receiving a single player progression
  */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerSingleProgressionResponseBP, FLootLockerServerSinglePlayerProgressionResponse, Response);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSinglePlayerProgressionResponseBP, FLootLockerServerSinglePlayerProgressionResponse, Response);
 /*
- Blueprint response delegate for TODO: Document
+ Blueprint response delegate for receiving a list of player progressions
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerProgressionListResponseBP, FLootLockerServerPlayerProgressionListResponse, Response);
 /*
- Blueprint response delegate for TODO: Document
+ Blueprint response delegate for receiving a single player progression with rewards
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP, FLootLockerServerSinglePlayerProgressionWithRewardsResponse, Response);
 /*
- Blueprint response delegate for TODO: Document
+ Blueprint response delegate for deleting a progression. Will be empty if no error occured.
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeletePlayerProgressionResponseBP, FLootLockerServerResponse, Response);
 
@@ -285,19 +161,19 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeletePlayerProgressionRespon
 //==================================================
 
 /*
- C++ response delegate for TODO: Document
+ C++ response delegate for receiving a single player progression
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerSinglePlayerProgressionResponseDelegate, FLootLockerServerSinglePlayerProgressionResponse);
 /*
- C++ response delegate for TODO: Document
+ C++ response delegate for receiving a list of player progressions
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerPlayerProgressionListResponseDelegate, FLootLockerServerPlayerProgressionListResponse);
 /*
- C++ response delegate for TODO: Document
+ C++ response delegate for receiving a single player progression with rewards
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate, FLootLockerServerSinglePlayerProgressionWithRewardsResponse);
 /*
- C++ response delegate for TODO: Document
+ C++ response delegate for deleting a progression. Will be empty if no error occured.
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerDeletePlayerProgressionResponseDelegate, FLootLockerServerResponse);
 
@@ -313,8 +189,8 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerProgressionRequest : public
 
     static void GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequestBP = FLootLockerServerPlayerProgressionListResponseBP(), const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest = FLootLockerServerPlayerProgressionListResponseDelegate());
     static void GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequestBP = FLootLockerServerPlayerProgressionListResponseBP(), const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest = FLootLockerServerPlayerProgressionListResponseDelegate());
-    static void GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerPlayerSingleProgressionResponseBP& OnCompletedRequestBP = FLootLockerServerPlayerSingleProgressionResponseBP(), const FLootLockerServerSinglePlayerProgressionResponseDelegate& OnCompletedRequest = FLootLockerServerSinglePlayerProgressionResponseDelegate());
-    static void AddPointsProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequestBP = FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP(), const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest = FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate());
+    static void GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseBP& OnCompletedRequestBP = FLootLockerServerSinglePlayerProgressionResponseBP(), const FLootLockerServerSinglePlayerProgressionResponseDelegate& OnCompletedRequest = FLootLockerServerSinglePlayerProgressionResponseDelegate());
+    static void AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequestBP = FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP(), const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest = FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate());
     static void SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequestBP = FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP(), const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest = FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate());
     static void ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequestBP = FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP(), const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest = FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate());
     static void DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseBP& OnCompletedRequestBP = FLootLockerServerDeletePlayerProgressionResponseBP(), const FLootLockerServerDeletePlayerProgressionResponseDelegate& OnCompletedRequest = FLootLockerServerDeletePlayerProgressionResponseDelegate());

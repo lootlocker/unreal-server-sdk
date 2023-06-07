@@ -13,6 +13,8 @@
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerFileRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerProgressionRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerCharacterProgressionRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerDropTableRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPurchaseRequest.h"
 
@@ -937,4 +939,163 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Purchases", meta = (DeprecatedFunction, DeprecationMessage = "This method has been deprecated. We will soon release an updated purchase system, so please refrain from using this method."))
     static void CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusWithProductsResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Player Progressions https://ref.lootlocker.com/server-api/#player-progressions
+    //==================================================
+
+    /**
+     * Get a list of progressions for the specified player
+     *
+     * @param PlayerID ID of the player for whom to get progressions
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
+    static void GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest);
+
+    /**
+     * Get a list of progressions for the specified player
+     *
+     * @param PlayerID ID of the player for whom to get progressions
+     * @param Count The number of progressions to get. Must be a value between 1 and 200
+     * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
+    static void GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest);
+
+    /**
+     * Get a specific progression for the specified player
+     *
+     * @param PlayerID ID of the player for whom to get the specified progression
+     * @param ProgressionKey Key of the progression to get
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
+    static void GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseBP& OnCompletedRequest);
+
+    /**
+     * Add points to the specified progression for the specified player
+     *
+     * @param PlayerID ID of the player for whom to add points to the specified progression
+     * @param ProgressionKey Key of the progression to add points to for the specified player
+     * @param Amount The number of points to add to the specified progression (only positive integers allowed)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
+    static void AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest);
+
+    /**
+     * Subtract points from the specified progression for the specified player
+     *
+     * @param PlayerID ID of the player for whom to subtract points from the specified progression
+     * @param ProgressionKey Key of the progression to subtract points from for the specified player
+     * @param Amount The number of points to subtract from the specified progression (only positive integers allowed)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
+    static void SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest);
+
+    /**
+     * Reset the specified progression for the specified player
+     *
+     * @param PlayerID ID of the player for whom to reset the specified progression
+     * @param ProgressionKey Key of the progression to reset for the specified player
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
+    static void ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest);
+
+    /**
+     * Delete the specified progression for the specified player
+     *
+     * @param PlayerID ID of the player for whom to delete the specified progression
+     * @param ProgressionKey Key of the progression to delete for the specified player
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
+    static void DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Character Progressions https://ref.lootlocker.com/server-api/#character-progressions
+    //==================================================
+
+    /**
+     * Get a list of progressions for the specified player and character
+     *
+     * @param PlayerID ID of the player the specified character belongs to
+     * @param CharacterID ID of the character for which to get progressions
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
+    static void GetProgressionsForCharacter(int PlayerID, int CharacterID, const FLootLockerServerCharacterProgressionListResponseBP& OnCompletedRequest);
+
+    /**
+     * Get a list of progressions for the specified player and character
+     *
+     * @param PlayerID ID of the player the specified character belongs to
+     * @param CharacterID ID of the character for which to get progressions
+     * @param Count The number of progressions to get. Must be a value between 1 and 200
+     * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
+    static void GetPaginatedProgressionsForCharacter(int PlayerID, int CharacterID, int32 Count, const FString& After, const FLootLockerServerCharacterProgressionListResponseBP& OnCompletedRequest);
+
+    /**
+     * Get a specific progression for the specified player and character
+     *
+     * @param PlayerID ID of the player the specified character belongs to
+     * @param CharacterID ID of the character for which to get the specified progression
+     * @param ProgressionKey Key of the progression to get
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
+    static void GetProgressionForCharacterByKey(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionResponseBP& OnCompletedRequest);
+
+    /**
+     * Add points to the specified progression for the specified player and character
+     *
+     * @param PlayerID ID of the player the specified character belongs to
+     * @param CharacterID ID of the character for which to add points to the specified progression
+     * @param ProgressionKey Key of the progression to add points to for the specified player and character
+     * @param Amount The number of points to add to the specified progression (only positive integers allowed)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
+    static void AddPointsToProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest);
+
+    /**
+     * Subtract points from the specified progression for the specified player and character
+     *
+     * @param PlayerID ID of the player the specified character belongs to
+     * @param CharacterID ID of the character for which to subtract points from the specified progression
+     * @param ProgressionKey Key of the progression to subtract points from for the specified player and character
+     * @param Amount The number of points to subtract from the specified progression (only positive integers allowed)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
+    static void SubtractPointsFromProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest);
+
+    /**
+     * Reset the specified progression for the specified player and character
+     *
+     * @param PlayerID ID of the player the specified character belongs to
+     * @param CharacterID ID of the character for which to reset the specified progression
+     * @param ProgressionKey Key of the progression to reset for the specified player and character
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
+    static void ResetProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest);
+
+    /**
+     * Delete the specified progression for the specified player and character
+     *
+     * @param PlayerID ID of the player the specified character belongs to
+     * @param CharacterID ID of the character for which to delete the specified progression
+     * @param ProgressionKey Key of the progression to delete for the specified player and character
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
+    static void DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseBP& OnCompletedRequest);
 };
