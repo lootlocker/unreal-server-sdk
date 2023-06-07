@@ -119,6 +119,14 @@ public:
     static FLootLockerServerEndPoint ResetProgressionForPlayer;
     static FLootLockerServerEndPoint DeleteProgressionForPlayer;
 
+    // Character Progressions
+    static FLootLockerServerEndPoint GetProgressionsForCharacter;
+    static FLootLockerServerEndPoint GetProgressionsByKeyForCharacter;
+    static FLootLockerServerEndPoint AddPointsToProgressionForCharacter;
+    static FLootLockerServerEndPoint SubtractPointsFromProgressionForCharacter;
+    static FLootLockerServerEndPoint ResetProgressionForCharacter;
+    static FLootLockerServerEndPoint DeleteProgressionForCharacter;
+
 private:
     static FString GameBaseUrl;
 
