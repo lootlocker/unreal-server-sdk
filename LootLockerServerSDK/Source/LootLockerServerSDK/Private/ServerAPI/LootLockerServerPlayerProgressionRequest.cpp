@@ -28,12 +28,12 @@ void ULootLockerServerPlayerProgressionRequest::GetPaginatedProgressionsForPlaye
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerProgressionListResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetProgressionsForPlayer, { PlayerID }, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
 }
 
-void ULootLockerServerPlayerProgressionRequest::GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerPlayerSingleProgressionResponseBP& OnCompletedRequestBP, const FLootLockerServerSinglePlayerProgressionResponseDelegate& OnCompletedRequest)
+void ULootLockerServerPlayerProgressionRequest::GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseBP& OnCompletedRequestBP, const FLootLockerServerSinglePlayerProgressionResponseDelegate& OnCompletedRequest)
 {
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerProgressionResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetProgressionsByKeyForPlayer, { PlayerID, ProgressionKey }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
-void ULootLockerServerPlayerProgressionRequest::AddPointsProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequestBP, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+void ULootLockerServerPlayerProgressionRequest::AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequestBP, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerProgressionWithRewardsResponse>(FLootLockerServerModifyScoreRequest{ Amount }, ULootLockerServerEndpoints::AddPointsToProgressionForPlayer, { PlayerID, ProgressionKey }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }

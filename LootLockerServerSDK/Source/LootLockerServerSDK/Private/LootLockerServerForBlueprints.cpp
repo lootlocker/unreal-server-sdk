@@ -395,3 +395,77 @@ void ULootLockerServerForBlueprints::CheckPurchaseStatusForPlayerByPlatformTrans
 {
 	ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(PlayerID, PlatformTransactionID, OnCompletedRequest);
 }
+
+// Player Progressions
+
+void ULootLockerServerForBlueprints::GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerPlayerProgressionRequest::GetProgressionsForPlayer(PlayerID, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerPlayerProgressionRequest::GetPaginatedProgressionsForPlayer(PlayerID, Count, After, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerPlayerProgressionRequest::GetProgressionForPlayerByKey(PlayerID, ProgressionKey, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerPlayerProgressionRequest::AddPointsToProgressionForPlayer(PlayerID, ProgressionKey, Amount, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerPlayerProgressionRequest::SubtractPointsFromProgressionForPlayer(PlayerID, ProgressionKey, Amount, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerPlayerProgressionRequest::ResetProgressionForPlayer(PlayerID, ProgressionKey, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerPlayerProgressionRequest::DeleteProgressionForPlayer(PlayerID, ProgressionKey, OnCompletedRequest);
+}
+
+// Character Progressions
+
+void ULootLockerServerForBlueprints::GetProgressionsForCharacter(int PlayerID, int CharacterID, const FLootLockerServerCharacterProgressionListResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerCharacterProgressionRequest::GetProgressionsForCharacter(PlayerID, CharacterID, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::GetPaginatedProgressionsForCharacter(int PlayerID, int CharacterID, int32 Count, const FString& After, const FLootLockerServerCharacterProgressionListResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerCharacterProgressionRequest::GetPaginatedProgressionsForCharacter(PlayerID, CharacterID, Count, After, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::GetProgressionForCharacterByKey(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerCharacterProgressionRequest::GetProgressionForCharacterByKey(PlayerID, CharacterID, ProgressionKey, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::AddPointsToProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerCharacterProgressionRequest::AddPointsToProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, Amount, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::SubtractPointsFromProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerCharacterProgressionRequest::SubtractPointsFromProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, Amount, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::ResetProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerCharacterProgressionRequest::ResetProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerCharacterProgressionRequest::DeleteProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, OnCompletedRequest);
+}

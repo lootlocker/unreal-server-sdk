@@ -86,6 +86,14 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::SubtractPointsFromProgress
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ResetProgressionForPlayer = InitEndpoint("players/{0}/progressions/{1}/reset", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteProgressionForPlayer = InitEndpoint("players/{0}/progressions/{1}", ELootLockerServerHTTPMethod::DELETE);
 
+// Character Progressions
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetProgressionsForCharacter = InitEndpoint("players/{0}/characters/{1}/progressions", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetProgressionsByKeyForCharacter = InitEndpoint("players/{0}/characters/{1}/progressions/{2}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::AddPointsToProgressionForCharacter = InitEndpoint("players/{0}/characters/{1}/progressions/{2}/points/add", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::SubtractPointsFromProgressionForCharacter = InitEndpoint("players/{0}/characters/{1}/progressions/{2}/points/subtract", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ResetProgressionForCharacter = InitEndpoint("players/{0}/characters/{1}/progressions/{2}/reset", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteProgressionForCharacter = InitEndpoint("players/{0}/characters/{1}/progressions/{2}", ELootLockerServerHTTPMethod::DELETE);
+
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method)
 {
 	FLootLockerServerEndPoint Result;
