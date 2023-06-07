@@ -946,6 +946,7 @@ public:
 
     /**
      * Get a list of progressions for the specified player
+     * https://ref.lootlocker.com/server-api/#get-player-progressions
      *
      * @param PlayerID ID of the player for whom to get progressions
      * @param OnCompletedRequest Delegate for handling the server response
@@ -955,6 +956,7 @@ public:
 
     /**
      * Get a list of progressions for the specified player
+     * https://ref.lootlocker.com/server-api/#get-player-progressions
      *
      * @param PlayerID ID of the player for whom to get progressions
      * @param Count The number of progressions to get. Must be a value between 1 and 200
@@ -966,6 +968,7 @@ public:
 
     /**
      * Get a specific progression for the specified player
+     * https://ref.lootlocker.com/server-api/#get-player-progression-by-key
      *
      * @param PlayerID ID of the player for whom to get the specified progression
      * @param ProgressionKey Key of the progression to get
@@ -976,6 +979,7 @@ public:
 
     /**
      * Add points to the specified progression for the specified player
+     * https://ref.lootlocker.com/server-api/#add-points-to-a-player-progression
      *
      * @param PlayerID ID of the player for whom to add points to the specified progression
      * @param ProgressionKey Key of the progression to add points to for the specified player
@@ -987,6 +991,7 @@ public:
 
     /**
      * Subtract points from the specified progression for the specified player
+     * https://ref.lootlocker.com/server-api/#subtract-points-from-a-player-progression
      *
      * @param PlayerID ID of the player for whom to subtract points from the specified progression
      * @param ProgressionKey Key of the progression to subtract points from for the specified player
@@ -998,6 +1003,7 @@ public:
 
     /**
      * Reset the specified progression for the specified player
+     * https://ref.lootlocker.com/server-api/#reset-a-player-progression
      *
      * @param PlayerID ID of the player for whom to reset the specified progression
      * @param ProgressionKey Key of the progression to reset for the specified player
@@ -1008,6 +1014,7 @@ public:
 
     /**
      * Delete the specified progression for the specified player
+     * https://ref.lootlocker.com/server-api/#delete-a-player-progression
      *
      * @param PlayerID ID of the player for whom to delete the specified progression
      * @param ProgressionKey Key of the progression to delete for the specified player
@@ -1022,6 +1029,7 @@ public:
 
     /**
      * Get a list of progressions for the specified player and character
+     * https://ref.lootlocker.com/server-api/#get-character-progressions
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to get progressions
@@ -1032,6 +1040,7 @@ public:
 
     /**
      * Get a list of progressions for the specified player and character
+     * https://ref.lootlocker.com/server-api/#get-character-progressions
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to get progressions
@@ -1044,6 +1053,7 @@ public:
 
     /**
      * Get a specific progression for the specified player and character
+     * https://ref.lootlocker.com/server-api/#get-character-progression-by-key
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to get the specified progression
@@ -1055,6 +1065,7 @@ public:
 
     /**
      * Add points to the specified progression for the specified player and character
+     * https://ref.lootlocker.com/server-api/#add-points-to-a-character-progression
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to add points to the specified progression
@@ -1067,6 +1078,7 @@ public:
 
     /**
      * Subtract points from the specified progression for the specified player and character
+     * https://ref.lootlocker.com/server-api/#subtract-points-from-a-character-progression
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to subtract points from the specified progression
@@ -1079,6 +1091,7 @@ public:
 
     /**
      * Reset the specified progression for the specified player and character
+     * https://ref.lootlocker.com/server-api/#reset-a-character-progression
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to reset the specified progression
@@ -1090,6 +1103,7 @@ public:
 
     /**
      * Delete the specified progression for the specified player and character
+     * https://ref.lootlocker.com/server-api/#delete-a-character-progression
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to delete the specified progression
