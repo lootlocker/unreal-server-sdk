@@ -117,7 +117,7 @@ struct FLootLockerServerSinglePlayerProgressionWithRewardsResponse : public FLoo
 	 A list of the tiers that were awarded as an effect of the progression state change
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    TArray<FLootLockerServerAwardedTier> Awarded_tiers;
+    TArray<FLootLockerServerProgressionTier> Awarded_tiers;
 };
 
 USTRUCT(BlueprintType)

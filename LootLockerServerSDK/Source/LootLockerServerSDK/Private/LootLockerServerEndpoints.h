@@ -111,6 +111,11 @@ public:
     // Purchases
     static FLootLockerServerEndPoint CheckPurchaseStatus;
 
+    // Game Progressions
+    static FLootLockerServerEndPoint GetAllProgressions;
+    static FLootLockerServerEndPoint GetProgression;
+    static FLootLockerServerEndPoint GetProgressionTiers;
+
     // Player Progressions
     static FLootLockerServerEndPoint GetProgressionsForPlayer;
     static FLootLockerServerEndPoint GetProgressionsByKeyForPlayer;
