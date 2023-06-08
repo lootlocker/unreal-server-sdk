@@ -396,6 +396,32 @@ void ULootLockerServerForBlueprints::CheckPurchaseStatusForPlayerByPlatformTrans
 	ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(PlayerID, PlatformTransactionID, OnCompletedRequest);
 }
 
+// Game Progressions
+void ULootLockerServerForBlueprints::GetProgressions(const FLootLockerServerGameProgressionListResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerGameProgressionRequest::GetProgressions(OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerGameProgressionRequest::GetPaginatedProgressions(Count, After, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerGameProgressionRequest::GetProgressionByKey(ProgressionKey, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerGameProgressionRequest::GetTiersForProgression(ProgressionKey, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerGameProgressionRequest::GetPaginatedTiersForProgression(ProgressionKey, Count, After, OnCompletedRequest);
+}
+
 // Player Progressions
 
 void ULootLockerServerForBlueprints::GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest)
