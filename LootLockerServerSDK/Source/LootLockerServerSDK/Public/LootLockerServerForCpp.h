@@ -873,6 +873,7 @@ public:
 
     /**
      * Get a list of progressions for the specified player
+     * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressionsForPlayer
      * https://ref.lootlocker.com/server-api/#get-player-progressions
      *
      * @param PlayerID ID of the player for whom to get progressions
@@ -949,6 +950,7 @@ public:
 
     /**
      * Get a list of progressions for the specified player and character
+     * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressionsForCharacter
      * https://ref.lootlocker.com/server-api/#get-character-progressions
      *
      * @param PlayerID ID of the player the specified character belongs to
