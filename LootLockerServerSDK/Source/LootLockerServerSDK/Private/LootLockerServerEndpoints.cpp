@@ -78,6 +78,11 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::UnequipAssetFromHeroLoadou
 // Purchases
 FLootLockerServerEndPoint ULootLockerServerEndpoints::CheckPurchaseStatus = InitEndpoint("player/{0}/purhcase/{1}", ELootLockerServerHTTPMethod::GET);
 
+// Game Progressions
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAllProgressions = InitEndpoint("progressions", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetProgression = InitEndpoint("progressions/{0}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetProgressionTiers = InitEndpoint("progressions/{0}/tiers", ELootLockerServerHTTPMethod::GET);
+
 // Player Progressions
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetProgressionsForPlayer = InitEndpoint("players/{0}/progressions", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetProgressionsByKeyForPlayer = InitEndpoint("players/{0}/progressions/{1}", ELootLockerServerHTTPMethod::GET);

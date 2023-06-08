@@ -4,6 +4,7 @@
 #include "LootLockerServerForCpp.h"
 #include "ServerAPI/LootLockerServerAssetRequest.h"
 #include "ServerAPI/LootLockerServerDropTableRequest.h"
+#include "ServerAPI/LootLockerServerGameProgressionRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
 #include "LootLockerServerLogger.h"
@@ -400,6 +401,33 @@ void ULootLockerServerForCpp::CheckPurchaseStatusForPlayerByPlatformTransactionI
 {
 	ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(PlayerID, PlatformTransactionID, FLootLockerServerPurchaseStatusWithProductsResponseBP(), OnCompletedRequest);
 }
+
+// Game Progressions
+void ULootLockerServerForCpp::GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerGameProgressionRequest::GetProgressions(FLootLockerServerGameProgressionListResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerGameProgressionRequest::GetPaginatedProgressions(Count, After, FLootLockerServerGameProgressionListResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerGameProgressionRequest::GetProgressionByKey(ProgressionKey, FLootLockerServerSingleGameProgressionResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerGameProgressionRequest::GetTiersForProgression(ProgressionKey, FLootLockerServerProgressionTiersResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerGameProgressionRequest::GetPaginatedTiersForProgression(ProgressionKey, Count, After, FLootLockerServerProgressionTiersResponseBP(), OnCompletedRequest);
+}
+
 
 // Player Progressions
 

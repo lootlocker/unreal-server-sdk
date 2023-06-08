@@ -13,6 +13,7 @@
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerFileRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerGameProgressionRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerProgressionRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerCharacterProgressionRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerDropTableRequest.h"
@@ -868,6 +869,57 @@ public:
     static void CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusWithProductsResponseDelegate& OnCompletedRequest);
 
     //==================================================
+    // Game Progressions https://ref.lootlocker.com/server-api/#progressions
+    //==================================================
+
+    /**
+     * Get a list of progressions for the game
+     * https://ref.lootlocker.com/server-api/#get-all-progressions
+     *
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Get a list of progressions for the game using pagination settings
+     * https://ref.lootlocker.com/server-api/#get-all-progressions
+     *
+     * @param Count The number of progressions to get. Must be a value between 1 and 100
+     * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Get the specified progression
+     * https://ref.lootlocker.com/server-api/#get-progression-by-key
+     *
+     * @param ProgressionKey The key of the progression you want to get
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Get a list of tiers for the specified progression
+     * https://ref.lootlocker.com/server-api/#get-progressions-tiers
+     *
+     * @param ProgressionKey The key of the progression for which you want to get the tiers
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Get a list of tiers for the specified progression using pagination settings
+     * https://ref.lootlocker.com/server-api/#get-progressions-tiers
+     *
+     * @param ProgressionKey The key of the progression for which you want to get the tiers
+     * @param Count The number of progressions to get. Must be a value between 1 and 100
+     * @param After The tier step (non inclusive) to start getting tiers from. Set to 0 to start from the first item
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
+
+    //==================================================
     // Player Progressions https://ref.lootlocker.com/server-api/#player-progressions
     //==================================================
 
@@ -886,7 +938,7 @@ public:
      * https://ref.lootlocker.com/server-api/#get-player-progressions
      *
      * @param PlayerID ID of the player for whom to get progressions
-     * @param Count The number of progressions to get. Must be a value between 1 and 200
+     * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
      */
@@ -965,7 +1017,7 @@ public:
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to get progressions
-     * @param Count The number of progressions to get. Must be a value between 1 and 200
+     * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
      */

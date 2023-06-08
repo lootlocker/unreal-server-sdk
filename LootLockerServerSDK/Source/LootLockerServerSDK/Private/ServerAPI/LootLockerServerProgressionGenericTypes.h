@@ -105,7 +105,7 @@ struct FLootLockerServerRewards
 };
 
 USTRUCT(BlueprintType)
-struct FLootLockerServerAwardedTier
+struct FLootLockerServerProgressionTier
 {
     GENERATED_BODY()
 	/*
