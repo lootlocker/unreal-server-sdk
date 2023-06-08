@@ -947,6 +947,7 @@ public:
 
     /**
      * Get a list of progressions for the game
+     * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressions
      * https://ref.lootlocker.com/server-api/#get-all-progressions
      *
      * @param OnCompletedRequest Delegate for handling the server response
@@ -977,6 +978,7 @@ public:
 
     /**
      * Get a list of tiers for the specified progression
+     * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedTiersForProgression
      * https://ref.lootlocker.com/server-api/#get-progressions-tiers
      *
      * @param ProgressionKey The key of the progression for which you want to get the tiers
@@ -1017,7 +1019,7 @@ public:
      * https://ref.lootlocker.com/server-api/#get-player-progressions
      *
      * @param PlayerID ID of the player for whom to get progressions
-     * @param Count The number of progressions to get. Must be a value between 1 and 200
+     * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
      */
@@ -1103,7 +1105,7 @@ public:
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to get progressions
-     * @param Count The number of progressions to get. Must be a value between 1 and 200
+     * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
      */

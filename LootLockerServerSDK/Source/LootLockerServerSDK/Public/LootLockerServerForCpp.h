@@ -874,6 +874,7 @@ public:
 
     /**
      * Get a list of progressions for the game
+     * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressions
      * https://ref.lootlocker.com/server-api/#get-all-progressions
      *
      * @param OnCompletedRequest Delegate for handling the server response
@@ -901,6 +902,7 @@ public:
 
     /**
      * Get a list of tiers for the specified progression
+     * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedTiersForProgression
      * https://ref.lootlocker.com/server-api/#get-progressions-tiers
      *
      * @param ProgressionKey The key of the progression for which you want to get the tiers
