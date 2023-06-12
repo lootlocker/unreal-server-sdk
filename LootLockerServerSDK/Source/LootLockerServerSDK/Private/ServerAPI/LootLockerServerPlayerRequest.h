@@ -53,7 +53,7 @@ enum class ELootLockerServerPlayerNameLookupIdType : uint8
 {
 	Player_id = 0,
    	Player_public_uid = 1,
-	Player_login_guest_id = 2,
+	Player_guest_login_id = 2,
 	Steam_id = 3,
 	Psn_id = 4,
 	Xbox_id = 5
