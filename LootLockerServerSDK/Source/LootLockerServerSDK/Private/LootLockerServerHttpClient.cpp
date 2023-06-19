@@ -22,6 +22,11 @@ ULootLockerServerHttpClient& ULootLockerServerHttpClient::GetInstance()
 	return *Instance;
 }
 
+ULootLockerServerHttpClient::ULootLockerServerHttpClient()
+	: UserAgent(FString::Format(TEXT("X-UnrealEngineServer-Agent/{0}"), { ENGINE_VERSION_STRING }))
+{
+}
+
 void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) const
 {
 	FHttpModule* HttpModule = &FHttpModule::Get();
