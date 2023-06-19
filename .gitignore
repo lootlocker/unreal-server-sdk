@@ -52,6 +52,8 @@ SourceArt/**/*.tga
 DemoProject/Binaries/*
 DemoProject/Plugins/*/Binaries/*
 Plugins/*/Binaries/*
+LootLockerServerSDK/Binaries/*
+LootLockerServerSDK/Intermediate/*
 
 # Builds
 Build/*
