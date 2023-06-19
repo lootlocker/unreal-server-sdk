@@ -13,7 +13,7 @@ ULootLockerServerHttpClient* ULootLockerServerHttpClient::Instance = nullptr;
 
 ULootLockerServerHttpClient& ULootLockerServerHttpClient::GetInstance()
 {
-	if (Instance != nullptr)
+	if (Instance == nullptr)
 	{
 		Instance = NewObject<ULootLockerServerHttpClient>();
 
