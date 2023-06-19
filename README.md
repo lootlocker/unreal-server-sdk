@@ -34,13 +34,13 @@ For a more detailed guide on installation, please see our [User Documentation](h
 
     Example: 
     ```cpp
-    PublicDependencyModuleNames.AddRange(new string\[\] { "Core", "CoreUObject", "Engine", "InputCore", "LootLockerServerSDK" });
+    PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "LootLockerServerSDK" });
     ```
 8. Add `{"HTTP", "Json", "JsonUtilities"}` to the PrivateDependencyModuleNames list
 
     Example: 
     ```cpp
-    PrivateDependencyModuleNames.AddRange(new string\[\] { "HTTP", "Json", "JsonUtilities" });
+    PrivateDependencyModuleNames.AddRange(new string[] { "HTTP", "Json", "JsonUtilities" });
     ```
 
 ## Configuration
