@@ -29,6 +29,14 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::UpdateKeyValuePairs = Init
 FLootLockerServerEndPoint ULootLockerServerEndpoints::UpdateKeyValuePairById = InitEndpoint("player/{0}/assets/instances/{1}/storage/{2}", ELootLockerServerHTTPMethod::PUT);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteKeyValuePairById = InitEndpoint("player/{0}/assets/instances/{1}/storage/{2}", ELootLockerServerHTTPMethod::DELETE);
 
+//Asset Instance Progressions
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAllInstanceProgressions = InitEndpoint("players/{0}/assets/instances/{1}/progressions", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetSingleInstanceProgression = InitEndpoint("players/{0}/assets/instances/{1}/progressions/{2}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::AddPointsToInstanceProgression = InitEndpoint("players/{0}/assets/instances/{1}/progressions/{2}/points/add", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::SubtractPointsFromInstanceProgression = InitEndpoint("players/{0}/assets/instances/{1}/progressions/{2}/points/subtract", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ResetInstanceProgression = InitEndpoint("players/{0}/assets/instances/{1}/progressions/{2}/reset", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteInstanceProgression = InitEndpoint("players/{0}/assets/instances/{1}/progressions/{2}", ELootLockerServerHTTPMethod::DELETE);
+
 // Droptables
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ComputeAndLockDropTable = InitEndpoint("player/{0}/droptables/{1}/compute", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::PickDropsFromDropTable = InitEndpoint("player/{0}/droptables/{1}/pick", ELootLockerServerHTTPMethod::POST);
