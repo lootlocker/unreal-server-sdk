@@ -502,3 +502,40 @@ void ULootLockerServerForCpp::DeleteProgressionForCharacter(int PlayerID, int Ch
 {
 	ULootLockerServerCharacterProgressionRequest::DeleteProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, FLootLockerServerDeleteCharacterProgressionResponseBP(), OnCompletedRequest);
 }
+
+//Instance Progression
+
+void ULootLockerServerForCpp::GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerInstanceProgressionRequest::GetProgressionForAssetInstance(PlayerId, AssetInstanceId, FLootLockerServerInstanceProgressionListResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerInstanceProgressionRequest::GetPaginatedProgressionForAssetInstance(PlayerId, AssetInstanceId, Count, After, FLootLockerServerInstanceProgressionListResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerInstanceProgressionRequest::GetProgressionByKeyForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, FLootLockerServerSingleInstanceProgressionResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerInstanceProgressionRequest::AddPointsToProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, Amount, FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerInstanceProgressionRequest::SubtractPointsFromProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, Amount, FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerInstanceProgressionRequest::ResetProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP(),OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerInstanceProgressionRequest::DeleteProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, FLootLockerServerDeleteInstanceProgressionResponseBP(), OnCompletedRequest);
+}

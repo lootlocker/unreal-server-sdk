@@ -18,6 +18,7 @@
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerCharacterProgressionRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerDropTableRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPurchaseRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerInstanceProgressionRequest.h"
 
 #include "LootLockerServerForBlueprints.generated.h"
 
@@ -1173,4 +1174,89 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
     static void DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Instance Progressions https://ref.lootlocker.com/server-api/#asset-instance-progressions
+    //==================================================
+
+     /**
+     * Get a list of progressions for the specified instance
+     * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressionsForInstance
+     * https://ref.lootlocker.com/server-api/#get-asset-instance-progressions
+     *
+     * @param AssetInstanceId ID of the instance the specified progression belongs to
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | instance Progressions")
+    static void GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseBP& OnCompletedRequestBP);
+
+     /**
+     * Get a list of progressions for the specified instance
+     * https://ref.lootlocker.com/server-api/#get-asset-instance-progressions
+     *
+     * @param AssetInstanceId ID of the instance the specified progression belongs to
+     * @param Count The number of progressions to get. Must be a value between 1 and 100
+     * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | instance Progressions")
+    static void GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseBP& OnCompletedRequestBP);
+
+     /**
+     * Get a specific progression for the specified instance
+     * https://ref.lootlocker.com/server-api/#get-asset-instance-progression-by-key
+     *
+     * @param AssetInstanceId ID of the instance the specified progression belongs to
+     * @param ProgressionKey Key of the progression to get
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | instance Progressions")
+    static void GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseBP& OnCompletedRequestBP);
+
+    /**
+    * Add points to the specified progression for the specified instance
+    * https://ref.lootlocker.com/server-api/#add-points-to-an-asset-instance-progression
+    *
+     * @param AssetInstanceId ID of the instance the specified progression belongs to
+    * @param ProgressionKey Key of the progression to add points to for the specified instance
+    * @param Amount The number of points to add to the specified progression (only positive integers allowed)
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | instance Progressions")
+    static void AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP);
+    
+    /**
+    * Subtract points from the specified progression for the specified instance
+    * https://ref.lootlocker.com/server-api/#subtract-points-from-an-asset-instance-progression
+    *
+     * @param AssetInstanceId ID of the instance the specified progression belongs to
+    * @param ProgressionKey Key of the progression to subtract points from for the specified instance
+    * @param Amount The number of points to subtract from the specified progression (only positive integers allowed)
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | instance Progressions")
+    static void SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP);
+
+    /**
+     * Reset the specified progression for the specified instance
+     * https://ref.lootlocker.com/server-api/#reset-an-asset-instance-progression
+     *
+     * @param AssetInstanceId ID of the instance the specified progression belongs to
+     * @param ProgressionKey Key of the progression to reset for the specified instance
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | instance Progressions")
+    static void ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP);
+
+    /**
+    * Delete the specified progression for the specified instance
+    * https://ref.lootlocker.com/server-api/#delete-an-asset-instance-progression
+    *
+     * @param AssetInstanceId ID of the instance the specified progression belongs to
+    * @param ProgressionKey Key of the progression to delete for the specified instance
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | instance Progressions")
+    static void DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseBP& OnCompletedRequestBP);
+
 };
