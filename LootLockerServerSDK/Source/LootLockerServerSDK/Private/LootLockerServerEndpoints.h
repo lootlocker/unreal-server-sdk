@@ -64,6 +64,15 @@ public:
     static FLootLockerServerEndPoint UpdateKeyValuePairById;
     static FLootLockerServerEndPoint DeleteKeyValuePairById;
 
+    //Asset Instance Progressions
+    static FLootLockerServerEndPoint GetAllInstanceProgressions;
+    static FLootLockerServerEndPoint GetSingleInstanceProgression;
+    static FLootLockerServerEndPoint AddPointsToInstanceProgression;
+    static FLootLockerServerEndPoint SubtractPointsFromInstanceProgression;
+    static FLootLockerServerEndPoint ResetInstanceProgression;
+    static FLootLockerServerEndPoint DeleteInstanceProgression;
+
+
     // Drop Tables
     static FLootLockerServerEndPoint ComputeAndLockDropTable;
     static FLootLockerServerEndPoint PickDropsFromDropTable;
