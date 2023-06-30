@@ -4,12 +4,15 @@
 
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
+#include "Launch/Resources/Version.h"
+
 #include "JsonObjectConverter.h"
 #include "LootLockerServerConfig.h"
 #include "LootLockerServerEndpoints.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerStateData.h"
 #include "Utils/LootLockerServerUtilities.h"
+
 #include "LootLockerServerHttpClient.generated.h"
 
 UCLASS()
