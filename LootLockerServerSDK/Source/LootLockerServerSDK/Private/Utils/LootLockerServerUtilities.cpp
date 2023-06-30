@@ -20,28 +20,28 @@ namespace LootLockerServerUtilities
 
     FString IntArrayToCommaSeparatedString(TArray<int> IntArray)
     {
-        FStringBuilderBase StringBuilder;
+        FString BuildString;
         for (int i = 0; i < IntArray.Num(); ++i)
         {
             if (i > 0) {
-                StringBuilder.Append(TEXT(","));
+                BuildString.Append(TEXT(","));
             }
-            StringBuilder.Append(FString::FromInt(IntArray[i]));
+            BuildString.Append(FString::FromInt(IntArray[i]));
         }
-        return StringBuilder.ToString();
+        return BuildString;
     }
 
     FString FStringArrayToCommaSeparatedString(TArray<FString> FStringArray)
     {
-        FStringBuilderBase StringBuilder;
+        FString BuildString;
         for (int i = 0; i < FStringArray.Num(); ++i)
         {
             if (i > 0) {
-                StringBuilder.Append(TEXT(","));
+                BuildString.Append(TEXT(","));
             }
-            StringBuilder.Append(FStringArray[i]);
+            BuildString.Append(FStringArray[i]);
         }
-        return StringBuilder.ToString();
+        return BuildString;
     }
 
     TSharedPtr<FJsonObject> JsonObjectFromFString(const FString& JsonString)
