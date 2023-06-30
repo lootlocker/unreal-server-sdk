@@ -1,6 +1,7 @@
 // Copyright (c) 2021 LootLocker
 
 #include "LootLockerServerConfig.h"
+#include "Launch/Resources/Version.h"
 
 FString ULootLockerServerConfig::GetEnum(const TCHAR* Enum, int32 EnumValue)
 {
