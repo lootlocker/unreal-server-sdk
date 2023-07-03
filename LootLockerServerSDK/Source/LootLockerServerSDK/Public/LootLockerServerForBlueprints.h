@@ -1181,7 +1181,7 @@ public:
 
      /**
      * Get a list of progressions for the specified instance
-     * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressionsForInstance
+     * The list will contain the first 20 items, if you want to get more items or list items from somewhere else than the beginning; use GetPaginatedProgressionsForInstance
      * https://ref.lootlocker.com/server-api/#get-asset-instance-progressions
      *
      * @param AssetInstanceId ID of the instance the specified progression belongs to
