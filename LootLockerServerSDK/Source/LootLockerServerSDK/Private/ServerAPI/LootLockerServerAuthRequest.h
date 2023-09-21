@@ -3,8 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "LootLockerServerConfig.h"
-#include "JsonObjectConverter.h"
 #include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
 #include "LootLockerServerAuthRequest.generated.h"
 
@@ -26,6 +24,11 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAuthenticationResponse : public FLootLockerServerResponse
 {
 	GENERATED_BODY()
+	/*
+	 An authenticated session token
+	 */
+	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
+	FString Token = "";
 };
 
 USTRUCT(BlueprintType)

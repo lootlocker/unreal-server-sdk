@@ -41,11 +41,6 @@ struct FLootLockerServerResponse
 	 */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
 	FString Error = "";
-    /*
-     An authenticated session token
-     */
-	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
-	FString Token = "";
 };
 
 //==================================================
