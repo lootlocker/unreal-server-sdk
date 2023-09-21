@@ -14,13 +14,16 @@ void ULootLockerServerAuthRequest::StartSession(const FLootLockerServerAuthRespo
 	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
 	const FLootLockerServerAuthenticationRequest authRequest{ Config->GameVersion };
 	ULootLockerServerHttpClient::SendRequest<FLootLockerServerAuthenticationResponse>(
-		authRequest, 
+		authRequest,
 		ULootLockerServerEndpoints::StartSession,
 		{},
-		{}, 
-		OnCompletedRequestBP, 
-		OnCompletedRequest, 
-		ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerAuthenticationResponse>::FLootLockerServerResponseInspectorCallback(), 
+		{},
+		OnCompletedRequestBP,
+		OnCompletedRequest,
+		ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerAuthenticationResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([](const FLootLockerServerAuthenticationResponse& Response)
+		{
+			ULootLockerServerStateData::SetServerToken(Response.Token);
+		}),
 		{ {"x-server-key", Config->LootLockerServerKey} }
 	);
 }

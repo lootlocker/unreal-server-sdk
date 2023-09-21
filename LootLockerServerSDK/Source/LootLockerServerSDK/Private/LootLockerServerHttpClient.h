@@ -91,13 +91,6 @@ private:
                     if (response.ServerCallStatusCode == 200 || response.ServerCallStatusCode == 204)
                     {
                         ResponseStruct.Success = true;
-                        if (ResponseStruct.Token.IsEmpty())
-                        {
-                            ResponseStruct.Token = ULootLockerServerStateData::GetServerToken();
-                        }
-                        else {
-                            ULootLockerServerStateData::SetServerToken(ResponseStruct.Token);
-                        }
                     }
                     else
                     {
