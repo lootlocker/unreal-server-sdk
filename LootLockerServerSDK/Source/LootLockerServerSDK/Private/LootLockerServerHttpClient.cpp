@@ -66,23 +66,25 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("Request {0} to endpoint {1}\n  With headers {2}\n  And with content: {3}"), { Request->GetVerb(), *Request->GetURL(), *DelimitedHeaders, *InRequest.Data }));
 
 	Request->OnProcessRequestComplete().BindLambda([InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
+	{
+		FLootLockerServerResponse response;
+		response.Success = ResponseIsValid(Response, bWasSuccessful);
+		response.ServerCallStatusCode = response.StatusCode = Response->GetResponseCode();
+		response.FullTextFromServer = Response->GetContentAsString();
+		if (!response.Success)
 		{
-			const FString ResponseString = Response->GetContentAsString();
-			FLootLockerServerResponse response;
-
-			response.Success = ResponseIsValid(Response, bWasSuccessful, InRequest.RequestType, InRequest.EndPoint, InRequest.Data);
-			response.FullTextFromServer = Response->GetContentAsString();
-			response.ServerCallStatusCode = Response->GetResponseCode();
-			if(!response.Success)
+			FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerErrorData>(response.FullTextFromServer, &response.ErrorData, 0, 0);
+			if (response.ErrorData.Code.IsEmpty())
 			{
-				const TSharedPtr<FJsonObject> JsonObject = LootLockerServerUtilities::JsonObjectFromFString(response.FullTextFromServer);
-				const FString ErrorFieldString = JsonObject->HasField("error") && !JsonObject->GetStringField("error").IsEmpty() ? JsonObject->GetStringField("error") : "N/A";
-				const FString MessageFieldString = JsonObject->HasField("message") && !JsonObject->GetStringField("message").IsEmpty() ? JsonObject->GetStringField("message") : "N/A";
-				const FString TraceIDFieldString = JsonObject->HasField("trace_id") && !JsonObject->GetStringField("trace_id").IsEmpty() ? JsonObject->GetStringField("trace_id") : "N/A";
-				response.Error = FString::Format(TEXT("Error {0}. With message \"{1}\". Trace Id: {2}"), { ErrorFieldString, MessageFieldString, TraceIDFieldString });
+				response.Error = response.ErrorData.Message = response.FullTextFromServer;
 			}
-			InRequest.OnCompleteRequest.ExecuteIfBound(response);
-		});
+			else {
+				response.Error = response.ErrorData.Message;
+			}
+			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data);
+		}
+		InRequest.OnCompleteRequest.ExecuteIfBound(response);
+	});
 	Request->ProcessRequest();
 }
 
@@ -90,12 +92,7 @@ void ULootLockerServerHttpClient::UploadFile_Internal(const FString& FilePath, c
 {
 	TArray<uint8> RawData;
 	if (!FFileHelper::LoadFileToArray(RawData, *FilePath)) {
-		FLootLockerServerResponse FailResponse;
-		FailResponse.Success = false;
-		FailResponse.FullTextFromServer = FString::Format(TEXT("Could not read file {0}"), { FilePath });
-		FailResponse.Error = FailResponse.FullTextFromServer;
-
-		InRequest.OnCompleteRequest.ExecuteIfBound(FailResponse);
+		InRequest.OnCompleteRequest.ExecuteIfBound(LootLockerServerResponseFactory::Error<FLootLockerServerResponse>(FString::Format(TEXT("Could not read file {0}"), { FilePath })));
 		return;
 	}
 
@@ -167,45 +164,62 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 	{
         DelimitedHeaders += TEXT("    ") + Header + TEXT("\n");
 	}
+
 	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("Request {0} to endpoint {1}\n  With headers {2}\n  And with content: {3}"), { Request->GetVerb(), Request->GetURL(), DelimitedHeaders, FString("File Content") }));
 
 	Request->OnProcessRequestComplete().BindLambda([this, InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
+	{
+		FLootLockerServerResponse response;
+		response.Success = ResponseIsValid(Response, bWasSuccessful);
+		response.ServerCallStatusCode = response.StatusCode = Response->GetResponseCode();
+		response.FullTextFromServer = Response->GetContentAsString();
+		if (!response.Success)
 		{
-			const FString ResponseString = Response->GetContentAsString();
-			FLootLockerServerResponse response;
-
-			response.FullTextFromServer = Response->GetContentAsString();
-			response.ServerCallStatusCode = Response->GetResponseCode();
-
-			response.Success = ResponseIsValid(Response, bWasSuccessful, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"));
-			if (!response.Success)
+			FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerErrorData>(response.FullTextFromServer, &response.ErrorData, 0, 0);
+			if(response.ErrorData.Code.IsEmpty())
 			{
-				const TSharedPtr<FJsonObject> JsonObject = LootLockerServerUtilities::JsonObjectFromFString(response.FullTextFromServer);
-				const FString ErrorFieldString = JsonObject->HasField("error") && !JsonObject->GetStringField("error").IsEmpty() ? JsonObject->GetStringField("error") : "N/A";
-				const FString MessageFieldString = JsonObject->HasField("message") && !JsonObject->GetStringField("message").IsEmpty() ? JsonObject->GetStringField("message") : "N/A";
-				const FString TraceIDFieldString = JsonObject->HasField("trace_id") && !JsonObject->GetStringField("trace_id").IsEmpty() ? JsonObject->GetStringField("trace_id") : "N/A";
-				response.Error = FString::Format(TEXT("Error {0} with message \"{1}\". Trace Id: {2}"), { ErrorFieldString, MessageFieldString, TraceIDFieldString });
+				response.Error = response.ErrorData.Message = response.FullTextFromServer;
 			}
+			else {
+				response.Error = response.ErrorData.Message;
+			}
+			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"));
+		}
 
-			InRequest.OnCompleteRequest.ExecuteIfBound(response);
-		});
+		InRequest.OnCompleteRequest.ExecuteIfBound(response);
+	});
 	Request->ProcessRequest();
 }
 
-bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful, FString RequestMethod, FString Endpoint, FString Data)
+bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful)
 {
 	if (!bWasSuccessful || !InResponse.IsValid())
 		return false;
 
-	if (EHttpResponseCodes::IsOk(InResponse->GetResponseCode()))
+	return EHttpResponseCodes::IsOk(InResponse->GetResponseCode());
+}
+
+void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data)
+{
+	FString LogString = FString::Format(TEXT("{0} request to {1} failed"), { RequestMethod, Endpoint });
+	const bool IsInformativeError = !Response.ErrorData.Code.IsEmpty();
+	if (IsInformativeError)
 	{
-		return true;
+		LogString += FString::Format(TEXT("\n   {0}"), { Response.ErrorData.Message });
+		LogString += FString::Format(TEXT("\n    Error Code: {0}"), { Response.ErrorData.Code });
+		LogString += FString::Format(TEXT("\n    Further Information: {0}"), { Response.ErrorData.Doc_url });
+		LogString += FString::Format(TEXT("\n    Request ID: {0}"), { Response.ErrorData.Request_id });
+		LogString += FString::Format(TEXT("\n    Trace ID: {0}"), { Response.ErrorData.Trace_id });
+	}
+	LogString += FString::Format(TEXT("\n   HTTP Status code : {0}"), { Response.StatusCode });
+	if (!Data.IsEmpty()) {
+		LogString += FString::Format(TEXT("\n   Request Data: {0}"), { Data });
 	}
 
-	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, FString::Format(TEXT("Http Request was a {0} to {1}"), { *RequestMethod, *Endpoint }));
-	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, FString::Format(TEXT("Http Request data: {0}"), { *Data }));
-	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, FString::Format(TEXT("Http Response returned error code: {0}"), { InResponse->GetResponseCode() }));
-	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, FString::Format(TEXT("Http Response content:\n{0}"), { *InResponse->GetContentAsString() }));
-
-	return false;
+	if (!IsInformativeError)
+	{
+		LogString += FString::Format(TEXT("\n   Response Data: {0}"), { Response.FullTextFromServer });
+	}
+	LogString += "\n###";
+	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, LogString);
 }

@@ -69,7 +69,8 @@ private:
         };
     };
     static ULootLockerServerHttpClient* Instance;
-    static bool ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful, FString RequestMethod, FString Endpoint, FString Data);
+    static bool ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful);
+    static void LogFailedRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data);
     void SendRequest_Internal(HTTPRequest InRequest) const;
     void UploadFile_Internal(const FString& FilePath, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const;
     void UploadRawFile_Internal(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const;
@@ -80,29 +81,27 @@ private:
         template<typename BluePrintDelegate, typename CppDelegate>
         static FLootLockerServerResponseCallback CreateLambda(const BluePrintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback)
         {
-            FLootLockerServerResponseCallback ResponseHandler = FLootLockerServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback](FLootLockerServerResponse response)
-                {
-                    ResponseType ResponseStruct;
+            return FLootLockerServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback](FLootLockerServerResponse response)
+            {
+                ResponseType ResponseStruct;
 
-                    if (!response.FullTextFromServer.IsEmpty())
-                    {
-                        FJsonObjectConverter::JsonObjectStringToUStruct<ResponseType>(response.FullTextFromServer, &ResponseStruct, 0, 0);
-                    }
-                    if (response.ServerCallStatusCode == 200 || response.ServerCallStatusCode == 204)
-                    {
-                        ResponseStruct.Success = true;
-                    }
-                    else
-                    {
-                        ResponseStruct.Success = false;
-                        ResponseStruct.Error = response.Error;
-                    }
-                    ResponseStruct.FullTextFromServer = response.FullTextFromServer;
-                    ResponseInspectorCallback.ExecuteIfBound(ResponseStruct);
-                    OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
-                    OnCompletedRequest.ExecuteIfBound(ResponseStruct);
-                });
-            return ResponseHandler;
+                if (!response.FullTextFromServer.IsEmpty())
+                {
+                    FJsonObjectConverter::JsonObjectStringToUStruct<ResponseType>(response.FullTextFromServer, &ResponseStruct, 0, 0);
+                }
+
+                ResponseStruct.Success = response.Success;
+                ResponseStruct.StatusCode = ResponseStruct.ServerCallStatusCode = response.StatusCode;
+                if(!ResponseStruct.Success)
+                {
+                    ResponseStruct.ErrorData = response.ErrorData;
+                    ResponseStruct.Error = response.Error;
+                }
+                ResponseStruct.FullTextFromServer = response.FullTextFromServer;
+                ResponseInspectorCallback.ExecuteIfBound(ResponseStruct);
+                OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
+                OnCompletedRequest.ExecuteIfBound(ResponseStruct);
+            });
         }
 
         template<typename RequestType, typename BluePrintDelegate, typename CppDelegate>
@@ -122,7 +121,7 @@ private:
             }
 #endif
 
-            // calculate endpoint
+            // Calculate endpoint
             const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
             FString EndpointWithArguments = FString::Format(*Endpoint.endpoint, FStringFormatNamedArguments{ {"domainKey", Config && !Config->LootLockerDomainKey.IsEmpty() ? Config->LootLockerDomainKey + "." : ""} });
             EndpointWithArguments = FString::Format(*EndpointWithArguments, InOrderedArguments);
