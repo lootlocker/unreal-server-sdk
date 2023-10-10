@@ -25,6 +25,11 @@ struct FLootLockerServerPlayerCharacter
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	int Id = 0;
     /*
+     The ULID of the character
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    int32 Ulid = 0;
+    /*
      Whether this is the players default character
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")

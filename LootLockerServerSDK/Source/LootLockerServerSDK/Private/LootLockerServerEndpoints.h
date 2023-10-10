@@ -141,6 +141,17 @@ public:
     static FLootLockerServerEndPoint ResetProgressionForCharacter;
     static FLootLockerServerEndPoint DeleteProgressionForCharacter;
 
+    // Currencies
+    static FLootLockerServerEndPoint ListCurrencies;
+
+    // Balances
+    static FLootLockerServerEndPoint ListBalancesInWallet;
+    static FLootLockerServerEndPoint GetWalletByWalletId;
+    static FLootLockerServerEndPoint GetWalletByHolderId;
+    static FLootLockerServerEndPoint CreditBalanceToWallet;
+    static FLootLockerServerEndPoint DebitBalanceToWallet;
+    static FLootLockerServerEndPoint CreateWallet;
+
 private:
     static FString GameBaseUrl;
 

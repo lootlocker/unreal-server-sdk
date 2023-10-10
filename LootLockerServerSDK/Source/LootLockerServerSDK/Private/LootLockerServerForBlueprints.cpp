@@ -532,3 +532,36 @@ void ULootLockerServerForBlueprints::DeleteProgressionForAssetInstance(int Playe
 {
 	ULootLockerServerInstanceProgressionRequest::DeleteProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, OnCompletedRequestBP);
 }
+
+// Currencies
+void ULootLockerServerForBlueprints::ListCurrencies(const FLootLockerServerListCurrenciesResponseBP& OnCompletedRequest)
+{
+	ULootLockerServerCurrencyRequest::ListCurrencies(OnCompletedRequest);
+}
+
+// Balances
+
+void ULootLockerServerForBlueprints::ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseBP& OnComplete)
+{
+	ULootLockerServerBalanceRequest::ListBalancesInWallet(WalletID, OnComplete);
+}
+
+void ULootLockerServerForBlueprints::GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseBP& OnComplete)
+{
+	ULootLockerServerBalanceRequest::GetWalletByWalletID(WalletID, OnComplete);
+}
+
+void ULootLockerServerForBlueprints::GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseBP& OnComplete)
+{
+	ULootLockerServerBalanceRequest::GetWalletByHolderID(HolderULID, HolderType, OnComplete);
+}
+
+void ULootLockerServerForBlueprints::CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseBP& OnComplete)
+{
+	ULootLockerServerBalanceRequest::CreditBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
+}
+
+void ULootLockerServerForBlueprints::DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseBP& OnComplete)
+{
+	ULootLockerServerBalanceRequest::DebitBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
+}
