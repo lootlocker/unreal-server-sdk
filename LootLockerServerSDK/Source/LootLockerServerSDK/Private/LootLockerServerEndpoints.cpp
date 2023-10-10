@@ -107,6 +107,17 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::SubtractPointsFromProgress
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ResetProgressionForCharacter = InitEndpoint("players/{0}/characters/{1}/progressions/{2}/reset", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteProgressionForCharacter = InitEndpoint("players/{0}/characters/{1}/progressions/{2}", ELootLockerServerHTTPMethod::DELETE);
 
+// Currencies
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListCurrencies = InitEndpoint("currencies", ELootLockerServerHTTPMethod::GET);
+
+// Balances
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListBalancesInWallet = InitEndpoint("balances/wallet/{0}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetWalletByWalletId = InitEndpoint("wallet/{0}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetWalletByHolderId = InitEndpoint("wallet/holder/{0}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::CreditBalanceToWallet = InitEndpoint("balances/credit", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::DebitBalanceToWallet = InitEndpoint("balances/debit", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::CreateWallet = InitEndpoint("wallet", ELootLockerServerHTTPMethod::POST);
+
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method)
 {
 	FLootLockerServerEndPoint Result;

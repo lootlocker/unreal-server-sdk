@@ -7,7 +7,6 @@
 #include "ServerAPI/LootLockerServerGameProgressionRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
-#include "LootLockerServerLogger.h"
 #include "ServerAPI/LootLockerServerPurchaseRequest.h"
 
 //Authentication
@@ -538,4 +537,37 @@ void ULootLockerServerForCpp::ResetProgressionForAssetInstance(int PlayerId, int
 void ULootLockerServerForCpp::DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest)
 {
 	ULootLockerServerInstanceProgressionRequest::DeleteProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, FLootLockerServerDeleteInstanceProgressionResponseBP(), OnCompletedRequest);
+}
+
+// Currencies
+void ULootLockerServerForCpp::ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerCurrencyRequest::ListCurrencies(FLootLockerServerListCurrenciesResponseBP(), OnCompletedRequest);
+}
+
+// Balances
+
+void ULootLockerServerForCpp::ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseDelegate& OnComplete)
+{
+	ULootLockerServerBalanceRequest::ListBalancesInWallet(WalletID, FLootLockerServerListBalancesForWalletResponseBP(), OnComplete);
+}
+
+void ULootLockerServerForCpp::GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseDelegate& OnComplete)
+{
+	ULootLockerServerBalanceRequest::GetWalletByWalletID(WalletID, FLootLockerServerGetWalletResponseBP(), OnComplete);
+}
+
+void ULootLockerServerForCpp::GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseDelegate& OnComplete)
+{
+	ULootLockerServerBalanceRequest::GetWalletByHolderID(HolderULID, HolderType, FLootLockerServerGetWalletResponseBP(), OnComplete);
+}
+
+void ULootLockerServerForCpp::CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseDelegate& OnComplete)
+{
+	ULootLockerServerBalanceRequest::CreditBalanceToWallet(WalletID, CurrencyID, Amount, FLootLockerServerCreditWalletResponseBP(), OnComplete);
+}
+
+void ULootLockerServerForCpp::DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseDelegate& OnComplete)
+{
+	ULootLockerServerBalanceRequest::DebitBalanceToWallet(WalletID, CurrencyID, Amount, FLootLockerServerDebitWalletResponseBP(), OnComplete);
 }
