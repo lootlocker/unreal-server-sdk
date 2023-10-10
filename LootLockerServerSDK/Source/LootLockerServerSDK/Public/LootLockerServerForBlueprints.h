@@ -3,22 +3,24 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAuthRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerLeaderboardRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerTriggerRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerStorageRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerCharacterRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerHeroRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerInventoryRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerFileRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerGameProgressionRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerProgressionRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAuthRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerBalanceRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerCharacterProgressionRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerCharacterRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerCurrencyRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerDropTableRequest.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPurchaseRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerGameProgressionRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerHeroRequest.h"
 #include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerInstanceProgressionRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerLeaderboardRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerFileRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerInventoryRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerProgressionRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPlayerRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerPurchaseRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerStorageRequest.h"
+#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerTriggerRequest.h"
 
 #include "LootLockerServerForBlueprints.generated.h"
 
@@ -1258,5 +1260,73 @@ public:
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Instance Progressions")
     static void DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseBP& OnCompletedRequestBP);
+
+    //==================================================
+    // Currencies
+    // https://ref.lootlocker.com/server-api/#currencies
+    //==================================================
+
+    /**
+     * Get a list of available currencies for the game
+     *
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Currency")
+    static void ListCurrencies(const FLootLockerServerListCurrenciesResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Balances
+    // https://ref.lootlocker.com/server-api/#balances
+    //==================================================
+
+    /**
+     * Get a list of balances in a specified wallet
+     *
+     * @param WalletID Unique ID of the wallet to get balances for
+     * @param OnComplete Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Balance")
+    static void ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseBP& OnComplete);
+
+    /**
+     * Get information about a specified wallet
+     *
+     * @param WalletID Unique ID of the wallet to get information for
+     * @param OnComplete Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Balance")
+    static void GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseBP& OnComplete);
+
+    /**
+     * Get information about a wallet for a specified holder
+     *
+     * @param HolderULID ULID of the holder of the wallet you want to get information for
+     * @param HolderType The type of the holder to get the wallet for
+     * @param OnComplete Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Balance")
+    static void GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseBP& OnComplete);
+
+    /**
+     * Credit (increase) the specified amount of the provided currency to the provided wallet
+     *
+     * @param WalletID Unique ID of the wallet to credit the given amount of the given currency to
+     * @param CurrencyID Unique ID of the currency to credit
+     * @param Amount The amount of the given currency to credit to the given wallet
+     * @param OnComplete Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Balance")
+    static void CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseBP& OnComplete);
+
+    /**
+     * Debit (decrease) the specified amount of the provided currency to the provided wallet
+     *
+     * @param WalletID Unique ID of the wallet to debit the given amount of the given currency from
+     * @param CurrencyID Unique ID of the currency to debit
+     * @param Amount The amount of the given currency to debit from the given wallet
+     * @param OnComplete Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Balance")
+    static void DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseBP& OnComplete);
 
 };
