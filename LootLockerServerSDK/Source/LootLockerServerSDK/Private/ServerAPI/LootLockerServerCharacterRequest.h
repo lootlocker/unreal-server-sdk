@@ -28,7 +28,7 @@ struct FLootLockerServerPlayerCharacter
      The ULID of the character
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-    int32 Ulid = 0;
+    FString Ulid = "";
     /*
      Whether this is the players default character
      */
@@ -39,6 +39,11 @@ struct FLootLockerServerPlayerCharacter
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Name = "";
+    /*
+     The type of the character
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
+    FString Type;
 };
 
 /**

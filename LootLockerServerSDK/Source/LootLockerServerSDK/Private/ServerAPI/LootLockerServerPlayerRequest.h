@@ -24,8 +24,8 @@ struct FLootLockerServerPlayerName
 	/*
 	 The ULID of the player
 	 */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLocker")
-	FString Player_ulid;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Ulid;
 	/*
 	 The Public UID of the player
 	 */
