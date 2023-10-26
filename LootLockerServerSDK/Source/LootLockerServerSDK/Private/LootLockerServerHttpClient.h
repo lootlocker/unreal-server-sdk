@@ -52,6 +52,7 @@ private:
     ULootLockerServerHttpClient();
     const FString UserAgent;
     const FString UserInstanceIdentifier;
+    FString SDKVersion;
     struct HTTPRequest
     {
         FString EndPoint = "";
