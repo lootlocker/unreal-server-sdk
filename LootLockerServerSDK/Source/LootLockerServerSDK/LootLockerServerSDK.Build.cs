@@ -35,12 +35,10 @@ public class LootLockerServerSDK : ModuleRules
 			{
 				"CoreUObject",
 				"Engine",
-				"Slate",
-				"SlateCore",
 				"HTTP",
 				"Json",
-				"JsonUtilities"
-				// ... add private dependencies that you statically link with here ...	
+				"JsonUtilities",
+				"Projects"
 			}
 			);
 		

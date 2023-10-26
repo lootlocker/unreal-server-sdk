@@ -6,8 +6,8 @@
 #include "JsonObjectConverter.h"
 #include "Interfaces/IHttpResponse.h"
 #include "Misc/FileHelper.h"
-#include "Utils/LootLockerServerUtilities.h"
 #include "LootLockerServerLogger.h"
+#include "Interfaces/IPluginManager.h"
 #include "Misc/Guid.h"
 
 ULootLockerServerHttpClient* ULootLockerServerHttpClient::Instance = nullptr;
@@ -27,6 +27,14 @@ ULootLockerServerHttpClient::ULootLockerServerHttpClient()
 	: UserAgent(FString::Format(TEXT("X-UnrealEngineServer-Agent/{0}"), { ENGINE_VERSION_STRING }))
 	, UserInstanceIdentifier(FGuid::NewGuid().ToString())
 {
+	if (SDKVersion.IsEmpty())
+	{
+		const TSharedPtr<IPlugin> Ptr = IPluginManager::Get().FindPlugin("LootLockerServerSDK");
+		if (Ptr.IsValid())
+		{
+			SDKVersion = Ptr->GetDescriptor().VersionName;
+		}
+	}
 }
 
 void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) const
@@ -43,6 +51,7 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 
 	Request->SetHeader(TEXT("User-Agent"), UserAgent);
 	Request->SetHeader(TEXT("User-Instance-Identifier"), UserInstanceIdentifier);
+	Request->SetHeader(TEXT("SDK-Version"), SDKVersion);
 	Request->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
 	Request->SetHeader(TEXT("Accepts"), TEXT("application/json"));
 
@@ -119,6 +128,7 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 
 	Request->SetHeader(TEXT("User-Agent"), UserAgent);
 	Request->SetHeader(TEXT("User-Instance-Identifier"), UserInstanceIdentifier);
+	Request->SetHeader(TEXT("SDK-Version"), SDKVersion);
 	Request->SetHeader(TEXT("Content-Type"), TEXT("multipart/form-data; boundary=" + Boundary));
 
 	for (const TTuple<FString, FString>& CustomHeader : InRequest.CustomHeaders)
