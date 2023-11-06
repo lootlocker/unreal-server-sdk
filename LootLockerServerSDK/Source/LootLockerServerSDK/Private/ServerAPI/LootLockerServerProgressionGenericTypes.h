@@ -84,6 +84,27 @@ struct FLootLockerServerAssetReward
 };
 
 USTRUCT(BlueprintType)
+struct FLootLockerServerCurrencyReward
+{
+    GENERATED_BODY()
+    /*
+     The name of the currency that this reward is for
+    */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Currency_name = "";
+    /*
+     The unique code for the currency that this reward is for
+    */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Currency_code = "";
+    /*
+     The amount of the specified currency that was rewarded
+    */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Amount = "";
+};
+
+USTRUCT(BlueprintType)
 struct FLootLockerServerRewards
 {
     GENERATED_BODY()
@@ -102,6 +123,11 @@ struct FLootLockerServerRewards
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerAssetReward> Asset_rewards;
+    /*
+     A list of currency rewards that were rewarded
+    */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerCurrencyReward> Currency_rewards;
 };
 
 USTRUCT(BlueprintType)
