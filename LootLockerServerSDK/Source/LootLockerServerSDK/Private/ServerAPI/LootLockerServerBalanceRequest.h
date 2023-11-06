@@ -13,7 +13,7 @@
 
 
 /**
- * Possible account linking process statuses. Undefined means that the object couldn't be constructed correctly
+ * Possible wallet holder types
  */
 UENUM(BlueprintType, Category = "LootLockerServer")
 enum class ELootLockerServerWalletHolderTypes : uint8
