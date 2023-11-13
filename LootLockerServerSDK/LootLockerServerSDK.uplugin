@@ -1,8 +1,8 @@
 {
     "FileVersion": 3,
     "FriendlyName": "LootLockerServerSDK",
-    "Version": 2,
-    "VersionName": "2.2.0",
+    "Version": 3,
+    "VersionName": "2.2.1",
     "CreatedBy": "LootLocker",
     "CreatedByURL": "https://www.lootlocker.com/",
     "DocsURL": "https://docs.lootlocker.com/",
