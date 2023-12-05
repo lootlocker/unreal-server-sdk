@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
+#include "LootLockerServerAssetRequest.h"
 
 #include "LootLockerServerProgressionGenericTypes.generated.h"
 

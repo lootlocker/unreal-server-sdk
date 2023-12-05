@@ -1,7 +1,8 @@
 // Copyright (c) 2021 LootLocker
 
 
-#include "LootLockerServerAuthRequest.h"
+#include "ServerAPI/LootLockerServerAuthRequest.h"
+
 #include "LootLockerServerEndpoints.h"
 #include "LootLockerServerHttpClient.h"
 

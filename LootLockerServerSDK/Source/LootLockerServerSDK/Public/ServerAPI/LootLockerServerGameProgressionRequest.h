@@ -4,8 +4,8 @@
 
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerProgressionGenericTypes.h"
-#include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
+#include "LootLockerServerProgressionGenericTypes.h"
+#include "../LootLockerServerResponse.h"
 
 #include "LootLockerServerGameProgressionRequest.generated.h"
 

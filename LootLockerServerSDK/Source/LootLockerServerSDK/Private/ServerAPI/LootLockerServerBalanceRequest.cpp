@@ -1,6 +1,7 @@
 // Copyright (c) 2021 LootLocker
 
-#include "LootLockerServerBalanceRequest.h"
+#include "ServerAPI/LootLockerServerBalanceRequest.h"
+
 #include "LootLockerServerEndpoints.h"
 #include "LootLockerServerHttpClient.h"
 #include "LootLockerServerResponse.h"

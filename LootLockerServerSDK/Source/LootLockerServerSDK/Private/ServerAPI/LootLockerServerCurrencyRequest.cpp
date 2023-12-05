@@ -1,6 +1,6 @@
 // Copyright (c) 2021 LootLocker
 
-#include "LootLockerServerCurrencyRequest.h"
+#include "ServerAPI/LootLockerServerCurrencyRequest.h"
 
 #include "LootLockerServerHttpClient.h"
 
