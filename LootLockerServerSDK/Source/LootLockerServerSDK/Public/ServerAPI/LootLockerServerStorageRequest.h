@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
+#include "LootLockerServerResponse.h"
 
 #include "LootLockerServerStorageRequest.generated.h"
 
