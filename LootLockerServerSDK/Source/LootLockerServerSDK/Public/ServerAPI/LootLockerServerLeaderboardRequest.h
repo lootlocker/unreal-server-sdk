@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
+#include "LootLockerServerResponse.h"
 #include "LootLockerServerLeaderboardRequest.generated.h"
 
 //==================================================

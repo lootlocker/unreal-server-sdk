@@ -1,6 +1,6 @@
 // Copyright (c) 2021 LootLocker
 
-#include "LootLockerServerUtilities.h"
+#include "Utils/LootLockerServerUtilities.h"
 
 namespace LootLockerServerUtilities
 {

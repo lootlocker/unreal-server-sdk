@@ -3,7 +3,7 @@
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 
 #include "LootLockerServerHttpClient.h"
-#include "LootLockerServerSDK/Private/LootLockerServerEndpoints.h"
+#include "LootLockerServerEndpoints.h"
 #include "Utils/LootLockerServerUtilities.h"
 
 ULootLockerServerStorageRequest::ULootLockerServerStorageRequest()
