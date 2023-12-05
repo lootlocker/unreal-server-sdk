@@ -3,9 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerProgressionGenericTypes.h"
-#include "LootLockerServerSDK/Private/LootLockerServerResponse.h"
-#include "LootLockerServerSDK/Private/ServerAPI/LootLockerServerAssetRequest.h"
+#include "LootLockerServerResponse.h"
+#include "ServerAPI/LootLockerServerProgressionGenericTypes.h"
+#include "ServerAPI/LootLockerServerAssetRequest.h"
 
 #include "LootLockerServerPlayerProgressionRequest.generated.h"
 
