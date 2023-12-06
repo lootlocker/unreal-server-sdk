@@ -4,7 +4,6 @@
 #include "ServerAPI/LootLockerServerAuthRequest.h"
 #include "Tests/AutomationCommon.h"
 #include "TestUtils.h"
-#include "../Public/LootLockerServerForBlueprints.h"
 
 #if ENGINE_MAJOR_VERSION > 4
 BEGIN_DEFINE_SPEC(FTestLootLockerServer_Authentication, "LootLockerServer", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
