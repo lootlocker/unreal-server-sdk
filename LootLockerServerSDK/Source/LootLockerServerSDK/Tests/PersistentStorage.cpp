@@ -1,6 +1,5 @@
 #include <future>
 
-#include "LootLockerServerForBlueprints.h"
 #include "Misc/AutomationTest.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 #include "Tests/AutomationCommon.h"

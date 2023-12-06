@@ -1,7 +1,5 @@
 #pragma once
 
-#include "LootLockerServerForBlueprints.h"
-
 #if ENGINE_MAJOR_VERSION > 4
 namespace test_util
 {

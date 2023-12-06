@@ -1,9 +1,9 @@
 #include <future>
 
 #include "Misc/AutomationTest.h"
+#include "ServerAPI/LootLockerServerAuthRequest.h"
 #include "Tests/AutomationCommon.h"
 #include "TestUtils.h"
-#include "../Public/ServerAPI/LootLockerServerAuthRequest.h"
 
 #if ENGINE_MAJOR_VERSION > 4
 BEGIN_DEFINE_SPEC(FTestLootLockerServer_PlayerFiles, "LootLockerServer", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
