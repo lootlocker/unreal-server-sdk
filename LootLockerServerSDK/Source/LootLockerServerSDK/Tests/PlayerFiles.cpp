@@ -17,19 +17,41 @@ void FTestLootLockerServer_PlayerFiles::Define()
 		{
 			ULootLockerServerAuthRequest::StartSession();
 
-			const int PlayerId = 3245521; // PlayerIdentifier: TEXT("unreal_unit_test_user")
-			// client login is needed for client calls below!
-			//test_util::StartGuestSession(PlayerId);
+			const int PlayerId = 3245521;
 
-			int FileId = 0;
+			int FileId = -1;
 			const FString FileName = "test-file.txt";
+			const FString FileContent = "testfilecontent";
+						
+			// List files
+			{
+				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerPlayerFileListResponse, FLootLockerServerPlayerFileListResponseDelegate>();
+
+				ULootLockerServerPlayerFileRequest::ListFilesForPlayer(PlayerId, FLootLockerServerPlayerFileListResponseBP(), Delegate);
+
+				const auto Response = Promise->get_future().get();
+				TestTrue("ListFilesForPlayer Ok", Response.Success);
+
+				for (auto File : Response.Items)
+				{
+					if (File.Name == FileName)
+					{
+						FileId = File.Id;
+						break;
+					}
+				}
+				delete(Promise);
+			}
 
 			// Upload file
+			if (FileId == -1)
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerSinglePlayerFileResponse, FLootLockerServerSinglePlayerFileResponseDelegate>();
 
 				TArray<uint8> OutBuffer;
-				int32 BufferSize = StringToBytes("testfilecontent", OutBuffer.GetData(), OutBuffer.Num());				
+				OutBuffer.SetNumUninitialized(FileContent.Len());
+
+ 				int32 BufferSize = StringToBytes(FileContent, OutBuffer.GetData(), OutBuffer.Num());				
 				ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerId, OutBuffer, FileName, "test", true, FLootLockerServerSinglePlayerFileResponseBP(), Delegate);
 
 				const auto Response = Promise->get_future().get();
@@ -42,17 +64,6 @@ void FTestLootLockerServer_PlayerFiles::Define()
 				delete(Promise);
 			}
 
-			// List files
-			{
-				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerPlayerFileListResponse, FLootLockerServerPlayerFileListResponseDelegate>();
-
-				ULootLockerServerPlayerFileRequest::ListFilesForPlayer(PlayerId, FLootLockerServerPlayerFileListResponseBP(), Delegate);
-
-				const auto Response = Promise->get_future().get();
-				TestTrue("ListFilesForPlayer Ok", Response.Success);
-				TestTrue("ListFilesForPlayer ItemNum Ok", Response.Items.Num() > 0);
-				delete(Promise);
-			}
 
 			// Get File
 			{
@@ -63,6 +74,27 @@ void FTestLootLockerServer_PlayerFiles::Define()
 				const auto Response = Promise->get_future().get();
 				TestTrue("GetFileForPlayerByID Ok", Response.Success);
 				TestTrue("GetFileForPlayerByID FileName Ok", FileName.Equals(Response.Name));
+
+				delete(Promise);
+			}
+
+			// Update File
+			{
+				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerSinglePlayerFileResponse, FLootLockerServerSinglePlayerFileResponseDelegate>();
+				
+				const FString NewFileContent = "newtestfilecontent";
+				
+				TArray<uint8> OutBuffer;
+				OutBuffer.SetNumUninitialized(NewFileContent.Len());
+				
+ 				int32 BufferSize = StringToBytes(NewFileContent, OutBuffer.GetData(), OutBuffer.Num());				
+				ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(PlayerId, FileId, OutBuffer, FileName, FLootLockerServerSinglePlayerFileResponseBP(), Delegate);
+
+				const auto Response = Promise->get_future().get();
+				TestTrue("GetFileForPlayerByID Ok", Response.Success);
+				TestTrue("GetFileForPlayerByID FileName Ok", FileName.Equals(Response.Name));
+				TestTrue("UploadRawDataToPlayerFile FileSize Ok", Response.Size == BufferSize);
+
 				delete(Promise);
 			}
 
@@ -74,6 +106,7 @@ void FTestLootLockerServer_PlayerFiles::Define()
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("DeleteFileForPlayerByID ok", Response.Success);
+
 				delete(Promise);
 			}
 
