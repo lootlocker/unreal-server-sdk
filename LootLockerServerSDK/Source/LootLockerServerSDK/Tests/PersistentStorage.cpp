@@ -18,7 +18,7 @@ void FTestLootLockerServer_PersistentStorage::Define()
 		{
 			ULootLockerServerAuthRequest::StartSession();
 
-			const int PlayerId = 3245521; // PlayerIdentifier: TEXT("unreal_unit_test_user")
+			const int PlayerId = 3245521;
 
 			FLootLockerServerPlayerPersistentStorageKeyValueSet TestItem;
 			TestItem.Key = "test_key";
@@ -41,13 +41,17 @@ void FTestLootLockerServer_PersistentStorage::Define()
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("Server_AddItemsToPersistentStorage success", Response.Success);
-				TestEqual("Server_AddItemsToPersistentStorage items returned", Response.Items.Num(), 1u);
-				TestEqual("Server_AddItemsToPersistentStorage player items returned", Response.Items[0].Player_id, PlayerId);
-				TestEqual("Server_AddItemsToPersistentStorage player items count is 1", Response.Items[0].Items.Num(), 1);
-				TestTrue("Server_AddItemsToPersistentStorage player items ok", Response.Items[0].Items.ContainsByPredicate([key = TestItem.Key](FLootLockerServerPlayerPersistentStorageKeyValueSet& target)
+
+				if (Response.Success)
 				{
-					return key == target.Key;
-				}));
+					TestEqual("Server_AddItemsToPersistentStorage items returned", Response.Items.Num(), 1u);
+					TestEqual("Server_AddItemsToPersistentStorage player items returned", Response.Items[0].Player_id, PlayerId);
+					TestEqual("Server_AddItemsToPersistentStorage player items count is 1", Response.Items[0].Items.Num(), 1);
+					TestTrue("Server_AddItemsToPersistentStorage player items ok", Response.Items[0].Items.ContainsByPredicate([key = TestItem.Key](FLootLockerServerPlayerPersistentStorageKeyValueSet& target)
+					{
+						return key == target.Key;
+					}));
+				}
 				delete(Promise);
 			}
 
@@ -58,8 +62,12 @@ void FTestLootLockerServer_PersistentStorage::Define()
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("Server_GetPlayerPersistentStorage success", Response.Success);
-				TestEqual("Server_GetPlayerPersistentStorage items returned", Response.Items.Num(), 1u);
-				TestEqual("Server_GetPlayerPersistentStorage player items returned", Response.Items[0].Player_id, PlayerId);
+
+				if (Response.Success)
+				{
+					TestEqual("Server_GetPlayerPersistentStorage items returned", Response.Items.Num(), 1u);
+					TestEqual("Server_GetPlayerPersistentStorage player items returned", Response.Items[0].Player_id, PlayerId);
+				}
 				delete(Promise);
 			}
 		
