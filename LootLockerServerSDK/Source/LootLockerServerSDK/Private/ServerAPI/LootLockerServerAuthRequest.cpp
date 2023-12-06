@@ -24,7 +24,7 @@ void ULootLockerServerAuthRequest::StartSession(const FLootLockerServerAuthRespo
 		{
 			ULootLockerServerStateData::SetServerToken(Response.Token);
 		}),
-		{ {"x-server-key", Config->LootLockerServerKey} }
+		{ {"x-server-key", Config->LootLockerServerKey}, { TEXT("is-development"), Config->LootLockerServerKey.StartsWith("dev_") ? TEXT("true") : TEXT("false") } }
 	);
 }
 
