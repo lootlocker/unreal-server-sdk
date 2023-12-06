@@ -18,7 +18,7 @@ void FTestLootLockerServer_Authentication::Define()
 		{			
 			// start session
 			{
-				const auto [Promise , Delegate] = test_util::CreateDelegate<FLootLockerServerAuthenticationResponse, FLootLockerServerAuthResponseDelegate>();
+				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerAuthenticationResponse, FLootLockerServerAuthResponseDelegate>();
 		
 				ULootLockerServerAuthRequest::StartSession(FLootLockerServerAuthResponseBP(), Delegate);
 
@@ -29,7 +29,7 @@ void FTestLootLockerServer_Authentication::Define()
 			}
 			// maintain session
 			{
-				const auto [Promise , Delegate] = test_util::CreateDelegate<FLootLockerServerResponse, FLootLockerServerMaintainSessionResponseDelegate>();
+				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerResponse, FLootLockerServerMaintainSessionResponseDelegate>();
 		
 				ULootLockerServerAuthRequest::MaintainSession(FLootLockerServerMaintainSessionResponseBP(), Delegate);
 
