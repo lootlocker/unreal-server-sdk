@@ -5,6 +5,7 @@
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "Runtime/Launch/Resources/Version.h"
+#include "HttpModule.h"
 
 #include "JsonObjectConverter.h"
 #include "LootLockerServerConfig.h"
