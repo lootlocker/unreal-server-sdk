@@ -53,20 +53,6 @@ struct FLootLockerServerAssetInstanceStorageKeyValueSet
  *
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerAssetRentalOptionLinks
-{
-    GENERATED_BODY()
-    /*
-     URL to storage from where you can download this rental option's thumbnail
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Thumbnail = "";
-};
-
-/**
- *
- */
-USTRUCT(BlueprintType)
 struct FLootLockerServerAssetRentalOption
 {
     GENERATED_BODY()
@@ -103,7 +89,7 @@ struct FLootLockerServerAssetRentalOption
      Collection of links related to this rental option
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FLootLockerServerAssetRentalOptionLinks Links;
+    TMap<FString, FString> Links;
 };
 
 /**
@@ -172,20 +158,6 @@ struct FLootLockerServerAssetCandidateInformation
  *
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerAssetVariationLinks
-{
-    GENERATED_BODY()
-    /*
-     URL to storage from where you can download this asset variation's thumbnail
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Thumbnail = "";
-};
-
-/**
- *
- */
-USTRUCT(BlueprintType)
 struct FLootLockerServerAssetVariationProperty
 {
     GENERATED_BODY()
@@ -234,20 +206,6 @@ struct FLootLockerServerAssetHeroEquipException
  *
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerAssetLinks
-{
-    GENERATED_BODY()
-    /*
-     URL to storage from where you can download this rental option's thumbnail
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Thumbnail = "";
-};
-
-/**
- *
- */
-USTRUCT(BlueprintType)
 struct FLootLockerServerAssetVariation
 {
     GENERATED_BODY()
@@ -280,7 +238,7 @@ struct FLootLockerServerAssetVariation
      Collection of links related to this asset variation
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FLootLockerServerAssetVariationLinks Links;
+    TMap<FString, FString> Links;
 };
 
 /**
@@ -457,7 +415,7 @@ struct FLootLockerServerAssetWithoutPackageContent
      Links related to this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FLootLockerServerAssetLinks Links;
+    TMap<FString, FString> Links;
     /*
      List of key values configured for this asset
      */
