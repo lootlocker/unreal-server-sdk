@@ -42,6 +42,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::ComputeAndLockDropTable = 
 FLootLockerServerEndPoint ULootLockerServerEndpoints::PickDropsFromDropTable = InitEndpoint("player/{0}/droptables/{1}/pick", ELootLockerServerHTTPMethod::POST);
 
 //Player Lookup
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerInfoFromGameSessionToken = InitEndpoint("player/info/token", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::LookupMultiplePlayerNamesUsingIDs = InitEndpoint("players/lookup/name", ELootLockerServerHTTPMethod::GET);
 
 //Player Inventory
