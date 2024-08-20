@@ -90,6 +90,10 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 			else {
 				response.Error = response.ErrorData.Message;
 			}
+            FString RetryAfterHeader = Response->GetHeader("retry-after");
+            if(!RetryAfterHeader.IsEmpty()) {
+                response.ErrorData.Retry_after_seconds = FCString::Atoi(*RetryAfterHeader);
+            }
 			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data);
 		}
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
@@ -193,6 +197,10 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 			else {
 				response.Error = response.ErrorData.Message;
 			}
+            FString RetryAfterHeader = Response->GetHeader("retry-after");
+            if(!RetryAfterHeader.IsEmpty()) {
+                response.ErrorData.Retry_after_seconds = FCString::Atoi(*RetryAfterHeader);
+            }
 			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"));
 		}
 
