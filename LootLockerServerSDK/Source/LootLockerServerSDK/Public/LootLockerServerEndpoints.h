@@ -78,6 +78,7 @@ public:
     static FLootLockerServerEndPoint PickDropsFromDropTable;
 
     // Player Lookup
+    static FLootLockerServerEndPoint GetPlayerInfoFromGameSessionToken;
     static FLootLockerServerEndPoint LookupMultiplePlayerNamesUsingIDs;
 
     // Player Inventory
