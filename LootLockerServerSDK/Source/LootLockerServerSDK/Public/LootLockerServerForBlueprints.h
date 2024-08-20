@@ -812,6 +812,16 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player")
     static void LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseBP& OnCompletedRequest);
 
+    /**
+     * Lookup players by their game session tokens
+     * Use this to verify in the server that the client player is who they say they are
+     *
+     * @param GameSessionTokensToLookUp A list of game session tokens to lookup
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player")
+    static void GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP& OnCompletedRequest);
+
     //==================================================
     // Player Files https://ref.lootlocker.com/server-api/#player-files
     //==================================================

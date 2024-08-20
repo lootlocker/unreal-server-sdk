@@ -746,6 +746,15 @@ public:
      */
     static void LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest);
 
+    /**
+     * Lookup players by their game session tokens
+     * Use this to verify in the server that the client player is who they say they are
+     *
+     * @param GameSessionTokensToLookUp A list of game session tokens to lookup
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest);
+
     //==================================================
     // Player Files https://ref.lootlocker.com/server-api/#player-files
     //==================================================
