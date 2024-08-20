@@ -2,6 +2,7 @@
 
 #include "Misc/AutomationTest.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
+#include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "Tests/AutomationCommon.h"
 #include "TestUtils.h"
 
