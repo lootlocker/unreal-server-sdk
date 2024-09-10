@@ -51,4 +51,37 @@ namespace LootLockerServerUtilities
         FJsonSerializer::Deserialize(JsonReader, JsonObject);
         return JsonObject;
     }
+
+    bool JsonArrayFromFString(const FString& JsonString, TArray<TSharedPtr<FJsonValue>>& JsonArrayOutput)
+    {
+        TArray<TSharedPtr<FJsonValue>> JsonArray;
+        const TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<TCHAR>::Create(JsonString);
+        if (!FJsonSerializer::Deserialize(JsonReader, JsonArray))
+        {
+            return false;
+        };
+        JsonArrayOutput = JsonArray;
+        return true;
+    }
+
+    FString FStringFromJsonObject(const TSharedPtr<FJsonObject>& JsonObject)
+    {
+        FString OutJsonString;
+        TSharedRef<TJsonWriter<>> JsonWriter = TJsonWriterFactory<>::Create(&OutJsonString);
+
+        FJsonSerializer::Serialize(JsonObject.ToSharedRef(), JsonWriter, true);
+
+        return OutJsonString;
+    }
+
+    FString FStringFromJsonArray(const TArray<TSharedPtr<FJsonValue>>& JsonArray)
+    {
+        FString OutJsonString;
+        TSharedRef<TJsonWriter<>> JsonWriter = TJsonWriterFactory<>::Create(&OutJsonString);
+
+        FJsonSerializer::Serialize(JsonArray, JsonWriter, true);
+
+        return OutJsonString;
+    }
+}
 }
