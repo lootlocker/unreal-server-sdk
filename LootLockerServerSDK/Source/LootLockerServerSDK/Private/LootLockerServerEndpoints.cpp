@@ -119,6 +119,9 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::CreditBalanceToWallet = In
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DebitBalanceToWallet = InitEndpoint("balances/debit", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::CreateWallet = InitEndpoint("wallet", ELootLockerServerHTTPMethod::POST);
 
+// Metadata
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListMetadata = InitEndpoint("metadata/source/{0}/id/{1}", ELootLockerServerHTTPMethod::GET);
+
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method)
 {
 	FLootLockerServerEndPoint Result;

@@ -14,6 +14,7 @@
 #include "ServerAPI/LootLockerServerHeroRequest.h"
 #include "ServerAPI/LootLockerServerInstanceProgressionRequest.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
+#include "ServerAPI/LootLockerServerMetadataRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerInventoryRequest.h"
 #include "ServerAPI/LootLockerServerPlayerProgressionRequest.h"
@@ -1233,5 +1234,66 @@ public:
      * @param OnComplete Delegate for handling the server response
      */
     static void DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseDelegate& OnComplete);
+
+    //==================================================
+    // Metadata
+    //==================================================
+
+    /**
+    List Metadata for the specified source with default pagination
+
+    @param Source The source type for which to request metadata
+    @param SourceID The specific source id for which to request metadata
+    @param OnComplete delegate for handling the server response
+    @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    */
+    static void ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+
+    /**
+    List the requested page of Metadata for the specified source with the specified pagination
+
+    @param Source The source type for which to request metadata
+    @param SourceID The specific source id for which to request metadata
+    @param Page Used together with PerPage to apply pagination to this request. Page designates which "page" of items to fetch
+    @param PerPage Used together with Page to apply pagination to this request.PerPage designates how many items are considered a "page"
+    @param OnComplete delegate for handling the server response
+    @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    */
+    static void ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+
+    /**
+    List Metadata for the specified source that has all of the provided tags, use default pagination
+
+    @param Source The source type for which to request metadata
+    @param SourceID The specific source id for which to request metadata
+    @param Tags The tags that the requested metadata should have, only metadata matching *all of* the given tags will be returned
+    @param OnComplete delegate for handling the server response
+    @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    */
+    static void ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+
+    /**
+    List the requested page of Metadata for the specified source that has all of the provided tags and paginate according to the supplied pagination settings
+
+    @param Source The source type for which to request metadata
+    @param SourceID The specific source id for which to request metadata
+    @param Tags The tags that the requested metadata should have, only metadata matching *all of* the given tags will be returned
+    @param Page Used together with PerPage to apply pagination to this request. Page designates which "page" of items to fetch
+    @param PerPage Used together with Page to apply pagination to this request.PerPage designates how many items are considered a "page"
+    @param OnComplete delegate for handling the server response
+    @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    */
+    static void ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+
+    /**
+    Get Metadata for the specified source with the given key
+
+    @param Source The source type for which to request metadata
+    @param SourceID The specific source id for which to request metadata
+    @param Key The key of the metadata to fetch, use this to fetch metadata for a specific key for the specified source.
+    @param OnComplete delegate for handling the server response
+    @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    */
+    static void GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const FLootLockerServerGetMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
 
 };
