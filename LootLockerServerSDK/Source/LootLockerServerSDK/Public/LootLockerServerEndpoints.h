@@ -3,6 +3,7 @@
 #pragma once
 
 #include "LootLockerServerConfig.h"
+#include "Utils/LootLockerServerUtilities.h"
 
 #include "LootLockerServerEndpoints.generated.h"
 
@@ -32,7 +33,7 @@ public:
 
 	FString GetRequestMethodString() const
     {
-        return GetDefault<ULootLockerServerConfig>()->GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(requestMethod));
+        return ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(requestMethod));
     }
 };
 
@@ -152,6 +153,9 @@ public:
     static FLootLockerServerEndPoint CreditBalanceToWallet;
     static FLootLockerServerEndPoint DebitBalanceToWallet;
     static FLootLockerServerEndPoint CreateWallet;
+
+    // Metadata
+    static FLootLockerServerEndPoint ListMetadata;
 
 private:
     static FString GameBaseUrl;

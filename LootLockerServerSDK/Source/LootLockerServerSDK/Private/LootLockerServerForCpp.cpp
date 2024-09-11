@@ -576,3 +576,30 @@ void ULootLockerServerForCpp::DebitBalanceToWallet(const FString& WalletID, cons
 {
 	ULootLockerServerBalanceRequest::DebitBalanceToWallet(WalletID, CurrencyID, Amount, FLootLockerServerDebitWalletResponseBP(), OnComplete);
 }
+
+// Metadata
+
+void ULootLockerServerForCpp::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+{
+	ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, -1, -1, FString(), TArray<FString>(), IgnoreFiles, FLootLockerServerListMetadataResponseBP(), OnComplete);
+}
+
+void ULootLockerServerForCpp::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+{
+	ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), TArray<FString>(), IgnoreFiles, FLootLockerServerListMetadataResponseBP(), OnComplete);
+}
+
+void ULootLockerServerForCpp::ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+{
+	ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, -1, -1, FString(), Tags, IgnoreFiles, FLootLockerServerListMetadataResponseBP(), OnComplete);
+}
+
+void ULootLockerServerForCpp::ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+{
+	ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), Tags, IgnoreFiles, FLootLockerServerListMetadataResponseBP(), OnComplete);
+}
+
+void ULootLockerServerForCpp::GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const FLootLockerServerGetMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+{
+	ULootLockerServerMetadataRequest::GetMetadata(Source, SourceID, Key, IgnoreFiles, FLootLockerServerGetMetadataResponseBP(), OnComplete);
+}

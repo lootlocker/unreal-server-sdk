@@ -2,6 +2,8 @@
 
 #include "LootLockerServerForBlueprints.h"
 
+#include "Utils/LootLockerServerUtilities.h"
+
 void ULootLockerServerForBlueprints::StartSession(const FLootLockerServerAuthResponseBP& OnCompletedRequest)
 {
     ULootLockerServerAuthRequest::StartSession(OnCompletedRequest);
@@ -569,4 +571,126 @@ void ULootLockerServerForBlueprints::CreditBalanceToWallet(const FString& Wallet
 void ULootLockerServerForBlueprints::DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseBP& OnComplete)
 {
 	ULootLockerServerBalanceRequest::DebitBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
+}
+
+// Metadata
+
+void ULootLockerServerForBlueprints::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseBP& OnComplete)
+{
+    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), TArray<FString>(), IgnoreFiles, OnComplete);
+}
+
+void ULootLockerServerForBlueprints::ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseBP& OnComplete)
+{
+    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), Tags, IgnoreFiles, OnComplete);
+}
+
+void ULootLockerServerForBlueprints::GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const bool IgnoreFiles, const FLootLockerServerGetMetadataResponseBP& OnComplete)
+{
+    ULootLockerServerMetadataRequest::GetMetadata(Source, SourceID, Key, IgnoreFiles, OnComplete);
+}
+
+void ULootLockerServerForBlueprints::ParseLootLockerServerMetadataEntry(const FLootLockerServerMetadataEntry& Entry,
+    ELootLockerServerMetadataParserOutputTypes& MetadataTypeSwitch,
+    FString& StringValue, int& IntegerValue,
+    double& DoubleValue, FString& NumberString, bool& BoolValue,
+    FString& JsonStringValue,
+    FLootLockerServerMetadataBase64Value& Base64Value,
+    FString& ErrorMessage, FLootLockerServerMetadataEntry& OutEntry)
+{
+    MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnError;
+    StringValue = "";
+    BoolValue = false;
+    IntegerValue = 0;
+    DoubleValue = 0.0f;
+    NumberString = "";
+    JsonStringValue = "";
+    Base64Value = FLootLockerServerMetadataBase64Value();
+    ErrorMessage = "Unknown Error";
+    OutEntry = Entry;
+    FString ValueToParse;
+    if (!Entry.TryGetSerializedValue(ValueToParse))
+    {
+        ErrorMessage = FString::Format(TEXT("Couldn't get serialized value for type: \"{0}\""), { static_cast<int>(Entry.Type) }); ;
+        return;
+    }
+    switch (Entry.Type)
+    {
+    case ELootLockerServerMetadataTypes::String:
+    {
+        if (Entry.TryGetValueAsString(StringValue))
+        {
+            MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnString;
+            return;
+        }
+        ErrorMessage = "Value \"" + ValueToParse + "\" could not be parsed";
+        return;
+    }
+    case ELootLockerServerMetadataTypes::Number:
+    {
+        if (!FCString::IsNumeric(*ValueToParse))
+        {
+            ErrorMessage = "Could not parse value \"" + ValueToParse + "\" as Number because it is not numeric";
+            return;
+        }
+        // Parse as float
+        if (ValueToParse.Contains(".") && Entry.TryGetValueAsDouble(DoubleValue))
+        {
+            MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnDouble;
+            return;
+        }
+        // Parse as int
+        if (Entry.TryGetValueAsInteger(IntegerValue))
+        {
+            MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnInteger;
+            return;
+        }
+        //Treat as non int or float value, likely BigInt or BigDecimal
+        MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnNumber;
+        NumberString = ValueToParse;
+        return;
+    }
+    case ELootLockerServerMetadataTypes::Bool:
+    {
+        if (Entry.TryGetValueAsBool(BoolValue))
+        {
+            MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnBool;
+            return;
+        }
+        ErrorMessage = "Value \"" + ValueToParse + "\" could not be parsed as boolean value";
+        return;
+    }
+    case ELootLockerServerMetadataTypes::Json:
+    {
+        if (TSharedPtr<FJsonObject> JsonObject = nullptr; Entry.TryGetValueAsJsonObject(JsonObject) && JsonObject.IsValid())
+        {
+            MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnJson;
+            JsonStringValue = ValueToParse;
+            return;
+        }
+        if (TArray<TSharedPtr<FJsonValue>> OutputJsonArray; Entry.TryGetValueAsJsonArray(OutputJsonArray))
+        {
+            MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnJson;
+            JsonStringValue = ValueToParse;
+            return;
+        }
+        ErrorMessage = "Could not parse value \"" + ValueToParse + "\" because it is not a valid Json String";
+        return;
+    }
+    case ELootLockerServerMetadataTypes::Base64:
+    {
+        if (Entry.TryGetValueAsBase64(Base64Value) && !Base64Value.Content_type.IsEmpty())
+        {
+            MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnBase64;
+            return;
+        }
+        ErrorMessage = "Could not parse value \"" + ValueToParse + "\" because it is not a valid LootLockerServer Metadata Base64 Object";
+        return;
+    }
+    default:
+    {
+        ErrorMessage = "Could not parse value \"" + ValueToParse + "\" because the type \"" + ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerMetadataTypes"), static_cast<int32>(Entry.Type)) + "\" was not recognized by the parser";
+        return;
+    }
+    }
 }
