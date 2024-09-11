@@ -34,8 +34,6 @@ public:
 	// Set to true if you want LootLocker to log outside of an editor context. We recommend that this only be enabled for debugging purposes.
 	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
 	bool LogOutsideOfEditor = false;
-
-	static FString GetEnum(const TCHAR* Enum, int32 EnumValue);
 	
 	UFUNCTION()
 	bool IsLegacyAPIKey() const
@@ -74,7 +72,7 @@ public:
 private:
 	UPROPERTY(Config, VisibleInstanceOnly, Meta = (EditCondition = "false", EditConditionHides), Transient, Category = "LootLockerServer")
 	bool IsLegacyKey = false;
-	UPROPERTY(Config, VisibleInstanceOnly, Meta = (EditCondition = "false", EditConditionHides), Transient, Category = "LootLocker")
+	UPROPERTY(Config, VisibleInstanceOnly, Meta = (EditCondition = "false", EditConditionHides), Transient, Category = "LootLockerServer")
 	bool IsValidGameVersion = true;
 #if ENGINE_MAJOR_VERSION >= 5
 	inline static const std::regex SemverPattern = std::regex("^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:\\.(0|[1-9]\\d*))?(?:\\.(0|[1-9]\\d*))?$");

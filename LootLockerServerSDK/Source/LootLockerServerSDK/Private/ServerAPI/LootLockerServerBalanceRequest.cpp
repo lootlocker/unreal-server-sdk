@@ -61,6 +61,6 @@ void ULootLockerServerBalanceRequest::DebitBalanceToWallet(const FString& Wallet
 
 void ULootLockerServerBalanceRequest::CreateWallet(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerCreateWalletResponseBP& OnCompleteBP, const FLootLockerServerCreateWalletResponseDelegate& OnComplete)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerCreateWalletResponse>(FLootLockerServerCreateWalletRequest{ HolderULID, ULootLockerServerConfig::GetEnum(TEXT("ELootLockerServerWalletHolderTypes"), static_cast<int32>(HolderType)).ToLower() },
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerCreateWalletResponse>(FLootLockerServerCreateWalletRequest{ HolderULID, ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerWalletHolderTypes"), static_cast<int32>(HolderType)).ToLower() },
 		ULootLockerServerEndpoints::CreateWallet, {}, {}, OnCompleteBP, OnComplete);
 }
