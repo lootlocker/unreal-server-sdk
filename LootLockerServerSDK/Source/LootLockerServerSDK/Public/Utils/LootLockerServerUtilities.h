@@ -3,6 +3,15 @@
 #pragma once
 
 #include "JsonObjectConverter.h"
+#include "LootLockerServerUtilities.generated.h"
+
+UCLASS()
+class LOOTLOCKERSERVERSDK_API ULootLockerServerEnumUtils : public UObject
+{
+    GENERATED_BODY()
+public:
+    static FString GetEnum(const TCHAR* Enum, int32 EnumValue);
+};
 
 namespace LootLockerServerUtilities
 {
