@@ -36,6 +36,29 @@ enum class ELootLockerServerMetadataTypes : uint8
 };
 
 /*
+ Possible metadata actions
+ */
+UENUM(BlueprintType, Category = "LootLockerServer")
+enum class ELootLockerServerMetadataActions : uint8
+{
+    Create = 0,
+    Update = 1,
+    Delete = 2
+};
+
+/*
+ Possible metadata access types
+ */
+UENUM(BlueprintType, Category = "LootLockerServer")
+enum class ELootLockerServerMetadataAccessTypes : uint8
+{
+    None = 0,
+    Read = 1,
+    Write = 2,
+    ReadAndWrite = 3
+};
+
+/*
  Possible metadata parser output types
  */
 UENUM(BlueprintType, Category = "LootLockerServer")
@@ -55,6 +78,26 @@ enum class ELootLockerServerMetadataParserOutputTypes : uint8
 //==================================================
 // Data Type Definitions
 //==================================================
+
+/*
+ Access settings for a metadata entry
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerMetadataAccessSettings
+{
+    GENERATED_BODY()
+
+    /*
+    The level of access that should be allowed from the Game API (the game clients)
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    ELootLockerServerMetadataAccessTypes GameAccess = ELootLockerServerMetadataAccessTypes::None;
+    /*
+    The level of access that should be allowed from the Server API (the game server, if one exists)
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    ELootLockerServerMetadataAccessTypes ServerAccess = ELootLockerServerMetadataAccessTypes::ReadAndWrite;
+};
 
 /*
  *
@@ -97,6 +140,11 @@ struct FLootLockerServerMetadataEntry
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FString> Tags;
+    /*
+     The access level set for this metadata entry
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerMetadataAccessSettings AccessLevel;
 
     /*
      Get the value as a String. Returns true if value could be parsed in which case Output contains the string value untouched, returns false if parsing failed.
