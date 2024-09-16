@@ -184,6 +184,7 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 			FString EntryKey = JsonEntryObject.Get()->GetStringField(TEXT("key"));
 			int EntryIndex = Response.__INTERNAL_GetEntryIndexByKey(EntryKey);
 			// If the fetched entry index is out of range or if it points to the wrong key, try to find the entry the old-fashioned way before giving up
+
 			if (EntryIndex < 0 || EntryIndex >= Response.Entries.Num() 
 				|| !Response.Entries[EntryIndex].Key.Equals(EntryKey)) {
 				for (FLootLockerServerMetadataEntry& ResponseEntry : Response.Entries)
@@ -191,12 +192,61 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 					if (ResponseEntry.Key.Equals(EntryKey))
 					{
 						ResponseEntry._INTERNAL_SetJsonRepresentation(*JsonEntryObject.Get());
+						TArray<FString> AccessLevels;
+						if(JsonEntryObject->HasField(TEXT("access")) && JsonEntryObject->TryGetStringArrayField(TEXT("access"), AccessLevels))
+						{
+							bool GameAPICanRead = false;
+							bool GameAPICanWrite = false;
+							bool ServerAPICanRead = true;
+							bool ServerAPICanWrite = true;
+							for (FString AccessLevel : AccessLevels)
+							{
+								GameAPICanRead = AccessLevel.Equals("game_api.read");
+								GameAPICanWrite = AccessLevel.Equals("game_api.write");
+								ServerAPICanRead = AccessLevel.Equals("server_api.read");
+								ServerAPICanWrite = AccessLevel.Equals("server_api.write");
+							}
+							if (GameAPICanRead && GameAPICanWrite) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::ReadAndWrite;
+							else if (GameAPICanRead) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::Read;
+							else if (GameAPICanWrite) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::Write;
+							else ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::None;
+
+							if (ServerAPICanRead && ServerAPICanWrite) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::ReadAndWrite;
+							else if (ServerAPICanRead) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::Read;
+							else if (ServerAPICanWrite) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::Write;
+							else ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::None;
+						}
 					}
 				}
 			}
 			else
 			{
-				Response.Entries[EntryIndex]._INTERNAL_SetJsonRepresentation(*JsonEntryObject.Get());
+				FLootLockerServerMetadataEntry& ResponseEntry = Response.Entries[EntryIndex];
+				ResponseEntry._INTERNAL_SetJsonRepresentation(*JsonEntryObject.Get());
+				TArray<FString> AccessLevels;
+				if (JsonEntryObject->HasField(TEXT("access")) && JsonEntryObject->TryGetStringArrayField(TEXT("access"), AccessLevels))
+				{
+					bool GameAPICanRead = false;
+					bool GameAPICanWrite = false;
+					bool ServerAPICanRead = true;
+					bool ServerAPICanWrite = true;
+					for (FString AccessLevel : AccessLevels)
+					{
+						GameAPICanRead = AccessLevel.Equals("game_api.read");
+						GameAPICanWrite = AccessLevel.Equals("game_api.write");
+						ServerAPICanRead = AccessLevel.Equals("server_api.read");
+						ServerAPICanWrite = AccessLevel.Equals("server_api.write");
+					}
+					if (GameAPICanRead && GameAPICanWrite) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::ReadAndWrite;
+					else if (GameAPICanRead) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::Read;
+					else if (GameAPICanWrite) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::Write;
+					else ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::None;
+
+					if (ServerAPICanRead && ServerAPICanWrite) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::ReadAndWrite;
+					else if (ServerAPICanRead) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::Read;
+					else if (ServerAPICanWrite) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::Write;
+					else ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::None;
+				}
 			}
 		}
 
