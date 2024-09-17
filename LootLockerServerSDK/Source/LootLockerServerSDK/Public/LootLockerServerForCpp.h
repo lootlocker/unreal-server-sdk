@@ -1296,4 +1296,15 @@ public:
     */
     static void GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const FLootLockerServerGetMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
 
+    /**
+    Set the provided metadata for the specified source
+
+	Note that a subset of the specified operations can fail without the full request failing. Make sure to check the errors array in the response.
+
+    @param Source The source type for which to set metadata
+    @param SourceID The specific source id for which to set metadata
+    @param MetadataToActionsToPerform List of actions to take during this set operation.
+    @param OnComplete delegate for handling the server response
+    */
+    static void SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseDelegate& OnComplete);
 };

@@ -603,3 +603,8 @@ void ULootLockerServerForCpp::GetMetadata(const ELootLockerServerMetadataSources
 {
 	ULootLockerServerMetadataRequest::GetMetadata(Source, SourceID, Key, IgnoreFiles, FLootLockerServerGetMetadataResponseBP(), OnComplete);
 }
+
+void ULootLockerServerForCpp::SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform,	const FLootLockerServerSetMetadataResponseDelegate& OnComplete)
+{
+	ULootLockerServerMetadataRequest::SetMetadata(Source, SourceID, MetadataToActionsToPerform, FLootLockerServerSetMetadataResponseBP(), OnComplete);
+}

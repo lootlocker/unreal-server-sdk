@@ -121,6 +121,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::CreateWallet = InitEndpoin
 
 // Metadata
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListMetadata = InitEndpoint("metadata/source/{0}/id/{1}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::MetadataActions = InitEndpoint("metadata/", ELootLockerServerHTTPMethod::POST);
 
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method)
 {

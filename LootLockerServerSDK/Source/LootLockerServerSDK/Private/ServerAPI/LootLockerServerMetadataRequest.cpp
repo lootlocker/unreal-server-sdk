@@ -95,9 +95,150 @@ bool FLootLockerServerMetadataEntry::TryGetValueAsBase64(FLootLockerServerMetada
 	return TryGetValueAsUStruct(Output);
 }
 
+void FLootLockerServerMetadataEntry::SetValueAsString(const FString& Value) 
+{
+	EntryAsJson.SetStringField(TEXT("value"), Value);
+	Type = ELootLockerServerMetadataTypes::String;
+}
+
+void FLootLockerServerMetadataEntry::SetValueAsDouble(const double& Value) 
+{
+	EntryAsJson.SetNumberField(TEXT("value"), Value);
+	Type = ELootLockerServerMetadataTypes::Number;
+}
+
+void FLootLockerServerMetadataEntry::SetValueAsInteger(const int& Value) 
+{
+	EntryAsJson.SetNumberField(TEXT("value"), Value);
+	Type = ELootLockerServerMetadataTypes::Number;
+}
+
+void FLootLockerServerMetadataEntry::SetValueAsBool(const bool& Value) 
+{
+	EntryAsJson.SetBoolField(TEXT("value"), Value);
+	Type = ELootLockerServerMetadataTypes::Bool;
+}
+
+void FLootLockerServerMetadataEntry::SetRawValue(const TSharedPtr<FJsonValue>& Value) 
+{
+	EntryAsJson.SetField(TEXT("value"), Value);
+	Type = ELootLockerServerMetadataTypes::Json;
+}
+
+template<typename T>
+bool FLootLockerServerMetadataEntry::SetValueAsUStruct(const T& Value) 
+{
+	TSharedPtr<FJsonObject> JsonObject = FJsonObjectConverter::UStructToJsonObject(Value);
+	if(!JsonObject.IsValid())
+	{
+		return false;
+	}
+	SetValueAsJsonObject(*JsonObject);
+	return true;
+}
+
+void FLootLockerServerMetadataEntry::SetValueAsJsonObject(const FJsonObject& Value) 
+{
+	EntryAsJson.SetObjectField(TEXT("value"), MakeShared<FJsonObject>(Value));
+	Type = ELootLockerServerMetadataTypes::Json;
+}
+
+void FLootLockerServerMetadataEntry::SetValueAsJsonArray(const TArray<TSharedPtr<FJsonValue>>& Value) 
+{
+	EntryAsJson.SetArrayField(TEXT("value"), Value);
+	Type = ELootLockerServerMetadataTypes::Json;
+}
+
+void FLootLockerServerMetadataEntry::SetValueAsBase64(const FLootLockerServerMetadataBase64Value& Value) 
+{
+	SetValueAsUStruct(Value);
+}
+
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeStringEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const FString& Value)
+{
+	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::String);
+	Entry.SetValueAsString(Value);
+	return Entry;
+}
+
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeDoubleEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const double& Value)
+{
+	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Number);
+	Entry.SetValueAsDouble(Value);
+	return Entry;
+}
+
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeIntegerEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const int Value)
+{
+	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Number);
+	Entry.SetValueAsInteger(Value);
+	return Entry;
+}
+
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeBoolEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const bool Value)
+{
+	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Bool);
+	Entry.SetValueAsBool(Value);
+	return Entry;
+}
+
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeJsonValueEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const ELootLockerServerMetadataTypes Type, const TSharedPtr<FJsonValue> Value)
+{
+	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
+	Entry.SetRawValue(Value);
+	return Entry;
+}
+
+template<typename T>
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeUStructEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const T& Value)
+{
+	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
+	Entry.SetValueAsUStruct(Value);
+	return Entry;
+}
+
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeJsonObjectEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const FJsonObject& Value)
+{
+	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
+	Entry.SetValueAsJsonObject(Value);
+	return Entry;
+}
+
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeJsonArrayEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const TArray<TSharedPtr<FJsonValue>>& Value)
+{
+	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
+	Entry.SetValueAsJsonArray(Value);
+	return Entry;
+}
+
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeBase64Entry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const FLootLockerServerMetadataBase64Value& Value)
+{
+	return MakeUStructEntry(Key, Tags, Access, Value);
+}
+
 void FLootLockerServerMetadataEntry::_INTERNAL_SetJsonRepresentation(const FJsonObject& obj)
 {
 	EntryAsJson = obj;
+}
+
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeEntryExceptValue(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const ELootLockerServerMetadataTypes Type)
+{
+	FLootLockerServerMetadataEntry Entry;
+	Entry.Key = Key;
+	Entry.Tags = Tags;
+	Entry.Type = Type;
+	Entry.Access = Access;
+	FJsonObject JsonRepresentation;
+	JsonRepresentation.SetStringField(TEXT("key"), Key);
+	TArray<TSharedPtr<FJsonValue>> TagArray;
+	for (const FString& Tag : Tags)
+	{
+		TagArray.Add(MakeShared<FJsonValueString>(Tag));
+	}
+	JsonRepresentation.SetArrayField(TEXT("tags"), TagArray);
+	JsonRepresentation.SetStringField(TEXT("type"), ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataTypes"), static_cast<int32>(Type)).ToLower());
+	Entry.EntryAsJson = JsonRepresentation;
+	return Entry;
 }
 
 int FLootLockerServerListMetadataResponse::__INTERNAL_GetEntryIndexByKey(const FString Key) const
@@ -181,10 +322,11 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 		for (TSharedPtr<FJsonValue> JsonEntry : JsonEntries)
 		{
 			TSharedPtr<FJsonObject> JsonEntryObject = JsonEntry.Get()->AsObject();
+
 			FString EntryKey = JsonEntryObject.Get()->GetStringField(TEXT("key"));
 			int EntryIndex = Response.__INTERNAL_GetEntryIndexByKey(EntryKey);
-			// If the fetched entry index is out of range or if it points to the wrong key, try to find the entry the old-fashioned way before giving up
 
+			// If the fetched entry index is out of range or if it points to the wrong key, try to find the entry the old-fashioned way before giving up
 			if (EntryIndex < 0 || EntryIndex >= Response.Entries.Num() 
 				|| !Response.Entries[EntryIndex].Key.Equals(EntryKey)) {
 				for (FLootLockerServerMetadataEntry& ResponseEntry : Response.Entries)
@@ -192,30 +334,6 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 					if (ResponseEntry.Key.Equals(EntryKey))
 					{
 						ResponseEntry._INTERNAL_SetJsonRepresentation(*JsonEntryObject.Get());
-						TArray<FString> AccessLevels;
-						if(JsonEntryObject->HasField(TEXT("access")) && JsonEntryObject->TryGetStringArrayField(TEXT("access"), AccessLevels))
-						{
-							bool GameAPICanRead = false;
-							bool GameAPICanWrite = false;
-							bool ServerAPICanRead = true;
-							bool ServerAPICanWrite = true;
-							for (FString AccessLevel : AccessLevels)
-							{
-								GameAPICanRead = AccessLevel.Equals("game_api.read");
-								GameAPICanWrite = AccessLevel.Equals("game_api.write");
-								ServerAPICanRead = AccessLevel.Equals("server_api.read");
-								ServerAPICanWrite = AccessLevel.Equals("server_api.write");
-							}
-							if (GameAPICanRead && GameAPICanWrite) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::ReadAndWrite;
-							else if (GameAPICanRead) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::Read;
-							else if (GameAPICanWrite) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::Write;
-							else ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::None;
-
-							if (ServerAPICanRead && ServerAPICanWrite) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::ReadAndWrite;
-							else if (ServerAPICanRead) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::Read;
-							else if (ServerAPICanWrite) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::Write;
-							else ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::None;
-						}
 					}
 				}
 			}
@@ -223,30 +341,6 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 			{
 				FLootLockerServerMetadataEntry& ResponseEntry = Response.Entries[EntryIndex];
 				ResponseEntry._INTERNAL_SetJsonRepresentation(*JsonEntryObject.Get());
-				TArray<FString> AccessLevels;
-				if (JsonEntryObject->HasField(TEXT("access")) && JsonEntryObject->TryGetStringArrayField(TEXT("access"), AccessLevels))
-				{
-					bool GameAPICanRead = false;
-					bool GameAPICanWrite = false;
-					bool ServerAPICanRead = true;
-					bool ServerAPICanWrite = true;
-					for (FString AccessLevel : AccessLevels)
-					{
-						GameAPICanRead = AccessLevel.Equals("game_api.read");
-						GameAPICanWrite = AccessLevel.Equals("game_api.write");
-						ServerAPICanRead = AccessLevel.Equals("server_api.read");
-						ServerAPICanWrite = AccessLevel.Equals("server_api.write");
-					}
-					if (GameAPICanRead && GameAPICanWrite) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::ReadAndWrite;
-					else if (GameAPICanRead) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::Read;
-					else if (GameAPICanWrite) ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::Write;
-					else ResponseEntry.AccessLevel.GameAccess = ELootLockerServerMetadataAccessTypes::None;
-
-					if (ServerAPICanRead && ServerAPICanWrite) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::ReadAndWrite;
-					else if (ServerAPICanRead) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::Read;
-					else if (ServerAPICanWrite) ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::Write;
-					else ResponseEntry.AccessLevel.ServerAccess = ELootLockerServerMetadataAccessTypes::None;
-				}
 			}
 		}
 
@@ -271,4 +365,66 @@ void ULootLockerServerMetadataRequest::GetMetadata(const ELootLockerServerMetada
 		OnCompleteBP.ExecuteIfBound(SingleEntryResponse);
 		OnComplete.ExecuteIfBound(SingleEntryResponse);
 	}));
+}
+
+void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseBP& OnCompleteBP, const FLootLockerServerSetMetadataResponseDelegate& OnComplete)
+{
+	if (SourceID.IsEmpty())
+	{
+		FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
+			FLootLockerServerSetMetadataResponse>("Can not perform actions for source with empty id");
+		OnCompleteBP.ExecuteIfBound(Error);
+		OnComplete.ExecuteIfBound(Error);
+		return;
+	}
+
+	// Set source and source id
+	FJsonObject ManuallySerializedRequest;
+	FString SourceAsString = ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataSources"), static_cast<int32>(Source)).ToLower();
+	SourceAsString.ReplaceCharInline(' ', '_');
+	ManuallySerializedRequest.SetStringField(TEXT("source"), SourceAsString);
+	ManuallySerializedRequest.SetStringField(TEXT("source_id"), SourceID);
+
+	// Iterate over actions to perform and manually construct json since there's a ton of magic to it
+	TArray<TSharedPtr<FJsonValue>> entries;
+	for (const FLootLockerServerSetMetadataAction& ActionToPerform : MetadataToActionsToPerform)
+	{
+		// Serialize the brunt of the entry automatically
+		// Should handle the fields key, tags, and access
+		TSharedPtr<FJsonObject> JsonEntry = FJsonObjectConverter::UStructToJsonObject(ActionToPerform.Entry);
+		if (!JsonEntry.IsValid())
+		{
+			FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
+				FLootLockerServerSetMetadataResponse>("Could not serialize action for key " + ActionToPerform.Entry.Key);
+			OnCompleteBP.ExecuteIfBound(Error);
+			OnComplete.ExecuteIfBound(Error);
+			return;
+		}
+
+		// Make type lowercase
+		JsonEntry->SetStringField(TEXT("type"), ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataTypes"), static_cast<int32>(ActionToPerform.Entry.Type)).ToLower());
+
+		// Add the action that should be performed to the entry
+		JsonEntry->SetStringField(TEXT("action"), ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataActions"), static_cast<int32>(ActionToPerform.Action)).ToLower());
+
+		// Manually set the field "value"
+		TSharedPtr<FJsonValue> RawEntryValue;
+		if (!ActionToPerform.Entry.TryGetRawValue(RawEntryValue))
+		{
+			FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
+				FLootLockerServerSetMetadataResponse>("Could not get value to perform action " + JsonEntry->GetStringField(TEXT("action")) + " for key " + ActionToPerform.Entry.Key);
+			OnCompleteBP.ExecuteIfBound(Error);
+			OnComplete.ExecuteIfBound(Error);
+			return;
+		}
+		JsonEntry->SetField(TEXT("value"), RawEntryValue);
+
+		// Add manually serialized to entries array
+		entries.Add(MakeShared<FJsonValueObject>(JsonEntry));
+	}
+
+	// Add entries to manually serialized request
+	ManuallySerializedRequest.SetArrayField(TEXT("entries"), entries);
+	FString SerializedRequest = LootLockerServerUtilities::FStringFromJsonObject(MakeShared<FJsonObject>(ManuallySerializedRequest));
+	ULootLockerServerHttpClient::SendRawRequest<FLootLockerServerSetMetadataResponse>(SerializedRequest, ULootLockerServerEndpoints::MetadataActions, {}, {}, OnCompleteBP, OnComplete);
 }

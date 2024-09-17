@@ -1415,4 +1415,97 @@ public:
         FString& ErrorMessage,
         FLootLockerServerMetadataEntry& OutEntry);
 
+    /**
+    Set the provided metadata for the specified source
+
+	Use the provided Make<type>MetadataAction when constructing the array of actions to perform.
+    Note that a subset of the specified operations can fail without the full request failing. Make sure to check the errors array in the response.
+
+    @param Source The source type for which to set metadata
+    @param SourceID The specific source id for which to set metadata
+    @param MetadataToActionsToPerform List of actions to take during this set operation.
+    @param OnComplete delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata")
+    static void SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseBP& OnComplete);
+
+    /**
+    Construct a Metadata Action consisting of a metadata entry with a String value
+
+    @param Action The action to take for this set operation. Update and Delete operations will fail if the key does not exist. Create operation will fail if the key does exist.
+    @param Key The key to perform this action towards
+    @param Value The value to set for the specified key
+    @param Tags The tags to apply to the specified key
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @return A Metadata Action Object that you can use in the method SetMetadata
+    */
+    UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm="Tags,Access"))
+    static FLootLockerServerSetMetadataAction MakeMetadataActionString(ELootLockerServerMetadataActions Action, const FString& Key, const FString& Value, const TArray<FString>& Tags, const TArray<FString>& Access);
+
+    /**
+    Construct a Metadata Action consisting of a metadata entry with a Decimal value
+
+    @param Action The action to take for this set operation. Update and Delete operations will fail if the key does not exist. Create operation will fail if the key does exist.
+    @param Key The key to perform this action towards
+    @param Value The value to set for the specified key
+    @param Tags The tags to apply to the specified key
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @return A Metadata Action Object that you can use in the method SetMetadata
+    */
+    UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
+    static FLootLockerServerSetMetadataAction MakeMetadataActionDouble(ELootLockerServerMetadataActions Action, const FString& Key, const double& Value, const TArray<FString>& Tags, const TArray<FString>& Access);
+
+    /**
+    Construct a Metadata Action consisting of a metadata entry with an Integer value
+
+    @param Action The action to take for this set operation. Update and Delete operations will fail if the key does not exist. Create operation will fail if the key does exist.
+    @param Key The key to perform this action towards
+    @param Value The value to set for the specified key
+    @param Tags The tags to apply to the specified key
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @return A Metadata Action Object that you can use in the method SetMetadata
+    */
+    UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
+    static FLootLockerServerSetMetadataAction MakeMetadataActionInteger(ELootLockerServerMetadataActions Action, const FString& Key, const int Value, const TArray<FString>& Tags, const TArray<FString>& Access);
+
+    /**
+    Construct a Metadata Action consisting of a metadata entry with a Bool value
+
+    @param Action The action to take for this set operation. Update and Delete operations will fail if the key does not exist. Create operation will fail if the key does exist.
+    @param Key The key to perform this action towards
+    @param Value The value to set for the specified key
+    @param Tags The tags to apply to the specified key
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @return A Metadata Action Object that you can use in the method SetMetadata
+    */
+    UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
+    static FLootLockerServerSetMetadataAction MakeMetadataActionBool(ELootLockerServerMetadataActions Action, const FString& Key, const bool Value, const TArray<FString>& Tags, const TArray<FString>& Access);
+
+    /**
+    Construct a Metadata Action consisting of a metadata entry with a Json value in string format
+
+    @param Action The action to take for this set operation. Update and Delete operations will fail if the key does not exist. Create operation will fail if the key does exist.
+    @param Key The key to perform this action towards
+    @param Value The value to set for the specified key
+    @param Tags The tags to apply to the specified key
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @param Succeeded Output: True if the json string could be parsed as an array or object, false if it could not be parsed
+    @param ConstructedEntry Output: A Metadata Action Object that you can use in the method SetMetadata
+    */
+    UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
+    static void MakeMetadataActionJson(ELootLockerServerMetadataActions Action, const FString& Key, const FString& Value, const TArray<FString>& Tags, const TArray<FString>& Access, bool& Succeeded, FLootLockerServerSetMetadataAction& ConstructedEntry);
+
+    /**
+    Construct a Metadata Action consisting of a metadata entry with a Base64 value
+
+    @param Action The action to take for this set operation. Update and Delete operations will fail if the key does not exist. Create operation will fail if the key does exist.
+    @param Key The key to perform this action towards
+    @param Value The value to set for the specified key
+    @param Tags The tags to apply to the specified key
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @return A Metadata Action Object that you can use in the method SetMetadata
+    */
+    UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
+    static FLootLockerServerSetMetadataAction MakeMetadataActionBase64(ELootLockerServerMetadataActions Action, const FString& Key, const FLootLockerServerMetadataBase64Value& Value, const TArray<FString>& Tags, const TArray<FString>& Access);
+
 };
