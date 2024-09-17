@@ -156,6 +156,7 @@ public:
 
     // Metadata
     static FLootLockerServerEndPoint ListMetadata;
+    static FLootLockerServerEndPoint MetadataActions;
 
 private:
     static FString GameBaseUrl;
