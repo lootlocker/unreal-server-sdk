@@ -122,6 +122,7 @@ struct FLootLockerServerMetadataEntry
     TArray<FString> Tags;
     /*
      The access level set for this metadata entry. Valid values are game_api.read and game_api.write, though no values are required.
+     Note that different sources can allow or disallow a subset of these values.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FString> Access;
@@ -207,7 +208,7 @@ struct FLootLockerServerMetadataEntry
 
     /*
      Factory method that makes an FLootLockerServerMetadataEntry with a String Value
-	 */
+     */
 	static LOOTLOCKERSERVERSDK_API FLootLockerServerMetadataEntry MakeStringEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const FString& Value);
     /*
      Factory method that makes an FLootLockerServerMetadataEntry with a Double Value
