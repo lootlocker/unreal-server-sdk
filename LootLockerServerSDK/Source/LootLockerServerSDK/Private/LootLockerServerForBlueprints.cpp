@@ -744,3 +744,8 @@ FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataA
 {
     return FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeBase64Entry(Key, Tags, Access, Value));
 }
+
+void ULootLockerServerForBlueprints::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnComplete)
+{
+    ULootLockerServerMetadataRequest::GetMultisourceMetadata(SourcesAndKeysToGet, IgnoreFiles, OnComplete);
+}

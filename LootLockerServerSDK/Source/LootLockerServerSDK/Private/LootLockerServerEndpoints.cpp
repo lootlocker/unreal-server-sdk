@@ -2,8 +2,6 @@
 
 #include "LootLockerServerEndpoints.h"
 
-#include "LootLockerServerConfig.h"
-
 FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.lootlocker.io/server/";
 
 //Auth
@@ -122,6 +120,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::CreateWallet = InitEndpoin
 // Metadata
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListMetadata = InitEndpoint("metadata/source/{0}/id/{1}", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::MetadataActions = InitEndpoint("metadata/", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetMultisourceMetadata = InitEndpoint("metadata/multisource", ELootLockerServerHTTPMethod::POST);
 
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method)
 {
