@@ -259,6 +259,11 @@ struct FLootLockerServerAssetWithoutPackageContent
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Uuid = "";
     /*
+     The ulid of this asset
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Ulid = "";
+    /*
      The name of this asset
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
