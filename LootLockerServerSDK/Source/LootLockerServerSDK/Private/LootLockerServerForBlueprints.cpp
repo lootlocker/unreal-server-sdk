@@ -662,13 +662,15 @@ void ULootLockerServerForBlueprints::ParseLootLockerServerMetadataEntry(const FL
     }
     case ELootLockerServerMetadataTypes::Json:
     {
-        if (TSharedPtr<FJsonObject> JsonObject = nullptr; Entry.TryGetValueAsJsonObject(JsonObject) && JsonObject.IsValid())
+        TSharedPtr<FJsonObject> JsonObject = nullptr;
+        if (Entry.TryGetValueAsJsonObject(JsonObject) && JsonObject.IsValid())
         {
             MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnJson;
             JsonStringValue = ValueToParse;
             return;
         }
-        if (TArray<TSharedPtr<FJsonValue>> OutputJsonArray; Entry.TryGetValueAsJsonArray(OutputJsonArray))
+        TArray<TSharedPtr<FJsonValue>> OutputJsonArray;
+        if (Entry.TryGetValueAsJsonArray(OutputJsonArray))
         {
             MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnJson;
             JsonStringValue = ValueToParse;
@@ -702,22 +704,22 @@ void ULootLockerServerForBlueprints::SetMetadata(const ELootLockerServerMetadata
 
 FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionString(ELootLockerServerMetadataActions Action, const FString& Key, const FString& Value, const TArray<FString>& Tags, const TArray<FString>& Access)
 {
-    return FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeStringEntry(Key, Tags, Access, Value));
+    return FLootLockerServerSetMetadataAction{ Action, FLootLockerServerMetadataEntry::MakeStringEntry(Key, Tags, Access, Value) };
 }
 
 FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionFloat(ELootLockerServerMetadataActions Action, const FString& Key, const float& Value, const TArray<FString>& Tags, const TArray<FString>& Access)
 {
-    return FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeFloatEntry(Key, Tags, Access, Value));
+    return FLootLockerServerSetMetadataAction{ Action, FLootLockerServerMetadataEntry::MakeFloatEntry(Key, Tags, Access, Value) };
 }
 
 FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionInteger(ELootLockerServerMetadataActions Action, const FString& Key, const int Value, const TArray<FString>& Tags, const TArray<FString>& Access)
 {
-    return FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeIntegerEntry(Key, Tags, Access, Value));
+    return FLootLockerServerSetMetadataAction{Action, FLootLockerServerMetadataEntry::MakeIntegerEntry(Key, Tags, Access, Value)};
 }
 
 FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionBool(ELootLockerServerMetadataActions Action, const FString& Key, const bool Value, const TArray<FString>& Tags, const TArray<FString>& Access)
 {
-    return FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeBoolEntry(Key, Tags, Access, Value));
+    return FLootLockerServerSetMetadataAction{Action, FLootLockerServerMetadataEntry::MakeBoolEntry(Key, Tags, Access, Value)};
 }
 
 void ULootLockerServerForBlueprints::MakeMetadataActionJson(ELootLockerServerMetadataActions Action, const FString& Key, const FString& Value, const TArray<FString>& Tags, const TArray<FString>& Access, bool& Succeeded, FLootLockerServerSetMetadataAction& ConstructedEntry)
@@ -725,7 +727,7 @@ void ULootLockerServerForBlueprints::MakeMetadataActionJson(ELootLockerServerMet
 	TArray<TSharedPtr<FJsonValue>> JsonArrayValue;
     if(LootLockerServerUtilities::JsonArrayFromFString(Value, JsonArrayValue))
     {
-        ConstructedEntry = FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeJsonArrayEntry(Key, Tags, Access, JsonArrayValue));
+        ConstructedEntry = FLootLockerServerSetMetadataAction{Action, FLootLockerServerMetadataEntry::MakeJsonArrayEntry(Key, Tags, Access, JsonArrayValue)};
         Succeeded = true;
         return;
     }
@@ -733,7 +735,7 @@ void ULootLockerServerForBlueprints::MakeMetadataActionJson(ELootLockerServerMet
 	TSharedPtr<FJsonObject> JsonObjectValue = LootLockerServerUtilities::JsonObjectFromFString(Value);
     if(JsonObjectValue.IsValid())
     {
-         ConstructedEntry = FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeJsonObjectEntry(Key, Tags, Access, *JsonObjectValue));
+         ConstructedEntry = FLootLockerServerSetMetadataAction{Action, FLootLockerServerMetadataEntry::MakeJsonObjectEntry(Key, Tags, Access, *JsonObjectValue)};
          Succeeded = true;
          return;
     }
@@ -742,7 +744,7 @@ void ULootLockerServerForBlueprints::MakeMetadataActionJson(ELootLockerServerMet
 
 FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionBase64(ELootLockerServerMetadataActions Action, const FString& Key, const FLootLockerServerMetadataBase64Value& Value, const TArray<FString>& Tags, const TArray<FString>& Access)
 {
-    return FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeBase64Entry(Key, Tags, Access, Value));
+    return FLootLockerServerSetMetadataAction{Action, FLootLockerServerMetadataEntry::MakeBase64Entry(Key, Tags, Access, Value)};
 }
 
 void ULootLockerServerForBlueprints::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnComplete)
