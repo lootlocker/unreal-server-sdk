@@ -17,7 +17,14 @@ bool FLootLockerServerMetadataEntry::TryGetValueAsString(FString& Output) const
 
 bool FLootLockerServerMetadataEntry::TryGetValueAsFloat(float& Output) const
 {
+#if ENGINE_MAJOR_VERSION > 5
 	return EntryAsJson.TryGetNumberField(TEXT("value"), Output);
+#else
+	double outDouble = 0.0f;
+	bool success = EntryAsJson.TryGetNumberField(TEXT("value"), outDouble);
+	Output = static_cast<float>(outDouble);
+	return success;
+#endif
 }
 
 bool FLootLockerServerMetadataEntry::TryGetValueAsInteger(int& Output) const
