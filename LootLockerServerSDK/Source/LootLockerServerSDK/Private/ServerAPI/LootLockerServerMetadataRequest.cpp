@@ -312,7 +312,7 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 	if (Page > 0) QueryParams.Add("page", FString::FromInt(Page));
 	if (PerPage > 0) QueryParams.Add("per_page", FString::FromInt(PerPage));
 	if (!Key.IsEmpty()) QueryParams.Add("key", Key);
-	if (!Tags.IsEmpty()) {
+	if (Tags.Num() <= 0) {
 		for (FString Tag : Tags)
 		{
 			QueryParams.Add("tags", Tag);
@@ -326,7 +326,7 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 	ULootLockerServerHttpClient::SendRequest<FLootLockerServerListMetadataResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ListMetadata, { SourceAsString, SourceID }, QueryParams, FLootLockerServerListMetadataResponseBP(), FLootLockerServerListMetadataResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerListMetadataResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnCompleteBP, OnComplete](FLootLockerServerListMetadataResponse& Response)
 	{
 		// Make sure we will have entries to parse before continuing
-		if(!Response.Success || Response.Entries.IsEmpty() || Response.Entries.IsEmpty())
+		if(!Response.Success || Response.Entries.Num() <= 0)
 		{
 			OnCompleteBP.ExecuteIfBound(Response);
 			OnComplete.ExecuteIfBound(Response);
@@ -468,7 +468,7 @@ void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLoot
 	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetMultisourceMetadataResponse>(FLootLockerServerGetMultisourceMetadataRequest{ SourcesAndKeysToGet }, ULootLockerServerEndpoints::GetMultisourceMetadata, {}, QueryParams, FLootLockerServerGetMultisourceMetadataResponseBP(), FLootLockerServerGetMultisourceMetadataResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerGetMultisourceMetadataResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnComplete, OnCompleteBP](FLootLockerServerGetMultisourceMetadataResponse& Response)
 		{
 			// Make sure we will have source and entry combos to parse before continuing
-			if (!Response.Success || Response.Metadata.IsEmpty())
+			if (!Response.Success || Response.Metadata.Num() <= 0)
 			{
 				OnCompleteBP.ExecuteIfBound(Response);
 				OnComplete.ExecuteIfBound(Response);
