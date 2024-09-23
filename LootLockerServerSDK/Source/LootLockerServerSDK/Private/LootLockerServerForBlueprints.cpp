@@ -591,18 +591,18 @@ void ULootLockerServerForBlueprints::GetMetadata(const ELootLockerServerMetadata
 }
 
 void ULootLockerServerForBlueprints::ParseLootLockerServerMetadataEntry(const FLootLockerServerMetadataEntry& Entry,
-    ELootLockerServerMetadataParserOutputTypes& MetadataTypeSwitch,
-    FString& StringValue, int& IntegerValue,
-    double& DoubleValue, FString& NumberString, bool& BoolValue,
-    FString& JsonStringValue,
-    FLootLockerServerMetadataBase64Value& Base64Value,
-    FString& ErrorMessage, FLootLockerServerMetadataEntry& OutEntry)
+                                                                        ELootLockerServerMetadataParserOutputTypes& MetadataTypeSwitch,
+                                                                        FString& StringValue, int& IntegerValue,
+                                                                        float& FloatValue, FString& NumberString, bool& BoolValue,
+                                                                        FString& JsonStringValue,
+                                                                        FLootLockerServerMetadataBase64Value& Base64Value,
+                                                                        FString& ErrorMessage, FLootLockerServerMetadataEntry& OutEntry)
 {
     MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnError;
     StringValue = "";
     BoolValue = false;
     IntegerValue = 0;
-    DoubleValue = 0.0f;
+    FloatValue = 0.0f;
     NumberString = "";
     JsonStringValue = "";
     Base64Value = FLootLockerServerMetadataBase64Value();
@@ -634,9 +634,9 @@ void ULootLockerServerForBlueprints::ParseLootLockerServerMetadataEntry(const FL
             return;
         }
         // Parse as float
-        if (ValueToParse.Contains(".") && Entry.TryGetValueAsDouble(DoubleValue))
+        if (ValueToParse.Contains(".") && Entry.TryGetValueAsFloat(FloatValue))
         {
-            MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnDouble;
+            MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnFloat;
             return;
         }
         // Parse as int
@@ -705,9 +705,9 @@ FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataA
     return FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeStringEntry(Key, Tags, Access, Value));
 }
 
-FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionDouble(ELootLockerServerMetadataActions Action, const FString& Key, const double& Value, const TArray<FString>& Tags, const TArray<FString>& Access)
+FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionFloat(ELootLockerServerMetadataActions Action, const FString& Key, const float& Value, const TArray<FString>& Tags, const TArray<FString>& Access)
 {
-    return FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeDoubleEntry(Key, Tags, Access, Value));
+    return FLootLockerServerSetMetadataAction(Action, FLootLockerServerMetadataEntry::MakeFloatEntry(Key, Tags, Access, Value));
 }
 
 FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionInteger(ELootLockerServerMetadataActions Action, const FString& Key, const int Value, const TArray<FString>& Tags, const TArray<FString>& Access)

@@ -15,7 +15,7 @@ bool FLootLockerServerMetadataEntry::TryGetValueAsString(FString& Output) const
 	return EntryAsJson.TryGetStringField(TEXT("value"), Output);
 }
 
-bool FLootLockerServerMetadataEntry::TryGetValueAsDouble(double& Output) const
+bool FLootLockerServerMetadataEntry::TryGetValueAsFloat(float& Output) const
 {
 	return EntryAsJson.TryGetNumberField(TEXT("value"), Output);
 }
@@ -101,7 +101,7 @@ void FLootLockerServerMetadataEntry::SetValueAsString(const FString& Value)
 	Type = ELootLockerServerMetadataTypes::String;
 }
 
-void FLootLockerServerMetadataEntry::SetValueAsDouble(const double& Value) 
+void FLootLockerServerMetadataEntry::SetValueAsFloat(const float& Value) 
 {
 	EntryAsJson.SetNumberField(TEXT("value"), Value);
 	Type = ELootLockerServerMetadataTypes::Number;
@@ -161,10 +161,10 @@ FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeStringEntry(c
 	return Entry;
 }
 
-FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeDoubleEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const double& Value)
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeFloatEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const float& Value)
 {
 	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Number);
-	Entry.SetValueAsDouble(Value);
+	Entry.SetValueAsFloat(Value);
 	return Entry;
 }
 

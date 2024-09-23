@@ -1394,7 +1394,7 @@ public:
      @param MetadataTypeSwitch Generated output execution pins for the possible metadata types
      @param StringValue The parsed String Value, populated if the OnString output pin was triggered
      @param IntegerValue The parsed integer Value, populated if the OnInteger output pin was triggered
-     @param DoubleValue The parsed decimal Value, populated if the OnDouble output pin was triggered
+     @param FloatValue The parsed decimal Value, populated if the OnFloat output pin was triggered
      @param NumberString The parsed Number String Value, populated if the OnNumber output pin was triggered
      @param BoolValue The parsed boolean Value, populated if the OnBool output pin was triggered
      @param JsonStringValue The parsed Json String Value, populated if the OnJsonString output pin was triggered
@@ -1404,16 +1404,16 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata", meta = (ExpandEnumAsExecs = "MetadataTypeSwitch", AdvancedDisplay = "OutEntry"))
     static void ParseLootLockerServerMetadataEntry(const FLootLockerServerMetadataEntry& Entry,
-        ELootLockerServerMetadataParserOutputTypes& MetadataTypeSwitch,
-        FString& StringValue,
-        int& IntegerValue,
-        double& DoubleValue,
-        FString& NumberString,
-        bool& BoolValue,
-        FString& JsonStringValue,
-        FLootLockerServerMetadataBase64Value& Base64Value,
-        FString& ErrorMessage,
-        FLootLockerServerMetadataEntry& OutEntry);
+                                                   ELootLockerServerMetadataParserOutputTypes& MetadataTypeSwitch,
+                                                   FString& StringValue,
+                                                   int& IntegerValue,
+                                                   float& FloatValue,
+                                                   FString& NumberString,
+                                                   bool& BoolValue,
+                                                   FString& JsonStringValue,
+                                                   FLootLockerServerMetadataBase64Value& Base64Value,
+                                                   FString& ErrorMessage,
+                                                   FLootLockerServerMetadataEntry& OutEntry);
 
     /**
     Set the provided metadata for the specified source
@@ -1453,7 +1453,7 @@ public:
     @return A Metadata Action Object that you can use in the method SetMetadata
     */
     UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
-    static FLootLockerServerSetMetadataAction MakeMetadataActionDouble(ELootLockerServerMetadataActions Action, const FString& Key, const double& Value, const TArray<FString>& Tags, const TArray<FString>& Access);
+    static FLootLockerServerSetMetadataAction MakeMetadataActionFloat(ELootLockerServerMetadataActions Action, const FString& Key, const float& Value, const TArray<FString>& Tags, const TArray<FString>& Access);
 
     /**
     Construct a Metadata Action consisting of a metadata entry with an Integer value
