@@ -13,6 +13,7 @@
 #include "ServerAPI/LootLockerServerGameProgressionRequest.h"
 #include "ServerAPI/LootLockerServerHeroRequest.h"
 #include "ServerAPI/LootLockerServerInstanceProgressionRequest.h"
+#include "ServerAPI/LootLockerServerLeaderboardArchiveRequestHandler.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerMetadataRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
@@ -146,6 +147,22 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
+
+    /**
+    * List the archive of a specific Leaderboard,
+    * @param LeaderboardKey the Key of the Leaderboard you want the list of archives
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    static void ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest);
+
+    /**
+    * Get the specified Archive which includes details such as ranks, scores and rewards.
+    * @param Key the Key of the leaderboard archive entry you want to fetch details for
+    * @param Count Optional: the count of how many archive entries you want
+    * @param After Optional: cursor for pagination
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    static void GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Triggers https://ref.lootlocker.com/server-api/#triggers

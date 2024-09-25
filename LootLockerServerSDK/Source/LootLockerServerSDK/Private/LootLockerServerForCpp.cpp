@@ -74,6 +74,16 @@ void ULootLockerServerForCpp::GetPaginatedScoresFromLeaderboard(FString Leaderbo
 	ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(LeaderboardKey, Count, After, FLootLockerServerGetScoresFromLeaderboardResponseBP(), OnCompletedRequest);
 }
 
+void ULootLockerServerForCpp::ListLeaderboardArchive(const FString& LeaderboardKey,	const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(LeaderboardKey, FLootLockerServerLeaderboardArchiveResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerLeaderboardArchiveRequestHandler::GetLeaderboardArchive(Key, Count, After, FLootLockerServerLeaderboardArchiveDetailReponseBP(), OnCompletedRequest);
+}
+
 void ULootLockerServerForCpp::InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest)
 {
 	ULootLockerServerTriggerRequest::InvokeTriggerForPlayer(TriggerName, PlayerID, FLootLockerServerInvokeTriggerResponseBP(), OnCompletedRequest);
