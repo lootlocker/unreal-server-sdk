@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Dom/JsonObject.h"
+#include "Dom/JsonValue.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerMetadataRequest.generated.h"
 
@@ -115,7 +117,7 @@ struct FLootLockerServerMetadataEntry
      The type of value this metadata contains. Use this to parse the value.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerMetadataTypes Type;
+    ELootLockerServerMetadataTypes Type = ELootLockerServerMetadataTypes::String;
     /*
      List of tags applied to this metadata
      */
@@ -271,7 +273,7 @@ struct FLootLockerServerSetMetadataErrorEntry
      The type of value that the set operation was for
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerMetadataTypes Type;
+    ELootLockerServerMetadataTypes Type = ELootLockerServerMetadataTypes::String;
 };
 
 /**
@@ -285,7 +287,7 @@ struct FLootLockerServerSetMetadataError
      The type of action that this set metadata operation was
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerMetadataActions Action;
+    ELootLockerServerMetadataActions Action = ELootLockerServerMetadataActions::Create;
     /*
      The type of value that the set operation was for
      */
@@ -371,7 +373,7 @@ struct FLootLockerServerSetMetadataAction
      The type of action to take for setting this metadata entry
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerMetadataActions Action;
+    ELootLockerServerMetadataActions Action = ELootLockerServerMetadataActions::Create;
     /*
      The metadata entry to take the designated action for
      */
@@ -453,7 +455,7 @@ struct FLootLockerServerSetMetadataResponse : public FLootLockerServerResponse
      The type of source that the source id refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerMetadataSources Source;
+    ELootLockerServerMetadataSources Source = ELootLockerServerMetadataSources::reward;
     /*
      The id of the specific source that the set operation was taken on
      */
