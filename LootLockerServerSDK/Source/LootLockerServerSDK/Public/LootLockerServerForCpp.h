@@ -1299,7 +1299,7 @@ public:
     /**
     Set the provided metadata for the specified source
 
-	Note that a subset of the specified operations can fail without the full request failing. Make sure to check the errors array in the response.
+    Note that a subset of the specified operations can fail without the full request failing. Make sure to check the errors array in the response.
 
     @param Source The source type for which to set metadata
     @param SourceID The specific source id for which to set metadata

@@ -82,18 +82,21 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 		response.FullTextFromServer = Response->GetContentAsString();
 		if (!response.Success)
 		{
-			FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerErrorData>(response.FullTextFromServer, &response.ErrorData, 0, 0);
+			FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerErrorData>(
+				response.FullTextFromServer, &response.ErrorData, 0, 0);
 			if (response.ErrorData.Code.IsEmpty())
 			{
 				response.Error = response.ErrorData.Message = response.FullTextFromServer;
 			}
-			else {
+			else
+			{
 				response.Error = response.ErrorData.Message;
 			}
-            FString RetryAfterHeader = Response->GetHeader("retry-after");
-            if(!RetryAfterHeader.IsEmpty()) {
-                response.ErrorData.Retry_after_seconds = FCString::Atoi(*RetryAfterHeader);
-            }
+			FString RetryAfterHeader = Response->GetHeader("retry-after");
+			if (!RetryAfterHeader.IsEmpty())
+			{
+				response.ErrorData.Retry_after_seconds = FCString::Atoi(*RetryAfterHeader);
+			}
 			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data);
 		}
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
@@ -189,18 +192,21 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 		response.FullTextFromServer = Response->GetContentAsString();
 		if (!response.Success)
 		{
-			FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerErrorData>(response.FullTextFromServer, &response.ErrorData, 0, 0);
-			if(response.ErrorData.Code.IsEmpty())
+			FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerErrorData>(
+				response.FullTextFromServer, &response.ErrorData, 0, 0);
+			if (response.ErrorData.Code.IsEmpty())
 			{
 				response.Error = response.ErrorData.Message = response.FullTextFromServer;
 			}
-			else {
+			else
+			{
 				response.Error = response.ErrorData.Message;
 			}
-            FString RetryAfterHeader = Response->GetHeader("retry-after");
-            if(!RetryAfterHeader.IsEmpty()) {
-                response.ErrorData.Retry_after_seconds = FCString::Atoi(*RetryAfterHeader);
-            }
+			FString RetryAfterHeader = Response->GetHeader("retry-after");
+			if (!RetryAfterHeader.IsEmpty())
+			{
+				response.ErrorData.Retry_after_seconds = FCString::Atoi(*RetryAfterHeader);
+			}
 			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"));
 		}
 
