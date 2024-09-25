@@ -13,6 +13,7 @@
 #include "ServerAPI/LootLockerServerGameProgressionRequest.h"
 #include "ServerAPI/LootLockerServerHeroRequest.h"
 #include "ServerAPI/LootLockerServerInstanceProgressionRequest.h"
+#include "ServerAPI/LootLockerServerLeaderboardArchiveRequestHandler.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerMetadataRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
@@ -161,6 +162,24 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
     static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest);
+
+    /**
+    * List the archive of a specific Leaderboard,
+    * @param LeaderboardKey the Key of the Leaderboard you want the list of archives
+    * @param OnCompletedRequestBP Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseBP& OnCompletedRequestBP);
+
+    /**
+    * Get the specified Archive which includes details such as ranks, scores and rewards.
+    * @param Key the Key of the leaderboard archive entry you want to fetch details for
+    * @param Count Optional: The count of items you want to retrieve.
+    * @param After Optional: Used for pagination, id from which the pagination starts from.
+    * @param OnCompletedRequestBP Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard", meta = (AdvancedDisplay = "Count,After", Count = -1, After = ""))
+    static void GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailReponseBP& OnCompletedRequestBP);
 
     //==================================================
     // Triggers https://ref.lootlocker.com/server-api/#triggers

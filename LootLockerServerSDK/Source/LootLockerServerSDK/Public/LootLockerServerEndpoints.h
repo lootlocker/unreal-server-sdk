@@ -53,6 +53,8 @@ public:
     static FLootLockerServerEndPoint SubmitScore;
     static FLootLockerServerEndPoint GetAllMemberRanks;
     static FLootLockerServerEndPoint GetScoresFromLeaderboard;
+    static FLootLockerServerEndPoint ListLeaderboardArchive;
+    static FLootLockerServerEndPoint GetLeaderboardArchive;
 
     // Assets
     static FLootLockerServerEndPoint GetAssets;
