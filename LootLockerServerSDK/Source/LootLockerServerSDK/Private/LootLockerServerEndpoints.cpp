@@ -15,6 +15,8 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteLeaderboard = InitEn
 FLootLockerServerEndPoint ULootLockerServerEndpoints::SubmitScore = InitEndpoint("leaderboards/{0}/submit", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAllMemberRanks = InitEndpoint("leaderboards/member/{0}", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetScoresFromLeaderboard = InitEndpoint("leaderboards/{0}/list", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListLeaderboardArchive = InitEndpoint("leaderboards/{0}/archive/list", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetLeaderboardArchive = InitEndpoint("leaderboards/archive/read", ELootLockerServerHTTPMethod::GET);
 
 // Assets
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAssets = InitEndpoint("assets", ELootLockerServerHTTPMethod::GET);
