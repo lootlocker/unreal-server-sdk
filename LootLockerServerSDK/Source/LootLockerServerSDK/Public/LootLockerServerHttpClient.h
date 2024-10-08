@@ -79,7 +79,8 @@ private:
     static ULootLockerServerHttpClient* Instance;
     static bool ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful);
     static void LogFailedRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data);
-    void SendRequest_Internal(HTTPRequest InRequest) const;
+	static void LogSuccessfulRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data);
+	void SendRequest_Internal(HTTPRequest InRequest) const;
     void UploadFile_Internal(const FString& FilePath, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const;
     void UploadRawFile_Internal(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const;
 
