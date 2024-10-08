@@ -32,9 +32,9 @@ void ULootLockerServerAssetRequest::GetKeyValuePairsFromAssetInstance(int Player
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssetInstanceKeyValuePairs, { PlayerID, AssetInstanceID }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssetInstanceKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairItemResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssetInstanceKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
 void ULootLockerServerAssetRequest::AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
@@ -47,9 +47,9 @@ void ULootLockerServerAssetRequest::UpdateKeyValuePairsOnAssetInstance(int Playe
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest{KeyValuePairs}, ULootLockerServerEndpoints::UpdateKeyValuePairs, { PlayerID, AssetInstanceID }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerCreateAssetInstanceKeyValuePairRequest { Key, Value }, ULootLockerServerEndpoints::UpdateKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairItemResponse>(FLootLockerServerCreateAssetInstanceKeyValuePairRequest { Key, Value }, ULootLockerServerEndpoints::UpdateKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
 void ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
