@@ -99,6 +99,12 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 			}
 			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data);
 		}
+#if WITH_EDITOR
+		else
+		{
+			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data);
+		}
+#endif
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
 	});
 	Request->ProcessRequest();
@@ -209,6 +215,12 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 			}
 			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"));
 		}
+#if WITH_EDITOR
+		else 
+		{
+			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"));
+		}
+#endif
 
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
 	});
@@ -246,4 +258,16 @@ void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerS
 	}
 	LogString += "\n###";
 	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, LogString);
+}
+
+void ULootLockerServerHttpClient::LogSuccessfulRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data)
+{
+	FString LogString = FString::Format(TEXT("{0} request to {1} succeeded"), { RequestMethod, Endpoint });
+	LogString += FString::Format(TEXT("\n   HTTP Status code : {0}"), { Response.StatusCode });
+	if (!Data.IsEmpty()) {
+		LogString += FString::Format(TEXT("\n   Request Data: {0}"), { Data });
+	}
+	LogString += FString::Format(TEXT("\n   Response Data: {0}"), { Response.FullTextFromServer });
+	LogString += "\n###";
+	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::VeryVerbose, LogString);
 }
