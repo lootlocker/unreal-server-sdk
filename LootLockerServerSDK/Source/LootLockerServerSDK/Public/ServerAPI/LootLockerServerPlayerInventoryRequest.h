@@ -359,7 +359,7 @@ struct FLootLockerServerGetUniversalInventoryResponse : public FLootLockerServer
      List of items in this game's universal inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    TArray<FLootLockerServerUniversalInventoryItem> Items;
+    TArray<FLootLockerServerUniversalInventoryItem> Global_assets;
 };
 
 /**
