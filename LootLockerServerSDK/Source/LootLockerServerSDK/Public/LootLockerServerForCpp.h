@@ -630,7 +630,7 @@ public:
      * @param KeyValuePairID The ID of the specific key value pair to get
      * @param OnCompletedRequest Delegate for handling the server response
      */
-    static void GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+    static void GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest);
 
     /**
      * Create a key value pair on the specified asset instance
@@ -665,7 +665,7 @@ public:
      * @param Value The value to set for the updated key
      * @param OnCompletedRequest Delegate for handling the server response
      */
-    static void UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+    static void UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest);
 
     /**
      * Delete a key value pair from the specified asset instance by key value pair id
