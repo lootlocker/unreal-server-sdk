@@ -2,7 +2,7 @@
 
 #include "LootLockerServerEndpoints.h"
 
-FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.lootlocker.io/server/";
+FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.lootlocker.com/server/";
 
 //Auth
 FLootLockerServerEndPoint ULootLockerServerEndpoints::StartSession = InitEndpoint("session", ELootLockerServerHTTPMethod::POST);
