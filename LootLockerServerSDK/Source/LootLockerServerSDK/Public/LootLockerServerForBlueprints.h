@@ -163,6 +163,10 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
     static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest);
 
+    //==================================================
+    // Leaderboard Archives
+    //==================================================
+
     /**
     * List the archive of a specific Leaderboard,
     * @param LeaderboardKey the Key of the Leaderboard you want the list of archives
@@ -782,7 +786,7 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
-	static void ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+    static void ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory and include the full asset information in the response
@@ -793,7 +797,7 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
-	static void ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+    static void ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory, but only use items with the specified tag and include the full asset information in the response
@@ -805,7 +809,7 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
-	static void ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+    static void ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
 
     /**
      * Pick drop table items from the specified drop table and player
@@ -817,7 +821,7 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
-	static void PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseBP& OnCompletedRequest);
+    static void PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player https://ref.lootlocker.com/server-api/#player-names
@@ -1437,7 +1441,7 @@ public:
     /**
     Set the provided metadata for the specified source
 
-	Use the provided Make<type>MetadataAction when constructing the array of actions to perform.
+    Use the provided Make<type>MetadataAction when constructing the array of actions to perform.
     Note that a subset of the specified operations can fail without the full request failing. Make sure to check the errors array in the response.
 
     @param Source The source type for which to set metadata
