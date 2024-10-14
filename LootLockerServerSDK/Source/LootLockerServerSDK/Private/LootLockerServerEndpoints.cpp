@@ -2,7 +2,11 @@
 
 #include "LootLockerServerEndpoints.h"
 
+#ifdef LOOTLOCKER_USE_STAGE_URL
+FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.stage.internal.dev.lootlocker.cloud/server/";
+#else
 FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.lootlocker.com/server/";
+#endif
 
 //Auth
 FLootLockerServerEndPoint ULootLockerServerEndpoints::StartSession = InitEndpoint("session", ELootLockerServerHTTPMethod::POST);

@@ -4,6 +4,7 @@ using UnrealBuildTool;
 
 public class LootLockerServerSDK : ModuleRules
 {
+	public static bool bUseStageURL = false;
 	public LootLockerServerSDK(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
@@ -49,5 +50,10 @@ public class LootLockerServerSDK : ModuleRules
 				// ... add any modules that your module loads dynamically here ...
 			}
 			);
-	}
+
+		if (bUseStageURL)
+		{
+			PublicDefinitions.Add("LOOTLOCKER_USE_STAGE_URL");
+		}
+}
 }
