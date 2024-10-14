@@ -19,7 +19,7 @@ struct FLootLockerServerLeaderboardArchivePlayer
 	FString public_uid;
 	// The ID of the Player.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int32 id = 0;
+	int id = 0;
 	// The ULID of the Player.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString player_ulid;
@@ -40,7 +40,7 @@ struct FLootLockerServerLeaderboardArchiveDetails
 	FString member_id;
 	// The Player's rank on the archived Leaderboard.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int32 rank = 0;
+	int rank = 0;
 	// The Player's Score on the archived Leaderboard.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	int score = 0;
@@ -61,7 +61,7 @@ struct FLootLockerServerLeaderboardArchive
 	FString key;
 	// Length of the archived Leaderboard.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-	int32 content_length = 0;
+	int content_length = 0;
 };
 
 USTRUCT(BlueprintType)

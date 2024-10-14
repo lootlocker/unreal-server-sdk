@@ -38,7 +38,7 @@ public:
      *
      * @param OnCompletedRequest Delegate for handling the response
      */
-	static void StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest);
+    static void StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest);
 
     /**
      * Keep the session alive, you should call this endpoint at least once per hour, to extend your tokens lifetime.
@@ -147,6 +147,10 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
+
+    //==================================================
+    // Leaderboard Archives
+    //==================================================
 
     /**
     * List the archive of a specific Leaderboard,
@@ -717,7 +721,7 @@ public:
      * @param Tag Which tag to limit drop table computation to
      * @param OnCompletedRequest Delegate for handling the server response
      */
-	static void ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
+    static void ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory and include the full asset information in the response
@@ -727,7 +731,7 @@ public:
      * @param DropTableID The id of the drop table item to compute and lock
      * @param OnCompletedRequest Delegate for handling the server response
      */
-	static void ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
+    static void ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory, but only use items with the specified tag and include the full asset information in the response
@@ -738,7 +742,7 @@ public:
      * @param Tag Which tag to limit drop table computation to
      * @param OnCompletedRequest Delegate for handling the server response
      */
-	static void ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
+    static void ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
 
     /**
      * Pick drop table items from the specified drop table and player
@@ -749,7 +753,7 @@ public:
      * @param DropTableItemIDsToPick A list of drop table item ids to pick
      * @param OnCompletedRequest Delegate for handling the server response
      */
-	static void PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest);
+    static void PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Player https://ref.lootlocker.com/server-api/#player-names
