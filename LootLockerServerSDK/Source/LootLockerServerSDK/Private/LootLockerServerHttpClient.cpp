@@ -33,6 +33,7 @@ ULootLockerServerHttpClient::ULootLockerServerHttpClient()
 		if (Ptr.IsValid())
 		{
 			SDKVersion = Ptr->GetDescriptor().VersionName;
+			ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("LootLockerServer version: v{0}"), { SDKVersion }));
 		}
 	}
 }
