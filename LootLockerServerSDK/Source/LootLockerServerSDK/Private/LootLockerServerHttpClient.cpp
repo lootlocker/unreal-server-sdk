@@ -98,12 +98,12 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 			{
 				response.ErrorData.Retry_after_seconds = FCString::Atoi(*RetryAfterHeader);
 			}
-			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data);
+			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, Response->GetAllHeaders());
 		}
 #if WITH_EDITOR
 		else
 		{
-			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data);
+			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, Response->GetAllHeaders());
 		}
 #endif
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
@@ -214,12 +214,12 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 			{
 				response.ErrorData.Retry_after_seconds = FCString::Atoi(*RetryAfterHeader);
 			}
-			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"));
+			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), Response->GetAllHeaders());
 		}
 #if WITH_EDITOR
 		else 
 		{
-			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"));
+			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), Response->GetAllHeaders());
 		}
 #endif
 
@@ -236,7 +236,7 @@ bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResp
 	return EHttpResponseCodes::IsOk(InResponse->GetResponseCode());
 }
 
-void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data)
+void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const TArray<FString>& ResponseHeaders)
 {
 	FString LogString = FString::Format(TEXT("{0} request to {1} failed"), { RequestMethod, Endpoint });
 	const bool IsInformativeError = !Response.ErrorData.Code.IsEmpty();
@@ -252,6 +252,16 @@ void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerS
 	if (!Data.IsEmpty()) {
 		LogString += FString::Format(TEXT("\n   Request Data: {0}"), { Data });
 	}
+#if WITH_EDITOR
+	if(!ResponseHeaders.IsEmpty())
+	{
+		LogString += FString::Format(TEXT("\n   -- Response Headers --"), { Data });
+		for (FString ResponseHeader : ResponseHeaders)
+		{
+			LogString += FString::Format(TEXT("\n     {0}"), { ResponseHeader });
+		}
+	}
+#endif
 
 	if (!IsInformativeError)
 	{
@@ -261,13 +271,23 @@ void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerS
 	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, LogString);
 }
 
-void ULootLockerServerHttpClient::LogSuccessfulRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data)
+void ULootLockerServerHttpClient::LogSuccessfulRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const TArray<FString>& ResponseHeaders)
 {
 	FString LogString = FString::Format(TEXT("{0} request to {1} succeeded"), { RequestMethod, Endpoint });
 	LogString += FString::Format(TEXT("\n   HTTP Status code : {0}"), { Response.StatusCode });
 	if (!Data.IsEmpty()) {
 		LogString += FString::Format(TEXT("\n   Request Data: {0}"), { Data });
 	}
+#if WITH_EDITOR
+	if (!ResponseHeaders.IsEmpty())
+	{
+		LogString += FString::Format(TEXT("\n   -- Response Headers --"), { Data });
+		for (FString ResponseHeader : ResponseHeaders)
+		{
+			LogString += FString::Format(TEXT("\n     {0}"), { ResponseHeader });
+		}
+	}
+#endif
 	LogString += FString::Format(TEXT("\n   Response Data: {0}"), { Response.FullTextFromServer });
 	LogString += "\n###";
 	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::VeryVerbose, LogString);
