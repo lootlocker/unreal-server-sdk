@@ -83,7 +83,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::UnequipAssetFromCharacterL
 
 // Heroes
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerHeroes = InitEndpoint("player/{0}/heroes", ELootLockerServerHTTPMethod::GET);
-FLootLockerServerEndPoint ULootLockerServerEndpoints::GetHeroInventory = InitEndpoint("player/{0}/heroes{1}/inventory", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetHeroInventory = InitEndpoint("player/{0}/heroes/{1}/inventory", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetHeroLoadout = InitEndpoint("player/{0}/heroes/{1}/loadout", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::EquipAssetToHeroLoadout = InitEndpoint("player/{0}/heroes/{1}/loadout", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::UnequipAssetFromHeroLoadout = InitEndpoint("player/{0}/heroes/{1}/loadout/{2}", ELootLockerServerHTTPMethod::DELETE);
