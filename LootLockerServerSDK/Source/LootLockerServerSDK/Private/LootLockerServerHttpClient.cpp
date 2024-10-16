@@ -253,7 +253,7 @@ void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerS
 		LogString += FString::Format(TEXT("\n   Request Data: {0}"), { Data });
 	}
 #if WITH_EDITOR
-	if(!ResponseHeaders.IsEmpty())
+	if(ResponseHeaders.Num() > 0)
 	{
 		LogString += FString::Format(TEXT("\n   -- Response Headers --"), { Data });
 		for (FString ResponseHeader : ResponseHeaders)
@@ -279,7 +279,7 @@ void ULootLockerServerHttpClient::LogSuccessfulRequestInformation(const FLootLoc
 		LogString += FString::Format(TEXT("\n   Request Data: {0}"), { Data });
 	}
 #if WITH_EDITOR
-	if (!ResponseHeaders.IsEmpty())
+	if (ResponseHeaders.Num() > 0)
 	{
 		LogString += FString::Format(TEXT("\n   -- Response Headers --"), { Data });
 		for (FString ResponseHeader : ResponseHeaders)
