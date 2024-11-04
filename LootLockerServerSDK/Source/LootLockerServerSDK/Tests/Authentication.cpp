@@ -1,5 +1,6 @@
 #include <future>
 
+#include "Runtime/Launch/Resources/Version.h"
 #include "Misc/AutomationTest.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
 #include "Tests/AutomationCommon.h"

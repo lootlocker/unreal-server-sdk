@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Runtime/Launch/Resources/Version.h"
+
 #if ENGINE_MAJOR_VERSION > 4
 namespace test_util
 {
