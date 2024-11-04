@@ -2,6 +2,7 @@
 
 
 #include "LootLockerServerHttpClient.h"
+#include "Runtime/Launch/Resources/Version.h"
 #include "Containers/Array.h"
 #include "JsonObjectConverter.h"
 #include "Interfaces/IHttpResponse.h"

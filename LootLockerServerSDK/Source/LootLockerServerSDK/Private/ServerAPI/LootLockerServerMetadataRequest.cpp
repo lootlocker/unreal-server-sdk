@@ -1,6 +1,7 @@
 // Copyright (c) 2021 LootLocker
 
 #include "ServerAPI/LootLockerServerMetadataRequest.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 #include "LootLockerServerHttpClient.h"
 #include "Dom/JsonObject.h"
