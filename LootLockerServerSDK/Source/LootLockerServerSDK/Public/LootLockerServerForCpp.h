@@ -156,6 +156,13 @@ public:
      */
     static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
 
+    /**
+    * Get the schedule for the specified leaderboard
+    * @param Key the Key of the leaderboard for which to fetch the schedule
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    static void GetLeaderboardSchedule(const FString& Key, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
+
     //==================================================
     // Leaderboard Archives
     //==================================================

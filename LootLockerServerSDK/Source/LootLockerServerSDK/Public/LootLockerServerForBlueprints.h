@@ -172,6 +172,14 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
     static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest);
 
+    /**
+    * Get the schedule for the specified leaderboard
+    * @param Key the Key of the leaderboard for which to fetch the schedule
+    * @param OnCompletedRequestBP Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void GetLeaderboardSchedule(const FString& Key, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequestBP);
+
     //==================================================
     // Leaderboard Archives
     //==================================================
