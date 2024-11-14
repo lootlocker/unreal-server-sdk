@@ -69,3 +69,8 @@ void ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(cons
 	}
 	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetScoresFromLeaderboardResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetScoresFromLeaderboard, { LeaderboardKey }, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
 }
+
+void ULootLockerServerLeaderboardRequest::GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequestBP, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardScheduleResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetLeaderboardSchedule, { LeaderboardKey }, {}, OnCompletedRequestBP, OnCompletedRequest);
+}
