@@ -56,6 +56,7 @@ public:
     static FLootLockerServerEndPoint GetScoresFromLeaderboard;
     static FLootLockerServerEndPoint ListLeaderboardArchive;
     static FLootLockerServerEndPoint GetLeaderboardArchive;
+    static FLootLockerServerEndPoint GetLeaderboardSchedule;
 
     // Assets
     static FLootLockerServerEndPoint GetAssets;

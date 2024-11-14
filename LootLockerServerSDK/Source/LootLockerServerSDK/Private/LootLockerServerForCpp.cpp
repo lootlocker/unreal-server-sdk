@@ -79,6 +79,11 @@ void ULootLockerServerForCpp::GetPaginatedScoresFromLeaderboard(FString Leaderbo
     ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(LeaderboardKey, Count, After, FLootLockerServerGetScoresFromLeaderboardResponseBP(), OnCompletedRequest);
 }
 
+void ULootLockerServerForCpp::GetLeaderboardSchedule(const FString& Key, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerLeaderboardRequest::GetLeaderboardSchedule(Key, FLootLockerServerGetLeaderboardScheduleResponseBP(), OnCompletedRequest);
+}
+
 void ULootLockerServerForCpp::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest)
 {
     ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(LeaderboardKey, FLootLockerServerLeaderboardArchiveResponseBP(), OnCompletedRequest);

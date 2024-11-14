@@ -22,6 +22,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAllMemberRanks = InitEn
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetScoresFromLeaderboard = InitEndpoint("leaderboards/{0}/list", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListLeaderboardArchive = InitEndpoint("leaderboards/{0}/archive/list", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetLeaderboardArchive = InitEndpoint("leaderboards/archive/read", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetLeaderboardSchedule = InitEndpoint("leaderboards/{0}/schedule", ELootLockerServerHTTPMethod::GET);
 
 // Assets
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAssets = InitEndpoint("assets", ELootLockerServerHTTPMethod::GET);

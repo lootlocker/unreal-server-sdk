@@ -659,6 +659,20 @@ struct FLootLockerServerGetScoresFromLeaderboardResponse : public FLootLockerSer
     TArray<FLootLockerServerLeaderboardEntry> Items;
 };
 
+USTRUCT(BlueprintType)
+struct FLootLockerServerGetLeaderboardScheduleResponse : public FLootLockerServerResponse
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString cron_expression;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString next_run;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString last_run;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FString> schedule;
+};
+
 //==================================================
 // Blueprint Delegate Definitions
 //==================================================
@@ -691,6 +705,10 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetAllMemberRanksResponseBP, 
  Blueprint response delegate for getting scores from a leaderboard
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetScoresFromLeaderboardResponseBP, FLootLockerServerGetScoresFromLeaderboardResponse, Response);
+/*
+ Blueprint response delegate for getting the schedule for a leaderboard
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetLeaderboardScheduleResponseBP, FLootLockerServerGetLeaderboardScheduleResponse, Response);
 
 //==================================================
 // C++ Delegate Definitions
@@ -725,6 +743,10 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerGetAllMemberRanksResponseDelegate, FL
  C++ response delegate for getting scores from a leaderboard
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerGetScoresFromLeaderboardResponseDelegate, FLootLockerServerGetScoresFromLeaderboardResponse);
+/*
+ C++ response delegate for getting the schedule for a leaderboard
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerGetLeaderboardScheduleResponseDelegate, FLootLockerServerGetLeaderboardScheduleResponse);
 
 //==================================================
 // Interface Definition
@@ -743,6 +765,8 @@ public:
     static void GetPaginatedAllMemberRanks(const FString& MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequestBP = FLootLockerServerGetAllMemberRanksResponseBP(), const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest = FLootLockerServerGetAllMemberRanksResponseDelegate());
     static void GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerServerGetScoresFromLeaderboardResponseBP(), const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerGetScoresFromLeaderboardResponseDelegate());
     static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerServerGetScoresFromLeaderboardResponseBP(), const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerGetScoresFromLeaderboardResponseDelegate());
+
+    static void GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequestBP = FLootLockerServerGetLeaderboardScheduleResponseBP(), const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest = FLootLockerServerGetLeaderboardScheduleResponseDelegate());
 
 public:
     ULootLockerServerLeaderboardRequest();
