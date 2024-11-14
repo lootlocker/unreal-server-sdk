@@ -57,6 +57,15 @@ public:
     //==================================================
     // Leaderboards https://ref.lootlocker.com/server-api/#leaderboards
     //==================================================
+    
+    /**
+     * Get information about a given leaderboard.
+     *
+     * @param LeaderboardKey The key of the leaderboard to get information for
+     * @param OnCompletedRequest Delegate for handling the response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
+    static void GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseBP& OnCompletedRequest);
 
     /**
      * Create a new leaderboard with the provided details.

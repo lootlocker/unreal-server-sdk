@@ -51,6 +51,14 @@ public:
     //==================================================
     // Leaderboards https://ref.lootlocker.com/server-api/#leaderboards
     //==================================================
+    
+    /**
+     * Get information about a given leaderboard.
+     *
+     * @param LeaderboardKey The key of the leaderboard to get information for
+     * @param OnCompletedRequest Delegate for handling the response
+     */
+    static void GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
      * Create a new leaderboard with the provided details.
@@ -94,7 +102,7 @@ public:
      * Submit a score to the given leaderboard
      * https://ref.lootlocker.com/server-api/#submit-score
      *
-     * @param LeaderboardKey The key of the leaderboard to delete
+     * @param LeaderboardKey The key of the leaderboard to submit scores to
      * @param MemberID The ID of the member to submit the score for
      * @param Score The score to submit
      * @param Metadata Metadata to add to the score (will only be used if the leaderboard has metadata enabled)

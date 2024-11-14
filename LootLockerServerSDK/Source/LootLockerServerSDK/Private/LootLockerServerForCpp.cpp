@@ -20,6 +20,11 @@ void ULootLockerServerForCpp::MaintainSession(const FLootLockerServerMaintainSes
     ULootLockerServerAuthRequest::MaintainSession(FLootLockerServerMaintainSessionResponseBP(), OnCompleteRequest);
 }
 
+void ULootLockerServerForCpp::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, FLootLockerServerGetLeaderboardResponseBP(), OnCompletedRequest);
+}
+
 void ULootLockerServerForCpp::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
 {
     FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest(LeaderboardKey, Name, DirectionMethod, EnableGameApiWrites, OverwriteScoreOnSubmit);
