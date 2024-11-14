@@ -8,9 +8,15 @@ void ULootLockerServerForBlueprints::StartSession(const FLootLockerServerAuthRes
 {
     ULootLockerServerAuthRequest::StartSession(OnCompletedRequest);
 }
+
 void ULootLockerServerForBlueprints::MaintainSession(const FLootLockerServerMaintainSessionResponseBP& OnCompletedRequest)
 {
     ULootLockerServerAuthRequest::MaintainSession(OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseBP& OnCompletedRequest)
+{
+    ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, OnCompletedRequest);
 }
 
 void ULootLockerServerForBlueprints::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequest)
