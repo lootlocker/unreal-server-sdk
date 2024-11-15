@@ -506,6 +506,25 @@ public:
     }
 };
 
+USTRUCT(BlueprintType)
+struct FLootLockerServerCreateLeaderboardScheduleRequest
+{
+	GENERATED_BODY()
+public:
+    /*
+    The cron expression to use for setting up the schedule. These expressions follow the traditional cron spec. 
+    See crontab.guru for a good resource in exploring cron expressions.
+    Additionally, we do support non-standard descriptors as follows:
+        - @hourly: every hour at minute 00.
+        - @daily: everyday, at midnight UTC.
+        - @weekly: on Sunday, at midnight UTC.
+        - @monthly: on the first day of the month, at midnight UTC.
+        - @yearly: on the first day of the year, at midnight UTC.
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Cron_expression = "";
+};
+
 //==================================================
 // Response Definitions
 //==================================================
@@ -709,6 +728,10 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetScoresFromLeaderboardRespo
  Blueprint response delegate for getting the schedule for a leaderboard
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetLeaderboardScheduleResponseBP, FLootLockerServerGetLeaderboardScheduleResponse, Response);
+/*
+ C++ response delegate for leaderboard schedule deletion
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardScheduleResponseBP, FLootLockerServerResponse, Response);
 
 //==================================================
 // C++ Delegate Definitions
@@ -747,6 +770,10 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerGetScoresFromLeaderboardResponseDeleg
  C++ response delegate for getting the schedule for a leaderboard
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerGetLeaderboardScheduleResponseDelegate, FLootLockerServerGetLeaderboardScheduleResponse);
+/*
+ C++ response delegate for leaderboard schedule deletion
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardScheduleResponseDelegate, FLootLockerServerResponse);
 
 //==================================================
 // Interface Definition
@@ -767,6 +794,8 @@ public:
     static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerServerGetScoresFromLeaderboardResponseBP(), const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerGetScoresFromLeaderboardResponseDelegate());
 
     static void GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequestBP = FLootLockerServerGetLeaderboardScheduleResponseBP(), const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest = FLootLockerServerGetLeaderboardScheduleResponseDelegate());
+    static void CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequestBP = FLootLockerServerGetLeaderboardScheduleResponseBP(), const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest = FLootLockerServerGetLeaderboardScheduleResponseDelegate());
+    static void DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseBP& OnCompletedRequestBP = FLootLockerServerDeleteLeaderboardScheduleResponseBP(), const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest = FLootLockerServerDeleteLeaderboardScheduleResponseDelegate());
 
 public:
     ULootLockerServerLeaderboardRequest();

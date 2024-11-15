@@ -84,6 +84,16 @@ void ULootLockerServerForCpp::GetLeaderboardSchedule(const FString& Key, const F
     ULootLockerServerLeaderboardRequest::GetLeaderboardSchedule(Key, FLootLockerServerGetLeaderboardScheduleResponseBP(), OnCompletedRequest);
 }
 
+void ULootLockerServerForCpp::CreateLeaderboardSchedule(const FString& Key, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerLeaderboardRequest::CreateLeaderboardSchedule(Key, CronExpression, FLootLockerServerGetLeaderboardScheduleResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::DeleteLeaderboardSchedule(const FString& Key, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(Key, FLootLockerServerDeleteLeaderboardScheduleResponseBP(), OnCompletedRequest);
+}
+
 void ULootLockerServerForCpp::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest)
 {
     ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(LeaderboardKey, FLootLockerServerLeaderboardArchiveResponseBP(), OnCompletedRequest);
