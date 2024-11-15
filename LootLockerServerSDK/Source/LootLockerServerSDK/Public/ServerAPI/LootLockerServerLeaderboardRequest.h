@@ -378,6 +378,77 @@ struct FLootLockerServerLeaderboardReward
     FString reward_id;
 };
 
+USTRUCT(BlueprintType)
+struct FLootLockerServerLeaderboard
+{
+    GENERATED_BODY()
+    /*
+    The ID of this leaderboard
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int ID = 0;
+    /*
+    The ID of the game this leaderboard is in
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Game_id = 0;
+    /*
+    The unique key of this leaderboard
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Key = "";
+    /*
+    The name of the leaderboard
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Name = "";
+    /*
+    The type of leaderboard
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    ELootLockerServerLeaderboardType Type = ELootLockerServerLeaderboardType::player;
+    /*
+    The sort order of the leaderboard
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    ELootLockerServerLeaderboardDirection Direction_method = ELootLockerServerLeaderboardDirection::ascending;
+    /*
+    Is the game api allowed to write to this leaderboard
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    bool Enable_game_api_writes = false;
+    /*
+    Do new submits overwrite existing scores for members on this leaderboard
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    bool Overwrite_score_on_submit = false;
+    /*
+    Is metadata enabled on this leaderboard
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    bool Has_metadata = false;
+    /*
+    The creation time of this leaderboard
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Created_at = "";
+    /*
+    The last time this leaderboard was updated
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Updated_at = "";
+    /*
+     * Schedule of the Leaderboard.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerLeaderboardSchedule Schedule;
+    /*
+     * A List of rewards tied to the Leaderboard.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerLeaderboardReward> Rewards;
+};
+
 //==================================================
 // Request Definitions
 //==================================================
@@ -602,19 +673,14 @@ struct FLootLockerServerLeaderboardBaseResponse : public FLootLockerServerRespon
 };
 
 USTRUCT(BlueprintType)
-struct FLootLockerServerGetLeaderboardResponse : public FLootLockerServerLeaderboardBaseResponse
+struct FLootLockerServerGetLeaderboardResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     /*
-     * Schedule of the Leaderboard.
+     * Data for the leaderboard
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FLootLockerServerLeaderboardSchedule Schedule;
-    /*
-     * A List of rewards tied to the Leaderboard.
-     **/
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    TArray<FLootLockerServerLeaderboardReward> Rewards;
+    FLootLockerServerLeaderboard Leaderboard;
 };
 
 USTRUCT(BlueprintType)
