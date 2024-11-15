@@ -92,6 +92,16 @@ void ULootLockerServerForBlueprints::DeleteLeaderboardSchedule(const FString& Le
     ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(LeaderboardKey, OnCompletedRequest);
 }
 
+void ULootLockerServerForBlueprints::CreateLeaderboardReward(const FString& LeaderboardKey, const FString& RewardId, const ELootLockerServerLeaderboardRewardEntityKind& RewardKind, TArray<FLootLockerServerLeaderboardDetailPredicates> Predicates, const FLootLockerServerCreateLeaderboardRewardResponseBP& OnCompletedRequest)
+{
+    ULootLockerServerLeaderboardRequest::CreateLeaderboardReward(LeaderboardKey, RewardId, RewardKind, Predicates, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::DeleteLeaderboardReward(const FString& LeaderboardKey, const FString& RewardId, const FLootLockerServerDeleteLeaderboardRewardResponseBP& OnCompletedRequest)
+{
+    ULootLockerServerLeaderboardRequest::DeleteLeaderboardReward(LeaderboardKey, RewardId, OnCompletedRequest);
+}
+
 void ULootLockerServerForBlueprints::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseBP& OnCompletedRequestBP)
 {
     ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(LeaderboardKey, OnCompletedRequestBP);
