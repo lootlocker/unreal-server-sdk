@@ -204,6 +204,26 @@ public:
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
     static void DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseBP& OnCompletedRequest);
+    
+    /**
+    * Create a reward for the specified leaderboard according to the provided reward details
+    * @param LeaderboardKey The Key of the leaderboard for which to remove the schedule
+    * @param RewardId The id of the reward you wish to add to the this leaderboard
+    * @param RewardKind The kind of reward that this is
+    * @param Predicates The set of predicates that describes how this reward will be rewarded
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void CreateLeaderboardReward(const FString& LeaderboardKey, const FString& RewardId, const ELootLockerServerLeaderboardRewardEntityKind& RewardKind, TArray<FLootLockerServerLeaderboardDetailPredicates> Predicates, const FLootLockerServerCreateLeaderboardRewardResponseBP& OnCompletedRequest);
+    
+    /**
+    * Remove the specified reward from the specified leadeboard
+    * @param LeaderboardKey The Key of the leaderboard for which to remove the specified reward
+    * @param RewardId The id of the reward to remove
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void DeleteLeaderboardReward(const FString& LeaderboardKey, const FString& RewardId, const FLootLockerServerDeleteLeaderboardRewardResponseBP& OnCompletedRequest);
 
     //==================================================
     // Leaderboard Archives

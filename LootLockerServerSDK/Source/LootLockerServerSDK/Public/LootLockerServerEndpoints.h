@@ -59,6 +59,8 @@ public:
     static FLootLockerServerEndPoint GetLeaderboardSchedule;
     static FLootLockerServerEndPoint CreateLeaderboardSchedule;
     static FLootLockerServerEndPoint DeleteLeaderboardSchedule;
+    static FLootLockerServerEndPoint CreateLeaderboardReward;
+    static FLootLockerServerEndPoint DeleteLeaderboardReward;
 
     // Assets
     static FLootLockerServerEndPoint GetAssets;

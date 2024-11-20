@@ -181,10 +181,28 @@ public:
     
     /**
     * Remove the schedule (if any) from the specified leadeboard
-    * @param Key the Key of the leaderboard for which to remove the schedule
+    * @param LeaderboardKey The Key of the leaderboard for which to remove the schedule
     * @param OnCompletedRequest Delegate for handling the server response
     */
     static void DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest);
+    
+    /**
+    * Create a reward for the specified leaderboard according to the provided reward details
+    * @param LeaderboardKey The Key of the leaderboard for which to remove the schedule
+    * @param RewardId The id of the reward you wish to add to the this leaderboard
+    * @param RewardKind The kind of reward that this is
+    * @param Predicates The set of predicates that describes how this reward will be rewarded
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    static void CreateLeaderboardReward(const FString& LeaderboardKey, const FString& RewardId, const ELootLockerServerLeaderboardRewardEntityKind& RewardKind, TArray<FLootLockerServerLeaderboardDetailPredicates> Predicates, const FLootLockerServerCreateLeaderboardRewardResponseDelegate& OnCompletedRequest);
+    
+    /**
+    * Remove the specified reward from the specified leadeboard
+    * @param LeaderboardKey The Key of the leaderboard for which to remove the specified reward
+    * @param RewardId The id of the reward to remove
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    static void DeleteLeaderboardReward(const FString& LeaderboardKey, const FString& RewardId, const FLootLockerServerDeleteLeaderboardRewardResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Leaderboard Archives
