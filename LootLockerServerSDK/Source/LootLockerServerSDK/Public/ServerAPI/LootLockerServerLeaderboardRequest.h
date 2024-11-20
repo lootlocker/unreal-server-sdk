@@ -376,7 +376,6 @@ struct FLootLockerServerLeaderboardReward
     FLootLockerServerLeaderboardGroupReward group;
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString reward_id;
-
 };
 
 USTRUCT(BlueprintType)
@@ -596,6 +595,18 @@ public:
     FString Cron_expression = "";
 };
 
+USTRUCT(BlueprintType)
+struct FLootLockerServerCreateLeaderboardRewardRequest
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString reward_id;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    ELootLockerServerLeaderboardRewardEntityKind reward_kind = ELootLockerServerLeaderboardRewardEntityKind::Asset;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerLeaderboardDetailPredicates> predicates;
+};
+
 //==================================================
 // Response Definitions
 //==================================================
@@ -798,6 +809,14 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetLeaderboardScheduleRespons
  Blueprint response delegate for leaderboard schedule deletion
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardScheduleResponseBP, FLootLockerServerResponse, Response);
+/*
+ Blueprint response delegate for leaderboard reward creation
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreateLeaderboardRewardResponseBP, FLootLockerServerResponse, Response);
+/*
+ Blueprint response delegate for leaderboard reward deletion
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardRewardResponseBP, FLootLockerServerResponse, Response);
 
 //==================================================
 // C++ Delegate Definitions
@@ -840,6 +859,14 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerGetLeaderboardScheduleResponseDelegat
  C++ response delegate for leaderboard schedule deletion
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardScheduleResponseDelegate, FLootLockerServerResponse);
+/*
+ C++ response delegate for leaderboard reward creation
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerCreateLeaderboardRewardResponseDelegate, FLootLockerServerResponse);
+/*
+ C++ response delegate for leaderboard reward deletion
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardRewardResponseDelegate, FLootLockerServerResponse);
 
 //==================================================
 // Interface Definition
@@ -862,6 +889,9 @@ public:
     static void GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequestBP = FLootLockerServerGetLeaderboardScheduleResponseBP(), const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest = FLootLockerServerGetLeaderboardScheduleResponseDelegate());
     static void CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequestBP = FLootLockerServerGetLeaderboardScheduleResponseBP(), const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest = FLootLockerServerGetLeaderboardScheduleResponseDelegate());
     static void DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseBP& OnCompletedRequestBP = FLootLockerServerDeleteLeaderboardScheduleResponseBP(), const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest = FLootLockerServerDeleteLeaderboardScheduleResponseDelegate());
+    
+    static void CreateLeaderboardReward(const FString& LeaderboardKey, const FString& RewardId, const ELootLockerServerLeaderboardRewardEntityKind& RewardKind, TArray<FLootLockerServerLeaderboardDetailPredicates> Predicates, const FLootLockerServerCreateLeaderboardRewardResponseBP& OnCompletedRequestBP = FLootLockerServerCreateLeaderboardRewardResponseBP(), const FLootLockerServerCreateLeaderboardRewardResponseDelegate& OnCompletedRequest = FLootLockerServerCreateLeaderboardRewardResponseDelegate());
+    static void DeleteLeaderboardReward(const FString& LeaderboardKey, const FString& RewardId, const FLootLockerServerDeleteLeaderboardRewardResponseBP& OnCompletedRequestBP = FLootLockerServerDeleteLeaderboardRewardResponseBP(), const FLootLockerServerDeleteLeaderboardRewardResponseDelegate& OnCompletedRequest = FLootLockerServerDeleteLeaderboardRewardResponseDelegate());
 
 public:
     ULootLockerServerLeaderboardRequest();
