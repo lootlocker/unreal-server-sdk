@@ -82,15 +82,5 @@ void ULootLockerServerLeaderboardRequest::CreateLeaderboardSchedule(const FStrin
 
 void ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseBP& OnCompletedRequestBP, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest) 
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteLeaderboardSchedule, { LeaderboardKey }, {}, OnCompletedRequestBP, OnCompletedRequest);
-}
-
-void ULootLockerServerLeaderboardRequest::CreateLeaderboardReward(const FString& LeaderboardKey, const FString& RewardId, const ELootLockerServerLeaderboardRewardEntityKind& RewardKind, TArray<FLootLockerServerLeaderboardDetailPredicates> Predicates, const FLootLockerServerCreateLeaderboardRewardResponseBP& OnCompletedRequestBP, const FLootLockerServerCreateLeaderboardRewardResponseDelegate& OnCompletedRequest)
-{
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerResponse>(FLootLockerServerCreateLeaderboardRewardRequest{RewardId, RewardKind, Predicates}, ULootLockerServerEndpoints::CreateLeaderboardReward, { LeaderboardKey }, {}, OnCompletedRequestBP, OnCompletedRequest);
-}
-
-void ULootLockerServerLeaderboardRequest::DeleteLeaderboardReward(const FString& LeaderboardKey, const FString& RewardId, const FLootLockerServerDeleteLeaderboardRewardResponseBP& OnCompletedRequestBP, const FLootLockerServerDeleteLeaderboardRewardResponseDelegate& OnCompletedRequest)
-{
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteLeaderboardReward, { LeaderboardKey, RewardId }, {}, OnCompletedRequestBP, OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardScheduleResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteLeaderboardSchedule, { LeaderboardKey }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
