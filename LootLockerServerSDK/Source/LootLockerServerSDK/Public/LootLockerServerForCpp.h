@@ -51,6 +51,14 @@ public:
     //==================================================
     // Leaderboards https://ref.lootlocker.com/server-api/#leaderboards
     //==================================================
+    
+    /**
+     * Get information about a given leaderboard.
+     *
+     * @param LeaderboardKey The key of the leaderboard to get information for
+     * @param OnCompletedRequest Delegate for handling the response
+     */
+    static void GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
      * Create a new leaderboard with the provided details.
@@ -94,7 +102,7 @@ public:
      * Submit a score to the given leaderboard
      * https://ref.lootlocker.com/server-api/#submit-score
      *
-     * @param LeaderboardKey The key of the leaderboard to delete
+     * @param LeaderboardKey The key of the leaderboard to submit scores to
      * @param MemberID The ID of the member to submit the score for
      * @param Score The score to submit
      * @param Metadata Metadata to add to the score (will only be used if the leaderboard has metadata enabled)
@@ -147,6 +155,36 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      */
     static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
+
+    /**
+    * Get the schedule for the specified leaderboard
+    * @param LeaderboardKey the Key of the leaderboard for which to fetch the schedule
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    static void GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
+    
+    /**
+    * Set the provided schedule for the specified leaderboard
+    * NOTE: Cron expressions are used for setting up the schedule. These expressions follow the traditional cron spec.
+    * See crontab.guru for a good resource in exploring cron expressions.
+    * Additionally, we do support non-standard descriptors as follows:
+    *     - @hourly: every hour at minute 00.
+    *     - @daily: everyday, at midnight UTC.
+    *     - @weekly: on Sunday, at midnight UTC.
+    *     - @monthly: on the first day of the month, at midnight UTC.
+    *     - @yearly: on the first day of the year, at midnight UTC.
+    * @param Key The Key of the leaderboard for which to set the schedule
+    * @param CronExpression The cron expression describing the schedule to set
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    static void CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
+    
+    /**
+    * Remove the schedule (if any) from the specified leadeboard
+    * @param Key the Key of the leaderboard for which to remove the schedule
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    static void DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Leaderboard Archives

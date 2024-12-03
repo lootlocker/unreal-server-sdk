@@ -57,6 +57,15 @@ public:
     //==================================================
     // Leaderboards https://ref.lootlocker.com/server-api/#leaderboards
     //==================================================
+    
+    /**
+     * Get information about a given leaderboard.
+     *
+     * @param LeaderboardKey The key of the leaderboard to get information for
+     * @param OnCompletedRequest Delegate for handling the response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
+    static void GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseBP& OnCompletedRequest);
 
     /**
      * Create a new leaderboard with the provided details.
@@ -142,7 +151,7 @@ public:
      * Results are sorted in ascending order.
      * https://ref.lootlocker.com/server-api/#get-score-list
      *
-     * @param LeaderboardKey the key of the leaderboard you want to connect to.
+     * @param LeaderboardKey The key of the leaderboard you want to connect to.
      * @param OnCompletedRequest Delegate for handling the server response
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
@@ -155,7 +164,7 @@ public:
      * https://ref.lootlocker.com/server-api/#get-score-list
      * Pagination: https://ref.lootlocker.com/server-api/#pagination
      *
-     * @param LeaderboardKey the key of the leaderboard you want to connect to.
+     * @param LeaderboardKey The key of the leaderboard you want to connect to.
      * @param Count Number of scores returned per page
      * @param After Cursor for pagination, a cursor will be returned in the response
      * @param OnCompletedRequest Delegate for handling the server response
@@ -163,13 +172,46 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
     static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest);
 
+    /**
+    * Get the schedule for the specified leaderboard
+    * @param LeaderboardKey The Key of the leaderboard for which to fetch the schedule
+    * @param OnCompletedRequestBP Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequestBP);
+    
+    /**
+    * Set the provided schedule for the specified leaderboard
+    * NOTE: Cron expressions are used for setting up the schedule. These expressions follow the traditional cron spec.
+    * See crontab.guru for a good resource in exploring cron expressions.
+    * Additionally, we do support non-standard descriptors as follows:
+    *     - @hourly: every hour at minute 00.
+    *     - @daily: everyday, at midnight UTC.
+    *     - @weekly: on Sunday, at midnight UTC.
+    *     - @monthly: on the first day of the month, at midnight UTC.
+    *     - @yearly: on the first day of the year, at midnight UTC.
+    * @param Key The Key of the leaderboard for which to set the schedule
+    * @param CronExpression The cron expression describing the schedule to set
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequest);
+    
+    /**
+    * Remove the schedule (if any) from the specified leadeboard
+    * @param Key the Key of the leaderboard for which to remove the schedule
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static void DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseBP& OnCompletedRequest);
+
     //==================================================
     // Leaderboard Archives
     //==================================================
 
     /**
     * List the archive of a specific Leaderboard,
-    * @param LeaderboardKey the Key of the Leaderboard you want the list of archives
+    * @param LeaderboardKey The Key of the Leaderboard you want the list of archives
     * @param OnCompletedRequestBP Delegate for handling the server response
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")

@@ -47,6 +47,7 @@ public:
     static FLootLockerServerEndPoint MaintainingSession;
 
     // Leaderboards
+    static FLootLockerServerEndPoint GetLeaderboard;
     static FLootLockerServerEndPoint CreateLeaderboard;
     static FLootLockerServerEndPoint UpdateLeaderboard;
     static FLootLockerServerEndPoint DeleteLeaderboard;
@@ -55,6 +56,9 @@ public:
     static FLootLockerServerEndPoint GetScoresFromLeaderboard;
     static FLootLockerServerEndPoint ListLeaderboardArchive;
     static FLootLockerServerEndPoint GetLeaderboardArchive;
+    static FLootLockerServerEndPoint GetLeaderboardSchedule;
+    static FLootLockerServerEndPoint CreateLeaderboardSchedule;
+    static FLootLockerServerEndPoint DeleteLeaderboardSchedule;
 
     // Assets
     static FLootLockerServerEndPoint GetAssets;

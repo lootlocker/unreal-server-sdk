@@ -13,6 +13,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::StartSession = InitEndpoin
 FLootLockerServerEndPoint ULootLockerServerEndpoints::MaintainingSession = InitEndpoint("ping", ELootLockerServerHTTPMethod::GET);
 
 //Leaderboards
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetLeaderboard = InitEndpoint("leaderboards/{0}", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::CreateLeaderboard = InitEndpoint("leaderboards", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::UpdateLeaderboard = InitEndpoint("leaderboards/{0}", ELootLockerServerHTTPMethod::PUT);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteLeaderboard = InitEndpoint("leaderboards/{0}", ELootLockerServerHTTPMethod::DELETE);
@@ -21,6 +22,9 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAllMemberRanks = InitEn
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetScoresFromLeaderboard = InitEndpoint("leaderboards/{0}/list", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListLeaderboardArchive = InitEndpoint("leaderboards/{0}/archive/list", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetLeaderboardArchive = InitEndpoint("leaderboards/archive/read", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetLeaderboardSchedule = InitEndpoint("leaderboards/{0}/schedule", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::CreateLeaderboardSchedule = InitEndpoint("leaderboards/{0}/schedule", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteLeaderboardSchedule = InitEndpoint("leaderboards/{0}/schedule", ELootLockerServerHTTPMethod::DELETE);
 
 // Assets
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAssets = InitEndpoint("assets", ELootLockerServerHTTPMethod::GET);
