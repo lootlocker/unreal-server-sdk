@@ -126,6 +126,11 @@ struct FLootLockerServerLeaderboardEntryWithLeaderboardData
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Leaderboard_key = "";
     /*
+     * The ulid of this leaderboard
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Ulid = "";
+    /*
      The entry of the player in this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -398,6 +403,11 @@ struct FLootLockerServerLeaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Key = "";
+    /*
+     * The ulid of this leaderboard
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Ulid = "";
     /*
     The name of the leaderboard
      */
