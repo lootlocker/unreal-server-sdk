@@ -400,68 +400,6 @@ void ULootLockerServerMetadataRequest::GetMetadata(const ELootLockerServerMetada
 	}));
 }
 
-void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseBP& OnCompleteBP, const FLootLockerServerSetMetadataResponseDelegate& OnComplete)
-{
-	if (SourceID.IsEmpty())
-	{
-		FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
-			FLootLockerServerSetMetadataResponse>("Can not perform actions for source with empty id");
-		OnCompleteBP.ExecuteIfBound(Error);
-		OnComplete.ExecuteIfBound(Error);
-		return;
-	}
-
-	// Set source and source id
-	FJsonObject ManuallySerializedRequest;
-	FString SourceAsString = ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataSources"), static_cast<int32>(Source)).ToLower();
-	SourceAsString.ReplaceCharInline(' ', '_');
-	ManuallySerializedRequest.SetStringField(TEXT("source"), SourceAsString);
-	ManuallySerializedRequest.SetStringField(TEXT("source_id"), SourceID);
-
-	// Iterate over actions to perform and manually construct json since there's a ton of magic to it
-	TArray<TSharedPtr<FJsonValue>> entries;
-	for (const FLootLockerServerSetMetadataAction& ActionToPerform : MetadataToActionsToPerform)
-	{
-		// Serialize the brunt of the entry automatically
-		// Should handle the fields key, tags, and access
-		TSharedPtr<FJsonObject> JsonEntry = FJsonObjectConverter::UStructToJsonObject(ActionToPerform.Entry);
-		if (!JsonEntry.IsValid())
-		{
-			FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
-				FLootLockerServerSetMetadataResponse>("Could not serialize action for key " + ActionToPerform.Entry.Key);
-			OnCompleteBP.ExecuteIfBound(Error);
-			OnComplete.ExecuteIfBound(Error);
-			return;
-		}
-
-		// Make type lowercase
-		JsonEntry->SetStringField(TEXT("type"), ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataTypes"), static_cast<int32>(ActionToPerform.Entry.Type)).ToLower());
-
-		// Add the action that should be performed to the entry
-		JsonEntry->SetStringField(TEXT("action"), ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataActions"), static_cast<int32>(ActionToPerform.Action)).ToLower());
-
-		// Manually set the field "value"
-		TSharedPtr<FJsonValue> RawEntryValue;
-		if (!ActionToPerform.Entry.TryGetRawValue(RawEntryValue))
-		{
-			FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
-				FLootLockerServerSetMetadataResponse>("Could not get value to perform action " + JsonEntry->GetStringField(TEXT("action")) + " for key " + ActionToPerform.Entry.Key);
-			OnCompleteBP.ExecuteIfBound(Error);
-			OnComplete.ExecuteIfBound(Error);
-			return;
-		}
-		JsonEntry->SetField(TEXT("value"), RawEntryValue);
-
-		// Add manually serialized to entries array
-		entries.Add(MakeShared<FJsonValueObject>(JsonEntry));
-	}
-
-	// Add entries to manually serialized request
-	ManuallySerializedRequest.SetArrayField(TEXT("entries"), entries);
-	FString SerializedRequest = LootLockerServerUtilities::FStringFromJsonObject(MakeShared<FJsonObject>(ManuallySerializedRequest));
-	ULootLockerServerHttpClient::SendRawRequest<FLootLockerServerSetMetadataResponse>(SerializedRequest, ULootLockerServerEndpoints::MetadataActions, {}, {}, OnCompleteBP, OnComplete);
-}
-
 void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnCompleteBP,	const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete)
 {
 	TMultiMap<FString, FString> QueryParams;
@@ -542,4 +480,66 @@ void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLoot
 			OnComplete.ExecuteIfBound(Response);
 		}));
 
+}
+
+void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseBP& OnCompleteBP, const FLootLockerServerSetMetadataResponseDelegate& OnComplete)
+{
+	if (SourceID.IsEmpty())
+	{
+		FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
+			FLootLockerServerSetMetadataResponse>("Can not perform actions for source with empty id");
+		OnCompleteBP.ExecuteIfBound(Error);
+		OnComplete.ExecuteIfBound(Error);
+		return;
+	}
+
+	// Set source and source id
+	FJsonObject ManuallySerializedRequest;
+	FString SourceAsString = ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataSources"), static_cast<int32>(Source)).ToLower();
+	SourceAsString.ReplaceCharInline(' ', '_');
+	ManuallySerializedRequest.SetStringField(TEXT("source"), SourceAsString);
+	ManuallySerializedRequest.SetStringField(TEXT("source_id"), SourceID);
+
+	// Iterate over actions to perform and manually construct json since there's a ton of magic to it
+	TArray<TSharedPtr<FJsonValue>> entries;
+	for (const FLootLockerServerSetMetadataAction& ActionToPerform : MetadataToActionsToPerform)
+	{
+		// Serialize the brunt of the entry automatically
+		// Should handle the fields key, tags, and access
+		TSharedPtr<FJsonObject> JsonEntry = FJsonObjectConverter::UStructToJsonObject(ActionToPerform.Entry);
+		if (!JsonEntry.IsValid())
+		{
+			FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
+				FLootLockerServerSetMetadataResponse>("Could not serialize action for key " + ActionToPerform.Entry.Key);
+			OnCompleteBP.ExecuteIfBound(Error);
+			OnComplete.ExecuteIfBound(Error);
+			return;
+		}
+
+		// Make type lowercase
+		JsonEntry->SetStringField(TEXT("type"), ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataTypes"), static_cast<int32>(ActionToPerform.Entry.Type)).ToLower());
+
+		// Add the action that should be performed to the entry
+		JsonEntry->SetStringField(TEXT("action"), ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataActions"), static_cast<int32>(ActionToPerform.Action)).ToLower());
+
+		// Manually set the field "value"
+		TSharedPtr<FJsonValue> RawEntryValue;
+		if (!ActionToPerform.Entry.TryGetRawValue(RawEntryValue))
+		{
+			FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
+				FLootLockerServerSetMetadataResponse>("Could not get value to perform action " + JsonEntry->GetStringField(TEXT("action")) + " for key " + ActionToPerform.Entry.Key);
+			OnCompleteBP.ExecuteIfBound(Error);
+			OnComplete.ExecuteIfBound(Error);
+			return;
+		}
+		JsonEntry->SetField(TEXT("value"), RawEntryValue);
+
+		// Add manually serialized to entries array
+		entries.Add(MakeShared<FJsonValueObject>(JsonEntry));
+	}
+
+	// Add entries to manually serialized request
+	ManuallySerializedRequest.SetArrayField(TEXT("entries"), entries);
+	FString SerializedRequest = LootLockerServerUtilities::FStringFromJsonObject(MakeShared<FJsonObject>(ManuallySerializedRequest));
+	ULootLockerServerHttpClient::SendRawRequest<FLootLockerServerSetMetadataResponse>(SerializedRequest, ULootLockerServerEndpoints::MetadataActions, {}, {}, OnCompleteBP, OnComplete);
 }
