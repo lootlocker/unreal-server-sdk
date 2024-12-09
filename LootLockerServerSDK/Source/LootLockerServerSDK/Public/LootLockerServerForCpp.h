@@ -1356,6 +1356,15 @@ public:
     static void GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const FLootLockerServerGetMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
 
     /**
+    Get Metadata for the specified keys on the specified sources
+
+    @param SourcesAndKeysToGet The combination of sources to get keys for, and the keys to get for those sources
+    @param OnComplete delegate for handling the server response
+    @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    */
+    static void GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+
+    /**
     Set the provided metadata for the specified source
 
     Note that a subset of the specified operations can fail without the full request failing. Make sure to check the errors array in the response.
@@ -1366,13 +1375,4 @@ public:
     @param OnComplete delegate for handling the server response
     */
     static void SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseDelegate& OnComplete);
-
-    /**
-    Get Metadata for the specified keys on the specified sources
-
-    @param SourcesAndKeysToGet The combination of sources to get keys for, and the keys to get for those sources
-    @param OnComplete delegate for handling the server response
-    @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
-    */
-    static void GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
 };

@@ -621,6 +621,11 @@ void ULootLockerServerForBlueprints::GetMetadata(const ELootLockerServerMetadata
     ULootLockerServerMetadataRequest::GetMetadata(Source, SourceID, Key, IgnoreFiles, OnComplete);
 }
 
+void ULootLockerServerForBlueprints::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnComplete)
+{
+    ULootLockerServerMetadataRequest::GetMultisourceMetadata(SourcesAndKeysToGet, IgnoreFiles, OnComplete);
+}
+
 void ULootLockerServerForBlueprints::ParseLootLockerServerMetadataEntry(const FLootLockerServerMetadataEntry& Entry,
                                                                         ELootLockerServerMetadataParserOutputTypes& MetadataTypeSwitch,
                                                                         FString& StringValue, int& IntegerValue,
@@ -776,9 +781,4 @@ void ULootLockerServerForBlueprints::MakeMetadataActionJson(ELootLockerServerMet
 FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionBase64(ELootLockerServerMetadataActions Action, const FString& Key, const FLootLockerServerMetadataBase64Value& Value, const TArray<FString>& Tags, const TArray<FString>& Access)
 {
     return FLootLockerServerSetMetadataAction{Action, FLootLockerServerMetadataEntry::MakeBase64Entry(Key, Tags, Access, Value)};
-}
-
-void ULootLockerServerForBlueprints::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnComplete)
-{
-    ULootLockerServerMetadataRequest::GetMultisourceMetadata(SourcesAndKeysToGet, IgnoreFiles, OnComplete);
 }
