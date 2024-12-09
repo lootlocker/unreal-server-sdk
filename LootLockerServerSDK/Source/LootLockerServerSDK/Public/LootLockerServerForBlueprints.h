@@ -1448,6 +1448,16 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "IgnoreFiles", IgnoreFiles = false))
     static void GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const bool IgnoreFiles, const FLootLockerServerGetMetadataResponseBP& OnComplete);
 
+    /**
+    Get Metadata for the specified keys on the specified sources
+
+    @param SourcesAndKeysToGet The combination of sources to get keys for, and the keys to get for those sources
+    @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    @param OnComplete delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "IgnoreFiles", IgnoreFiles = false))
+    static void GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnComplete);
+
     /*
      Parse a LootLockerServer Metadata Entry
 
@@ -1572,15 +1582,5 @@ public:
     */
     UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
     static FLootLockerServerSetMetadataAction MakeMetadataActionBase64(ELootLockerServerMetadataActions Action, const FString& Key, const FLootLockerServerMetadataBase64Value& Value, const TArray<FString>& Tags, const TArray<FString>& Access);
-
-    /**
-    Get Metadata for the specified keys on the specified sources
-
-    @param SourcesAndKeysToGet The combination of sources to get keys for, and the keys to get for those sources
-    @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
-    @param OnComplete delegate for handling the server response
-    */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "IgnoreFiles", IgnoreFiles = false))
-    static void GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnComplete);
 
 };

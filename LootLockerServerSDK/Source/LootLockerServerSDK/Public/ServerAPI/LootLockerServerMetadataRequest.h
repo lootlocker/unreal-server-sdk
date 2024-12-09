@@ -52,18 +52,6 @@ enum class ELootLockerServerMetadataActions : uint8
 };
 
 /*
- Possible metadata access types
- */
-UENUM(BlueprintType, Category = "LootLockerServer")
-enum class ELootLockerServerMetadataAccessTypes : uint8
-{
-    None = 0,
-    Read = 1,
-    Write = 2,
-    ReadAndWrite = 3
-};
-
-/*
  Possible metadata parser output types
  */
 UENUM(BlueprintType, Category = "LootLockerServer")
@@ -491,13 +479,13 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListMetadataResponseBP, FLoot
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetMetadataResponseBP, FLootLockerServerGetMetadataResponse, Response);
 /*
- Blueprint response delegate for setting metadata
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSetMetadataResponseBP, FLootLockerServerSetMetadataResponse, Response);
-/*
  Blueprint response delegate for getting multi source metadata
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetMultisourceMetadataResponseBP, FLootLockerServerGetMultisourceMetadataResponse, Response);
+/*
+ Blueprint response delegate for setting metadata
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSetMetadataResponseBP, FLootLockerServerSetMetadataResponse, Response);
 
 //==================================================
 // C++ Delegate Definitions
@@ -512,13 +500,13 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerListMetadataResponseDelegate, FLootLo
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerGetMetadataResponseDelegate, FLootLockerServerGetMetadataResponse);
 /*
- Blueprint response delegate for setting metadata
- */
-DECLARE_DELEGATE_OneParam(FLootLockerServerSetMetadataResponseDelegate, FLootLockerServerSetMetadataResponse);
-/*
  Blueprint response delegate for getting multi source metadata
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerGetMultisourceMetadataResponseDelegate, FLootLockerServerGetMultisourceMetadataResponse);
+/*
+ Blueprint response delegate for setting metadata
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerSetMetadataResponseDelegate, FLootLockerServerSetMetadataResponse);
 
 //==================================================
 // API Class Definition
@@ -533,6 +521,6 @@ public:
 
     static void ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const FString& Key, const TArray<FString>& Tags, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseBP& OnCompleteBP = FLootLockerServerListMetadataResponseBP(), const FLootLockerServerListMetadataResponseDelegate& OnComplete = FLootLockerServerListMetadataResponseDelegate());
     static void GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const bool IgnoreFiles, const FLootLockerServerGetMetadataResponseBP& OnCompleteBP = FLootLockerServerGetMetadataResponseBP(), const FLootLockerServerGetMetadataResponseDelegate& OnComplete = FLootLockerServerGetMetadataResponseDelegate());
-    static void SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseBP& OnCompleteBP = FLootLockerServerSetMetadataResponseBP(), const FLootLockerServerSetMetadataResponseDelegate& OnComplete = FLootLockerServerSetMetadataResponseDelegate());
     static void GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnCompleteBP = FLootLockerServerGetMultisourceMetadataResponseBP(), const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete = FLootLockerServerGetMultisourceMetadataResponseDelegate());
+    static void SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseBP& OnCompleteBP = FLootLockerServerSetMetadataResponseBP(), const FLootLockerServerSetMetadataResponseDelegate& OnComplete = FLootLockerServerSetMetadataResponseDelegate());
 };
