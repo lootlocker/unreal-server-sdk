@@ -1511,7 +1511,7 @@ public:
     @param Key The key to perform this action towards
     @param Value The value to set for the specified key
     @param Tags The tags to apply to the specified key
-    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read", "game_api.write" and "player.read"
     @return A Metadata Action Object that you can use in the method SetMetadata
     */
     UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm="Tags,Access"))
@@ -1524,7 +1524,7 @@ public:
     @param Key The key to perform this action towards
     @param Value The value to set for the specified key
     @param Tags The tags to apply to the specified key
-    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read", "game_api.write" and "player.read"
     @return A Metadata Action Object that you can use in the method SetMetadata
     */
     UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
@@ -1537,7 +1537,7 @@ public:
     @param Key The key to perform this action towards
     @param Value The value to set for the specified key
     @param Tags The tags to apply to the specified key
-    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read", "game_api.write" and "player.read"
     @return A Metadata Action Object that you can use in the method SetMetadata
     */
     UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
@@ -1550,7 +1550,7 @@ public:
     @param Key The key to perform this action towards
     @param Value The value to set for the specified key
     @param Tags The tags to apply to the specified key
-    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read", "game_api.write" and "player.read"
     @return A Metadata Action Object that you can use in the method SetMetadata
     */
     UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
@@ -1563,7 +1563,7 @@ public:
     @param Key The key to perform this action towards
     @param Value The value to set for the specified key
     @param Tags The tags to apply to the specified key
-    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read", "game_api.write" and "player.read"
     @param Succeeded Output: True if the json string could be parsed as an array or object, false if it could not be parsed
     @param ConstructedEntry Output: A Metadata Action Object that you can use in the method SetMetadata
     */
@@ -1577,7 +1577,7 @@ public:
     @param Key The key to perform this action towards
     @param Value The value to set for the specified key
     @param Tags The tags to apply to the specified key
-    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read" and "game_api.write"
+    @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read", "game_api.write" and "player.read"
     @return A Metadata Action Object that you can use in the method SetMetadata
     */
     UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
