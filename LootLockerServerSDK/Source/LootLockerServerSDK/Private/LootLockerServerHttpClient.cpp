@@ -78,8 +78,15 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 
 	Request->OnProcessRequestComplete().BindLambda([InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 	{
+		if (!Response.IsValid())
+		{
+			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid");
+			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, TArray<FString>());
+			InRequest.OnCompleteRequest.ExecuteIfBound(Error);
+			return;
+		}
 		FLootLockerServerResponse response;
-		response.Success = ResponseIsValid(Response, bWasSuccessful);
+		response.Success = ResponseIsSuccess(Response, bWasSuccessful);
 		response.ServerCallStatusCode = response.StatusCode = Response->GetResponseCode();
 		response.FullTextFromServer = Response->GetContentAsString();
 		if (!response.Success)
@@ -194,8 +201,15 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 
 	Request->OnProcessRequestComplete().BindLambda([this, InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 	{
+		if (!Response.IsValid())
+		{
+			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid");
+			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), TArray<FString>());
+			InRequest.OnCompleteRequest.ExecuteIfBound(Error);
+			return;
+		}
 		FLootLockerServerResponse response;
-		response.Success = ResponseIsValid(Response, bWasSuccessful);
+		response.Success = ResponseIsSuccess(Response, bWasSuccessful);
 		response.ServerCallStatusCode = response.StatusCode = Response->GetResponseCode();
 		response.FullTextFromServer = Response->GetContentAsString();
 		if (!response.Success)
@@ -229,7 +243,7 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 	Request->ProcessRequest();
 }
 
-bool ULootLockerServerHttpClient::ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful)
+bool ULootLockerServerHttpClient::ResponseIsSuccess(const FHttpResponsePtr& InResponse, bool bWasSuccessful)
 {
 	if (!bWasSuccessful || !InResponse.IsValid())
 		return false;
