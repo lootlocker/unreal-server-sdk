@@ -75,7 +75,7 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 	{
 		if (!Response.IsValid())
 		{
-			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid");
+			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_HTTP);
 			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, TArray<FString>());
 			InRequest.OnCompleteRequest.ExecuteIfBound(Error);
 			return;
@@ -118,7 +118,7 @@ void ULootLockerServerHttpClient::UploadFile_Internal(const FString& FilePath, c
 {
 	TArray<uint8> RawData;
 	if (!FFileHelper::LoadFileToArray(RawData, *FilePath)) {
-		InRequest.OnCompleteRequest.ExecuteIfBound(LootLockerServerResponseFactory::Error<FLootLockerServerResponse>(FString::Format(TEXT("Could not read file {0}"), { FilePath })));
+		InRequest.OnCompleteRequest.ExecuteIfBound(LootLockerServerResponseFactory::Error<FLootLockerServerResponse>(FString::Format(TEXT("Could not read file {0}"), { FilePath }), LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT));
 		return;
 	}
 
@@ -193,7 +193,7 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 	{
 		if (!Response.IsValid())
 		{
-			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid");
+			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_HTTP);
 			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), TArray<FString>());
 			InRequest.OnCompleteRequest.ExecuteIfBound(Error);
 			return;
