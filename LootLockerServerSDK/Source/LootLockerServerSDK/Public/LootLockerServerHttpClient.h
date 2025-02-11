@@ -77,7 +77,7 @@ private:
         };
     };
     static ULootLockerServerHttpClient* Instance;
-    static bool ResponseIsValid(const FHttpResponsePtr& InResponse, bool bWasSuccessful);
+    static bool ResponseIsSuccess(const FHttpResponsePtr& InResponse, bool bWasSuccessful);
     static void LogFailedRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const
                                             TArray<FString>& ResponseHeaders);
 	static void LogSuccessfulRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const
