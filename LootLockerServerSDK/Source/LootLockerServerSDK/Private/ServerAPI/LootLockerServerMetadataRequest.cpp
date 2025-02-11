@@ -428,7 +428,7 @@ void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLoot
 				|| JsonMetadataArray->Num() != Response.Metadata.Num())
 			{
 				FLootLockerServerGetMultisourceMetadataResponse Error = LootLockerServerResponseFactory::Error<
-					FLootLockerServerGetMultisourceMetadataResponse>("Could not parse metadata array");
+					FLootLockerServerGetMultisourceMetadataResponse>("Could not parse metadata array", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_PARSE_ERROR);
 				OnCompleteBP.ExecuteIfBound(Error);
 				OnComplete.ExecuteIfBound(Error);
 				return;
@@ -446,7 +446,7 @@ void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLoot
 				if (JsonEntries.Num() != Metadata.Entries.Num())
 				{
 					FLootLockerServerGetMultisourceMetadataResponse Error = LootLockerServerResponseFactory::Error<
-						FLootLockerServerGetMultisourceMetadataResponse>("Could not parse metadata entry array for metadata with source id " + Metadata.Source_id);
+						FLootLockerServerGetMultisourceMetadataResponse>("Could not parse metadata entry array for metadata with source id " + Metadata.Source_id, LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
 					OnCompleteBP.ExecuteIfBound(Error);
 					OnComplete.ExecuteIfBound(Error);
 					return;
@@ -487,7 +487,7 @@ void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetada
 	if (SourceID.IsEmpty())
 	{
 		FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
-			FLootLockerServerSetMetadataResponse>("Can not perform actions for source with empty id");
+			FLootLockerServerSetMetadataResponse>("Can not perform actions for source with empty id", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
 		OnCompleteBP.ExecuteIfBound(Error);
 		OnComplete.ExecuteIfBound(Error);
 		return;
@@ -510,7 +510,7 @@ void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetada
 		if (!JsonEntry.IsValid())
 		{
 			FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
-				FLootLockerServerSetMetadataResponse>("Could not serialize action for key " + ActionToPerform.Entry.Key);
+				FLootLockerServerSetMetadataResponse>("Could not serialize action for key " + ActionToPerform.Entry.Key, LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_PARSE_ERROR);
 			OnCompleteBP.ExecuteIfBound(Error);
 			OnComplete.ExecuteIfBound(Error);
 			return;
@@ -527,7 +527,7 @@ void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetada
 		if (!ActionToPerform.Entry.TryGetRawValue(RawEntryValue))
 		{
 			FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
-				FLootLockerServerSetMetadataResponse>("Could not get value to perform action " + JsonEntry->GetStringField(TEXT("action")) + " for key " + ActionToPerform.Entry.Key);
+				FLootLockerServerSetMetadataResponse>("Could not get value to perform action " + JsonEntry->GetStringField(TEXT("action")) + " for key " + ActionToPerform.Entry.Key, LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_PARSE_ERROR);
 			OnCompleteBP.ExecuteIfBound(Error);
 			OnComplete.ExecuteIfBound(Error);
 			return;
