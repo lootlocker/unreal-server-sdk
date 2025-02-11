@@ -16,10 +16,6 @@
 
 #include "LootLockerServerHttpClient.generated.h"
 
-#if ENGINE_MAJOR_VERSION <= 4 && ENGINE_MINOR_VERSION <= 25
-typedef TMap<FString, FStringFormatArg> FStringFormatNamedArguments;
-#endif
-
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerHttpClient : public UObject
 {

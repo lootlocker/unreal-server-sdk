@@ -42,12 +42,7 @@ ULootLockerServerHttpClient::ULootLockerServerHttpClient()
 void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) const
 {
 	FHttpModule* HttpModule = &FHttpModule::Get();
-
-#if ENGINE_MAJOR_VERSION <= 4 && ENGINE_MINOR_VERSION <= 25
-	TSharedRef<IHttpRequest> Request = HttpModule->CreateRequest();
-#else
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = HttpModule->CreateRequest();
-#endif
 
 	Request->SetURL(InRequest.EndPoint);
 
@@ -137,12 +132,7 @@ void ULootLockerServerHttpClient::UploadFile_Internal(const FString& FilePath, c
 void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const
 {
 	FHttpModule* HttpModule = &FHttpModule::Get();
-
-#if ENGINE_MAJOR_VERSION <= 4 && ENGINE_MINOR_VERSION <= 25
-	TSharedRef<IHttpRequest> Request = HttpModule->CreateRequest();
-#else
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = HttpModule->CreateRequest();
-#endif
 
 	Request->SetURL(InRequest.EndPoint);
 
