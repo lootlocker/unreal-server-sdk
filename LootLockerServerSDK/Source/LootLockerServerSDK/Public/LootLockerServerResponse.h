@@ -58,12 +58,6 @@ struct FLootLockerServerResponse
     // If this request was not a success, this structure holds all the information needed to identify the problem
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerErrorData ErrorData;
-
-
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer", meta = (DeprecatedProperty, DeprecationMessage = "This property has been deprecated, please use 'StatusCode' instead"))
-    int ServerCallStatusCode = 0;
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer", meta = (DeprecatedProperty, DeprecationMessage = "This property is deprecated, replaced by the ErrorData.Message property"))
-    FString Error;
 };
 
 //==================================================
@@ -220,10 +214,9 @@ public:
     {
         T ErrorResponse;
         ErrorResponse.Success = false;
-        ErrorResponse.StatusCode = ErrorResponse.ServerCallStatusCode = StatusCode;
+        ErrorResponse.StatusCode = StatusCode;
         ErrorResponse.FullTextFromServer = "{ \"message\": \"" + ErrorMessage + "\"}";
         ErrorResponse.ErrorData.Message = ErrorMessage;
-        ErrorResponse.Error = ErrorMessage;
         return ErrorResponse;
     }
 };

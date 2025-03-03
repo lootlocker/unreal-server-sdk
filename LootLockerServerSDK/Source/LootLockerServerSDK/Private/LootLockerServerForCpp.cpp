@@ -7,7 +7,6 @@
 #include "ServerAPI/LootLockerServerGameProgressionRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
-#include "ServerAPI/LootLockerServerPurchaseRequest.h"
 
 //Authentication
 void ULootLockerServerForCpp::StartSession(const FLootLockerServerAuthResponseDelegate& OnCompleteRequest)
@@ -423,27 +422,6 @@ void ULootLockerServerForCpp::UpdateFileForPlayer(int PlayerID, int FileID, FStr
 void ULootLockerServerForCpp::UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
     ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(PlayerID, FileID, RawData, FileName, FLootLockerServerSinglePlayerFileResponseBP(), OnCompletedRequest);
-}
-
-// Purchases
-void ULootLockerServerForCpp::CheckPurchaseStatusForPlayerByID(int PlayerID, int PurchaseID, const FLootLockerServerPurchaseStatusResponseDelegate& OnCompletedRequest)
-{
-    ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByID(PlayerID, PurchaseID, FLootLockerServerPurchaseStatusResponseBP(), OnCompletedRequest);
-}
-
-void ULootLockerServerForCpp::CheckPurchaseStatusForPlayerByPlatformTransactionID(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusResponseDelegate& OnCompletedRequest)
-{
-    ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByPlatformTransactionID(PlayerID, PlatformTransactionID, FLootLockerServerPurchaseStatusResponseBP(), OnCompletedRequest);
-}
-
-void ULootLockerServerForCpp::CheckPurchaseStatusForPlayerByIDWith_IncludeProducts(int PlayerID, int PurchaseID, const FLootLockerServerPurchaseStatusWithProductsResponseDelegate& OnCompletedRequest)
-{
-    ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByIDWith_IncludeProducts(PlayerID, PurchaseID, FLootLockerServerPurchaseStatusWithProductsResponseBP(), OnCompletedRequest);
-}
-
-void ULootLockerServerForCpp::CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(int PlayerID, int PlatformTransactionID, const FLootLockerServerPurchaseStatusWithProductsResponseDelegate& OnCompletedRequest)
-{
-    ULootLockerServerPurchaseRequest::CheckPurchaseStatusForPlayerByPlatformTransactionID_IncludeProducts(PlayerID, PlatformTransactionID, FLootLockerServerPurchaseStatusWithProductsResponseBP(), OnCompletedRequest);
 }
 
 // Game Progressions

@@ -82,7 +82,7 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 		}
 		FLootLockerServerResponse response;
 		response.Success = ResponseIsSuccess(Response, bWasSuccessful);
-		response.ServerCallStatusCode = response.StatusCode = Response->GetResponseCode();
+		response.StatusCode = Response->GetResponseCode();
 		response.FullTextFromServer = Response->GetContentAsString();
 		if (!response.Success)
 		{
@@ -90,12 +90,9 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 				response.FullTextFromServer, &response.ErrorData, 0, 0);
 			if (response.ErrorData.Code.IsEmpty())
 			{
-				response.Error = response.ErrorData.Message = response.FullTextFromServer;
+				response.ErrorData.Message = response.FullTextFromServer;
 			}
-			else
-			{
-				response.Error = response.ErrorData.Message;
-			}
+
 			FString RetryAfterHeader = Response->GetHeader("retry-after");
 			if (!RetryAfterHeader.IsEmpty())
 			{
@@ -200,7 +197,7 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 		}
 		FLootLockerServerResponse response;
 		response.Success = ResponseIsSuccess(Response, bWasSuccessful);
-		response.ServerCallStatusCode = response.StatusCode = Response->GetResponseCode();
+		response.StatusCode = Response->GetResponseCode();
 		response.FullTextFromServer = Response->GetContentAsString();
 		if (!response.Success)
 		{
@@ -208,12 +205,9 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 				response.FullTextFromServer, &response.ErrorData, 0, 0);
 			if (response.ErrorData.Code.IsEmpty())
 			{
-				response.Error = response.ErrorData.Message = response.FullTextFromServer;
+				response.ErrorData.Message = response.FullTextFromServer;
 			}
-			else
-			{
-				response.Error = response.ErrorData.Message;
-			}
+
 			FString RetryAfterHeader = Response->GetHeader("retry-after");
 			if (!RetryAfterHeader.IsEmpty())
 			{
