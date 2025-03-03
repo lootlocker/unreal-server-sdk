@@ -98,11 +98,10 @@ private:
                 }
 
                 ResponseStruct.Success = response.Success;
-                ResponseStruct.StatusCode = ResponseStruct.ServerCallStatusCode = response.StatusCode;
+                ResponseStruct.StatusCode = response.StatusCode;
                 if(!ResponseStruct.Success)
                 {
                     ResponseStruct.ErrorData = response.ErrorData;
-                    ResponseStruct.Error = response.Error;
                 }
                 ResponseStruct.FullTextFromServer = response.FullTextFromServer;
                 ResponseInspectorCallback.ExecuteIfBound(ResponseStruct);
