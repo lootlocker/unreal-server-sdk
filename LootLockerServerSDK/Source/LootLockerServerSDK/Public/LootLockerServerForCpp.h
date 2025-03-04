@@ -16,6 +16,7 @@
 #include "ServerAPI/LootLockerServerLeaderboardArchiveRequestHandler.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerMetadataRequest.h"
+#include "ServerAPI/LootLockerServerOAuthRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerInventoryRequest.h"
 #include "ServerAPI/LootLockerServerPlayerProgressionRequest.h"
@@ -47,6 +48,30 @@ public:
      * @param OnCompletedRequest Delegate for handling the response
      */
     static void MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest);
+
+    //==================================================
+    // Token Exchange
+    //==================================================
+
+    /**
+     Get a new active game api session token for the player holding the supplied game api session token
+
+     This will allow the server to make requests to the game api on behalf of the user corresponding to the original token.
+     
+     @param GameApiSessionToken The session token for a current game api session to use in exchange for a new one
+     @param OnCompletedRequest Delegate for handling the response
+     */
+    static void GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest);
+
+    /**
+     Get a new active game api session token for the specified player
+
+     This will allow the server to make requests to the game api on behalf of the specified user.
+     
+     @param PlayerUlid The ulid of the player you wish to impersonate
+     @param OnCompletedRequest Delegate for handling the response
+     */
+    static void GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Leaderboards https://ref.lootlocker.com/server-api/#leaderboards

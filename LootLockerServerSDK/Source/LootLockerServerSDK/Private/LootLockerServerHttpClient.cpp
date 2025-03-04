@@ -49,7 +49,7 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 	Request->SetHeader(TEXT("User-Agent"), UserAgent);
 	Request->SetHeader(TEXT("User-Instance-Identifier"), UserInstanceIdentifier);
 	Request->SetHeader(TEXT("SDK-Version"), SDKVersion);
-	Request->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
+	Request->SetHeader(TEXT("Content-Type"), InRequest.ContentType);
 	Request->SetHeader(TEXT("Accepts"), TEXT("application/json"));
 
 	const ULootLockerServerConfig* config = GetDefault<ULootLockerServerConfig>();

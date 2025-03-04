@@ -20,6 +20,16 @@ void ULootLockerServerForCpp::MaintainSession(const FLootLockerServerMaintainSes
     ULootLockerServerAuthRequest::MaintainSession(FLootLockerServerMaintainSessionResponseBP(), OnCompleteRequest);
 }
 
+void ULootLockerServerForCpp::GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerOAuthRequest::GameApiTokenExchange(GameApiSessionToken, FLootLockerServerTokenExchangeResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerOAuthRequest::GameApiUserImpersonation(PlayerUlid, FLootLockerServerTokenExchangeResponseBP(), OnCompletedRequest);
+}
+
 void ULootLockerServerForCpp::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest)
 {
     ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, FLootLockerServerGetLeaderboardResponseBP(), OnCompletedRequest);
