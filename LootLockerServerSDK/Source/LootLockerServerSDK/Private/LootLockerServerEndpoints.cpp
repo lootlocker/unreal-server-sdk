@@ -3,10 +3,12 @@
 #include "LootLockerServerEndpoints.h"
 
 #ifdef LOOTLOCKER_USE_STAGE_URL
-FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.stage.internal.dev.lootlocker.cloud/server/";
+FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.stage.internal.dev.lootlocker.cloud/";
 #else
-FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.lootlocker.com/server/";
+FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.lootlocker.com/";
 #endif
+FString ULootLockerServerEndpoints::ServerApiUrlSuffix = "server/";
+FString ULootLockerServerEndpoints::ClientApiUrlSuffix = "client/";
 
 //Auth
 FLootLockerServerEndPoint ULootLockerServerEndpoints::StartSession = InitEndpoint("session", ELootLockerServerHTTPMethod::POST);
@@ -132,10 +134,13 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::ListMetadata = InitEndpoin
 FLootLockerServerEndPoint ULootLockerServerEndpoints::MetadataActions = InitEndpoint("metadata/", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetMultisourceMetadata = InitEndpoint("metadata/multisource", ELootLockerServerHTTPMethod::POST);
 
-FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method)
+// Token Exchange
+FLootLockerServerEndPoint ULootLockerServerEndpoints::TokenExchange = InitEndpoint("v3/oauth/token", ELootLockerServerHTTPMethod::POST, ClientApiUrlSuffix);
+
+FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method, const FString& BaseUrlSuffix /* = ServerApiUrlSuffix*/)
 {
 	FLootLockerServerEndPoint Result;
-	Result.endpoint = GameBaseUrl + Endpoint;
+	Result.endpoint = GameBaseUrl + BaseUrlSuffix + Endpoint;
 	Result.requestMethod = Method;
 	return Result;
 }

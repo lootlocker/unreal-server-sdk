@@ -165,8 +165,13 @@ public:
     static FLootLockerServerEndPoint MetadataActions;
     static FLootLockerServerEndPoint GetMultisourceMetadata;
 
+    // Token Exchange
+    static FLootLockerServerEndPoint TokenExchange;
+
 private:
     static FString GameBaseUrl;
+    static FString ServerApiUrlSuffix;
+    static FString ClientApiUrlSuffix;
 
-    static FLootLockerServerEndPoint InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method);
+    static FLootLockerServerEndPoint InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method, const FString& BaseUrlSuffix = ServerApiUrlSuffix);
 };
