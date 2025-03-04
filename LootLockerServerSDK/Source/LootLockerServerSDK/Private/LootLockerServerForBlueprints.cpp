@@ -14,6 +14,16 @@ void ULootLockerServerForBlueprints::MaintainSession(const FLootLockerServerMain
     ULootLockerServerAuthRequest::MaintainSession(OnCompletedRequest);
 }
 
+void ULootLockerServerForBlueprints::GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequest)
+{
+    ULootLockerServerOAuthRequest::GameApiTokenExchange(GameApiSessionToken, OnCompletedRequest);
+}
+
+void ULootLockerServerForBlueprints::GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequest)
+{
+    ULootLockerServerOAuthRequest::GameApiUserImpersonation(PlayerUlid, OnCompletedRequest);
+}
+
 void ULootLockerServerForBlueprints::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseBP& OnCompletedRequest)
 {
     ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, OnCompletedRequest);
