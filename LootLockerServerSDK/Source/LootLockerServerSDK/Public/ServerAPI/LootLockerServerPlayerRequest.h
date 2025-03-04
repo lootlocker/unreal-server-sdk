@@ -82,7 +82,9 @@ enum class ELootLockerServerPlayerNameLookupIdType : uint8
 	Player_guest_login_id = 2,
 	Steam_id = 3,
 	Psn_id = 4,
-	Xbox_id = 5
+	Xbox_id = 5,
+	Player_ulid = 6,
+	Player_name = 7
 };
 
 USTRUCT(BlueprintType)
