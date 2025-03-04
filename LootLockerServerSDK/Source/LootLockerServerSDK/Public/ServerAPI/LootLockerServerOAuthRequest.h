@@ -29,6 +29,11 @@ struct FLootLockerServerTokenExchangeResponse : public FLootLockerServerResponse
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
 	FString Refresh_token = "";
 	/*
+	 The ulid of the subject that this token is for
+	 */
+	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
+	FString Subject_ulid = "";
+	/*
 	 For how many seconds the Access Token is valid
 	 */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
