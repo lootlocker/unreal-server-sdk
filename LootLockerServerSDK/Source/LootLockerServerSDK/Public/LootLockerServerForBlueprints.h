@@ -734,10 +734,11 @@ public:
      * Up to 200 (the default limit is 50 though) assets are returned at a time, and to fetch the next page you have to use the largest ID you've gotten returned in the previous response
      * https://ref.lootlocker.com/server-api/#get-assets-to-game
      *
+     * @param IncludeUGC Optional: Include user generated assets
      * @param OnCompletedRequest Delegate for handling the server response
      */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets")
-    static void GetAssets(const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta = (AdvancedDisplay = "IncludeUGC", IncludeUGC = false))
+    static void GetAssets(bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
 
     /**
      * List a set of assets from this game according to the supplied pagination options
@@ -748,10 +749,11 @@ public:
      *
      * @param Count The number of assets to get. Must be a value between 1 and 200
      * @param After The id of the asset from where to start getting assets (non inclusive). Set to 0 to start from the first item
+     * @param IncludeUGC Optional: Include user generated assets
      * @param OnCompletedRequest Delegate for handling the server response
      */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets")
-    static void GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta = (AdvancedDisplay = "IncludeUGC", IncludeUGC = false))
+    static void GetPaginatedAssets(int Count, int After, bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
 
     //==================================================
     // Asset Instances https://ref.lootlocker.com/server-api/#asset-instances
