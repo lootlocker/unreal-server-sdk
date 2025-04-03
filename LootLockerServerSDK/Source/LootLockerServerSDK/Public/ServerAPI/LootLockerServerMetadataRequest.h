@@ -144,11 +144,6 @@ struct FLootLockerServerMetadataEntry
      */
     LOOTLOCKERSERVERSDK_API bool TryGetSerializedValue(FString& Output) const;
     /*
-     Get the value as an unparsed json value. Returns true if value could be found in which case Output contains the JsonValue, returns false if the value field was not present.
-     */
-    template<typename T>
-    LOOTLOCKERSERVERSDK_API bool TryGetValueAsUStruct(T& Output) const;
-    /*
      Get the value as a Json Object. Returns true if value could be parsed in which case Output contains the Json Object, returns false if parsing failed which can happen if the value is not a valid json object string.
      */
     LOOTLOCKERSERVERSDK_API bool TryGetValueAsJsonObject(TSharedPtr<FJsonObject>& Output) const;
@@ -220,11 +215,6 @@ struct FLootLockerServerMetadataEntry
      */
     static LOOTLOCKERSERVERSDK_API FLootLockerServerMetadataEntry MakeJsonValueEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const ELootLockerServerMetadataTypes Type, const TSharedPtr<FJsonValue> Value);
     /*
-     Factory method that makes an FLootLockerServerMetadataEntry with a UStruct Value
-     */
-    template<typename T>
-    static LOOTLOCKERSERVERSDK_API FLootLockerServerMetadataEntry MakeUStructEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const T& Value);
-    /*
      Factory method that makes an FLootLockerServerMetadataEntry with a JsonObject Value
      */
     static LOOTLOCKERSERVERSDK_API FLootLockerServerMetadataEntry MakeJsonObjectEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const FJsonObject& Value);
@@ -241,8 +231,8 @@ struct FLootLockerServerMetadataEntry
      For internal use only
      */
     void _INTERNAL_SetJsonRepresentation(const FJsonObject& obj);
+    static FLootLockerServerMetadataEntry _INTERNAL_MakeEntryExceptValue(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const ELootLockerServerMetadataTypes Type);
 private:
-    static FLootLockerServerMetadataEntry MakeEntryExceptValue(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const ELootLockerServerMetadataTypes Type);
 
     FJsonObject EntryAsJson;
 };
