@@ -8,12 +8,14 @@ ULootLockerServerAssetRequest::ULootLockerServerAssetRequest()
 {
 }
 
-void ULootLockerServerAssetRequest::GetAssets(const FLootLockerServerGetAssetsResponseBP& OnCompletedRequestBP, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::GetAssets(bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequestBP, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAssetsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssets, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
+    TMultiMap<FString, FString> QueryParams;
+    QueryParams.Add("include_ugc", IncludeUGC ? "true" : "false");
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAssetsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssets, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequestBP, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::GetPaginatedAssets(int Count, int After, bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequestBP, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest)
 {
     TMultiMap<FString, FString> QueryParams;
     if(Count > 0)
@@ -24,6 +26,7 @@ void ULootLockerServerAssetRequest::GetPaginatedAssets(int Count, int After, con
     {
         QueryParams.Add("after", FString::FromInt(After));
     }
+    QueryParams.Add("include_ugc", IncludeUGC ? "true" : "false");
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAssetsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssets, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
 }
 
