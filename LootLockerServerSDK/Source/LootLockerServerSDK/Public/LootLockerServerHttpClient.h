@@ -12,6 +12,7 @@
 #include "LootLockerServerEndpoints.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerStateData.h"
+#include "GenericPlatform/GenericPlatformHttp.h"
 #include "Utils/LootLockerServerUtilities.h"
 
 #include "LootLockerServerHttpClient.generated.h"
@@ -123,7 +124,12 @@ private:
             // Calculate endpoint
             const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
             FString EndpointWithArguments = FString::Format(*Endpoint.endpoint, FStringFormatNamedArguments{ {"domainKey", Config && !Config->LootLockerDomainKey.IsEmpty() ? Config->LootLockerDomainKey + "." : ""} });
-            EndpointWithArguments = FString::Format(*EndpointWithArguments, InOrderedArguments);
+            TArray<FStringFormatArg> UrlEncodedPathParams;
+            for (const FStringFormatArg& InOrderedArgument : InOrderedArguments)
+            {
+                UrlEncodedPathParams.Add(FGenericPlatformHttp::UrlEncode(InOrderedArgument.StringValue));
+            }
+            EndpointWithArguments = FString::Format(*EndpointWithArguments, UrlEncodedPathParams);
 
             const FString optionalToken = ULootLockerServerStateData::GetServerToken();
             if (!optionalToken.IsEmpty()) {
