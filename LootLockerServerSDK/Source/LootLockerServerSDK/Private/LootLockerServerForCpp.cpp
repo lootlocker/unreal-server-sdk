@@ -310,14 +310,14 @@ void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOpt
 }
 
 // Assets
-void ULootLockerServerForCpp::GetAssets(const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest) 
+void ULootLockerServerForCpp::GetAssets(const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC) 
 {
-    ULootLockerServerAssetRequest::GetAssets(FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::GetAssets(FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest, IncludeUGC);
 }
 
-void ULootLockerServerForCpp::GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest) 
+void ULootLockerServerForCpp::GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC) 
 {
-    ULootLockerServerAssetRequest::GetPaginatedAssets(Count, After, FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::GetPaginatedAssets(Count, After, FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest, IncludeUGC);
 }
 
 // Asset Instances

@@ -675,8 +675,9 @@ public:
      * https://ref.lootlocker.com/server-api/#get-assets-to-game
      *
      * @param OnCompletedRequest Delegate for handling the server response
+     * @param IncludeUGC Optional: Include user generated assets
      */
-    static void GetAssets(const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest);
+    static void GetAssets(const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest, bool IncludeUGC = false);
 
     /**
      * List a set of assets from this game according to the supplied pagination options
@@ -688,8 +689,9 @@ public:
      * @param Count The number of assets to get. Must be a value between 1 and 200
      * @param After The id of the asset from where to start getting assets (non inclusive). Set to 0 to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * @param IncludeUGC Optional: Include user generated assets
      */
-    static void GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest);
+    static void GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest, bool IncludeUGC = false);
 
     //==================================================
     // Asset Instances https://ref.lootlocker.com/server-api/#asset-instances
