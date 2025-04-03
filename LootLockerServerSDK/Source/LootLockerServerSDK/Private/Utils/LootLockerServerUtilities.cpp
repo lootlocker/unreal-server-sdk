@@ -1,6 +1,8 @@
 // Copyright (c) 2021 LootLocker
 
 #include "Utils/LootLockerServerUtilities.h"
+
+#include "GenericPlatform/GenericPlatformHttp.h"
 #include "Runtime/Launch/Resources/Version.h"
 
 namespace LootLockerServerUtilities
@@ -12,7 +14,7 @@ namespace LootLockerServerUtilities
             FString Delimiter = "?";
             for (const TPair<FString, FString>& Pair : QueryParams)
             {
-                Url = Url + Delimiter + Pair.Key + "=" + Pair.Value;
+                Url = Url + Delimiter + FGenericPlatformHttp::UrlEncode(Pair.Key) + "=" + FGenericPlatformHttp::UrlEncode(Pair.Value);
                 Delimiter = "&";
             }
         }
