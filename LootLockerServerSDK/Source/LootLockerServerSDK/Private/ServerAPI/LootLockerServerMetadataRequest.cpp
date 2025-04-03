@@ -67,17 +67,6 @@ bool FLootLockerServerMetadataEntry::TryGetSerializedValue(FString& Output) cons
 	return Val->TryGetString(Output);
 }
 
-template<typename T>
-bool FLootLockerServerMetadataEntry::TryGetValueAsUStruct(T& Output) const
-{
-	TSharedPtr<FJsonObject> jsonObject = MakeShared<FJsonObject>();
-	if (!TryGetValueAsJsonObject(jsonObject))
-	{
-		return false;
-	}
-	return FJsonObjectConverter::JsonObjectToUStruct<T>(jsonObject.ToSharedRef(), &Output, 0, 0);		
-}
-
 bool FLootLockerServerMetadataEntry::TryGetValueAsJsonObject(TSharedPtr<FJsonObject>& Output) const
 {
 	if(!EntryAsJson.HasTypedField<EJson::Object>(TEXT("value")))
@@ -100,7 +89,12 @@ bool FLootLockerServerMetadataEntry::TryGetValueAsJsonArray(TArray<TSharedPtr<FJ
 
 bool FLootLockerServerMetadataEntry::TryGetValueAsBase64(FLootLockerServerMetadataBase64Value& Output) const
 {
-	return TryGetValueAsUStruct(Output);
+	TSharedPtr<FJsonObject> jsonObject = MakeShared<FJsonObject>();
+	if (!TryGetValueAsJsonObject(jsonObject))
+	{
+		return false;
+	}
+	return FJsonObjectConverter::JsonObjectToUStruct<FLootLockerServerMetadataBase64Value>(jsonObject.ToSharedRef(), &Output, 0, 0);
 }
 
 void FLootLockerServerMetadataEntry::SetValueAsString(const FString& Value) 
@@ -164,64 +158,63 @@ void FLootLockerServerMetadataEntry::SetValueAsBase64(const FLootLockerServerMet
 
 FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeStringEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const FString& Value)
 {
-	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::String);
+	FLootLockerServerMetadataEntry Entry = _INTERNAL_MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::String);
 	Entry.SetValueAsString(Value);
 	return Entry;
 }
 
 FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeFloatEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const float& Value)
 {
-	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Number);
+	FLootLockerServerMetadataEntry Entry = _INTERNAL_MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Number);
 	Entry.SetValueAsFloat(Value);
 	return Entry;
 }
 
 FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeIntegerEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const int Value)
 {
-	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Number);
+	FLootLockerServerMetadataEntry Entry = _INTERNAL_MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Number);
 	Entry.SetValueAsInteger(Value);
 	return Entry;
 }
 
 FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeBoolEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const bool Value)
 {
-	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Bool);
+	FLootLockerServerMetadataEntry Entry = _INTERNAL_MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Bool);
 	Entry.SetValueAsBool(Value);
 	return Entry;
 }
 
 FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeJsonValueEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const ELootLockerServerMetadataTypes Type, const TSharedPtr<FJsonValue> Value)
 {
-	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
+	FLootLockerServerMetadataEntry Entry = _INTERNAL_MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
 	Entry.SetRawValue(Value);
-	return Entry;
-}
-
-template<typename T>
-FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeUStructEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const T& Value)
-{
-	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
-	Entry.SetValueAsUStruct(Value);
 	return Entry;
 }
 
 FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeJsonObjectEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const FJsonObject& Value)
 {
-	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
+	FLootLockerServerMetadataEntry Entry = _INTERNAL_MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
 	Entry.SetValueAsJsonObject(Value);
 	return Entry;
 }
 
 FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeJsonArrayEntry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const TArray<TSharedPtr<FJsonValue>>& Value)
 {
-	FLootLockerServerMetadataEntry Entry = MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
+	FLootLockerServerMetadataEntry Entry = _INTERNAL_MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
 	Entry.SetValueAsJsonArray(Value);
 	return Entry;
 }
 
 FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeBase64Entry(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const FLootLockerServerMetadataBase64Value& Value)
 {
-	return MakeUStructEntry(Key, Tags, Access, Value);
+	TSharedPtr<FJsonObject> JsonObject = FJsonObjectConverter::UStructToJsonObject(Value);
+	if (!JsonObject.IsValid())
+	{
+		return FLootLockerServerMetadataEntry();
+	}
+	FLootLockerServerMetadataEntry Entry = _INTERNAL_MakeEntryExceptValue(Key, Tags, Access, ELootLockerServerMetadataTypes::Json);
+	Entry.SetValueAsJsonObject(*JsonObject);
+	return Entry;
 }
 
 void FLootLockerServerMetadataEntry::_INTERNAL_SetJsonRepresentation(const FJsonObject& obj)
@@ -229,7 +222,7 @@ void FLootLockerServerMetadataEntry::_INTERNAL_SetJsonRepresentation(const FJson
 	EntryAsJson = obj;
 }
 
-FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::MakeEntryExceptValue(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const ELootLockerServerMetadataTypes Type)
+FLootLockerServerMetadataEntry FLootLockerServerMetadataEntry::_INTERNAL_MakeEntryExceptValue(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const ELootLockerServerMetadataTypes Type)
 {
 	FLootLockerServerMetadataEntry Entry;
 	Entry.Key = Key;
