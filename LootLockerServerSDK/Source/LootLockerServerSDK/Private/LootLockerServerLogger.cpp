@@ -22,11 +22,10 @@ void ULootLockerServerLogger::Log(ELootLockerServerLogLevel Verbosity, FString L
 
 	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
 
-#if !WITH_EDITOR
-	if(!Config->LogOutsideOfEditor) {
+	if (!ULootLockerServerConfig::ShouldLog() && Verbosity >= ELootLockerServerLogLevel::Error)
+	{
 		return;
 	}
-#endif
 
 	if(Config->LimitLogLevelTo != ELootLockerServerLogLevelConfiguration::NoLogging && Config->LimitLogLevelTo >= (ELootLockerServerLogLevelConfiguration)Verbosity) {
         if (Config->LimitLogLevelTo == ELootLockerServerLogLevelConfiguration::AllAsNormal) {

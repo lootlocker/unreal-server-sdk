@@ -100,12 +100,10 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 			}
 			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, Response->GetAllHeaders());
 		}
-#if WITH_EDITOR
 		else
 		{
 			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, Response->GetAllHeaders());
 		}
-#endif
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
 	});
 	Request->ProcessRequest();
@@ -215,12 +213,10 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 			}
 			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), Response->GetAllHeaders());
 		}
-#if WITH_EDITOR
 		else 
 		{
 			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), Response->GetAllHeaders());
 		}
-#endif
 
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
 	});
@@ -251,7 +247,6 @@ void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerS
 	if (!Data.IsEmpty()) {
 		LogString += FString::Format(TEXT("\n   Request Data: {0}"), { Data });
 	}
-#if WITH_EDITOR
 	if(ResponseHeaders.Num() > 0)
 	{
 		LogString += FString::Format(TEXT("\n   -- Response Headers --"), { Data });
@@ -260,7 +255,6 @@ void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerS
 			LogString += FString::Format(TEXT("\n     {0}"), { ResponseHeader });
 		}
 	}
-#endif
 
 	if (!IsInformativeError)
 	{
@@ -277,7 +271,7 @@ void ULootLockerServerHttpClient::LogSuccessfulRequestInformation(const FLootLoc
 	if (!Data.IsEmpty()) {
 		LogString += FString::Format(TEXT("\n   Request Data: {0}"), { Data });
 	}
-#if WITH_EDITOR
+
 	if (ResponseHeaders.Num() > 0)
 	{
 		LogString += FString::Format(TEXT("\n   -- Response Headers --"), { Data });
@@ -286,7 +280,6 @@ void ULootLockerServerHttpClient::LogSuccessfulRequestInformation(const FLootLoc
 			LogString += FString::Format(TEXT("\n     {0}"), { ResponseHeader });
 		}
 	}
-#endif
 	LogString += FString::Format(TEXT("\n   Response Data: {0}"), { Response.FullTextFromServer });
 	LogString += "\n###";
 	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::VeryVerbose, LogString);
