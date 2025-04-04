@@ -40,6 +40,17 @@ public:
 	{
 		return LootLockerServerKey.Find("dev_", ESearchCase::CaseSensitive) == -1 && LootLockerServerKey.Find("prod_", ESearchCase::CaseSensitive) == -1;
 	}
+
+	UFUNCTION()
+	static bool ShouldLog()
+	{
+#if WITH_EDITOR
+		return true;
+#else
+		return GetDefault<ULootLockerConfig>()->LogOutsideOfEditor;
+#endif		
+	}
+
 	UFUNCTION()
 	static bool IsSemverString(const FString& str)
 	{
