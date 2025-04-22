@@ -30,6 +30,11 @@ struct FLootLockerServerPlayerHero
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Hero_id = 0;
     /*
+     The ID of the character
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Character_id = 0;
+    /*
      The asset instance id of the hero
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
