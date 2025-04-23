@@ -49,6 +49,94 @@ struct FLootLockerServerBalance
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Created_at;
+    /**
+     * The type of holder that this holder id refers to
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    ELootLockerServerWalletHolderTypes Holder_type;
+    /**
+     * ULID of the holder you want to create a wallet for
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Holder_id;
+};
+
+/**
+ *
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerBalanceWithCurrencyId
+{
+    GENERATED_BODY()
+    /**
+     * Current amount of the given currency in this wallet
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Amount;
+    /**
+     * The id of the currency that this balance is in
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Currency_id;
+    /**
+     * The id of the wallet holding this balance
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Wallet_id;
+    /**
+     * The time that this balance was created
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Created_at;
+    /**
+     * The type of holder that this holder id refers to
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    ELootLockerServerWalletHolderTypes Holder_type;
+    /**
+     * ULID of the holder you want to create a wallet for
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Holder_id;
+};
+
+/**
+ *
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerBalanceModifiers
+{
+    GENERATED_BODY()
+    /**
+     * The id of the currency
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Currency_id;
+    /**
+     * The name of the currency
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Currency_name;
+    /**
+     * The currency code
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Currency_code;
+    /**
+     * The factor of this currency
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Factor;
+    /**
+     * When this currency modifier was created
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Created_at;
+    /**
+     * When this currency modifier expires
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Expires_at;
 };
 
 //==================================================
@@ -166,6 +254,11 @@ struct FLootLockerServerGetWalletResponse : public FLootLockerServerResponse
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerWalletHolderTypes type = ELootLockerServerWalletHolderTypes::player;
+    /**
+     * The modifiers for this wallet
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerBalanceModifiers modifiers;
 };
 
 /**
@@ -176,25 +269,10 @@ struct FLootLockerServerCreditWalletResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     /**
-     * Current amount of the given currency in this wallet
+     * The balance credited (given) to this wallet
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Amount;
-    /**
-     * Information about the currency that this balance is in
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FLootLockerServerCurrency Currency;
-    /**
-     * The id of the wallet holding this balance
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Wallet_id;
-    /**
-     * The time that this balance was created
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Created_at;
+    FLootLockerServerBalanceWithCurrencyId Balance;
 };
 
 /**
@@ -205,25 +283,10 @@ struct FLootLockerServerDebitWalletResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     /**
-     * Current amount of the given currency in this wallet
+     * The balance debited (taken) from this wallet
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Amount;
-    /**
-     * Information about the currency that this balance is in
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FLootLockerServerCurrency Currency;
-    /**
-     * The id of the wallet holding this balance
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Wallet_id;
-    /**
-     * The time that this balance was created
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Created_at;
+    FLootLockerServerBalanceWithCurrencyId Balance;
 };
 
 /**
