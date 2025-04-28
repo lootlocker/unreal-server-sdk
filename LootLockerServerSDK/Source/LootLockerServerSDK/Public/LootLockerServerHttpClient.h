@@ -140,7 +140,8 @@ private:
 		            break;
 	            case FStringFormatArg::String:
                     UrlEncodedPathParams.Add(FGenericPlatformHttp::UrlEncode(InOrderedArgument.StringValue));
-		            break;
+                    break;
+#if ENGINE_MAJOR_VERSION >= 5
 	            case FStringFormatArg::StringLiteralANSI:
                     UrlEncodedPathParams.Add(FGenericPlatformHttp::UrlEncode(FString(InOrderedArgument.StringLiteralANSIValue)));
 		            break;
@@ -153,6 +154,11 @@ private:
 	            case FStringFormatArg::StringLiteralUTF8:
                     UrlEncodedPathParams.Add(FGenericPlatformHttp::UrlEncode(FString(InOrderedArgument.StringLiteralUTF8Value)));
 		            break;
+#else
+	            case FStringFormatArg::StringLiteral:
+                    UrlEncodedPathParams.Add(FGenericPlatformHttp::UrlEncode(FString(InOrderedArgument.StringLiteralValue)));
+                    break;
+#endif
 	            }
             }
             EndpointWithArguments = FString::Format(*EndpointWithArguments, UrlEncodedPathParams);
