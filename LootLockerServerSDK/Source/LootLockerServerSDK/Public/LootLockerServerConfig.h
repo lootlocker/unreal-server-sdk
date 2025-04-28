@@ -47,7 +47,7 @@ public:
 #if WITH_EDITOR
 		return true;
 #else
-		return GetDefault<ULootLockerConfig>()->LogOutsideOfEditor;
+		return GetDefault<ULootLockerServerConfig>()->LogOutsideOfEditor;
 #endif		
 	}
 
