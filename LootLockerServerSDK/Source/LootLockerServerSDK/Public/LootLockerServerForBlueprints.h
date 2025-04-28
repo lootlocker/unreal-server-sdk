@@ -753,6 +753,18 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets")
     static void GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
 
+    /**
+     * Get all assets for a context.
+     * https://ref.lootlocker.com/server-api/#get-assets-to-game
+     *
+     * @param Count The number of assets to get. Must be a value between 1 and 200
+     * @param After The id of the asset from where to start getting assets (non inclusive). Set to 0 to start from the first item
+     * @param Context The context id to filter by
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets")
+    static void GetAssetsByContext(int Count, int After, int Context, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
+
     //==================================================
     // Asset Instances https://ref.lootlocker.com/server-api/#asset-instances
     //==================================================
