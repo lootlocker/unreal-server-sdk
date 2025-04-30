@@ -2,6 +2,9 @@
 
 #include "LootLockerServerForBlueprints.h"
 
+#include "LootLockerServerLogger.h"
+#include "Blueprint/BlueprintExceptionInfo.h"
+#include "ServerAPI/LootLockerServerNotificationsRequest.h"
 #include "Utils/LootLockerServerUtilities.h"
 
 void ULootLockerServerForBlueprints::StartSession(const FLootLockerServerAuthResponseBP& OnCompletedRequest)
@@ -775,4 +778,200 @@ void ULootLockerServerForBlueprints::MakeMetadataActionJson(ELootLockerServerMet
 FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionBase64(ELootLockerServerMetadataActions Action, const FString& Key, const FLootLockerServerMetadataBase64Value& Value, const TArray<FString>& Tags, const TArray<FString>& Access)
 {
     return FLootLockerServerSetMetadataAction{Action, FLootLockerServerMetadataEntry::MakeBase64Entry(Key, Tags, Access, Value)};
+}
+
+// Notifications
+
+DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
+{
+    Stack.MostRecentProperty = nullptr;
+    Stack.MostRecentPropertyAddress = nullptr;
+    Stack.StepCompiledIn<FProperty>(nullptr);
+    FProperty* ContentProperty = Stack.MostRecentProperty;
+    void* ContentAddress = Stack.MostRecentPropertyAddress;
+    void* ContentContainerAddress = Stack.MostRecentPropertyContainer;
+
+    PARAM_PASSED_BY_REF(NotificationType, FStrProperty, FString);
+    PARAM_PASSED_BY_VAL(Priority, FEnumProperty, ELootLockerServerNotificationPriority);
+    PARAM_PASSED_BY_REF(RecipientPlayerUlid, FStrProperty, FString);
+    PARAM_PASSED_BY_REF(Properties, FArrayProperty, TArray<FLootLockerServerNotificationProperty>);
+    PARAM_PASSED_BY_REF(OnCompletedRequest, FDelegateProperty, FLootLockerServerSendNotificationsResponseBP);
+
+    P_FINISH;
+
+    P_NATIVE_BEGIN;
+    TArray<FFieldClass*> UnsupportedContentTypes{
+        FSetProperty::StaticClass(),
+        FMapProperty::StaticClass(),
+        FWeakObjectProperty::StaticClass(),
+        FLazyObjectProperty::StaticClass(),
+        FObjectProperty::StaticClass(),
+        FSoftObjectProperty::StaticClass(),
+        FEnumProperty::StaticClass(),
+        FByteProperty::StaticClass(),
+        FMulticastDelegateProperty::StaticClass(),
+        FInterfaceProperty::StaticClass(),
+        FFieldPathProperty::StaticClass(),
+    };
+    bool isSupportedType = true;
+    for (FFieldClass* UnsupportedContentType : UnsupportedContentTypes)
+    {
+        if (ContentProperty->IsA(UnsupportedContentType))
+        {
+            FString err = FString::Format(TEXT("Type {0} is not supported by this node"), { UnsupportedContentType->GetFName().ToString() });
+
+            const FBlueprintExceptionInfo ExceptionInfo(
+                EBlueprintExceptionType::AccessViolation,
+                FText::FromString(err)
+            );
+            FBlueprintCoreDelegates::ThrowScriptException(P_THIS, Stack, ExceptionInfo);
+            FLootLockerServerSendNotificationsResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerSendNotificationsResponse>(err, LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
+            OnCompletedRequest.ExecuteIfBound(ErrorResponse);
+            isSupportedType = false;
+        }	    
+    }
+
+	if (isSupportedType)
+    {
+	    if (ContentProperty->IsA(FNumericProperty::StaticClass()))
+	    {
+		    if (FNumericProperty* NumericProperty = CastField<FNumericProperty>(ContentProperty))
+		    {
+	            if (NumericProperty->IsFloatingPoint())
+	            {
+	                ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<double>(ContentContainerAddress), Properties, OnCompletedRequest);
+	            }
+	            else
+	            {
+		            if (ContentProperty->IsA(FInt64Property::StaticClass()))
+	                {
+	                    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<long long>(ContentContainerAddress), Properties, OnCompletedRequest);	                
+	                } else
+	                {
+	                    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<int>(ContentContainerAddress), Properties, OnCompletedRequest);
+	                }
+	            }
+		    }
+	    }
+	    else if (ContentProperty->IsA(FBoolProperty::StaticClass()))
+	    {
+	        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<bool>(ContentContainerAddress), Properties, OnCompletedRequest);
+	    }
+	    else if (ContentProperty->IsA(FStrProperty::StaticClass()))
+	    {
+	        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<FString>(ContentContainerAddress), Properties, OnCompletedRequest);
+	    }
+	    else if (ContentProperty->IsA(FNameProperty::StaticClass()))
+	    {
+	        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, ContentProperty->ContainerPtrToValuePtr<FName>(ContentContainerAddress)->ToString(), Properties, OnCompletedRequest);
+	    }
+        else if (ContentProperty->IsA(FTextProperty::StaticClass()))
+        {
+            ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, ContentProperty->ContainerPtrToValuePtr<FText>(ContentContainerAddress)->ToString(), Properties, OnCompletedRequest);
+        }
+	    else if (ContentProperty->IsA(FStructProperty::StaticClass()))
+	    {
+	        if (FStructProperty* StructProperty = CastField<FStructProperty>(ContentProperty))
+	        {
+	            TSharedPtr<FJsonObject> Out = MakeShared<FJsonObject>();
+	            if (FJsonObjectConverter::UStructToJsonAttributes(StructProperty->Struct, ContentAddress, Out->Values))
+	            {
+	                ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent(NotificationType, Priority, RecipientPlayerUlid, MakeShared<FJsonValueObject>(Out), Properties, OnCompletedRequest);
+	            }
+	        }
+	    }
+	    else if (ContentProperty->IsA(FArrayProperty::StaticClass()))
+	    {
+	        FArrayProperty* ArrayProperty = CastField<FArrayProperty>(ContentProperty);
+	        if (ArrayProperty->Inner->IsA(FNumericProperty::StaticClass()))
+	        {
+	            if (FNumericProperty* NumericProperty = CastField<FNumericProperty>(ArrayProperty->Inner))
+	            {
+	                if (NumericProperty->IsFloatingPoint())
+	                {
+	                    TArray<double> DecimalArrVal;
+	                    ArrayProperty->CopyCompleteValueToScriptVM(&DecimalArrVal, ContentAddress);
+	                    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleArrayContent(NotificationType, Priority, RecipientPlayerUlid, DecimalArrVal, Properties, OnCompletedRequest);
+	                }
+	                else
+	                {
+	                    if (ArrayProperty->Inner->IsA(FInt64Property::StaticClass()))
+	                    {
+	                        TArray<long long> IntArrVal;
+	                        ArrayProperty->CopyCompleteValueToScriptVM(&IntArrVal, ContentAddress);
+	                        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, IntArrVal, Properties, OnCompletedRequest);
+	                    }
+	                    else
+	                    {
+	                        TArray<int> IntArrVal;
+	                        ArrayProperty->CopyCompleteValueToScriptVM(&IntArrVal, ContentAddress);
+	                        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, IntArrVal, Properties, OnCompletedRequest);
+	                    }
+	                }
+	            }
+	        }
+	        else if (ArrayProperty->Inner->IsA(FBoolProperty::StaticClass()))
+	        {
+	            TArray<bool> BoolArrVal;
+	            ArrayProperty->CopyCompleteValueToScriptVM(&BoolArrVal, ContentAddress);
+	            ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolArrayContent(NotificationType, Priority, RecipientPlayerUlid, BoolArrVal, Properties, OnCompletedRequest);
+	        }
+	        else if (ArrayProperty->Inner->IsA(FStrProperty::StaticClass()))
+	        {
+	            TArray<FString> StringArrVal;
+	            ArrayProperty->CopyCompleteValueToScriptVM(&StringArrVal, ContentAddress);
+	            ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringArrayContent(NotificationType, Priority, RecipientPlayerUlid, StringArrVal, Properties, OnCompletedRequest);
+	        }
+	        else if (ArrayProperty->Inner->IsA(FNameProperty::StaticClass()))
+	        {
+	            TArray<FName> NameArrVal;
+	            ArrayProperty->CopyCompleteValueToScriptVM(&NameArrVal, ContentAddress);
+	            TArray<FString> StringArrVal;
+	            for (FName& name : NameArrVal)
+	            {
+	                StringArrVal.Add(name.ToString());
+	            }
+	            ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringArrayContent(NotificationType, Priority, RecipientPlayerUlid, StringArrVal, Properties, OnCompletedRequest);
+	        }
+            else if (ArrayProperty->Inner->IsA(FTextProperty::StaticClass()))
+            {
+                TArray<FText> TextArrVal;
+                ArrayProperty->CopyCompleteValueToScriptVM(&TextArrVal, ContentAddress);
+                TArray<FString> StringArrVal;
+                for (FText& name : TextArrVal)
+                {
+                    StringArrVal.Add(name.ToString());
+                }
+                ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringArrayContent(NotificationType, Priority, RecipientPlayerUlid, StringArrVal, Properties, OnCompletedRequest);
+            }
+	        else if (ArrayProperty->Inner->IsA(FStructProperty::StaticClass()))
+	        {
+	            if (FStructProperty* StructProperty = CastField<FStructProperty>(ArrayProperty->Inner))
+	            {
+	                TArray<TSharedPtr<FJsonValue>> JsonArrVal = TArray<TSharedPtr<FJsonValue>>();
+	                FScriptArrayHelper ArrayHelper(ArrayProperty, StructProperty->ContainerPtrToValuePtr<void>(ContentAddress));
+	                for (int i = 0; i < ArrayHelper.Num(); ++i)
+	                {
+	                    TSharedPtr<FJsonObject> Out = MakeShared<FJsonObject>();
+	                    if (FJsonObjectConverter::UStructToJsonAttributes(StructProperty->Struct, ArrayHelper.GetRawPtr(i), Out->Values))
+	                    {
+	                        JsonArrVal.Add(MakeShared<FJsonValueObject>(Out));
+	                    }
+	                }
+	                ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, JsonArrVal, Properties, OnCompletedRequest);
+	            }
+	        }
+	    }
+    }
+
+    P_NATIVE_END;
+}
+
+void ULootLockerServerForBlueprints::SendNotificationToPlayerWithoutContent(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, 
+    const FString& RecipientPlayerUlid,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequest)
+{
+    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithoutContent(NotificationType, Priority, RecipientPlayerUlid, Properties, OnCompletedRequest);
 }

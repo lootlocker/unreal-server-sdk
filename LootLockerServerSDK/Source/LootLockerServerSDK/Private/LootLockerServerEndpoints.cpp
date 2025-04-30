@@ -137,6 +137,9 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::GetMultisourceMetadata = I
 // Token Exchange
 FLootLockerServerEndPoint ULootLockerServerEndpoints::TokenExchange = InitEndpoint("v3/oauth/token", ELootLockerServerHTTPMethod::POST, ClientApiUrlSuffix);
 
+// Notifications
+FLootLockerServerEndPoint ULootLockerServerEndpoints::SendNotification = InitEndpoint("notifications/v1", ELootLockerServerHTTPMethod::POST);
+
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method, const FString& BaseUrlSuffix /* = ServerApiUrlSuffix*/)
 {
 	FLootLockerServerEndPoint Result;

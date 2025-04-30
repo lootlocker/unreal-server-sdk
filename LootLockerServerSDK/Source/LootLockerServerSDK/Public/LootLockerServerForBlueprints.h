@@ -16,6 +16,7 @@
 #include "ServerAPI/LootLockerServerLeaderboardArchiveRequestHandler.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerMetadataRequest.h"
+#include "ServerAPI/LootLockerServerNotificationsRequest.h"
 #include "ServerAPI/LootLockerServerOAuthRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerInventoryRequest.h"
@@ -1576,4 +1577,34 @@ public:
     UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
     static FLootLockerServerSetMetadataAction MakeMetadataActionBase64(ELootLockerServerMetadataActions Action, const FString& Key, const FLootLockerServerMetadataBase64Value& Value, const TArray<FString>& Tags, const TArray<FString>& Access);
 
+
+    //==================================================
+    // Notifications
+    //==================================================
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param Content The content to send along with this notification
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+	*/
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Notifications", CustomThunk, meta=(CustomStructureParam="Content", AutoCreateRefTerm="Properties"))
+    static void SendNotificationToPlayer(const int& Content, const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequest);
+    DECLARE_FUNCTION(execSendNotificationToPlayer);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Notifications", meta = (AutoCreateRefTerm = "Properties"))
+    static void SendNotificationToPlayerWithoutContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequest);
 };
