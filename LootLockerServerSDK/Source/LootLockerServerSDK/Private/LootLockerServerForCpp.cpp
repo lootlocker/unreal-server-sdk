@@ -636,3 +636,133 @@ void ULootLockerServerForCpp::SetMetadata(const ELootLockerServerMetadataSources
 {
     ULootLockerServerMetadataRequest::SetMetadata(Source, SourceID, MetadataToActionsToPerform, FLootLockerServerSetMetadataResponseBP(), OnComplete);
 }
+
+// Notifications
+
+void ULootLockerServerForCpp::SendNotificationToPlayerWithoutContent(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithoutContent(NotificationType, Priority, RecipientPlayerUlid, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, bool Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, int Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, long long Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, double Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, float Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithFloatContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const char* Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, FString(Content), Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const FString& Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid,
+	const TSharedPtr<FJsonValue>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayerWithBoolArrayContent(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<bool>& Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayerWithIntArrayContent(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<int>& Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayerWithLargeIntArrayContent(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid,
+	const TArray<long long>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<double>& Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<float>& Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithFloatArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FString>& Content,
+	const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid,
+	const TArray<TSharedPtr<FJsonValue>>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties,
+	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+{
+	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+}

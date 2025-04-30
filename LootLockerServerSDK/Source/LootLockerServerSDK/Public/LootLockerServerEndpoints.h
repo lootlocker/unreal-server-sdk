@@ -168,10 +168,12 @@ public:
     // Token Exchange
     static FLootLockerServerEndPoint TokenExchange;
 
+    // Notifications
+    static FLootLockerServerEndPoint SendNotification;
+
 private:
     static FString GameBaseUrl;
     static FString ServerApiUrlSuffix;
     static FString ClientApiUrlSuffix;
-
     static FLootLockerServerEndPoint InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method, const FString& BaseUrlSuffix = ServerApiUrlSuffix);
 };
