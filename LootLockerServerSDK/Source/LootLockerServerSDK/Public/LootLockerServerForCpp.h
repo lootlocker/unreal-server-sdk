@@ -17,6 +17,7 @@
 #include "ServerAPI/LootLockerServerLeaderboardArchiveRequestHandler.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerMetadataRequest.h"
+#include "ServerAPI/LootLockerServerNotificationsRequest.h"
 #include "ServerAPI/LootLockerServerOAuthRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerInventoryRequest.h"
@@ -1404,4 +1405,256 @@ public:
         Entry.SetValueAsJsonObject(*JsonObject);
         return Entry;
     }
+
+    //==================================================
+    // Notifications
+    //==================================================
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayerWithoutContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, bool Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, int Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, long long Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, double Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, float Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const char* Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const FString& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TSharedPtr<FJsonValue>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    template<typename T>
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const T& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+    {
+        TSharedPtr<FJsonObject> JsonObject = FJsonObjectConverter::UStructToJsonObject(Content);
+        if (!JsonObject.IsValid())
+        {
+            FLootLockerServerSendNotificationsResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerSendNotificationsResponse>("Object could not be serialized", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
+            OnCompletedRequest.ExecuteIfBound(ErrorResponse);
+            return;
+        }
+
+        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent(NotificationType, Priority, RecipientPlayerUlid, MakeShared<FJsonValueObject>(JsonObject), Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+    }
+
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayerWithBoolArrayContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<bool>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayerWithIntArrayContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<int>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayerWithLargeIntArrayContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<long long>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<double>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<float>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FString>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<TSharedPtr<FJsonValue>>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+
+    /*
+    Send a custom notification using the notification system to the specified player.
+
+    @param NotificationType The "type" of this notification. Use this to identify your notifications and segment them from each other. You can set this to any value as long as it follows pattern ^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$.
+    @param Priority What priority to set for this notification
+    @param RecipientPlayerUlid The ulid of the player that should receive this notification
+    @param Content The content to send along with this notification
+    @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
+    @param OnComplete delegate for handling the server response
+     */
+    template<typename T>
+    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<T>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+    {
+        TArray<TSharedPtr<FJsonValue>> JsonArray;
+        int i = 0;
+        for (const T& cont : Content)
+        {
+            TSharedPtr<FJsonObject> JsonObject = FJsonObjectConverter::UStructToJsonObject(cont);
+            if (!JsonObject.IsValid())
+            {
+                FLootLockerServerSendNotificationsResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerSendNotificationsResponse>("Object at position " + FString::FromInt(i) + " could not be serialized", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
+                OnCompletedRequest.ExecuteIfBound(ErrorResponse);
+                return;
+            }
+            ++i;
+            JsonArray.Add(MakeShared<FJsonValueObject>(JsonObject));
+        }
+
+        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, JsonArray, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+    }
+
 };
