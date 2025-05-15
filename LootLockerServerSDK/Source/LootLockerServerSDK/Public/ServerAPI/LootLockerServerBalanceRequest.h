@@ -53,7 +53,7 @@ struct FLootLockerServerBalance
      * The type of holder that this holder id refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerWalletHolderTypes Holder_type;
+    ELootLockerServerWalletHolderTypes Holder_type = ELootLockerServerWalletHolderTypes::player;
     /**
      * ULID of the holder you want to create a wallet for
      */
@@ -92,7 +92,7 @@ struct FLootLockerServerBalanceWithCurrencyId
      * The type of holder that this holder id refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    ELootLockerServerWalletHolderTypes Holder_type;
+    ELootLockerServerWalletHolderTypes Holder_type = ELootLockerServerWalletHolderTypes::player;
     /**
      * ULID of the holder you want to create a wallet for
      */
