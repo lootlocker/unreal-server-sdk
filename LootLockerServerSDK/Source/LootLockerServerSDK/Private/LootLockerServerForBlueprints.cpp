@@ -2,8 +2,11 @@
 
 #include "LootLockerServerForBlueprints.h"
 
-#include "LootLockerServerLogger.h"
+#include "Runtime/Launch/Resources/Version.h"
+#if WITH_EDITOR && (PLATFORM_WINDOWS || PLATFORM_MAC) && ((ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >=2) || ENGINE_MAJOR_VERSION >= 6)
 #include "Blueprint/BlueprintExceptionInfo.h"
+#endif
+#include "UObject/TextProperty.h"
 #include "ServerAPI/LootLockerServerNotificationsRequest.h"
 #include "Utils/LootLockerServerUtilities.h"
 
@@ -789,7 +792,12 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
     Stack.StepCompiledIn<FProperty>(nullptr);
     FProperty* ContentProperty = Stack.MostRecentProperty;
     void* ContentAddress = Stack.MostRecentPropertyAddress;
-    void* ContentContainerAddress = Stack.MostRecentPropertyContainer;
+    void* ContentContainerAddress =
+#if ((ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >=2) || ENGINE_MAJOR_VERSION >= 6)
+        Stack.MostRecentPropertyContainer;
+#else
+        Stack.Locals; // In editor versions < 5.2 the convenience property MostRecentPropertyContainer doesn't exist. But from my testing, when we utilize this property (for parsing value literal inputs) this is equal to Stack.Locals
+#endif
 
     PARAM_PASSED_BY_REF(NotificationType, FStrProperty, FString);
     PARAM_PASSED_BY_VAL(Priority, FEnumProperty, ELootLockerServerNotificationPriority);
@@ -820,11 +828,13 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
         {
             FString err = FString::Format(TEXT("Type {0} is not supported by this node"), { UnsupportedContentType->GetFName().ToString() });
 
+#if WITH_EDITOR && (PLATFORM_WINDOWS || PLATFORM_MAC) && ((ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >=2) || ENGINE_MAJOR_VERSION >= 6)
             const FBlueprintExceptionInfo ExceptionInfo(
                 EBlueprintExceptionType::AccessViolation,
                 FText::FromString(err)
             );
             FBlueprintCoreDelegates::ThrowScriptException(P_THIS, Stack, ExceptionInfo);
+#endif
             FLootLockerServerSendNotificationsResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerSendNotificationsResponse>(err, LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
             OnCompletedRequest.ExecuteIfBound(ErrorResponse);
             isSupportedType = false;
@@ -845,7 +855,7 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	            {
 		            if (ContentProperty->IsA(FInt64Property::StaticClass()))
 	                {
-	                    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<long long>(ContentContainerAddress), Properties, OnCompletedRequest);	                
+	                    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<long long>(ContentContainerAddress), Properties, OnCompletedRequest);
 	                } else
 	                {
 	                    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<int>(ContentContainerAddress), Properties, OnCompletedRequest);

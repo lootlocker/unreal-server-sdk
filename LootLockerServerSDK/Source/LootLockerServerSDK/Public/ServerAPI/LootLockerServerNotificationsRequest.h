@@ -1,7 +1,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Dom/JsonValue.h"
 #include "LootLockerServerResponse.h"
+#include "Internationalization/Regex.h"
 
 #include "LootLockerServerNotificationsRequest.generated.h"
 
