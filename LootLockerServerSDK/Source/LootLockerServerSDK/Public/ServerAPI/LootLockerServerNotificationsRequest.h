@@ -138,5 +138,4 @@ private:
 	static void SendNotificationToPlayer(const TSharedPtr<FJsonValue>& Content, const FLootLockerServerSendNotificationsToPlayerBaseRequest& Request, const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequestBP = FLootLockerServerSendNotificationsResponseBP(), const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest = FLootLockerServerSendNotificationsResponseDelegate());
 
 	static const FString NotificationTypeValidationPatternString;
-	static const FRegexPattern NotificationTypeValidationPattern;
 };

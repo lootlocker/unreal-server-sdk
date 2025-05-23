@@ -3,7 +3,6 @@
 #include "LootLockerServerHttpClient.h"
 
 const FString ULootLockerServerNotificationsRequest::NotificationTypeValidationPatternString = "^[-_a-z0-9]+\\.[-_a-z0-9]+\\.[-_a-z0-9]+$";
-const FRegexPattern ULootLockerServerNotificationsRequest::NotificationTypeValidationPattern = FRegexPattern(*NotificationTypeValidationPatternString);
 
 ULootLockerServerNotificationsRequest::ULootLockerServerNotificationsRequest()
 {
@@ -198,7 +197,7 @@ void ULootLockerServerNotificationsRequest::SendNotificationToPlayer(
 	const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequestBP,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	if (!FRegexMatcher(NotificationTypeValidationPattern, *Request.Notification_type).FindNext())
+	if (!FRegexMatcher(FRegexPattern(*NotificationTypeValidationPatternString), *Request.Notification_type).FindNext())
 	{
 		FLootLockerServerSendNotificationsResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerSendNotificationsResponse>("Notification type '" + Request.Notification_type + "' did not match pattern " + NotificationTypeValidationPatternString, LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
 		OnCompletedRequestBP.ExecuteIfBound(ErrorResponse);
