@@ -230,8 +230,8 @@ struct FLootLockerServerMetadataEntry
     /*
      For internal use only
      */
-    void _INTERNAL_SetJsonRepresentation(const FJsonObject& obj);
-    static FLootLockerServerMetadataEntry _INTERNAL_MakeEntryExceptValue(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const ELootLockerServerMetadataTypes Type);
+    void LOOTLOCKERSERVERSDK_API _INTERNAL_SetJsonRepresentation(const FJsonObject& obj);
+    static FLootLockerServerMetadataEntry LOOTLOCKERSERVERSDK_API _INTERNAL_MakeEntryExceptValue(const FString& Key, const TArray<FString>& Tags, const TArray<FString>& Access, const ELootLockerServerMetadataTypes Type);
 private:
 
     FJsonObject EntryAsJson;
@@ -329,11 +329,11 @@ struct FLootLockerServerMetadataSourceAndEntries
     /*
 
      */
-    int __INTERNAL_GetEntryIndexByKey(const FString& Key) const;
+    int LOOTLOCKERSERVERSDK_API __INTERNAL_GetEntryIndexByKey(const FString& Key) const;
     /*
 
      */
-    void __INTERNAL_GenerateKeyMap();
+    void LOOTLOCKERSERVERSDK_API __INTERNAL_GenerateKeyMap();
 private:
     TMap<FString, int> KeyToEntryIndex = TMap<FString, int>();
 };
@@ -398,11 +398,11 @@ struct FLootLockerServerListMetadataResponse : public FLootLockerServerResponse
     /*
     Internal Use Only
      */
-    int __INTERNAL_GetEntryIndexByKey(const FString Key) const;
+    int LOOTLOCKERSERVERSDK_API __INTERNAL_GetEntryIndexByKey(const FString Key) const;
     /*
     Internal Use Only
      */
-    void __INTERNAL_GenerateKeyMap();
+    void LOOTLOCKERSERVERSDK_API __INTERNAL_GenerateKeyMap();
 private:
     TMap<FString, int> KeyToEntryIndex = TMap<FString, int>();
 };
