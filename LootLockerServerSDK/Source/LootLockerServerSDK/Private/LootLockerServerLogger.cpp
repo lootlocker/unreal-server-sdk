@@ -78,5 +78,4 @@ void FLootLockerServerLogger::WriteToFile(const FString& Message)
 }
 
 FLootLockerServerOnHttpLogEntry FLootLockerServerLogger::OnHttpLogEntry;
-FLootLockerServerOnLogMessage FLootLockerServerLogger::OnLogMessage;
 FCriticalSection FLootLockerServerLogger::FileLogCriticalSection;
