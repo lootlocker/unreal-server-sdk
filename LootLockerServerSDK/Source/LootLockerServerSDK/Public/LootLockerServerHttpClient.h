@@ -82,10 +82,8 @@ private:
     };
     static ULootLockerServerHttpClient* Instance;
     static bool ResponseIsSuccess(const FHttpResponsePtr& InResponse, bool bWasSuccessful);
-    static void LogFailedRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const
-                                            TArray<FString>& ResponseHeaders);
-	static void LogSuccessfulRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const
-	                                            TArray<FString>& ResponseHeaders);
+    static void LogFailedRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const FString& DelimitedRequestHeaders, const TArray<FString>& ResponseHeaders, const FDateTime& RequestStartTime);
+	static void LogSuccessfulRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const FString& DelimitedRequestHeaders, const TArray<FString>& ResponseHeaders, const FDateTime& RequestStartTime);
 	void SendRequest_Internal(HTTPRequest InRequest) const;
     void UploadFile_Internal(const FString& FilePath, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const;
     void UploadRawFile_Internal(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const;
