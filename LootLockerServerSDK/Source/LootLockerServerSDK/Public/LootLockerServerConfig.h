@@ -13,27 +13,79 @@
 UCLASS(Config = Game, DefaultConfig, meta = (DisplayName = "LootLocker Server SDK Settings"))
 class LOOTLOCKERSERVERSDK_API ULootLockerServerConfig : public UObject
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 public:
-	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	FString LootLockerServerKey = "";
-	UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer", Meta = (EditCondition = "IsLegacyKey", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "WARNING:"), Transient)
-	FString LegacyKeyWarning = "You are using a legacy API Key, please generate a new one here: https://console.lootlocker.com/settings/api-keys";
-	// Domain Key used to talk to LootLocker. The Domain key can be found in `Settings > API Keys` in the Web Console: https://console.lootlocker.com/settings/api-keys
-	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	FString LootLockerDomainKey = "";
-	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	FString GameVersion = "";
-	UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer", Meta = (EditCondition = "!IsValidGameVersion", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "WARNING:"), Transient)
-	FString InvalidGameVersionWarning = "Game version needs to follow a numeric Semantic Versioning pattern: X.Y.Z.B with the sections denoting MAJOR.MINOR.PATCH.BUILD and the last two being optional. Read more at https://docs.lootlocker.com/the-basics/core-concepts/glossary#game-version";
-	UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Meta = (EditCondition = "false", EditConditionHides), Category = "LootLockerServer")
-	FString LootLockerVersion = "2021-06-01";
-	// Limit the log level for the LootLocker Server SDK to this log level, will neither affect nor override the log level for the rest of your game 
-	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	ELootLockerServerLogLevelConfiguration LimitLogLevelTo = ELootLockerServerLogLevelConfiguration::Display;
-	// Set to true if you want LootLocker to log outside of an editor context. We recommend that this only be enabled for debugging purposes.
-	UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
-	bool LogOutsideOfEditor = false;
+    ULootLockerServerConfig();
+
+    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
+    FString LootLockerServerKey = "";
+    UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer", Meta = (EditCondition = "IsLegacyKey", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "WARNING:"), Transient)
+    FString LegacyKeyWarning = "You are using a legacy API Key, please generate a new one here: https://console.lootlocker.com/settings/api-keys";
+    UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer", Meta = (EditCondition = "!IsValidGameVersion", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "WARNING:"), Transient)
+    FString InvalidGameVersionWarning = "";
+    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
+    FString GameVersion = "";
+    UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Meta = (EditCondition = "false", EditConditionHides), Category = "LootLockerServer")
+    FString LootLockerVersion = "2021-06-01";
+    // Logging configuration
+    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer|Logging")
+    ELootLockerServerLogLevel LimitLogLevelTo = ELootLockerServerLogLevel::Display;
+    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer|Logging")
+    bool LogOutsideOfEditor = false;
+    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer|Logging")
+    bool bEnableFileLogging = false;
+    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer|Logging")
+    FString LogFileName = TEXT("LootLockerServer.log");
+    UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer|Logging", Meta = (EditCondition = "bEnableFileLogging", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "Actual Log File (on current device)"), Transient)
+    FString LongLogFilePath = "";
+private:
+    FString LogFilePath = "";
+public:
+    // Logging API
+    static ELootLockerServerLogLevel GetConfiguredLogLevel()
+    {
+        return GetDefault<ULootLockerServerConfig>()->LimitLogLevelTo;
+    }
+
+    /**
+     * Sets the log level at runtime (not persisted).
+     * @param NewLevel The new log level to use for this session.
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLocker|Logging")
+    static void SetRuntimeLogLevel(ELootLockerServerLogLevel NewLevel);
+
+    /**
+     * Gets the current runtime log level (runtime override or config).
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLocker|Logging")
+    static ELootLockerServerLogLevel GetRuntimeLogLevel();
+
+    /**
+     * Enables file logging to the specified file name.
+     * @param FileName The log file name (relative to project log dir).
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLocker|Logging")
+    static void EnableFileLogging(const FString& FileName);
+
+    /**
+     * Disables file logging.
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLocker|Logging")
+    static void DisableFileLogging();
+
+    /**
+     * Returns true if file logging is enabled and a log file name is set.
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLocker|Logging")
+    static bool IsFileLoggingEnabled();
+
+    /**
+     * Returns the current log file path (may be empty if not enabled).
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLocker|Logging")
+    static FString GetLogFilePath();
+	
+private:
 	
 	UFUNCTION()
 	bool IsLegacyAPIKey() const
@@ -71,6 +123,17 @@ public:
 		{
 			IsValidGameVersion = IsSemverString(GameVersion);
 		}
+		if (PropertyChangedEvent.GetPropertyName() == "bEnableFileLogging" || PropertyChangedEvent.GetPropertyName() == "LogFileName")
+		{
+			if (bEnableFileLogging)
+			{
+				EnableFileLogging(LogFileName.IsEmpty() ? "LootLockerServer.log" : LogFileName);
+			}
+			else
+			{
+				DisableFileLogging();
+			}
+		}
 		UObject::PostEditChangeProperty(PropertyChangedEvent);
 	}
 #endif //WITH_EDITOR
@@ -78,6 +141,14 @@ public:
 	{
 		IsLegacyKey = IsLegacyAPIKey();
 		IsValidGameVersion = IsSemverString(GameVersion);
+		if(bEnableFileLogging)
+		{
+			EnableFileLogging(LogFileName.IsEmpty() ? "LootLockerServer.log" : LogFileName);
+		}
+		else
+		{
+			DisableFileLogging();
+		}
 		UObject::PostInitProperties();
 	}
 private:
