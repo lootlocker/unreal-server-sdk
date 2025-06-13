@@ -3,6 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "LootLockerServerResponse.h"
+#include "Delegates/Delegate.h"
+#include "Misc/DateTime.h"
 #include "LootLockerServerLogger.generated.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogLootLockerServer, Log, All);
@@ -10,43 +13,55 @@ DECLARE_LOG_CATEGORY_EXTERN(LogLootLockerServer, Log, All);
 UENUM(BlueprintType, Category = "LootLockerServer")
 enum class ELootLockerServerLogLevel : uint8
 {
-		Ignore = 0			UMETA(DisplayName = "No Logging"),
-		Fatal = 1			UMETA(DisplayName = "Fatal"),
-		Error = 2			UMETA(DisplayName = "Error"),
-		Warning = 3			UMETA(DisplayName = "Warning"),
-		Display = 4			UMETA(DisplayName = "Display"),
-		Log = 5				UMETA(DisplayName = "Log"),
-		Verbose = 6			UMETA(DisplayName = "Verbose"),
-		VeryVerbose = 7		UMETA(DisplayName = "Very Verbose")
+    Ignore = 0 UMETA(DisplayName = "No Logging"),
+    Fatal = 1 UMETA(DisplayName = "Fatal"),
+    Error = 2 UMETA(DisplayName = "Error"),
+    Warning = 3 UMETA(DisplayName = "Warning"),
+    Display = 4 UMETA(DisplayName = "Display"),
+    Log = 5 UMETA(DisplayName = "Log"),
+    Verbose = 6 UMETA(DisplayName = "Verbose"),
+    VeryVerbose = 7 UMETA(DisplayName = "Very Verbose")
 };
 
-UENUM(BlueprintType, Category = "LootLockerServer")
-enum class ELootLockerServerLogLevelConfiguration : uint8
+USTRUCT(BlueprintType)
+struct FLootLockerServerHttpLogEntry
 {
-		NoLogging = 0		UMETA(DisplayName = "No Logging"),
-		Fatal = 1			UMETA(DisplayName = "Fatal"),
-		Error = 2			UMETA(DisplayName = "Error"),
-		Warning = 3			UMETA(DisplayName = "Warning"),
-		Display = 4			UMETA(DisplayName = "Display"),
-		Log = 5				UMETA(DisplayName = "Log"),
-		Verbose = 6			UMETA(DisplayName = "Verbose"),
-		VeryVerbose = 7		UMETA(DisplayName = "Very Verbose"),
-		All = VeryVerbose	UMETA(DisplayName = "All"),
-		// Log errors and warnings as normal log messages
-		AllAsNormal = 8		UMETA(DisplayName = "All as normal")
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadOnly)
+    FString Method;
+    UPROPERTY(BlueprintReadOnly)
+    FString Path;
+    UPROPERTY(BlueprintReadOnly)
+    int32 StatusCode = -1;
+    UPROPERTY(BlueprintReadOnly)
+    float Duration = 0.0f;
+    UPROPERTY(BlueprintReadOnly)
+    FString RequestData;
+    UPROPERTY(BlueprintReadOnly)
+    FString ResponseData;
+    UPROPERTY(BlueprintReadOnly)
+    FString RequestHeaders;
+    UPROPERTY(BlueprintReadOnly)
+    FString ResponseHeaders;
+    UPROPERTY(BlueprintReadOnly)
+    bool bSuccess = false;
+    UPROPERTY(BlueprintReadOnly)
+    FDateTime Timestamp;
+    UPROPERTY(BlueprintReadOnly)
+    FLootLockerServerErrorData ErrorData;
 };
 
-/**
- * 
- */
-UCLASS()
-class LOOTLOCKERSERVERSDK_API ULootLockerServerLogger : public UObject
-{
-	GENERATED_BODY()
-	public:	
-	ULootLockerServerLogger();	
+DECLARE_MULTICAST_DELEGATE_OneParam(FLootLockerServerOnHttpLogEntry, const FLootLockerServerHttpLogEntry&);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FLootLockerServerOnLogMessage, const FString&, ELootLockerServerLogLevel);
 
-	static void Log(FString LogMessage);
-	static void Log(ELootLockerServerLogLevel LogLevel, FString LogMessage);
+class LOOTLOCKERSERVERSDK_API FLootLockerServerLogger
+{
+public:
+    static void Log(const FString& Message, ELootLockerServerLogLevel Verbosity);
+    static void LogHttpRequest(const FLootLockerServerHttpLogEntry& Entry);
+    static void WriteToFile(const FString& Message);
+    static FLootLockerServerOnHttpLogEntry OnHttpLogEntry;
+    static FLootLockerServerOnLogMessage OnLogMessage;
+    static FCriticalSection FileLogCriticalSection;
 };
 

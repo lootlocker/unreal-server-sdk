@@ -34,7 +34,7 @@ ULootLockerServerHttpClient::ULootLockerServerHttpClient()
 		if (Ptr.IsValid())
 		{
 			SDKVersion = Ptr->GetDescriptor().VersionName;
-			ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("LootLockerServer version: v{0}"), { SDKVersion }));
+			FLootLockerServerLogger::Log(FString::Format(TEXT("LootLockerServer version: v{0}"), { SDKVersion }), ELootLockerServerLogLevel::Verbose);
 		}
 	}
 }
@@ -63,20 +63,16 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 	Request->SetVerb(InRequest.RequestType);
 	Request->SetContentAsString(InRequest.Data);
 
-	FString DelimitedHeaders = "";
-	TArray<FString> AllHeaders = Request->GetAllHeaders();
-	for (auto Header : AllHeaders)
-	{
-        DelimitedHeaders += TEXT("    ") + Header + TEXT("\n");
-	}
-	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("Request {0} to endpoint {1}\n  With headers {2}\n  And with content: {3}"), { Request->GetVerb(), *Request->GetURL(), *DelimitedHeaders, *InRequest.Data }));
+	FString RequestHeaders = FString::Join(Request->GetAllHeaders(), TEXT("\n"));
 
-	Request->OnProcessRequestComplete().BindLambda([InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
+    FDateTime RequestTime = FDateTime::Now();
+
+	Request->OnProcessRequestComplete().BindLambda([InRequest, RequestHeaders, RequestTime](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 	{
 		if (!Response.IsValid())
 		{
 			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_HTTP);
-			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, TArray<FString>());
+			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, RequestHeaders, TArray<FString>(), RequestTime);
 			InRequest.OnCompleteRequest.ExecuteIfBound(Error);
 			return;
 		}
@@ -94,15 +90,14 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 			}
 
 			FString RetryAfterHeader = Response->GetHeader("retry-after");
-			if (!RetryAfterHeader.IsEmpty())
-			{
+			if (!RetryAfterHeader.IsEmpty()) {
 				response.ErrorData.Retry_after_seconds = FCString::Atoi(*RetryAfterHeader);
 			}
-			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, Response->GetAllHeaders());
+			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, RequestHeaders, Response->GetAllHeaders(), RequestTime);
 		}
 		else
 		{
-			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, Response->GetAllHeaders());
+			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, RequestHeaders, Response->GetAllHeaders(), RequestTime);
 		}
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
 	});
@@ -175,21 +170,16 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 
 	Request->SetContent(Data);
 
-	FString DelimitedHeaders = "";
-	TArray<FString> AllHeaders = Request->GetAllHeaders();
-	for (auto Header : AllHeaders)
-	{
-        DelimitedHeaders += TEXT("    ") + Header + TEXT("\n");
-	}
+	FString RequestHeaders = FString::Join(Request->GetAllHeaders(), TEXT("\n"));
 
-	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Verbose, FString::Format(TEXT("Request {0} to endpoint {1}\n  With headers {2}\n  And with content: {3}"), { Request->GetVerb(), Request->GetURL(), DelimitedHeaders, FString("File Content") }));
+    FDateTime RequestTime = FDateTime::Now();
 
-	Request->OnProcessRequestComplete().BindLambda([this, InRequest](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
+	Request->OnProcessRequestComplete().BindLambda([this, InRequest, RequestHeaders, RequestTime](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bWasSuccessful)
 	{
 		if (!Response.IsValid())
 		{
 			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_HTTP);
-			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), TArray<FString>());
+			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), RequestHeaders, TArray<FString>(), RequestTime);
 			InRequest.OnCompleteRequest.ExecuteIfBound(Error);
 			return;
 		}
@@ -211,11 +201,11 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 			{
 				response.ErrorData.Retry_after_seconds = FCString::Atoi(*RetryAfterHeader);
 			}
-			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), Response->GetAllHeaders());
+			LogFailedRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), RequestHeaders, Response->GetAllHeaders(), RequestTime);
 		}
 		else 
 		{
-			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), Response->GetAllHeaders());
+			LogSuccessfulRequestInformation(response, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), RequestHeaders, Response->GetAllHeaders(), RequestTime);
 		}
 
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
@@ -231,56 +221,36 @@ bool ULootLockerServerHttpClient::ResponseIsSuccess(const FHttpResponsePtr& InRe
 	return EHttpResponseCodes::IsOk(InResponse->GetResponseCode());
 }
 
-void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const TArray<FString>& ResponseHeaders)
+void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const FString& DelimitedRequestHeaders, const TArray<FString>& ResponseHeaders, const FDateTime& RequestStartTime)
 {
-	FString LogString = FString::Format(TEXT("{0} request to {1} failed"), { RequestMethod, Endpoint });
-	const bool IsInformativeError = !Response.ErrorData.Code.IsEmpty();
-	if (IsInformativeError)
-	{
-		LogString += FString::Format(TEXT("\n   {0}"), { Response.ErrorData.Message });
-		LogString += FString::Format(TEXT("\n    Error Code: {0}"), { Response.ErrorData.Code });
-		LogString += FString::Format(TEXT("\n    Further Information: {0}"), { Response.ErrorData.Doc_url });
-		LogString += FString::Format(TEXT("\n    Request ID: {0}"), { Response.ErrorData.Request_id });
-		LogString += FString::Format(TEXT("\n    Trace ID: {0}"), { Response.ErrorData.Trace_id });
-	}
-	LogString += FString::Format(TEXT("\n   HTTP Status code : {0}"), { Response.StatusCode });
-	if (!Data.IsEmpty()) {
-		LogString += FString::Format(TEXT("\n   Request Data: {0}"), { Data });
-	}
-	if(ResponseHeaders.Num() > 0)
-	{
-		LogString += FString::Format(TEXT("\n   -- Response Headers --"), { Data });
-		for (FString ResponseHeader : ResponseHeaders)
-		{
-			LogString += FString::Format(TEXT("\n     {0}"), { ResponseHeader });
-		}
-	}
-
-	if (!IsInformativeError)
-	{
-		LogString += FString::Format(TEXT("\n   Response Data: {0}"), { Response.FullTextFromServer });
-	}
-	LogString += "\n###";
-	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::Warning, LogString);
+    FLootLockerServerHttpLogEntry LogEntry;
+    LogEntry.Method = RequestMethod;
+    LogEntry.Path = Endpoint;
+    LogEntry.StatusCode = Response.StatusCode;
+    LogEntry.Duration = (FDateTime::Now() - RequestStartTime).GetTotalSeconds();
+    LogEntry.RequestData = Data;
+    LogEntry.ResponseData = Response.FullTextFromServer;
+    LogEntry.RequestHeaders = DelimitedRequestHeaders;
+    LogEntry.ResponseHeaders = FString::Join(ResponseHeaders, TEXT("\n"));
+    LogEntry.bSuccess = false;
+    LogEntry.Timestamp = FDateTime::Now();
+    LogEntry.ErrorData = Response.ErrorData;
+    FLootLockerServerLogger::LogHttpRequest(LogEntry);
 }
 
-void ULootLockerServerHttpClient::LogSuccessfulRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const TArray<FString>& ResponseHeaders)
+void ULootLockerServerHttpClient::LogSuccessfulRequestInformation(const FLootLockerServerResponse& Response, const FString& RequestMethod, const FString& Endpoint, const FString& Data, const FString& DelimitedRequestHeaders, const TArray<FString>& ResponseHeaders, const FDateTime& RequestStartTime)
 {
-	FString LogString = FString::Format(TEXT("{0} request to {1} succeeded"), { RequestMethod, Endpoint });
-	LogString += FString::Format(TEXT("\n   HTTP Status code : {0}"), { Response.StatusCode });
-	if (!Data.IsEmpty()) {
-		LogString += FString::Format(TEXT("\n   Request Data: {0}"), { Data });
-	}
-
-	if (ResponseHeaders.Num() > 0)
-	{
-		LogString += FString::Format(TEXT("\n   -- Response Headers --"), { Data });
-		for (FString ResponseHeader : ResponseHeaders)
-		{
-			LogString += FString::Format(TEXT("\n     {0}"), { ResponseHeader });
-		}
-	}
-	LogString += FString::Format(TEXT("\n   Response Data: {0}"), { Response.FullTextFromServer });
-	LogString += "\n###";
-	ULootLockerServerLogger::Log(ELootLockerServerLogLevel::VeryVerbose, LogString);
+    FLootLockerServerHttpLogEntry LogEntry;
+    LogEntry.Method = RequestMethod;
+    LogEntry.Path = Endpoint;
+    LogEntry.StatusCode = Response.StatusCode;
+    LogEntry.Duration = (FDateTime::Now() - RequestStartTime).GetTotalSeconds();;
+    LogEntry.RequestData = Data;
+    LogEntry.ResponseData = Response.FullTextFromServer;
+    LogEntry.RequestHeaders = DelimitedRequestHeaders;
+    LogEntry.ResponseHeaders = FString::Join(ResponseHeaders, TEXT("\n"));
+    LogEntry.bSuccess = true;
+    LogEntry.Timestamp = FDateTime::Now();
+    LogEntry.ErrorData = Response.ErrorData;
+    FLootLockerServerLogger::LogHttpRequest(LogEntry);
 }
