@@ -37,7 +37,7 @@ public:
     UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer|Logging")
     bool bEnableFileLogging = false;
     UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer|Logging")
-    FString LogFileName = TEXT("LootLockerServer.log");
+    FString LogFileName = TEXT("LootLockerServerLog");
     UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer|Logging", Meta = (EditCondition = "bEnableFileLogging", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "Actual Log File (on current device)"), Transient)
     FString LongLogFilePath = "";
 private:
@@ -129,7 +129,7 @@ private:
 		{
 			if (bEnableFileLogging)
 			{
-				EnableFileLogging(LogFileName.IsEmpty() ? "LootLockerServer.log" : LogFileName);
+				EnableFileLogging(LogFileName.IsEmpty() ? "LootLockerServerLog" : LogFileName);
 			}
 			else
 			{
@@ -145,7 +145,7 @@ private:
 		IsValidGameVersion = IsSemverString(GameVersion);
 		if(bEnableFileLogging)
 		{
-			EnableFileLogging(LogFileName.IsEmpty() ? "LootLockerServer.log" : LogFileName);
+			EnableFileLogging(LogFileName.IsEmpty() ? "LootLockerServerLog" : LogFileName);
 		}
 		else
 		{
