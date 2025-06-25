@@ -1,6 +1,8 @@
 // Copyright (c) 2021 LootLocker
 
 #include "LootLockerServerConfig.h"
+#include "Misc/Paths.h"
+#include "Misc/DateTime.h"
 
 namespace {
     static bool bRuntimeLogLevelOverrideSet = false;
