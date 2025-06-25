@@ -4,7 +4,6 @@
 #include "Logging/LogVerbosity.h"
 #include "LootLockerServerConfig.h"
 #include "Misc/FileHelper.h"
-#include "HAL/PlatformFilemanager.h"
 #include "Misc/Paths.h"
 
 DEFINE_LOG_CATEGORY(LogLootLockerServer);
