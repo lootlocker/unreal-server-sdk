@@ -47,6 +47,7 @@ public:
     static FLootLockerServerEndPoint MaintainingSession;
 
     // Leaderboards
+    static FLootLockerServerEndPoint ListLeaderboards;
     static FLootLockerServerEndPoint GetLeaderboard;
     static FLootLockerServerEndPoint CreateLeaderboard;
     static FLootLockerServerEndPoint UpdateLeaderboard;

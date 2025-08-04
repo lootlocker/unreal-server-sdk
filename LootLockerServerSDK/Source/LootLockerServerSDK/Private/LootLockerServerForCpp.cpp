@@ -29,6 +29,16 @@ void ULootLockerServerForCpp::GameApiUserImpersonation(const FString& PlayerUlid
     ULootLockerServerOAuthRequest::GameApiUserImpersonation(PlayerUlid, FLootLockerServerTokenExchangeResponseBP(), OnCompletedRequest);
 }
 
+void ULootLockerServerForCpp::ListLeaderboards(const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerLeaderboardRequest::ListLeaderboards(0, 0, FLootLockerServerListLeaderboardsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::ListLeaderboards(int32 Count, int32 After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerLeaderboardRequest::ListLeaderboards(Count, After, FLootLockerServerListLeaderboardsResponseBP(), OnCompletedRequest);
+}
+
 void ULootLockerServerForCpp::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest)
 {
     ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, FLootLockerServerGetLeaderboardResponseBP(), OnCompletedRequest);

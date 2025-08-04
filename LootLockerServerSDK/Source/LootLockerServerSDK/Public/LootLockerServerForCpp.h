@@ -79,6 +79,22 @@ public:
     //==================================================
     
     /**
+     * List information about all leaderboards in the game
+     *
+     * @param OnCompletedRequest Delegate for handling the response
+     */
+    static void ListLeaderboards(const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest);
+    
+    /**
+     * List information about all leaderboards in the game
+     *
+     * @param Count Optional: The count of items you want to retrieve.
+     * @param After Optional: Used for pagination, id from which the pagination starts from.
+     * @param OnCompletedRequest Delegate for handling the response
+     */
+    static void ListLeaderboards(int32 Count, int32 After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest);
+
+    /**
      * Get information about a given leaderboard.
      *
      * @param LeaderboardKey The key of the leaderboard to get information for
