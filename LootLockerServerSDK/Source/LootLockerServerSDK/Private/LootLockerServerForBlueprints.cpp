@@ -30,6 +30,11 @@ void ULootLockerServerForBlueprints::GameApiUserImpersonation(const FString& Pla
     ULootLockerServerOAuthRequest::GameApiUserImpersonation(PlayerUlid, OnCompletedRequest);
 }
 
+void ULootLockerServerForBlueprints::ListLeaderboards(int32 Count, int32 After, const FLootLockerServerListLeaderboardsResponseBP& OnCompletedRequest)
+{
+    ULootLockerServerLeaderboardRequest::ListLeaderboards(Count, After, OnCompletedRequest);
+}
+
 void ULootLockerServerForBlueprints::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseBP& OnCompletedRequest)
 {
     ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, OnCompletedRequest);

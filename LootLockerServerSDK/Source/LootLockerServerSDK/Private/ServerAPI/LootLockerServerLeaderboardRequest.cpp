@@ -10,6 +10,20 @@ ULootLockerServerLeaderboardRequest::ULootLockerServerLeaderboardRequest()
 {
 }
 
+void ULootLockerServerLeaderboardRequest::ListLeaderboards(int Count, int After, const FLootLockerServerListLeaderboardsResponseBP& OnCompletedRequestBP, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
+{
+	TMultiMap<FString, FString> QueryParams;
+	if(Count > 0)
+	{
+		QueryParams.Add("count", FString::FromInt(Count));
+	}
+	if (After > 0)
+	{
+		QueryParams.Add("after", FString::FromInt(After));
+	}
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerListLeaderboardsResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ListLeaderboards, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
+}
+
 void ULootLockerServerLeaderboardRequest::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseBP& OnCompletedRequestBP, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest)
 {
 	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetLeaderboard, {LeaderboardKey}, {}, OnCompletedRequestBP, OnCompletedRequest);

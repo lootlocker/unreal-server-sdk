@@ -84,7 +84,17 @@ public:
     //==================================================
     // Leaderboards https://ref.lootlocker.com/server-api/#leaderboards
     //==================================================
-    
+
+    /**
+     * List leaderboards with details on each leaderboard
+     *
+     * @param Count Optional: The count of items you want to retrieve.
+     * @param After Optional: Used for pagination, id from which the pagination starts from.
+     * @param OnCompletedRequestBP Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard", meta = (AdvancedDisplay = "Count,After", Count = 50, After = 0))
+    static void ListLeaderboards(int Count, int After, const FLootLockerServerListLeaderboardsResponseBP& OnCompletedRequestBP);
+
     /**
      * Get information about a given leaderboard.
      *
