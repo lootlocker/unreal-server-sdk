@@ -768,10 +768,31 @@ struct FLootLockerServerGetLeaderboardScheduleResponse : public FLootLockerServe
     TArray<FString> schedule;
 };
 
+USTRUCT()
+struct FLootLockerServerListLeaderboardsResponse : public FLootLockerServerResponse
+{
+    GENERATED_BODY()
+    /*
+     * Pagination data for this request
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerIndexBasedPagination Pagination;
+    /*
+     * A list of leaderboards
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerLeaderboard> Items;
+
+};
+
 //==================================================
 // Blueprint Delegate Definitions
 //==================================================
 
+/*
+ Blueprint response delegate for listing leaderboards
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListLeaderboardsResponseBP, FLootLockerServerListLeaderboardsResponse, Response);
 /*
  Blueprint response delegate for getting leaderboard information
  */
@@ -814,6 +835,10 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardScheduleResp
 //==================================================
 
 
+/*
+ C++ response delegate for getting listing leaderboards
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerListLeaderboardsResponseDelegate, FLootLockerServerListLeaderboardsResponse);
 /*
  C++ response delegate for getting leaderboard information
  */
@@ -859,6 +884,7 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerLeaderboardRequest : public UObje
 {
     GENERATED_BODY()
 public:
+    static void ListLeaderboards(int Count, int After, const FLootLockerServerListLeaderboardsResponseBP& OnCompletedRequestBP = FLootLockerServerListLeaderboardsResponseBP(), const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest = FLootLockerServerListLeaderboardsResponseDelegate());
     static void GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerServerGetLeaderboardResponseBP(), const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerGetLeaderboardResponseDelegate());
     static void CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerServerCreateLeaderboardResponseBP(), const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerCreateLeaderboardResponseDelegate());
     static void UpdateLeaderboard(const FString& LeaderboardKey, const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequest, const FLootLockerServerUpdateLeaderboardResponseBP& OnCompletedRequestBP = FLootLockerServerUpdateLeaderboardResponseBP(), const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerUpdateLeaderboardResponseDelegate());
