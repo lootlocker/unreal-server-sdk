@@ -513,7 +513,12 @@ void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetada
 		JsonEntry->SetStringField(TEXT("type"), ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataTypes"), static_cast<int32>(ActionToPerform.Entry.Type)).ToLower());
 
 		// Add the action that should be performed to the entry
-		JsonEntry->SetStringField(TEXT("action"), ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataActions"), static_cast<int32>(ActionToPerform.Action)).ToLower());
+		auto action = ActionToPerform.Action;
+		if(action == ELootLockerServerMetadataActions::Create_or_Update)
+		{
+			action = ELootLockerServerMetadataActions::Upsert; // Convert to Upsert for consistency
+		}
+		JsonEntry->SetStringField(TEXT("action"), ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataActions"), static_cast<int32>(action)).ToLower());
 
 		// Manually set the field "value"
 		TSharedPtr<FJsonValue> RawEntryValue;
