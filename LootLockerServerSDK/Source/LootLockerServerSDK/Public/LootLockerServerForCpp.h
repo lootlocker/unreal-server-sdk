@@ -118,6 +118,23 @@ public:
     static void CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
+     * List assets with configurable response data. Use this to limit the fields returned in the response and improve performance.
+     * Lightweight alternative for retrieving assets where only selected data is needed
+     * @param Request Request payload specifying includes/excludes/filters
+     * @param PerPage Optional: page size (ignored if 0 or negative)
+     * @param Page Optional: page index (ignored if 0 or negative)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
+
+    /**
+    * List assets with default parameters (no filters, first page, default page size)
+    * Lightweight alternative for retrieving assets where only selected data is needed
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    static void ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
+
+    /**
      * Update an existing leaderboard with the provided details.
      * https://ref.lootlocker.com/server-api/#update-leaderboard
      *
