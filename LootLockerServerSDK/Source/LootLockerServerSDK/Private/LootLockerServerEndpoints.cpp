@@ -31,6 +31,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteLeaderboardSchedule 
 
 // Assets
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAssets = InitEndpoint("assets", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListAssets = InitEndpoint("assets/artful-alpaca/v1", ELootLockerServerHTTPMethod::POST);
 
 // Asset Instances
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAssetInstanceKeyValuePairs = InitEndpoint("player/{0}/assets/instances/{1}/storage", ELootLockerServerHTTPMethod::GET);

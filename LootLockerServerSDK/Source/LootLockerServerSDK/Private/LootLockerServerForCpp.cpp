@@ -335,6 +335,16 @@ void ULootLockerServerForCpp::GetAssetsByContext(int Count, int After, int Conte
     ULootLockerServerAssetRequest::GetAssets(Count, After, Context, IncludeUGC, FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest);
 }
 
+void ULootLockerServerForCpp::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerAssetRequest::ListAssets(Request, PerPage, Page, FLootLockerServerListAssetsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerForCpp::ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
+{
+    ListAssets(FLootLockerServerListAssetsRequest(), 0, 0, OnCompletedRequest);
+}
+
 // Asset Instances
 void ULootLockerServerForCpp::GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {

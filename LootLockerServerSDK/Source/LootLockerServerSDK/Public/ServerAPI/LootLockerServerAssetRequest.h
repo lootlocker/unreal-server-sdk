@@ -5,6 +5,7 @@
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "../LootLockerServerResponse.h"
+#include "LootLockerServerMetadataRequest.h"
 
 #include "LootLockerServerAssetRequest.generated.h"
 
@@ -473,6 +474,136 @@ struct FLootLockerServerAsset : public FLootLockerServerAssetWithoutPackageConte
     TArray<FLootLockerServerPackageContentItem> Package_contents;
 };
 
+/** Fields to include in the simple asset response */
+USTRUCT(BlueprintType)
+struct FLootLockerServerSimpleAssetIncludes
+{
+    GENERATED_BODY()
+    // If set to true, response will include storage key-value pairs.
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    bool storage = false;
+    // If set to true, response will include files.
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    bool files = false;
+    // If set to true, response will include asset data entities.
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    bool data_entities = false;
+    // If set to true, response will include asset metadata.
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    bool metadata = false;
+};
+
+/** Fields to exclude from the simple asset response */
+USTRUCT(BlueprintType)
+struct FLootLockerServerSimpleAssetExcludes
+{
+    GENERATED_BODY()
+    // If set to true, UGC assets authors will not be returned.
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    bool authors = false;
+};
+
+/** Filters to apply to simple asset listing */
+USTRUCT(BlueprintType)
+struct FLootLockerServerSimpleAssetFilters
+{
+    GENERATED_BODY()
+    // If true only UGC assets are returned
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    bool ugc_only = false;
+    // If provided only the requested ids will be returned (max 100, server enforced). Pagination ignored.
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    TArray<int> asset_ids;
+};
+
+USTRUCT(BlueprintType)
+struct FLootLockerServerSimpleAssetAuthor
+{
+    GENERATED_BODY()
+    // The ID of the player who created the asset
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    int player_id = 0;
+    // The ULID of the player who created the asset
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FString player_ulid;
+    // The public UID of the player who created the asset
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FString public_uid;
+    // The active name of the player who created the asset
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FString active_name;
+};
+
+USTRUCT(BlueprintType)
+struct FLootLockerServerSimpleAssetFile
+{
+    GENERATED_BODY()
+    // The size of the file in bytes
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    int size = 0;
+    // The name of the file
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FString name;
+    // The URL of the file
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FString url;
+    // The tags associated with the file
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    TArray<FString> tags;
+};
+
+USTRUCT(BlueprintType)
+struct FLootLockerServerSimpleAssetDataEntity
+{
+    GENERATED_BODY()
+    // The name of the data entity
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FString name;
+    // The data of the data entity
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer") 
+    FString data;
+};
+
+/** Simplified asset object */
+USTRUCT(BlueprintType)
+struct FLootLockerServerSimpleAsset
+{
+    GENERATED_BODY()
+    // The ID of the asset
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    int asset_id = 0;
+    // The UUID of the asset
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FString asset_uuid;
+    // The ULID of the asset
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FString asset_ulid;
+    // The name of the asset
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FString asset_name;
+    // The context ID of the asset
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    int context_id = 0;
+    // The name of the context the asset belongs to
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FString context_name;
+    // The author of the asset if the asset is a UGC asset
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer") 
+    FLootLockerServerSimpleAssetAuthor author;
+    // The storage key-value pairs associated with the asset, empty if not requested
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer") 
+    TArray<FLootLockerServerAssetStorageKeyValueSet> storage;
+    // The files associated with the asset, empty if not requested
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer") 
+    TArray<FLootLockerServerSimpleAssetFile> files;
+    // The data entities associated with the asset, empty if not requested
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer") 
+    TArray<FLootLockerServerSimpleAssetDataEntity> data_entities;
+    // The metadata associated with the asset, empty if not requested
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer") 
+    TArray<FLootLockerServerMetadataEntry> metadata;
+};
+
 //==================================================
 // Request Definitions
 //==================================================
@@ -508,6 +639,28 @@ struct FLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerAssetStorageKeyValueSet> Storage;
+};
+
+/** Request payload for simple asset listing */
+USTRUCT(BlueprintType)
+struct FLootLockerServerListAssetsRequest
+{
+    GENERATED_BODY()
+    /*
+     Configuration for what data to include in the returned assets
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FLootLockerServerSimpleAssetIncludes includes;
+    /*
+    Configuration for what data to exclude in the returned assets
+    */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FLootLockerServerSimpleAssetExcludes excludes;
+    /*
+     Filter options for what assets to return
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FLootLockerServerSimpleAssetFilters filters;
 };
 
 //==================================================
@@ -564,6 +717,23 @@ struct FLootLockerServerAssetInstanceKeyValuePairItemResponse : public FLootLock
     FLootLockerServerAssetInstanceStorageKeyValueSet Storage;
 };
 
+/** Response payload for simple asset listing */
+USTRUCT(BlueprintType)
+struct FLootLockerServerListAssetsResponse : public FLootLockerServerResponse
+{
+    GENERATED_BODY()
+    /*
+     List of assets returned for this specific request, in accordance with the supplied pagination and filtering option options
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    TArray<FLootLockerServerSimpleAsset> assets;
+    /*
+     Pagination information for the returned asset list
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="LootLockerServer")
+    FLootLockerServerExtendedIndexBasedPagination pagination;
+};
+
 //==================================================
 // Blueprint Delegate Definitions
 //==================================================
@@ -580,6 +750,10 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAssetInstanceKeyValuePairsLis
  Blueprint response delegate for receiving a single asset instance key value pair
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAssetInstanceKeyValuePairItemResponseBP, FLootLockerServerAssetInstanceKeyValuePairItemResponse, Response);
+/*
+ Blueprint response delegate for listing simple assets
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListAssetsResponseBP, FLootLockerServerListAssetsResponse, Response);
 
 //==================================================
 // C++ Delegate Definitions
@@ -597,6 +771,10 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerAssetInstanceKeyValuePairsListRespons
  Blueprint response delegate for receiving a single asset instance key value pair
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate, FLootLockerServerAssetInstanceKeyValuePairItemResponse);
+/*
+ Blueprint response delegate for listing simple assets
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerListAssetsResponseDelegate, FLootLockerServerListAssetsResponse);
 
 /**
  *
@@ -616,4 +794,5 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerAssetRequest : public UObject
     static void UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate());
     static void UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairItemResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate());
     static void DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate());
+    static void ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage = 0, int Page = 0, const FLootLockerServerListAssetsResponseBP& OnCompletedRequestBP = FLootLockerServerListAssetsResponseBP(), const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest = FLootLockerServerListAssetsResponseDelegate());
 };
