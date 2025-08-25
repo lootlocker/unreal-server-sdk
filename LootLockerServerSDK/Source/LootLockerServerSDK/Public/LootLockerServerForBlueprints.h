@@ -779,6 +779,25 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta = (AdvancedDisplay = "IncludeUGC", IncludeUGC = false))
     static void GetAssetsByContext(int Count, int After, int Context, bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
 
+    /**
+     * List assets with configurable response data. Use this to limit the fields returned in the response and improve performance.
+     * Lightweight alternative for retrieving assets where only selected data is needed
+     * @param Request Request payload specifying includes/excludes/filters
+     * @param PerPage Optional: page size (ignored if 0 or negative)
+     * @param Page Optional: page index (ignored if 0 or negative)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta=(AdvancedDisplay="PerPage,Page", PerPage=-1, Page=-1))
+    static void ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseBP& OnCompletedRequest);
+
+    /**
+    * List assets with default parameters (no filters, first page, default page size)
+    * Lightweight alternative for retrieving assets where only selected data is needed
+    * @param OnCompletedRequest Delegate for handling the server response
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets")
+    static void ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseBP& OnCompletedRequest);
+
     //==================================================
     // Asset Instances https://ref.lootlocker.com/server-api/#asset-instances
     //==================================================
@@ -1523,6 +1542,7 @@ public:
 
     /**
     Construct a Metadata Action consisting of a metadata entry with a Decimal value
+
 
     @param Action The action to take for this set operation. Update and Delete operations will fail if the key does not exist. Create operation will fail if the key does exist.
     @param Key The key to perform this action towards
