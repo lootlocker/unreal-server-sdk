@@ -57,3 +57,11 @@ void ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(int 
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::DeleteKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, OnCompletedRequestBP, OnCompletedRequest);
 }
 
+void ULootLockerServerAssetRequest::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseBP& OnCompletedRequestBP, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
+{
+    TMultiMap<FString, FString> QueryParams;
+    if(Page > 0) QueryParams.Add("page", FString::FromInt(Page));
+    if(PerPage > 0) QueryParams.Add("per_page", FString::FromInt(PerPage));
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListAssetsResponse>(Request, ULootLockerServerEndpoints::ListAssets, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
+}
+
