@@ -53,6 +53,9 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteInstanceProgression 
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ComputeAndLockDropTable = InitEndpoint("player/{0}/droptables/{1}/compute", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::PickDropsFromDropTable = InitEndpoint("player/{0}/droptables/{1}/pick", ELootLockerServerHTTPMethod::POST);
 
+// Friends
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListFriends = InitEndpoint("player/friends/{0}", ELootLockerServerHTTPMethod::GET);
+
 // Player Operations
 FLootLockerServerEndPoint ULootLockerServerEndpoints::CreatePlayer = InitEndpoint("player", ELootLockerServerHTTPMethod::POST);
 
