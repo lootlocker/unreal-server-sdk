@@ -10,6 +10,7 @@
 #include "ServerAPI/LootLockerServerCharacterRequest.h"
 #include "ServerAPI/LootLockerServerCurrencyRequest.h"
 #include "ServerAPI/LootLockerServerDropTableRequest.h"
+#include "ServerAPI/LootLockerServerFriendsRequest.h"
 #include "ServerAPI/LootLockerServerGameProgressionRequest.h"
 #include "ServerAPI/LootLockerServerHeroRequest.h"
 #include "ServerAPI/LootLockerServerInstanceProgressionRequest.h"
@@ -935,6 +936,19 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
     static void PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Friends
+    //==================================================
+
+    /**
+     * List friends for the specified player
+     *
+     * @param PlayerULID The ULID of the player for whom to list friends
+     * @param OnCompletedRequest Delegate for handling the the server response.
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Friends")
+    static void ListFriendsForPlayer(const FString& PlayerULID, const FLootLockerServerListFriendsResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player https://ref.lootlocker.com/server-api/#player-names

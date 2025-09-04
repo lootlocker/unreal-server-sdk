@@ -81,10 +81,12 @@ public:
     static FLootLockerServerEndPoint ResetInstanceProgression;
     static FLootLockerServerEndPoint DeleteInstanceProgression;
 
-
     // Drop Tables
     static FLootLockerServerEndPoint ComputeAndLockDropTable;
     static FLootLockerServerEndPoint PickDropsFromDropTable;
+
+    // Friends
+    static FLootLockerServerEndPoint ListFriends;
 
     // Player Operations
     static FLootLockerServerEndPoint CreatePlayer;
