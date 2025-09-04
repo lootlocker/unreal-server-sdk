@@ -376,6 +376,12 @@ void ULootLockerServerForBlueprints::DeleteKeyValuePairFromAssetInstanceById(int
     ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, OnCompletedRequest);
 }
 
+// Friends
+void ULootLockerServerForBlueprints::ListFriendsForPlayer(const FString& PlayerULID, const FLootLockerServerListFriendsResponseBP& OnCompletedRequest)
+{
+    ULootLockerServerFriendsRequest::ListFriends(PlayerULID, OnCompletedRequest);
+}
+
 // Drop Tables
 void ULootLockerServerForBlueprints::ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest)
 {
