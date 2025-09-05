@@ -33,8 +33,8 @@ struct FLootLockerServerFriend
     /**
      * The online status of the player
      */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Online = false;
+    //UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    //bool Online = false;
     /**
      * The creation date of the player
      */
