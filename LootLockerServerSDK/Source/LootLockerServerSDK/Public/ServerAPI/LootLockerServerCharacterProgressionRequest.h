@@ -33,6 +33,11 @@ struct FLootLockerServerCharacterProgression
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Progression_name = "";
 	/*
+	 The ULID of the progression
+	*/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Progression_id = "";
+	/*
 	 Which step (steps are configured in the console) of the progression the character is on
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -82,6 +87,11 @@ struct FLootLockerServerSingleCharacterProgressionResponse : public FLootLockerS
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Progression_name = "";
+	/*
+	 The ULID of the progression
+	*/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Progression_id = "";
 	/*
 	 Which step (steps are configured in the console) of the progression the character is on
 	*/
