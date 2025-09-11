@@ -86,6 +86,9 @@ public:
     static FLootLockerServerEndPoint ComputeAndLockDropTable;
     static FLootLockerServerEndPoint PickDropsFromDropTable;
 
+    // Player Operations
+    static FLootLockerServerEndPoint CreatePlayer;
+    
     // Player Lookup
     static FLootLockerServerEndPoint GetPlayerInfoFromGameSessionToken;
     static FLootLockerServerEndPoint LookupMultiplePlayerNamesUsingIDs;
