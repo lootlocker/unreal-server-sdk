@@ -888,6 +888,17 @@ public:
      */
     static void GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest);
 
+    /**
+     * Creates a player in LootLocker for the platform player. This works by creating an unverified session for a player with the platform and identifier from the input. 
+     * No verification is performed by LootLocker. If a player already exists, the player integer ID and ULID will be returned. If a player doesn't exist yet, one will be created before returning the same integer ID and ULID.
+     * If the player identifier isn't normally sent in the Game API session endpoint, you should ensure that you resolve it correctly from the original platform (eg steam) before calling this endpoint.
+     *
+     * @param Platform The platform of the player you want to create (e.g. "Steam", "Xbox", or "Guest")
+     * @param PlatformPlayerIdentifier The unique identifier for the player on the specified platform (e.g. a SteamID)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest);
+
     //==================================================
     // Player Files https://ref.lootlocker.com/server-api/#player-files
     //==================================================

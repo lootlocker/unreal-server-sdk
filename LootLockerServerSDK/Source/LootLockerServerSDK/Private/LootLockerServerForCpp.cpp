@@ -413,6 +413,11 @@ void ULootLockerServerForCpp::GetPlayerInfoFromGameSessionToken(TArray<FString> 
     ULootLockerServerPlayerRequest::GetPlayerInfoFromGameSessionToken(GameSessionTokensToLookUp, FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP(), OnCompletedRequest);
 }
 
+void ULootLockerServerForCpp::CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest) 
+{
+    ULootLockerServerPlayerRequest::CreatePlayer(Platform, PlatformPlayerIdentifier, FLootLockerServerCreatePlayerResponseBP(), OnCompletedRequest);
+}
+
 // Player Files
 void ULootLockerServerForCpp::ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseDelegate& OnCompletedRequest)
 {

@@ -413,6 +413,11 @@ void ULootLockerServerForBlueprints::GetPlayerInfoFromGameSessionToken(TArray<FS
     ULootLockerServerPlayerRequest::GetPlayerInfoFromGameSessionToken(GameSessionTokensToLookUp, OnCompletedRequest);
 }
 
+void ULootLockerServerForBlueprints::CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseBP& OnCompletedRequest) 
+{
+    ULootLockerServerPlayerRequest::CreatePlayer(Platform, PlatformPlayerIdentifier, OnCompletedRequest);
+}
+
 // Player Files
 void ULootLockerServerForBlueprints::ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseBP& OnCompletedRequest)
 {
