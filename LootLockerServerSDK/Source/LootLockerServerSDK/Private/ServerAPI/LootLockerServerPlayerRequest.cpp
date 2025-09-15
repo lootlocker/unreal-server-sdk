@@ -35,16 +35,16 @@ void ULootLockerServerPlayerRequest::CreatePlayer(ELootLockerServerCreatePlayerP
 		case ELootLockerServerCreatePlayerPlatforms::PlayStation: Request.Platform = "psn"; break;
 		case ELootLockerServerCreatePlayerPlatforms::Apple: Request.Platform = "apple_sign_in"; break;
 		case ELootLockerServerCreatePlayerPlatforms::AppleGameCenter: Request.Platform = "apple_game_center"; break;
-		case ELootLockerServerCreatePlayerPlatforms::AppleAppStore: Request.Platform = "apple_app_store"; break;
 		case ELootLockerServerCreatePlayerPlatforms::Google: Request.Platform = "google_sign_in"; break;
-		case ELootLockerServerCreatePlayerPlatforms::GooglePlay: Request.Platform = "google_play_store"; break;
+		case ELootLockerServerCreatePlayerPlatforms::GooglePlayGames: Request.Platform = "google_play_games"; break;
 		case ELootLockerServerCreatePlayerPlatforms::Xbox: Request.Platform = "xbox_one"; break;
 		case ELootLockerServerCreatePlayerPlatforms::NintendoSwitch: Request.Platform = "nintendo_switch"; break;
 		case ELootLockerServerCreatePlayerPlatforms::AmazonLuna: Request.Platform = "amazon_luna"; break;
-		case ELootLockerServerCreatePlayerPlatforms::WhiteLabelLogin:  Request.Platform = "white_label_login"; break;
+		case ELootLockerServerCreatePlayerPlatforms::WhiteLabelLogin: Request.Platform = "white_label_login"; break;
 		case ELootLockerServerCreatePlayerPlatforms::Guest:  Request.Platform = "guest"; break;
 		case ELootLockerServerCreatePlayerPlatforms::EpicGames:  Request.Platform = "epic_games"; break;
 		case ELootLockerServerCreatePlayerPlatforms::Meta:  Request.Platform = "meta"; break;
+		case ELootLockerServerCreatePlayerPlatforms::Discord:  Request.Platform = "discord"; break;
 		default: Request.Platform = "N/A"; break;
 	}
 	ULootLockerServerHttpClient::SendRequest<FLootLockerServerCreatePlayerResponse>(Request, ULootLockerServerEndpoints::CreatePlayer, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
