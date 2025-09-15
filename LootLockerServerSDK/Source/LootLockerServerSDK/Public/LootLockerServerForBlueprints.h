@@ -945,10 +945,12 @@ public:
      * List friends for the specified player
      *
      * @param PlayerULID The ULID of the player for whom to list friends
+     * @param Page The page number to retrieve. Each page contains 'PerPage' number of items.
+     * @param PerPage The number of items to retrieve per page.
      * @param OnCompletedRequest Delegate for handling the the server response.
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Friends")
-    static void ListFriendsForPlayer(const FString& PlayerULID, const FLootLockerServerListFriendsResponseBP& OnCompletedRequest);
+    static void ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player https://ref.lootlocker.com/server-api/#player-names

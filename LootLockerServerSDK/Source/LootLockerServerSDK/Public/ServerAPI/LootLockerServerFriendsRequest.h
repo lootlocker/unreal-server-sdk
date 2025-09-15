@@ -69,6 +69,11 @@ struct FLootLockerServerListFriendsResponse : public FLootLockerServerResponse
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerFriend> Friends;
+    /**
+     * Pagination information for the request
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerIndexBasedPagination Pagination;
 };
 
 
@@ -102,5 +107,5 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerFriendsRequest : public UObject
 public:
     ULootLockerServerFriendsRequest();
 
-    static void ListFriends(const FString& PlayerULID, const FLootLockerServerListFriendsResponseBP& OnResponseCompletedBP = FLootLockerServerListFriendsResponseBP(), const FLootLockerServerListFriendsResponseDelegate& OnResponseCompleted = FLootLockerServerListFriendsResponseDelegate());
+    static void ListFriends(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseBP& OnResponseCompletedBP = FLootLockerServerListFriendsResponseBP(), const FLootLockerServerListFriendsResponseDelegate& OnResponseCompleted = FLootLockerServerListFriendsResponseDelegate());
 };

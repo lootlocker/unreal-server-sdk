@@ -378,9 +378,9 @@ void ULootLockerServerForCpp::DeleteKeyValuePairFromAssetInstanceById(int Player
 
 // Friends
 
-void ULootLockerServerForCpp::ListFriendsForPlayer(const FString& PlayerULID, const FLootLockerServerListFriendsResponseDelegate& OnCompletedRequest)
+void ULootLockerServerForCpp::ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerFriendsRequest::ListFriends(PlayerULID, FLootLockerServerListFriendsResponseBP(), OnCompletedRequest);
+    ULootLockerServerFriendsRequest::ListFriends(PlayerULID, Page, PerPage, FLootLockerServerListFriendsResponseBP(), OnCompletedRequest);
 }
 
 // Drop Tables
