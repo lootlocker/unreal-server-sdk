@@ -14,9 +14,5 @@ public class LootLockerServerSDKEditor : ModuleRules
         PublicDependencyModuleNames.AddRange(new string[] {
             "Core", "CoreUObject", "Engine", "InputCore", "Slate", "SlateCore", "UnrealEd", "Projects", "HTTP"
         });
-
-        PublicIncludePaths.AddRange(new string[] {
-            "LootLockerServerSDKEditor/Public"
-        });
     }
 }
