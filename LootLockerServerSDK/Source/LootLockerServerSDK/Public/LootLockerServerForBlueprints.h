@@ -8,6 +8,7 @@
 #include "ServerAPI/LootLockerServerBalanceRequest.h"
 #include "ServerAPI/LootLockerServerCharacterProgressionRequest.h"
 #include "ServerAPI/LootLockerServerCharacterRequest.h"
+#include "ServerAPI/LootLockerServerConnectedAccountsRequest.h"
 #include "ServerAPI/LootLockerServerCurrencyRequest.h"
 #include "ServerAPI/LootLockerServerDropTableRequest.h"
 #include "ServerAPI/LootLockerServerFriendsRequest.h"
@@ -951,6 +952,19 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Friends")
     static void ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Connected Accounts
+    //==================================================
+
+    /**
+     * List connected accounts for the specified player
+     *
+     * @param PlayerULID The ULID of the player for whom to list connected accounts
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Connected Accounts")
+    static void ListConnectedAccountsForPlayer(const FString& PlayerULID, const FLootLockerServerListConnectedAccountsResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player https://ref.lootlocker.com/server-api/#player-names

@@ -383,6 +383,12 @@ void ULootLockerServerForCpp::ListFriendsForPlayer(const FString& PlayerULID, in
     ULootLockerServerFriendsRequest::ListFriends(PlayerULID, Page, PerPage, FLootLockerServerListFriendsResponseBP(), OnCompletedRequest);
 }
 
+// Connected Accounts
+void ULootLockerServerForCpp::ListConnectedAccountsForPlayer(const FString& PlayerULID, const FLootLockerServerListConnectedAccountsResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerConnectedAccountsRequest::ListConnectedAccounts(PlayerULID, FLootLockerServerListConnectedAccountsResponseBP(), OnCompletedRequest);
+}
+
 // Drop Tables
 void ULootLockerServerForCpp::ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
 {

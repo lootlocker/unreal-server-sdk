@@ -9,6 +9,7 @@
 #include "ServerAPI/LootLockerServerBalanceRequest.h"
 #include "ServerAPI/LootLockerServerCharacterProgressionRequest.h"
 #include "ServerAPI/LootLockerServerCharacterRequest.h"
+#include "ServerAPI/LootLockerServerConnectedAccountsRequest.h"
 #include "ServerAPI/LootLockerServerCurrencyRequest.h"
 #include "ServerAPI/LootLockerServerDropTableRequest.h"
 #include "ServerAPI/LootLockerServerFriendsRequest.h"
@@ -880,6 +881,18 @@ public:
      * @param OnCompletedRequest Delegate for handling the the server response.
      */
     static void ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnCompletedRequest);
+
+    //==================================================
+    // Connected Accounts
+    //==================================================
+
+    /**
+     * List connected accounts for the specified player
+     *
+     * @param PlayerULID The ULID of the player for whom to list connected accounts
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void ListConnectedAccountsForPlayer(const FString& PlayerULID, const FLootLockerServerListConnectedAccountsResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Player https://ref.lootlocker.com/server-api/#player-names
