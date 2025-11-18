@@ -96,6 +96,9 @@ public:
     static FLootLockerServerEndPoint GetPlayerInfoFromGameSessionToken;
     static FLootLockerServerEndPoint LookupMultiplePlayerNamesUsingIDs;
 
+    // Connected Accounts
+    static FLootLockerServerEndPoint ListConnectedAccounts;
+
     // Player Inventory
     static FLootLockerServerEndPoint GetPlayerInventory;
     static FLootLockerServerEndPoint GetUniversalInventory;
