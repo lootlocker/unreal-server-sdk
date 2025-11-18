@@ -65,3 +65,8 @@ void ULootLockerServerAssetRequest::ListAssets(const FLootLockerServerListAssets
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerListAssetsResponse>(Request, ULootLockerServerEndpoints::ListAssets, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
 }
 
+void ULootLockerServerAssetRequest::ListContexts(const FLootLockerServerListContextsResponseBP& OnCompletedRequestBP, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest)
+{
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListContextsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListContexts, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
+}
+
