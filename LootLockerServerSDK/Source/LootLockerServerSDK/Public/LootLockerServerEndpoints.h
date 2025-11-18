@@ -64,6 +64,7 @@ public:
     // Assets
     static FLootLockerServerEndPoint GetAssets;
     static FLootLockerServerEndPoint ListAssets;
+    static FLootLockerServerEndPoint ListContexts;
 
     // Asset Instances
     static FLootLockerServerEndPoint GetAssetInstanceKeyValuePairs;
