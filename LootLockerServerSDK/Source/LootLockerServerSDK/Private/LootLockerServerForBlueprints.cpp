@@ -383,9 +383,9 @@ void ULootLockerServerForBlueprints::ListFriendsForPlayer(const FString& PlayerU
 }
 
 // Connected Accounts
-void ULootLockerServerForBlueprints::ListConnectedAccountsForPlayer(const FString& PlayerULID, const FLootLockerServerListConnectedAccountsResponseBP& OnCompletedRequest)
+void ULootLockerServerForBlueprints::ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerConnectedAccountsRequest::ListConnectedAccounts(PlayerULID, OnCompletedRequest);
+    ULootLockerServerConnectedAccountsRequest::ListConnectedAccounts(PlayerULIDs, LegacyPlayerIDs, OnCompletedRequest);
 }
 
 // Drop Tables

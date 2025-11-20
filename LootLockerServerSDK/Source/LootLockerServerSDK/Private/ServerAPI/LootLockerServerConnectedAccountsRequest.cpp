@@ -8,7 +8,11 @@ ULootLockerServerConnectedAccountsRequest::ULootLockerServerConnectedAccountsReq
 {
 }
 
-void ULootLockerServerConnectedAccountsRequest::ListConnectedAccounts(const FString& PlayerULID, const FLootLockerServerListConnectedAccountsResponseBP& OnResponseCompletedBP, const FLootLockerServerListConnectedAccountsResponseDelegate& OnResponseCompleted)
+void ULootLockerServerConnectedAccountsRequest::ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseBP& OnResponseCompletedBP, const FLootLockerServerListConnectedAccountsResponseDelegate& OnResponseCompleted)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListConnectedAccountsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListConnectedAccounts, { PlayerULID }, {}, OnResponseCompletedBP, OnResponseCompleted);
+    FLootLockerServerListConnectedAccountsRequest Request;
+    Request.Player_ids = PlayerULIDs;
+    Request.Legacy_player_ids = LegacyPlayerIDs;
+    
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListConnectedAccountsResponse>(Request, ULootLockerServerEndpoints::ListConnectedAccounts, {}, {}, OnResponseCompletedBP, OnResponseCompleted);
 }
