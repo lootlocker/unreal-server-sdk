@@ -612,49 +612,20 @@ struct FLootLockerServerContext
 {
     GENERATED_BODY()
     /**
-     * The unique identifier of the context
+     * Integer ID of the context
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Id = 0;
     /**
-     * The UUID of the context
+     * Context UUID
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Uuid = "";
     /**
-     * The name of the context
+     * Context Name
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Name = "";
-    /**
-     * The human-friendly name of the context
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Friendly_name = "";
-    /**
-     * Whether assets in this context can be detached
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Detachable = false;
-    /**
-     * Whether this context is visible to players
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool User_facing = false;
-    /**
-     * Optional: The ID of a parent asset if this context is nested
-     * 
-     * This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Dependent_asset_id = "";
-    /**
-     * Optional: Maximum number of assets that can be equipped in this context
-     * 
-     * This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Max_equip = "";
 };
 
 //==================================================
@@ -799,6 +770,11 @@ struct FLootLockerServerListContextsResponse : public FLootLockerServerResponse
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerContext> Contexts;
+    /*
+     Pagination information for the returned context list
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerExtendedIndexBasedPagination Pagination;
 };
 
 //==================================================
@@ -870,5 +846,5 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerAssetRequest : public UObject
     static void UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairItemResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate());
     static void DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP = FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest = FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate());
     static void ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage = 0, int Page = 0, const FLootLockerServerListAssetsResponseBP& OnCompletedRequestBP = FLootLockerServerListAssetsResponseBP(), const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest = FLootLockerServerListAssetsResponseDelegate());
-    static void ListContexts(const FLootLockerServerListContextsResponseBP& OnCompletedRequestBP = FLootLockerServerListContextsResponseBP(), const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest = FLootLockerServerListContextsResponseDelegate());
+    static void ListContexts(int PerPage = 0, int Page = 0, const FLootLockerServerListContextsResponseBP& OnCompletedRequestBP = FLootLockerServerListContextsResponseBP(), const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest = FLootLockerServerListContextsResponseDelegate());
 };

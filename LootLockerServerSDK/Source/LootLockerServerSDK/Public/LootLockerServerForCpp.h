@@ -136,6 +136,16 @@ public:
     static void ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
 
     /**
+     * List contexts with pagination support
+     * https://ref.lootlocker.com/server/assets/list-contexts
+     *
+     * @param PerPage Optional: page size (ignored if 0 or negative)
+     * @param Page Optional: page index (ignored if 0 or negative)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    static void ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest);
+
+    /**
      * Update an existing leaderboard with the provided details.
      * https://ref.lootlocker.com/server-api/#update-leaderboard
      *
