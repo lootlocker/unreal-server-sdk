@@ -65,8 +65,11 @@ void ULootLockerServerAssetRequest::ListAssets(const FLootLockerServerListAssets
     ULootLockerServerHttpClient::SendRequest<FLootLockerServerListAssetsResponse>(Request, ULootLockerServerEndpoints::ListAssets, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::ListContexts(const FLootLockerServerListContextsResponseBP& OnCompletedRequestBP, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseBP& OnCompletedRequestBP, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListContextsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListContexts, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
+    TMultiMap<FString, FString> QueryParams;
+    if(Page > 0) QueryParams.Add("page", FString::FromInt(Page));
+    if(PerPage > 0) QueryParams.Add("per_page", FString::FromInt(PerPage));
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListContextsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListContexts, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
 }
 
