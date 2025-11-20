@@ -65,7 +65,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerInfoFromGameSessi
 FLootLockerServerEndPoint ULootLockerServerEndpoints::LookupMultiplePlayerNamesUsingIDs = InitEndpoint("players/lookup/name", ELootLockerServerHTTPMethod::GET);
 
 // Connected Accounts
-FLootLockerServerEndPoint ULootLockerServerEndpoints::ListConnectedAccounts = InitEndpoint("players/{0}/connected-accounts", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListConnectedAccounts = InitEndpoint("connected-accounts/v1/list", ELootLockerServerHTTPMethod::POST);
 
 //Player Inventory
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetUniversalInventory = InitEndpoint("inventory/universal", ELootLockerServerHTTPMethod::GET);

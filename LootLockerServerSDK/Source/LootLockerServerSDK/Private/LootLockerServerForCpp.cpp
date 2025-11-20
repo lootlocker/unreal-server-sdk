@@ -389,9 +389,9 @@ void ULootLockerServerForCpp::ListFriendsForPlayer(const FString& PlayerULID, in
 }
 
 // Connected Accounts
-void ULootLockerServerForCpp::ListConnectedAccountsForPlayer(const FString& PlayerULID, const FLootLockerServerListConnectedAccountsResponseDelegate& OnCompletedRequest)
+void ULootLockerServerForCpp::ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerConnectedAccountsRequest::ListConnectedAccounts(PlayerULID, FLootLockerServerListConnectedAccountsResponseBP(), OnCompletedRequest);
+    ULootLockerServerConnectedAccountsRequest::ListConnectedAccounts(PlayerULIDs, LegacyPlayerIDs, FLootLockerServerListConnectedAccountsResponseBP(), OnCompletedRequest);
 }
 
 // Drop Tables

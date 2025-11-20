@@ -11,56 +11,92 @@
 //==================================================
 
 /**
- * Details about a particular connected account
+ * Details about a connected authentication provider for a player
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerConnectedAccount
 {
     GENERATED_BODY()
     /**
-     * The platform of the connected account
+     * Simple provider name (e.g., "steam", "xbox", "psn")
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Platform = "";
+    FString Provider = "";
     /**
-     * The platform identifier for the account
+     * Human readable provider name
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Platform_id = "";
+    FString Provider_name = "";
     /**
-     * The creation date of the connected account
+     * The identifier of the player on said provider
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Created_at = "";
+    FString Player_identifier = "";
+};
+
+/**
+ * Platform information for a single player including their connected accounts
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerPlayerPlatform
+{
+    GENERATED_BODY()
     /**
-     * The last update date of the connected account
+     * Integer based Player ID
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Updated_at = "";
+    int Legacy_player_id = 0;
+    /**
+     * ULID for the player
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Player_id = "";
+    /**
+     * List of connected authentication providers
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerConnectedAccount> Connected_accounts;
 };
 
 //==================================================
 // Request Definitions
 //==================================================
 
-// N/A
+/**
+ * Request to list connected accounts for multiple players
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerListConnectedAccountsRequest
+{
+    GENERATED_BODY()
+    /**
+     * List of Player ULIDs (up to 25 players)
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FString> Player_ids;
+    /**
+     * List of legacy integer Player IDs (up to 25 players)
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<int> Legacy_player_ids;
+};
 
 //==================================================
 // Response Definitions
 //==================================================
 
 /**
- * Response for listing connected accounts
+ * Response for listing connected accounts for multiple players
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerListConnectedAccountsResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     /**
-     * List of connected accounts for the specified player
+     * List of player platform information including connected accounts
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    TArray<FLootLockerServerConnectedAccount> Accounts;
+    TArray<FLootLockerServerPlayerPlatform> Player_platforms;
 };
 
 //==================================================
@@ -92,5 +128,14 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerConnectedAccountsRequest : public
 public:
     ULootLockerServerConnectedAccountsRequest();
 
-    static void ListConnectedAccounts(const FString& PlayerULID, const FLootLockerServerListConnectedAccountsResponseBP& OnResponseCompletedBP = FLootLockerServerListConnectedAccountsResponseBP(), const FLootLockerServerListConnectedAccountsResponseDelegate& OnResponseCompleted = FLootLockerServerListConnectedAccountsResponseDelegate());
+    /**
+     * List connected accounts for multiple players (up to 25)
+     * You can provide player ULIDs, legacy player IDs, or both
+     * 
+     * @param PlayerULIDs List of Player ULIDs
+     * @param LegacyPlayerIDs List of legacy integer Player IDs
+     * @param OnResponseCompletedBP Blueprint delegate for handling the response
+     * @param OnResponseCompleted C++ delegate for handling the response
+     */
+    static void ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseBP& OnResponseCompletedBP = FLootLockerServerListConnectedAccountsResponseBP(), const FLootLockerServerListConnectedAccountsResponseDelegate& OnResponseCompleted = FLootLockerServerListConnectedAccountsResponseDelegate());
 };

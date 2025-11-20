@@ -968,13 +968,15 @@ public:
     //==================================================
 
     /**
-     * List connected accounts for the specified player
+     * List connected accounts for multiple players (up to 25)
+     * You can provide player ULIDs, legacy player IDs, or both
      *
-     * @param PlayerULID The ULID of the player for whom to list connected accounts
+     * @param PlayerULIDs List of Player ULIDs
+     * @param LegacyPlayerIDs List of legacy integer Player IDs
      * @param OnCompletedRequest Delegate for handling the server response
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Connected Accounts")
-    static void ListConnectedAccountsForPlayer(const FString& PlayerULID, const FLootLockerServerListConnectedAccountsResponseBP& OnCompletedRequest);
+    static void ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player https://ref.lootlocker.com/server-api/#player-names
