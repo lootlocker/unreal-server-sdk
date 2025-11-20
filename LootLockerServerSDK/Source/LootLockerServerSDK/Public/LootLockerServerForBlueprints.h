@@ -799,6 +799,17 @@ public:
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets")
     static void ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseBP& OnCompletedRequest);
 
+    /**
+     * List contexts with pagination support
+     * https://ref.lootlocker.com/server/assets/list-contexts
+     *
+     * @param PerPage Optional: page size (ignored if 0 or negative)
+     * @param Page Optional: page index (ignored if 0 or negative)
+     * @param OnCompletedRequest Delegate for handling the server response
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta=(AdvancedDisplay="PerPage,Page", PerPage=-1, Page=-1))
+    static void ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseBP& OnCompletedRequest);
+
     //==================================================
     // Asset Instances https://ref.lootlocker.com/server-api/#asset-instances
     //==================================================

@@ -345,6 +345,11 @@ void ULootLockerServerForBlueprints::ListAssetsWithDefaultParameters(const FLoot
     ListAssets(FLootLockerServerListAssetsRequest(), 0, 0, OnCompletedRequest);
 }
 
+void ULootLockerServerForBlueprints::ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseBP& OnCompletedRequest)
+{
+    ULootLockerServerAssetRequest::ListContexts(PerPage, Page, OnCompletedRequest);
+}
+
 // Asset Instances
 void ULootLockerServerForBlueprints::GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest)
 {
