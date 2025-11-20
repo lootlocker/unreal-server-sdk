@@ -801,7 +801,6 @@ public:
 
     /**
      * List contexts with pagination support
-     * https://ref.lootlocker.com/server/assets/list-contexts
      *
      * @param PerPage Optional: page size (ignored if 0 or negative)
      * @param Page Optional: page index (ignored if 0 or negative)
