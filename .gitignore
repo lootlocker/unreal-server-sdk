@@ -82,3 +82,7 @@ DemoProject/DerivedDataCache/*
 
 # System files
 \.DS_Store
+
+# CodeQL artifacts
+_codeql_*
+
