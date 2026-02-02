@@ -620,27 +620,27 @@ void ULootLockerServerForCpp::ListCurrencies(const FLootLockerServerListCurrenci
 
 void ULootLockerServerForCpp::ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseDelegate& OnComplete)
 {
-    ULootLockerServerBalanceRequest::ListBalancesInWallet(WalletID, FLootLockerServerListBalancesForWalletResponseBP(), OnComplete);
+    ULootLockerServerBalanceRequest::ListBalancesInWallet(WalletID, OnComplete);
 }
 
 void ULootLockerServerForCpp::GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseDelegate& OnComplete)
 {
-    ULootLockerServerBalanceRequest::GetWalletByWalletID(WalletID, FLootLockerServerGetWalletResponseBP(), OnComplete);
+    ULootLockerServerBalanceRequest::GetWalletByWalletID(WalletID, OnComplete);
 }
 
 void ULootLockerServerForCpp::GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseDelegate& OnComplete)
 {
-    ULootLockerServerBalanceRequest::GetWalletByHolderID(HolderULID, HolderType, FLootLockerServerGetWalletResponseBP(), OnComplete);
+    ULootLockerServerBalanceRequest::GetWalletByHolderID(HolderULID, HolderType, OnComplete);
 }
 
 void ULootLockerServerForCpp::CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseDelegate& OnComplete)
 {
-    ULootLockerServerBalanceRequest::CreditBalanceToWallet(WalletID, CurrencyID, Amount, FLootLockerServerCreditWalletResponseBP(), OnComplete);
+    ULootLockerServerBalanceRequest::CreditBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
 }
 
 void ULootLockerServerForCpp::DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseDelegate& OnComplete)
 {
-    ULootLockerServerBalanceRequest::DebitBalanceToWallet(WalletID, CurrencyID, Amount, FLootLockerServerDebitWalletResponseBP(), OnComplete);
+    ULootLockerServerBalanceRequest::DebitBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
 }
 
 // Metadata
