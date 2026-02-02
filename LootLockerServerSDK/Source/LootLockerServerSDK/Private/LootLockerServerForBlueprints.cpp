@@ -2,6 +2,8 @@
 
 #include "LootLockerServerForBlueprints.h"
 
+#include "LootLockerServerForCpp.h"
+
 #include "Runtime/Launch/Resources/Version.h"
 #if WITH_EDITOR && (PLATFORM_WINDOWS || PLATFORM_MAC) && ((ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >=2) || ENGINE_MAJOR_VERSION >= 6)
 #include "Blueprint/BlueprintExceptionInfo.h"
@@ -618,27 +620,52 @@ void ULootLockerServerForBlueprints::ListCurrencies(const FLootLockerServerListC
 
 void ULootLockerServerForBlueprints::ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseBP& OnComplete)
 {
-    ULootLockerServerBalanceRequest::ListBalancesInWallet(WalletID, OnComplete);
+    ULootLockerServerForCpp::ListBalancesInWallet(WalletID, FLootLockerServerListBalancesForWalletResponseDelegate::CreateLambda(
+        [OnComplete](const FLootLockerServerListBalancesForWalletResponse& Response)
+        {
+            OnComplete.ExecuteIfBound(Response);
+        }
+    ));
 }
 
 void ULootLockerServerForBlueprints::GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseBP& OnComplete)
 {
-    ULootLockerServerBalanceRequest::GetWalletByWalletID(WalletID, OnComplete);
+    ULootLockerServerForCpp::GetWalletByWalletID(WalletID, FLootLockerServerGetWalletResponseDelegate::CreateLambda(
+        [OnComplete](const FLootLockerServerGetWalletResponse& Response)
+        {
+            OnComplete.ExecuteIfBound(Response);
+        }
+    ));
 }
 
 void ULootLockerServerForBlueprints::GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseBP& OnComplete)
 {
-    ULootLockerServerBalanceRequest::GetWalletByHolderID(HolderULID, HolderType, OnComplete);
+    ULootLockerServerForCpp::GetWalletByHolderID(HolderULID, HolderType, FLootLockerServerGetWalletResponseDelegate::CreateLambda(
+        [OnComplete](const FLootLockerServerGetWalletResponse& Response)
+        {
+            OnComplete.ExecuteIfBound(Response);
+        }
+    ));
 }
 
 void ULootLockerServerForBlueprints::CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseBP& OnComplete)
 {
-    ULootLockerServerBalanceRequest::CreditBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
+    ULootLockerServerForCpp::CreditBalanceToWallet(WalletID, CurrencyID, Amount, FLootLockerServerCreditWalletResponseDelegate::CreateLambda(
+        [OnComplete](const FLootLockerServerCreditWalletResponse& Response)
+        {
+            OnComplete.ExecuteIfBound(Response);
+        }
+    ));
 }
 
 void ULootLockerServerForBlueprints::DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseBP& OnComplete)
 {
-    ULootLockerServerBalanceRequest::DebitBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
+    ULootLockerServerForCpp::DebitBalanceToWallet(WalletID, CurrencyID, Amount, FLootLockerServerDebitWalletResponseDelegate::CreateLambda(
+        [OnComplete](const FLootLockerServerDebitWalletResponse& Response)
+        {
+            OnComplete.ExecuteIfBound(Response);
+        }
+    ));
 }
 
 // Metadata
