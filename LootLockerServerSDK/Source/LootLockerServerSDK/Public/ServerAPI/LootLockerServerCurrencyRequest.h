@@ -104,5 +104,5 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerCurrencyRequest : public UObject
 public:
     ULootLockerServerCurrencyRequest();
 
-    static void ListCurrencies(const FLootLockerServerListCurrenciesResponseBP& OnResponseCompletedBP = FLootLockerServerListCurrenciesResponseBP(), const FLootLockerServerListCurrenciesResponseDelegate& OnResponseCompleted = FLootLockerServerListCurrenciesResponseDelegate());
+    static void ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnResponseCompleted = FLootLockerServerListCurrenciesResponseDelegate());
 };

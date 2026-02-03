@@ -671,7 +671,9 @@ void ULootLockerServerForBlueprints::DeleteProgressionForAssetInstance(int Playe
 // Currencies
 void ULootLockerServerForBlueprints::ListCurrencies(const FLootLockerServerListCurrenciesResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerCurrencyRequest::ListCurrencies(OnCompletedRequest);
+    ULootLockerServerForCpp::ListCurrencies(FLootLockerServerListCurrenciesResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerListCurrenciesResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 // Balances

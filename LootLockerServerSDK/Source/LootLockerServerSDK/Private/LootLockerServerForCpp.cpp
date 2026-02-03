@@ -613,7 +613,7 @@ void ULootLockerServerForCpp::DeleteProgressionForAssetInstance(int PlayerId, in
 // Currencies
 void ULootLockerServerForCpp::ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCurrencyRequest::ListCurrencies(FLootLockerServerListCurrenciesResponseBP(), OnCompletedRequest);
+    ULootLockerServerCurrencyRequest::ListCurrencies(OnCompletedRequest);
 }
 
 // Balances
