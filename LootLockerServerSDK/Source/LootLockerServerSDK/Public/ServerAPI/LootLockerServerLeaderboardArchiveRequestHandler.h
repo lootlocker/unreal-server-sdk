@@ -90,8 +90,8 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerLeaderboardArchiveRequestHandler 
 {
 	GENERATED_BODY()
 public:
-	static void ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest = FLootLockerServerLeaderboardArchiveResponseDelegate());
-	static void GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest = FLootLockerServerLeaderboardArchiveDetailResponseDelegate());
+	static void ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest);
+	static void GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest);
 public:
 	ULootLockerServerLeaderboardArchiveRequestHandler();
 };

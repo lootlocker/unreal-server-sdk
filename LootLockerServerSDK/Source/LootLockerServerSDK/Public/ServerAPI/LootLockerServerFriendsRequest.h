@@ -97,5 +97,5 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerFriendsRequest : public UObject
 public:
     ULootLockerServerFriendsRequest();
 
-    static void ListFriends(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnResponseCompleted = FLootLockerServerListFriendsResponseDelegate());
+    static void ListFriends(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnResponseCompleted);
 };

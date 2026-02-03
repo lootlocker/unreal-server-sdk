@@ -17,7 +17,7 @@ void FTestLootLockerServer_PersistentStorage::Define()
 	{
 		LatentIt("When Server PersistentStorage", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
-			ULootLockerServerAuthRequest::StartSession();
+			ULootLockerServerAuthRequest::StartSession(FLootLockerServerAuthResponseDelegate());
 
 			const int PlayerId = 3245521;
 

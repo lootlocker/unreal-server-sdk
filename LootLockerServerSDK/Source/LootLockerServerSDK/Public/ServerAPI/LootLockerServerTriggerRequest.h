@@ -122,5 +122,5 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerTriggerRequest : public UObject
 	public:	
 	ULootLockerServerTriggerRequest();	
 
-	static void InvokeTriggerForPlayer(FString TriggerName, int PlayerId, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest = FLootLockerServerInvokeTriggerResponseDelegate());
+	static void InvokeTriggerForPlayer(FString TriggerName, int PlayerId, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest);
 };
