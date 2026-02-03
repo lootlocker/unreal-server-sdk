@@ -40,15 +40,17 @@ public:
      * Start a session connecting to the LootLocker services with the server API key
      *
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest);
+    static FString StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest);
 
     /**
      * Keep the session alive, you should call this endpoint at least once per hour, to extend your tokens lifetime.
      *
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest);
+    static FString MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Token Exchange
@@ -61,8 +63,9 @@ public:
      
      @param GameApiSessionToken The session token for a current game api session to use in exchange for a new one
      @param OnCompletedRequest Delegate for handling the response
+     @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest);
+    static FString GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest);
 
     /**
      Get a new active game api session token for the specified player
@@ -71,8 +74,9 @@ public:
      
      @param PlayerUlid The ulid of the player you wish to impersonate
      @param OnCompletedRequest Delegate for handling the response
+     @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest);
+    static FString GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Leaderboards
@@ -82,8 +86,9 @@ public:
      * List information about all leaderboards in the game
      *
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ListLeaderboards(const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest);
+    static FString ListLeaderboards(const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest);
     
     /**
      * List information about all leaderboards in the game
@@ -91,16 +96,18 @@ public:
      * @param Count Optional: The count of items you want to retrieve.
      * @param After Optional: Used for pagination, id from which the pagination starts from.
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ListLeaderboards(int32 Count, int32 After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest);
+    static FString ListLeaderboards(int32 Count, int32 After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest);
 
     /**
      * Get information about a given leaderboard.
      *
      * @param LeaderboardKey The key of the leaderboard to get information for
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest);
+    static FString GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
      * Create a new leaderboard with the provided details.
@@ -113,8 +120,9 @@ public:
      * @param EnableGameApiWrites Whether the Game API is permitted to write to this leaderboard
      * @param OverwriteScoreOnSubmit Submitting a new score for member will always overwrite their existing score on leaderboard
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest);
+    static FString CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
      * List assets with configurable response data. Use this to limit the fields returned in the response and improve performance.
@@ -123,15 +131,17 @@ public:
      * @param PerPage Optional: page size (ignored if 0 or negative)
      * @param Page Optional: page index (ignored if 0 or negative)
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
+    static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
 
     /**
     * List assets with default parameters (no filters, first page, default page size)
     * Lightweight alternative for retrieving assets where only selected data is needed
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
+    static FString ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
 
     /**
      * List contexts with pagination support
@@ -139,8 +149,9 @@ public:
      * @param PerPage Optional: page size (ignored if 0 or negative)
      * @param Page Optional: page index (ignored if 0 or negative)
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest);
+    static FString ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest);
 
     /**
      * Update an existing leaderboard with the provided details.
@@ -152,16 +163,18 @@ public:
      * @param EnableGameApiWrites Whether the Game API is permitted to write to this leaderboard
      * @param OverwriteScoreOnSubmit Submitting a new score for member will always overwrite their existing score on leaderboard
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest);
+    static FString UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
      * Delete an existing leaderboard
      *
      * @param LeaderboardKey The key of the leaderboard to delete
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest);
+    static FString DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
      * Submit a score to the given leaderboard
@@ -171,16 +184,18 @@ public:
      * @param Score The score to submit
      * @param Metadata Metadata to add to the score (will only be used if the leaderboard has metadata enabled)
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest);
+    static FString SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest);
 
     /**
      * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player.
      *
      * @param MemberID The ID of the member to submit the score for     
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetAllMemberRanks(FString MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
+    static FString GetAllMemberRanks(FString MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
 
     /**
      * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player, using pagination settings.
@@ -189,8 +204,9 @@ public:
      * @param Count Number of members returned per page
      * @param After Cursor for pagination, a cursor will be returned in the response
      * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPaginatedAllMemberRanks(FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
+    static FString GetPaginatedAllMemberRanks(FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
 
     /**
      * From the requested leaderboard get <count> number of scores. The list of scores has member information, rank, score, and metadata (if metadata is enabled on that leaderboard) for the given leaderboard. If leaderboard is of type player a player will also be in the response.
@@ -199,8 +215,9 @@ public:
      *
      * @param LeaderboardKey the key of the leaderboard you want to connect to.
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
+    static FString GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
      * From the requested leaderboard get <count> number of scores. The list of scores has member information, rank, score, and metadata (if metadata is enabled on that leaderboard) for the given leaderboard. If leaderboard is of type player a player will also be in the response, using pagination settings.
@@ -211,15 +228,17 @@ public:
      * @param Count Number of scores returned per page
      * @param After Cursor for pagination, a cursor will be returned in the response
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
+    static FString GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
 
     /**
     * Get the schedule for the specified leaderboard
     * @param LeaderboardKey the Key of the leaderboard for which to fetch the schedule
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
+    static FString GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
     
     /**
     * Set the provided schedule for the specified leaderboard
@@ -234,15 +253,17 @@ public:
     * @param Key The Key of the leaderboard for which to set the schedule
     * @param CronExpression The cron expression describing the schedule to set
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
+    static FString CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
     
     /**
     * Remove the schedule (if any) from the specified leadeboard
     * @param Key the Key of the leaderboard for which to remove the schedule
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest);
+    static FString DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Leaderboard Archives
@@ -252,8 +273,9 @@ public:
     * List the archive of a specific Leaderboard,
     * @param LeaderboardKey the Key of the Leaderboard you want the list of archives
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest);
+    static FString ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest);
 
     /**
     * Get the specified Archive which includes details such as ranks, scores and rewards.
@@ -261,8 +283,9 @@ public:
     * @param Count Optional: the count of how many archive entries you want
     * @param After Optional: cursor for pagination
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest);
+    static FString GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Triggers
@@ -276,8 +299,9 @@ public:
      * @param TriggerName The name of the trigger to invoke for the provided player
      * @param PlayerID The ID of the player to invoke the trigger for
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest);
+    static FString InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Player Persistent Storage
@@ -288,24 +312,27 @@ public:
      *
      * @param PlayerID The ID of the player to fetch the persistent storage for
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPersistentStorageForPlayer(int PlayerID, const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompletedRequest);
+    static FString GetPersistentStorageForPlayer(int PlayerID, const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompletedRequest);
 
     /**
      * Get the persistent storage for all the player ids provided
      *
      * @param PlayerIDs The IDs of the players to fetch the persistent storage for
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompletedRequest);
+    static FString GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompletedRequest);
 
     /**
      * Get all the public (if any) persistent storage for the provided players
      *
      * @param PlayerIDs The IDs of the players to fetch the persistent storage for
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetEntirePublicPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest);
+    static FString GetEntirePublicPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest);
 
     /**
      * Get all the public (if any) persistent storage for the provided players, but filter the list by the provided keys
@@ -313,16 +340,18 @@ public:
      * @param PlayerIDs The IDs of the players to fetch the persistent storage for
      * @param Keys The keys to filter the persistent storage by, if empty all keys will be returned.
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest);
+    static FString GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest);
 
     /**
      * Update the persistent storage for the provided player according to the objects provided
      *
      * @param StorageEntriesToUpdate The data to update the persistent storage with
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest);
+    static FString UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest);
 
     /**
      * Delete the persistent storage for the provided keys on the provided players
@@ -331,8 +360,9 @@ public:
      * @param PlayerIDs The IDs of the players for whom to apply the delete
      * @param Keys The keys to delete for the provided players
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest);
+    static FString DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest);
     
     //==================================================
     // Characters
@@ -344,8 +374,9 @@ public:
      *
      * @param PlayerID The ID of the player for whom to get the characters
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPlayerCharacters(int PlayerID, const FLootLockerServerGetPlayerCharacterResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerCharacters(int PlayerID, const FLootLockerServerGetPlayerCharacterResponseDelegate& OnCompletedRequest);
     
     /**
      * Get the inventory for the specified player and character
@@ -353,8 +384,9 @@ public:
      * @param PlayerID The ID of the player for whom to get the character inventory
      * @param CharacterID The ID of the character on the specified player for which to get the inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPlayerCharacterInventory(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterInventoryResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerCharacterInventory(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Get a subset of the inventory for the specified player and character using pagination settings
@@ -365,8 +397,9 @@ public:
      * @param Count The number of inventory items to get. Must be a value between 1 and 200
      * @param After The id of the inventory item from where to start getting inventory items (non inclusive). Set to 0 to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPaginatedPlayerCharacterInventory(int PlayerID, int CharacterID, int Count, int After, const FLootLockerServerGetCharacterInventoryResponseDelegate& OnCompletedRequest);
+    static FString GetPaginatedPlayerCharacterInventory(int PlayerID, int CharacterID, int Count, int After, const FLootLockerServerGetCharacterInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Get the full loadout for the specified player and character
@@ -374,8 +407,9 @@ public:
      * @param PlayerID The ID of the player for whom to get the character loadout
      * @param CharacterID The ID of the character on the specified player for which to get the loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPlayerCharacterLoadout(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterLoadoutResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerCharacterLoadout(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and character using an asset instance id
@@ -384,8 +418,9 @@ public:
      * @param CharacterID The ID of the character on the specified player for whose loadout to equip the asset instance
      * @param AssetInstanceID The ID of the asset instance to equip to the specified player character's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void EquipAssetToPlayerCharacterLoadoutByAssetInstanceId(int PlayerID, int CharacterID, int AssetInstanceID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest);
+    static FString EquipAssetToPlayerCharacterLoadoutByAssetInstanceId(int PlayerID, int CharacterID, int AssetInstanceID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and character using an asset id and an asset variation id
@@ -395,8 +430,9 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player character's loadout
      * @param AssetVariationID The ID of the variation of the specified asset to equip to the specified player character's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void EquipAssetToPlayerCharacterLoadoutByAssetIdAndAssetVariationId(int PlayerID, int CharacterID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest);
+    static FString EquipAssetToPlayerCharacterLoadoutByAssetIdAndAssetVariationId(int PlayerID, int CharacterID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and character using an asset id and a rental option id
@@ -406,8 +442,9 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player character's loadout
      * @param RentalOptionID The ID of the rental option of the specified asset to equip to the specified player character's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(int PlayerID, int CharacterID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest);
+    static FString EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(int PlayerID, int CharacterID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest);
     /**
      * Unequip an asset instance from the loadout of specified player and character using the instance id
      *
@@ -415,8 +452,9 @@ public:
      * @param CharacterID The ID of the character on the specified player for whose loadout to unequip the asset instance
      * @param InstanceID The ID of the asset instance to unequip from the specified player character's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate& OnCompletedRequest);
+    static FString UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate& OnCompletedRequest);
     
     //==================================================
     // Heroes
@@ -427,8 +465,9 @@ public:
      *
      * @param PlayerID The ID of the player for whom to get the heroes
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPlayerHeroes(int PlayerID, const FLootLockerServerGetPlayerHeroResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerHeroes(int PlayerID, const FLootLockerServerGetPlayerHeroResponseDelegate& OnCompletedRequest);
     
     /**
      * Get the inventory for the specified player and hero
@@ -436,8 +475,9 @@ public:
      * @param PlayerID The ID of the player for whom to get the hero inventory
      * @param HeroID The ID of the hero on the specified player for which to get the inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPlayerHeroInventory(int PlayerID, int HeroID, const FLootLockerServerGetHeroInventoryResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerHeroInventory(int PlayerID, int HeroID, const FLootLockerServerGetHeroInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Get a subset of the inventory for the specified player and hero using pagination settings
@@ -447,8 +487,9 @@ public:
      * @param Count The number of inventory items to get. Must be a value between 1 and 200
      * @param After The id of the inventory item from where to start getting inventory items (non inclusive). Set to 0 to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPaginatedPlayerHeroInventory(int PlayerID, int HeroID, int Count, int After, const FLootLockerServerGetHeroInventoryResponseDelegate& OnCompletedRequest);
+    static FString GetPaginatedPlayerHeroInventory(int PlayerID, int HeroID, int Count, int After, const FLootLockerServerGetHeroInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Get the full loadout for the specified player and hero
@@ -456,8 +497,9 @@ public:
      * @param PlayerID The ID of the player for whom to get the hero loadout
      * @param HeroID The ID of the hero on the specified player for which to get the loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPlayerHeroLoadout(int PlayerID, int HeroID, const FLootLockerServerGetHeroLoadoutResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerHeroLoadout(int PlayerID, int HeroID, const FLootLockerServerGetHeroLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and hero using an asset instance id
@@ -466,8 +508,9 @@ public:
      * @param HeroID The ID of the hero on the specified player for whose loadout to equip the asset instance
      * @param AssetInstanceID The ID of the asset instance to equip to the specified player hero's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void EquipAssetToPlayerHeroLoadoutByAssetInstanceId(int PlayerID, int HeroID, int AssetInstanceID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest);
+    static FString EquipAssetToPlayerHeroLoadoutByAssetInstanceId(int PlayerID, int HeroID, int AssetInstanceID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and hero using an asset id and an asset variation id
@@ -477,8 +520,9 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player hero's loadout
      * @param AssetVariationID The ID of the variation of the specified asset to equip to the specified player hero's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(int PlayerID, int HeroID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest);
+    static FString EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(int PlayerID, int HeroID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and hero using an asset id and a rental option id
@@ -488,8 +532,9 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player hero's loadout
      * @param RentalOptionID The ID of the rental option of the specified asset to equip to the specified player hero's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest);
+    static FString EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest);
     /**
      * Unequip an asset instance from the loadout of specified player and hero using the instance id
      *
@@ -497,8 +542,9 @@ public:
      * @param HeroID The ID of the hero on the specified player for whose loadout to unequip the asset instance
      * @param InstanceID The ID of the asset instance to unequip from the specified player hero's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate& OnCompletedRequest);
+    static FString UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Player Inventory
@@ -508,16 +554,18 @@ public:
      * Get a list of assets that are available for all player's in the game
      *
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetUniversalInventory(const FLootLockerServerGetUniversalInventoryResponseDelegate& OnCompletedRequest);
+    static FString GetUniversalInventory(const FLootLockerServerGetUniversalInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Get the specified player's default character's inventory
      *
      * @param PlayerID The ID of the player for whom to get the inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPlayerInventory(int PlayerID, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerInventory(int PlayerID, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Get the specified player's default character's inventory according to the specified pagination parameters
@@ -526,16 +574,18 @@ public:
      * @param Count The number of inventory items to get. Must be a value between 1 and 200
      * @param After The id of the inventory item from where to start getting inventory items (non inclusive). Set to 0 to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPaginatedPlayerInventory(int PlayerID, int Count, int After, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest);
+    static FString GetPaginatedPlayerInventory(int PlayerID, int Count, int After, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Get the specified player's default character's loadout
      *
      * @param PlayerID The ID of the player for whom to get the loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPlayerLoadout(int PlayerID, const FLootLockerServerGetPlayerLoadoutResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerLoadout(int PlayerID, const FLootLockerServerGetPlayerLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the specified player's default character's loadout using an asset id which will equip that asset's default variation
@@ -544,8 +594,9 @@ public:
      * @param PlayerID The ID of the player for whom to equip the asset
      * @param AssetID The ID of the asset to equip to the specified player's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void EquipAssetToPlayerLoadoutByAssetId(int PlayerID, int AssetID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest);
+    static FString EquipAssetToPlayerLoadoutByAssetId(int PlayerID, int AssetID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Equip the specified asset instance to the specified player's default character's loadout
@@ -554,8 +605,9 @@ public:
      * @param PlayerID The ID of the player for whom to equip the asset
      * @param AssetInstanceID The Instance ID of the asset to equip to the specified player's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void EquipAssetToPlayerLoadoutByAssetInstanceId(int PlayerID, int AssetInstanceID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest);
+    static FString EquipAssetToPlayerLoadoutByAssetInstanceId(int PlayerID, int AssetInstanceID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the specified player's default character's loadout by specifiying an asset id and which variation id of the asset to equip
@@ -565,8 +617,9 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player's loadout
      * @param AssetVariationID The ID of the variation of the specified asset to equip to the specified player's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(int PlayerID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest);
+    static FString EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(int PlayerID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the specified player's default character's loadout by specyfiying an asset id and which rental option id of the asset to equip
@@ -576,8 +629,9 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player's loadout
      * @param RentalOptionID The ID of the rental option of the specified asset to equip to the specified player's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest);
+    static FString EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Unequip an asset instance from the specified player's default character's loadout
@@ -586,8 +640,9 @@ public:
      * @param PlayerID The ID of the player for whom to unequip the asset
      * @param InstanceID The Instance ID of the asset in the specified player's loadout to unequip
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UnequipAssetFromPlayerLoadout(int PlayerID, int InstanceID, const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate& OnCompletedRequest);
+    static FString UnequipAssetFromPlayerLoadout(int PlayerID, int InstanceID, const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate& OnCompletedRequest);
     
     /**
      * Add the specified asset to the specified player's inventory (grant the asset) using an asset id which will equip that asset's default variation
@@ -596,8 +651,9 @@ public:
      * @param PlayerID The ID of the player for whom to add the asset
      * @param AssetID The ID of the asset to add to the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest);
+    static FString AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Add the specified asset to the specified player's inventory (grant the asset) by specifiying an asset id and which variation id of the asset to equip
@@ -607,8 +663,9 @@ public:
      * @param AssetID The ID of the asset to add to the specified player's inventory
      * @param VariationID The ID of the specific variation of the specified asset to add to the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest);
+    static FString AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Add the specified asset to the specified player's inventory (grant the asset) by specyfiying an asset id and which rental option id of the asset to equip
@@ -618,8 +675,9 @@ public:
      * @param AssetID The ID of the asset to add to the specified player's inventory
      * @param RentalOptionID The ID of the specific rental option of the specified asset to add to the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest);
+    static FString AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Bulk add (grant) and/or remove assets to/from the specified player's inventory
@@ -630,8 +688,9 @@ public:
      * @param AssetsToAdd A list of assets to add to the specified player's inventory
      * @param AssetsToRemove A list of asset instance id's of assets to remove from the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
+    static FString AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Bulk add (grant) and/or remove assets to/from the specified player's inventory
@@ -642,8 +701,9 @@ public:
      * @param AssetsToAdd A list of assets to add to the specified player's inventory
      * @param AssetsToRemove A list of asset instance id's of assets to remove from the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
+    static FString AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
     
     /**
      * Bulk add (grant) and/or remove assets to/from the specified player's inventory
@@ -654,8 +714,9 @@ public:
      * @param AssetsToAdd A list of assets to add to the specified player's inventory
      * @param AssetsToRemove A list of asset instance id's of assets to remove from the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
+    static FString AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Assets
@@ -668,8 +729,9 @@ public:
      *
      * @param OnCompletedRequest Delegate for handling the server response
      * @param IncludeUGC Optional: Include user generated assets
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetAssets(const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest, bool IncludeUGC = false);
+    static FString GetAssets(const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest, bool IncludeUGC = false);
 
     /**
      * List a set of assets from this game according to the supplied pagination options
@@ -680,8 +742,9 @@ public:
      * @param After The id of the asset from where to start getting assets (non inclusive). Set to 0 to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
      * @param IncludeUGC Optional: Include user generated assets
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest, bool IncludeUGC = false);
+    static FString GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest, bool IncludeUGC = false);
 
     /**
      * Get all assets for a context.
@@ -691,8 +754,9 @@ public:
      * @param Context The context id to filter by
      * @param OnCompletedRequest Delegate for handling the server response
      * @param IncludeUGC Optional: Include user generated assets
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetAssetsByContext(int Count, int After, int Context, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest, bool IncludeUGC = false);
+    static FString GetAssetsByContext(int Count, int After, int Context, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest, bool IncludeUGC = false);
 
     //==================================================
     // Asset Instances
@@ -704,8 +768,9 @@ public:
      * @param PlayerID The player ID of the player that this player asset instance belongs to
      * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+    static FString GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
 
     /**
      * Get a single Key Value Pair from the specified asset instance by key value pair id
@@ -714,8 +779,9 @@ public:
      * @param AssetInstanceID The ID of the asset instance on this player for which to complete the operation
      * @param KeyValuePairID The ID of the specific key value pair to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest);
+    static FString GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest);
 
     /**
      * Create a key value pair on the specified asset instance
@@ -725,8 +791,9 @@ public:
      * @param Key The key to add
      * @param Value The value to set for the added key
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+    static FString AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
 
     /**
      * Create or update a list of key value pairs on the specified asset instance
@@ -735,8 +802,9 @@ public:
      * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
      * @param KeyValuePairs A list of key value pairs to update
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+    static FString UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
 
     /**
      * Update a single key value pair on the specified asset instance by key value pair id
@@ -747,8 +815,9 @@ public:
      * @param Key The key to set for the key value pair
      * @param Value The value to set for the updated key
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest);
+    static FString UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest);
 
     /**
      * Delete a key value pair from the specified asset instance by key value pair id
@@ -757,8 +826,9 @@ public:
      * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
      * @param KeyValuePairID The ID of the specific key value pair to delete
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+    static FString DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Drop Tables
@@ -770,8 +840,9 @@ public:
      * @param PlayerID The id of the player for whom to compute and lock the drop table
      * @param DropTableID The id of the drop table item to compute and lock
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
+    static FString ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory, but only use items with the specified tag
@@ -780,8 +851,9 @@ public:
      * @param DropTableID The id of the drop table item to compute and lock
      * @param Tag Which tag to limit drop table computation to
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
+    static FString ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory and include the full asset information in the response
@@ -789,8 +861,9 @@ public:
      * @param PlayerID The id of the player for whom to compute and lock the drop table
      * @param DropTableID The id of the drop table item to compute and lock
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
+    static FString ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory, but only use items with the specified tag and include the full asset information in the response
@@ -799,8 +872,9 @@ public:
      * @param DropTableID The id of the drop table item to compute and lock
      * @param Tag Which tag to limit drop table computation to
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
+    static FString ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest);
 
     /**
      * Pick drop table items from the specified drop table and player
@@ -809,8 +883,9 @@ public:
      * @param DropTableID The id of the drop table from which to pick items
      * @param DropTableItemIDsToPick A list of drop table item ids to pick
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest);
+    static FString PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Friends
@@ -823,8 +898,9 @@ public:
      * @param Page The page number to retrieve. Each page contains 'PerPage' number of items.
      * @param PerPage The number of items to retrieve per page.
      * @param OnCompletedRequest Delegate for handling the the server response.
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnCompletedRequest);
+    static FString ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Connected Accounts
@@ -837,8 +913,9 @@ public:
      * @param PlayerULIDs List of Player ULIDs
      * @param LegacyPlayerIDs List of legacy integer Player IDs
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseDelegate& OnCompletedRequest);
+    static FString ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Player
@@ -849,8 +926,9 @@ public:
      *
      * @param IdsToLookUp A list of ids to lookup also specyfying for each id which type of id it is
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest);
+    static FString LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest);
 
     /**
      * Lookup players by their game session tokens
@@ -858,8 +936,9 @@ public:
      *
      * @param GameSessionTokensToLookUp A list of game session tokens to lookup
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest);
 
     /**
      * Creates a player in LootLocker for the platform player. This works by creating an unverified session for a player with the platform and identifier from the input. 
@@ -869,8 +948,9 @@ public:
      * @param Platform The platform of the player you want to create (e.g. "Steam", "Xbox", or "Guest")
      * @param PlatformPlayerIdentifier The unique identifier for the player on the specified platform (e.g. a SteamID)
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest);
+    static FString CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Player Files
@@ -881,8 +961,9 @@ public:
      *
      * @param PlayerID ID of the player for whom to list files
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseDelegate& OnCompletedRequest);
+    static FString ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseDelegate& OnCompletedRequest);
 
     /**
      * Get the specified file currently associated with the specified player
@@ -890,8 +971,9 @@ public:
      * @param PlayerID ID of the player for whom to get the specified file
      * @param FileID ID of the file to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+    static FString GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 
     /**
      * Delete the specified file currently associated with the specified player
@@ -900,8 +982,9 @@ public:
      * @param PlayerID ID of the player for whom to delete the specified file
      * @param FileID ID of the file to delete
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest);
+    static FString DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest);
 
     /**
      * Upload the specified file to the specified player
@@ -912,8 +995,9 @@ public:
      * @param Purpose A tag specifying the purpose of this file
      * @param IsPublic Whether this file is publically available (accessible for other players)
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+    static FString UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 
     /**
      * Upload the supplied raw data as a file to the specified player
@@ -925,8 +1009,9 @@ public:
      * @param Purpose A tag specifying the purpose of this file
      * @param IsPublic Whether this file is publically available (accessible for other players)
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+    static FString UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 
     /**
      * Update the specified file for the specified player with the supplied file content
@@ -935,8 +1020,9 @@ public:
      * @param FileID ID of the file to update
      * @param FilePath The path on disk to the file you want to update the specified file with
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+    static FString UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 
     /**
      * Update the specified file for the specified player with the supplied raw data
@@ -946,8 +1032,9 @@ public:
      * @param RawData The raw data to update the specified file with
      * @param FileName The name to set for the file
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+    static FString UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Game Progressions
@@ -958,8 +1045,9 @@ public:
      * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressions
      *
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest);
+    static FString GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest);
 
     /**
      * Get a list of progressions for the game using pagination settings
@@ -967,16 +1055,18 @@ public:
      * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest);
+    static FString GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest);
 
     /**
      * Get the specified progression
      *
      * @param ProgressionKey The key of the progression you want to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseDelegate& OnCompletedRequest);
+    static FString GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseDelegate& OnCompletedRequest);
 
     /**
      * Get a list of tiers for the specified progression
@@ -984,8 +1074,9 @@ public:
      *
      * @param ProgressionKey The key of the progression for which you want to get the tiers
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
+    static FString GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
 
     /**
      * Get a list of tiers for the specified progression using pagination settings
@@ -994,8 +1085,9 @@ public:
      * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The tier step (non inclusive) to start getting tiers from. Set to 0 to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
+    static FString GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Player Progressions
@@ -1007,8 +1099,9 @@ public:
      *
      * @param PlayerID ID of the player for whom to get progressions
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest);
+    static FString GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest);
 
     /**
      * Get a list of progressions for the specified player
@@ -1017,8 +1110,9 @@ public:
      * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest);
+    static FString GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest);
 
     /**
      * Get a specific progression for the specified player
@@ -1026,8 +1120,9 @@ public:
      * @param PlayerID ID of the player for whom to get the specified progression
      * @param ProgressionKey Key of the progression to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseDelegate& OnCompletedRequest);
+    static FString GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseDelegate& OnCompletedRequest);
 
     /**
      * Add points to the specified progression for the specified player
@@ -1036,8 +1131,9 @@ public:
      * @param ProgressionKey Key of the progression to add points to for the specified player
      * @param Amount The number of points to add to the specified progression (only positive integers allowed)
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest);
+    static FString AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
      * Subtract points from the specified progression for the specified player
@@ -1046,8 +1142,9 @@ public:
      * @param ProgressionKey Key of the progression to subtract points from for the specified player
      * @param Amount The number of points to subtract from the specified progression (only positive integers allowed)
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest);
+    static FString SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
      * Reset the specified progression for the specified player
@@ -1055,8 +1152,9 @@ public:
      * @param PlayerID ID of the player for whom to reset the specified progression
      * @param ProgressionKey Key of the progression to reset for the specified player
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest);
+    static FString ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
      * Delete the specified progression for the specified player
@@ -1064,8 +1162,9 @@ public:
      * @param PlayerID ID of the player for whom to delete the specified progression
      * @param ProgressionKey Key of the progression to delete for the specified player
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseDelegate& OnCompletedRequest);
+    static FString DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Character Progressions
@@ -1078,8 +1177,9 @@ public:
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to get progressions
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetProgressionsForCharacter(int PlayerID, int CharacterID, const FLootLockerServerCharacterProgressionListResponseDelegate& OnCompletedRequest);
+    static FString GetProgressionsForCharacter(int PlayerID, int CharacterID, const FLootLockerServerCharacterProgressionListResponseDelegate& OnCompletedRequest);
 
     /**
      * Get a list of progressions for the specified player and character
@@ -1089,8 +1189,9 @@ public:
      * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetPaginatedProgressionsForCharacter(int PlayerID, int CharacterID, int32 Count, const FString& After, const FLootLockerServerCharacterProgressionListResponseDelegate& OnCompletedRequest);
+    static FString GetPaginatedProgressionsForCharacter(int PlayerID, int CharacterID, int32 Count, const FString& After, const FLootLockerServerCharacterProgressionListResponseDelegate& OnCompletedRequest);
 
     /**
      * Get a specific progression for the specified player and character
@@ -1099,8 +1200,9 @@ public:
      * @param CharacterID ID of the character for which to get the specified progression
      * @param ProgressionKey Key of the progression to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetProgressionForCharacterByKey(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionResponseDelegate& OnCompletedRequest);
+    static FString GetProgressionForCharacterByKey(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionResponseDelegate& OnCompletedRequest);
 
     /**
      * Add points to the specified progression for the specified player and character
@@ -1110,8 +1212,9 @@ public:
      * @param ProgressionKey Key of the progression to add points to for the specified player and character
      * @param Amount The number of points to add to the specified progression (only positive integers allowed)
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void AddPointsToProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest);
+    static FString AddPointsToProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
      * Subtract points from the specified progression for the specified player and character
@@ -1121,8 +1224,9 @@ public:
      * @param ProgressionKey Key of the progression to subtract points from for the specified player and character
      * @param Amount The number of points to subtract from the specified progression (only positive integers allowed)
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SubtractPointsFromProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest);
+    static FString SubtractPointsFromProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
      * Reset the specified progression for the specified player and character
@@ -1131,8 +1235,9 @@ public:
      * @param CharacterID ID of the character for which to reset the specified progression
      * @param ProgressionKey Key of the progression to reset for the specified player and character
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ResetProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest);
+    static FString ResetProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
      * Delete the specified progression for the specified player and character
@@ -1141,8 +1246,9 @@ public:
      * @param CharacterID ID of the character for which to delete the specified progression
      * @param ProgressionKey Key of the progression to delete for the specified player and character
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseDelegate& OnCompletedRequest);
+    static FString DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseDelegate& OnCompletedRequest);
 
 
     //==================================================
@@ -1155,8 +1261,9 @@ public:
  *
     * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest);
+    static FString GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest);
 
     /**
     * Get a list of progressions for the specified instance
@@ -1165,8 +1272,9 @@ public:
     * @param Count The number of progressions to get. Must be a value between 1 and 100
     * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest);
+    static FString GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest);
 
     /**
     * Get a specific progression for the specified instance
@@ -1174,8 +1282,9 @@ public:
     * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param ProgressionKey Key of the progression to get
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseDelegate& OnCompletedRequest);
+    static FString GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseDelegate& OnCompletedRequest);
 
     /**
     * Add points to the specified progression for the specified instance
@@ -1184,8 +1293,9 @@ public:
     * @param ProgressionKey Key of the progression to add points to for the specified instance
     * @param Amount The number of points to add to the specified progression (only positive integers allowed)
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest);
+    static FString AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
     * Subtract points from the specified progression for the specified instance
@@ -1194,8 +1304,9 @@ public:
     * @param ProgressionKey Key of the progression to subtract points from for the specified instance
     * @param Amount The number of points to subtract from the specified progression (only positive integers allowed)
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest);
+    static FString SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
     * Reset the specified progression for the specified instance
@@ -1203,8 +1314,9 @@ public:
     * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param ProgressionKey Key of the progression to reset for the specified instance
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-   static void ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest);
+   static FString ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
     * Delete the specified progression for the specified instance
@@ -1212,8 +1324,9 @@ public:
     * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param ProgressionKey Key of the progression to delete for the specified instance
     * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest);
+    static FString DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Currencies
@@ -1223,8 +1336,9 @@ public:
      * Get a list of available currencies for the game
      *
      * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnCompletedRequest);
+    static FString ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Balances
@@ -1235,16 +1349,18 @@ public:
      *
      * @param WalletID Unique ID of the wallet to get balances for
      * @param OnComplete Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseDelegate& OnComplete);
+    static FString ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseDelegate& OnComplete);
 
     /**
      * Get information about a specified wallet
      *
      * @param WalletID Unique ID of the wallet to get information for
      * @param OnComplete Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseDelegate& OnComplete);
+    static FString GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseDelegate& OnComplete);
 
     /**
      * Get information about a wallet for a specified holder
@@ -1252,8 +1368,9 @@ public:
      * @param HolderULID ULID of the holder of the wallet you want to get information for
      * @param HolderType The type of the holder to get the wallet for
      * @param OnComplete Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseDelegate& OnComplete);
+    static FString GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseDelegate& OnComplete);
 
     /**
      * Credit (increase) the specified amount of the provided currency to the provided wallet
@@ -1262,8 +1379,9 @@ public:
      * @param CurrencyID Unique ID of the currency to credit
      * @param Amount The amount of the given currency to credit to the given wallet
      * @param OnComplete Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseDelegate& OnComplete);
+    static FString CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseDelegate& OnComplete);
 
     /**
      * Debit (decrease) the specified amount of the provided currency to the provided wallet
@@ -1272,8 +1390,9 @@ public:
      * @param CurrencyID Unique ID of the currency to debit
      * @param Amount The amount of the given currency to debit from the given wallet
      * @param OnComplete Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseDelegate& OnComplete);
+    static FString DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseDelegate& OnComplete);
 
     //==================================================
     // Metadata
@@ -1286,8 +1405,9 @@ public:
     @param SourceID The specific source id for which to request metadata
     @param OnComplete delegate for handling the server response
     @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+    static FString ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
 
     /**
     List the requested page of Metadata for the specified source with the specified pagination
@@ -1298,8 +1418,9 @@ public:
     @param PerPage Used together with Page to apply pagination to this request.PerPage designates how many items are considered a "page"
     @param OnComplete delegate for handling the server response
     @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+    static FString ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
 
     /**
     List Metadata for the specified source that has all of the provided tags, use default pagination
@@ -1309,8 +1430,9 @@ public:
     @param Tags The tags that the requested metadata should have, only metadata matching *all of* the given tags will be returned
     @param OnComplete delegate for handling the server response
     @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+    static FString ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
 
     /**
     List the requested page of Metadata for the specified source that has all of the provided tags and paginate according to the supplied pagination settings
@@ -1322,8 +1444,9 @@ public:
     @param PerPage Used together with Page to apply pagination to this request.PerPage designates how many items are considered a "page"
     @param OnComplete delegate for handling the server response
     @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+    static FString ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
 
     /**
     Get Metadata for the specified source with the given key
@@ -1333,8 +1456,9 @@ public:
     @param Key The key of the metadata to fetch, use this to fetch metadata for a specific key for the specified source.
     @param OnComplete delegate for handling the server response
     @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const FLootLockerServerGetMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+    static FString GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const FLootLockerServerGetMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
 
     /**
     Get Metadata for the specified keys on the specified sources
@@ -1342,8 +1466,9 @@ public:
     @param SourcesAndKeysToGet The combination of sources to get keys for, and the keys to get for those sources
     @param OnComplete delegate for handling the server response
     @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
+    static FString GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete, const bool IgnoreFiles = false);
 
     /**
     Set the provided metadata for the specified source
@@ -1354,8 +1479,9 @@ public:
     @param SourceID The specific source id for which to set metadata
     @param MetadataToActionsToPerform List of actions to take during this set operation.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
-    static void SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseDelegate& OnComplete);
+    static FString SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseDelegate& OnComplete);
 
 	/*
     Get the value as a UStruct of your choice. Returns true if value could be found in which case Output contains the parsed UStruct, returns false if the value field was not present or not parseable.
@@ -1407,8 +1533,9 @@ public:
     @param RecipientPlayerUlid The ulid of the player that should receive this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayerWithoutContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayerWithoutContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1419,8 +1546,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, bool Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, bool Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1431,8 +1559,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, int Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, int Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1443,8 +1572,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, long long Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, long long Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1455,8 +1585,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, double Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, double Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1467,8 +1598,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, float Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, float Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1479,8 +1611,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const char* Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const char* Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1491,8 +1624,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const FString& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const FString& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1503,8 +1637,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TSharedPtr<FJsonValue>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TSharedPtr<FJsonValue>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1515,19 +1650,20 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
-     */
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+    */
     template<typename T>
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const T& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const T& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
     {
         TSharedPtr<FJsonObject> JsonObject = FJsonObjectConverter::UStructToJsonObject(Content);
         if (!JsonObject.IsValid())
         {
             FLootLockerServerSendNotificationsResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerSendNotificationsResponse>("Object could not be serialized", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
             OnCompletedRequest.ExecuteIfBound(ErrorResponse);
-            return;
+            return "";
         }
 
-        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent(NotificationType, Priority, RecipientPlayerUlid, MakeShared<FJsonValueObject>(JsonObject), Properties, OnCompletedRequest);
+        return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent(NotificationType, Priority, RecipientPlayerUlid, MakeShared<FJsonValueObject>(JsonObject), Properties, OnCompletedRequest);
     }
 
 
@@ -1540,8 +1676,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayerWithBoolArrayContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<bool>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayerWithBoolArrayContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<bool>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1552,8 +1689,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayerWithIntArrayContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<int>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayerWithIntArrayContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<int>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1564,8 +1702,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayerWithLargeIntArrayContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<long long>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayerWithLargeIntArrayContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<long long>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1576,8 +1715,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<double>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<double>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1588,8 +1728,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<float>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<float>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1600,8 +1741,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FString>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FString>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1612,8 +1754,9 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<TSharedPtr<FJsonValue>>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<TSharedPtr<FJsonValue>>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest);
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1624,9 +1767,10 @@ public:
     @param Content The content to send along with this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
-     */
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+    */
     template<typename T>
-    static void SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<T>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
+    static FString SendNotificationToPlayer(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<T>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
     {
         TArray<TSharedPtr<FJsonValue>> JsonArray;
         int i = 0;
@@ -1637,13 +1781,13 @@ public:
             {
                 FLootLockerServerSendNotificationsResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerSendNotificationsResponse>("Object at position " + FString::FromInt(i) + " could not be serialized", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
                 OnCompletedRequest.ExecuteIfBound(ErrorResponse);
-                return;
+                return "";
             }
             ++i;
             JsonArray.Add(MakeShared<FJsonValueObject>(JsonObject));
         }
 
-        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, JsonArray, Properties, OnCompletedRequest);
+        return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, JsonArray, Properties, OnCompletedRequest);
     }
 
 };

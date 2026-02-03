@@ -476,17 +476,21 @@ public:
      * Start a session connecting to the LootLocker services with the server API key
      *
      * @param OnCompletedRequest Delegate for handling the response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Authentication")
-    static void StartSession(const FLootLockerServerAuthResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString StartSession(const FLootLockerServerAuthResponseBP& OnCompletedRequest);
 
     /**
      * Keep the session alive, you should call this endpoint at least once per hour, to extend your tokens lifetime.
      *
      * @param OnCompletedRequest Delegate for handling the response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Authentication")
-    static void MaintainSession(const FLootLockerServerMaintainSessionResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString MaintainSession(const FLootLockerServerMaintainSessionResponseBP& OnCompletedRequest);
 
     //==================================================
     // Token Exchange
@@ -499,9 +503,11 @@ public:
 
      @param GameApiSessionToken The session token for a current game api session to use in exchange for a new one
      @param OnCompletedRequest Delegate for handling the response
+     
+     @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Token Exchange")
-    static void GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequest);
 
     /**
      Get a new active game api session token for the specified player
@@ -510,9 +516,11 @@ public:
 
      @param PlayerUlid The ulid of the player you wish to impersonate
      @param OnCompletedRequest Delegate for handling the response
+     
+     @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Token Exchange")
-    static void GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequest);
 
     //==================================================
     // Leaderboards
@@ -524,18 +532,22 @@ public:
      * @param Count Optional: The count of items you want to retrieve.
      * @param After Optional: Used for pagination, id from which the pagination starts from.
      * @param OnCompletedRequestBP Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard", meta = (AdvancedDisplay = "Count,After", Count = 50, After = 0))
-    static void ListLeaderboards(int Count, int After, const FLootLockerServerListLeaderboardsResponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString ListLeaderboards(int Count, int After, const FLootLockerServerListLeaderboardsResponseBP& OnCompletedRequestBP);
 
     /**
      * Get information about a given leaderboard.
      *
      * @param LeaderboardKey The key of the leaderboard to get information for
      * @param OnCompletedRequest Delegate for handling the response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
-    static void GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseBP& OnCompletedRequest);
 
     /**
      * Create a new leaderboard with the provided details.
@@ -548,9 +560,11 @@ public:
      * @param EnableGameApiWrites Whether the Game API is permitted to write to this leaderboard
      * @param OverwriteScoreOnSubmit Submitting a new score for member will always overwrite their existing score on leaderboard
      * @param OnCompletedRequest Delegate for handling the response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
-    static void CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequest);
 
     /**
      * Update an existing leaderboard with the provided details.
@@ -562,18 +576,22 @@ public:
      * @param EnableGameApiWrites Whether the Game API is permitted to write to this leaderboard
      * @param OverwriteScoreOnSubmit Submitting a new score for member will always overwrite their existing score on leaderboard
      * @param OnCompletedRequest Delegate for handling the response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
-    static void UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseBP& OnCompletedRequest);
 
     /**
      * Delete an existing leaderboard
      *
      * @param LeaderboardKey The key of the leaderboard to delete
      * @param OnCompletedRequest Delegate for handling the response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
-    static void DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseBP& OnCompletedRequest);
 
     /**
      * Submit a score to the given leaderboard
@@ -583,9 +601,11 @@ public:
      * @param Score The score to submit
      * @param Metadata Metadata to add to the score (will only be used if the leaderboard has metadata enabled)
      * @param OnCompletedRequest Delegate for handling the response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
-    static void SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseBP& OnCompletedRequest);
 
     /**
      * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player.
@@ -593,9 +613,11 @@ public:
      * @param MemberID The ID of the member to get the scores for. For player type leaderboards this is the PlayerID, for Generic type leaderboards it can be any string so you need to know what/who you want to submit for.
 
      * @param OnCompletedRequest Delegate for handling the response
+     
+     @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
-    static void GetAllMemberRanks(FString MemberID, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetAllMemberRanks(FString MemberID, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequest);
 
     /**
      * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player, using pagination settings.
@@ -606,9 +628,11 @@ public:
      * @param After Cursor for pagination, a cursor will be returned in the response
 
      * @param OnCompletedRequest Delegate for handling the response
+     
+     @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
-    static void GetPaginatedAllMemberRanks(FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedAllMemberRanks(FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequest);
 
     /**
      * From the requested leaderboard get <count> number of scores. The list of scores has member information, rank, score, and metadata (if metadata is enabled on that leaderboard) for the given leaderboard. If leaderboard is of type player a player will also be in the response.
@@ -616,9 +640,11 @@ public:
      *
      * @param LeaderboardKey The key of the leaderboard you want to connect to.
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
-    static void GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest);
 
     /**
      * From the requested leaderboard get <count> number of scores. The list of scores has member information, rank, score, and metadata (if metadata is enabled on that leaderboard) for the given leaderboard. If leaderboard is of type player a player will also be in the response, using pagination settings.
@@ -630,17 +656,21 @@ public:
      * @param Count Number of scores returned per page
      * @param After Cursor for pagination, a cursor will be returned in the response
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
-    static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest);
 
     /**
     * Get the schedule for the specified leaderboard
     * @param LeaderboardKey The Key of the leaderboard for which to fetch the schedule
     * @param OnCompletedRequestBP Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
-    static void GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequestBP);
     
     /**
     * Set the provided schedule for the specified leaderboard
@@ -655,17 +685,21 @@ public:
     * @param Key The Key of the leaderboard for which to set the schedule
     * @param CronExpression The cron expression describing the schedule to set
     * @param OnCompletedRequest Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
-    static void CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequest);
     
     /**
     * Remove the schedule (if any) from the specified leadeboard
     * @param Key the Key of the leaderboard for which to remove the schedule
     * @param OnCompletedRequest Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
-    static void DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseBP& OnCompletedRequest);
 
     //==================================================
     // Leaderboard Archives
@@ -675,9 +709,11 @@ public:
     * List the archive of a specific Leaderboard,
     * @param LeaderboardKey The Key of the Leaderboard you want the list of archives
     * @param OnCompletedRequestBP Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
-    static void ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseBP& OnCompletedRequestBP);
 
     /**
     * Get the specified Archive which includes details such as ranks, scores and rewards.
@@ -685,9 +721,11 @@ public:
     * @param Count Optional: The count of items you want to retrieve.
     * @param After Optional: Used for pagination, id from which the pagination starts from.
     * @param OnCompletedRequestBP Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard", meta = (AdvancedDisplay = "Count,After", Count = -1, After = ""))
-    static void GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailReponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailReponseBP& OnCompletedRequestBP);
 
     //==================================================
     // Triggers
@@ -701,9 +739,11 @@ public:
      * @param TriggerName The name of the trigger to invoke for the provided player
      * @param PlayerID The ID of the player to invoke the trigger for
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Triggers")
-    static void InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player Persistent Storage
@@ -714,27 +754,33 @@ public:
      *
      * @param PlayerID The ID of the player to fetch the persistent storage for
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
-    static void GetPersistentStorageForPlayer(int PlayerID, const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPersistentStorageForPlayer(int PlayerID, const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompletedRequest);
 
     /**
      * Get the persistent storage for all the player ids provided
      *
      * @param PlayerIDs The IDs of the players to fetch the persistent storage for
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
-    static void GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompletedRequest);
 
     /**
      * Get all the public (if any) persistent storage for the provided players
      *
      * @param PlayerIDs The IDs of the players to fetch the persistent storage for
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
-    static void GetEntirePublicPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetEntirePublicPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
 
     /**
      * Get all the public (if any) persistent storage for the provided players, but filter the list by the provided keys
@@ -742,18 +788,22 @@ public:
      * @param PlayerIDs The IDs of the players to fetch the persistent storage for
      * @param Keys The keys to filter the persistent storage by, if empty all keys will be returned.
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
-    static void GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
 
     /**
      * Update the persistent storage for the provided player according to the objects provided
      *
      * @param StorageEntriesToUpdate The data to update the persistent storage with
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
-    static void UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
 
     /**
      * Delete the persistent storage for the provided keys on the provided players
@@ -762,9 +812,11 @@ public:
      * @param PlayerIDs The IDs of the players for whom to apply the delete
      * @param Keys The keys to delete for the provided players
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Persistent Storage")
-    static void DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
     
     //==================================================
     // Characters
@@ -776,9 +828,11 @@ public:
      *
      * @param PlayerID The ID of the player for whom to get the characters
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
-    static void GetPlayerCharacters(int PlayerID, const FLootLockerServerGetPlayerCharacterResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPlayerCharacters(int PlayerID, const FLootLockerServerGetPlayerCharacterResponseBP& OnCompletedRequest);
     
     /**
      * Get the inventory for the specified player and character
@@ -786,9 +840,11 @@ public:
      * @param PlayerID The ID of the player for whom to get the character inventory
      * @param CharacterID The ID of the character on the specified player for which to get the inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
-    static void GetPlayerCharacterInventory(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPlayerCharacterInventory(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Get a subset of the inventory for the specified player and character using pagination settings
@@ -799,9 +855,11 @@ public:
      * @param Count The number of inventory items to get. Must be a value between 1 and 200
      * @param After The id of the inventory item from where to start getting inventory items (non inclusive). Set to 0 to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
-    static void GetPaginatedPlayerCharacterInventory(int PlayerID, int CharacterID, int Count, int After, const FLootLockerServerGetCharacterInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedPlayerCharacterInventory(int PlayerID, int CharacterID, int Count, int After, const FLootLockerServerGetCharacterInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Get the full loadout for the specified player and character
@@ -809,9 +867,11 @@ public:
      * @param PlayerID The ID of the player for whom to get the character loadout
      * @param CharacterID The ID of the character on the specified player for which to get the loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
-    static void GetPlayerCharacterLoadout(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPlayerCharacterLoadout(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and character using an asset instance id
@@ -820,9 +880,11 @@ public:
      * @param CharacterID The ID of the character on the specified player for whose loadout to equip the asset instance
      * @param AssetInstanceID The ID of the asset instance to equip to the specified player character's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
-    static void EquipAssetToPlayerCharacterLoadoutByAssetInstanceId(int PlayerID, int CharacterID, int AssetInstanceID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString EquipAssetToPlayerCharacterLoadoutByAssetInstanceId(int PlayerID, int CharacterID, int AssetInstanceID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and character using an asset id and an asset variation id
@@ -832,9 +894,11 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player character's loadout
      * @param AssetVariationID The ID of the variation of the specified asset to equip to the specified player character's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
-    static void EquipAssetToPlayerCharacterLoadoutByAssetIdAndAssetVariationId(int PlayerID, int CharacterID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString EquipAssetToPlayerCharacterLoadoutByAssetIdAndAssetVariationId(int PlayerID, int CharacterID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and character using an asset id and a rental option id
@@ -844,9 +908,11 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player character's loadout
      * @param RentalOptionID The ID of the rental option of the specified asset to equip to the specified player character's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
-    static void EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(int PlayerID, int CharacterID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(int PlayerID, int CharacterID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequest);
     /**
      * Unequip an asset instance from the loadout of specified player and character using the instance id
      *
@@ -854,9 +920,11 @@ public:
      * @param CharacterID The ID of the character on the specified player for whose loadout to unequip the asset instance
      * @param InstanceID The ID of the asset instance to unequip from the specified player character's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character")
-    static void UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP& OnCompletedRequest);
     
     //==================================================
     // Heroes
@@ -867,9 +935,11 @@ public:
      *
      * @param PlayerID The ID of the player for whom to get the heroes
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
-    static void GetPlayerHeroes(int PlayerID, const FLootLockerServerGetPlayerHeroResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPlayerHeroes(int PlayerID, const FLootLockerServerGetPlayerHeroResponseBP& OnCompletedRequest);
     
     /**
      * Get the inventory for the specified player and hero
@@ -877,9 +947,11 @@ public:
      * @param PlayerID The ID of the player for whom to get the hero inventory
      * @param HeroID The ID of the hero on the specified player for which to get the inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
-    static void GetPlayerHeroInventory(int PlayerID, int HeroID, const FLootLockerServerGetHeroInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPlayerHeroInventory(int PlayerID, int HeroID, const FLootLockerServerGetHeroInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Get a subset of the inventory for the specified player and hero using pagination settings
@@ -890,9 +962,11 @@ public:
      * @param Count The number of inventory items to get. Must be a value between 1 and 200
      * @param After The id of the inventory item from where to start getting inventory items (non inclusive). Set to 0 to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
-    static void GetPaginatedPlayerHeroInventory(int PlayerID, int HeroID, int Count, int After, const FLootLockerServerGetHeroInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedPlayerHeroInventory(int PlayerID, int HeroID, int Count, int After, const FLootLockerServerGetHeroInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Get the full loadout for the specified player and hero
@@ -900,9 +974,11 @@ public:
      * @param PlayerID The ID of the player for whom to get the hero loadout
      * @param HeroID The ID of the hero on the specified player for which to get the loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
-    static void GetPlayerHeroLoadout(int PlayerID, int HeroID, const FLootLockerServerGetHeroLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPlayerHeroLoadout(int PlayerID, int HeroID, const FLootLockerServerGetHeroLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and hero using an asset instance id
@@ -911,9 +987,11 @@ public:
      * @param HeroID The ID of the hero on the specified player for whose loadout to equip the asset instance
      * @param AssetInstanceID The ID of the asset instance to equip to the specified player hero's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
-    static void EquipAssetToPlayerHeroLoadoutByAssetInstanceId(int PlayerID, int HeroID, int AssetInstanceID, const FLootLockerServerEquipAssetToHeroLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString EquipAssetToPlayerHeroLoadoutByAssetInstanceId(int PlayerID, int HeroID, int AssetInstanceID, const FLootLockerServerEquipAssetToHeroLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and hero using an asset id and an asset variation id
@@ -923,9 +1001,11 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player hero's loadout
      * @param AssetVariationID The ID of the variation of the specified asset to equip to the specified player hero's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
-    static void EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(int PlayerID, int HeroID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToHeroLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(int PlayerID, int HeroID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToHeroLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the loadout of specified player and hero using an asset id and a rental option id
@@ -935,9 +1015,11 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player hero's loadout
      * @param RentalOptionID The ID of the rental option of the specified asset to equip to the specified player hero's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
-    static void EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseBP& OnCompletedRequest);
     /**
      * Unequip an asset instance from the loadout of specified player and hero using the instance id
      *
@@ -945,9 +1027,11 @@ public:
      * @param HeroID The ID of the hero on the specified player for whose loadout to unequip the asset instance
      * @param InstanceID The ID of the asset instance to unequip from the specified player hero's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Heroes")
-    static void UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player Inventory
@@ -957,18 +1041,22 @@ public:
      * Get a list of assets that are available for all player's in the game
      *
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void GetUniversalInventory(const FLootLockerServerGetUniversalInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetUniversalInventory(const FLootLockerServerGetUniversalInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Get the specified player's default character's inventory
      *
      * @param PlayerID The ID of the player for whom to get the inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void GetPlayerInventory(int PlayerID, const FLootLockerServerGetPlayerInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPlayerInventory(int PlayerID, const FLootLockerServerGetPlayerInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Get the specified player's default character's inventory according to the specified pagination parameters
@@ -978,18 +1066,22 @@ public:
      * @param Count The number of inventory items to get. Must be a value between 1 and 200
      * @param After The id of the inventory item from where to start getting inventory items (non inclusive). Set to 0 to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void GetPaginatedPlayerInventory(int PlayerID, int Count, int After, const FLootLockerServerGetPlayerInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedPlayerInventory(int PlayerID, int Count, int After, const FLootLockerServerGetPlayerInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Get the specified player's default character's loadout
      *
      * @param PlayerID The ID of the player for whom to get the loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void GetPlayerLoadout(int PlayerID, const FLootLockerServerGetPlayerLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPlayerLoadout(int PlayerID, const FLootLockerServerGetPlayerLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the specified player's default character's loadout using an asset id which will equip that asset's default variation
@@ -998,9 +1090,11 @@ public:
      * @param PlayerID The ID of the player for whom to equip the asset
      * @param AssetID The ID of the asset to equip to the specified player's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void EquipAssetToPlayerLoadoutByAssetId(int PlayerID, int AssetID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString EquipAssetToPlayerLoadoutByAssetId(int PlayerID, int AssetID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Equip the specified asset instance to the specified player's default character's loadout
@@ -1009,9 +1103,11 @@ public:
      * @param PlayerID The ID of the player for whom to equip the asset
      * @param AssetInstanceID The Instance ID of the asset to equip to the specified player's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void EquipAssetToPlayerLoadoutByAssetInstanceId(int PlayerID, int AssetInstanceID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString EquipAssetToPlayerLoadoutByAssetInstanceId(int PlayerID, int AssetInstanceID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the specified player's default character's loadout by specifiying an asset id and which variation id of the asset to equip
@@ -1021,9 +1117,11 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player's loadout
      * @param AssetVariationID The ID of the variation of the specified asset to equip to the specified player's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(int PlayerID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(int PlayerID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Equip an asset instance to the specified player's default character's loadout by specyfiying an asset id and which rental option id of the asset to equip
@@ -1033,9 +1131,11 @@ public:
      * @param AssetID The ID of the asset to equip to the specified player's loadout
      * @param RentalOptionID The ID of the rental option of the specified asset to equip to the specified player's loadout
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Unequip an asset instance from the specified player's default character's loadout
@@ -1044,9 +1144,11 @@ public:
      * @param PlayerID The ID of the player for whom to unequip the asset
      * @param InstanceID The Instance ID of the asset in the specified player's loadout to unequip
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void UnequipAssetFromPlayerLoadout(int PlayerID, int InstanceID, const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UnequipAssetFromPlayerLoadout(int PlayerID, int InstanceID, const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP& OnCompletedRequest);
     
     /**
      * Add the specified asset to the specified player's inventory (grant the asset) using an asset id which will equip that asset's default variation
@@ -1055,9 +1157,11 @@ public:
      * @param PlayerID The ID of the player for whom to add the asset
      * @param AssetID The ID of the asset to add to the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Add the specified asset to the specified player's inventory (grant the asset) by specifiying an asset id and which variation id of the asset to equip
@@ -1067,9 +1171,11 @@ public:
      * @param AssetID The ID of the asset to add to the specified player's inventory
      * @param VariationID The ID of the specific variation of the specified asset to add to the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Add the specified asset to the specified player's inventory (grant the asset) by specyfiying an asset id and which rental option id of the asset to equip
@@ -1079,9 +1185,11 @@ public:
      * @param AssetID The ID of the asset to add to the specified player's inventory
      * @param RentalOptionID The ID of the specific rental option of the specified asset to add to the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Bulk add (grant) and/or remove assets to/from the specified player's inventory
@@ -1092,9 +1200,11 @@ public:
      * @param AssetsToAdd A list of assets to add to the specified player's inventory
      * @param AssetsToRemove A list of asset instance id's of assets to remove from the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Bulk add (grant) and/or remove assets to/from the specified player's inventory
@@ -1105,9 +1215,11 @@ public:
      * @param AssetsToAdd A list of assets to add to the specified player's inventory
      * @param AssetsToRemove A list of asset instance id's of assets to remove from the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
     
     /**
      * Bulk add (grant) and/or remove assets to/from the specified player's inventory
@@ -1118,9 +1230,11 @@ public:
      * @param AssetsToAdd A list of assets to add to the specified player's inventory
      * @param AssetsToRemove A list of asset instance id's of assets to remove from the specified player's inventory
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
-    static void AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
 
     //==================================================
     // Assets
@@ -1133,9 +1247,11 @@ public:
      *
      * @param IncludeUGC Optional: Include user generated assets
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta = (AdvancedDisplay = "IncludeUGC", IncludeUGC = false))
-    static void GetAssets(bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetAssets(bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
 
     /**
      * List a set of assets from this game according to the supplied pagination options
@@ -1146,9 +1262,11 @@ public:
      * @param After The id of the asset from where to start getting assets (non inclusive). Set to 0 to start from the first item
      * @param IncludeUGC Optional: Include user generated assets
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta = (AdvancedDisplay = "IncludeUGC", IncludeUGC = false))
-    static void GetPaginatedAssets(int Count, int After, bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedAssets(int Count, int After, bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
 
     /**
      * Get all assets for a context.
@@ -1158,9 +1276,11 @@ public:
      * @param Context The context id to filter by
      * @param IncludeUGC Optional: Include user generated assets
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta = (AdvancedDisplay = "IncludeUGC", IncludeUGC = false))
-    static void GetAssetsByContext(int Count, int After, int Context, bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetAssetsByContext(int Count, int After, int Context, bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequest);
 
     /**
      * List assets with configurable response data. Use this to limit the fields returned in the response and improve performance.
@@ -1169,17 +1289,21 @@ public:
      * @param PerPage Optional: page size (ignored if 0 or negative)
      * @param Page Optional: page index (ignored if 0 or negative)
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta=(AdvancedDisplay="PerPage,Page", PerPage=-1, Page=-1))
-    static void ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseBP& OnCompletedRequest);
 
     /**
     * List assets with default parameters (no filters, first page, default page size)
     * Lightweight alternative for retrieving assets where only selected data is needed
     * @param OnCompletedRequest Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets")
-    static void ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseBP& OnCompletedRequest);
 
     /**
      * List contexts with pagination support
@@ -1187,9 +1311,11 @@ public:
      * @param PerPage Optional: page size (ignored if 0 or negative)
      * @param Page Optional: page index (ignored if 0 or negative)
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta=(AdvancedDisplay="PerPage,Page", PerPage=-1, Page=-1))
-    static void ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseBP& OnCompletedRequest);
 
     //==================================================
     // Asset Instances
@@ -1201,9 +1327,11 @@ public:
      * @param PlayerID The player ID of the player that this player asset instance belongs to
      * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Asset Instances")
-    static void GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest);
 
     /**
      * Get a single Key Value Pair from the specified asset instance by key value pair id
@@ -1212,9 +1340,11 @@ public:
      * @param AssetInstanceID The ID of the asset instance on this player for which to complete the operation
      * @param KeyValuePairID The ID of the specific key value pair to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Asset Instances")
-    static void GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseBP& OnCompletedRequest);
 
     /**
      * Create a key value pair on the specified asset instance
@@ -1224,9 +1354,11 @@ public:
      * @param Key The key to add
      * @param Value The value to set for the added key
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Asset Instances")
-    static void AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest);
 
     /**
      * Create or update a list of key value pairs on the specified asset instance
@@ -1235,9 +1367,11 @@ public:
      * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
      * @param KeyValuePairs A list of key value pairs to update
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Asset Instances")
-    static void UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest);
 
     /**
      * Update a single key value pair on the specified asset instance by key value pair id
@@ -1248,9 +1382,11 @@ public:
      * @param Key The key to set for the key value pair
      * @param Value The value to set for the updated key
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Asset Instances")
-    static void UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseBP& OnCompletedRequest);
 
     /**
      * Delete a key value pair from the specified asset instance by key value pair id
@@ -1259,9 +1395,11 @@ public:
      * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
      * @param KeyValuePairID The ID of the specific key value pair to delete
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Asset Instances")
-    static void DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest);
 
     //==================================================
     // Drop Tables
@@ -1273,9 +1411,11 @@ public:
      * @param PlayerID The id of the player for whom to compute and lock the drop table
      * @param DropTableID The id of the drop table item to compute and lock
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
-    static void ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory, but only use items with the specified tag
@@ -1284,9 +1424,11 @@ public:
      * @param DropTableID The id of the drop table item to compute and lock
      * @param Tag Which tag to limit drop table computation to
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
-    static void ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory and include the full asset information in the response
@@ -1294,9 +1436,11 @@ public:
      * @param PlayerID The id of the player for whom to compute and lock the drop table
      * @param DropTableID The id of the drop table item to compute and lock
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
-    static void ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory, but only use items with the specified tag and include the full asset information in the response
@@ -1305,9 +1449,11 @@ public:
      * @param DropTableID The id of the drop table item to compute and lock
      * @param Tag Which tag to limit drop table computation to
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
-    static void ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseBP& OnCompletedRequest);
 
     /**
      * Pick drop table items from the specified drop table and player
@@ -1316,9 +1462,11 @@ public:
      * @param DropTableID The id of the drop table from which to pick items
      * @param DropTableItemIDsToPick A list of drop table item ids to pick
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Drop Tables")
-    static void PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseBP& OnCompletedRequest);
 
     //==================================================
     // Friends
@@ -1331,9 +1479,11 @@ public:
      * @param Page The page number to retrieve. Each page contains 'PerPage' number of items.
      * @param PerPage The number of items to retrieve per page.
      * @param OnCompletedRequest Delegate for handling the the server response.
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Friends")
-    static void ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseBP& OnCompletedRequest);
 
     //==================================================
     // Connected Accounts
@@ -1346,9 +1496,11 @@ public:
      * @param PlayerULIDs List of Player ULIDs
      * @param LegacyPlayerIDs List of legacy integer Player IDs
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Connected Accounts")
-    static void ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player
@@ -1359,9 +1511,11 @@ public:
      *
      * @param IdsToLookUp A list of ids to lookup also specyfying for each id which type of id it is
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player")
-    static void LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseBP& OnCompletedRequest);
 
     /**
      * Lookup players by their game session tokens
@@ -1369,9 +1523,11 @@ public:
      *
      * @param GameSessionTokensToLookUp A list of game session tokens to lookup
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player")
-    static void GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP& OnCompletedRequest);
 
     /**
      * Creates a player in LootLocker for the platform player. This works by creating an unverified session for a player with the platform and identifier from the input. 
@@ -1381,9 +1537,11 @@ public:
      * @param Platform The platform of the player you want to create (e.g. "Steam", "Xbox", or "Guest")
      * @param PlatformPlayerIdentifier The unique identifier for the player on the specified platform (e.g. a SteamID)
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player")
-    static void CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player Files
@@ -1394,9 +1552,11 @@ public:
      *
      * @param PlayerID ID of the player for whom to list files
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static void ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseBP& OnCompletedRequest);
 
     /**
      * Get the specified file currently associated with the specified player
@@ -1404,9 +1564,11 @@ public:
      * @param PlayerID ID of the player for whom to get the specified file
      * @param FileID ID of the file to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static void GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
 
     /**
      * Delete the specified file currently associated with the specified player
@@ -1415,9 +1577,11 @@ public:
      * @param PlayerID ID of the player for whom to delete the specified file
      * @param FileID ID of the file to delete
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static void DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseBP& OnCompletedRequest);
 
     /**
      * Upload the specified file to the specified player
@@ -1428,9 +1592,11 @@ public:
      * @param Purpose A tag specifying the purpose of this file
      * @param IsPublic Whether this file is publically available (accessible for other players)
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static void UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
 
     /**
      * Upload the supplied raw data as a file to the specified player
@@ -1442,9 +1608,11 @@ public:
      * @param Purpose A tag specifying the purpose of this file
      * @param IsPublic Whether this file is publically available (accessible for other players)
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static void UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
 
     /**
      * Update the specified file for the specified player with the supplied file content
@@ -1453,9 +1621,11 @@ public:
      * @param FileID ID of the file to update
      * @param FilePath The path on disk to the file you want to update the specified file with
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static void UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
 
     /**
      * Update the specified file for the specified player with the supplied raw data
@@ -1465,9 +1635,11 @@ public:
      * @param RawData The raw data to update the specified file with
      * @param FileName The name to set for the file
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static void UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
 
     //==================================================
     // Game Progressions
@@ -1478,9 +1650,11 @@ public:
      * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressions
      *
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Game Progressions")
-    static void GetProgressions(const FLootLockerServerGameProgressionListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetProgressions(const FLootLockerServerGameProgressionListResponseBP& OnCompletedRequest);
 
     /**
      * Get a list of progressions for the game using pagination settings
@@ -1488,18 +1662,22 @@ public:
      * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Game Progressions")
-    static void GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseBP& OnCompletedRequest);
 
     /**
      * Get the specified progression
      *
      * @param ProgressionKey The key of the progression you want to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Game Progressions")
-    static void GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseBP& OnCompletedRequest);
 
     /**
      * Get a list of tiers for the specified progression
@@ -1507,9 +1685,11 @@ public:
      *
      * @param ProgressionKey The key of the progression for which you want to get the tiers
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Game Progressions")
-    static void GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseBP& OnCompletedRequest);
 
     /**
      * Get a list of tiers for the specified progression using pagination settings
@@ -1518,9 +1698,11 @@ public:
      * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The tier step (non inclusive) to start getting tiers from. Set to 0 to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Game Progressions")
-    static void GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseBP& OnCompletedRequest);
 
     //==================================================
     // Player Progressions
@@ -1532,9 +1714,11 @@ public:
      *
      * @param PlayerID ID of the player for whom to get progressions
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
-    static void GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest);
 
     /**
      * Get a list of progressions for the specified player
@@ -1543,9 +1727,11 @@ public:
      * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
-    static void GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest);
 
     /**
      * Get a specific progression for the specified player
@@ -1553,9 +1739,11 @@ public:
      * @param PlayerID ID of the player for whom to get the specified progression
      * @param ProgressionKey Key of the progression to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
-    static void GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseBP& OnCompletedRequest);
 
     /**
      * Add points to the specified progression for the specified player
@@ -1564,9 +1752,11 @@ public:
      * @param ProgressionKey Key of the progression to add points to for the specified player
      * @param Amount The number of points to add to the specified progression (only positive integers allowed)
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
-    static void AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest);
 
     /**
      * Subtract points from the specified progression for the specified player
@@ -1575,9 +1765,11 @@ public:
      * @param ProgressionKey Key of the progression to subtract points from for the specified player
      * @param Amount The number of points to subtract from the specified progression (only positive integers allowed)
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
-    static void SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest);
 
     /**
      * Reset the specified progression for the specified player
@@ -1585,9 +1777,11 @@ public:
      * @param PlayerID ID of the player for whom to reset the specified progression
      * @param ProgressionKey Key of the progression to reset for the specified player
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
-    static void ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest);
 
     /**
      * Delete the specified progression for the specified player
@@ -1595,9 +1789,11 @@ public:
      * @param PlayerID ID of the player for whom to delete the specified progression
      * @param ProgressionKey Key of the progression to delete for the specified player
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Progressions")
-    static void DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseBP& OnCompletedRequest);
 
     //==================================================
     // Character Progressions
@@ -1610,9 +1806,11 @@ public:
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to get progressions
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
-    static void GetProgressionsForCharacter(int PlayerID, int CharacterID, const FLootLockerServerCharacterProgressionListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetProgressionsForCharacter(int PlayerID, int CharacterID, const FLootLockerServerCharacterProgressionListResponseBP& OnCompletedRequest);
 
     /**
      * Get a list of progressions for the specified player and character
@@ -1622,9 +1820,11 @@ public:
      * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
-    static void GetPaginatedProgressionsForCharacter(int PlayerID, int CharacterID, int32 Count, const FString& After, const FLootLockerServerCharacterProgressionListResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedProgressionsForCharacter(int PlayerID, int CharacterID, int32 Count, const FString& After, const FLootLockerServerCharacterProgressionListResponseBP& OnCompletedRequest);
 
     /**
      * Get a specific progression for the specified player and character
@@ -1633,9 +1833,11 @@ public:
      * @param CharacterID ID of the character for which to get the specified progression
      * @param ProgressionKey Key of the progression to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
-    static void GetProgressionForCharacterByKey(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString GetProgressionForCharacterByKey(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionResponseBP& OnCompletedRequest);
 
     /**
      * Add points to the specified progression for the specified player and character
@@ -1645,9 +1847,11 @@ public:
      * @param ProgressionKey Key of the progression to add points to for the specified player and character
      * @param Amount The number of points to add to the specified progression (only positive integers allowed)
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
-    static void AddPointsToProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString AddPointsToProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest);
 
     /**
      * Subtract points from the specified progression for the specified player and character
@@ -1657,9 +1861,11 @@ public:
      * @param ProgressionKey Key of the progression to subtract points from for the specified player and character
      * @param Amount The number of points to subtract from the specified progression (only positive integers allowed)
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
-    static void SubtractPointsFromProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString SubtractPointsFromProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest);
 
     /**
      * Reset the specified progression for the specified player and character
@@ -1668,9 +1874,11 @@ public:
      * @param CharacterID ID of the character for which to reset the specified progression
      * @param ProgressionKey Key of the progression to reset for the specified player and character
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
-    static void ResetProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ResetProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP& OnCompletedRequest);
 
     /**
      * Delete the specified progression for the specified player and character
@@ -1679,9 +1887,11 @@ public:
      * @param CharacterID ID of the character for which to delete the specified progression
      * @param ProgressionKey Key of the progression to delete for the specified player and character
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Character Progressions")
-    static void DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseBP& OnCompletedRequest);
 
     //==================================================
     // Instance Progressions
@@ -1693,9 +1903,11 @@ public:
      *
      * @param AssetInstanceId ID of the instance the specified progression belongs to
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Instance Progressions")
-    static void GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseBP& OnCompletedRequestBP);
 
      /**
      * Get a list of progressions for the specified instance
@@ -1704,9 +1916,11 @@ public:
      * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Instance Progressions")
-    static void GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseBP& OnCompletedRequestBP);
 
      /**
      * Get a specific progression for the specified instance
@@ -1714,31 +1928,37 @@ public:
      * @param AssetInstanceId ID of the instance the specified progression belongs to
      * @param ProgressionKey Key of the progression to get
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Instance Progressions")
-    static void GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseBP& OnCompletedRequestBP);
 
     /**
     * Add points to the specified progression for the specified instance
     *
-     * @param AssetInstanceId ID of the instance the specified progression belongs to
+    * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param ProgressionKey Key of the progression to add points to for the specified instance
     * @param Amount The number of points to add to the specified progression (only positive integers allowed)
     * @param OnCompletedRequest Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Instance Progressions")
-    static void AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP);
     
     /**
     * Subtract points from the specified progression for the specified instance
     *
-     * @param AssetInstanceId ID of the instance the specified progression belongs to
+    * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param ProgressionKey Key of the progression to subtract points from for the specified instance
     * @param Amount The number of points to subtract from the specified progression (only positive integers allowed)
     * @param OnCompletedRequest Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Instance Progressions")
-    static void SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP);
 
     /**
      * Reset the specified progression for the specified instance
@@ -1746,19 +1966,23 @@ public:
      * @param AssetInstanceId ID of the instance the specified progression belongs to
      * @param ProgressionKey Key of the progression to reset for the specified instance
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Instance Progressions")
-    static void ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP);
 
     /**
     * Delete the specified progression for the specified instance
     *
-     * @param AssetInstanceId ID of the instance the specified progression belongs to
+    * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param ProgressionKey Key of the progression to delete for the specified instance
     * @param OnCompletedRequest Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Instance Progressions")
-    static void DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseBP& OnCompletedRequestBP);
+    static UPARAM(DisplayName = "RequestId") FString DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseBP& OnCompletedRequestBP);
 
     //==================================================
     // Currencies
@@ -1768,9 +1992,11 @@ public:
      * Get a list of available currencies for the game
      *
      * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Currency")
-    static void ListCurrencies(const FLootLockerServerListCurrenciesResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString ListCurrencies(const FLootLockerServerListCurrenciesResponseBP& OnCompletedRequest);
 
     //==================================================
     // Balances
@@ -1781,18 +2007,22 @@ public:
      *
      * @param WalletID Unique ID of the wallet to get balances for
      * @param OnComplete Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Balance")
-    static void ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseBP& OnComplete);
+    static UPARAM(DisplayName = "RequestId") FString ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseBP& OnComplete);
 
     /**
      * Get information about a specified wallet
      *
      * @param WalletID Unique ID of the wallet to get information for
      * @param OnComplete Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Balance")
-    static void GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseBP& OnComplete);
+    static UPARAM(DisplayName = "RequestId") FString GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseBP& OnComplete);
 
     /**
      * Get information about a wallet for a specified holder
@@ -1800,9 +2030,11 @@ public:
      * @param HolderULID ULID of the holder of the wallet you want to get information for
      * @param HolderType The type of the holder to get the wallet for
      * @param OnComplete Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Balance")
-    static void GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseBP& OnComplete);
+    static UPARAM(DisplayName = "RequestId") FString GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseBP& OnComplete);
 
     /**
      * Credit (increase) the specified amount of the provided currency to the provided wallet
@@ -1811,9 +2043,11 @@ public:
      * @param CurrencyID Unique ID of the currency to credit
      * @param Amount The amount of the given currency to credit to the given wallet
      * @param OnComplete Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Balance")
-    static void CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseBP& OnComplete);
+    static UPARAM(DisplayName = "RequestId") FString CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseBP& OnComplete);
 
     /**
      * Debit (decrease) the specified amount of the provided currency to the provided wallet
@@ -1822,9 +2056,11 @@ public:
      * @param CurrencyID Unique ID of the currency to debit
      * @param Amount The amount of the given currency to debit from the given wallet
      * @param OnComplete Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Balance")
-    static void DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseBP& OnComplete);
+    static UPARAM(DisplayName = "RequestId") FString DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseBP& OnComplete);
 
     //==================================================
     // Metadata
@@ -1839,9 +2075,11 @@ public:
     @param PerPage Optional: Used together with Page to apply pagination to this request.PerPage designates how many items are considered a "page"
     @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
     @param OnComplete delegate for handling the server response
+    
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Page,PerPage,IgnoreFiles", Page = -1, PerPage = -1, IgnoreFiles = false))
-    static void ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseBP& OnComplete);
+    static UPARAM(DisplayName = "RequestId") FString ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseBP& OnComplete);
 
     /**
     List the requested page of Metadata for the specified source that has all of the provided tags and paginate according to the supplied pagination settings (if you don't specify pagination settings then default pagination will be used)
@@ -1853,9 +2091,11 @@ public:
     @param PerPage Optional: Used together with Page to apply pagination to this request.PerPage designates how many items are considered a "page"
     @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
     @param OnComplete delegate for handling the server response
+    
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Page,PerPage,Tags,IgnoreFiles", Page = -1, PerPage = -1, IgnoreFiles = false))
-    static void ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseBP& OnComplete);
+    static UPARAM(DisplayName = "RequestId") FString ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseBP& OnComplete);
 
     /**
     Get Metadata for the specified source with the given key
@@ -1865,9 +2105,11 @@ public:
     @param Key The key of the metadata to fetch, use this to fetch metadata for a specific key for the specified source.
     @param OnComplete delegate for handling the server response
     @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
+    
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "IgnoreFiles", IgnoreFiles = false))
-    static void GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const bool IgnoreFiles, const FLootLockerServerGetMetadataResponseBP& OnComplete);
+    static UPARAM(DisplayName = "RequestId") FString GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const bool IgnoreFiles, const FLootLockerServerGetMetadataResponseBP& OnComplete);
 
     /**
     Get Metadata for the specified keys on the specified sources
@@ -1875,9 +2117,11 @@ public:
     @param SourcesAndKeysToGet The combination of sources to get keys for, and the keys to get for those sources
     @param IgnoreFiles Optional: Base64 values will be set to content_type "application/x-redacted" and the content will be an empty String. Use this to avoid accidentally fetching large data files.
     @param OnComplete delegate for handling the server response
+    
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "IgnoreFiles", IgnoreFiles = false))
-    static void GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnComplete);
+    static UPARAM(DisplayName = "RequestId") FString GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnComplete);
 
     /*
      Parse a LootLockerServer Metadata Entry
@@ -1897,9 +2141,11 @@ public:
      @param Base64Value The parsed Base64 Value, populated if the OnBase64 output pin was triggered
      @param ErrorMessage An error message populated if the parsing failed and the OnError output pin was triggered
      @param OutEntry Outputs a reference to the entry that was parsed for convenience
+     
+     @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata", meta = (ExpandEnumAsExecs = "MetadataTypeSwitch", AdvancedDisplay = "OutEntry"))
-    static void ParseLootLockerServerMetadataEntry(const FLootLockerServerMetadataEntry& Entry,
+    static UPARAM(DisplayName = "RequestId") FString ParseLootLockerServerMetadataEntry(const FLootLockerServerMetadataEntry& Entry,
                                                    ELootLockerServerMetadataParserOutputTypes& MetadataTypeSwitch,
                                                    FString& StringValue,
                                                    int& IntegerValue,
@@ -1921,9 +2167,11 @@ public:
     @param SourceID The specific source id for which to set metadata
     @param MetadataToActionsToPerform List of actions to take during this set operation.
     @param OnComplete delegate for handling the server response
+    
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Metadata")
-    static void SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseBP& OnComplete);
+    static UPARAM(DisplayName = "RequestId") FString SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseBP& OnComplete);
 
     /**
     Construct a Metadata Action consisting of a metadata entry with a String value
@@ -1988,9 +2236,11 @@ public:
     @param Access The access settings to apply to the specified key. None means that the game api can not read nor write this metadata entry (this is the default). But you can supply either or both of "game_api.read", "game_api.write" and "player.read"
     @param Succeeded Output: True if the json string could be parsed as an array or object, false if it could not be parsed
     @param ConstructedEntry Output: A Metadata Action Object that you can use in the method SetMetadata
+    
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
     */
     UFUNCTION(BlueprintPure, Category = "LootLockerServer Methods | Metadata", meta = (AdvancedDisplay = "Tags,Access", AutoCreateRefTerm = "Tags,Access"))
-    static void MakeMetadataActionJson(ELootLockerServerMetadataActions Action, const FString& Key, const FString& Value, const TArray<FString>& Tags, const TArray<FString>& Access, bool& Succeeded, FLootLockerServerSetMetadataAction& ConstructedEntry);
+    static UPARAM(DisplayName = "RequestId") FString MakeMetadataActionJson(ELootLockerServerMetadataActions Action, const FString& Key, const FString& Value, const TArray<FString>& Tags, const TArray<FString>& Access, bool& Succeeded, FLootLockerServerSetMetadataAction& ConstructedEntry);
 
     /**
     Construct a Metadata Action consisting of a metadata entry with a Base64 value
@@ -2019,9 +2269,11 @@ public:
     @param RecipientPlayerUlid The ulid of the player that should receive this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
 	*/
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Notifications", CustomThunk, meta=(CustomStructureParam="Content", AutoCreateRefTerm="Properties"))
-    static void SendNotificationToPlayer(const int& Content, const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString SendNotificationToPlayer(const int& Content, const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequest);
     DECLARE_FUNCTION(execSendNotificationToPlayer);
 
     /*
@@ -2032,7 +2284,9 @@ public:
     @param RecipientPlayerUlid The ulid of the player that should receive this notification
     @param Properties An array of key value pairs to send with this notification. The player can read these key value pairs in the context dictionary.
     @param OnComplete delegate for handling the server response
+    
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Notifications", meta = (AutoCreateRefTerm = "Properties"))
-    static void SendNotificationToPlayerWithoutContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString SendNotificationToPlayerWithoutContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequest);
 };
