@@ -11,7 +11,7 @@ ULootLockerServerDropTableRequest::ULootLockerServerDropTableRequest()
 
 void ULootLockerServerDropTableRequest::ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerComputeAndLockDropTableResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ComputeAndLockDropTable, { PlayerID, DropTableID }, {}, FLootLockerServerComputeAndLockDropTableResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerComputeAndLockDropTableResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ComputeAndLockDropTable, { PlayerID, DropTableID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerDropTableRequest::ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
@@ -21,14 +21,14 @@ void ULootLockerServerDropTableRequest::ComputeAndLockDropTableForTag(int Player
     {
         QueryParams.Add("tag", Tag);
     }
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerComputeAndLockDropTableResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ComputeAndLockDropTable, { PlayerID, DropTableID }, QueryParams, FLootLockerServerComputeAndLockDropTableResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerComputeAndLockDropTableResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ComputeAndLockDropTable, { PlayerID, DropTableID }, QueryParams, OnCompletedRequest);
 }
 
 void ULootLockerServerDropTableRequest::ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
 {
     TMultiMap<FString, FString> QueryParams;
     QueryParams.Add("asset_details", "true");
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerComputeAndLockDropTableResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ComputeAndLockDropTable, { PlayerID, DropTableID }, QueryParams, FLootLockerServerComputeAndLockDropTableResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerComputeAndLockDropTableResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ComputeAndLockDropTable, { PlayerID, DropTableID }, QueryParams, OnCompletedRequest);
 }
 
 void ULootLockerServerDropTableRequest::ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
@@ -39,10 +39,10 @@ void ULootLockerServerDropTableRequest::ComputeAndLockDropTableForTagWithAssetIn
     {
         QueryParams.Add("tag", Tag);
     }
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerComputeAndLockDropTableResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ComputeAndLockDropTable, { PlayerID, DropTableID }, QueryParams, FLootLockerServerComputeAndLockDropTableResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerComputeAndLockDropTableResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ComputeAndLockDropTable, { PlayerID, DropTableID }, QueryParams, OnCompletedRequest);
 }
 
 void ULootLockerServerDropTableRequest::PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerPickFromDropTableResponse>(FLootLockerServerPickDropsFromDropTableRequest{ DropTableItemIDsToPick }, ULootLockerServerEndpoints::PickDropsFromDropTable, { PlayerID, DropTableID }, {}, FLootLockerServerPickFromDropTableResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerPickFromDropTableResponse>(FLootLockerServerPickDropsFromDropTableRequest{ DropTableItemIDsToPick }, ULootLockerServerEndpoints::PickDropsFromDropTable, { PlayerID, DropTableID }, {}, OnCompletedRequest);
 }

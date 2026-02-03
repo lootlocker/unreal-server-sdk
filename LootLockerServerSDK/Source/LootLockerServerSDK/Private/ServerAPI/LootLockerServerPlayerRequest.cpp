@@ -17,12 +17,12 @@ void ULootLockerServerPlayerRequest::LookupPlayerNames(TArray<FLootLockerServerP
 		Key.ReplaceCharInline(TEXT(' '), TEXT('_'));
 		QueryParams.Add(Key, IdsToLookUp[i].Id);
 	}
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerNameLookupResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::LookupMultiplePlayerNamesUsingIDs, {}, QueryParams, FLootLockerServerPlayerNameLookupResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerNameLookupResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::LookupMultiplePlayerNamesUsingIDs, {}, QueryParams, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerRequest::GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse>(FLootLockerServerGetPlayerInfoFromGameSessionTokenRequest{ GameSessionTokensToLookUp }, ULootLockerServerEndpoints::GetPlayerInfoFromGameSessionToken, {}, {}, FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP(), OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse>(FLootLockerServerGetPlayerInfoFromGameSessionTokenRequest{ GameSessionTokensToLookUp }, ULootLockerServerEndpoints::GetPlayerInfoFromGameSessionToken, {}, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerRequest::CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest)
@@ -47,5 +47,5 @@ void ULootLockerServerPlayerRequest::CreatePlayer(ELootLockerServerCreatePlayerP
 		case ELootLockerServerCreatePlayerPlatforms::Discord:  Request.Platform = "discord"; break;
 		default: Request.Platform = "N/A"; break;
 	}
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerCreatePlayerResponse>(Request, ULootLockerServerEndpoints::CreatePlayer, {}, {}, FLootLockerServerCreatePlayerResponseBP(), OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerCreatePlayerResponse>(Request, ULootLockerServerEndpoints::CreatePlayer, {}, {}, OnCompletedRequest);
 }
