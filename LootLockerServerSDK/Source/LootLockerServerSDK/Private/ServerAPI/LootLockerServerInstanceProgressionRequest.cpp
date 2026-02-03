@@ -9,12 +9,12 @@ ULootLockerServerInstanceProgressionRequest::ULootLockerServerInstanceProgressio
 {
 }
 
-void ULootLockerServerInstanceProgressionRequest::GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerInstanceProgressionRequest::GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerInstanceProgressionListResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllInstanceProgressions, { PlayerId, AssetInstanceId }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerInstanceProgressionListResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllInstanceProgressions, { PlayerId, AssetInstanceId }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerInstanceProgressionRequest::GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerInstanceProgressionRequest::GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest)
 {
     TMultiMap<FString, FString> QueryParams;
     if (Count > 0)
@@ -25,31 +25,31 @@ void ULootLockerServerInstanceProgressionRequest::GetPaginatedProgressionForAsse
     {
         QueryParams.Add("after", After);
     }
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerInstanceProgressionListResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllInstanceProgressions, { PlayerId, AssetInstanceId }, QueryParams, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerInstanceProgressionListResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllInstanceProgressions, { PlayerId, AssetInstanceId }, QueryParams, OnCompletedRequest);
 }
 
-void ULootLockerServerInstanceProgressionRequest::GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerInstanceProgressionRequest::GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSingleInstanceProgressionResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetSingleInstanceProgression, { PlayerId, AssetInstanceId, ProgressionKey }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerSingleInstanceProgressionResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetSingleInstanceProgression, { PlayerId, AssetInstanceId, ProgressionKey }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerInstanceProgressionRequest::AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerInstanceProgressionRequest::AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSingleInstanceProgressionWithRewardsResponse>(FLootLockerServerModifyScoreRequest{ Amount }, ULootLockerServerEndpoints::AddPointsToInstanceProgression, { PlayerId, AssetInstanceId, ProgressionKey }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerSingleInstanceProgressionWithRewardsResponse>(FLootLockerServerModifyScoreRequest{ Amount }, ULootLockerServerEndpoints::AddPointsToInstanceProgression, { PlayerId, AssetInstanceId, ProgressionKey }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerInstanceProgressionRequest::SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerInstanceProgressionRequest::SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSingleInstanceProgressionWithRewardsResponse>(FLootLockerServerModifyScoreRequest{ Amount }, ULootLockerServerEndpoints::SubtractPointsFromInstanceProgression, { PlayerId, AssetInstanceId, ProgressionKey }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerSingleInstanceProgressionWithRewardsResponse>(FLootLockerServerModifyScoreRequest{ Amount }, ULootLockerServerEndpoints::SubtractPointsFromInstanceProgression, { PlayerId, AssetInstanceId, ProgressionKey }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerInstanceProgressionRequest::ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerInstanceProgressionRequest::ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSingleInstanceProgressionWithRewardsResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ResetInstanceProgression, { PlayerId, AssetInstanceId, ProgressionKey }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerSingleInstanceProgressionWithRewardsResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ResetInstanceProgression, { PlayerId, AssetInstanceId, ProgressionKey }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerInstanceProgressionRequest::DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerInstanceProgressionRequest::DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteInstanceProgression, { PlayerId, AssetInstanceId, ProgressionKey }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteInstanceProgression, { PlayerId, AssetInstanceId, ProgressionKey }, {}, OnCompletedRequest);
 }
 
