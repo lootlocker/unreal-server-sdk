@@ -428,7 +428,9 @@ void ULootLockerServerForBlueprints::DeleteKeyValuePairFromAssetInstanceById(int
 // Friends
 void ULootLockerServerForBlueprints::ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerFriendsRequest::ListFriends(PlayerULID, Page, PerPage, OnCompletedRequest);
+    ULootLockerServerFriendsRequest::ListFriends(PlayerULID, Page, PerPage, FLootLockerServerListFriendsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerListFriendsResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 // Connected Accounts
