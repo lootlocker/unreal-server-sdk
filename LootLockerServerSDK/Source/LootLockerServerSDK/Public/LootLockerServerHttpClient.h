@@ -111,6 +111,7 @@ private:
                     ResponseStruct.ErrorData = response.ErrorData;
                 }
                 ResponseStruct.FullTextFromServer = response.FullTextFromServer;
+                ResponseStruct.RequestContext = response.RequestContext;
                 ResponseInspectorCallback.ExecuteIfBound(ResponseStruct);
                 OnCompletedRequest.ExecuteIfBound(ResponseStruct);
             });

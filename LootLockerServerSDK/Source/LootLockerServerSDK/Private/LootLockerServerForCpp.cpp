@@ -9,50 +9,50 @@
 #include "ServerAPI/LootLockerServerPlayerRequest.h"
 
 //Authentication
-void ULootLockerServerForCpp::StartSession(const FLootLockerServerAuthResponseDelegate& OnCompleteRequest)
+FString ULootLockerServerForCpp::StartSession(const FLootLockerServerAuthResponseDelegate& OnCompleteRequest)
 {
-    ULootLockerServerAuthRequest::StartSession(OnCompleteRequest);
+    return ULootLockerServerAuthRequest::StartSession(OnCompleteRequest);
 }
 
-void ULootLockerServerForCpp::MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompleteRequest)
+FString ULootLockerServerForCpp::MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompleteRequest)
 {
-    ULootLockerServerAuthRequest::MaintainSession(OnCompleteRequest);
+    return ULootLockerServerAuthRequest::MaintainSession(OnCompleteRequest);
 }
 
-void ULootLockerServerForCpp::GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerOAuthRequest::GameApiTokenExchange(GameApiSessionToken, OnCompletedRequest);
+    return ULootLockerServerOAuthRequest::GameApiTokenExchange(GameApiSessionToken, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerOAuthRequest::GameApiUserImpersonation(PlayerUlid, OnCompletedRequest);
+    return ULootLockerServerOAuthRequest::GameApiUserImpersonation(PlayerUlid, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ListLeaderboards(const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListLeaderboards(const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::ListLeaderboards(0, 0, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::ListLeaderboards(0, 0, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ListLeaderboards(int32 Count, int32 After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListLeaderboards(int32 Count, int32 After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::ListLeaderboards(Count, After, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::ListLeaderboards(Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
 {
     FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest(LeaderboardKey, Name, DirectionMethod, EnableGameApiWrites, OverwriteScoreOnSubmit);
     CreateLeaderboardRequest.Type = Type;
     CreateLeaderboardRequest.Has_metadata = HasMetadata;
-    ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
 {
     const FLootLockerServerUpdateLeaderboardRequest UpdateLeaderboardRequest(
         NewLeaderboardKey.IsEmpty() ? LeaderboardKey : NewLeaderboardKey,
@@ -61,15 +61,15 @@ void ULootLockerServerForCpp::UpdateLeaderboard(FString LeaderboardKey, FString 
         EnableGameApiWrites,
         OverwriteScoreOnSubmit
     );
-    ULootLockerServerLeaderboardRequest::UpdateLeaderboard(LeaderboardKey, UpdateLeaderboardRequest, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::UpdateLeaderboard(LeaderboardKey, UpdateLeaderboardRequest, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::DeleteLeaderboard(LeaderboardKey, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::DeleteLeaderboard(LeaderboardKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest)
 {
     const FLootLockerServerLeaderboardSubmitScoreRequest SubmitScoreRequest
     {
@@ -77,735 +77,735 @@ void ULootLockerServerForCpp::SubmitScore(FString LeaderboardKey, FString Member
         Score,
         Metadata
     };
-    ULootLockerServerLeaderboardRequest::SubmitScore(LeaderboardKey, SubmitScoreRequest, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::SubmitScore(LeaderboardKey, SubmitScoreRequest, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetAllMemberRanks(const FString MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetAllMemberRanks(const FString MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetAllMemberRanks(MemberID, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::GetAllMemberRanks(MemberID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedAllMemberRanks(const FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPaginatedAllMemberRanks(const FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetPaginatedAllMemberRanks(MemberID, Count, After, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::GetPaginatedAllMemberRanks(MemberID, Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest) {
-    ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(LeaderboardKey, OnCompletedRequest);
+FString ULootLockerServerForCpp::GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest) {
+    return ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(LeaderboardKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest) {
-    ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(LeaderboardKey, Count, After, OnCompletedRequest);
+FString ULootLockerServerForCpp::GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest) {
+    return ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(LeaderboardKey, Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetLeaderboardSchedule(LeaderboardKey, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::GetLeaderboardSchedule(LeaderboardKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::CreateLeaderboardSchedule(LeaderboardKey, CronExpression, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::CreateLeaderboardSchedule(LeaderboardKey, CronExpression, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(LeaderboardKey, OnCompletedRequest);
+    return ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(LeaderboardKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(LeaderboardKey, OnCompletedRequest);
+    return ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(LeaderboardKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardArchiveRequestHandler::GetLeaderboardArchive(Key, Count, After, OnCompletedRequest);
+    return ULootLockerServerLeaderboardArchiveRequestHandler::GetLeaderboardArchive(Key, Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerTriggerRequest::InvokeTriggerForPlayer(TriggerName, PlayerID, OnCompletedRequest);
+    return ULootLockerServerTriggerRequest::InvokeTriggerForPlayer(TriggerName, PlayerID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPersistentStorageForPlayer(int PlayerID,	const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPersistentStorageForPlayer(int PlayerID,	const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int>{PlayerID}, OnCompletedRequest);
+    return ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int>{PlayerID}, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(PlayerIDs, OnCompletedRequest);
+    return ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(PlayerIDs, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetEntirePublicPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetEntirePublicPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::GetPublicPersistentStorageForPlayersAndKeys(PlayerIDs, TArray<FString>(), OnCompletedRequest);
+    return ULootLockerServerStorageRequest::GetPublicPersistentStorageForPlayersAndKeys(PlayerIDs, TArray<FString>(), OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::GetPublicPersistentStorageForPlayersAndKeys(PlayerIDs, Keys, OnCompletedRequest);
+    return ULootLockerServerStorageRequest::GetPublicPersistentStorageForPlayersAndKeys(PlayerIDs, Keys, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(StorageEntriesToUpdate, OnCompletedRequest);
+    return ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(StorageEntriesToUpdate, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs,	TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs,	TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::DeletePersistentStorageForPlayersAndKeys(PlayerIDs, Keys, OnCompletedRequest);
+    return ULootLockerServerStorageRequest::DeletePersistentStorageForPlayersAndKeys(PlayerIDs, Keys, OnCompletedRequest);
 }
 
 // Character
 
-void ULootLockerServerForCpp::GetPlayerCharacters(int PlayerID, const FLootLockerServerGetPlayerCharacterResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPlayerCharacters(int PlayerID, const FLootLockerServerGetPlayerCharacterResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterRequest::GetPlayerCharacters(PlayerID, OnCompletedRequest);
+    return ULootLockerServerCharacterRequest::GetPlayerCharacters(PlayerID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPlayerCharacterInventory(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPlayerCharacterInventory(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterRequest::GetPlayerCharacterInventory(PlayerID, CharacterID, OnCompletedRequest);
+    return ULootLockerServerCharacterRequest::GetPlayerCharacterInventory(PlayerID, CharacterID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedPlayerCharacterInventory(int PlayerID, int CharacterID, int Count, int After, const FLootLockerServerGetCharacterInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPaginatedPlayerCharacterInventory(int PlayerID, int CharacterID, int Count, int After, const FLootLockerServerGetCharacterInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterRequest::GetPaginatedPlayerCharacterInventory(PlayerID, CharacterID, Count, After, OnCompletedRequest);
+    return ULootLockerServerCharacterRequest::GetPaginatedPlayerCharacterInventory(PlayerID, CharacterID, Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPlayerCharacterLoadout(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPlayerCharacterLoadout(int PlayerID, int CharacterID, const FLootLockerServerGetCharacterLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterRequest::GetPlayerCharacterLoadout(PlayerID, CharacterID, OnCompletedRequest);
+    return ULootLockerServerCharacterRequest::GetPlayerCharacterLoadout(PlayerID, CharacterID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::EquipAssetToPlayerCharacterLoadoutByAssetInstanceId(int PlayerID, int CharacterID, int AssetInstanceID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::EquipAssetToPlayerCharacterLoadoutByAssetInstanceId(int PlayerID, int CharacterID, int AssetInstanceID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterRequest::EquipAssetToPlayerCharacterLoadoutByAssetInstanceId(PlayerID, CharacterID, AssetInstanceID, OnCompletedRequest);
+    return ULootLockerServerCharacterRequest::EquipAssetToPlayerCharacterLoadoutByAssetInstanceId(PlayerID, CharacterID, AssetInstanceID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::EquipAssetToPlayerCharacterLoadoutByAssetIdAndAssetVariationId(int PlayerID, int CharacterID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::EquipAssetToPlayerCharacterLoadoutByAssetIdAndAssetVariationId(int PlayerID, int CharacterID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterRequest::EquipAssetToPlayerCharacterLoadoutByAssetIdAndAssetVariationId(PlayerID, CharacterID, AssetID, AssetVariationID, OnCompletedRequest);
+    return ULootLockerServerCharacterRequest::EquipAssetToPlayerCharacterLoadoutByAssetIdAndAssetVariationId(PlayerID, CharacterID, AssetID, AssetVariationID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(int PlayerID, int CharacterID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(int PlayerID, int CharacterID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterRequest::EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(PlayerID, CharacterID, AssetID, RentalOptionID, OnCompletedRequest);
+    return ULootLockerServerCharacterRequest::EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(PlayerID, CharacterID, AssetID, RentalOptionID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterRequest::UnequipAssetFromPlayerCharacterLoadout(PlayerID, CharacterID, InstanceID, OnCompletedRequest);
+    return ULootLockerServerCharacterRequest::UnequipAssetFromPlayerCharacterLoadout(PlayerID, CharacterID, InstanceID, OnCompletedRequest);
 }
 
 // Heroes
 
-void ULootLockerServerForCpp::GetPlayerHeroes(int PlayerID, const FLootLockerServerGetPlayerHeroResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPlayerHeroes(int PlayerID, const FLootLockerServerGetPlayerHeroResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHeroRequest::GetPlayerHeroes(PlayerID, OnCompletedRequest);
+    return ULootLockerServerHeroRequest::GetPlayerHeroes(PlayerID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPlayerHeroInventory(int PlayerID, int HeroID, const FLootLockerServerGetHeroInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPlayerHeroInventory(int PlayerID, int HeroID, const FLootLockerServerGetHeroInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHeroRequest::GetPlayerHeroInventory(PlayerID, HeroID, OnCompletedRequest);
+    return ULootLockerServerHeroRequest::GetPlayerHeroInventory(PlayerID, HeroID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedPlayerHeroInventory(int PlayerID, int HeroID, int Count, int After, const FLootLockerServerGetHeroInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPaginatedPlayerHeroInventory(int PlayerID, int HeroID, int Count, int After, const FLootLockerServerGetHeroInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHeroRequest::GetPaginatedPlayerHeroInventory(PlayerID, HeroID, Count, After, OnCompletedRequest);
+    return ULootLockerServerHeroRequest::GetPaginatedPlayerHeroInventory(PlayerID, HeroID, Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPlayerHeroLoadout(int PlayerID, int HeroID, const FLootLockerServerGetHeroLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPlayerHeroLoadout(int PlayerID, int HeroID, const FLootLockerServerGetHeroLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHeroRequest::GetPlayerHeroLoadout(PlayerID, HeroID, OnCompletedRequest);
+    return ULootLockerServerHeroRequest::GetPlayerHeroLoadout(PlayerID, HeroID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::EquipAssetToPlayerHeroLoadoutByAssetInstanceId(int PlayerID, int HeroID, int AssetInstanceID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::EquipAssetToPlayerHeroLoadoutByAssetInstanceId(int PlayerID, int HeroID, int AssetInstanceID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetInstanceId(PlayerID, HeroID, AssetInstanceID, OnCompletedRequest);
+    return ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetInstanceId(PlayerID, HeroID, AssetInstanceID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(int PlayerID, int HeroID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(int PlayerID, int HeroID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(PlayerID, HeroID, AssetID, AssetVariationID, OnCompletedRequest);
+    return ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(PlayerID, HeroID, AssetID, AssetVariationID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(PlayerID, HeroID, AssetID, RentalOptionID, OnCompletedRequest);
+    return ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(PlayerID, HeroID, AssetID, RentalOptionID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHeroRequest::UnequipAssetFromPlayerHeroLoadout(PlayerID, HeroID, InstanceID, OnCompletedRequest);
+    return ULootLockerServerHeroRequest::UnequipAssetFromPlayerHeroLoadout(PlayerID, HeroID, InstanceID, OnCompletedRequest);
 }
 
 // Player Inventory
 
-void ULootLockerServerForCpp::GetUniversalInventory(const FLootLockerServerGetUniversalInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetUniversalInventory(const FLootLockerServerGetUniversalInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::GetUniversalInventory(OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::GetUniversalInventory(OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPlayerInventory(int PlayerID, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPlayerInventory(int PlayerID, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::GetPlayerInventory(PlayerID, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::GetPlayerInventory(PlayerID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedPlayerInventory(int PlayerID, int Count, int After, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPaginatedPlayerInventory(int PlayerID, int Count, int After, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::GetPaginatedPlayerInventory(PlayerID, Count, After, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::GetPaginatedPlayerInventory(PlayerID, Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPlayerLoadout(int PlayerID, const FLootLockerServerGetPlayerLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPlayerLoadout(int PlayerID, const FLootLockerServerGetPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::GetPlayerLoadout(PlayerID, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::GetPlayerLoadout(PlayerID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetId(int PlayerID, int AssetID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetId(int PlayerID, int AssetID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetId(PlayerID, AssetID, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetId(PlayerID, AssetID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetInstanceId(int PlayerID, int AssetInstanceID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetInstanceId(int PlayerID, int AssetInstanceID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetInstanceId(PlayerID, AssetInstanceID, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetInstanceId(PlayerID, AssetInstanceID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(int PlayerID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(int PlayerID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(PlayerID, AssetID, AssetVariationID, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(PlayerID, AssetID, AssetVariationID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(PlayerID, AssetID, RentalOptionID, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(PlayerID, AssetID, RentalOptionID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UnequipAssetFromPlayerLoadout(int PlayerID, int InstanceID, const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UnequipAssetFromPlayerLoadout(int PlayerID, int InstanceID, const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::UnequipAssetFromPlayerLoadout(PlayerID, InstanceID, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::UnequipAssetFromPlayerLoadout(PlayerID, InstanceID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetID(PlayerID, AssetID, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetID(PlayerID, AssetID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndVariationID(PlayerID, AssetID, VariationID, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndVariationID(PlayerID, AssetID, VariationID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(PlayerID, AssetID, RentalOptionID, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(PlayerID, AssetID, RentalOptionID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
+    return ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
 }
 
 // Assets
-void ULootLockerServerForCpp::GetAssets(const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC) 
+FString ULootLockerServerForCpp::GetAssets(const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC) 
 {
-    ULootLockerServerAssetRequest::GetAssets(0, 0, -1, IncludeUGC, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::GetAssets(0, 0, -1, IncludeUGC, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC) 
+FString ULootLockerServerForCpp::GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC) 
 {
-    ULootLockerServerAssetRequest::GetAssets(Count, After, -1, IncludeUGC, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::GetAssets(Count, After, -1, IncludeUGC, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetAssetsByContext(int Count, int After, int Context, const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC)
+FString ULootLockerServerForCpp::GetAssetsByContext(int Count, int After, int Context, const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC)
 {
-    ULootLockerServerAssetRequest::GetAssets(Count, After, Context, IncludeUGC, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::GetAssets(Count, After, Context, IncludeUGC, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::ListAssets(Request, PerPage, Page, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::ListAssets(Request, PerPage, Page, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
-    ListAssets(FLootLockerServerListAssetsRequest(), 0, 0, OnCompletedRequest);
+    return ListAssets(FLootLockerServerListAssetsRequest(), 0, 0, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::ListContexts(PerPage, Page, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::ListContexts(PerPage, Page, OnCompletedRequest);
 }
 
 // Asset Instances
-void ULootLockerServerForCpp::GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::GetKeyValuePairsFromAssetInstance(PlayerID, AssetInstanceID, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::GetKeyValuePairsFromAssetInstance(PlayerID, AssetInstanceID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::GetAssetInstanceKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::GetAssetInstanceKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::AddKeyValuePairToAssetInstance(PlayerID, AssetInstanceID, Key, Value, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::AddKeyValuePairToAssetInstance(PlayerID, AssetInstanceID, Key, Value, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::UpdateKeyValuePairsOnAssetInstance(PlayerID, AssetInstanceID, KeyValuePairs, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::UpdateKeyValuePairsOnAssetInstance(PlayerID, AssetInstanceID, KeyValuePairs, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::UpdateKeyValuePairOnAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, Key, Value, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::UpdateKeyValuePairOnAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, Key, Value, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, OnCompletedRequest);
 }
 
 // Friends
 
-void ULootLockerServerForCpp::ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerFriendsRequest::ListFriends(PlayerULID, Page, PerPage, OnCompletedRequest);
+    return ULootLockerServerFriendsRequest::ListFriends(PlayerULID, Page, PerPage, OnCompletedRequest);
 }
 
 // Connected Accounts
-void ULootLockerServerForCpp::ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerConnectedAccountsRequest::ListConnectedAccounts(PlayerULIDs, LegacyPlayerIDs, OnCompletedRequest);
+    return ULootLockerServerConnectedAccountsRequest::ListConnectedAccounts(PlayerULIDs, LegacyPlayerIDs, OnCompletedRequest);
 }
 
 // Drop Tables
-void ULootLockerServerForCpp::ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ComputeAndLockDropTable(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerDropTableRequest::ComputeAndLockDropTable(PlayerID, DropTableID, OnCompletedRequest);
+    return ULootLockerServerDropTableRequest::ComputeAndLockDropTable(PlayerID, DropTableID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ComputeAndLockDropTableForTag(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerDropTableRequest::ComputeAndLockDropTableForTag(PlayerID, DropTableID, Tag, OnCompletedRequest);
+    return ULootLockerServerDropTableRequest::ComputeAndLockDropTableForTag(PlayerID, DropTableID, Tag, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ComputeAndLockDropTableWithAssetInformation(int PlayerID, int DropTableID, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerDropTableRequest::ComputeAndLockDropTableWithAssetInformation(PlayerID, DropTableID, OnCompletedRequest);
+    return ULootLockerServerDropTableRequest::ComputeAndLockDropTableWithAssetInformation(PlayerID, DropTableID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ComputeAndLockDropTableForTagWithAssetInformation(int PlayerID, int DropTableID, const FString& Tag, const FLootLockerServerComputeAndLockDropTableResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerDropTableRequest::ComputeAndLockDropTableForTagWithAssetInformation(PlayerID, DropTableID, Tag, OnCompletedRequest);
+    return ULootLockerServerDropTableRequest::ComputeAndLockDropTableForTagWithAssetInformation(PlayerID, DropTableID, Tag, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerDropTableRequest::PickDropsFromDropTable(PlayerID, DropTableID, DropTableItemIDsToPick, OnCompletedRequest);
+    return ULootLockerServerDropTableRequest::PickDropsFromDropTable(PlayerID, DropTableID, DropTableItemIDsToPick, OnCompletedRequest);
 }
 
 // Player
-void ULootLockerServerForCpp::LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest) 
+FString ULootLockerServerForCpp::LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest) 
 {
-    ULootLockerServerPlayerRequest::LookupPlayerNames(IdsToLookUp, OnCompletedRequest);
+    return ULootLockerServerPlayerRequest::LookupPlayerNames(IdsToLookUp, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerRequest::GetPlayerInfoFromGameSessionToken(GameSessionTokensToLookUp, OnCompletedRequest);
+    return ULootLockerServerPlayerRequest::GetPlayerInfoFromGameSessionToken(GameSessionTokensToLookUp, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest) 
+FString ULootLockerServerForCpp::CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest) 
 {
-    ULootLockerServerPlayerRequest::CreatePlayer(Platform, PlatformPlayerIdentifier, OnCompletedRequest);
+    return ULootLockerServerPlayerRequest::CreatePlayer(Platform, PlatformPlayerIdentifier, OnCompletedRequest);
 }
 
 // Player Files
-void ULootLockerServerForCpp::ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::ListFilesForPlayer(PlayerID, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::ListFilesForPlayer(PlayerID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::GetFileForPlayerByID(PlayerID, FileID, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::GetFileForPlayerByID(PlayerID, FileID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::DeleteFileForPlayerByID(PlayerID, FileID, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::DeleteFileForPlayerByID(PlayerID, FileID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::UploadFileForPlayer(PlayerID, FilePath, Purpose, IsPublic, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::UploadFileForPlayer(PlayerID, FilePath, Purpose, IsPublic, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::UpdateFileForPlayer(PlayerID, FileID, FilePath, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::UpdateFileForPlayer(PlayerID, FileID, FilePath, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(PlayerID, FileID, RawData, FileName, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(PlayerID, FileID, RawData, FileName, OnCompletedRequest);
 }
 
 // Game Progressions
-void ULootLockerServerForCpp::GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerGameProgressionRequest::GetProgressions(OnCompletedRequest);
+    return ULootLockerServerGameProgressionRequest::GetProgressions(OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerGameProgressionRequest::GetPaginatedProgressions(Count, After, OnCompletedRequest);
+    return ULootLockerServerGameProgressionRequest::GetPaginatedProgressions(Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerGameProgressionRequest::GetProgressionByKey(ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerGameProgressionRequest::GetProgressionByKey(ProgressionKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerGameProgressionRequest::GetTiersForProgression(ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerGameProgressionRequest::GetTiersForProgression(ProgressionKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerGameProgressionRequest::GetPaginatedTiersForProgression(ProgressionKey, Count, After, OnCompletedRequest);
+    return ULootLockerServerGameProgressionRequest::GetPaginatedTiersForProgression(ProgressionKey, Count, After, OnCompletedRequest);
 }
 
 
 // Player Progressions
 
-void ULootLockerServerForCpp::GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::GetProgressionsForPlayer(PlayerID, OnCompletedRequest);
+    return ULootLockerServerPlayerProgressionRequest::GetProgressionsForPlayer(PlayerID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::GetPaginatedProgressionsForPlayer(PlayerID, Count, After, OnCompletedRequest);
+    return ULootLockerServerPlayerProgressionRequest::GetPaginatedProgressionsForPlayer(PlayerID, Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::GetProgressionForPlayerByKey(PlayerID, ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerPlayerProgressionRequest::GetProgressionForPlayerByKey(PlayerID, ProgressionKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::AddPointsToProgressionForPlayer(PlayerID, ProgressionKey, Amount, OnCompletedRequest);
+    return ULootLockerServerPlayerProgressionRequest::AddPointsToProgressionForPlayer(PlayerID, ProgressionKey, Amount, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::SubtractPointsFromProgressionForPlayer(PlayerID, ProgressionKey, Amount, OnCompletedRequest);
+    return ULootLockerServerPlayerProgressionRequest::SubtractPointsFromProgressionForPlayer(PlayerID, ProgressionKey, Amount, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::ResetProgressionForPlayer(PlayerID, ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerPlayerProgressionRequest::ResetProgressionForPlayer(PlayerID, ProgressionKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::DeleteProgressionForPlayer(PlayerID, ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerPlayerProgressionRequest::DeleteProgressionForPlayer(PlayerID, ProgressionKey, OnCompletedRequest);
 }
 
 // Character Progressions
 
-void ULootLockerServerForCpp::GetProgressionsForCharacter(int PlayerID, int CharacterID, const FLootLockerServerCharacterProgressionListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetProgressionsForCharacter(int PlayerID, int CharacterID, const FLootLockerServerCharacterProgressionListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterProgressionRequest::GetProgressionsForCharacter(PlayerID, CharacterID, OnCompletedRequest);
+    return ULootLockerServerCharacterProgressionRequest::GetProgressionsForCharacter(PlayerID, CharacterID, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedProgressionsForCharacter(int PlayerID, int CharacterID, int32 Count, const FString& After, const FLootLockerServerCharacterProgressionListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPaginatedProgressionsForCharacter(int PlayerID, int CharacterID, int32 Count, const FString& After, const FLootLockerServerCharacterProgressionListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterProgressionRequest::GetPaginatedProgressionsForCharacter(PlayerID, CharacterID, Count, After, OnCompletedRequest);
+    return ULootLockerServerCharacterProgressionRequest::GetPaginatedProgressionsForCharacter(PlayerID, CharacterID, Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetProgressionForCharacterByKey(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetProgressionForCharacterByKey(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterProgressionRequest::GetProgressionForCharacterByKey(PlayerID, CharacterID, ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerCharacterProgressionRequest::GetProgressionForCharacterByKey(PlayerID, CharacterID, ProgressionKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AddPointsToProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::AddPointsToProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterProgressionRequest::AddPointsToProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, Amount, OnCompletedRequest);
+    return ULootLockerServerCharacterProgressionRequest::AddPointsToProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, Amount, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SubtractPointsFromProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::SubtractPointsFromProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterProgressionRequest::SubtractPointsFromProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, Amount, OnCompletedRequest);
+    return ULootLockerServerCharacterProgressionRequest::SubtractPointsFromProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, Amount, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ResetProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ResetProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterProgressionRequest::ResetProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerCharacterProgressionRequest::ResetProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCharacterProgressionRequest::DeleteProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerCharacterProgressionRequest::DeleteProgressionForCharacter(PlayerID, CharacterID, ProgressionKey, OnCompletedRequest);
 }
 
 //Instance Progression
 
-void ULootLockerServerForCpp::GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerInstanceProgressionRequest::GetProgressionForAssetInstance(PlayerId, AssetInstanceId, OnCompletedRequest);
+    return ULootLockerServerInstanceProgressionRequest::GetProgressionForAssetInstance(PlayerId, AssetInstanceId, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerInstanceProgressionRequest::GetPaginatedProgressionForAssetInstance(PlayerId, AssetInstanceId, Count, After, OnCompletedRequest);
+    return ULootLockerServerInstanceProgressionRequest::GetPaginatedProgressionForAssetInstance(PlayerId, AssetInstanceId, Count, After, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerInstanceProgressionRequest::GetProgressionByKeyForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerInstanceProgressionRequest::GetProgressionByKeyForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerInstanceProgressionRequest::AddPointsToProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, Amount, OnCompletedRequest);
+    return ULootLockerServerInstanceProgressionRequest::AddPointsToProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, Amount, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerInstanceProgressionRequest::SubtractPointsFromProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, Amount, OnCompletedRequest);
+    return ULootLockerServerInstanceProgressionRequest::SubtractPointsFromProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, Amount, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerInstanceProgressionRequest::ResetProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerInstanceProgressionRequest::ResetProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerInstanceProgressionRequest::DeleteProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, OnCompletedRequest);
+    return ULootLockerServerInstanceProgressionRequest::DeleteProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, OnCompletedRequest);
 }
 
 // Currencies
-void ULootLockerServerForCpp::ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerCurrencyRequest::ListCurrencies(OnCompletedRequest);
+    return ULootLockerServerCurrencyRequest::ListCurrencies(OnCompletedRequest);
 }
 
 // Balances
 
-void ULootLockerServerForCpp::ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseDelegate& OnComplete)
+FString ULootLockerServerForCpp::ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseDelegate& OnComplete)
 {
-    ULootLockerServerBalanceRequest::ListBalancesInWallet(WalletID, OnComplete);
+    return ULootLockerServerBalanceRequest::ListBalancesInWallet(WalletID, OnComplete);
 }
 
-void ULootLockerServerForCpp::GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseDelegate& OnComplete)
+FString ULootLockerServerForCpp::GetWalletByWalletID(const FString& WalletID, const FLootLockerServerGetWalletResponseDelegate& OnComplete)
 {
-    ULootLockerServerBalanceRequest::GetWalletByWalletID(WalletID, OnComplete);
+    return ULootLockerServerBalanceRequest::GetWalletByWalletID(WalletID, OnComplete);
 }
 
-void ULootLockerServerForCpp::GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseDelegate& OnComplete)
+FString ULootLockerServerForCpp::GetWalletByHolderID(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerGetWalletResponseDelegate& OnComplete)
 {
-    ULootLockerServerBalanceRequest::GetWalletByHolderID(HolderULID, HolderType, OnComplete);
+    return ULootLockerServerBalanceRequest::GetWalletByHolderID(HolderULID, HolderType, OnComplete);
 }
 
-void ULootLockerServerForCpp::CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseDelegate& OnComplete)
+FString ULootLockerServerForCpp::CreditBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerCreditWalletResponseDelegate& OnComplete)
 {
-    ULootLockerServerBalanceRequest::CreditBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
+    return ULootLockerServerBalanceRequest::CreditBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
 }
 
-void ULootLockerServerForCpp::DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseDelegate& OnComplete)
+FString ULootLockerServerForCpp::DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseDelegate& OnComplete)
 {
-    ULootLockerServerBalanceRequest::DebitBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
+    return ULootLockerServerBalanceRequest::DebitBalanceToWallet(WalletID, CurrencyID, Amount, OnComplete);
 }
 
 // Metadata
 
-void ULootLockerServerForCpp::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+FString ULootLockerServerForCpp::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, -1, -1, FString(), TArray<FString>(), IgnoreFiles, OnComplete);
+    return ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, -1, -1, FString(), TArray<FString>(), IgnoreFiles, OnComplete);
 }
 
-void ULootLockerServerForCpp::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+FString ULootLockerServerForCpp::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), TArray<FString>(), IgnoreFiles, OnComplete);
+    return ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), TArray<FString>(), IgnoreFiles, OnComplete);
 }
 
-void ULootLockerServerForCpp::ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+FString ULootLockerServerForCpp::ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, -1, -1, FString(), Tags, IgnoreFiles, OnComplete);
+    return ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, -1, -1, FString(), Tags, IgnoreFiles, OnComplete);
 }
 
-void ULootLockerServerForCpp::ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+FString ULootLockerServerForCpp::ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), Tags, IgnoreFiles, OnComplete);
+    return ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), Tags, IgnoreFiles, OnComplete);
 }
 
-void ULootLockerServerForCpp::GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const FLootLockerServerGetMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+FString ULootLockerServerForCpp::GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const FLootLockerServerGetMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::GetMetadata(Source, SourceID, Key, IgnoreFiles, OnComplete);
+    return ULootLockerServerMetadataRequest::GetMetadata(Source, SourceID, Key, IgnoreFiles, OnComplete);
 }
 
-void ULootLockerServerForCpp::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
+FString ULootLockerServerForCpp::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::GetMultisourceMetadata(SourcesAndKeysToGet, IgnoreFiles, OnComplete);
+    return ULootLockerServerMetadataRequest::GetMultisourceMetadata(SourcesAndKeysToGet, IgnoreFiles, OnComplete);
 }
 
-void ULootLockerServerForCpp::SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform,	const FLootLockerServerSetMetadataResponseDelegate& OnComplete)
+FString ULootLockerServerForCpp::SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform,	const FLootLockerServerSetMetadataResponseDelegate& OnComplete)
 {
-    ULootLockerServerMetadataRequest::SetMetadata(Source, SourceID, MetadataToActionsToPerform, OnComplete);
+    return ULootLockerServerMetadataRequest::SetMetadata(Source, SourceID, MetadataToActionsToPerform, OnComplete);
 }
 
 // Notifications
 
-void ULootLockerServerForCpp::SendNotificationToPlayerWithoutContent(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayerWithoutContent(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithoutContent(NotificationType, Priority, RecipientPlayerUlid, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithoutContent(NotificationType, Priority, RecipientPlayerUlid, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, bool Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, int Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, long long Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, double Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, float Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithFloatContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithFloatContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const char* Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, FString(Content), Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, FString(Content), Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const FString& Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid,
 	const TSharedPtr<FJsonValue>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayerWithBoolArrayContent(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayerWithBoolArrayContent(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<bool>& Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayerWithIntArrayContent(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayerWithIntArrayContent(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<int>& Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayerWithLargeIntArrayContent(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayerWithLargeIntArrayContent(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid,
 	const TArray<long long>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<double>& Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<float>& Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithFloatArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithFloatArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FString>& Content,
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
 
-void ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
+FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& NotificationType,
 	ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid,
 	const TArray<TSharedPtr<FJsonValue>>& Content, const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
+	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
