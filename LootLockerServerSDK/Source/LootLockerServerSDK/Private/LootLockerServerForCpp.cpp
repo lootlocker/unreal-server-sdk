@@ -31,17 +31,17 @@ void ULootLockerServerForCpp::GameApiUserImpersonation(const FString& PlayerUlid
 
 void ULootLockerServerForCpp::ListLeaderboards(const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::ListLeaderboards(0, 0, FLootLockerServerListLeaderboardsResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::ListLeaderboards(0, 0, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::ListLeaderboards(int32 Count, int32 After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::ListLeaderboards(Count, After, FLootLockerServerListLeaderboardsResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::ListLeaderboards(Count, After, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, FLootLockerServerGetLeaderboardResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
@@ -49,7 +49,7 @@ void ULootLockerServerForCpp::CreateLeaderboard(FString LeaderboardKey, FString 
     FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest(LeaderboardKey, Name, DirectionMethod, EnableGameApiWrites, OverwriteScoreOnSubmit);
     CreateLeaderboardRequest.Type = Type;
     CreateLeaderboardRequest.Has_metadata = HasMetadata;
-    ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, FLootLockerServerCreateLeaderboardResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
@@ -61,12 +61,12 @@ void ULootLockerServerForCpp::UpdateLeaderboard(FString LeaderboardKey, FString 
         EnableGameApiWrites,
         OverwriteScoreOnSubmit
     );
-    ULootLockerServerLeaderboardRequest::UpdateLeaderboard(LeaderboardKey, UpdateLeaderboardRequest, FLootLockerServerUpdateLeaderboardResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::UpdateLeaderboard(LeaderboardKey, UpdateLeaderboardRequest, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::DeleteLeaderboard(LeaderboardKey, FLootLockerServerDeleteLeaderboardResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::DeleteLeaderboard(LeaderboardKey, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest)
@@ -77,40 +77,40 @@ void ULootLockerServerForCpp::SubmitScore(FString LeaderboardKey, FString Member
         Score,
         Metadata
     };
-    ULootLockerServerLeaderboardRequest::SubmitScore(LeaderboardKey, SubmitScoreRequest, FLootLockerServerLeaderboardSubmitScoreResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::SubmitScore(LeaderboardKey, SubmitScoreRequest, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::GetAllMemberRanks(const FString MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetAllMemberRanks(MemberID, FLootLockerServerGetAllMemberRanksResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::GetAllMemberRanks(MemberID, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::GetPaginatedAllMemberRanks(const FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetPaginatedAllMemberRanks(MemberID, Count, After, FLootLockerServerGetAllMemberRanksResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::GetPaginatedAllMemberRanks(MemberID, Count, After, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest) {
-    ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(LeaderboardKey, FLootLockerServerGetScoresFromLeaderboardResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(LeaderboardKey, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest) {
-    ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(LeaderboardKey, Count, After, FLootLockerServerGetScoresFromLeaderboardResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(LeaderboardKey, Count, After, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetLeaderboardSchedule(LeaderboardKey, FLootLockerServerGetLeaderboardScheduleResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::GetLeaderboardSchedule(LeaderboardKey, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::CreateLeaderboardSchedule(LeaderboardKey, CronExpression, FLootLockerServerGetLeaderboardScheduleResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::CreateLeaderboardSchedule(LeaderboardKey, CronExpression, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(LeaderboardKey, FLootLockerServerDeleteLeaderboardScheduleResponseBP(), OnCompletedRequest);
+    ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(LeaderboardKey, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest)
