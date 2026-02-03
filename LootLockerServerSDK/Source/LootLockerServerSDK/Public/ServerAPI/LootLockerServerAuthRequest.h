@@ -66,6 +66,6 @@ public:
 	ULootLockerServerAuthRequest();
 
 public:
-	static void StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest);
-	static void MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest);
+	static FString StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest);
+	static FString MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest);
 };

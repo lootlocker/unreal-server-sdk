@@ -10,7 +10,7 @@ ULootLockerServerLeaderboardRequest::ULootLockerServerLeaderboardRequest()
 {
 }
 
-void ULootLockerServerLeaderboardRequest::ListLeaderboards(int Count, int After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::ListLeaderboards(int Count, int After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest)
 {
 	TMultiMap<FString, FString> QueryParams;
 	if(Count > 0)
@@ -21,40 +21,40 @@ void ULootLockerServerLeaderboardRequest::ListLeaderboards(int Count, int After,
 	{
 		QueryParams.Add("after", FString::FromInt(After));
 	}
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerListLeaderboardsResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ListLeaderboards, {}, QueryParams, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerListLeaderboardsResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ListLeaderboards, {}, QueryParams, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetLeaderboard, {LeaderboardKey}, {}, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetLeaderboard, {LeaderboardKey}, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerCreateLeaderboardResponse>(CreateLeaderboardRequest, ULootLockerServerEndpoints::CreateLeaderboard, {}, {}, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerCreateLeaderboardResponse>(CreateLeaderboardRequest, ULootLockerServerEndpoints::CreateLeaderboard, {}, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::UpdateLeaderboard(const FString& LeaderboardKey, const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequest, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::UpdateLeaderboard(const FString& LeaderboardKey, const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequest, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerUpdateLeaderboardResponse>(UpdateLeaderboardRequest, ULootLockerServerEndpoints::UpdateLeaderboard, {LeaderboardKey}, {}, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerUpdateLeaderboardResponse>(UpdateLeaderboardRequest, ULootLockerServerEndpoints::UpdateLeaderboard, {LeaderboardKey}, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::DeleteLeaderboard(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::DeleteLeaderboard(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteLeaderboard, {LeaderboardKey}, {}, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteLeaderboard, {LeaderboardKey}, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::SubmitScore(const FString& LeaderboardKey, const FLootLockerServerLeaderboardSubmitScoreRequest& SubmitScoreRequest, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::SubmitScore(const FString& LeaderboardKey, const FLootLockerServerLeaderboardSubmitScoreRequest& SubmitScoreRequest, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardSubmitScoreResponse>(SubmitScoreRequest, ULootLockerServerEndpoints::SubmitScore, { LeaderboardKey }, {}, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardSubmitScoreResponse>(SubmitScoreRequest, ULootLockerServerEndpoints::SubmitScore, { LeaderboardKey }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::GetAllMemberRanks(const FString& MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::GetAllMemberRanks(const FString& MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAllMemberRanksResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllMemberRanks, { MemberID }, {}, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAllMemberRanksResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllMemberRanks, { MemberID }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::GetPaginatedAllMemberRanks(const FString& MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::GetPaginatedAllMemberRanks(const FString& MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
 {
 	TMultiMap<FString, FString> QueryParams;
 	if(Count > 0)
@@ -65,15 +65,15 @@ void ULootLockerServerLeaderboardRequest::GetPaginatedAllMemberRanks(const FStri
 	{
 		QueryParams.Add("after", FString::FromInt(After));
 	}
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAllMemberRanksResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllMemberRanks, { MemberID }, QueryParams, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAllMemberRanksResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllMemberRanks, { MemberID }, QueryParams, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(const FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(const FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetScoresFromLeaderboardResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetScoresFromLeaderboard, { LeaderboardKey }, {}, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetScoresFromLeaderboardResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetScoresFromLeaderboard, { LeaderboardKey }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(const FString LeaderboardKey, const int Count, const int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(const FString LeaderboardKey, const int Count, const int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest)
 {
 	TMultiMap<FString, FString> QueryParams;
 	QueryParams.Add("count", FString::FromInt(Count > 0 ? Count : 50));
@@ -81,20 +81,20 @@ void ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(cons
 	{
 		QueryParams.Add("after", FString::FromInt(After));
 	}
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetScoresFromLeaderboardResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetScoresFromLeaderboard, { LeaderboardKey }, QueryParams, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetScoresFromLeaderboardResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetScoresFromLeaderboard, { LeaderboardKey }, QueryParams, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerLeaderboardRequest::GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardScheduleResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetLeaderboardSchedule, { LeaderboardKey }, {}, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardScheduleResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetLeaderboardSchedule, { LeaderboardKey }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest) 
+FString ULootLockerServerLeaderboardRequest::CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest) 
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardScheduleResponse>(FLootLockerServerCreateLeaderboardScheduleRequest{CronExpression}, ULootLockerServerEndpoints::CreateLeaderboardSchedule, { LeaderboardKey }, {}, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardScheduleResponse>(FLootLockerServerCreateLeaderboardScheduleRequest{CronExpression}, ULootLockerServerEndpoints::CreateLeaderboardSchedule, { LeaderboardKey }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest) 
+FString ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest) 
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardScheduleResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteLeaderboardSchedule, { LeaderboardKey }, {}, OnCompletedRequest);
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardScheduleResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteLeaderboardSchedule, { LeaderboardKey }, {}, OnCompletedRequest);
 }

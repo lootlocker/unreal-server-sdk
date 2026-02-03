@@ -17,11 +17,11 @@ ULootLockerServerOAuthRequest::ULootLockerServerOAuthRequest()
 {
 }
 
-void ULootLockerServerOAuthRequest::GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerOAuthRequest::GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
 {
 	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
 	FString WWWFormData = FString::Format(*TokenExchangeWWWFormFormatString, { FGenericPlatformHttp::UrlEncode(TokenExchangeGrantType), FGenericPlatformHttp::UrlEncode(TokenExchangeActorTokenType), FGenericPlatformHttp::UrlEncode(TokenExchangeAccessTokenSubjectTokenType), FGenericPlatformHttp::UrlEncode(GameApiSessionToken), FGenericPlatformHttp::UrlEncode(Config->LootLockerServerKey) });
-	ULootLockerServerHttpClient::SendRawWWWFormUrlEncodedRequest<FLootLockerServerTokenExchangeResponse>(
+	return ULootLockerServerHttpClient::SendRawWWWFormUrlEncodedRequest<FLootLockerServerTokenExchangeResponse>(
 		WWWFormData,
 		ULootLockerServerEndpoints::TokenExchange,
 		{},
@@ -30,11 +30,11 @@ void ULootLockerServerOAuthRequest::GameApiTokenExchange(const FString& GameApiS
 	);
 }
 
-void ULootLockerServerOAuthRequest::GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerOAuthRequest::GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
 {
 	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
 	FString WWWFormData = FString::Format(*TokenExchangeWWWFormFormatString, { FGenericPlatformHttp::UrlEncode(TokenExchangeGrantType), FGenericPlatformHttp::UrlEncode(TokenExchangeActorTokenType), FGenericPlatformHttp::UrlEncode(TokenExchangePlayerImpersonationSubjectTokenType), FGenericPlatformHttp::UrlEncode(PlayerUlid), FGenericPlatformHttp::UrlEncode(Config->LootLockerServerKey) });
-	ULootLockerServerHttpClient::SendRawWWWFormUrlEncodedRequest<FLootLockerServerTokenExchangeResponse>(
+	return ULootLockerServerHttpClient::SendRawWWWFormUrlEncodedRequest<FLootLockerServerTokenExchangeResponse>(
 		WWWFormData,
 		ULootLockerServerEndpoints::TokenExchange,
 		{},

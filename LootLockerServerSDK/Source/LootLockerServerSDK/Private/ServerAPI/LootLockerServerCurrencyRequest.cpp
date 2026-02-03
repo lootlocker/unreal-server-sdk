@@ -8,7 +8,7 @@ ULootLockerServerCurrencyRequest::ULootLockerServerCurrencyRequest()
 {
 }
 
-void ULootLockerServerCurrencyRequest::ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnResponseCompleted)
+FString ULootLockerServerCurrencyRequest::ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnResponseCompleted)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListCurrenciesResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListCurrencies, {}, {}, OnResponseCompleted);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerListCurrenciesResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListCurrencies, {}, {}, OnResponseCompleted);
 }

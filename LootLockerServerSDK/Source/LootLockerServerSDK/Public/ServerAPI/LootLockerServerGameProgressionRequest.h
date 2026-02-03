@@ -127,9 +127,9 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerGameProgressionRequest : public U
 	public:	
 	ULootLockerServerGameProgressionRequest();	
 
-	static void GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest = FLootLockerServerGameProgressionListResponseDelegate());
-	static void GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest);
-	static void GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseDelegate& OnCompletedRequest);
-	static void GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
-	static void GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
+	static FString GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest = FLootLockerServerGameProgressionListResponseDelegate());
+	static FString GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest);
+	static FString GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseDelegate& OnCompletedRequest);
+	static FString GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
+	static FString GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
 };

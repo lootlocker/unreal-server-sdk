@@ -10,11 +10,11 @@ ULootLockerServerAuthRequest::ULootLockerServerAuthRequest()
 {
 }
 
-void ULootLockerServerAuthRequest::StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerAuthRequest::StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest)
 {
 	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
 	const FLootLockerServerAuthenticationRequest authRequest{ Config->GameVersion };
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerAuthenticationResponse>(
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerAuthenticationResponse>(
 		authRequest,
 		ULootLockerServerEndpoints::StartSession,
 		{},
@@ -28,9 +28,9 @@ void ULootLockerServerAuthRequest::StartSession(const FLootLockerServerAuthRespo
 	);
 }
 
-void ULootLockerServerAuthRequest::MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerAuthRequest::MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerMaintainSessionResponse>(
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerMaintainSessionResponse>(
 		FLootLockerServerEmptyRequest(),
 		ULootLockerServerEndpoints::MaintainingSession,
 		{},
