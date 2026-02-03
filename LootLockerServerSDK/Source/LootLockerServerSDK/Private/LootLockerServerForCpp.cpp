@@ -647,37 +647,37 @@ void ULootLockerServerForCpp::DebitBalanceToWallet(const FString& WalletID, cons
 
 void ULootLockerServerForCpp::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, -1, -1, FString(), TArray<FString>(), IgnoreFiles, FLootLockerServerListMetadataResponseBP(), OnComplete);
+    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, -1, -1, FString(), TArray<FString>(), IgnoreFiles, OnComplete);
 }
 
 void ULootLockerServerForCpp::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), TArray<FString>(), IgnoreFiles, FLootLockerServerListMetadataResponseBP(), OnComplete);
+    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), TArray<FString>(), IgnoreFiles, OnComplete);
 }
 
 void ULootLockerServerForCpp::ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, -1, -1, FString(), Tags, IgnoreFiles, FLootLockerServerListMetadataResponseBP(), OnComplete);
+    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, -1, -1, FString(), Tags, IgnoreFiles, OnComplete);
 }
 
 void ULootLockerServerForCpp::ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const FLootLockerServerListMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), Tags, IgnoreFiles, FLootLockerServerListMetadataResponseBP(), OnComplete);
+    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), Tags, IgnoreFiles, OnComplete);
 }
 
 void ULootLockerServerForCpp::GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const FLootLockerServerGetMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::GetMetadata(Source, SourceID, Key, IgnoreFiles, FLootLockerServerGetMetadataResponseBP(), OnComplete);
+    ULootLockerServerMetadataRequest::GetMetadata(Source, SourceID, Key, IgnoreFiles, OnComplete);
 }
 
 void ULootLockerServerForCpp::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete, const bool IgnoreFiles)
 {
-    ULootLockerServerMetadataRequest::GetMultisourceMetadata(SourcesAndKeysToGet, IgnoreFiles, FLootLockerServerGetMultisourceMetadataResponseBP(), OnComplete);
+    ULootLockerServerMetadataRequest::GetMultisourceMetadata(SourcesAndKeysToGet, IgnoreFiles, OnComplete);
 }
 
 void ULootLockerServerForCpp::SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform,	const FLootLockerServerSetMetadataResponseDelegate& OnComplete)
 {
-    ULootLockerServerMetadataRequest::SetMetadata(Source, SourceID, MetadataToActionsToPerform, FLootLockerServerSetMetadataResponseBP(), OnComplete);
+    ULootLockerServerMetadataRequest::SetMetadata(Source, SourceID, MetadataToActionsToPerform, OnComplete);
 }
 
 // Notifications

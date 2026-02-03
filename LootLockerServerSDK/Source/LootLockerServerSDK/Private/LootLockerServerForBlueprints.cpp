@@ -796,22 +796,30 @@ void ULootLockerServerForBlueprints::DebitBalanceToWallet(const FString& WalletI
 
 void ULootLockerServerForBlueprints::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseBP& OnComplete)
 {
-    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), TArray<FString>(), IgnoreFiles, OnComplete);
+    ULootLockerServerForCpp::ListMetadata(Source, SourceID, Page, PerPage, FLootLockerServerListMetadataResponseDelegate::CreateLambda([OnComplete](const FLootLockerServerListMetadataResponse& Response) {
+        OnComplete.ExecuteIfBound(Response);
+    }), IgnoreFiles);
 }
 
 void ULootLockerServerForBlueprints::ListMetadataWithTags(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FString>& Tags, const int Page, const int PerPage, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseBP& OnComplete)
 {
-    ULootLockerServerMetadataRequest::ListMetadata(Source, SourceID, Page, PerPage, FString(), Tags, IgnoreFiles, OnComplete);
+    ULootLockerServerForCpp::ListMetadataWithTags(Source, SourceID, Tags, Page, PerPage, FLootLockerServerListMetadataResponseDelegate::CreateLambda([OnComplete](const FLootLockerServerListMetadataResponse& Response) {
+        OnComplete.ExecuteIfBound(Response);
+    }), IgnoreFiles);
 }
 
 void ULootLockerServerForBlueprints::GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const bool IgnoreFiles, const FLootLockerServerGetMetadataResponseBP& OnComplete)
 {
-    ULootLockerServerMetadataRequest::GetMetadata(Source, SourceID, Key, IgnoreFiles, OnComplete);
+    ULootLockerServerForCpp::GetMetadata(Source, SourceID, Key, FLootLockerServerGetMetadataResponseDelegate::CreateLambda([OnComplete](const FLootLockerServerGetMetadataResponse& Response) {
+        OnComplete.ExecuteIfBound(Response);
+    }), IgnoreFiles);
 }
 
 void ULootLockerServerForBlueprints::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnComplete)
 {
-    ULootLockerServerMetadataRequest::GetMultisourceMetadata(SourcesAndKeysToGet, IgnoreFiles, OnComplete);
+    ULootLockerServerForCpp::GetMultisourceMetadata(SourcesAndKeysToGet, FLootLockerServerGetMultisourceMetadataResponseDelegate::CreateLambda([OnComplete](const FLootLockerServerGetMultisourceMetadataResponse& Response) {
+        OnComplete.ExecuteIfBound(Response);
+    }), IgnoreFiles);
 }
 
 void ULootLockerServerForBlueprints::ParseLootLockerServerMetadataEntry(const FLootLockerServerMetadataEntry& Entry,
@@ -923,7 +931,9 @@ void ULootLockerServerForBlueprints::ParseLootLockerServerMetadataEntry(const FL
 
 void ULootLockerServerForBlueprints::SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseBP& OnComplete)
 {
-    ULootLockerServerMetadataRequest::SetMetadata(Source, SourceID, MetadataToActionsToPerform, OnComplete);
+    ULootLockerServerForCpp::SetMetadata(Source, SourceID, MetadataToActionsToPerform, FLootLockerServerSetMetadataResponseDelegate::CreateLambda([OnComplete](const FLootLockerServerSetMetadataResponse& Response) {
+        OnComplete.ExecuteIfBound(Response);
+    }));
 }
 
 FLootLockerServerSetMetadataAction ULootLockerServerForBlueprints::MakeMetadataActionString(ELootLockerServerMetadataActions Action, const FString& Key, const FString& Value, const TArray<FString>& Tags, const TArray<FString>& Access)
