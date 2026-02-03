@@ -17,7 +17,7 @@ ULootLockerServerOAuthRequest::ULootLockerServerOAuthRequest()
 {
 }
 
-void ULootLockerServerOAuthRequest::GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequestBP, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
+void ULootLockerServerOAuthRequest::GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
 {
 	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
 	FString WWWFormData = FString::Format(*TokenExchangeWWWFormFormatString, { FGenericPlatformHttp::UrlEncode(TokenExchangeGrantType), FGenericPlatformHttp::UrlEncode(TokenExchangeActorTokenType), FGenericPlatformHttp::UrlEncode(TokenExchangeAccessTokenSubjectTokenType), FGenericPlatformHttp::UrlEncode(GameApiSessionToken), FGenericPlatformHttp::UrlEncode(Config->LootLockerServerKey) });
@@ -26,12 +26,12 @@ void ULootLockerServerOAuthRequest::GameApiTokenExchange(const FString& GameApiS
 		ULootLockerServerEndpoints::TokenExchange,
 		{},
 		{ { "game_version", Config->GameVersion }},
-		OnCompletedRequestBP,
+		FLootLockerServerTokenExchangeResponseBP(),
 		OnCompletedRequest
 	);
 }
 
-void ULootLockerServerOAuthRequest::GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequestBP, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
+void ULootLockerServerOAuthRequest::GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest)
 {
 	const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
 	FString WWWFormData = FString::Format(*TokenExchangeWWWFormFormatString, { FGenericPlatformHttp::UrlEncode(TokenExchangeGrantType), FGenericPlatformHttp::UrlEncode(TokenExchangeActorTokenType), FGenericPlatformHttp::UrlEncode(TokenExchangePlayerImpersonationSubjectTokenType), FGenericPlatformHttp::UrlEncode(PlayerUlid), FGenericPlatformHttp::UrlEncode(Config->LootLockerServerKey) });
@@ -40,7 +40,7 @@ void ULootLockerServerOAuthRequest::GameApiUserImpersonation(const FString& Play
 		ULootLockerServerEndpoints::TokenExchange,
 		{},
 		{ { "game_version", Config->GameVersion } },
-		OnCompletedRequestBP,
+		FLootLockerServerTokenExchangeResponseBP(),
 		OnCompletedRequest
 	);
 }

@@ -1621,7 +1621,7 @@ public:
             return;
         }
 
-        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent(NotificationType, Priority, RecipientPlayerUlid, MakeShared<FJsonValueObject>(JsonObject), Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent(NotificationType, Priority, RecipientPlayerUlid, MakeShared<FJsonValueObject>(JsonObject), Properties, OnCompletedRequest);
     }
 
 
