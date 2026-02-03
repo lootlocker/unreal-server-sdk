@@ -38,6 +38,27 @@ struct FLootLockerServerErrorData
     FString Message;
 };
 
+USTRUCT(BlueprintType)
+struct FLootLockerServerRequestContext
+{
+    GENERATED_BODY()
+    // The time that this request was made
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString RequestTime = "";
+    // The unique identifier for this request
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString RequestId = "";
+    // The url that this request was made to
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString RequestURL = "";
+    // The HTTP Method that was used for this request
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString RequestMethod = "";
+    // The request parameters as a json string.
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString RequestParametersJsonString = "";
+};
+
 /*
  The base response for all LootLocker Server responses
  */
@@ -58,6 +79,9 @@ struct FLootLockerServerResponse
     // If this request was not a success, this structure holds all the information needed to identify the problem
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerErrorData ErrorData;
+    // Context information about the request
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerRequestContext RequestContext;
 };
 
 //==================================================
@@ -201,13 +225,14 @@ class LootLockerServerResponseFactory
 public:
     // Construct a standardized error response
     template<typename T>
-    static T Error(FString ErrorMessage, int StatusCode = 0)
+    static T Error(FString ErrorMessage, int StatusCode = 0, const FString& RequestId = "")
     {
         T ErrorResponse;
         ErrorResponse.Success = false;
         ErrorResponse.StatusCode = StatusCode;
         ErrorResponse.FullTextFromServer = "{ \"message\": \"" + ErrorMessage + "\"}";
         ErrorResponse.ErrorData.Message = ErrorMessage;
+        ErrorResponse.RequestContext.RequestId = RequestId;
         return ErrorResponse;
     }
 };
