@@ -26,7 +26,6 @@ void ULootLockerServerOAuthRequest::GameApiTokenExchange(const FString& GameApiS
 		ULootLockerServerEndpoints::TokenExchange,
 		{},
 		{ { "game_version", Config->GameVersion }},
-		FLootLockerServerTokenExchangeResponseBP(),
 		OnCompletedRequest
 	);
 }
@@ -40,7 +39,6 @@ void ULootLockerServerOAuthRequest::GameApiUserImpersonation(const FString& Play
 		ULootLockerServerEndpoints::TokenExchange,
 		{},
 		{ { "game_version", Config->GameVersion } },
-		FLootLockerServerTokenExchangeResponseBP(),
 		OnCompletedRequest
 	);
 }

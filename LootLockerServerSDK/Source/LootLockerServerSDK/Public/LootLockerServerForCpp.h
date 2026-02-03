@@ -1737,7 +1737,7 @@ public:
             JsonArray.Add(MakeShared<FJsonValueObject>(JsonObject));
         }
 
-        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, JsonArray, Properties, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, JsonArray, Properties, OnCompletedRequest);
     }
 
 };

@@ -392,7 +392,7 @@ void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLoot
 {
 	TMultiMap<FString, FString> QueryParams;
 	if (IgnoreFiles) QueryParams.Add("ignore_files", "true");
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetMultisourceMetadataResponse>(FLootLockerServerGetMultisourceMetadataRequest{ SourcesAndKeysToGet }, ULootLockerServerEndpoints::GetMultisourceMetadata, {}, QueryParams, FLootLockerServerGetMultisourceMetadataResponseBP(), FLootLockerServerGetMultisourceMetadataResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerGetMultisourceMetadataResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnComplete](FLootLockerServerGetMultisourceMetadataResponse& Response)
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetMultisourceMetadataResponse>(FLootLockerServerGetMultisourceMetadataRequest{ SourcesAndKeysToGet }, ULootLockerServerEndpoints::GetMultisourceMetadata, {}, QueryParams, FLootLockerServerGetMultisourceMetadataResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerGetMultisourceMetadataResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnComplete](FLootLockerServerGetMultisourceMetadataResponse& Response)
 		{
 			// Make sure we will have source and entry combos to parse before continuing
 			if (!Response.Success || Response.Metadata.Num() <= 0)
@@ -526,5 +526,5 @@ void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetada
 	// Add entries to manually serialized request
 	ManuallySerializedRequest.SetArrayField(TEXT("entries"), entries);
 	FString SerializedRequest = LootLockerServerUtilities::FStringFromJsonObject(MakeShared<FJsonObject>(ManuallySerializedRequest));
-	ULootLockerServerHttpClient::SendRawRequest<FLootLockerServerSetMetadataResponse>(SerializedRequest, ULootLockerServerEndpoints::MetadataActions, {}, {}, FLootLockerServerSetMetadataResponseBP(), OnComplete);
+	ULootLockerServerHttpClient::SendRawRequest<FLootLockerServerSetMetadataResponse>(SerializedRequest, ULootLockerServerEndpoints::MetadataActions, {}, {}, OnComplete);
 }

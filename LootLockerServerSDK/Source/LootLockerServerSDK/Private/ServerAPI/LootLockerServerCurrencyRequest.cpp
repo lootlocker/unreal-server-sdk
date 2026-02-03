@@ -10,5 +10,5 @@ ULootLockerServerCurrencyRequest::ULootLockerServerCurrencyRequest()
 
 void ULootLockerServerCurrencyRequest::ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnResponseCompleted)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListCurrenciesResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListCurrencies, {}, {}, FLootLockerServerListCurrenciesResponseBP(), OnResponseCompleted);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListCurrenciesResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListCurrencies, {}, {}, OnResponseCompleted);
 }

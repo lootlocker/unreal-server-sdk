@@ -10,12 +10,12 @@ ULootLockerServerPlayerInventoryRequest::ULootLockerServerPlayerInventoryRequest
 
 void ULootLockerServerPlayerInventoryRequest::GetUniversalInventory(const FLootLockerServerGetUniversalInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetUniversalInventoryResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetUniversalInventory, {}, {}, FLootLockerServerGetUniversalInventoryResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetUniversalInventoryResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetUniversalInventory, {}, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::GetPlayerInventory(int PlayerID, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerInventoryResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetPlayerInventory, { PlayerID }, {}, FLootLockerServerGetPlayerInventoryResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerInventoryResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetPlayerInventory, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::GetPaginatedPlayerInventory(int PlayerID, int Count, int After, const FLootLockerServerGetPlayerInventoryResponseDelegate& OnCompletedRequest)
@@ -29,52 +29,52 @@ void ULootLockerServerPlayerInventoryRequest::GetPaginatedPlayerInventory(int Pl
     {
         QueryParams.Add("after", FString::FromInt(After));
     }
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerInventoryResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetPlayerInventory, { PlayerID }, QueryParams, FLootLockerServerGetPlayerInventoryResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerInventoryResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetPlayerInventory, { PlayerID }, QueryParams, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::GetPlayerLoadout(int PlayerID, const FLootLockerServerGetPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerLoadoutResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetPlayerLoadout, { PlayerID }, {}, FLootLockerServerGetPlayerLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerLoadoutResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetPlayerLoadout, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetId(int PlayerID, int AssetID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToPlayerLoadoutResponse>(FLootLockerServerAssetByAssetIdRequest{ AssetID }, ULootLockerServerEndpoints::EquipAssetToPlayerLoadout, { PlayerID }, {}, FLootLockerServerEquipAssetToPlayerLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToPlayerLoadoutResponse>(FLootLockerServerAssetByAssetIdRequest{ AssetID }, ULootLockerServerEndpoints::EquipAssetToPlayerLoadout, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetInstanceId(int PlayerID, int AssetInstanceID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToPlayerLoadoutResponse>(FLootLockerServerAssetByAssetInstanceIdRequest{ AssetInstanceID }, ULootLockerServerEndpoints::EquipAssetToPlayerLoadout, { PlayerID }, {}, FLootLockerServerEquipAssetToPlayerLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToPlayerLoadoutResponse>(FLootLockerServerAssetByAssetInstanceIdRequest{ AssetInstanceID }, ULootLockerServerEndpoints::EquipAssetToPlayerLoadout, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(int PlayerID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToPlayerLoadoutResponse>(FLootLockerServerAssetByAssetIdAndVariationIdRequest{ AssetID, AssetVariationID }, ULootLockerServerEndpoints::EquipAssetToPlayerLoadout, { PlayerID }, {}, FLootLockerServerEquipAssetToPlayerLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToPlayerLoadoutResponse>(FLootLockerServerAssetByAssetIdAndVariationIdRequest{ AssetID, AssetVariationID }, ULootLockerServerEndpoints::EquipAssetToPlayerLoadout, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToPlayerLoadoutResponse>(FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest{ AssetID, RentalOptionID }, ULootLockerServerEndpoints::EquipAssetToPlayerLoadout, { PlayerID }, {}, FLootLockerServerEquipAssetToPlayerLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToPlayerLoadoutResponse>(FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest{ AssetID, RentalOptionID }, ULootLockerServerEndpoints::EquipAssetToPlayerLoadout, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::UnequipAssetFromPlayerLoadout(int PlayerID, int InstanceID, const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerUnequipAssetFromPlayerLoadoutResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::UnEquipAssetFromPlayerLoadout, { PlayerID, InstanceID }, {}, FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerUnequipAssetFromPlayerLoadoutResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::UnEquipAssetFromPlayerLoadout, { PlayerID, InstanceID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAddAssetToPlayerInventoryResponse>(FLootLockerServerAssetByAssetIdRequest{ AssetID }, ULootLockerServerEndpoints::AddAssetToPlayerInventory, { PlayerID }, {}, FLootLockerServerAddAssetToPlayerInventoryResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAddAssetToPlayerInventoryResponse>(FLootLockerServerAssetByAssetIdRequest{ AssetID }, ULootLockerServerEndpoints::AddAssetToPlayerInventory, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAddAssetToPlayerInventoryResponse>(FLootLockerServerAssetByAssetIdAndVariationIdRequest{ AssetID, VariationID }, ULootLockerServerEndpoints::AddAssetToPlayerInventory, { PlayerID }, {}, FLootLockerServerAddAssetToPlayerInventoryResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAddAssetToPlayerInventoryResponse>(FLootLockerServerAssetByAssetIdAndVariationIdRequest{ AssetID, VariationID }, ULootLockerServerEndpoints::AddAssetToPlayerInventory, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerAddAssetToPlayerInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAddAssetToPlayerInventoryResponse>(FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest{ AssetID, RentalOptionID }, ULootLockerServerEndpoints::AddAssetToPlayerInventory, { PlayerID }, {}, FLootLockerServerAddAssetToPlayerInventoryResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAddAssetToPlayerInventoryResponse>(FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest{ AssetID, RentalOptionID }, ULootLockerServerEndpoints::AddAssetToPlayerInventory, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest)
@@ -84,7 +84,6 @@ void ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAss
         ULootLockerServerEndpoints::AlterPlayerInventory,
         { PlayerID },
         {},
-        FLootLockerServerAlterPlayerInventoryResponseBP(),
         OnCompletedRequest
     );
 }
@@ -96,7 +95,6 @@ void ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAss
         ULootLockerServerEndpoints::AlterPlayerInventory,
         { PlayerID },
         {},
-        FLootLockerServerAlterPlayerInventoryResponseBP(),
         OnCompletedRequest
     );
 }
@@ -108,7 +106,6 @@ void ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAss
         ULootLockerServerEndpoints::AlterPlayerInventory,
         { PlayerID },
         {},
-        FLootLockerServerAlterPlayerInventoryResponseBP(),
         OnCompletedRequest
     );
 }

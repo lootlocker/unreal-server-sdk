@@ -14,5 +14,5 @@ void ULootLockerServerConnectedAccountsRequest::ListConnectedAccounts(const TArr
     Request.Player_ids = PlayerULIDs;
     Request.Legacy_player_ids = LegacyPlayerIDs;
     
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListConnectedAccountsResponse>(Request, ULootLockerServerEndpoints::ListConnectedAccounts, {}, {}, FLootLockerServerListConnectedAccountsResponseBP(), OnResponseCompleted);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListConnectedAccountsResponse>(Request, ULootLockerServerEndpoints::ListConnectedAccounts, {}, {}, OnResponseCompleted);
 }

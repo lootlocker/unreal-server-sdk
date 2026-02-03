@@ -19,7 +19,6 @@ void ULootLockerServerAuthRequest::StartSession(const FLootLockerServerAuthRespo
 		ULootLockerServerEndpoints::StartSession,
 		{},
 		{},
-		FLootLockerServerAuthResponseBP(),
 		OnCompletedRequest,
 		ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerAuthenticationResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([](const FLootLockerServerAuthenticationResponse& Response)
 		{
@@ -36,7 +35,6 @@ void ULootLockerServerAuthRequest::MaintainSession(const FLootLockerServerMainta
 		ULootLockerServerEndpoints::MaintainingSession,
 		{},
 		{},
-		FLootLockerServerMaintainSessionResponseBP(),
 		OnCompletedRequest
 	);
 }

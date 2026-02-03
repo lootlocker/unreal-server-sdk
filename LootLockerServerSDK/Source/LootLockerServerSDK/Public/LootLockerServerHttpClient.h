@@ -28,34 +28,34 @@ public:
     {
         DECLARE_DELEGATE_OneParam(FLootLockerServerResponseInspectorCallback, ResponseType&);
     };
-    template<typename ResponseType, typename RequestType, typename BlueprintDelegate, typename CppDelegate>
-    static void SendRequest(RequestType Request, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const BlueprintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>())
+    template<typename ResponseType, typename RequestType, typename CppDelegate>
+    static void SendRequest(RequestType Request, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>())
 	{
-    	GetInstance().SendRequest_Internal(TemplatedHTTPRequest<ResponseType>::Make(Request, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
+    	GetInstance().SendRequest_Internal(TemplatedHTTPRequest<ResponseType>::Make(Request, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
 	}
 
-    template<typename ResponseType, typename BlueprintDelegate, typename CppDelegate>
-    static void SendRawRequest(FString RequestBody, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const BlueprintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>())
+    template<typename ResponseType, typename CppDelegate>
+    static void SendRawRequest(FString RequestBody, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>())
     {
-        GetInstance().SendRequest_Internal(TemplatedHTTPRequest<ResponseType>::MakeRaw(RequestBody, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
+        GetInstance().SendRequest_Internal(TemplatedHTTPRequest<ResponseType>::MakeRaw(RequestBody, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
     }
 
-    template<typename ResponseType, typename BlueprintDelegate, typename CppDelegate>
-    static void SendRawWWWFormUrlEncodedRequest(FString RequestBody, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const BlueprintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>())
+    template<typename ResponseType, typename CppDelegate>
+    static void SendRawWWWFormUrlEncodedRequest(FString RequestBody, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>())
     {
-        GetInstance().SendRequest_Internal(TemplatedHTTPRequest<ResponseType>::MakeRaw(RequestBody, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders, "application/x-www-form-urlencoded"));
+        GetInstance().SendRequest_Internal(TemplatedHTTPRequest<ResponseType>::MakeRaw(RequestBody, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders, "application/x-www-form-urlencoded"));
     }
 
-    template<typename ResponseType, typename BlueprintDelegate, typename CppDelegate>
-    static void UploadFile(const FString& FilePath, const TMap<FString, FString> AdditionalFields, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const BlueprintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>()) 
+    template<typename ResponseType, typename CppDelegate>
+    static void UploadFile(const FString& FilePath, const TMap<FString, FString> AdditionalFields, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>()) 
     {
-        GetInstance().UploadFile_Internal(FilePath, AdditionalFields, TemplatedHTTPRequest<ResponseType>::Make(FLootLockerServerEmptyRequest{}, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
+        GetInstance().UploadFile_Internal(FilePath, AdditionalFields, TemplatedHTTPRequest<ResponseType>::Make(FLootLockerServerEmptyRequest{}, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
     }
 
-    template<typename ResponseType, typename BlueprintDelegate, typename CppDelegate>
-    static void UploadRawFile(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const BlueprintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>())
+    template<typename ResponseType, typename CppDelegate>
+    static void UploadRawFile(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback(), TMap<FString, FString> CustomHeaders = TMap<FString, FString>())
     {
-        GetInstance().UploadRawFile_Internal(RawData, FileName, AdditionalFields, TemplatedHTTPRequest<ResponseType>::Make(FLootLockerServerEmptyRequest{}, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
+        GetInstance().UploadRawFile_Internal(RawData, FileName, AdditionalFields, TemplatedHTTPRequest<ResponseType>::Make(FLootLockerServerEmptyRequest{}, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders));
     }
 
 private:
@@ -91,10 +91,10 @@ private:
     template<typename ResponseType>
     struct TemplatedHTTPRequest
     {
-        template<typename BluePrintDelegate, typename CppDelegate>
-        static FLootLockerServerResponseCallback CreateLambda(const BluePrintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback)
+        template<typename CppDelegate>
+        static FLootLockerServerResponseCallback CreateLambda(const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback)
         {
-            return FLootLockerServerResponseCallback::CreateLambda([OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback](FLootLockerServerResponse response)
+            return FLootLockerServerResponseCallback::CreateLambda([OnCompletedRequest, ResponseInspectorCallback](FLootLockerServerResponse response)
             {
                 ResponseType ResponseStruct;
 
@@ -111,13 +111,12 @@ private:
                 }
                 ResponseStruct.FullTextFromServer = response.FullTextFromServer;
                 ResponseInspectorCallback.ExecuteIfBound(ResponseStruct);
-                OnCompletedRequestBP.ExecuteIfBound(ResponseStruct);
                 OnCompletedRequest.ExecuteIfBound(ResponseStruct);
             });
         }
 
-        template<typename BluePrintDelegate, typename CppDelegate>
-        static HTTPRequest MakeRaw(FString ContentString, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const BluePrintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = ResponseInspector<ResponseType>::FServerResponseInspectorCallback::CreateLambda([](const ResponseType& Ignored) {}), TMap<FString, FString> CustomHeaders = TMap<FString, FString>(), const FString& ContentType = "")
+        template<typename CppDelegate>
+        static HTTPRequest MakeRaw(FString ContentString, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = ResponseInspector<ResponseType>::FServerResponseInspectorCallback::CreateLambda([](const ResponseType& Ignored) {}), TMap<FString, FString> CustomHeaders = TMap<FString, FString>(), const FString& ContentType = "")
         {
             // Calculate endpoint
             const ULootLockerServerConfig* Config = GetDefault<ULootLockerServerConfig>();
@@ -169,14 +168,14 @@ private:
             EndpointWithArguments = LootLockerServerUtilities::AppendParametersToUrl(EndpointWithArguments, QueryParams);
 
             // create callback lambda
-            const FLootLockerServerResponseCallback SessionResponse = CreateLambda<BluePrintDelegate, CppDelegate>(OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback);
+            const FLootLockerServerResponseCallback SessionResponse = CreateLambda<CppDelegate>(OnCompletedRequest, ResponseInspectorCallback);
 
             // send request
             return HTTPRequest{ EndpointWithArguments, Endpoint.GetRequestMethodString(), ContentType.IsEmpty() ? "application/json" : ContentType,ContentString, SessionResponse, CustomHeaders };
         }
 
-        template<typename RequestType, typename BluePrintDelegate, typename CppDelegate>
-        static HTTPRequest Make(RequestType RequestStruct, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const BluePrintDelegate& OnCompletedRequestBP, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = ResponseInspector<ResponseType>::FServerResponseInspectorCallback::CreateLambda([](const ResponseType& Ignored) {}), TMap<FString, FString> CustomHeaders = TMap<FString, FString>(), const FString& ContentType = "")
+        template<typename RequestType, typename CppDelegate>
+        static HTTPRequest Make(RequestType RequestStruct, FLootLockerServerEndPoint Endpoint, const TArray<FStringFormatArg>& InOrderedArguments, const TMultiMap<FString, FString> QueryParams, const CppDelegate& OnCompletedRequest, const typename ResponseInspector<ResponseType>::FLootLockerServerResponseInspectorCallback& ResponseInspectorCallback = ResponseInspector<ResponseType>::FServerResponseInspectorCallback::CreateLambda([](const ResponseType& Ignored) {}), TMap<FString, FString> CustomHeaders = TMap<FString, FString>(), const FString& ContentType = "")
         {
             FString ContentString = "";
 #if ENGINE_MAJOR_VERSION < 5
@@ -191,7 +190,7 @@ private:
                 FJsonObjectConverter::UStructToJsonObjectString(RequestType::StaticStruct(), &RequestStruct, ContentString, 0, 0);
             }
 #endif
-            return MakeRaw(ContentString, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequestBP, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders, ContentType);
+            return MakeRaw(ContentString, Endpoint, InOrderedArguments, QueryParams, OnCompletedRequest, ResponseInspectorCallback, CustomHeaders, ContentType);
         }
 
     private:
