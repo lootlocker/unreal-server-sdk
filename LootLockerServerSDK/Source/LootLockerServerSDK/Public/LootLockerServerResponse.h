@@ -70,7 +70,7 @@ struct FLootLockerServerResponse
 DECLARE_DELEGATE_OneParam(FLootLockerServerResponseCallback, FLootLockerServerResponse);
 
 //==================================================
-// Definition of pagination data structures https://ref.lootlocker.com/server-api/#pagination
+// Definition of pagination data structures
 //==================================================
 
 /*
