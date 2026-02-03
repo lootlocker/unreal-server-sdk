@@ -14,12 +14,16 @@
 
 void ULootLockerServerForBlueprints::StartSession(const FLootLockerServerAuthResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerAuthRequest::StartSession(OnCompletedRequest);
+    ULootLockerServerForCpp::StartSession(FLootLockerServerAuthResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerAuthenticationResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::MaintainSession(const FLootLockerServerMaintainSessionResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerAuthRequest::MaintainSession(OnCompletedRequest);
+    ULootLockerServerForCpp::MaintainSession(FLootLockerServerMaintainSessionResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerMaintainSessionResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequest)
