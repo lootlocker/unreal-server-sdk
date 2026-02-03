@@ -29,7 +29,7 @@ void FTestLootLockerServer_PlayerFiles::Define()
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerPlayerFileListResponse, FLootLockerServerPlayerFileListResponseDelegate>();
 
-				ULootLockerServerPlayerFileRequest::ListFilesForPlayer(PlayerId, FLootLockerServerPlayerFileListResponseBP(), Delegate);
+				ULootLockerServerPlayerFileRequest::ListFilesForPlayer(PlayerId, Delegate);
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("ListFilesForPlayer Ok", Response.Success);
@@ -54,7 +54,7 @@ void FTestLootLockerServer_PlayerFiles::Define()
 				OutBuffer.SetNumUninitialized(FileContent.Len());
 
  				int32 BufferSize = StringToBytes(FileContent, OutBuffer.GetData(), OutBuffer.Num());				
-				ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerId, OutBuffer, FileName, "test", true, FLootLockerServerSinglePlayerFileResponseBP(), Delegate);
+				ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerId, OutBuffer, FileName, "test", true, Delegate);
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("UploadRawDataToPlayerFile Ok", Response.Success);
@@ -71,7 +71,7 @@ void FTestLootLockerServer_PlayerFiles::Define()
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerSinglePlayerFileResponse, FLootLockerServerSinglePlayerFileResponseDelegate>();
 
-				ULootLockerServerPlayerFileRequest::GetFileForPlayerByID(PlayerId, FileId, FLootLockerServerSinglePlayerFileResponseBP(), Delegate);
+				ULootLockerServerPlayerFileRequest::GetFileForPlayerByID(PlayerId, FileId, Delegate);
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("GetFileForPlayerByID Ok", Response.Success);
@@ -90,7 +90,7 @@ void FTestLootLockerServer_PlayerFiles::Define()
 				OutBuffer.SetNumUninitialized(NewFileContent.Len());
 				
  				int32 BufferSize = StringToBytes(NewFileContent, OutBuffer.GetData(), OutBuffer.Num());				
-				ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(PlayerId, FileId, OutBuffer, FileName, FLootLockerServerSinglePlayerFileResponseBP(), Delegate);
+				ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(PlayerId, FileId, OutBuffer, FileName, Delegate);
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("GetFileForPlayerByID Ok", Response.Success);
@@ -104,7 +104,7 @@ void FTestLootLockerServer_PlayerFiles::Define()
 			{
 				const auto [Promise , Delegate] = test_util::CreateDelegate<FLootLockerServerPlayerFileDeleteResponse, FLootLockerServerPlayerFileDeleteResponseDelegate>();
 
-				ULootLockerServerPlayerFileRequest::DeleteFileForPlayerByID(PlayerId, FileId, FLootLockerServerPlayerFileDeleteResponseBP(), Delegate);
+				ULootLockerServerPlayerFileRequest::DeleteFileForPlayerByID(PlayerId, FileId, Delegate);
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("DeleteFileForPlayerByID ok", Response.Success);

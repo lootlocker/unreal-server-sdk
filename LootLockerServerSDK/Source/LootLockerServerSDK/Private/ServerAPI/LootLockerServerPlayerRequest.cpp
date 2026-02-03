@@ -9,7 +9,7 @@ ULootLockerServerPlayerRequest::ULootLockerServerPlayerRequest()
 {
 }
 
-void ULootLockerServerPlayerRequest::LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseBP& OnCompletedRequestBP, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest)
+void ULootLockerServerPlayerRequest::LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest)
 {
 	TMultiMap<FString, FString> QueryParams;
     for (int i = 0; i < IdsToLookUp.Num(); ++i) {
@@ -17,15 +17,15 @@ void ULootLockerServerPlayerRequest::LookupPlayerNames(TArray<FLootLockerServerP
 		Key.ReplaceCharInline(TEXT(' '), TEXT('_'));
 		QueryParams.Add(Key, IdsToLookUp[i].Id);
 	}
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerNameLookupResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::LookupMultiplePlayerNamesUsingIDs, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerNameLookupResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::LookupMultiplePlayerNamesUsingIDs, {}, QueryParams, FLootLockerServerPlayerNameLookupResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerPlayerRequest::GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP& OnCompletedRequestBP, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest)
+void ULootLockerServerPlayerRequest::GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse>(FLootLockerServerGetPlayerInfoFromGameSessionTokenRequest{ GameSessionTokensToLookUp }, ULootLockerServerEndpoints::GetPlayerInfoFromGameSessionToken, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse>(FLootLockerServerGetPlayerInfoFromGameSessionTokenRequest{ GameSessionTokensToLookUp }, ULootLockerServerEndpoints::GetPlayerInfoFromGameSessionToken, {}, {}, FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerPlayerRequest::CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlayerIdentifier, const FLootLockerServerCreatePlayerResponseBP& OnCompletedRequestBP, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest)
+void ULootLockerServerPlayerRequest::CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest)
 {
 	FLootLockerServerCreatePlayerRequest Request;
 	Request.Player_identifier = PlayerIdentifier;
@@ -47,5 +47,5 @@ void ULootLockerServerPlayerRequest::CreatePlayer(ELootLockerServerCreatePlayerP
 		case ELootLockerServerCreatePlayerPlatforms::Discord:  Request.Platform = "discord"; break;
 		default: Request.Platform = "N/A"; break;
 	}
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerCreatePlayerResponse>(Request, ULootLockerServerEndpoints::CreatePlayer, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerCreatePlayerResponse>(Request, ULootLockerServerEndpoints::CreatePlayer, {}, {}, FLootLockerServerCreatePlayerResponseBP(), OnCompletedRequest);
 }

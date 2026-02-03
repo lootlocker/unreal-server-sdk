@@ -253,7 +253,7 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerRequest : public UObject
 	public:	
 	ULootLockerServerPlayerRequest();	
 
-	static void LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseBP& OnCompletedRequestBP = FLootLockerServerPlayerNameLookupResponseBP(), const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest = FLootLockerServerPlayerNameLookupResponseDelegate());
-	static void GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP& OnCompletedRequestBP = FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP(), const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest = FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate());
-	static void CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseBP& OnCompletedRequestBP = FLootLockerServerCreatePlayerResponseBP(), const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest = FLootLockerServerCreatePlayerResponseDelegate());
+	static void LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseDelegate& OnCompletedRequest);
+	static void GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest);
+	static void CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest);
 };

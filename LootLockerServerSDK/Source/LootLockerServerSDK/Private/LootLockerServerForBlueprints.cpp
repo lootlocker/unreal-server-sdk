@@ -28,12 +28,16 @@ void ULootLockerServerForBlueprints::MaintainSession(const FLootLockerServerMain
 
 void ULootLockerServerForBlueprints::GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerOAuthRequest::GameApiTokenExchange(GameApiSessionToken, OnCompletedRequest);
+    ULootLockerServerForCpp::GameApiTokenExchange(GameApiSessionToken, FLootLockerServerTokenExchangeResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerTokenExchangeResponse Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerOAuthRequest::GameApiUserImpersonation(PlayerUlid, OnCompletedRequest);
+    ULootLockerServerForCpp::GameApiUserImpersonation(PlayerUlid, FLootLockerServerTokenExchangeResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerTokenExchangeResponse Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::ListLeaderboards(int32 Count, int32 After, const FLootLockerServerListLeaderboardsResponseBP& OnCompletedRequest)
@@ -143,37 +147,58 @@ void ULootLockerServerForBlueprints::GetLeaderboardArchive(const FString& Key, i
 
 void ULootLockerServerForBlueprints::InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerTriggerRequest::InvokeTriggerForPlayer(TriggerName, PlayerID, OnCompletedRequest);
+    ULootLockerServerForCpp::InvokeTriggerForPlayer(TriggerName, PlayerID, FLootLockerServerInvokeTriggerResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerInvokeTriggerResponse Response)
+    {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPersistentStorageForPlayer(int PlayerID, const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int>{ PlayerID }, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPersistentStorageForPlayer(PlayerID, FLootLockerServerGetPersistentStorageForPlayersResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerGetPersistentStorageForPlayersResponse Response)
+    {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(PlayerIDs, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPersistentStorageForPlayers(PlayerIDs, FLootLockerServerGetPersistentStorageForPlayersResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerGetPersistentStorageForPlayersResponse Response)
+    {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetEntirePublicPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::GetPublicPersistentStorageForPlayersAndKeys(PlayerIDs, TArray<FString>(), OnCompletedRequest);
+    ULootLockerServerForCpp::GetEntirePublicPersistentStorageForPlayers(PlayerIDs, FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse Response)
+    {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::GetPublicPersistentStorageForPlayersAndKeys(PlayerIDs, Keys, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPublicPersistentStorageForPlayersAndKeys(PlayerIDs, Keys, FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse Response)
+    {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(StorageEntriesToUpdate, OnCompletedRequest);
+    ULootLockerServerForCpp::UpdatePersistentStorageForPlayersAndKeys(StorageEntriesToUpdate, FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse Response)
+    {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerStorageRequest::DeletePersistentStorageForPlayersAndKeys(PlayerIDs, Keys, OnCompletedRequest);
+    ULootLockerServerForCpp::DeletePersistentStorageForPlayersAndKeys(PlayerIDs, Keys, FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse Response)
+    {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 // Character
@@ -296,77 +321,107 @@ void ULootLockerServerForBlueprints::UnequipAssetFromPlayerHeroLoadout(int Playe
 
 void ULootLockerServerForBlueprints::GetUniversalInventory(const FLootLockerServerGetUniversalInventoryResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::GetUniversalInventory(OnCompletedRequest);
+    ULootLockerServerForCpp::GetUniversalInventory(FLootLockerServerGetUniversalInventoryResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetUniversalInventoryResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPlayerInventory(int PlayerID, const FLootLockerServerGetPlayerInventoryResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::GetPlayerInventory(PlayerID, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPlayerInventory(PlayerID, FLootLockerServerGetPlayerInventoryResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetPlayerInventoryResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPaginatedPlayerInventory(int PlayerID, int Count, int After, const FLootLockerServerGetPlayerInventoryResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::GetPaginatedPlayerInventory(PlayerID, Count, After, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPaginatedPlayerInventory(PlayerID, Count, After, FLootLockerServerGetPlayerInventoryResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetPlayerInventoryResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPlayerLoadout(int PlayerID, const FLootLockerServerGetPlayerLoadoutResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::GetPlayerLoadout(PlayerID, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPlayerLoadout(PlayerID, FLootLockerServerGetPlayerLoadoutResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetPlayerLoadoutResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::EquipAssetToPlayerLoadoutByAssetId(int PlayerID, int AssetID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetId(PlayerID, AssetID, OnCompletedRequest);
+    ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetId(PlayerID, AssetID, FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerEquipAssetToPlayerLoadoutResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::EquipAssetToPlayerLoadoutByAssetInstanceId(int PlayerID, int AssetInstanceID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetInstanceId(PlayerID, AssetInstanceID, OnCompletedRequest);
+    ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetInstanceId(PlayerID, AssetInstanceID, FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerEquipAssetToPlayerLoadoutResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(int PlayerID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(PlayerID, AssetID, AssetVariationID, OnCompletedRequest);
+    ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId(PlayerID, AssetID, AssetVariationID, FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerEquipAssetToPlayerLoadoutResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToPlayerLoadoutResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(PlayerID, AssetID, RentalOptionID, OnCompletedRequest);
+    ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId(PlayerID, AssetID, RentalOptionID, FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerEquipAssetToPlayerLoadoutResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::UnequipAssetFromPlayerLoadout(int PlayerID, int InstanceID, const FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::UnequipAssetFromPlayerLoadout(PlayerID, InstanceID, OnCompletedRequest);
+    ULootLockerServerForCpp::UnequipAssetFromPlayerLoadout(PlayerID, InstanceID, FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerUnequipAssetFromPlayerLoadoutResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::AddAssetToPlayerInventoryByAssetID(int PlayerID, int AssetID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetID(PlayerID, AssetID, OnCompletedRequest);
+    ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetID(PlayerID, AssetID, FLootLockerServerAddAssetToPlayerInventoryResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerAddAssetToPlayerInventoryResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::AddAssetToPlayerInventoryByAssetIDAndVariationID(int PlayerID, int AssetID, int VariationID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndVariationID(PlayerID, AssetID, VariationID, OnCompletedRequest);
+    ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndVariationID(PlayerID, AssetID, VariationID, FLootLockerServerAddAssetToPlayerInventoryResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerAddAssetToPlayerInventoryResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(int PlayerID, int AssetID, int RentalOptionID, const FLootLockerServerAddAssetToPlayerInventoryResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(PlayerID, AssetID, RentalOptionID, OnCompletedRequest);
+    ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID(PlayerID, AssetID, RentalOptionID, FLootLockerServerAddAssetToPlayerInventoryResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerAddAssetToPlayerInventoryResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::AlterPlayerInventoryAddAssetsByAssetID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
+    ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetID(PlayerID, AssetsToAdd, AssetsToRemove, FLootLockerServerAlterPlayerInventoryResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerAlterPlayerInventoryResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
+    ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(PlayerID, AssetsToAdd, AssetsToRemove, FLootLockerServerAlterPlayerInventoryResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerAlterPlayerInventoryResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
+    ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(PlayerID, AssetsToAdd, AssetsToRemove, FLootLockerServerAlterPlayerInventoryResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerAlterPlayerInventoryResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 // Assets
@@ -508,53 +563,73 @@ void ULootLockerServerForBlueprints::PickDropsFromDropTable(int PlayerID, int Dr
 // Player
 void ULootLockerServerForBlueprints::LookupPlayerNames(TArray<FLootLockerServerPlayerNameLookupPair> IdsToLookUp, const FLootLockerServerPlayerNameLookupResponseBP& OnCompletedRequest) 
 {
-    ULootLockerServerPlayerRequest::LookupPlayerNames(IdsToLookUp, OnCompletedRequest);
+    ULootLockerServerForCpp::LookupPlayerNames(IdsToLookUp, FLootLockerServerPlayerNameLookupResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerPlayerNameLookupResponse Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerRequest::GetPlayerInfoFromGameSessionToken(GameSessionTokensToLookUp, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPlayerInfoFromGameSessionToken(GameSessionTokensToLookUp, FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseBP& OnCompletedRequest) 
 {
-    ULootLockerServerPlayerRequest::CreatePlayer(Platform, PlatformPlayerIdentifier, OnCompletedRequest);
+    ULootLockerServerForCpp::CreatePlayer(Platform, PlatformPlayerIdentifier, FLootLockerServerCreatePlayerResponseDelegate::CreateLambda([OnCompletedRequest](FLootLockerServerCreatePlayerResponse Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 // Player Files
 void ULootLockerServerForBlueprints::ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::ListFilesForPlayer(PlayerID, OnCompletedRequest);
+    ULootLockerServerForCpp::ListFilesForPlayer(PlayerID, FLootLockerServerPlayerFileListResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerFileListResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::GetFileForPlayerByID(PlayerID, FileID, OnCompletedRequest);
+    ULootLockerServerForCpp::GetFileForPlayerByID(PlayerID, FileID, FLootLockerServerSinglePlayerFileResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerFileResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::DeleteFileForPlayerByID(PlayerID, FileID, OnCompletedRequest);
+    ULootLockerServerForCpp::DeleteFileForPlayerByID(PlayerID, FileID, FLootLockerServerPlayerFileDeleteResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerFileDeleteResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::UploadFileForPlayer(PlayerID, FilePath, Purpose, IsPublic, OnCompletedRequest);
+    ULootLockerServerForCpp::UploadFileForPlayer(PlayerID, FilePath, Purpose, IsPublic, FLootLockerServerSinglePlayerFileResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerFileResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, OnCompletedRequest);
+    ULootLockerServerForCpp::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, FLootLockerServerSinglePlayerFileResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerFileResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::UpdateFileForPlayer(PlayerID, FileID, FilePath, OnCompletedRequest);
+    ULootLockerServerForCpp::UpdateFileForPlayer(PlayerID, FileID, FilePath, FLootLockerServerSinglePlayerFileResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerFileResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(PlayerID, FileID, RawData, FileName, OnCompletedRequest);
+    ULootLockerServerForCpp::UpdatePlayerFileWithRawData(PlayerID, FileID, RawData, FileName, FLootLockerServerSinglePlayerFileResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerFileResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 // Game Progressions
@@ -597,37 +672,51 @@ void ULootLockerServerForBlueprints::GetPaginatedTiersForProgression(const FStri
 
 void ULootLockerServerForBlueprints::GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::GetProgressionsForPlayer(PlayerID, OnCompletedRequest);
+    ULootLockerServerForCpp::GetProgressionsForPlayer(PlayerID, FLootLockerServerPlayerProgressionListResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerProgressionListResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::GetPaginatedProgressionsForPlayer(PlayerID, Count, After, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPaginatedProgressionsForPlayer(PlayerID, Count, After, FLootLockerServerPlayerProgressionListResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerProgressionListResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::GetProgressionForPlayerByKey(PlayerID, ProgressionKey, OnCompletedRequest);
+    ULootLockerServerForCpp::GetProgressionForPlayerByKey(PlayerID, ProgressionKey, FLootLockerServerSinglePlayerProgressionResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerProgressionResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::AddPointsToProgressionForPlayer(PlayerID, ProgressionKey, Amount, OnCompletedRequest);
+    ULootLockerServerForCpp::AddPointsToProgressionForPlayer(PlayerID, ProgressionKey, Amount, FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerProgressionWithRewardsResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::SubtractPointsFromProgressionForPlayer(PlayerID, ProgressionKey, Amount, OnCompletedRequest);
+    ULootLockerServerForCpp::SubtractPointsFromProgressionForPlayer(PlayerID, ProgressionKey, Amount, FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerProgressionWithRewardsResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::ResetProgressionForPlayer(PlayerID, ProgressionKey, OnCompletedRequest);
+    ULootLockerServerForCpp::ResetProgressionForPlayer(PlayerID, ProgressionKey, FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerProgressionWithRewardsResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerPlayerProgressionRequest::DeleteProgressionForPlayer(PlayerID, ProgressionKey, OnCompletedRequest);
+    ULootLockerServerForCpp::DeleteProgressionForPlayer(PlayerID, ProgressionKey, FLootLockerServerDeletePlayerProgressionResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 // Character Progressions
@@ -1047,35 +1136,49 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 		    {
 	            if (NumericProperty->IsFloatingPoint())
 	            {
-	                ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<double>(ContentContainerAddress), Properties, OnCompletedRequest);
+	                ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<double>(ContentContainerAddress), Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                    OnCompletedRequest.ExecuteIfBound(Response);
+                }));
 	            }
 	            else
 	            {
 		            if (ContentProperty->IsA(FInt64Property::StaticClass()))
 	                {
-	                    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<long long>(ContentContainerAddress), Properties, OnCompletedRequest);
+	                    ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<long long>(ContentContainerAddress), Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                        OnCompletedRequest.ExecuteIfBound(Response);
+                    }));
 	                } else
 	                {
-	                    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<int>(ContentContainerAddress), Properties, OnCompletedRequest);
+	                    ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<int>(ContentContainerAddress), Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                        OnCompletedRequest.ExecuteIfBound(Response);
+                    }));
 	                }
 	            }
 		    }
 	    }
 	    else if (ContentProperty->IsA(FBoolProperty::StaticClass()))
 	    {
-	        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<bool>(ContentContainerAddress), Properties, OnCompletedRequest);
+	        ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<bool>(ContentContainerAddress), Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+            OnCompletedRequest.ExecuteIfBound(Response);
+        }));
 	    }
 	    else if (ContentProperty->IsA(FStrProperty::StaticClass()))
 	    {
-	        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<FString>(ContentContainerAddress), Properties, OnCompletedRequest);
+	        ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, *ContentProperty->ContainerPtrToValuePtr<FString>(ContentContainerAddress), Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+            OnCompletedRequest.ExecuteIfBound(Response);
+        }));
 	    }
 	    else if (ContentProperty->IsA(FNameProperty::StaticClass()))
 	    {
-	        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, ContentProperty->ContainerPtrToValuePtr<FName>(ContentContainerAddress)->ToString(), Properties, OnCompletedRequest);
+	        ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, ContentProperty->ContainerPtrToValuePtr<FName>(ContentContainerAddress)->ToString(), Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+            OnCompletedRequest.ExecuteIfBound(Response);
+        }));
 	    }
         else if (ContentProperty->IsA(FTextProperty::StaticClass()))
         {
-            ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent(NotificationType, Priority, RecipientPlayerUlid, ContentProperty->ContainerPtrToValuePtr<FText>(ContentContainerAddress)->ToString(), Properties, OnCompletedRequest);
+            ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, ContentProperty->ContainerPtrToValuePtr<FText>(ContentContainerAddress)->ToString(), Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                OnCompletedRequest.ExecuteIfBound(Response);
+            }));
         }
 	    else if (ContentProperty->IsA(FStructProperty::StaticClass()))
 	    {
@@ -1084,7 +1187,10 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	            TSharedPtr<FJsonObject> Out = MakeShared<FJsonObject>();
 	            if (FJsonObjectConverter::UStructToJsonAttributes(StructProperty->Struct, ContentAddress, Out->Values))
 	            {
-	                ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent(NotificationType, Priority, RecipientPlayerUlid, MakeShared<FJsonValueObject>(Out), Properties, OnCompletedRequest);
+                    TSharedPtr<FJsonValue> JsonValue = MakeShared<FJsonValueObject>(Out);
+	                ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, JsonValue, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                        OnCompletedRequest.ExecuteIfBound(Response);
+                    }));
 	            }
 	        }
 	    }
@@ -1099,7 +1205,9 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	                {
 	                    TArray<double> DecimalArrVal;
 	                    ArrayProperty->CopyCompleteValueToScriptVM(&DecimalArrVal, ContentAddress);
-	                    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleArrayContent(NotificationType, Priority, RecipientPlayerUlid, DecimalArrVal, Properties, OnCompletedRequest);
+	                    ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, DecimalArrVal, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                        OnCompletedRequest.ExecuteIfBound(Response);
+                    }));
 	                }
 	                else
 	                {
@@ -1107,13 +1215,17 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	                    {
 	                        TArray<long long> IntArrVal;
 	                        ArrayProperty->CopyCompleteValueToScriptVM(&IntArrVal, ContentAddress);
-	                        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, IntArrVal, Properties, OnCompletedRequest);
+	                        ULootLockerServerForCpp::SendNotificationToPlayerWithLargeIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, IntArrVal, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                            OnCompletedRequest.ExecuteIfBound(Response);
+                        }));
 	                    }
 	                    else
 	                    {
 	                        TArray<int> IntArrVal;
 	                        ArrayProperty->CopyCompleteValueToScriptVM(&IntArrVal, ContentAddress);
-	                        ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, IntArrVal, Properties, OnCompletedRequest);
+	                        ULootLockerServerForCpp::SendNotificationToPlayerWithIntArrayContent(NotificationType, Priority, RecipientPlayerUlid, IntArrVal, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                            OnCompletedRequest.ExecuteIfBound(Response);
+                        }));
 	                    }
 	                }
 	            }
@@ -1122,13 +1234,17 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	        {
 	            TArray<bool> BoolArrVal;
 	            ArrayProperty->CopyCompleteValueToScriptVM(&BoolArrVal, ContentAddress);
-	            ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolArrayContent(NotificationType, Priority, RecipientPlayerUlid, BoolArrVal, Properties, OnCompletedRequest);
+	            ULootLockerServerForCpp::SendNotificationToPlayerWithBoolArrayContent(NotificationType, Priority, RecipientPlayerUlid, BoolArrVal, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                OnCompletedRequest.ExecuteIfBound(Response);
+            }));
 	        }
 	        else if (ArrayProperty->Inner->IsA(FStrProperty::StaticClass()))
 	        {
 	            TArray<FString> StringArrVal;
 	            ArrayProperty->CopyCompleteValueToScriptVM(&StringArrVal, ContentAddress);
-	            ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringArrayContent(NotificationType, Priority, RecipientPlayerUlid, StringArrVal, Properties, OnCompletedRequest);
+	            ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, StringArrVal, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                OnCompletedRequest.ExecuteIfBound(Response);
+            }));
 	        }
 	        else if (ArrayProperty->Inner->IsA(FNameProperty::StaticClass()))
 	        {
@@ -1139,7 +1255,9 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	            {
 	                StringArrVal.Add(name.ToString());
 	            }
-	            ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringArrayContent(NotificationType, Priority, RecipientPlayerUlid, StringArrVal, Properties, OnCompletedRequest);
+	            ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, StringArrVal, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                OnCompletedRequest.ExecuteIfBound(Response);
+            }));
 	        }
             else if (ArrayProperty->Inner->IsA(FTextProperty::StaticClass()))
             {
@@ -1150,7 +1268,9 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
                 {
                     StringArrVal.Add(name.ToString());
                 }
-                ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringArrayContent(NotificationType, Priority, RecipientPlayerUlid, StringArrVal, Properties, OnCompletedRequest);
+                ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, StringArrVal, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                    OnCompletedRequest.ExecuteIfBound(Response);
+                }));
             }
 	        else if (ArrayProperty->Inner->IsA(FStructProperty::StaticClass()))
 	        {
@@ -1166,7 +1286,9 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	                        JsonArrVal.Add(MakeShared<FJsonValueObject>(Out));
 	                    }
 	                }
-	                ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, JsonArrVal, Properties, OnCompletedRequest);
+	                ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, JsonArrVal, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+                    OnCompletedRequest.ExecuteIfBound(Response);
+                }));
 	            }
 	        }
 	    }
@@ -1181,5 +1303,7 @@ void ULootLockerServerForBlueprints::SendNotificationToPlayerWithoutContent(cons
 	const TArray<FLootLockerServerNotificationProperty>& Properties,
 	const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithoutContent(NotificationType, Priority, RecipientPlayerUlid, Properties, OnCompletedRequest);
+    ULootLockerServerForCpp::SendNotificationToPlayerWithoutContent(NotificationType, Priority, RecipientPlayerUlid, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
