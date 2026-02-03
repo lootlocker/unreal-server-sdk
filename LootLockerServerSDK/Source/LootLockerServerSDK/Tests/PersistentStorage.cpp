@@ -38,7 +38,7 @@ void FTestLootLockerServer_PersistentStorage::Define()
 				TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate;
 				StorageEntriesToUpdate.Add(NamedSet);
 
-				ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(StorageEntriesToUpdate, FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseBP(), Delegate);
+				ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(StorageEntriesToUpdate, Delegate);
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("Server_AddItemsToPersistentStorage success", Response.Success);
@@ -59,7 +59,7 @@ void FTestLootLockerServer_PersistentStorage::Define()
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerGetPersistentStorageForPlayersResponse, FLootLockerServerGetPersistentStorageForPlayersResponseDelegate>();
 
-				ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int>{ PlayerId }, FLootLockerServerGetPersistentStorageForPlayersResponseBP(), Delegate);
+				ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int>{ PlayerId }, Delegate);
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("Server_GetPlayerPersistentStorage success", Response.Success);
@@ -78,7 +78,7 @@ void FTestLootLockerServer_PersistentStorage::Define()
 				TArray<int> PlayerIDs = { PlayerId };				
 				TArray<FString> Keys = { TestItem.Key };
 
-				ULootLockerServerStorageRequest::DeletePersistentStorageForPlayersAndKeys(PlayerIDs, Keys, FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP(), Delegate);
+				ULootLockerServerStorageRequest::DeletePersistentStorageForPlayersAndKeys(PlayerIDs, Keys, Delegate);
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("DeleteItemFromPersistentStorage success", Response.Success);

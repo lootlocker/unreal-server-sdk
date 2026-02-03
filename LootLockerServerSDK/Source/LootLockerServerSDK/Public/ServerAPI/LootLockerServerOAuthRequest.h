@@ -68,8 +68,8 @@ public:
 public:
 	ULootLockerServerOAuthRequest();
 
-	static void GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequestBP = FLootLockerServerTokenExchangeResponseBP(), const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest = FLootLockerServerTokenExchangeResponseDelegate());
-	static void GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequestBP = FLootLockerServerTokenExchangeResponseBP(), const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest = FLootLockerServerTokenExchangeResponseDelegate());
+	static void GameApiTokenExchange(const FString& GameApiSessionToken, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest = FLootLockerServerTokenExchangeResponseDelegate());
+	static void GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest = FLootLockerServerTokenExchangeResponseDelegate());
 
 private:
 	static FString TokenExchangeWWWFormFormatString;

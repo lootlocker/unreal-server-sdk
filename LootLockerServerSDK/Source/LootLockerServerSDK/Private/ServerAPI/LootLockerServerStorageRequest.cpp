@@ -10,17 +10,17 @@ ULootLockerServerStorageRequest::ULootLockerServerStorageRequest()
 {
 }
 
-void ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int> PlayerIDs,	const FLootLockerServerGetPersistentStorageForPlayersResponseBP& OnCompleteRequestBP, const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompleteResponse)
+void ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompleteResponse)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPersistentStorageForPlayersResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetPlayerPersistentStorage, {}, { {"player_ids", LootLockerServerUtilities::IntArrayToCommaSeparatedString(PlayerIDs) } }, OnCompleteRequestBP, OnCompleteResponse);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPersistentStorageForPlayersResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetPlayerPersistentStorage, {}, { {"player_ids", LootLockerServerUtilities::IntArrayToCommaSeparatedString(PlayerIDs) } }, FLootLockerServerGetPersistentStorageForPlayersResponseBP(), OnCompleteResponse);
 }
 
-void ULootLockerServerStorageRequest::GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP& OnCompleteRequestBP, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse)
+void ULootLockerServerStorageRequest::GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse>(FLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest{ PlayerIDs , Keys}, ULootLockerServerEndpoints::GetMultiplePlayersPublicPersistentStorageValues, {}, {}, OnCompleteRequestBP, OnCompleteResponse);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse>(FLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest{ PlayerIDs , Keys}, ULootLockerServerEndpoints::GetMultiplePlayersPublicPersistentStorageValues, {}, {}, FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP(), OnCompleteResponse);
 }
 
-void ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseBP& OnCompleteRequestBP, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse)
+void ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse)
 {
 	TArray<FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered> UpdateEntriesWithOrder;
 	int i = 0;
@@ -36,10 +36,10 @@ void ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(T
 		UpdateEntriesWithOrder.Add(FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered{ EntryToUpdate.Player_id, UpdateSets });
 	}
 	
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse>(FLootLockerServerPlayerPersistentStorageUpdateRequest{ UpdateEntriesWithOrder }, ULootLockerServerEndpoints::UpdatePlayerPersistentStorage, {}, {}, OnCompleteRequestBP, OnCompleteResponse);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse>(FLootLockerServerPlayerPersistentStorageUpdateRequest{ UpdateEntriesWithOrder }, ULootLockerServerEndpoints::UpdatePlayerPersistentStorage, {}, {}, FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseBP(), OnCompleteResponse);
 }
 
-void ULootLockerServerStorageRequest::DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP& OnCompleteRequestBP,	const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse)
+void ULootLockerServerStorageRequest::DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeletePlayerPersistentStorage, {}, { {"player_ids", LootLockerServerUtilities::IntArrayToCommaSeparatedString(PlayerIDs)},{"keys", LootLockerServerUtilities::FStringArrayToCommaSeparatedString(Keys)}}, OnCompleteRequestBP, OnCompleteResponse);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeletePlayerPersistentStorage, {}, { {"player_ids", LootLockerServerUtilities::IntArrayToCommaSeparatedString(PlayerIDs)},{"keys", LootLockerServerUtilities::FStringArrayToCommaSeparatedString(Keys)}}, FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP(), OnCompleteResponse);
 }

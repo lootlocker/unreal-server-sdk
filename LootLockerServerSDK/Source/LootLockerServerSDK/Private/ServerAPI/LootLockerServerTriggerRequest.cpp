@@ -8,7 +8,7 @@ ULootLockerServerTriggerRequest::ULootLockerServerTriggerRequest()
 {
 }
 
-void ULootLockerServerTriggerRequest::InvokeTriggerForPlayer(FString TriggerName, int PlayerId, const FLootLockerServerInvokeTriggerResponseBP& OnCompletedRequestBP, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest)
+void ULootLockerServerTriggerRequest::InvokeTriggerForPlayer(FString TriggerName, int PlayerId, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerInvokeTriggerResponse>(FLootLockerServerInvokeTriggerForPlayerRequest{TriggerName, PlayerId}, ULootLockerServerEndpoints::InvokeTriggerForPlayer, {}, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerInvokeTriggerResponse>(FLootLockerServerInvokeTriggerForPlayerRequest{TriggerName, PlayerId}, ULootLockerServerEndpoints::InvokeTriggerForPlayer, {}, {}, FLootLockerServerInvokeTriggerResponseBP(), OnCompletedRequest);
 }
