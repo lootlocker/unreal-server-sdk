@@ -385,7 +385,7 @@ void ULootLockerServerForCpp::DeleteKeyValuePairFromAssetInstanceById(int Player
 
 void ULootLockerServerForCpp::ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerFriendsRequest::ListFriends(PlayerULID, Page, PerPage, FLootLockerServerListFriendsResponseBP(), OnCompletedRequest);
+    ULootLockerServerFriendsRequest::ListFriends(PlayerULID, Page, PerPage, OnCompletedRequest);
 }
 
 // Connected Accounts
