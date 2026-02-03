@@ -1156,7 +1156,7 @@ public:
     * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param OnCompletedRequest Delegate for handling the server response
     */
-    static void GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest = FLootLockerServerInstanceProgressionListResponseDelegate());
+    static void GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest);
 
     /**
     * Get a list of progressions for the specified instance
@@ -1166,7 +1166,7 @@ public:
     * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
     * @param OnCompletedRequest Delegate for handling the server response
     */
-    static void GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest = FLootLockerServerInstanceProgressionListResponseDelegate());
+    static void GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseDelegate& OnCompletedRequest);
 
     /**
     * Get a specific progression for the specified instance
@@ -1175,7 +1175,7 @@ public:
     * @param ProgressionKey Key of the progression to get
     * @param OnCompletedRequest Delegate for handling the server response
     */
-    static void GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseDelegate& OnCompletedRequest = FLootLockerServerSingleInstanceProgressionResponseDelegate());
+    static void GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseDelegate& OnCompletedRequest);
 
     /**
     * Add points to the specified progression for the specified instance
@@ -1185,7 +1185,7 @@ public:
     * @param Amount The number of points to add to the specified progression (only positive integers allowed)
     * @param OnCompletedRequest Delegate for handling the server response
     */
-    static void AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest = FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate());
+    static void AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
     * Subtract points from the specified progression for the specified instance
@@ -1195,7 +1195,7 @@ public:
     * @param Amount The number of points to subtract from the specified progression (only positive integers allowed)
     * @param OnCompletedRequest Delegate for handling the server response
     */
-    static void SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest = FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate());
+    static void SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
     * Reset the specified progression for the specified instance
@@ -1204,7 +1204,7 @@ public:
     * @param ProgressionKey Key of the progression to reset for the specified instance
     * @param OnCompletedRequest Delegate for handling the server response
     */
-   static void ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest = FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate());
+   static void ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate& OnCompletedRequest);
 
     /**
     * Delete the specified progression for the specified instance
@@ -1213,7 +1213,7 @@ public:
     * @param ProgressionKey Key of the progression to delete for the specified instance
     * @param OnCompletedRequest Delegate for handling the server response
     */
-    static void DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest = FLootLockerServerDeleteInstanceProgressionResponseDelegate());
+    static void DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest);
 
     //==================================================
     // Currencies

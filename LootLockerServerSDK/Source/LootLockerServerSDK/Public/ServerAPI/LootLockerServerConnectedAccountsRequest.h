@@ -128,5 +128,5 @@ public:
      * @param OnResponseCompletedBP Blueprint delegate for handling the response
      * @param OnResponseCompleted C++ delegate for handling the response
      */
-    static void ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseDelegate& OnResponseCompleted = FLootLockerServerListConnectedAccountsResponseDelegate());
+    static void ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseDelegate& OnResponseCompleted);
 };
