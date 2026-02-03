@@ -673,37 +673,51 @@ void ULootLockerServerForBlueprints::DeleteProgressionForCharacter(int PlayerID,
 
 void ULootLockerServerForBlueprints::GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseBP& OnCompletedRequestBP)
 {
-    ULootLockerServerInstanceProgressionRequest::GetProgressionForAssetInstance(PlayerId, AssetInstanceId, OnCompletedRequestBP);
+    ULootLockerServerForCpp::GetProgressionForAssetInstance(PlayerId, AssetInstanceId, FLootLockerServerInstanceProgressionListResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerInstanceProgressionListResponse& Response) {
+        OnCompletedRequestBP.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString& After, const FLootLockerServerInstanceProgressionListResponseBP& OnCompletedRequestBP)
 {
-    ULootLockerServerInstanceProgressionRequest::GetPaginatedProgressionForAssetInstance(PlayerId, AssetInstanceId, Count, After, OnCompletedRequestBP);
+    ULootLockerServerForCpp::GetPaginatedProgressionForAssetInstance(PlayerId, AssetInstanceId, Count, After, FLootLockerServerInstanceProgressionListResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerInstanceProgressionListResponse& Response) {
+        OnCompletedRequestBP.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseBP& OnCompletedRequestBP)
 {
-    ULootLockerServerInstanceProgressionRequest::GetProgressionByKeyForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, OnCompletedRequestBP);
+    ULootLockerServerForCpp::GetProgressionByKeyForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, FLootLockerServerSingleInstanceProgressionResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerSingleInstanceProgressionResponse& Response) {
+        OnCompletedRequestBP.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP)
 {
-    ULootLockerServerInstanceProgressionRequest::AddPointsToProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, Amount, OnCompletedRequestBP);
+    ULootLockerServerForCpp::AddPointsToProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, Amount, FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerSingleInstanceProgressionWithRewardsResponse& Response) {
+        OnCompletedRequestBP.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP)
 {
-    ULootLockerServerInstanceProgressionRequest::SubtractPointsFromProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, Amount, OnCompletedRequestBP);
+    ULootLockerServerForCpp::SubtractPointsFromProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, Amount, FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerSingleInstanceProgressionWithRewardsResponse& Response) {
+        OnCompletedRequestBP.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP& OnCompletedRequestBP)
 {
-    ULootLockerServerInstanceProgressionRequest::ResetProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, OnCompletedRequestBP);
+    ULootLockerServerForCpp::ResetProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerSingleInstanceProgressionWithRewardsResponse& Response) {
+        OnCompletedRequestBP.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseBP& OnCompletedRequestBP)
 {
-    ULootLockerServerInstanceProgressionRequest::DeleteProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, OnCompletedRequestBP);
+    ULootLockerServerForCpp::DeleteProgressionForAssetInstance(PlayerId, AssetInstanceId, ProgressionKey, FLootLockerServerDeleteInstanceProgressionResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerResponse& Response) {
+        OnCompletedRequestBP.ExecuteIfBound(Response);
+    }));
 }
 
 // Currencies
