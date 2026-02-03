@@ -8,7 +8,7 @@ ULootLockerServerAssetRequest::ULootLockerServerAssetRequest()
 {
 }
 
-void ULootLockerServerAssetRequest::GetAssets(int Count, int After, int Context, bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP& OnCompletedRequestBP, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::GetAssets(int Count, int After, int Context, bool IncludeUGC, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest)
 {
     TMultiMap<FString, FString> QueryParams;
     QueryParams.Add("include_ugc", IncludeUGC ? "true" : "false");
@@ -24,52 +24,52 @@ void ULootLockerServerAssetRequest::GetAssets(int Count, int After, int Context,
     {
         QueryParams.Add("context_id", FString::FromInt(Context));
     }
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAssetsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssets, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAssetsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssets, {}, QueryParams, FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssetInstanceKeyValuePairs, { PlayerID, AssetInstanceID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssetInstanceKeyValuePairs, { PlayerID, AssetInstanceID }, {}, FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairItemResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssetInstanceKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairItemResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAssetInstanceKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, FLootLockerServerAssetInstanceKeyValuePairItemResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerCreateAssetInstanceKeyValuePairRequest { Key, Value }, ULootLockerServerEndpoints::AddKeyValuePairToAssetInstance, { PlayerID, AssetInstanceID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerCreateAssetInstanceKeyValuePairRequest { Key, Value }, ULootLockerServerEndpoints::AddKeyValuePairToAssetInstance, { PlayerID, AssetInstanceID }, {}, FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest{KeyValuePairs}, ULootLockerServerEndpoints::UpdateKeyValuePairs, { PlayerID, AssetInstanceID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest{KeyValuePairs}, ULootLockerServerEndpoints::UpdateKeyValuePairs, { PlayerID, AssetInstanceID }, {}, FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairItemResponse>(FLootLockerServerCreateAssetInstanceKeyValuePairRequest { Key, Value }, ULootLockerServerEndpoints::UpdateKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairItemResponse>(FLootLockerServerCreateAssetInstanceKeyValuePairRequest { Key, Value }, ULootLockerServerEndpoints::UpdateKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, FLootLockerServerAssetInstanceKeyValuePairItemResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequestBP, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::DeleteKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::DeleteKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerAssetRequest::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseBP& OnCompletedRequestBP, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
-{
-    TMultiMap<FString, FString> QueryParams;
-    if(Page > 0) QueryParams.Add("page", FString::FromInt(Page));
-    if(PerPage > 0) QueryParams.Add("per_page", FString::FromInt(PerPage));
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListAssetsResponse>(Request, ULootLockerServerEndpoints::ListAssets, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
-}
-
-void ULootLockerServerAssetRequest::ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseBP& OnCompletedRequestBP, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest)
+void ULootLockerServerAssetRequest::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
     TMultiMap<FString, FString> QueryParams;
     if(Page > 0) QueryParams.Add("page", FString::FromInt(Page));
     if(PerPage > 0) QueryParams.Add("per_page", FString::FromInt(PerPage));
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListContextsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListContexts, {}, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListAssetsResponse>(Request, ULootLockerServerEndpoints::ListAssets, {}, QueryParams, FLootLockerServerListAssetsResponseBP(), OnCompletedRequest);
+}
+
+void ULootLockerServerAssetRequest::ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest)
+{
+    TMultiMap<FString, FString> QueryParams;
+    if(Page > 0) QueryParams.Add("page", FString::FromInt(Page));
+    if(PerPage > 0) QueryParams.Add("per_page", FString::FromInt(PerPage));
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerListContextsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListContexts, {}, QueryParams, FLootLockerServerListContextsResponseBP(), OnCompletedRequest);
 }
 
