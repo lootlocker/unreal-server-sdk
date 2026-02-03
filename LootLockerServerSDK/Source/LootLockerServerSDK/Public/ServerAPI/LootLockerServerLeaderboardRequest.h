@@ -839,20 +839,20 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerLeaderboardRequest : public UObje
 {
     GENERATED_BODY()
 public:
-    static void ListLeaderboards(int Count, int After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest = FLootLockerServerListLeaderboardsResponseDelegate());
-    static void GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerGetLeaderboardResponseDelegate());
-    static void CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerCreateLeaderboardResponseDelegate());
-    static void UpdateLeaderboard(const FString& LeaderboardKey, const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequest, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerUpdateLeaderboardResponseDelegate());
-    static void DeleteLeaderboard(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerDeleteLeaderboardResponseDelegate());
-    static void SubmitScore(const FString& LeaderboardKey, const FLootLockerServerLeaderboardSubmitScoreRequest& SubmitScoreRequest, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest = FLootLockerServerLeaderboardSubmitScoreResponseDelegate());
-    static void GetAllMemberRanks(const FString& MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest = FLootLockerServerGetAllMemberRanksResponseDelegate());
-    static void GetPaginatedAllMemberRanks(const FString& MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest = FLootLockerServerGetAllMemberRanksResponseDelegate());
-    static void GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerGetScoresFromLeaderboardResponseDelegate());
-    static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest = FLootLockerServerGetScoresFromLeaderboardResponseDelegate());
+    static void ListLeaderboards(int Count, int After, const FLootLockerServerListLeaderboardsResponseDelegate& OnCompletedRequest);
+    static void GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseDelegate& OnCompletedRequest);
+    static void CreateLeaderboard(const FLootLockerServerCreateLeaderboardRequest& CreateLeaderboardRequest, const FLootLockerServerCreateLeaderboardResponseDelegate& OnCompletedRequest);
+    static void UpdateLeaderboard(const FString& LeaderboardKey, const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequest, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest);
+    static void DeleteLeaderboard(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest);
+    static void SubmitScore(const FString& LeaderboardKey, const FLootLockerServerLeaderboardSubmitScoreRequest& SubmitScoreRequest, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest);
+    static void GetAllMemberRanks(const FString& MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
+    static void GetPaginatedAllMemberRanks(const FString& MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
+    static void GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
+    static void GetPaginatedScoresFromLeaderboard(FString LeaderboardKey, int Count, int After, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);
 
-    static void GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest = FLootLockerServerGetLeaderboardScheduleResponseDelegate());
-    static void CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest = FLootLockerServerGetLeaderboardScheduleResponseDelegate());
-    static void DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest = FLootLockerServerDeleteLeaderboardScheduleResponseDelegate());
+    static void GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
+    static void CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
+    static void DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest);
 
 public:
     ULootLockerServerLeaderboardRequest();
