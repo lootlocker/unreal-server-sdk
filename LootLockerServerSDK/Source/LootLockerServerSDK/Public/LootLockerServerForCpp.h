@@ -184,7 +184,6 @@ public:
 
     /**
      * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player, using pagination settings.
-     *on
      *
      * @param MemberID The ID of the member to get the scores for. For player type leaderboards this is the PlayerID, for Generic type leaderboards it can be any string so you need to know what/who you want to submit for.
      * @param Count Number of members returned per page
@@ -207,7 +206,6 @@ public:
      * From the requested leaderboard get <count> number of scores. The list of scores has member information, rank, score, and metadata (if metadata is enabled on that leaderboard) for the given leaderboard. If leaderboard is of type player a player will also be in the response, using pagination settings.
      * Results are sorted in ascending order.
      * Maximum allowed scores to query for at a time is currently 2000.
-     *gination
      *
      * @param LeaderboardKey the key of the leaderboard you want to connect to.
      * @param Count Number of scores returned per page
@@ -443,7 +441,6 @@ public:
     
     /**
      * Get a subset of the inventory for the specified player and hero using pagination settings
-     *n
      *
      * @param PlayerID The ID of the player for whom to get the hero inventory
      * @param HeroID The ID of the hero on the specified player for which to get the inventory
@@ -524,7 +521,6 @@ public:
     
     /**
      * Get the specified player's default character's inventory according to the specified pagination parameters
-     *on
      *
      * @param PlayerID The ID of the player for whom to get the inventory
      * @param Count The number of inventory items to get. Must be a value between 1 and 200
@@ -677,7 +673,7 @@ public:
 
     /**
      * List a set of assets from this game according to the supplied pagination options
-     *uire multiple calls to LootLocker with a parameter for every call except the first to step forward in the results.
+     * Note that this is a paginated call and it will likely require multiple calls to LootLocker with a parameter for every call except the first to step forward in the results.
      * Up to 200 (the default limit is 50 though) assets are returned at a time, and to fetch the next page you have to use the largest ID you've gotten returned in the previous response
      *
      * @param Count The number of assets to get. Must be a value between 1 and 200
