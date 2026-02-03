@@ -786,51 +786,6 @@ struct FLootLockerServerListLeaderboardsResponse : public FLootLockerServerRespo
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for listing leaderboards
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListLeaderboardsResponseBP, FLootLockerServerListLeaderboardsResponse, Response);
-/*
- Blueprint response delegate for getting leaderboard information
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetLeaderboardResponseBP, FLootLockerServerGetLeaderboardResponse, Response);
-/*
- Blueprint response delegate for leaderboard creation
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreateLeaderboardResponseBP, FLootLockerServerCreateLeaderboardResponse, Response);
-/*
- Blueprint response delegate for leaderboard updates
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUpdateLeaderboardResponseBP, FLootLockerServerUpdateLeaderboardResponse, Response);
-/*
- Blueprint response delegate for leaderboard deletion
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardResponseBP, FLootLockerServerResponse, Response);
-/*
- Blueprint response delegate for leaderboard score submission
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerLeaderboardSubmitScoreResponseBP, FLootLockerServerLeaderboardSubmitScoreResponse, Response);
-/*
- Blueprint response delegate for getting all member ranks
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetAllMemberRanksResponseBP, FLootLockerServerGetAllMemberRanksResponse, Response);
-/*
- Blueprint response delegate for getting scores from a leaderboard
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetScoresFromLeaderboardResponseBP, FLootLockerServerGetScoresFromLeaderboardResponse, Response);
-/*
- Blueprint response delegate for getting the schedule for a leaderboard
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetLeaderboardScheduleResponseBP, FLootLockerServerGetLeaderboardScheduleResponse, Response);
-/*
- Blueprint response delegate for leaderboard schedule deletion
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardScheduleResponseBP, FLootLockerServerResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

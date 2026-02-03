@@ -298,31 +298,6 @@ struct FLootLockerServerUnequipAssetFromCharacterLoadoutResponse : public FLootL
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for getting a player's characters
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPlayerCharacterResponseBP, FLootLockerServerGetPlayerCharactersResponse, Response);
-/*
- Blueprint response delegate for getting a player characters inventory
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetCharacterInventoryResponseBP, FLootLockerServerGetCharacterInventoryResponse, Response);
-/*
- Blueprint response delegate for getting a player characters loadout
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetCharacterLoadoutResponseBP, FLootLockerServerGetCharacterLoadoutResponse, Response);
-/*
- Blueprint response delegate for equipping an asset to a player characters loadout
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerEquipAssetToCharacterLoadoutResponseBP, FLootLockerServerEquipAssetToCharacterLoadoutResponse, Response);
-/*
- Blueprint response delegate for unequipping an asset from a player characters loadout
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP, FLootLockerServerUnequipAssetFromCharacterLoadoutResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

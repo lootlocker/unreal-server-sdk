@@ -212,30 +212,6 @@ struct FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse : publi
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for fetching persistent storage for player(s)
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPersistentStorageForPlayersResponseBP, FLootLockerServerGetPersistentStorageForPlayersResponse, Response);
-
-/*
- Blueprint response delegate for fetching persistent storage for player(s) and key(s)
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP, FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse, Response);
-
-/*
- Blueprint response delegate for updating persistent storage for player(s) and key(s)
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseBP, FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse, Response);
-
-/*
- Blueprint response delegate for deleting persistent storage for player(s) and key(s)
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP, FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

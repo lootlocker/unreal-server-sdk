@@ -148,26 +148,6 @@ struct FLootLockerServerInstanceProgressionListResponse : public FLootLockerServ
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-/*
- Blueprint response delegate for receiving a single instance progression
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSingleInstanceProgressionResponseBP, FLootLockerServerSingleInstanceProgressionResponse, Response);
-/*
- Blueprint response delegate for receiving a list of instance progressions
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerInstanceProgressionListResponseBP, FLootLockerServerInstanceProgressionListResponse, Response);
-/*
- Blueprint response delegate for receiving a single instance progression with rewards
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP, FLootLockerServerSingleInstanceProgressionWithRewardsResponse, Response);
-/*
- Blueprint response delegate for deleting a progression. Will be empty if no error occured.
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteInstanceProgressionResponseBP, FLootLockerServerResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

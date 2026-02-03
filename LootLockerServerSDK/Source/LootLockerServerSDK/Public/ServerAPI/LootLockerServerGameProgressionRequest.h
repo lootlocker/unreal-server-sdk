@@ -102,23 +102,6 @@ struct FLootLockerServerProgressionTiersResponse : public FLootLockerServerRespo
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for listing game progression
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGameProgressionListResponseBP, FLootLockerServerGameProgressionListResponse, Response);
-/*
- Blueprint response delegate for receiving a single game progression
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSingleGameProgressionResponseBP, FLootLockerServerSingleGameProgressionResponse, Response);
-/*
- Blueprint response delegate for receiving the tiers of a single game progression
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerProgressionTiersResponseBP, FLootLockerServerProgressionTiersResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 /*

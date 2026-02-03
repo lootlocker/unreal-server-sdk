@@ -41,15 +41,6 @@ struct FLootLockerServerTokenExchangeResponse : public FLootLockerServerResponse
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for handling token exchange responses
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerTokenExchangeResponseBP, FLootLockerServerTokenExchangeResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 /*

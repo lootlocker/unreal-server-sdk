@@ -459,39 +459,6 @@ struct FLootLockerServerAlterPlayerInventoryResponse : public FLootLockerServerR
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for getting a game's universal inventory
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetUniversalInventoryResponseBP, FLootLockerServerGetUniversalInventoryResponse, Response);
-/*
- Blueprint response delegate for getting a player's inventory
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPlayerInventoryResponseBP, FLootLockerServerGetPlayerInventoryResponse, Response);
-/*
- Blueprint response delegate for adding an asset to a player's inventory
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAddAssetToPlayerInventoryResponseBP, FLootLockerServerAddAssetToPlayerInventoryResponse, Response);
-/*
- Blueprint response delegate for altering a player's inventory
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAlterPlayerInventoryResponseBP, FLootLockerServerAlterPlayerInventoryResponse, Response);
-/*
- Blueprint response delegate for getting a player's loadout
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPlayerLoadoutResponseBP, FLootLockerServerGetPlayerLoadoutResponse, Response);
-/*
- Blueprint response delegate for equipping an asset to a player's loadout
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerEquipAssetToPlayerLoadoutResponseBP, FLootLockerServerEquipAssetToPlayerLoadoutResponse, Response);
-/*
- Blueprint response delegate for unequipping an asset from a player's loadout
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP, FLootLockerServerUnequipAssetFromPlayerLoadoutResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 
