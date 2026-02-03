@@ -322,22 +322,22 @@ void ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOpt
 // Assets
 void ULootLockerServerForCpp::GetAssets(const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC) 
 {
-    ULootLockerServerAssetRequest::GetAssets(0, 0, -1, IncludeUGC, FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::GetAssets(0, 0, -1, IncludeUGC, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::GetPaginatedAssets(int Count, int After, const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC) 
 {
-    ULootLockerServerAssetRequest::GetAssets(Count, After, -1, IncludeUGC, FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::GetAssets(Count, After, -1, IncludeUGC, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::GetAssetsByContext(int Count, int After, int Context, const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC)
 {
-    ULootLockerServerAssetRequest::GetAssets(Count, After, Context, IncludeUGC, FLootLockerServerGetAssetsResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::GetAssets(Count, After, Context, IncludeUGC, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::ListAssets(Request, PerPage, Page, FLootLockerServerListAssetsResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::ListAssets(Request, PerPage, Page, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
@@ -347,38 +347,38 @@ void ULootLockerServerForCpp::ListAssetsWithDefaultParameters(const FLootLockerS
 
 void ULootLockerServerForCpp::ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::ListContexts(PerPage, Page, FLootLockerServerListContextsResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::ListContexts(PerPage, Page, OnCompletedRequest);
 }
 
 // Asset Instances
 void ULootLockerServerForCpp::GetKeyValuePairsFromAssetInstance(int PlayerID, int AssetInstanceID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::GetKeyValuePairsFromAssetInstance(PlayerID, AssetInstanceID, FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::GetKeyValuePairsFromAssetInstance(PlayerID, AssetInstanceID, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::GetAssetInstanceKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::GetAssetInstanceKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, FLootLockerServerAssetInstanceKeyValuePairItemResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::GetAssetInstanceKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::AddKeyValuePairToAssetInstance(int PlayerID, int AssetInstanceID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::AddKeyValuePairToAssetInstance(PlayerID, AssetInstanceID, Key, Value, FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::AddKeyValuePairToAssetInstance(PlayerID, AssetInstanceID, Key, Value, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::UpdateKeyValuePairsOnAssetInstance(PlayerID, AssetInstanceID, KeyValuePairs, FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::UpdateKeyValuePairsOnAssetInstance(PlayerID, AssetInstanceID, KeyValuePairs, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::UpdateKeyValuePairOnAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, Key, Value, FLootLockerServerAssetInstanceKeyValuePairItemResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::UpdateKeyValuePairOnAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, Key, Value, OnCompletedRequest);
 }
 
 void ULootLockerServerForCpp::DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, FLootLockerServerAssetInstanceKeyValuePairsListResponseBP(), OnCompletedRequest);
+    ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(PlayerID, AssetInstanceID, KeyValuePairID, OnCompletedRequest);
 }
 
 // Friends
