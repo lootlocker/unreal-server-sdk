@@ -10,12 +10,12 @@ ULootLockerServerGameProgressionRequest::ULootLockerServerGameProgressionRequest
 {
 }
 
-void ULootLockerServerGameProgressionRequest::GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest) 
+FString ULootLockerServerGameProgressionRequest::GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest) 
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGameProgressionListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAllProgressions, {}, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGameProgressionListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAllProgressions, {}, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerGameProgressionRequest::GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest) 
+FString ULootLockerServerGameProgressionRequest::GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest) 
 {
     TMultiMap<FString, FString> QueryParams;
     if(Count > 0)
@@ -26,20 +26,20 @@ void ULootLockerServerGameProgressionRequest::GetPaginatedProgressions(int32 Cou
     {
         QueryParams.Add("after", After);
     }
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGameProgressionListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAllProgressions, {}, { QueryParams }, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGameProgressionListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetAllProgressions, {}, { QueryParams }, OnCompletedRequest);
 }
 
-void ULootLockerServerGameProgressionRequest::GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseDelegate& OnCompletedRequest) 
+FString ULootLockerServerGameProgressionRequest::GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseDelegate& OnCompletedRequest) 
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSingleGameProgressionResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetProgression, { ProgressionKey }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerSingleGameProgressionResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetProgression, { ProgressionKey }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerGameProgressionRequest::GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest) 
+FString ULootLockerServerGameProgressionRequest::GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest) 
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerProgressionTiersResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetProgressionTiers, { ProgressionKey }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerProgressionTiersResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetProgressionTiers, { ProgressionKey }, {}, OnCompletedRequest);
 }
 
-void ULootLockerServerGameProgressionRequest::GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest) 
+FString ULootLockerServerGameProgressionRequest::GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest) 
 {
     TMultiMap<FString, FString> QueryParams;
     if(Count > 0)
@@ -50,6 +50,6 @@ void ULootLockerServerGameProgressionRequest::GetPaginatedTiersForProgression(co
     {
         QueryParams.Add("after", FString::FromInt(After));
     }
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerProgressionTiersResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetProgressionTiers, { ProgressionKey }, { QueryParams }, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerProgressionTiersResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetProgressionTiers, { ProgressionKey }, { QueryParams }, OnCompletedRequest);
 }
 
