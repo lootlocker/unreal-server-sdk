@@ -38,85 +38,93 @@ void ULootLockerServerForBlueprints::GameApiUserImpersonation(const FString& Pla
 
 void ULootLockerServerForBlueprints::ListLeaderboards(int32 Count, int32 After, const FLootLockerServerListLeaderboardsResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::ListLeaderboards(Count, After, OnCompletedRequest);
+    ULootLockerServerForCpp::ListLeaderboards(Count, After, FLootLockerServerListLeaderboardsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerListLeaderboardsResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetLeaderboard(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetLeaderboard(LeaderboardKey, OnCompletedRequest);
+    ULootLockerServerForCpp::GetLeaderboard(LeaderboardKey, FLootLockerServerGetLeaderboardResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetLeaderboardResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::CreateLeaderboard(FString LeaderboardKey, FString Name, ELootLockerServerLeaderboardType Type, bool HasMetadata, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerCreateLeaderboardResponseBP& OnCompletedRequest)
 {
-    FLootLockerServerCreateLeaderboardRequest CreateLeaderboardRequest(LeaderboardKey, Name, DirectionMethod, EnableGameApiWrites, OverwriteScoreOnSubmit);
-    CreateLeaderboardRequest.Type = Type;
-    CreateLeaderboardRequest.Has_metadata = HasMetadata;
-
-    ULootLockerServerLeaderboardRequest::CreateLeaderboard(CreateLeaderboardRequest, OnCompletedRequest);
+    ULootLockerServerForCpp::CreateLeaderboard(LeaderboardKey, Name, Type, HasMetadata, DirectionMethod, EnableGameApiWrites, OverwriteScoreOnSubmit, FLootLockerServerCreateLeaderboardResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerCreateLeaderboardResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::UpdateLeaderboard(FString LeaderboardKey, FString NewLeaderboardKey, FString Name, ELootLockerServerLeaderboardDirection DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const FLootLockerServerUpdateLeaderboardResponseBP& OnCompletedRequest)
 {
-    const FLootLockerServerUpdateLeaderboardRequest UpdateLeaderboardRequest
-    {
-        NewLeaderboardKey.IsEmpty() ? LeaderboardKey : NewLeaderboardKey,
-        Name,
-        DirectionMethod,
-        EnableGameApiWrites,
-        OverwriteScoreOnSubmit
-    };
-    ULootLockerServerLeaderboardRequest::UpdateLeaderboard(LeaderboardKey, UpdateLeaderboardRequest, OnCompletedRequest);
+    ULootLockerServerForCpp::UpdateLeaderboard(LeaderboardKey, NewLeaderboardKey, Name, DirectionMethod, EnableGameApiWrites, OverwriteScoreOnSubmit, FLootLockerServerUpdateLeaderboardResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerUpdateLeaderboardResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::DeleteLeaderboard(FString LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::DeleteLeaderboard(LeaderboardKey, OnCompletedRequest);
+    ULootLockerServerForCpp::DeleteLeaderboard(LeaderboardKey, FLootLockerServerDeleteLeaderboardResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseBP& OnCompletedRequest)
 {
-    const FLootLockerServerLeaderboardSubmitScoreRequest SubmitScoreRequest
-    {
-        MemberID,
-        Score,
-        Metadata
-    };
-    ULootLockerServerLeaderboardRequest::SubmitScore(LeaderboardKey, SubmitScoreRequest, OnCompletedRequest);
+    ULootLockerServerForCpp::SubmitScore(LeaderboardKey, MemberID, Score, Metadata, FLootLockerServerLeaderboardSubmitScoreResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerLeaderboardSubmitScoreResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetAllMemberRanks(const FString MemberID, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetAllMemberRanks(MemberID, OnCompletedRequest);
+    ULootLockerServerForCpp::GetAllMemberRanks(MemberID, FLootLockerServerGetAllMemberRanksResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetAllMemberRanksResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPaginatedAllMemberRanks(const FString MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetPaginatedAllMemberRanks(MemberID, Count, After, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPaginatedAllMemberRanks(MemberID, Count, After, FLootLockerServerGetAllMemberRanksResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetAllMemberRanksResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetScoresFromLeaderboard(const FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetScoresFromLeaderboard(LeaderboardKey, OnCompletedRequest);
+    ULootLockerServerForCpp::GetScoresFromLeaderboard(LeaderboardKey, FLootLockerServerGetScoresFromLeaderboardResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetScoresFromLeaderboardResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPaginatedScoresFromLeaderboard(const FString LeaderboardKey, const int Count, const int After, const FLootLockerServerGetScoresFromLeaderboardResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetPaginatedScoresFromLeaderboard(LeaderboardKey, Count, After, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPaginatedScoresFromLeaderboard(LeaderboardKey, Count, After, FLootLockerServerGetScoresFromLeaderboardResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetScoresFromLeaderboardResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::GetLeaderboardSchedule(LeaderboardKey, OnCompletedRequest);
+    ULootLockerServerForCpp::GetLeaderboardSchedule(LeaderboardKey, FLootLockerServerGetLeaderboardScheduleResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetLeaderboardScheduleResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::CreateLeaderboardSchedule(LeaderboardKey, CronExpression, OnCompletedRequest);
+    ULootLockerServerForCpp::CreateLeaderboardSchedule(LeaderboardKey, CronExpression, FLootLockerServerGetLeaderboardScheduleResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetLeaderboardScheduleResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(LeaderboardKey, OnCompletedRequest);
+    ULootLockerServerForCpp::DeleteLeaderboardSchedule(LeaderboardKey, FLootLockerServerDeleteLeaderboardScheduleResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseBP& OnCompletedRequestBP)
