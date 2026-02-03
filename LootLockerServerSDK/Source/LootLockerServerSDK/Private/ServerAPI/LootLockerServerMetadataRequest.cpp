@@ -300,7 +300,7 @@ ULootLockerServerMetadataRequest::ULootLockerServerMetadataRequest()
 {
 }
 
-void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const FString& Key, const TArray<FString>& Tags, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseBP& OnCompleteBP, const FLootLockerServerListMetadataResponseDelegate& OnComplete)
+void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const int Page, const int PerPage, const FString& Key, const TArray<FString>& Tags, const bool IgnoreFiles, const FLootLockerServerListMetadataResponseDelegate& OnComplete)
 {
 	TMultiMap<FString, FString> QueryParams;
 	if (Page > 0) QueryParams.Add("page", FString::FromInt(Page));
@@ -317,12 +317,11 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 	FString SourceAsString = ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerMetadataSources"), static_cast<int32>(Source)).ToLower();
 	SourceAsString.ReplaceCharInline(' ', '_');
 
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerListMetadataResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ListMetadata, { SourceAsString, SourceID }, QueryParams, FLootLockerServerListMetadataResponseBP(), FLootLockerServerListMetadataResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerListMetadataResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnCompleteBP, OnComplete](FLootLockerServerListMetadataResponse& Response)
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerListMetadataResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ListMetadata, { SourceAsString, SourceID }, QueryParams, FLootLockerServerListMetadataResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerListMetadataResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnComplete](FLootLockerServerListMetadataResponse& Response)
 	{
 		// Make sure we will have entries to parse before continuing
 		if(!Response.Success || Response.Entries.Num() <= 0)
 		{
-			OnCompleteBP.ExecuteIfBound(Response);
 			OnComplete.ExecuteIfBound(Response);
 			return;
 		}
@@ -331,7 +330,6 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 		// Ensure that the full response was parsed before continuing
 		if(!obj.IsValid())
 		{
-			OnCompleteBP.ExecuteIfBound(Response);
 			OnComplete.ExecuteIfBound(Response);
 			return;			
 		}
@@ -340,7 +338,6 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 		// Make sure that the entries array was parsed before continuing
 		if(JsonEntries.Num() != Response.Entries.Num())
 		{
-			OnCompleteBP.ExecuteIfBound(Response);
 			OnComplete.ExecuteIfBound(Response);
 			return;
 		}
@@ -370,14 +367,13 @@ void ULootLockerServerMetadataRequest::ListMetadata(const ELootLockerServerMetad
 			}
 		}
 
-		OnCompleteBP.ExecuteIfBound(Response);
 		OnComplete.ExecuteIfBound(Response);
 	}));
 }
 
-void ULootLockerServerMetadataRequest::GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const bool IgnoreFiles, const FLootLockerServerGetMetadataResponseBP& OnCompleteBP, const FLootLockerServerGetMetadataResponseDelegate& OnComplete)
+void ULootLockerServerMetadataRequest::GetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const FString& Key, const bool IgnoreFiles, const FLootLockerServerGetMetadataResponseDelegate& OnComplete)
 {
-	ListMetadata(Source, SourceID, 1, 1, Key, TArray<FString>(), IgnoreFiles, FLootLockerServerListMetadataResponseBP(), FLootLockerServerListMetadataResponseDelegate::CreateLambda([OnCompleteBP, OnComplete, Key](const FLootLockerServerListMetadataResponse& ListResponse)
+	ListMetadata(Source, SourceID, 1, 1, Key, TArray<FString>(), IgnoreFiles, FLootLockerServerListMetadataResponseDelegate::CreateLambda([OnComplete, Key](const FLootLockerServerListMetadataResponse& ListResponse)
 	{
 		FLootLockerServerGetMetadataResponse SingleEntryResponse;
 		SingleEntryResponse.Success = ListResponse.Success;
@@ -388,21 +384,19 @@ void ULootLockerServerMetadataRequest::GetMetadata(const ELootLockerServerMetada
 		{
 			SingleEntryResponse.Entry = ListResponse.Entries[0];
 		}
-		OnCompleteBP.ExecuteIfBound(SingleEntryResponse);
 		OnComplete.ExecuteIfBound(SingleEntryResponse);
 	}));
 }
 
-void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseBP& OnCompleteBP,	const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete)
+void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete)
 {
 	TMultiMap<FString, FString> QueryParams;
 	if (IgnoreFiles) QueryParams.Add("ignore_files", "true");
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetMultisourceMetadataResponse>(FLootLockerServerGetMultisourceMetadataRequest{ SourcesAndKeysToGet }, ULootLockerServerEndpoints::GetMultisourceMetadata, {}, QueryParams, FLootLockerServerGetMultisourceMetadataResponseBP(), FLootLockerServerGetMultisourceMetadataResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerGetMultisourceMetadataResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnComplete, OnCompleteBP](FLootLockerServerGetMultisourceMetadataResponse& Response)
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetMultisourceMetadataResponse>(FLootLockerServerGetMultisourceMetadataRequest{ SourcesAndKeysToGet }, ULootLockerServerEndpoints::GetMultisourceMetadata, {}, QueryParams, FLootLockerServerGetMultisourceMetadataResponseBP(), FLootLockerServerGetMultisourceMetadataResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerGetMultisourceMetadataResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnComplete](FLootLockerServerGetMultisourceMetadataResponse& Response)
 		{
 			// Make sure we will have source and entry combos to parse before continuing
 			if (!Response.Success || Response.Metadata.Num() <= 0)
 			{
-				OnCompleteBP.ExecuteIfBound(Response);
 				OnComplete.ExecuteIfBound(Response);
 				return;
 			}
@@ -410,7 +404,6 @@ void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLoot
 			// Ensure that the full response was parsed before continuing
 			if (!FullResponseObjectFromServer.IsValid())
 			{
-				OnCompleteBP.ExecuteIfBound(Response);
 				OnComplete.ExecuteIfBound(Response);
 				return;
 			}
@@ -422,7 +415,6 @@ void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLoot
 			{
 				FLootLockerServerGetMultisourceMetadataResponse Error = LootLockerServerResponseFactory::Error<
 					FLootLockerServerGetMultisourceMetadataResponse>("Could not parse metadata array", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_PARSE_ERROR);
-				OnCompleteBP.ExecuteIfBound(Error);
 				OnComplete.ExecuteIfBound(Error);
 				return;
 			}
@@ -440,7 +432,6 @@ void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLoot
 				{
 					FLootLockerServerGetMultisourceMetadataResponse Error = LootLockerServerResponseFactory::Error<
 						FLootLockerServerGetMultisourceMetadataResponse>("Could not parse metadata entry array for metadata with source id " + Metadata.Source_id, LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
-					OnCompleteBP.ExecuteIfBound(Error);
 					OnComplete.ExecuteIfBound(Error);
 					return;
 				}
@@ -469,19 +460,17 @@ void ULootLockerServerMetadataRequest::GetMultisourceMetadata(const TArray<FLoot
 
 			}
 
-			OnCompleteBP.ExecuteIfBound(Response);
 			OnComplete.ExecuteIfBound(Response);
 		}));
 
 }
 
-void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseBP& OnCompleteBP, const FLootLockerServerSetMetadataResponseDelegate& OnComplete)
+void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseDelegate& OnComplete)
 {
 	if (SourceID.IsEmpty())
 	{
 		FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
 			FLootLockerServerSetMetadataResponse>("Can not perform actions for source with empty id", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
-		OnCompleteBP.ExecuteIfBound(Error);
 		OnComplete.ExecuteIfBound(Error);
 		return;
 	}
@@ -504,7 +493,6 @@ void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetada
 		{
 			FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
 				FLootLockerServerSetMetadataResponse>("Could not serialize action for key " + ActionToPerform.Entry.Key, LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_PARSE_ERROR);
-			OnCompleteBP.ExecuteIfBound(Error);
 			OnComplete.ExecuteIfBound(Error);
 			return;
 		}
@@ -526,7 +514,6 @@ void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetada
 		{
 			FLootLockerServerSetMetadataResponse Error = LootLockerServerResponseFactory::Error<
 				FLootLockerServerSetMetadataResponse>("Could not get value to perform action " + JsonEntry->GetStringField(TEXT("action")) + " for key " + ActionToPerform.Entry.Key, LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_PARSE_ERROR);
-			OnCompleteBP.ExecuteIfBound(Error);
 			OnComplete.ExecuteIfBound(Error);
 			return;
 		}
@@ -539,5 +526,5 @@ void ULootLockerServerMetadataRequest::SetMetadata(const ELootLockerServerMetada
 	// Add entries to manually serialized request
 	ManuallySerializedRequest.SetArrayField(TEXT("entries"), entries);
 	FString SerializedRequest = LootLockerServerUtilities::FStringFromJsonObject(MakeShared<FJsonObject>(ManuallySerializedRequest));
-	ULootLockerServerHttpClient::SendRawRequest<FLootLockerServerSetMetadataResponse>(SerializedRequest, ULootLockerServerEndpoints::MetadataActions, {}, {}, OnCompleteBP, OnComplete);
+	ULootLockerServerHttpClient::SendRawRequest<FLootLockerServerSetMetadataResponse>(SerializedRequest, ULootLockerServerEndpoints::MetadataActions, {}, {}, FLootLockerServerSetMetadataResponseBP(), OnComplete);
 }
