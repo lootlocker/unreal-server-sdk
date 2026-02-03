@@ -211,5 +211,5 @@ void ULootLockerServerNotificationsRequest::SendNotificationToPlayer(
 		return;
 	}
 
-	ULootLockerServerHttpClient::SendRawRequest<FLootLockerServerSendNotificationsResponse>(LootLockerServerUtilities::FStringFromJsonObject(SerializedRequest), ULootLockerServerEndpoints::SendNotification, {}, {}, FLootLockerServerSendNotificationsResponseBP(), OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRawRequest<FLootLockerServerSendNotificationsResponse>(LootLockerServerUtilities::FStringFromJsonObject(SerializedRequest), ULootLockerServerEndpoints::SendNotification, {}, {}, OnCompletedRequest);
 }

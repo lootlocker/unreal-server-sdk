@@ -11,7 +11,7 @@ ULootLockerServerLeaderboardArchiveRequestHandler::ULootLockerServerLeaderboardA
 
 void ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardArchiveResponse>(FLootLockerServerLeaderboardArchiveResponse{}, ULootLockerServerEndpoints::ListLeaderboardArchive, { LeaderboardKey }, {}, FLootLockerServerLeaderboardArchiveResponseBP(), OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardArchiveResponse>(FLootLockerServerLeaderboardArchiveResponse{}, ULootLockerServerEndpoints::ListLeaderboardArchive, { LeaderboardKey }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerLeaderboardArchiveRequestHandler::GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest)
@@ -29,5 +29,5 @@ void ULootLockerServerLeaderboardArchiveRequestHandler::GetLeaderboardArchive(co
 	{
 		QueryParams.Add("after", After);
 	}
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardArchiveDetailsResponse>(FLootLockerServerLeaderboardArchiveResponse{}, ULootLockerServerEndpoints::GetLeaderboardArchive, { }, QueryParams, FLootLockerServerLeaderboardArchiveDetailReponseBP(), OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardArchiveDetailsResponse>(FLootLockerServerLeaderboardArchiveResponse{}, ULootLockerServerEndpoints::GetLeaderboardArchive, { }, QueryParams, OnCompletedRequest);
 }

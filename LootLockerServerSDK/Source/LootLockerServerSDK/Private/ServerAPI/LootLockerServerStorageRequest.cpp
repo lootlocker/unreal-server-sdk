@@ -12,12 +12,12 @@ ULootLockerServerStorageRequest::ULootLockerServerStorageRequest()
 
 void ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int> PlayerIDs, const FLootLockerServerGetPersistentStorageForPlayersResponseDelegate& OnCompleteResponse)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPersistentStorageForPlayersResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetPlayerPersistentStorage, {}, { {"player_ids", LootLockerServerUtilities::IntArrayToCommaSeparatedString(PlayerIDs) } }, FLootLockerServerGetPersistentStorageForPlayersResponseBP(), OnCompleteResponse);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPersistentStorageForPlayersResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetPlayerPersistentStorage, {}, { {"player_ids", LootLockerServerUtilities::IntArrayToCommaSeparatedString(PlayerIDs) } }, OnCompleteResponse);
 }
 
 void ULootLockerServerStorageRequest::GetPublicPersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse>(FLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest{ PlayerIDs , Keys}, ULootLockerServerEndpoints::GetMultiplePlayersPublicPersistentStorageValues, {}, {}, FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP(), OnCompleteResponse);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse>(FLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest{ PlayerIDs , Keys}, ULootLockerServerEndpoints::GetMultiplePlayersPublicPersistentStorageValues, {}, {}, OnCompleteResponse);
 }
 
 void ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse)
@@ -36,10 +36,10 @@ void ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(T
 		UpdateEntriesWithOrder.Add(FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered{ EntryToUpdate.Player_id, UpdateSets });
 	}
 	
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse>(FLootLockerServerPlayerPersistentStorageUpdateRequest{ UpdateEntriesWithOrder }, ULootLockerServerEndpoints::UpdatePlayerPersistentStorage, {}, {}, FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseBP(), OnCompleteResponse);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse>(FLootLockerServerPlayerPersistentStorageUpdateRequest{ UpdateEntriesWithOrder }, ULootLockerServerEndpoints::UpdatePlayerPersistentStorage, {}, {}, OnCompleteResponse);
 }
 
 void ULootLockerServerStorageRequest::DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeletePlayerPersistentStorage, {}, { {"player_ids", LootLockerServerUtilities::IntArrayToCommaSeparatedString(PlayerIDs)},{"keys", LootLockerServerUtilities::FStringArrayToCommaSeparatedString(Keys)}}, FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP(), OnCompleteResponse);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeletePlayerPersistentStorage, {}, { {"player_ids", LootLockerServerUtilities::IntArrayToCommaSeparatedString(PlayerIDs)},{"keys", LootLockerServerUtilities::FStringArrayToCommaSeparatedString(Keys)}}, OnCompleteResponse);
 }

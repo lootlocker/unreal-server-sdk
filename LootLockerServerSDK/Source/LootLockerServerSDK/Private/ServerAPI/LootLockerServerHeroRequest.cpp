@@ -10,12 +10,12 @@ ULootLockerServerHeroRequest::ULootLockerServerHeroRequest()
 
 void ULootLockerServerHeroRequest::GetPlayerHeroes(int PlayerID, const FLootLockerServerGetPlayerHeroResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerHeroesResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetPlayerHeroes, { PlayerID }, {}, FLootLockerServerGetPlayerHeroResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerHeroesResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetPlayerHeroes, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerHeroRequest::GetPlayerHeroInventory(int PlayerID, int HeroID, const FLootLockerServerGetHeroInventoryResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetHeroInventoryResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetHeroInventory, { PlayerID, HeroID }, {}, FLootLockerServerGetHeroInventoryResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetHeroInventoryResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetHeroInventory, { PlayerID, HeroID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerHeroRequest::GetPaginatedPlayerHeroInventory(int PlayerID, int HeroID, int Count, int After, const FLootLockerServerGetHeroInventoryResponseDelegate& OnCompletedRequest)
@@ -29,30 +29,30 @@ void ULootLockerServerHeroRequest::GetPaginatedPlayerHeroInventory(int PlayerID,
     {
         QueryParams.Add("after", FString::FromInt(After));
     }
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetHeroInventoryResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetHeroInventory, { PlayerID, HeroID }, QueryParams, FLootLockerServerGetHeroInventoryResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetHeroInventoryResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetHeroInventory, { PlayerID, HeroID }, QueryParams, OnCompletedRequest);
 }
 
 void ULootLockerServerHeroRequest::GetPlayerHeroLoadout(int PlayerID, int HeroID, const FLootLockerServerGetHeroLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetHeroLoadoutResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetHeroLoadout, { PlayerID, HeroID }, {}, FLootLockerServerGetHeroLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetHeroLoadoutResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetHeroLoadout, { PlayerID, HeroID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetInstanceId(int PlayerID, int HeroID, int AssetInstanceID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToHeroLoadoutResponse>(FLootLockerServerEquipAssetToHeroLoadoutRequest{AssetInstanceID}, ULootLockerServerEndpoints::EquipAssetToHeroLoadout, { PlayerID, HeroID }, {}, FLootLockerServerEquipAssetToHeroLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToHeroLoadoutResponse>(FLootLockerServerEquipAssetToHeroLoadoutRequest{AssetInstanceID}, ULootLockerServerEndpoints::EquipAssetToHeroLoadout, { PlayerID, HeroID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(int PlayerID, int HeroID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToHeroLoadoutResponse>(FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest{AssetID, AssetVariationID}, ULootLockerServerEndpoints::EquipAssetToHeroLoadout, { PlayerID, HeroID }, {}, FLootLockerServerEquipAssetToHeroLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToHeroLoadoutResponse>(FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest{AssetID, AssetVariationID}, ULootLockerServerEndpoints::EquipAssetToHeroLoadout, { PlayerID, HeroID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToHeroLoadoutResponse>(FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest{AssetID, RentalOptionID}, ULootLockerServerEndpoints::EquipAssetToHeroLoadout, { PlayerID, HeroID }, {}, FLootLockerServerEquipAssetToHeroLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerEquipAssetToHeroLoadoutResponse>(FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest{AssetID, RentalOptionID}, ULootLockerServerEndpoints::EquipAssetToHeroLoadout, { PlayerID, HeroID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerHeroRequest::UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerUnequipAssetFromHeroLoadoutResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::UnequipAssetFromHeroLoadout, { PlayerID, HeroID, InstanceID}, {}, FLootLockerServerUnequipAssetFromHeroLoadoutResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerUnequipAssetFromHeroLoadoutResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::UnequipAssetFromHeroLoadout, { PlayerID, HeroID, InstanceID}, {}, OnCompletedRequest);
 }

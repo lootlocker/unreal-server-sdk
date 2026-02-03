@@ -11,7 +11,7 @@ ULootLockerServerPlayerProgressionRequest::ULootLockerServerPlayerProgressionReq
 
 void ULootLockerServerPlayerProgressionRequest::GetProgressionsForPlayer(int PlayerID, const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerProgressionListResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetProgressionsForPlayer, { PlayerID }, {}, FLootLockerServerPlayerProgressionListResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerProgressionListResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetProgressionsForPlayer, { PlayerID }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerProgressionRequest::GetPaginatedProgressionsForPlayer(int PlayerID, int32 Count, const FString& After, const FLootLockerServerPlayerProgressionListResponseDelegate& OnCompletedRequest)
@@ -25,31 +25,31 @@ void ULootLockerServerPlayerProgressionRequest::GetPaginatedProgressionsForPlaye
     {
         QueryParams.Add("after", After);
     }
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerProgressionListResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetProgressionsForPlayer, { PlayerID }, QueryParams, FLootLockerServerPlayerProgressionListResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerProgressionListResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetProgressionsForPlayer, { PlayerID }, QueryParams, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerProgressionRequest::GetProgressionForPlayerByKey(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerProgressionResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetProgressionsByKeyForPlayer, { PlayerID, ProgressionKey }, {}, FLootLockerServerSinglePlayerProgressionResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerProgressionResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetProgressionsByKeyForPlayer, { PlayerID, ProgressionKey }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerProgressionRequest::AddPointsToProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerProgressionWithRewardsResponse>(FLootLockerServerModifyScoreRequest{ Amount }, ULootLockerServerEndpoints::AddPointsToProgressionForPlayer, { PlayerID, ProgressionKey }, {}, FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerProgressionWithRewardsResponse>(FLootLockerServerModifyScoreRequest{ Amount }, ULootLockerServerEndpoints::AddPointsToProgressionForPlayer, { PlayerID, ProgressionKey }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerProgressionRequest::SubtractPointsFromProgressionForPlayer(int PlayerID, const FString& ProgressionKey, int32 Amount, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerProgressionWithRewardsResponse>(FLootLockerServerModifyScoreRequest{ Amount }, ULootLockerServerEndpoints::SubtractPointsFromProgressionForPlayer, { PlayerID, ProgressionKey }, {}, FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerProgressionWithRewardsResponse>(FLootLockerServerModifyScoreRequest{ Amount }, ULootLockerServerEndpoints::SubtractPointsFromProgressionForPlayer, { PlayerID, ProgressionKey }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerProgressionRequest::ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerProgressionWithRewardsResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ResetProgressionForPlayer, { PlayerID, ProgressionKey }, {}, FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerProgressionWithRewardsResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ResetProgressionForPlayer, { PlayerID, ProgressionKey }, {}, OnCompletedRequest);
 }
 
 void ULootLockerServerPlayerProgressionRequest::DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseDelegate& OnCompletedRequest)
 {
-    ULootLockerServerHttpClient::SendRequest<FLootLockerServerResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteProgressionForPlayer, { PlayerID, ProgressionKey }, {}, FLootLockerServerDeletePlayerProgressionResponseBP(), OnCompletedRequest);
+    ULootLockerServerHttpClient::SendRequest<FLootLockerServerResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteProgressionForPlayer, { PlayerID, ProgressionKey }, {}, OnCompletedRequest);
 }
 
