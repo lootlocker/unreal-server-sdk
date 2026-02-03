@@ -121,12 +121,16 @@ void ULootLockerServerForBlueprints::DeleteLeaderboardSchedule(const FString& Le
 
 void ULootLockerServerForBlueprints::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseBP& OnCompletedRequestBP)
 {
-    ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(LeaderboardKey, OnCompletedRequestBP);
+    ULootLockerServerForCpp::ListLeaderboardArchive(LeaderboardKey, FLootLockerServerLeaderboardArchiveResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerLeaderboardArchiveResponse& Response) {
+        OnCompletedRequestBP.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailReponseBP& OnCompletedRequestBP)
 {
-    ULootLockerServerLeaderboardArchiveRequestHandler::GetLeaderboardArchive(Key, Count, After, OnCompletedRequestBP);
+    ULootLockerServerForCpp::GetLeaderboardArchive(Key, Count, After, FLootLockerServerLeaderboardArchiveDetailResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerLeaderboardArchiveDetailsResponse& Response) {
+        OnCompletedRequestBP.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseBP& OnCompletedRequest)
