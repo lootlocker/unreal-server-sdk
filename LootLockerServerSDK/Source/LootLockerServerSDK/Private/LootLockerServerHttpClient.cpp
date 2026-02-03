@@ -39,7 +39,7 @@ ULootLockerServerHttpClient::ULootLockerServerHttpClient()
 	}
 }
 
-void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) const
+FString ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) const
 {
 	FHttpModule* HttpModule = &FHttpModule::Get();
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = HttpModule->CreateRequest();
@@ -71,7 +71,7 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 	{
 		if (!Response.IsValid())
 		{
-			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_HTTP);
+			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_HTTP, InRequest.RequestIdentifier);
 			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, InRequest.Data, RequestHeaders, TArray<FString>(), RequestTime);
 			InRequest.OnCompleteRequest.ExecuteIfBound(Error);
 			return;
@@ -80,6 +80,11 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 		response.Success = ResponseIsSuccess(Response, bWasSuccessful);
 		response.StatusCode = Response->GetResponseCode();
 		response.FullTextFromServer = Response->GetContentAsString();
+		response.RequestContext.RequestMethod = InRequest.RequestType;
+		response.RequestContext.RequestURL = InRequest.EndPoint;
+		response.RequestContext.RequestParametersJsonString = InRequest.Data;
+		response.RequestContext.RequestTime = RequestTime.ToString();
+		response.RequestContext.RequestId = InRequest.RequestIdentifier;
 		if (!response.Success)
 		{
 			FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerErrorData>(
@@ -102,24 +107,25 @@ void ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest) co
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
 	});
 	Request->ProcessRequest();
+	return InRequest.RequestIdentifier;
 }
 
-void ULootLockerServerHttpClient::UploadFile_Internal(const FString& FilePath, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const
+FString ULootLockerServerHttpClient::UploadFile_Internal(const FString& FilePath, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const
 {
 	TArray<uint8> RawData;
 	if (!FFileHelper::LoadFileToArray(RawData, *FilePath)) {
-		InRequest.OnCompleteRequest.ExecuteIfBound(LootLockerServerResponseFactory::Error<FLootLockerServerResponse>(FString::Format(TEXT("Could not read file {0}"), { FilePath }), LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT));
-		return;
+		InRequest.OnCompleteRequest.ExecuteIfBound(LootLockerServerResponseFactory::Error<FLootLockerServerResponse>(FString::Format(TEXT("Could not read file {0}"), { FilePath }), LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT, InRequest.RequestIdentifier));
+		return InRequest.RequestIdentifier;
 	}
 
 	int32 LastSlashPos;
 	FilePath.FindLastChar('/', LastSlashPos);
 	FString FileName = FilePath.RightChop(LastSlashPos + 1);
 
-	UploadRawFile_Internal(RawData, FileName, AdditionalFields, InRequest);
+	return UploadRawFile_Internal(RawData, FileName, AdditionalFields, InRequest);
 }
 
-void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const
+FString ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& RawData, const FString& FileName, const TMap<FString, FString> AdditionalFields, HTTPRequest InRequest) const
 {
 	FHttpModule* HttpModule = &FHttpModule::Get();
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = HttpModule->CreateRequest();
@@ -178,7 +184,7 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 	{
 		if (!Response.IsValid())
 		{
-			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_HTTP);
+			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_HTTP, InRequest.RequestIdentifier);
 			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), RequestHeaders, TArray<FString>(), RequestTime);
 			InRequest.OnCompleteRequest.ExecuteIfBound(Error);
 			return;
@@ -187,6 +193,11 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 		response.Success = ResponseIsSuccess(Response, bWasSuccessful);
 		response.StatusCode = Response->GetResponseCode();
 		response.FullTextFromServer = Response->GetContentAsString();
+		response.RequestContext.RequestMethod = InRequest.RequestType;
+		response.RequestContext.RequestURL = InRequest.EndPoint;
+		response.RequestContext.RequestParametersJsonString = InRequest.Data;
+		response.RequestContext.RequestTime = RequestTime.ToString();
+		response.RequestContext.RequestId = InRequest.RequestIdentifier;
 		if (!response.Success)
 		{
 			FJsonObjectConverter::JsonObjectStringToUStruct<FLootLockerServerErrorData>(
@@ -211,6 +222,7 @@ void ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>& Ra
 		InRequest.OnCompleteRequest.ExecuteIfBound(response);
 	});
 	Request->ProcessRequest();
+	return InRequest.RequestIdentifier;
 }
 
 bool ULootLockerServerHttpClient::ResponseIsSuccess(const FHttpResponsePtr& InResponse, bool bWasSuccessful)
