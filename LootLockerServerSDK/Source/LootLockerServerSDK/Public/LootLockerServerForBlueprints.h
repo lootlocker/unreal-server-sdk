@@ -469,12 +469,11 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerForBlueprints : public UObject
  
 public:
     //==================================================
-    // Authentication https://ref.lootlocker.com/server-api/#authentication
+    // Authentication
     //==================================================
 
     /**
      * Start a session connecting to the LootLocker services with the server API key
-     * https://ref.lootlocker.com/server-api/#registering-a-server-session
      *
      * @param OnCompletedRequest Delegate for handling the response
      */
@@ -483,7 +482,6 @@ public:
 
     /**
      * Keep the session alive, you should call this endpoint at least once per hour, to extend your tokens lifetime.
-     * https://ref.lootlocker.com/server-api/#maintaining-a-server-session
      *
      * @param OnCompletedRequest Delegate for handling the response
      */
@@ -517,7 +515,7 @@ public:
     static void GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Leaderboards https://ref.lootlocker.com/server-api/#leaderboards
+    // Leaderboards
     //==================================================
 
     /**
@@ -541,12 +539,11 @@ public:
 
     /**
      * Create a new leaderboard with the provided details.
-     * https://ref.lootlocker.com/server-api/#create-leaderboard
      *
      * @param LeaderboardKey Unique key for the leaderboard
      * @param Name Name of the leaderboard
-     * @param Type Type of the leaderboard (https://ref.lootlocker.com/server-api/#leaderboard-types)
-     * @param HasMetadata Whether the leaderboard has metadata (https://ref.lootlocker.com/server-api/#metadata)
+     * @param Type Type of the leaderboard
+     * @param HasMetadata Whether the leaderboard has metadata
      * @param DirectionMethod Sort order (Ascending or Descending), based on whether highest rank is lowest or highest number
      * @param EnableGameApiWrites Whether the Game API is permitted to write to this leaderboard
      * @param OverwriteScoreOnSubmit Submitting a new score for member will always overwrite their existing score on leaderboard
@@ -557,7 +554,6 @@ public:
 
     /**
      * Update an existing leaderboard with the provided details.
-     * https://ref.lootlocker.com/server-api/#update-leaderboard
      *
      * @param LeaderboardKey The key of the leaderboard to update
      * @param NewLeaderboardKey The unique key to set for the leaderboard, if you do not want to change it then set it to the same as LeaderboardKey
@@ -572,7 +568,6 @@ public:
 
     /**
      * Delete an existing leaderboard
-     * https://ref.lootlocker.com/server-api/#delete-leaderboard
      *
      * @param LeaderboardKey The key of the leaderboard to delete
      * @param OnCompletedRequest Delegate for handling the response
@@ -582,7 +577,6 @@ public:
 
     /**
      * Submit a score to the given leaderboard
-     * https://ref.lootlocker.com/server-api/#submit-score
      *
      * @param LeaderboardKey The key of the leaderboard to delete
      * @param MemberID The ID of the member to submit the score for. For player type leaderboards this is the PlayerID, for Generic type leaderboards it can be any string so you need to know what/who you want to submit for.
@@ -595,7 +589,6 @@ public:
 
     /**
      * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player.
-     * https://ref.lootlocker.com/server-api/#get-all-member-ranks
      *
      * @param MemberID The ID of the member to get the scores for. For player type leaderboards this is the PlayerID, for Generic type leaderboards it can be any string so you need to know what/who you want to submit for.
 
@@ -606,8 +599,7 @@ public:
 
     /**
      * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player, using pagination settings.
-     * https://ref.lootlocker.com/server-api/#get-all-member-ranks
-     * Pagination: https://ref.lootlocker.com/server-api/#pagination
+     ion
      *
      * @param MemberID The ID of the member to get the scores for. For player type leaderboards this is the PlayerID, for Generic type leaderboards it can be any string so you need to know what/who you want to submit for.
      * @param Count Number of members returned per page
@@ -621,7 +613,6 @@ public:
     /**
      * From the requested leaderboard get <count> number of scores. The list of scores has member information, rank, score, and metadata (if metadata is enabled on that leaderboard) for the given leaderboard. If leaderboard is of type player a player will also be in the response.
      * Results are sorted in ascending order.
-     * https://ref.lootlocker.com/server-api/#get-score-list
      *
      * @param LeaderboardKey The key of the leaderboard you want to connect to.
      * @param OnCompletedRequest Delegate for handling the server response
@@ -633,8 +624,7 @@ public:
      * From the requested leaderboard get <count> number of scores. The list of scores has member information, rank, score, and metadata (if metadata is enabled on that leaderboard) for the given leaderboard. If leaderboard is of type player a player will also be in the response, using pagination settings.
      * Results are sorted in ascending order.
      * Maximum allowed scores to query for at a time is currently 2000.
-     * https://ref.lootlocker.com/server-api/#get-score-list
-     * Pagination: https://ref.lootlocker.com/server-api/#pagination
+     agination
      *
      * @param LeaderboardKey The key of the leaderboard you want to connect to.
      * @param Count Number of scores returned per page
@@ -700,12 +690,11 @@ public:
     static void GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailReponseBP& OnCompletedRequestBP);
 
     //==================================================
-    // Triggers https://ref.lootlocker.com/server-api/#triggers
+    // Triggers
     //==================================================
 
     /**
      * Trigger the requested trigger on behalf of the provided player
-     * https://ref.lootlocker.com/server-api/#invoke-trigger-on-behalf-of-player
      *
      * To see the configured triggers for your game, go here: https://console.lootlocker.com/triggers
      *
@@ -717,12 +706,11 @@ public:
     static void InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Player Persistent Storage https://ref.lootlocker.com/server-api/#player-persistent-storage
+    // Player Persistent Storage
     //==================================================
 
     /**
      * Get the persistent storage for the provided player
-     * https://ref.lootlocker.com/server-api/#get-persistent-storage
      *
      * @param PlayerID The ID of the player to fetch the persistent storage for
      * @param OnCompletedRequest Delegate for handling the server response
@@ -732,7 +720,6 @@ public:
 
     /**
      * Get the persistent storage for all the player ids provided
-     * https://ref.lootlocker.com/server-api/#get-persistent-storage
      *
      * @param PlayerIDs The IDs of the players to fetch the persistent storage for
      * @param OnCompletedRequest Delegate for handling the server response
@@ -742,7 +729,6 @@ public:
 
     /**
      * Get all the public (if any) persistent storage for the provided players
-     * https://ref.lootlocker.com/server-api/#get-multiple-players-public-persistent-storage-values
      *
      * @param PlayerIDs The IDs of the players to fetch the persistent storage for
      * @param OnCompletedRequest Delegate for handling the server response
@@ -752,7 +738,6 @@ public:
 
     /**
      * Get all the public (if any) persistent storage for the provided players, but filter the list by the provided keys
-     * https://ref.lootlocker.com/server-api/#get-multiple-players-public-persistent-storage-values
      *
      * @param PlayerIDs The IDs of the players to fetch the persistent storage for
      * @param Keys The keys to filter the persistent storage by, if empty all keys will be returned.
@@ -763,7 +748,6 @@ public:
 
     /**
      * Update the persistent storage for the provided player according to the objects provided
-     * https://ref.lootlocker.com/server-api/#update-persistent-storage
      *
      * @param StorageEntriesToUpdate The data to update the persistent storage with
      * @param OnCompletedRequest Delegate for handling the server response
@@ -774,7 +758,6 @@ public:
     /**
      * Delete the persistent storage for the provided keys on the provided players
      * If the request fails you will be given an error message. We recommend you make a get request on the players and keys to see what keys failed to delete.
-     * https://ref.lootlocker.com/server-api/#delete-persistent-storage
      *
      * @param PlayerIDs The IDs of the players for whom to apply the delete
      * @param Keys The keys to delete for the provided players
@@ -784,13 +767,12 @@ public:
     static void DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP& OnCompletedRequest);
     
     //==================================================
-    // Characters https://ref.lootlocker.com/server-api/#characters-and-heroes
+    // Characters
     //==================================================
     
     /**
      * List all characters for this player.
      * If your game uses heroes the characters underlaying the heroes will be listed too.
-     * https://ref.lootlocker.com/server-api/#get-player-characters
      *
      * @param PlayerID The ID of the player for whom to get the characters
      * @param OnCompletedRequest Delegate for handling the server response
@@ -800,7 +782,6 @@ public:
     
     /**
      * Get the inventory for the specified player and character
-     * https://ref.lootlocker.com/server-api/#get-inventory-to-character
      *
      * @param PlayerID The ID of the player for whom to get the character inventory
      * @param CharacterID The ID of the character on the specified player for which to get the inventory
@@ -811,8 +792,7 @@ public:
     
     /**
      * Get a subset of the inventory for the specified player and character using pagination settings
-     * https://ref.lootlocker.com/server-api/#get-inventory-to-character
-     * Pagination: https://ref.lootlocker.com/server-api/#pagination
+     n
      *
      * @param PlayerID The ID of the player for whom to get the character inventory
      * @param CharacterID The ID of the character on the specified player for which to get the inventory
@@ -825,7 +805,6 @@ public:
     
     /**
      * Get the full loadout for the specified player and character
-     * https://ref.lootlocker.com/server-api/#get-character-loadout
      *
      * @param PlayerID The ID of the player for whom to get the character loadout
      * @param CharacterID The ID of the character on the specified player for which to get the loadout
@@ -836,7 +815,6 @@ public:
     
     /**
      * Equip an asset instance to the loadout of specified player and character using an asset instance id
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-character-loadout
      *
      * @param PlayerID The ID of the player for whom to equip the asset instance
      * @param CharacterID The ID of the character on the specified player for whose loadout to equip the asset instance
@@ -848,7 +826,6 @@ public:
     
     /**
      * Equip an asset instance to the loadout of specified player and character using an asset id and an asset variation id
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-character-loadout
      *
      * @param PlayerID The ID of the player for whom to equip the asset instance
      * @param CharacterID The ID of the character on the specified player for whose loadout to equip the asset instance
@@ -861,7 +838,6 @@ public:
     
     /**
      * Equip an asset instance to the loadout of specified player and character using an asset id and a rental option id
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-character-loadout
      *
      * @param PlayerID The ID of the player for whom to equip the asset instance
      * @param CharacterID The ID of the character on the specified player for whose loadout to equip the asset instance
@@ -873,7 +849,6 @@ public:
     static void EquipAssetToPlayerCharacterLoadoutByAssetIdAndRentalOptionId(int PlayerID, int CharacterID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToCharacterLoadoutResponseBP& OnCompletedRequest);
     /**
      * Unequip an asset instance from the loadout of specified player and character using the instance id
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-character-loadout
      *
      * @param PlayerID The ID of the player for whom to unequip the asset instance
      * @param CharacterID The ID of the character on the specified player for whose loadout to unequip the asset instance
@@ -884,12 +859,11 @@ public:
     static void UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP& OnCompletedRequest);
     
     //==================================================
-    // Heroes https://ref.lootlocker.com/server-api/#characters-and-heroes
+    // Heroes
     //==================================================
     
     /**
      * List all heroes for this player.
-     * https://ref.lootlocker.com/server-api/#get-player-heroes
      *
      * @param PlayerID The ID of the player for whom to get the heroes
      * @param OnCompletedRequest Delegate for handling the server response
@@ -899,7 +873,6 @@ public:
     
     /**
      * Get the inventory for the specified player and hero
-     * https://ref.lootlocker.com/server-api/#get-inventory-to-hero
      *
      * @param PlayerID The ID of the player for whom to get the hero inventory
      * @param HeroID The ID of the hero on the specified player for which to get the inventory
@@ -910,8 +883,7 @@ public:
     
     /**
      * Get a subset of the inventory for the specified player and hero using pagination settings
-     * https://ref.lootlocker.com/server-api/#get-inventory-to-hero
-     * Pagination: https://ref.lootlocker.com/server-api/#pagination
+     on
      *
      * @param PlayerID The ID of the player for whom to get the hero inventory
      * @param HeroID The ID of the hero on the specified player for which to get the inventory
@@ -924,7 +896,6 @@ public:
     
     /**
      * Get the full loadout for the specified player and hero
-     * https://ref.lootlocker.com/server-api/#get-hero-loadout
      *
      * @param PlayerID The ID of the player for whom to get the hero loadout
      * @param HeroID The ID of the hero on the specified player for which to get the loadout
@@ -935,7 +906,6 @@ public:
     
     /**
      * Equip an asset instance to the loadout of specified player and hero using an asset instance id
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-hero-loadout
      *
      * @param PlayerID The ID of the player for whom to equip the asset instance
      * @param HeroID The ID of the hero on the specified player for whose loadout to equip the asset instance
@@ -947,7 +917,6 @@ public:
     
     /**
      * Equip an asset instance to the loadout of specified player and hero using an asset id and an asset variation id
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-hero-loadout
      *
      * @param PlayerID The ID of the player for whom to equip the asset instance
      * @param HeroID The ID of the hero on the specified player for whose loadout to equip the asset instance
@@ -960,7 +929,6 @@ public:
     
     /**
      * Equip an asset instance to the loadout of specified player and hero using an asset id and a rental option id
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-hero-loadout
      *
      * @param PlayerID The ID of the player for whom to equip the asset instance
      * @param HeroID The ID of the hero on the specified player for whose loadout to equip the asset instance
@@ -972,7 +940,6 @@ public:
     static void EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseBP& OnCompletedRequest);
     /**
      * Unequip an asset instance from the loadout of specified player and hero using the instance id
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-hero-loadout
      *
      * @param PlayerID The ID of the player for whom to unequip the asset instance
      * @param HeroID The ID of the hero on the specified player for whose loadout to unequip the asset instance
@@ -983,12 +950,11 @@ public:
     static void UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Player Inventory https://ref.lootlocker.com/server-api/#player-inventory
+    // Player Inventory
     //==================================================
     
     /**
      * Get a list of assets that are available for all player's in the game
-     * https://ref.lootlocker.com/server-api/#get-universal-inventory-global-assets
      *
      * @param OnCompletedRequest Delegate for handling the server response
      */
@@ -997,7 +963,6 @@ public:
     
     /**
      * Get the specified player's default character's inventory
-     * https://ref.lootlocker.com/server-api/#get-player-inventory
      *
      * @param PlayerID The ID of the player for whom to get the inventory
      * @param OnCompletedRequest Delegate for handling the server response
@@ -1007,8 +972,7 @@ public:
     
     /**
      * Get the specified player's default character's inventory according to the specified pagination parameters
-     * https://ref.lootlocker.com/server-api/#get-player-inventory
-     * Pagination: https://ref.lootlocker.com/server-api/#pagination
+     ion
      *
      * @param PlayerID The ID of the player for whom to get the inventory
      * @param Count The number of inventory items to get. Must be a value between 1 and 200
@@ -1020,7 +984,6 @@ public:
     
     /**
      * Get the specified player's default character's loadout
-     * https://ref.lootlocker.com/server-api/#get-player-loadout
      *
      * @param PlayerID The ID of the player for whom to get the loadout
      * @param OnCompletedRequest Delegate for handling the server response
@@ -1031,7 +994,6 @@ public:
     /**
      * Equip an asset instance to the specified player's default character's loadout using an asset id which will equip that asset's default variation
      * If the request is successfull, the returned list contains the full loadout
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-player-loadout
      *
      * @param PlayerID The ID of the player for whom to equip the asset
      * @param AssetID The ID of the asset to equip to the specified player's loadout
@@ -1043,7 +1005,6 @@ public:
     /**
      * Equip the specified asset instance to the specified player's default character's loadout
      * If the request is successfull, the returned list contains the full loadout
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-player-loadout
      *
      * @param PlayerID The ID of the player for whom to equip the asset
      * @param AssetInstanceID The Instance ID of the asset to equip to the specified player's loadout
@@ -1055,7 +1016,6 @@ public:
     /**
      * Equip an asset instance to the specified player's default character's loadout by specifiying an asset id and which variation id of the asset to equip
      * If the request is successfull, the returned list contains the full loadout
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-player-loadout
      *
      * @param PlayerID The ID of the player for whom to equip the asset
      * @param AssetID The ID of the asset to equip to the specified player's loadout
@@ -1068,7 +1028,6 @@ public:
     /**
      * Equip an asset instance to the specified player's default character's loadout by specyfiying an asset id and which rental option id of the asset to equip
      * If the request is successfull, the returned list contains the full loadout
-     * https://ref.lootlocker.com/server-api/#equip-asset-for-player-loadout
      *
      * @param PlayerID The ID of the player for whom to equip the asset
      * @param AssetID The ID of the asset to equip to the specified player's loadout
@@ -1081,7 +1040,6 @@ public:
     /**
      * Unequip an asset instance from the specified player's default character's loadout
      * If the request is successfull, the returned list contains the full loadout
-     * https://ref.lootlocker.com/server-api/#unequip-asset-for-player-loadout
      *
      * @param PlayerID The ID of the player for whom to unequip the asset
      * @param InstanceID The Instance ID of the asset in the specified player's loadout to unequip
@@ -1093,7 +1051,6 @@ public:
     /**
      * Add the specified asset to the specified player's inventory (grant the asset) using an asset id which will equip that asset's default variation
      * If the request is successfull, the returned list contains all assets that were granted to the player
-     * https://ref.lootlocker.com/server-api/#add-asset-to-player-inventory
      *
      * @param PlayerID The ID of the player for whom to add the asset
      * @param AssetID The ID of the asset to add to the specified player's inventory
@@ -1105,7 +1062,6 @@ public:
     /**
      * Add the specified asset to the specified player's inventory (grant the asset) by specifiying an asset id and which variation id of the asset to equip
      * If the request is successfull, the returned list contains all assets that were granted to the player
-     * https://ref.lootlocker.com/server-api/#add-asset-to-player-inventory
      *
      * @param PlayerID The ID of the player for whom to add the asset
      * @param AssetID The ID of the asset to add to the specified player's inventory
@@ -1118,7 +1074,6 @@ public:
     /**
      * Add the specified asset to the specified player's inventory (grant the asset) by specyfiying an asset id and which rental option id of the asset to equip
      * If the request is successfull, the returned list contains all assets that were granted to the player
-     * https://ref.lootlocker.com/server-api/#add-asset-to-player-inventory
      *
      * @param PlayerID The ID of the player for whom to add the asset
      * @param AssetID The ID of the asset to add to the specified player's inventory
@@ -1132,7 +1087,6 @@ public:
      * Bulk add (grant) and/or remove assets to/from the specified player's inventory
      * Add assets by supplying a list of asset id's for which the default variation will be used
      * If the request is successfull, the return will contain two lists; one specifying the id's of all the assets that were removed, one specifying all added assets
-     * https://ref.lootlocker.com/server-api/#alter-player-inventory
      *
      * @param PlayerID The ID of the player for whom to alter the inventory
      * @param AssetsToAdd A list of assets to add to the specified player's inventory
@@ -1146,7 +1100,6 @@ public:
      * Bulk add (grant) and/or remove assets to/from the specified player's inventory
      * Add assets by supplying a list of asset ids and variation ids of those assets to use
      * If the request is successfull, the return will contain two lists; one specifying the id's of all the assets that were removed, one specifying all added assets
-     * https://ref.lootlocker.com/server-api/#alter-player-inventory
      *
      * @param PlayerID The ID of the player for whom to alter the inventory
      * @param AssetsToAdd A list of assets to add to the specified player's inventory
@@ -1160,7 +1113,6 @@ public:
      * Bulk add (grant) and/or remove assets to/from the specified player's inventory
      * Add assets by supplying a list of asset ids and rental option ids of those assets to use
      * If the request is successfull, the return will contain two lists; one specifying the id's of all the assets that were removed, one specifying all added assets
-     * https://ref.lootlocker.com/server-api/#alter-player-inventory
      *
      * @param PlayerID The ID of the player for whom to alter the inventory
      * @param AssetsToAdd A list of assets to add to the specified player's inventory
@@ -1171,14 +1123,13 @@ public:
     static void AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Assets https://ref.lootlocker.com/server-api/#assets
+    // Assets
     //==================================================
 
     /**
      * List all the assets from this game
      * Note that this is a paginated call and it will likely require multiple calls to LootLocker with a parameter for every call except the first to step forward in the results.
      * Up to 200 (the default limit is 50 though) assets are returned at a time, and to fetch the next page you have to use the largest ID you've gotten returned in the previous response
-     * https://ref.lootlocker.com/server-api/#get-assets-to-game
      *
      * @param IncludeUGC Optional: Include user generated assets
      * @param OnCompletedRequest Delegate for handling the server response
@@ -1188,10 +1139,8 @@ public:
 
     /**
      * List a set of assets from this game according to the supplied pagination options
-     * https://ref.lootlocker.com/server-api/#get-assets-to-game
-     * Note that this is a paginated call and it will likely require multiple calls to LootLocker with a parameter for every call except the first to step forward in the results.
+     quire multiple calls to LootLocker with a parameter for every call except the first to step forward in the results.
      * Up to 200 (the default limit is 50 though) assets are returned at a time, and to fetch the next page you have to use the largest ID you've gotten returned in the previous response
-     * https://ref.lootlocker.com/server-api/#pagination
      *
      * @param Count The number of assets to get. Must be a value between 1 and 200
      * @param After The id of the asset from where to start getting assets (non inclusive). Set to 0 to start from the first item
@@ -1203,7 +1152,6 @@ public:
 
     /**
      * Get all assets for a context.
-     * https://ref.lootlocker.com/server-api/#get-assets-to-game
      *
      * @param Count The number of assets to get. Must be a value between 1 and 200
      * @param After The id of the asset from where to start getting assets (non inclusive). Set to 0 to start from the first item
@@ -1244,12 +1192,11 @@ public:
     static void ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Asset Instances https://ref.lootlocker.com/server-api/#asset-instances
+    // Asset Instances
     //==================================================
 
     /**
      * Get a list of key value pairs from the specified asset instance
-     * https://ref.lootlocker.com/server-api/#getting-all-key-value-pairs-to-an-instance
      *
      * @param PlayerID The player ID of the player that this player asset instance belongs to
      * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
@@ -1260,7 +1207,6 @@ public:
 
     /**
      * Get a single Key Value Pair from the specified asset instance by key value pair id
-     * https://ref.lootlocker.com/server-api/#getting-a-key-value-pair-by-id
      *
      * @param PlayerID The player ID of the player that this player asset instance belongs to
      * @param AssetInstanceID The ID of the asset instance on this player for which to complete the operation
@@ -1272,7 +1218,6 @@ public:
 
     /**
      * Create a key value pair on the specified asset instance
-     * https://ref.lootlocker.com/server-api/#creating-a-key-value-pair
      *
      * @param PlayerID The player ID of the player that this player asset instance belongs to
      * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
@@ -1285,7 +1230,6 @@ public:
 
     /**
      * Create or update a list of key value pairs on the specified asset instance
-     * https://ref.lootlocker.com/server-api/#updating-one-or-more-key-value-pairs
      *
      * @param PlayerID The player ID of the player that this player asset instance belongs to
      * @param AssetInstanceID The id of the asset instance on this player for which to complete the operation
@@ -1320,12 +1264,11 @@ public:
     static void DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Drop Tables https://ref.lootlocker.com/server-api/#drop-tables
+    // Drop Tables
     //==================================================
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory
-     * https://ref.lootlocker.com/server-api/#compute-and-lock-drop-table
      *
      * @param PlayerID The id of the player for whom to compute and lock the drop table
      * @param DropTableID The id of the drop table item to compute and lock
@@ -1336,7 +1279,6 @@ public:
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory, but only use items with the specified tag
-     * https://ref.lootlocker.com/server-api/#compute-and-lock-drop-table
      *
      * @param PlayerID The id of the player for whom to compute and lock the drop table
      * @param DropTableID The id of the drop table item to compute and lock
@@ -1348,7 +1290,6 @@ public:
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory and include the full asset information in the response
-     * https://ref.lootlocker.com/server-api/#compute-and-lock-drop-table
      *
      * @param PlayerID The id of the player for whom to compute and lock the drop table
      * @param DropTableID The id of the drop table item to compute and lock
@@ -1359,7 +1300,6 @@ public:
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory, but only use items with the specified tag and include the full asset information in the response
-     * https://ref.lootlocker.com/server-api/#compute-and-lock-drop-table
      *
      * @param PlayerID The id of the player for whom to compute and lock the drop table
      * @param DropTableID The id of the drop table item to compute and lock
@@ -1371,7 +1311,6 @@ public:
 
     /**
      * Pick drop table items from the specified drop table and player
-     * https://ref.lootlocker.com/server-api/#pick-drops-from-drop-table
      *
      * @param PlayerID The id of the player for whom the drop table applies
      * @param DropTableID The id of the drop table from which to pick items
@@ -1412,7 +1351,7 @@ public:
     static void ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Player https://ref.lootlocker.com/server-api/#player-names
+    // Player
     //==================================================
 
     /**
@@ -1447,7 +1386,7 @@ public:
     static void CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Player Files https://ref.lootlocker.com/server-api/#player-files
+    // Player Files
     //==================================================
 
     /**
@@ -1531,13 +1470,12 @@ public:
     static void UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Game Progressions https://ref.lootlocker.com/server-api/#progressions
+    // Game Progressions
     //==================================================
 
     /**
      * Get a list of progressions for the game
      * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressions
-     * https://ref.lootlocker.com/server-api/#get-all-progressions
      *
      * @param OnCompletedRequest Delegate for handling the server response
      */
@@ -1546,7 +1484,6 @@ public:
 
     /**
      * Get a list of progressions for the game using pagination settings
-     * https://ref.lootlocker.com/server-api/#get-all-progressions
      *
      * @param Count The number of progressions to get. Must be a value between 1 and 100
      * @param After The id of the progression from where to start getting progressions (non inclusive). Set to "" to start from the first item
@@ -1557,7 +1494,6 @@ public:
 
     /**
      * Get the specified progression
-     * https://ref.lootlocker.com/server-api/#get-progression-by-key
      *
      * @param ProgressionKey The key of the progression you want to get
      * @param OnCompletedRequest Delegate for handling the server response
@@ -1568,7 +1504,6 @@ public:
     /**
      * Get a list of tiers for the specified progression
      * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedTiersForProgression
-     * https://ref.lootlocker.com/server-api/#get-progressions-tiers
      *
      * @param ProgressionKey The key of the progression for which you want to get the tiers
      * @param OnCompletedRequest Delegate for handling the server response
@@ -1578,7 +1513,6 @@ public:
 
     /**
      * Get a list of tiers for the specified progression using pagination settings
-     * https://ref.lootlocker.com/server-api/#get-progressions-tiers
      *
      * @param ProgressionKey The key of the progression for which you want to get the tiers
      * @param Count The number of progressions to get. Must be a value between 1 and 100
@@ -1589,13 +1523,12 @@ public:
     static void GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Player Progressions https://ref.lootlocker.com/server-api/#player-progressions
+    // Player Progressions
     //==================================================
 
     /**
      * Get a list of progressions for the specified player
      * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressionsForPlayer
-     * https://ref.lootlocker.com/server-api/#get-player-progressions
      *
      * @param PlayerID ID of the player for whom to get progressions
      * @param OnCompletedRequest Delegate for handling the server response
@@ -1605,7 +1538,6 @@ public:
 
     /**
      * Get a list of progressions for the specified player
-     * https://ref.lootlocker.com/server-api/#get-player-progressions
      *
      * @param PlayerID ID of the player for whom to get progressions
      * @param Count The number of progressions to get. Must be a value between 1 and 100
@@ -1617,7 +1549,6 @@ public:
 
     /**
      * Get a specific progression for the specified player
-     * https://ref.lootlocker.com/server-api/#get-player-progression-by-key
      *
      * @param PlayerID ID of the player for whom to get the specified progression
      * @param ProgressionKey Key of the progression to get
@@ -1628,7 +1559,6 @@ public:
 
     /**
      * Add points to the specified progression for the specified player
-     * https://ref.lootlocker.com/server-api/#add-points-to-a-player-progression
      *
      * @param PlayerID ID of the player for whom to add points to the specified progression
      * @param ProgressionKey Key of the progression to add points to for the specified player
@@ -1640,7 +1570,6 @@ public:
 
     /**
      * Subtract points from the specified progression for the specified player
-     * https://ref.lootlocker.com/server-api/#subtract-points-from-a-player-progression
      *
      * @param PlayerID ID of the player for whom to subtract points from the specified progression
      * @param ProgressionKey Key of the progression to subtract points from for the specified player
@@ -1652,7 +1581,6 @@ public:
 
     /**
      * Reset the specified progression for the specified player
-     * https://ref.lootlocker.com/server-api/#reset-a-player-progression
      *
      * @param PlayerID ID of the player for whom to reset the specified progression
      * @param ProgressionKey Key of the progression to reset for the specified player
@@ -1663,7 +1591,6 @@ public:
 
     /**
      * Delete the specified progression for the specified player
-     * https://ref.lootlocker.com/server-api/#delete-a-player-progression
      *
      * @param PlayerID ID of the player for whom to delete the specified progression
      * @param ProgressionKey Key of the progression to delete for the specified player
@@ -1673,13 +1600,12 @@ public:
     static void DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Character Progressions https://ref.lootlocker.com/server-api/#character-progressions
+    // Character Progressions
     //==================================================
 
     /**
      * Get a list of progressions for the specified player and character
      * The list will contain the first 20 items, if you want to get more items or not list items from somewhere else than the beginning; use GetPaginatedProgressionsForCharacter
-     * https://ref.lootlocker.com/server-api/#get-character-progressions
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to get progressions
@@ -1690,7 +1616,6 @@ public:
 
     /**
      * Get a list of progressions for the specified player and character
-     * https://ref.lootlocker.com/server-api/#get-character-progressions
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to get progressions
@@ -1703,7 +1628,6 @@ public:
 
     /**
      * Get a specific progression for the specified player and character
-     * https://ref.lootlocker.com/server-api/#get-character-progression-by-key
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to get the specified progression
@@ -1715,7 +1639,6 @@ public:
 
     /**
      * Add points to the specified progression for the specified player and character
-     * https://ref.lootlocker.com/server-api/#add-points-to-a-character-progression
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to add points to the specified progression
@@ -1728,7 +1651,6 @@ public:
 
     /**
      * Subtract points from the specified progression for the specified player and character
-     * https://ref.lootlocker.com/server-api/#subtract-points-from-a-character-progression
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to subtract points from the specified progression
@@ -1741,7 +1663,6 @@ public:
 
     /**
      * Reset the specified progression for the specified player and character
-     * https://ref.lootlocker.com/server-api/#reset-a-character-progression
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to reset the specified progression
@@ -1753,7 +1674,6 @@ public:
 
     /**
      * Delete the specified progression for the specified player and character
-     * https://ref.lootlocker.com/server-api/#delete-a-character-progression
      *
      * @param PlayerID ID of the player the specified character belongs to
      * @param CharacterID ID of the character for which to delete the specified progression
@@ -1764,13 +1684,12 @@ public:
     static void DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Instance Progressions https://ref.lootlocker.com/server-api/#asset-instance-progressions
+    // Instance Progressions
     //==================================================
 
      /**
      * Get a list of progressions for the specified instance
      * The list will contain the first 20 items, if you want to get more items or list items from somewhere else than the beginning; use GetPaginatedProgressionsForInstance
-     * https://ref.lootlocker.com/server-api/#get-asset-instance-progressions
      *
      * @param AssetInstanceId ID of the instance the specified progression belongs to
      * @param OnCompletedRequest Delegate for handling the server response
@@ -1780,7 +1699,6 @@ public:
 
      /**
      * Get a list of progressions for the specified instance
-     * https://ref.lootlocker.com/server-api/#get-asset-instance-progressions
      *
      * @param AssetInstanceId ID of the instance the specified progression belongs to
      * @param Count The number of progressions to get. Must be a value between 1 and 100
@@ -1792,7 +1710,6 @@ public:
 
      /**
      * Get a specific progression for the specified instance
-     * https://ref.lootlocker.com/server-api/#get-asset-instance-progression-by-key
      *
      * @param AssetInstanceId ID of the instance the specified progression belongs to
      * @param ProgressionKey Key of the progression to get
@@ -1803,7 +1720,6 @@ public:
 
     /**
     * Add points to the specified progression for the specified instance
-    * https://ref.lootlocker.com/server-api/#add-points-to-an-asset-instance-progression
     *
      * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param ProgressionKey Key of the progression to add points to for the specified instance
@@ -1815,7 +1731,6 @@ public:
     
     /**
     * Subtract points from the specified progression for the specified instance
-    * https://ref.lootlocker.com/server-api/#subtract-points-from-an-asset-instance-progression
     *
      * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param ProgressionKey Key of the progression to subtract points from for the specified instance
@@ -1827,7 +1742,6 @@ public:
 
     /**
      * Reset the specified progression for the specified instance
-     * https://ref.lootlocker.com/server-api/#reset-an-asset-instance-progression
      *
      * @param AssetInstanceId ID of the instance the specified progression belongs to
      * @param ProgressionKey Key of the progression to reset for the specified instance
@@ -1838,7 +1752,6 @@ public:
 
     /**
     * Delete the specified progression for the specified instance
-    * https://ref.lootlocker.com/server-api/#delete-an-asset-instance-progression
     *
      * @param AssetInstanceId ID of the instance the specified progression belongs to
     * @param ProgressionKey Key of the progression to delete for the specified instance
@@ -1849,7 +1762,6 @@ public:
 
     //==================================================
     // Currencies
-    // https://ref.lootlocker.com/server-api/#currencies
     //==================================================
 
     /**
@@ -1862,7 +1774,6 @@ public:
 
     //==================================================
     // Balances
-    // https://ref.lootlocker.com/server-api/#balances
     //==================================================
 
     /**
