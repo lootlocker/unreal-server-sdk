@@ -303,31 +303,6 @@ struct FLootLockerServerCreateWalletResponse : public FLootLockerServerResponse
     FString Wallet_id;
 };
 
-
-//==================================================
-// Blueprint Delegate Definitions
-//==================================================
-/**
- * Blueprint response delegate for listing balances in a wallet
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListBalancesForWalletResponseBP, FLootLockerServerListBalancesForWalletResponse, Response);
-/**
- * Blueprint response delegate for getting a wallet
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetWalletResponseBP, FLootLockerServerGetWalletResponse, Response);
-/**
- * Blueprint response delegate for crediting currency to a wallet
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreditWalletResponseBP, FLootLockerServerCreditWalletResponse, Response);
-/**
- * Blueprint response delegate for debiting currency from a wallet
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDebitWalletResponseBP, FLootLockerServerDebitWalletResponse, Response);
-/**
- * Blueprint response delegate for creating a wallet
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreateWalletResponseBP, FLootLockerServerCreateWalletResponse, Response);
-
 //==================================================
 // C++ Delegate Definitions
 //==================================================

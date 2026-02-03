@@ -459,27 +459,6 @@ struct FLootLockerServerGetMultisourceMetadataResponse : public FLootLockerServe
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for listing metadata
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListMetadataResponseBP, FLootLockerServerListMetadataResponse, Response);
-/*
- Blueprint response delegate for getting a single metadata entry
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetMetadataResponseBP, FLootLockerServerGetMetadataResponse, Response);
-/*
- Blueprint response delegate for getting multi source metadata
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetMultisourceMetadataResponseBP, FLootLockerServerGetMultisourceMetadataResponse, Response);
-/*
- Blueprint response delegate for setting metadata
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSetMetadataResponseBP, FLootLockerServerSetMetadataResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

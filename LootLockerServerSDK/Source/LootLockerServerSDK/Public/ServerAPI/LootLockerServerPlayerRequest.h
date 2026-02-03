@@ -210,23 +210,6 @@ struct FLootLockerServerCreatePlayerResponse : public FLootLockerServerResponse
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for looking up player names
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerNameLookupResponseBP, FLootLockerServerPlayerNameLookupResponse, Response);
-/*
- Blueprint response delegate for looking up players by their game session tokens
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP, FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse, Response);
-/*
- Blueprint response delegate for creating a player
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreatePlayerResponseBP, FLootLockerServerCreatePlayerResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

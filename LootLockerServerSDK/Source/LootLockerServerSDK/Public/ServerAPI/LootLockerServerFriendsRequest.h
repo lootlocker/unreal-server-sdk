@@ -76,16 +76,6 @@ struct FLootLockerServerListFriendsResponse : public FLootLockerServerResponse
     FLootLockerServerIndexBasedPagination Pagination;
 };
 
-
-//==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/**
- * Blueprint response delegate for listing currencies
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListFriendsResponseBP, FLootLockerServerListFriendsResponse, Response);
-
 //==================================================
 // C++ Delegate Definitions
 //==================================================

@@ -73,16 +73,6 @@ struct FLootLockerServerListCurrenciesResponse : public FLootLockerServerRespons
     TArray<FLootLockerServerCurrency> Currencies;
 };
 
-
-//==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/**
- * Blueprint response delegate for listing currencies
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListCurrenciesResponseBP, FLootLockerServerListCurrenciesResponse, Response);
-
 //==================================================
 // C++ Delegate Definitions
 //==================================================

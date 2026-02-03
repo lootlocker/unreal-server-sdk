@@ -104,15 +104,6 @@ struct FLootLockerServerInvokeTriggerResponse : public FLootLockerServerResponse
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for invoking a trigger
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerInvokeTriggerResponseBP, FLootLockerServerInvokeTriggerResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

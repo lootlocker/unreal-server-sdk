@@ -136,19 +136,6 @@ struct FLootLockerServerPickFromDropTableResponse : public FLootLockerServerResp
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for computing and locking a drop table
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerComputeAndLockDropTableResponseBP, FLootLockerServerComputeAndLockDropTableResponse, Response);
-/*
- Blueprint response delegate for picking from a drop table
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPickFromDropTableResponseBP, FLootLockerServerPickFromDropTableResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 
