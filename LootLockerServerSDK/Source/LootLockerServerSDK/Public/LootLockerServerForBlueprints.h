@@ -29,6 +29,439 @@
 
 #include "LootLockerServerForBlueprints.generated.h"
 
+//==================================================
+// General Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for a generic LootLocker Response
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerResponseCallbackBP, FLootLockerServerResponse, Response);
+
+//==================================================
+// Auth Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for start session responses
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAuthResponseBP, FLootLockerServerAuthenticationResponse, Response);
+/*
+ Blueprint response delegate for maintain session responses
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerMaintainSessionResponseBP, FLootLockerServerMaintainSessionResponse, Response);
+
+//==================================================
+// Asset Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for getting assets
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetAssetsResponseBP, FLootLockerServerGetAssetsResponse, Response);
+/*
+ Blueprint response delegate for receiving a list of asset instance key value pairs
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAssetInstanceKeyValuePairsListResponseBP, FLootLockerServerAssetInstanceKeyValuePairsListResponse, Response);
+/*
+ Blueprint response delegate for receiving a single asset instance key value pair
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAssetInstanceKeyValuePairItemResponseBP, FLootLockerServerAssetInstanceKeyValuePairItemResponse, Response);
+/*
+ Blueprint response delegate for listing simple assets
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListAssetsResponseBP, FLootLockerServerListAssetsResponse, Response);
+/*
+ Blueprint response delegate for listing contexts
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListContextsResponseBP, FLootLockerServerListContextsResponse, Response);
+
+//==================================================
+// Balance Response Delegates
+//==================================================
+
+/**
+ * Blueprint response delegate for listing balances in a wallet
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListBalancesForWalletResponseBP, FLootLockerServerListBalancesForWalletResponse, Response);
+/**
+ * Blueprint response delegate for getting a wallet
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetWalletResponseBP, FLootLockerServerGetWalletResponse, Response);
+/**
+ * Blueprint response delegate for crediting currency to a wallet
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreditWalletResponseBP, FLootLockerServerCreditWalletResponse, Response);
+/**
+ * Blueprint response delegate for debiting currency from a wallet
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDebitWalletResponseBP, FLootLockerServerDebitWalletResponse, Response);
+/**
+ * Blueprint response delegate for creating a wallet
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreateWalletResponseBP, FLootLockerServerCreateWalletResponse, Response);
+
+//==================================================
+// Character Progression Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for receiving a single character progression
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSingleCharacterProgressionResponseBP, FLootLockerServerSingleCharacterProgressionResponse, Response);
+/*
+ Blueprint response delegate for receiving a list of character progressions
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCharacterProgressionListResponseBP, FLootLockerServerCharacterProgressionListResponse, Response);
+/*
+ Blueprint response delegate for receiving a single character progression with rewards
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP, FLootLockerServerSingleCharacterProgressionWithRewardsResponse, Response);
+/*
+ Blueprint response delegate for deleting a progression. Will be empty if no error occured.
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteCharacterProgressionResponseBP, FLootLockerServerResponse, Response);
+
+//==================================================
+// Character Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for getting a player's characters
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPlayerCharacterResponseBP, FLootLockerServerGetPlayerCharactersResponse, Response);
+/*
+ Blueprint response delegate for getting a player characters inventory
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetCharacterInventoryResponseBP, FLootLockerServerGetCharacterInventoryResponse, Response);
+/*
+ Blueprint response delegate for getting a player characters loadout
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetCharacterLoadoutResponseBP, FLootLockerServerGetCharacterLoadoutResponse, Response);
+/*
+ Blueprint response delegate for equipping an asset to a player characters loadout
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerEquipAssetToCharacterLoadoutResponseBP, FLootLockerServerEquipAssetToCharacterLoadoutResponse, Response);
+/*
+ Blueprint response delegate for unequipping an asset from a player characters loadout
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromCharacterLoadoutResponseBP, FLootLockerServerUnequipAssetFromCharacterLoadoutResponse, Response);
+
+//==================================================
+// Connected Account Response Delegates
+//==================================================
+
+/**
+ * Blueprint response delegate for listing connected accounts
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListConnectedAccountsResponseBP, FLootLockerServerListConnectedAccountsResponse, Response);
+
+//==================================================
+// Currency Response Delegates
+//==================================================
+
+/**
+ * Blueprint response delegate for listing currencies
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListCurrenciesResponseBP, FLootLockerServerListCurrenciesResponse, Response);
+
+//==================================================
+// Drop Table Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for computing and locking a drop table
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerComputeAndLockDropTableResponseBP, FLootLockerServerComputeAndLockDropTableResponse, Response);
+/*
+ Blueprint response delegate for picking from a drop table
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPickFromDropTableResponseBP, FLootLockerServerPickFromDropTableResponse, Response);
+
+//==================================================
+// Friends Response Delegates
+//==================================================
+
+/**
+ * Blueprint response delegate for listing currencies
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListFriendsResponseBP, FLootLockerServerListFriendsResponse, Response);
+
+//==================================================
+// Game Progression Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for listing game progression
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGameProgressionListResponseBP, FLootLockerServerGameProgressionListResponse, Response);
+/*
+ Blueprint response delegate for receiving a single game progression
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSingleGameProgressionResponseBP, FLootLockerServerSingleGameProgressionResponse, Response);
+/*
+ Blueprint response delegate for receiving the tiers of a single game progression
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerProgressionTiersResponseBP, FLootLockerServerProgressionTiersResponse, Response);
+
+//==================================================
+// Hero Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for getting a player's heroes
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPlayerHeroResponseBP, FLootLockerServerGetPlayerHeroesResponse, Response);
+/*
+ Blueprint response delegate for getting a player heroes inventory
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetHeroInventoryResponseBP, FLootLockerServerGetHeroInventoryResponse, Response);
+/*
+ Blueprint response delegate for getting a player heroes loadout
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetHeroLoadoutResponseBP, FLootLockerServerGetHeroLoadoutResponse, Response);
+/*
+ Blueprint response delegate for equipping an asset to a player heroes loadout
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerEquipAssetToHeroLoadoutResponseBP, FLootLockerServerEquipAssetToHeroLoadoutResponse, Response);
+/*
+ Blueprint response delegate for unequipping an asset from a player heroes loadout
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromHeroLoadoutResponseBP, FLootLockerServerUnequipAssetFromHeroLoadoutResponse, Response);
+
+//==================================================
+// Instance Progression Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for receiving a single instance progression
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSingleInstanceProgressionResponseBP, FLootLockerServerSingleInstanceProgressionResponse, Response);
+/*
+ Blueprint response delegate for receiving a list of instance progressions
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerInstanceProgressionListResponseBP, FLootLockerServerInstanceProgressionListResponse, Response);
+/*
+ Blueprint response delegate for receiving a single instance progression with rewards
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSingleInstanceProgressionWithRewardsResponseBP, FLootLockerServerSingleInstanceProgressionWithRewardsResponse, Response);
+/*
+ Blueprint response delegate for deleting a progression. Will be empty if no error occured.
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteInstanceProgressionResponseBP, FLootLockerServerResponse, Response);
+
+//==================================================
+// Leaderboard Archives Response Delegates
+//==================================================
+
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerLeaderboardArchiveResponseBP, FLootLockerServerLeaderboardArchiveResponse, Response);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerLeaderboardArchiveDetailReponseBP, FLootLockerServerLeaderboardArchiveDetailsResponse, Response);
+
+//==================================================
+// Leaderboard Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for listing leaderboards
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListLeaderboardsResponseBP, FLootLockerServerListLeaderboardsResponse, Response);
+/*
+ Blueprint response delegate for getting leaderboard information
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetLeaderboardResponseBP, FLootLockerServerGetLeaderboardResponse, Response);
+/*
+ Blueprint response delegate for leaderboard creation
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreateLeaderboardResponseBP, FLootLockerServerCreateLeaderboardResponse, Response);
+/*
+ Blueprint response delegate for leaderboard updates
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUpdateLeaderboardResponseBP, FLootLockerServerUpdateLeaderboardResponse, Response);
+/*
+ Blueprint response delegate for leaderboard deletion
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardResponseBP, FLootLockerServerResponse, Response);
+/*
+ Blueprint response delegate for leaderboard score submission
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerLeaderboardSubmitScoreResponseBP, FLootLockerServerLeaderboardSubmitScoreResponse, Response);
+/*
+ Blueprint response delegate for getting all member ranks
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetAllMemberRanksResponseBP, FLootLockerServerGetAllMemberRanksResponse, Response);
+/*
+ Blueprint response delegate for getting scores from a leaderboard
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetScoresFromLeaderboardResponseBP, FLootLockerServerGetScoresFromLeaderboardResponse, Response);
+/*
+ Blueprint response delegate for getting the schedule for a leaderboard
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetLeaderboardScheduleResponseBP, FLootLockerServerGetLeaderboardScheduleResponse, Response);
+/*
+ Blueprint response delegate for leaderboard schedule deletion
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardScheduleResponseBP, FLootLockerServerResponse, Response);
+
+//==================================================
+// Metadata Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for listing metadata
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListMetadataResponseBP, FLootLockerServerListMetadataResponse, Response);
+/*
+ Blueprint response delegate for getting a single metadata entry
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetMetadataResponseBP, FLootLockerServerGetMetadataResponse, Response);
+/*
+ Blueprint response delegate for getting multi source metadata
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetMultisourceMetadataResponseBP, FLootLockerServerGetMultisourceMetadataResponse, Response);
+/*
+ Blueprint response delegate for setting metadata
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSetMetadataResponseBP, FLootLockerServerSetMetadataResponse, Response);
+
+//==================================================
+// Notifications Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for sending notifications
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSendNotificationsResponseBP, FLootLockerServerSendNotificationsResponse, Response);
+
+//==================================================
+// OAuth Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for handling token exchange responses
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerTokenExchangeResponseBP, FLootLockerServerTokenExchangeResponse, Response);
+
+//==================================================
+// Player File Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for listing player files
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerFileListResponseBP, FLootLockerServerPlayerFileListResponse, Response);
+/*
+ Blueprint response delegate for a single returned file
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSinglePlayerFileResponseBP, FLootLockerServerSinglePlayerFileResponse, Response);
+/*
+ Blueprint response delegate for deleting a file, will be empty unless there's an error
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerFileDeleteResponseBP, FLootLockerServerPlayerFileDeleteResponse, Response);
+
+//==================================================
+// Player Inventory Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for getting a game's universal inventory
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetUniversalInventoryResponseBP, FLootLockerServerGetUniversalInventoryResponse, Response);
+/*
+ Blueprint response delegate for getting a player's inventory
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPlayerInventoryResponseBP, FLootLockerServerGetPlayerInventoryResponse, Response);
+/*
+ Blueprint response delegate for adding an asset to a player's inventory
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAddAssetToPlayerInventoryResponseBP, FLootLockerServerAddAssetToPlayerInventoryResponse, Response);
+/*
+ Blueprint response delegate for altering a player's inventory
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAlterPlayerInventoryResponseBP, FLootLockerServerAlterPlayerInventoryResponse, Response);
+/*
+ Blueprint response delegate for getting a player's loadout
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPlayerLoadoutResponseBP, FLootLockerServerGetPlayerLoadoutResponse, Response);
+/*
+ Blueprint response delegate for equipping an asset to a player's loadout
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerEquipAssetToPlayerLoadoutResponseBP, FLootLockerServerEquipAssetToPlayerLoadoutResponse, Response);
+/*
+ Blueprint response delegate for unequipping an asset from a player's loadout
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP, FLootLockerServerUnequipAssetFromPlayerLoadoutResponse, Response);
+
+//==================================================
+// Player Progression Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for receiving a single player progression
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSinglePlayerProgressionResponseBP, FLootLockerServerSinglePlayerProgressionResponse, Response);
+/*
+ Blueprint response delegate for receiving a list of player progressions
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerProgressionListResponseBP, FLootLockerServerPlayerProgressionListResponse, Response);
+/*
+ Blueprint response delegate for receiving a single player progression with rewards
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSinglePlayerProgressionWithRewardsResponseBP, FLootLockerServerSinglePlayerProgressionWithRewardsResponse, Response);
+/*
+ Blueprint response delegate for deleting a progression. Will be empty if no error occured.
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeletePlayerProgressionResponseBP, FLootLockerServerResponse, Response);
+
+//==================================================
+// Player Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for looking up player names
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerNameLookupResponseBP, FLootLockerServerPlayerNameLookupResponse, Response);
+/*
+ Blueprint response delegate for looking up players by their game session tokens
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseBP, FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse, Response);
+/*
+ Blueprint response delegate for creating a player
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCreatePlayerResponseBP, FLootLockerServerCreatePlayerResponse, Response);
+
+//==================================================
+// Storage Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for fetching persistent storage for player(s)
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPersistentStorageForPlayersResponseBP, FLootLockerServerGetPersistentStorageForPlayersResponse, Response);
+
+/*
+ Blueprint response delegate for fetching persistent storage for player(s) and key(s)
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponseBP, FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse, Response);
+
+/*
+ Blueprint response delegate for updating persistent storage for player(s) and key(s)
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseBP, FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse, Response);
+
+/*
+ Blueprint response delegate for deleting persistent storage for player(s) and key(s)
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseBP, FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse, Response);
+
+//==================================================
+// Trigger Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for invoking a trigger
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerInvokeTriggerResponseBP, FLootLockerServerInvokeTriggerResponse, Response);
+
 UCLASS(Blueprintable)
 class LOOTLOCKERSERVERSDK_API ULootLockerServerForBlueprints : public UObject
 {

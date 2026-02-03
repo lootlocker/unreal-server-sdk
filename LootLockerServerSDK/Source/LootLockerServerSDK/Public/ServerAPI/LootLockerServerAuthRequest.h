@@ -43,19 +43,6 @@ struct FLootLockerServerMaintainSessionResponse : public FLootLockerServerRespon
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for start session responses
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAuthResponseBP, FLootLockerServerAuthenticationResponse, Response);
-/*
- Blueprint response delegate for maintain session responses
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerMaintainSessionResponseBP, FLootLockerServerMaintainSessionResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 /*

@@ -778,31 +778,6 @@ struct FLootLockerServerListContextsResponse : public FLootLockerServerResponse
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for getting assets
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetAssetsResponseBP, FLootLockerServerGetAssetsResponse, Response);
-/*
- Blueprint response delegate for receiving a list of asset instance key value pairs
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAssetInstanceKeyValuePairsListResponseBP, FLootLockerServerAssetInstanceKeyValuePairsListResponse, Response);
-/*
- Blueprint response delegate for receiving a single asset instance key value pair
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAssetInstanceKeyValuePairItemResponseBP, FLootLockerServerAssetInstanceKeyValuePairItemResponse, Response);
-/*
- Blueprint response delegate for listing simple assets
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListAssetsResponseBP, FLootLockerServerListAssetsResponse, Response);
-/*
- Blueprint response delegate for listing contexts
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListContextsResponseBP, FLootLockerServerListContextsResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

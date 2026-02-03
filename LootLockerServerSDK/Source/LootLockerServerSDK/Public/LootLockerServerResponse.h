@@ -61,15 +61,6 @@ struct FLootLockerServerResponse
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for a generic LootLocker Response
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerResponseCallbackBP, FLootLockerServerResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

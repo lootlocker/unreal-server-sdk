@@ -155,23 +155,6 @@ struct FLootLockerServerPlayerFileDeleteResponse : public FLootLockerServerRespo
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for listing player files
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerFileListResponseBP, FLootLockerServerPlayerFileListResponse, Response);
-/*
- Blueprint response delegate for a single returned file
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSinglePlayerFileResponseBP, FLootLockerServerSinglePlayerFileResponse, Response);
-/*
- Blueprint response delegate for deleting a file, will be empty unless there's an error
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerFileDeleteResponseBP, FLootLockerServerPlayerFileDeleteResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

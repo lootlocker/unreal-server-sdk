@@ -147,26 +147,6 @@ struct FLootLockerServerCharacterProgressionListResponse : public FLootLockerSer
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-/*
- Blueprint response delegate for receiving a single character progression
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSingleCharacterProgressionResponseBP, FLootLockerServerSingleCharacterProgressionResponse, Response);
-/*
- Blueprint response delegate for receiving a list of character progressions
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCharacterProgressionListResponseBP, FLootLockerServerCharacterProgressionListResponse, Response);
-/*
- Blueprint response delegate for receiving a single character progression with rewards
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSingleCharacterProgressionWithRewardsResponseBP, FLootLockerServerSingleCharacterProgressionWithRewardsResponse, Response);
-/*
- Blueprint response delegate for deleting a progression. Will be empty if no error occured.
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteCharacterProgressionResponseBP, FLootLockerServerResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 

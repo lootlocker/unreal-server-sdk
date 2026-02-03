@@ -91,15 +91,6 @@ struct FLootLockerServerSendNotificationsResponse : public FLootLockerServerResp
 };
 
 //==================================================
-// Blueprint Delegate Definitions
-//==================================================
-
-/*
- Blueprint response delegate for sending notifications
- */
-DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSendNotificationsResponseBP, FLootLockerServerSendNotificationsResponse, Response);
-
-//==================================================
 // C++ Delegate Definitions
 //==================================================
 
