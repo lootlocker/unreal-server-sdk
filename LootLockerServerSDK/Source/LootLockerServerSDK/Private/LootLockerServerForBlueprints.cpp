@@ -532,27 +532,37 @@ void ULootLockerServerForBlueprints::UpdatePlayerFileWithRawData(int PlayerID, i
 // Game Progressions
 void ULootLockerServerForBlueprints::GetProgressions(const FLootLockerServerGameProgressionListResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerGameProgressionRequest::GetProgressions(OnCompletedRequest);
+    ULootLockerServerForCpp::GetProgressions(FLootLockerServerGameProgressionListResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGameProgressionListResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPaginatedProgressions(int32 Count, const FString& After, const FLootLockerServerGameProgressionListResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerGameProgressionRequest::GetPaginatedProgressions(Count, After, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPaginatedProgressions(Count, After, FLootLockerServerGameProgressionListResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGameProgressionListResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetProgressionByKey(const FString& ProgressionKey, const FLootLockerServerSingleGameProgressionResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerGameProgressionRequest::GetProgressionByKey(ProgressionKey, OnCompletedRequest);
+    ULootLockerServerForCpp::GetProgressionByKey(ProgressionKey, FLootLockerServerSingleGameProgressionResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSingleGameProgressionResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerGameProgressionRequest::GetTiersForProgression(ProgressionKey, OnCompletedRequest);
+    ULootLockerServerForCpp::GetTiersForProgression(ProgressionKey, FLootLockerServerProgressionTiersResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerProgressionTiersResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 void ULootLockerServerForBlueprints::GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseBP& OnCompletedRequest)
 {
-    ULootLockerServerGameProgressionRequest::GetPaginatedTiersForProgression(ProgressionKey, Count, After, OnCompletedRequest);
+    ULootLockerServerForCpp::GetPaginatedTiersForProgression(ProgressionKey, Count, After, FLootLockerServerProgressionTiersResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerProgressionTiersResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
 }
 
 // Player Progressions
