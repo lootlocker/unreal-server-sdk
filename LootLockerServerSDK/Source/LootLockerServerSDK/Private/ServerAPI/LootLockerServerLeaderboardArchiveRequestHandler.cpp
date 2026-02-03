@@ -9,12 +9,12 @@ ULootLockerServerLeaderboardArchiveRequestHandler::ULootLockerServerLeaderboardA
 {
 }
 
-void ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseBP& OnCompletedRequestBP, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest)
+void ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest)
 {
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardArchiveResponse>(FLootLockerServerLeaderboardArchiveResponse{}, ULootLockerServerEndpoints::ListLeaderboardArchive, { LeaderboardKey }, {}, OnCompletedRequestBP, OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardArchiveResponse>(FLootLockerServerLeaderboardArchiveResponse{}, ULootLockerServerEndpoints::ListLeaderboardArchive, { LeaderboardKey }, {}, FLootLockerServerLeaderboardArchiveResponseBP(), OnCompletedRequest);
 }
 
-void ULootLockerServerLeaderboardArchiveRequestHandler::GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailReponseBP& OnCompletedRequestBP, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest)
+void ULootLockerServerLeaderboardArchiveRequestHandler::GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest)
 {
 
     TMultiMap<FString,FString> QueryParams;
@@ -29,5 +29,5 @@ void ULootLockerServerLeaderboardArchiveRequestHandler::GetLeaderboardArchive(co
 	{
 		QueryParams.Add("after", After);
 	}
-	ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardArchiveDetailsResponse>(FLootLockerServerLeaderboardArchiveResponse{}, ULootLockerServerEndpoints::GetLeaderboardArchive, { }, QueryParams, OnCompletedRequestBP, OnCompletedRequest);
+	ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardArchiveDetailsResponse>(FLootLockerServerLeaderboardArchiveResponse{}, ULootLockerServerEndpoints::GetLeaderboardArchive, { }, QueryParams, FLootLockerServerLeaderboardArchiveDetailReponseBP(), OnCompletedRequest);
 }
