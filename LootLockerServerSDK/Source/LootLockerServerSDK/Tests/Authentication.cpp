@@ -20,7 +20,7 @@ void FTestLootLockerServer_Authentication::Define()
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerAuthenticationResponse, FLootLockerServerAuthResponseDelegate>();
 		
-				ULootLockerServerAuthRequest::StartSession(FLootLockerServerAuthResponseBP(), Delegate);
+				ULootLockerServerAuthRequest::StartSession(Delegate);
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("StartSession success", Response.Success);
@@ -31,7 +31,7 @@ void FTestLootLockerServer_Authentication::Define()
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerResponse, FLootLockerServerMaintainSessionResponseDelegate>();
 		
-				ULootLockerServerAuthRequest::MaintainSession(FLootLockerServerMaintainSessionResponseBP(), Delegate);
+				ULootLockerServerAuthRequest::MaintainSession(Delegate);
 
 				const auto Response = Promise->get_future().get();
 				TestTrue("MaintainSession success", Response.Success);
