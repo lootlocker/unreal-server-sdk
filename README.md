@@ -80,11 +80,6 @@ MyGame.exe -ini:Game:[/Script/LootLockerServerSDK.LootLockerServerConfig]:LootLo
 - Overrides are applied at startup and take precedence over values set in the editor or config files.
 - For more details, see Unreal's documentation on [Command Line Arguments](https://docs.unrealengine.com/5.0/en-US/command-line-arguments-in-unreal-engine/) and [Config System](https://docs.unrealengine.com/5.0/en-US/configuring-projects-in-unreal-engine/).
 
-## Internal developer docs
-
-- Architecture: [Documentation/architecture.md](Documentation/architecture.md)
-- Coding agent guardrails: [.github/agent-docs/guardrails.md](.github/agent-docs/guardrails.md)
-
 ## Support
 
 If you have any issues or just wanna chat you can reach us on our [Discord Server](https://discord.lootlocker.io/)

@@ -54,5 +54,5 @@ Stop and ask a small number of clarifying questions when:
 - [ ] Only requested files changed for docs-only tasks
 
 ## Related docs
-- Architecture overview: `Documentation/architecture.md`
+- Architecture overview: `.github/instructions/architecture.md`
 - Copilot workspace instructions: `.github/copilot-instructions.md`
