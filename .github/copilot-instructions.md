@@ -10,5 +10,5 @@ You are working in the **LootLocker Unreal Server SDK** repository.
 - Prefer implementation details in `Private/`.
 
 ## More context
-- Architecture: `Documentation/architecture.md`
-- Guardrails: `.github/agent-docs/guardrails.md`
+- Architecture: `.github/instructions/architecture.md`
+- Guardrails: `.github/instructions/guardrails.md`
