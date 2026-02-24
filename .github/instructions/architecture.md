@@ -154,4 +154,4 @@ OAuth token exchange:
 - **Large refactors:** keep diffs minimal; prefer targeted changes.
 
 ## Guardrails
-- Coding agent guardrails: `.github/agent-docs/guardrails.md`
+- Coding agent guardrails: `.github/instructions/guardrails.md`
