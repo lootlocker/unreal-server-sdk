@@ -12,3 +12,10 @@ You are working in the **LootLocker Unreal Server SDK** repository.
 ## More context
 - Architecture: `.github/instructions/architecture.md`
 - Guardrails: `.github/instructions/guardrails.md`
+- Style guide: `.github/instructions/style-guide.md`
+- Patterns: `.github/instructions/patterns.md`
+- Path-specific instructions:
+	- C++ facade: `.github/instructions/LootLockerServerSDK/Source/LootLockerServerSDK/Public/LootLockerServerForCpp.h.instructions.md`
+	- Blueprint facade: `.github/instructions/LootLockerServerSDK/Source/LootLockerServerSDK/Public/LootLockerServerForBlueprints.h.instructions.md`
+	- Public ServerAPI headers: `.github/instructions/LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/ServerAPI.instructions.md`
+	- Private ServerAPI implementations: `.github/instructions/LootLockerServerSDK/Source/LootLockerServerSDK/Private/ServerAPI/ServerAPI.instructions.md`
