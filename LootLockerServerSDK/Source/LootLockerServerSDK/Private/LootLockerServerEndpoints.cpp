@@ -2,11 +2,7 @@
 
 #include "LootLockerServerEndpoints.h"
 
-#ifdef LOOTLOCKER_USE_STAGE_URL
-FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.stage.internal.dev.lootlocker.cloud/";
-#else
 FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.lootlocker.com/";
-#endif
 FString ULootLockerServerEndpoints::ServerApiUrlSuffix = "server/";
 FString ULootLockerServerEndpoints::ClientApiUrlSuffix = "client/";
 
