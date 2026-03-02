@@ -16,7 +16,7 @@ Applies to: `LootLockerServerSDK/Source/LootLockerServerSDK/Public/LootLockerSer
 - Do deprecations in their own commits and call them out explicitly.
 
 ## When adding a new facade method
-- Forward logic request to existing request class in `Public/ServerAPI/` + `Private/ServerAPI/`.
+- Forward request logic to the existing request class in `Public/ServerAPI/` + `Private/ServerAPI/`.
 - Keep the facade implementation thin: forward call + return request id.
 
 ## Required method documentation (rigorous)
