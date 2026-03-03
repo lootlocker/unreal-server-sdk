@@ -51,8 +51,21 @@ Stop and ask a small number of clarifying questions when:
 - [ ] No changes to `.uplugin` or `*.Build.cs`
 - [ ] No changes under `Binaries/` or `Intermediate/`
 - [ ] Public API changes are intentional and justified
+- [ ] Compile verification completed (see `.github/instructions/verification.md`)
 - [ ] Only requested files changed for docs-only tasks
 
 ## Related docs
 - Architecture overview: `.github/instructions/architecture.md`
+- Verification: `.github/instructions/verification.md`
 - Copilot workspace instructions: `.github/copilot-instructions.md`
+
+## Verification guardrail (local + CI)
+
+This repo has a supported, lightweight compile verification path that should be used for routine PR validation:
+- Local (Windows): `scripts/verify-compile.ps1`
+- CI (cloud): `.github/workflows/verify-compile.yml`
+
+Rules:
+- Prefer using these verification paths before declaring a change “done”.
+- Do not commit outputs produced by verification (anything under `tmp/`).
+- Keep the lightweight verification workflow fast and single-image (matrix coverage belongs in the heavier workflows).
