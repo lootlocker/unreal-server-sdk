@@ -8,10 +8,13 @@ You are working in the **LootLocker Unreal Server SDK** repository.
 - Search before adding new code; reuse existing patterns.
 - Treat anything under `LootLockerServerSDK/Source/LootLockerServerSDK/Public/` as **public API**.
 - Prefer implementation details in `Private/`.
+- Before declaring work complete, prefer running compile verification (local script or CI workflow); see `.github/instructions/verification.md`.
+- When asked to “verify compile” locally, run `scripts/verify-compile.ps1` (don’t substitute ad-hoc build commands unless necessary).
 
 ## More context
 - Architecture: `.github/instructions/architecture.md`
 - Guardrails: `.github/instructions/guardrails.md`
+- Verification: `.github/instructions/verification.md`
 - Style guide: `.github/instructions/style-guide.md`
 - Patterns: `.github/instructions/patterns.md`
 - Path-specific instructions:

@@ -86,3 +86,9 @@ DemoProject/DerivedDataCache/*
 # CodeQL artifacts
 _codeql_*
 
+# Local compile verification output
+tmp/
+
+# Developer-local Unreal settings
+unreal-dev-settings.json
+
