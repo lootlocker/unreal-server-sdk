@@ -39,7 +39,7 @@ jobs:
 
       - name: Pull Unreal Engine image ${{ env.UE_IMAGE }}
         run: |
-          docker login ghcr.io -u ${{ secrets.UNREAL_DOCKER_PACKAGES_READ_USERNAME }} -p ${{ secrets.UNREAL_DOCKER_PACKAGES_READ_ACCESS_TOKEN }}
+          echo "${{ secrets.UNREAL_DOCKER_PACKAGES_READ_ACCESS_TOKEN }}" | docker login ghcr.io -u "${{ secrets.UNREAL_DOCKER_PACKAGES_READ_USERNAME }}" --password-stdin
           docker pull ghcr.io/epicgames/unreal-engine:${{ env.UE_IMAGE }}
 
       - name: Prepare build folders
@@ -76,7 +76,7 @@ jobs:
             exit 1
           fi
 
-          if grep -q "AutomationTool exiting with ExitCode=0" "$LOG"; then
+          if grep -iq "AutomationTool exiting with ExitCode=0" "$LOG"; then
             echo "## ✅ Compilation Succeeded" >> "$GITHUB_STEP_SUMMARY"
             echo "" >> "$GITHUB_STEP_SUMMARY"
             echo "Plugin built successfully against \`${{ env.UE_IMAGE }}\`." >> "$GITHUB_STEP_SUMMARY"
