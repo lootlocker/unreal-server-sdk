@@ -25,6 +25,8 @@ if [ ! -f "$UPLUGIN_PATH" ]; then
   exit 2
 fi
 
+# Clean output directory to avoid stale packaging artifacts between runs.
+rm -rf "$OUTPUT_DIR"
 mkdir -p "$OUTPUT_DIR" "$LOG_DIR"
 rm -f "$LOG_PATH"
 
