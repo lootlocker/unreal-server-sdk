@@ -49,6 +49,7 @@ FString ULootLockerServerHttpClient::SendRequest_Internal(HTTPRequest InRequest)
 	Request->SetHeader(TEXT("User-Agent"), UserAgent);
 	Request->SetHeader(TEXT("User-Instance-Identifier"), UserInstanceIdentifier);
 	Request->SetHeader(TEXT("SDK-Version"), SDKVersion);
+	Request->SetHeader(TEXT("LL-Request-Id"), InRequest.RequestIdentifier);
 	Request->SetHeader(TEXT("Content-Type"), InRequest.ContentType);
 	Request->SetHeader(TEXT("Accepts"), TEXT("application/json"));
 
@@ -137,6 +138,7 @@ FString ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>&
 	Request->SetHeader(TEXT("User-Agent"), UserAgent);
 	Request->SetHeader(TEXT("User-Instance-Identifier"), UserInstanceIdentifier);
 	Request->SetHeader(TEXT("SDK-Version"), SDKVersion);
+	Request->SetHeader(TEXT("LL-Request-Id"), InRequest.RequestIdentifier);
 	Request->SetHeader(TEXT("Content-Type"), TEXT("multipart/form-data; boundary=" + Boundary));
 
 	for (const TTuple<FString, FString>& CustomHeader : InRequest.CustomHeaders)
