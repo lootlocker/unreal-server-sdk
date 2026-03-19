@@ -12,13 +12,13 @@
 
 .PARAMETER TestFilter
     Automation test filter passed to "automation RunTests <filter>".
-    Defaults to "LootLockerServer.Config".
+    Defaults to "LootLockerServer" which runs all LootLockerServer tests.
 
 .NOTES
     Exit codes: 0 = all tests passed, 1 = one or more tests failed or setup error.
 #>
 param(
-    [string]$TestFilter = "LootLockerServer.Config"
+    [string]$TestFilter = "LootLockerServer"
 )
 
 $ErrorActionPreference = 'Stop'
