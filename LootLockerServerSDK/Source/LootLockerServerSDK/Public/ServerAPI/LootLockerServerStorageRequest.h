@@ -241,6 +241,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerDeletePersistentStorageForPlayersAndK
 /**
  * 
  */
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerStorageRequest : public UObject
 {
@@ -253,4 +255,3 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerStorageRequest : public UObject
 	static FString UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse);
 	static FString DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse);
 };
-/// @}

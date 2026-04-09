@@ -335,6 +335,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerCreateWalletResponseDelegate, FLootLo
 // API Class Definition
 //==================================================
 
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerBalanceRequest : public UObject
 {
@@ -349,4 +351,3 @@ public:
 private:
 	static FString CreateWallet(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerCreateWalletResponseDelegate& OnComplete);
 };
-/// @}

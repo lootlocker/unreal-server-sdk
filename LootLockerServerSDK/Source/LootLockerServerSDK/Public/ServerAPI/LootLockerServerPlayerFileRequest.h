@@ -177,6 +177,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerPlayerFileDeleteResponseDelegate, FLo
 /**
  * 
  */
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerFileRequest : public UObject
 {
@@ -192,4 +194,3 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerFileRequest : public UObjec
 	static FString UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 	static FString UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 };
-/// @}
