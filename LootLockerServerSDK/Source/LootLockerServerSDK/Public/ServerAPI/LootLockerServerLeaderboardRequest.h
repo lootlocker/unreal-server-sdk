@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Leaderboard
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerLeaderboardRequest.generated.h"
@@ -857,3 +860,4 @@ public:
 public:
     ULootLockerServerLeaderboardRequest();
 };
+/// @}

@@ -1,5 +1,8 @@
 #pragma once
 
+/// @addtogroup Notifications
+/// @{
+
 #include "CoreMinimal.h"
 #include "Dom/JsonValue.h"
 #include "LootLockerServerResponse.h"
@@ -130,3 +133,4 @@ private:
 
 	static const FString NotificationTypeValidationPatternString;
 };
+/// @}

@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Init
+/// @{
+
 #include "CoreMinimal.h"
 #include "Runtime/Launch/Resources/Version.h"
 #if ENGINE_MAJOR_VERSION >= 5
@@ -162,3 +165,4 @@ private:
 	inline static const std::regex SemverPattern = std::regex("^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:\\.(0|[1-9]\\d*))?(?:\\.(0|[1-9]\\d*))?$");
 #endif
 };
+/// @}

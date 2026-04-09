@@ -1,0 +1,281 @@
+/**
+ * @file groups.dox
+ * @brief Doxygen group definitions for the LootLocker Unreal Server SDK.
+ *
+ * These groups power the "Topics" navigation tab and give the docs a
+ * feature-oriented entry point rather than a raw class/file listing.
+ * Every request handler is tagged with @c \@ingroup
+ * so that readers can navigate by feature rather than by file.
+ */
+
+// ---------------------------------------------------------------------------
+// Top-level: SDK lifecycle
+// ---------------------------------------------------------------------------
+
+/// @defgroup Init Initialization
+/// @brief Configure and start a server session before calling any other API.
+///
+/// Initialise the SDK via \c ULootLockerServerConfig (Game API Key,
+/// environment, SDK version) before calling StartSession. Call
+/// MaintainSession periodically (at least once per hour) to keep the
+/// token alive.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/the-basics/unreal-quick-start).
+
+// ---------------------------------------------------------------------------
+// Top-level: Sessions & Token Exchange
+// ---------------------------------------------------------------------------
+
+/// @defgroup Authentication Authentication
+/// @brief Start and manage a server session with the LootLocker backend.
+///
+/// Server sessions authenticate with the **Server API Key** rather than a
+/// player credential. Once authenticated, all other server API calls use the
+/// session token automatically. Use MaintainSession to extend the token
+/// lifetime without starting a new session.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/the-basics/authentication).
+
+/// @defgroup TokenExchange Token Exchange
+/// @brief Exchange player-held game API tokens for use on the server.
+///
+/// Server-to-client token exchange allows a server to obtain a short-lived
+/// token on behalf of a player — useful for game clients that need to
+/// authenticate server actions back to the player. Supports OAuth2-style
+/// flows including refresh.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/the-basics/authentication).
+
+// ---------------------------------------------------------------------------
+// Top-level: Player
+// ---------------------------------------------------------------------------
+
+/// @defgroup Player Player
+/// @brief Manage player profiles and accounts from the server.
+///
+/// Look up, create, and manage player records. Covers display-name assignment,
+/// account info lookups, and player deletion. For inventory see @ref AssetInstance;
+/// for XP/levels see @ref PlayerProgressions; for currency balances see
+/// @ref Balances; for cloud file storage see @ref PlayerFiles.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/players/overview).
+
+/// @defgroup PlayerFiles Player Files
+/// @brief Server-side management of CDN-backed files scoped to a player's profile.
+///
+/// Read, upload, update, and delete player files from the server. Ideal for
+/// cloud saves, screenshots, or profile pictures that benefit from CDN
+/// delivery. Each file upload requires a declared purpose; files can be
+/// marked private to restrict client visibility. Up to five revisions per
+/// file are retained.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/players/files).
+
+/// @defgroup PlayerStorage Player Storage
+/// @brief Server-side read and write of a player's persistent key-value store.
+///
+/// Read, write, and delete named string values persisted server-side on
+/// behalf of a player. Useful for carrying server-only state or updating
+/// player data derived from gameplay events.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/players/player-storage).
+
+// ---------------------------------------------------------------------------
+// Top-level: Social
+// ---------------------------------------------------------------------------
+
+/// @defgroup Friends Friends
+/// @brief Query and manage player friend lists from the server.
+///
+/// Retrieve a player's friends list from the server side for use in
+/// matchmaking, leaderboard filtering, and social feature backends.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/players/friends-and-followers).
+
+/// @defgroup ConnectedAccounts Connected Accounts
+/// @brief Server-side management of linked platform accounts.
+///
+/// List the platform accounts linked to a player's LootLocker identity.
+/// Linked accounts enable cross-platform progression and cross-saves —
+/// the same player profile loads regardless of which platform the game runs on.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/players/unified-player-accounts).
+
+// ---------------------------------------------------------------------------
+// Top-level: Heroes & Characters
+// ---------------------------------------------------------------------------
+
+/// @defgroup Hero Hero
+/// @brief Server-side management of player hero instances.
+///
+/// Query and manage hero instances for players. Heroes are player-owned
+/// instances of a Hero Class, which extends a Base Class with optional
+/// overrides. This group covers listing available heroes and managing
+/// equipped item loadouts for players from the server.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/game-systems/classes-and-heroes).
+
+/// @defgroup Characters Characters
+/// @brief Server-side management of player characters.
+///
+/// Query and manage characters owned by players. Characters define a
+/// player's chosen loadout type and equipped items. Use the server API
+/// to inspect or update a player's character state as part of gameplay
+/// logic running on the server.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/game-systems/classes-and-heroes).
+
+// ---------------------------------------------------------------------------
+// Top-level: Economy
+// ---------------------------------------------------------------------------
+
+/// @defgroup Currency Currency
+/// @brief Query virtual currency types from the server.
+///
+/// List the virtual currency definitions configured in the LootLocker
+/// console. Currency data drives economy logic on the server side.
+/// See @ref Balances to read and adjust player wallets.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/commerce/currencies).
+
+/// @defgroup Balances Balances
+/// @brief Read and adjust player currency balances from the server.
+///
+/// Each player holds a Wallet with a balance per currency. From the server
+/// you can credit or debit balances directly — for example, awarding a
+/// kill bonus, deducting a crafting cost, or granting a battle-pass reward.
+/// See @ref Currency for currency type definitions.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/commerce/wallets).
+
+/// @defgroup DropTables Drop Tables
+/// @brief Server-side evaluation and claiming of weighted loot rolls.
+///
+/// Evaluate drop-table assets on the server and grant results to a player's
+/// inventory. Drop Tables are configured in the console with weighted groups,
+/// guaranteed picks, and per-group tag filters. Running the evaluation on the
+/// server prevents client-side tampering of loot outcomes.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/content/working-with-assets/how-to/create-a-drop-table).
+
+// ---------------------------------------------------------------------------
+// Top-level: Assets & Inventory
+// ---------------------------------------------------------------------------
+
+/// @defgroup Assets Assets
+/// @brief Browse the asset catalogue from the server.
+///
+/// List and filter the reference assets defined in the LootLocker console —
+/// cosmetics, weapons, game configs, loot boxes, and more. For player-owned
+/// copies see @ref AssetInstance.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/content/working-with-assets).
+
+/// @defgroup AssetInstance Asset Instances
+/// @brief Server-side management of asset instances in players' inventories.
+///
+/// Grant, revoke, and query asset instances owned by players from the server.
+/// Instances are created when an asset is awarded and carry a unique Instance
+/// ID plus mutable per-instance state. This group covers server operations:
+/// listing a player's inventory, granting items, and inspecting rental states.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/players/inventory).
+
+// ---------------------------------------------------------------------------
+// Top-level: Progression
+// ---------------------------------------------------------------------------
+
+/// @defgroup PlayerProgressions Player Progressions
+/// @brief Award and query player progression tiers from the server.
+///
+/// Award XP points to a player's progression track and retrieve current
+/// tier and reward state. Progressions are threshold-based levelling systems
+/// configured in the console with per-tier reward payloads (assets, currency,
+/// progression points). Server-side awarding ensures points cannot be forged
+/// by clients.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/game-systems/progressions).
+
+/// @defgroup CharacterProgressions Character Progressions
+/// @brief Award and query per-character progression tiers from the server.
+///
+/// Mirrors @ref PlayerProgressions but targets a specific character's
+/// progression slot. Useful for per-class XP, mastery systems, and per-hero
+/// level tracks awarded by server-side gameplay events.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/game-systems/progressions).
+
+/// @defgroup AssetInstanceProgressions Asset Instance Progressions
+/// @brief Award and query progression tiers for a specific asset instance.
+///
+/// Award points to and read tier state of a progression track scoped to
+/// a particular asset instance (e.g., weapon level-up). This group covers
+/// server-side awarding and querying operations.
+
+/// @defgroup Progressions Progressions
+/// @brief Definitions and infrastructure shared across all progression types.
+///
+/// Progressions are points-based levelling systems with configurable
+/// tiers and per-tier reward payloads. The same configuration applies to
+/// player, character, and asset-instance progressions. This group covers
+/// the cross-cutting game-level progression endpoints, including tier
+/// definitions and metadata.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/game-systems/progressions).
+
+// ---------------------------------------------------------------------------
+// Top-level: Leaderboards
+// ---------------------------------------------------------------------------
+
+/// @defgroup Leaderboard Leaderboards
+/// @brief Submit and read leaderboard scores from the server.
+///
+/// Two leaderboard types are supported: **Player Type** (scores tied to
+/// player IDs — traditional rankings) and **Generic Type** (scores tied to
+/// any string key — rank teams, UGC, or any entity). Submitting from the
+/// server prevents score manipulation. Periodic resets can be configured in
+/// the console to distribute rewards to top-placed players.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/game-systems/leaderboards).
+
+// ---------------------------------------------------------------------------
+// Top-level: Events & Triggers
+// ---------------------------------------------------------------------------
+
+/// @defgroup Triggers Triggers
+/// @brief Fire named trigger events on behalf of players from the server.
+///
+/// Triggers are console-configured events linked to reward payloads (assets,
+/// currency, progression points). Firing a trigger from the server awards
+/// the reward to the player authoritatively, preventing client-side abuse.
+/// **Limited Triggers** may fire at most N times per player; **Unlimited
+/// Triggers** support recurring rewards.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/game-systems/triggers).
+
+// ---------------------------------------------------------------------------
+// Top-level: Data
+// ---------------------------------------------------------------------------
+
+/// @defgroup Metadata Metadata
+/// @brief Attach and retrieve typed key-value metadata on LootLocker entities.
+///
+/// Metadata can be attached to Progressions, Leaderboards, Catalogs,
+/// Currencies, and Assets. Values are strongly typed: String, Boolean, Number,
+/// JSON, or Base64-encoded binary. Entries support optional **Tags** for
+/// filtering and a **Game Read** flag that restricts visibility to the Server
+/// API only — ideal for keeping sensitive config or scoring data out of the
+/// game client.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/shared-systems/metadata).
+
+/// @defgroup Notifications Notifications
+/// @brief Create and manage player event notifications from the server.
+///
+/// Notifications are queued messages delivered to players the next time they
+/// poll the client SDK. The server can create notifications to signal
+/// significant events — leaderboard rewards, triggered payouts, or custom
+/// in-game events — ensuring delivery even to players who were offline when
+/// the event occurred.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/shared-systems/notifications).

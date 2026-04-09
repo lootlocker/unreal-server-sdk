@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup PlayerProgressions
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "ServerAPI/LootLockerServerProgressionGenericTypes.h"
@@ -185,3 +188,4 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerProgressionRequest : public
     static FString ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest);
     static FString DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseDelegate& OnCompletedRequest);
 };
+/// @}

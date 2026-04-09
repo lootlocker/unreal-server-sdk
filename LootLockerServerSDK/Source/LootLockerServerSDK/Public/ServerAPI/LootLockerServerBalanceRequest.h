@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Balances
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerCurrencyRequest.h"
@@ -346,3 +349,4 @@ public:
 private:
 	static FString CreateWallet(const FString& HolderULID, const ELootLockerServerWalletHolderTypes& HolderType, const FLootLockerServerCreateWalletResponseDelegate& OnComplete);
 };
+/// @}

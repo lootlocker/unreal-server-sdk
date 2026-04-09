@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Currency
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerCurrencyRequest.generated.h"
@@ -96,3 +99,4 @@ public:
 
     static FString ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnResponseCompleted);
 };
+/// @}

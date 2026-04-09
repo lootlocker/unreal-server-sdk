@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Authentication
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerAuthRequest.generated.h"
@@ -69,3 +72,4 @@ public:
 	static FString StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest);
 	static FString MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest);
 };
+/// @}
