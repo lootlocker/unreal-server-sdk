@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup TokenExchange
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerOAuthRequest.generated.h"
@@ -69,3 +72,4 @@ private:
 	static FString TokenExchangeAccessTokenSubjectTokenType;
 	static FString TokenExchangePlayerImpersonationSubjectTokenType;
 };
+/// @}

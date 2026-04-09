@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup CharacterProgressions
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "ServerAPI/LootLockerServerProgressionGenericTypes.h"
@@ -185,3 +188,4 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerCharacterProgressionRequest : pub
     static FString ResetProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerSingleCharacterProgressionWithRewardsResponseDelegate& OnCompletedRequest);
     static FString DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseDelegate& OnCompletedRequest);
 };
+/// @}

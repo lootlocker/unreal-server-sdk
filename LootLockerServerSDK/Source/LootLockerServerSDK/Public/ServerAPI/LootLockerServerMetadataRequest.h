@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Metadata
+/// @{
+
 #include "CoreMinimal.h"
 #include "Dom/JsonObject.h"
 #include "Dom/JsonValue.h"
@@ -496,3 +499,4 @@ public:
     static FString GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete);
     static FString SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseDelegate& OnComplete);
 };
+/// @}

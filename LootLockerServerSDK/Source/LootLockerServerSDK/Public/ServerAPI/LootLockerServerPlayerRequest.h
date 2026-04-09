@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Player
+/// @{
+
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
@@ -240,3 +243,4 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerRequest : public UObject
 	static FString GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest);
 	static FString CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest);
 };
+/// @}

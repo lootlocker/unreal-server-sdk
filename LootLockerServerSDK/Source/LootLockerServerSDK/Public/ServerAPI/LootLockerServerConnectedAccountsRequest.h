@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup ConnectedAccounts
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerConnectedAccountsRequest.generated.h"
@@ -130,3 +133,4 @@ public:
      */
     static FString ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseDelegate& OnResponseCompleted);
 };
+/// @}

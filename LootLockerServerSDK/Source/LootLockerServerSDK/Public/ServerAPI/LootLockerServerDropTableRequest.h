@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup DropTables
+/// @{
+
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
@@ -165,3 +168,4 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerDropTableRequest : public UObject
 
 	static FString PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest);
 };
+/// @}

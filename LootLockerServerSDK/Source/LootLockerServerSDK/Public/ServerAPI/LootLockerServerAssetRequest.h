@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Assets
+/// @{
+
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "../LootLockerServerResponse.h"
@@ -823,3 +826,4 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerAssetRequest : public UObject
     static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage = 0, int Page = 0, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest = FLootLockerServerListAssetsResponseDelegate());
     static FString ListContexts(int PerPage = 0, int Page = 0, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest = FLootLockerServerListContextsResponseDelegate());
 };
+/// @}

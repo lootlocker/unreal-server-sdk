@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Progressions
+/// @{
+
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "LootLockerServerProgressionGenericTypes.h"
@@ -133,3 +136,4 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerGameProgressionRequest : public U
 	static FString GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
 	static FString GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
 };
+/// @}
