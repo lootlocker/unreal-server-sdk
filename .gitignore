@@ -93,3 +93,6 @@ Temp~/
 # Developer-local Unreal settings
 unreal-dev-settings.json
 
+
+# Doxygen generated output
+docs/

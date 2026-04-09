@@ -1,5 +1,8 @@
 #pragma once
 
+/// @addtogroup Friends
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerFriendsRequest.generated.h"
@@ -99,3 +102,4 @@ public:
 
     static FString ListFriends(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnResponseCompleted);
 };
+/// @}

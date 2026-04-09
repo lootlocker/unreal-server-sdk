@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Progressions
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerAssetRequest.h"
 
@@ -164,3 +167,4 @@ struct FLootLockerServerModifyScoreRequest
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Amount = 0;
 };
+/// @}

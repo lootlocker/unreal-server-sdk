@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup PlayerStorage
+/// @{
+
 #include "CoreMinimal.h"
 
 #include "LootLockerServerResponse.h"
@@ -250,3 +253,4 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerStorageRequest : public UObject
 	static FString UpdatePersistentStorageForPlayersAndKeys(TArray<FLootLockerServerPlayerPersistentStorageEntry_NamedSets> StorageEntriesToUpdate, const FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse);
 	static FString DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate& OnCompleteResponse);
 };
+/// @}

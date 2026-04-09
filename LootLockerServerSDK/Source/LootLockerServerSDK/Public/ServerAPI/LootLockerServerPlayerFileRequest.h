@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup PlayerFiles
+/// @{
+
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
@@ -189,3 +192,4 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerFileRequest : public UObjec
 	static FString UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 	static FString UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 };
+/// @}

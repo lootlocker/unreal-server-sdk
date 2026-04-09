@@ -2,6 +2,9 @@
 
 #pragma once
 
+/// @addtogroup Triggers
+/// @{
+
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "ServerAPI/LootLockerServerAssetRequest.h"
@@ -124,3 +127,4 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerTriggerRequest : public UObject
 
 	static FString InvokeTriggerForPlayer(FString TriggerName, int PlayerId, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest);
 };
+/// @}
