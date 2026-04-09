@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup Balances
-/// @{
-
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerCurrencyRequest.h"
@@ -335,7 +332,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerCreateWalletResponseDelegate, FLootLo
 // API Class Definition
 //==================================================
 
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerBalanceRequest : public UObject

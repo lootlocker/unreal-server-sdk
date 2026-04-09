@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup Characters
-/// @{
-
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "ServerAPI/LootLockerServerAssetRequest.h"
@@ -328,7 +325,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromCharacterLoadoutRespo
 /**
  * 
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerCharacterRequest : public UObject

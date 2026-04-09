@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup Player
-/// @{
-
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
@@ -232,7 +229,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerCreatePlayerResponseDelegate, FLootLo
 /**
  * 
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerRequest : public UObject

@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup Progressions
-/// @{
-
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "LootLockerServerProgressionGenericTypes.h"
@@ -123,7 +120,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerProgressionTiersResponseDelegate, FLo
 /**
  * 
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerGameProgressionRequest : public UObject

@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup AssetInstance
-/// @{
-
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
@@ -497,7 +494,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromPlayerLoadoutResponse
 /**
  *
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerInventoryRequest : public UObject
