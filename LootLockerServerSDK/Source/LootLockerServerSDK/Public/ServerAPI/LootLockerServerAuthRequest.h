@@ -60,6 +60,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerMaintainSessionResponseDelegate, FLoo
 //==================================================
 // Interface Definition
 //==================================================
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerAuthRequest : public UObject
 {
@@ -72,4 +74,3 @@ public:
 	static FString StartSession(const FLootLockerServerAuthResponseDelegate& OnCompletedRequest);
 	static FString MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest);
 };
-/// @}

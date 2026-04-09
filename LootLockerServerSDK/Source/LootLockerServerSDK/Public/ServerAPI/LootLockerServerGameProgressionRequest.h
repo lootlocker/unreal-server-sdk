@@ -123,6 +123,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerProgressionTiersResponseDelegate, FLo
 /**
  * 
  */
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerGameProgressionRequest : public UObject
 {
@@ -136,4 +138,3 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerGameProgressionRequest : public U
 	static FString GetTiersForProgression(const FString& ProgressionKey, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
 	static FString GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
 };
-/// @}

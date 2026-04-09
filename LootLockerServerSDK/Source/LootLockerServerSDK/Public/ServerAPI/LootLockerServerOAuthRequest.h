@@ -54,6 +54,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerTokenExchangeResponseDelegate, FLootL
 //==================================================
 // Interface Definition
 //==================================================
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerOAuthRequest : public UObject
 {
@@ -72,4 +74,3 @@ private:
 	static FString TokenExchangeAccessTokenSubjectTokenType;
 	static FString TokenExchangePlayerImpersonationSubjectTokenType;
 };
-/// @}

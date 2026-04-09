@@ -90,6 +90,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerListCurrenciesResponseDelegate, FLoot
 // API Class Definition
 //==================================================
 
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerCurrencyRequest : public UObject
 {
@@ -99,4 +101,3 @@ public:
 
     static FString ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnResponseCompleted);
 };
-/// @}

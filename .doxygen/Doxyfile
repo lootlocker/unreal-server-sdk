@@ -31,11 +31,11 @@ INPUT                  = LootLockerServerSDK/Source/LootLockerServerSDK/Public \
                          .doxygen/mainpage.md
 RECURSIVE              = YES
 FILE_PATTERNS          = *.h *.dox *.md
-# Facade classes — excluded because the canonical reference is the request
-# handler classes in ServerAPI/. The other files below are internal
-# implementation details not part of the public SDK surface.
-EXCLUDE                = LootLockerServerSDK/Source/LootLockerServerSDK/Public/LootLockerServerForCpp.h \
-                         LootLockerServerSDK/Source/LootLockerServerSDK/Public/LootLockerServerForBlueprints.h \
+# Facade classes — the Blueprint interface is excluded; the C++ interface is
+# included so its documented methods appear in the feature groups.
+# The other files below are internal implementation details not part of the
+# public SDK surface.
+EXCLUDE                = LootLockerServerSDK/Source/LootLockerServerSDK/Public/LootLockerServerForBlueprints.h \
                          LootLockerServerSDK/Source/LootLockerServerSDK/Public/LootLockerServerHttpClient.h \
                          LootLockerServerSDK/Source/LootLockerServerSDK/Public/LootLockerServerEndpoints.h \
                          LootLockerServerSDK/Source/LootLockerServerSDK/Public/LootLockerServerLogger.h \

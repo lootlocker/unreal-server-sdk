@@ -232,6 +232,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerCreatePlayerResponseDelegate, FLootLo
 /**
  * 
  */
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerRequest : public UObject
 {
@@ -243,4 +245,3 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerRequest : public UObject
 	static FString GetPlayerInfoFromGameSessionToken(TArray<FString> GameSessionTokensToLookUp, const FLootLockerServerGetPlayerInfoFromGameSessionTokenResponseDelegate& OnCompletedRequest);
 	static FString CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest);
 };
-/// @}

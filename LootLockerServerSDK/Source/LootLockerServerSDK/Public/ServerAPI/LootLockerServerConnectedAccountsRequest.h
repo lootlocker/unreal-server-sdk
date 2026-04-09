@@ -115,6 +115,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerListConnectedAccountsResponseDelegate
 // API Class Definition
 //==================================================
 
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerConnectedAccountsRequest : public UObject
 {
@@ -133,4 +135,3 @@ public:
      */
     static FString ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseDelegate& OnResponseCompleted);
 };
-/// @}
