@@ -13,10 +13,9 @@ OUTPUT_DIRECTORY       = docs
 #---------------------------------------------------------------------------
 # Build options
 #---------------------------------------------------------------------------
-EXTRACT_ALL = NO
+EXTRACT_ALL            = YES
 EXTRACT_PRIVATE        = NO
 EXTRACT_STATIC         = YES
-HIDE_UNDOC_MEMBERS     = YES
 HIDE_UNDOC_CLASSES     = NO
 INTERNAL_DOCS          = NO
 JAVADOC_AUTOBRIEF      = YES
