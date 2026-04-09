@@ -14,7 +14,7 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPersistedState : public USaveGame
 {
 	GENERATED_BODY()
 public:
-	/*
+	/**
 	 The session token for the authenticated session
 	 */
 	UPROPERTY(VisibleAnywhere, Category = "LootLockerServer")

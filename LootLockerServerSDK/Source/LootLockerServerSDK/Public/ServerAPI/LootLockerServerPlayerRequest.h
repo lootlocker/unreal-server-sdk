@@ -38,32 +38,32 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerPlayerName
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 The ID of the player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	int Player_id = 0;
-	/*
+	/**
 	 The ULID of the player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Ulid;
-	/*
+	/**
 	 The Public UID of the player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Player_public_uid = "";
-	/*
+	/**
 	 The name of the player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Name = "";
-	/*
+	/**
 	 The platform that the player was last active on
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Last_active_platform = "";
-	/*
+	/**
 	 Optional: The id of the player on said platform
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -75,17 +75,17 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerPlayerInfoFromToken
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 The ID (ulid) of the player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Id = "";
-	/*
+	/**
 	 The legacy id of the player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	int Legacy_id = 0;
-	/*
+	/**
 	 The token corresponding to this player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -113,12 +113,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerPlayerNameLookupPair
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 The type of id that you want to look up
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	ELootLockerServerPlayerNameLookupIdType IdType = ELootLockerServerPlayerNameLookupIdType::Player_id;
-	/*
+	/**
 	 The id you want to look up
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -132,7 +132,7 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerGetPlayerInfoFromGameSessionTokenRequest
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 The tokens you wish to look up
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -143,12 +143,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerCreatePlayerRequest
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 The platform you want to create the player on
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Platform = "";
-	/*
+	/**
 	 The unique identifier for the player on the platform
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -164,7 +164,7 @@ struct FLootLockerServerPlayerNameLookupResponse : public FLootLockerServerRespo
 {
 	GENERATED_BODY()
 
-	/*
+	/**
 	 The name data found for the requested player's
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -178,12 +178,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse : public FLootLockerServerResponse
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 A list of tokens that could not be looked up
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	TArray<FString> Failed_tokens;
-	/*
+	/**
 	 A list of players that were successfully looked up with ids and the token corresponding to the player
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -197,12 +197,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerCreatePlayerResponse : public FLootLockerServerResponse
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 The numeric player id
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	int Player_id = 0;
-	/*
+	/**
 	 The player ulid (LootLocker's unique identifier for the player)
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")

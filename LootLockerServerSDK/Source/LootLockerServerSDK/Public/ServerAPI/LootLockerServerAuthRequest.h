@@ -24,7 +24,7 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAuthenticationResponse : public FLootLockerServerResponse
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 An authenticated session token
 	 */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
@@ -35,7 +35,7 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerMaintainSessionResponse : public FLootLockerServerResponse
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 Current time on the LootLocker Backend
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")

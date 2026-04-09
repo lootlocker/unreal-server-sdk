@@ -13,27 +13,27 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerTokenExchangeResponse : public FLootLockerServerResponse
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 The type of token contained in the response
 	 */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
 	FString Token_type = "";
-	/*
+	/**
 	 The new access token to use in subsequent requests
 	 */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
 	FString Access_token = "";
-	/*
+	/**
 	 The refresh token to use for refreshing the access token upon expiry
 	 */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
 	FString Refresh_token = "";
-	/*
+	/**
 	 The ulid of the subject that this token is for
 	 */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
 	FString Subject_ulid = "";
-	/*
+	/**
 	 For how many seconds the Access Token is valid
 	 */
 	UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")

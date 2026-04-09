@@ -12,7 +12,7 @@
 // Enum Definitions
 //==================================================
 
-/*
+/**
  Possible metadata sources
  */
 UENUM(BlueprintType, Category = "LootLockerServer")
@@ -28,7 +28,7 @@ enum class ELootLockerServerMetadataSources : uint8
     item = 7, // This is the source for asset instances (player inventory items), while the "asset" source is for the asset in general
 };
 
-/*
+/**
  Possible metadata types
  */
 UENUM(BlueprintType, Category = "LootLockerServer")
@@ -41,7 +41,7 @@ enum class ELootLockerServerMetadataTypes : uint8
     Base64 = 4,
 };
 
-/*
+/**
  Possible metadata actions
  */
 UENUM(BlueprintType, Category = "LootLockerServer")
@@ -54,7 +54,7 @@ enum class ELootLockerServerMetadataActions : uint8
     Upsert = 4
 };
 
-/*
+/**
  Possible metadata parser output types
  */
 UENUM(BlueprintType, Category = "LootLockerServer")
@@ -75,19 +75,19 @@ enum class ELootLockerServerMetadataParserOutputTypes : uint8
 // Data Type Definitions
 //==================================================
 
-/*
+/**
  *
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerMetadataBase64Value
 {
     GENERATED_BODY()
-    /*
+    /**
      The type of content that the base64 string encodes. Could be for example "image/jpeg" if it is a base64 encoded jpeg, or "application/x-redacted" if loading of files has been disabled
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Content_type;
-    /*
+    /**
      The encoded content in the form of a Base64 String. If this is unexpectedly empty, check if Content_type is set to "application/x-redacted". If it is, then the request for metadata was made with the ignoreFiles parameter set to true
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -101,22 +101,22 @@ USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerMetadataEntry
 {
     GENERATED_BODY()
-    /*
+    /**
      The metadata key
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Key;
-    /*
+    /**
      The type of value this metadata contains. Use this to parse the value.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerMetadataTypes Type = ELootLockerServerMetadataTypes::String;
-    /*
+    /**
      List of tags applied to this metadata
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FString> Tags;
-    /*
+    /**
      The access level set for this metadata entry. Valid values are game_api.read and game_api.write, though no values are required.
      Note that different sources can allow or disallow a subset of these values.
      */
@@ -247,12 +247,12 @@ USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerSetMetadataErrorEntry
 {
     GENERATED_BODY()
-    /*
+    /**
      The metadata key that the set operation error refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Key;
-    /*
+    /**
      The type of value that the set operation was for
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -266,65 +266,65 @@ USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerSetMetadataError
 {
     GENERATED_BODY()
-    /*
+    /**
      The type of action that this set metadata operation was
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerMetadataActions Action = ELootLockerServerMetadataActions::Create;
-    /*
+    /**
      The type of value that the set operation was for
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerSetMetadataErrorEntry Entry;
-    /*
+    /**
      The error message describing why this metadata set operation failed
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Error;
 };
 
-/*
+/**
  *
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerMetadataSourceAndKeys
 {
     GENERATED_BODY()
-    /*
+    /**
      The type of source that the source id refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerMetadataSources Source = ELootLockerServerMetadataSources::leaderboard;
-    /*
+    /**
      The id of the specific source that the set operation was taken on
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Id;
-    /*
+    /**
      A list of keys existing on the specified source
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FString> Keys;
 };
 
-/*
+/**
  *
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerMetadataSourceAndEntries
 {
     GENERATED_BODY()
-    /*
+    /**
      The type of source that the source id refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerMetadataSources Source = ELootLockerServerMetadataSources::leaderboard;
-    /*
+    /**
      The id of the specific source that the set operation was taken on
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Source_id;
-    /*
+    /**
      List of entries for this source
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -345,33 +345,33 @@ private:
 // Request Definitions
 //==================================================
 
-/*
+/**
  *
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerSetMetadataAction
 {
     GENERATED_BODY()
-    /*
+    /**
      The type of action to take for setting this metadata entry
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerMetadataActions Action = ELootLockerServerMetadataActions::Create;
-    /*
+    /**
      The metadata entry to take the designated action for
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerMetadataEntry Entry;
 };
 
-/*
+/**
  *
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerGetMultisourceMetadataRequest
 {
     GENERATED_BODY()
-    /*
+    /**
      The source & key combos to get
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -382,18 +382,18 @@ struct FLootLockerServerGetMultisourceMetadataRequest
 // Response Definitions
 //==================================================
 
-/*
+/**
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerListMetadataResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
      List of metadata entries on this page of metadata
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerMetadataEntry> Entries;
-    /*
+    /**
      Pagination data for this set of metadata entries
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -410,49 +410,49 @@ private:
     TMap<FString, int> KeyToEntryIndex = TMap<FString, int>();
 };
 
-/*
+/**
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerGetMetadataResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
      The requested metadata entry
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerMetadataEntry Entry;
 };
 
-/*
+/**
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerSetMetadataResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
      A list of any errors that occurred when executing the provided metadata actions
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerSetMetadataError> Errors;
-    /*
+    /**
      The type of source that the source id refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerMetadataSources Source = ELootLockerServerMetadataSources::reward;
-    /*
+    /**
      The id of the specific source that the set operation was taken on
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Source_id;
 };
 
-/*
+/**
  */
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerGetMultisourceMetadataResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
      The requested sources with the requested entries for each source
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
