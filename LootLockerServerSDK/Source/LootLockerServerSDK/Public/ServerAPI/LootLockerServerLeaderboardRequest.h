@@ -24,7 +24,7 @@ enum class ELootLockerServerLeaderboardType : uint8
     generic = 1        UMETA(DisplayName = "Generic"),
 };
 
-/*
+/**
  Which direction should the leaderboard be sorted in
  */
 UENUM(BlueprintType)
@@ -40,7 +40,7 @@ enum class ELootLockerServerLeaderboardDirection : uint8
     descending = 1        UMETA(DisplayName = "Descending"),
 };
 
-/*
+/**
  Which kind of reward this leaderboard contains
  */
 UENUM(BlueprintType, Category = "LootLocker")
@@ -61,17 +61,17 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerLeaderboardPlayer
 {
     GENERATED_BODY()
-    /*
+    /**
      The ID of the player
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int ID = 0;
-    /*
+    /**
     The public UID of the player
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Public_uid = "";
-    /*
+    /**
     The name of the player
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -82,28 +82,28 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerLeaderboardEntry
 {
     GENERATED_BODY()
-    /*
+    /**
      The Identifying member ID for this entry in the leaderboard.
      For player leaderboards this will be the Player ID, for generic leaderboards this will be the member_id you submitted
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Member_id = "";
-    /*
+    /**
     The rank for this entry in the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Rank = 0;
-    /*
+    /**
     The score for this entry in the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Score = 0;
-    /*
+    /**
     Player information for this entry in the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerLeaderboardPlayer Player;
-    /*
+    /**
     The metadata for this entry in the leaderboard.
     This will be empty if the leaderboard does not support metadata
      */
@@ -115,22 +115,22 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerLeaderboardEntryWithLeaderboardData
 {
     GENERATED_BODY()
-    /*
+    /**
     The ID of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Leaderboard_id = 0;
-    /*
+    /**
     The unique key for this leaderboard, used 
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Leaderboard_key = "";
-    /*
+    /**
      * The ulid of this leaderboard
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Ulid = "";
-    /*
+    /**
      The entry of the player in this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -388,72 +388,72 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerLeaderboard
 {
     GENERATED_BODY()
-    /*
+    /**
     The ID of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int ID = 0;
-    /*
+    /**
     The ID of the game this leaderboard is in
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Game_id = 0;
-    /*
+    /**
     The unique key of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Key = "";
-    /*
+    /**
      * The ulid of this leaderboard
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Ulid = "";
-    /*
+    /**
     The name of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Name = "";
-    /*
+    /**
     The type of leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerLeaderboardType Type = ELootLockerServerLeaderboardType::player;
-    /*
+    /**
     The sort order of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerLeaderboardDirection Direction_method = ELootLockerServerLeaderboardDirection::ascending;
-    /*
+    /**
     Is the game api allowed to write to this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Enable_game_api_writes = false;
-    /*
+    /**
     Do new submits overwrite existing scores for members on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Overwrite_score_on_submit = false;
-    /*
+    /**
     Is metadata enabled on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Has_metadata = false;
-    /*
+    /**
     The creation time of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Created_at = "";
-    /*
+    /**
     The last time this leaderboard was updated
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Updated_at = "";
-    /*
+    /**
      * Schedule of the Leaderboard.
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerLeaderboardSchedule Schedule;
-    /*
+    /**
      * A List of rewards tied to the Leaderboard.
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -468,18 +468,18 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerLeaderboardSubmitScoreRequest
 {
     GENERATED_BODY()
-    /*
+    /**
      The Identifying member ID for this entry in the leaderboard.
      For player leaderboards this will be the PlayerID, for generic leaderboards you can send in any string and that will be the identifier. We recommend using the player's Public_UID or Name.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Member_id = "";
-    /*
+    /**
     The Score to submit for this entry in the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Score = 0;
-    /*
+    /**
     The Metadata to submit for this entry in the leaderboard.
     If the leaderboard does not support metadata this property will be ignored.
      */
@@ -509,27 +509,27 @@ public:
     FLootLockerServerLeaderboardBaseRequest()
     {
 	}
-    /*
+    /**
     The unique key of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Key = "";
-    /*
+    /**
     The name of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Name = "";
-    /*
+    /**
     The sort order of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerLeaderboardDirection Direction_method = ELootLockerServerLeaderboardDirection::ascending;
-    /*
+    /**
     Allow the game api to write to this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Enable_game_api_writes = false;
-    /*
+    /**
     Always overwrite existing scores for members on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -556,12 +556,12 @@ public:
     {
 	}
     
-    /*
+    /**
     The type of leaderboard to create
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerLeaderboardType Type = ELootLockerServerLeaderboardType::player;
-    /*
+    /**
     Enable metadata on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -592,7 +592,7 @@ struct FLootLockerServerCreateLeaderboardScheduleRequest
 {
 	GENERATED_BODY()
 public:
-    /*
+    /**
     The cron expression to use for setting up the schedule. These expressions follow the traditional cron spec. 
     See crontab.guru for a good resource in exploring cron expressions.
     Additionally, we do support non-standard descriptors as follows:
@@ -614,57 +614,57 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerLeaderboardBaseResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
     The ID of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int ID = 0;
-    /*
+    /**
     The ID of the game this leaderboard is in
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Game_id = 0;
-    /*
+    /**
     The unique key of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Key = "";
-    /*
+    /**
     The name of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Name = "";
-    /*
+    /**
     The type of leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerLeaderboardType Type = ELootLockerServerLeaderboardType::player;
-    /*
+    /**
     The sort order of the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     ELootLockerServerLeaderboardDirection Direction_method = ELootLockerServerLeaderboardDirection::ascending;
-    /*
+    /**
     Is the game api allowed to write to this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Enable_game_api_writes = false;
-    /*
+    /**
     Do new submits overwrite existing scores for members on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Overwrite_score_on_submit = false;
-    /*
+    /**
     Is metadata enabled on this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Has_metadata = false;
-    /*
+    /**
     The creation time of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Created_at = "";
-    /*
+    /**
     The last time this leaderboard was updated
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -675,7 +675,7 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerGetLeaderboardResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
      * Data for the leaderboard
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -698,23 +698,23 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerLeaderboardSubmitScoreResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
      The Identifying member ID for this entry in the leaderboard.
      For player leaderboards this will be the PlayerID, for generic leaderboards this will be the member_id you submitted
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Member_id = "";
-    /*
+    /**
     The rank for this entry in the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Rank = 0;
-    /*
+    /**
     The Score for this entry in the leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Score = 0;
-    /*
+    /**
     The Metadata for this entry in the leaderboard.
     If the leaderboard does not support metadata this property will be empty.
      */
@@ -726,12 +726,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerGetAllMemberRanksResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
     Pagination data for the response, use this to make subsequent requests
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerIndexBasedPagination Pagination;
-    /*
+    /**
     Entries for the requested member from the leaderboards they have entries in
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -742,12 +742,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerGetScoresFromLeaderboardResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
     Pagination data for the response, use this to make subsequent requests
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerIndexBasedPagination Pagination;
-    /*
+    /**
     List of entries in the requested leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -772,12 +772,12 @@ USTRUCT()
 struct FLootLockerServerListLeaderboardsResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
      * Pagination data for this request
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerIndexBasedPagination Pagination;
-    /*
+    /**
      * A list of leaderboards
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")

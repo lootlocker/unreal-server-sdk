@@ -30,12 +30,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerNotificationProperty
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 The key for this property (used to look up the property)
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Key = "";
-	/*
+	/**
 	 The value for this property (corresponding to the key in question)
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -56,22 +56,22 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerSendNotificationsToPlayerBaseRequest
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 The type of this notification. Must match pattern ^[a-z_-]+\.[a-z_-]+\.[a-z_-]+$
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Notification_type = "";
-	/*
+	/**
 	 The priority of this notification (default: medium)
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Priority = "medium";
-	/*
+	/**
 	 The ulid of the player that should receive this notification
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Recipient = "";
-	/*
+	/**
 	 A list of key value properties for this notification
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")

@@ -20,26 +20,26 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerPlayerItemRentalData
 {
     GENERATED_BODY()
-    /*
+    /**
      Whether this item is a rental item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Is_rental = false;
-    /*
+    /**
      Optional: How much time (in seconds) that is left before this rental item expires
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Time_left = "";
-    /*
+    /**
      Optional: Total duration (in seconds) that this rental item is rented for
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Duration = "";
-    /*
+    /**
      Optional: Whether this rental item is currently active
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it has a valid value and then you can (in code) use .ToBool() or (in blueprint) use a case insensitive string comparison for "true"
@@ -55,36 +55,36 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerUniversalInventoryItem
 {
     GENERATED_BODY()
-    /*
+    /**
      The universal id of this item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Universal_id = 0;
-    /*
+    /**
      Optional: This item's variation id
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Variation_id = "";
-    /*
+    /**
      Optional: This item's rental option id
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Rental_option_id = "";
-    /*
+    /**
      The acquisition source for this item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Acquisition_source = "";
-    /*
+    /**
      The asset this item refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerAsset Asset;
-    /*
+    /**
      Information about this items rental state
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -98,36 +98,36 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerPlayerInventoryItem
 {
     GENERATED_BODY()
-    /*
+    /**
      The instance id of this item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Instance_id = 0;
-    /*
+    /**
      Optional: This item's variation id
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Variation_id = "";
-    /*
+    /**
      Optional: This item's rental option id
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Rental_option_id = "";
-    /*
+    /**
      The acquisition source for this item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Acquisition_source = "";
-    /*
+    /**
      The asset this item refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerAsset Asset;
-    /*
+    /**
      Information about this items rental state
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -141,29 +141,29 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerPlayerLoadoutItem
 {
     GENERATED_BODY()
-    /*
+    /**
      Optional: This item's variation id
      
      This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Variation_id = "";
-    /*
+    /**
      The instance id of this item
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Instance_id = 0;
-    /*
+    /**
      The time that this item was mounted
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Mounted_at = "";
-    /*
+    /**
      The asset this item refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerAsset Asset;
-    /*
+    /**
      Information about this items rental state
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -181,7 +181,7 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAssetByInstanceIDRequest
 {
     GENERATED_BODY()
-    /*
+    /**
      The id of the asset instance to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -195,7 +195,7 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAssetByAssetIdRequest
 {
     GENERATED_BODY()
-    /*
+    /**
      The id of the asset to equip, the default variation if any will be used
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -209,7 +209,7 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAssetByAssetInstanceIdRequest
 {
     GENERATED_BODY()
-    /*
+    /**
      The id of the asset instance to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -223,12 +223,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAssetByAssetIdAndVariationIdRequest
 {
     GENERATED_BODY()
-    /*
+    /**
      The id of the asset to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Asset_id = 0;
-    /*
+    /**
      The asset variation id of the asset variation to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -242,12 +242,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest
 {
     GENERATED_BODY()
-    /*
+    /**
      The id of the asset to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Asset_id = 0;
-    /*
+    /**
      The rental option id of the rental option to equip
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -268,7 +268,7 @@ struct FLootLockerServerAlterPlayerInventoryRequestBase
     FLootLockerServerAlterPlayerInventoryRequestBase()
     {
 	}
-    /*
+    /**
      The ids of assets to remove from the specified player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -290,7 +290,7 @@ struct FLootLockerServerAlterPlayerInventoryByAssetIdRequest : public FLootLocke
 
     FLootLockerServerAlterPlayerInventoryByAssetIdRequest()
 	{}
-    /*
+    /**
      List of the assets to add to the specified player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -314,7 +314,7 @@ struct FLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest 
     {
     }
 
-    /*
+    /**
      List of the assets to add to the specified player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -337,7 +337,7 @@ struct FLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest : 
     FLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest()
     {
 	}
-    /*
+    /**
      List of the assets to add to the specified player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -355,7 +355,7 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerGetUniversalInventoryResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
      List of items in this game's universal inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -370,12 +370,12 @@ struct FLootLockerServerGetPlayerInventoryResponse : public FLootLockerServerRes
 {
     GENERATED_BODY()
     
-    /*
+    /**
      The total number of items in this player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Total = 0;
-    /*
+    /**
      List of items in this player's inventory according to the requested pagination
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -389,7 +389,7 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerAddAssetToPlayerInventoryResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-    /*
+    /**
      List of the assets granted to the specified player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -404,7 +404,7 @@ struct FLootLockerServerFullPlayerLoadoutResponse : public FLootLockerServerResp
 {
     GENERATED_BODY()
 
-    /*
+    /**
      List of the specified player's loadout
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -446,12 +446,12 @@ struct FLootLockerServerAlterPlayerInventoryResponse : public FLootLockerServerR
 {
     GENERATED_BODY()
 
-    /*
+    /**
      List of asset instances added to the specified player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerAsset> Added;
-    /*
+    /**
      List of asset instance ids removed from the specified player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")

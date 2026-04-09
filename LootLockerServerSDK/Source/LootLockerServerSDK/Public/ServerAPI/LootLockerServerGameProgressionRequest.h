@@ -17,22 +17,22 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerGameProgression
 {
     GENERATED_BODY()
-	/*
+	/**
 	 The id of the progression
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Id = "";
-	/*
+	/**
 	 The key of the progression
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Key = "";
-	/*
+	/**
 	 The name of the progression
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Name = "";
-	/*
+	/**
 	 Whether this progression is active
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -47,12 +47,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerGameProgressionListResponse : public FLootLockerServerResponse
 {
 	GENERATED_BODY()
-	/*
+	/**
 	 The current pagination data of the requested data
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FLootLockerServerKeyBasedPagination Pagination;
-	/*
+	/**
 	 List of game progressions according to the current pagination settings
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -63,22 +63,22 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerSingleGameProgressionResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-	/*
+	/**
 	 The id of the progression
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Id = "";
-	/*
+	/**
 	 The key of the progression
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Key = "";
-	/*
+	/**
 	 The name of the progression
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Name = "";
-	/*
+	/**
 	 Whether this progression is active
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -89,12 +89,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerProgressionTiersResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
-	/*
+	/**
 	 The current pagination data of the requested data
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerIndexBasedPagination Pagination;
-	/*
+	/**
 	 A list of the tiers that are in this progression according to the current pagination settings
 	*/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
