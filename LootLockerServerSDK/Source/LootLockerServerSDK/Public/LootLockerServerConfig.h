@@ -32,7 +32,7 @@ public:
     FString GameVersion = "";
     UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Meta = (EditCondition = "false", EditConditionHides), Category = "LootLockerServer")
     FString LootLockerVersion = "2021-06-01";
-    // Logging configuration
+    /// Logging configuration
     UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer|Logging")
     ELootLockerServerLogLevel LimitLogLevelTo = ELootLockerServerLogLevel::Display;
     UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer|Logging")

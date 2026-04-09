@@ -3,7 +3,7 @@
 #pragma once
 #include "LootLockerServerResponse.generated.h"
 
-/*
+/**
  An empty type to use as empty request bodies
  */
 USTRUCT(BlueprintType)
@@ -16,16 +16,16 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerErrorData
 {
     GENERATED_BODY()
-    // A descriptive code identifying the error.
+    /// A descriptive code identifying the error.
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Code;
-    // A link to further documentation on the error.
+    /// A link to further documentation on the error.
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Doc_url;
-    // A unique identifier of the request to use in contact with support.
+    /// A unique identifier of the request to use in contact with support.
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Request_id;
-    // A unique identifier for tracing the request through LootLocker systems, use this in contact with support.
+    /// A unique identifier for tracing the request through LootLocker systems, use this in contact with support.
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Trace_id;
     /// <summary>
@@ -33,7 +33,7 @@ struct FLootLockerServerErrorData
     /// </summary>
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int Retry_after_seconds = -1;
-    // A free text description of the problem and potential suggestions for fixing it
+    /// A free text description of the problem and potential suggestions for fixing it
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Message;
 };
@@ -42,24 +42,24 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerRequestContext
 {
     GENERATED_BODY()
-    // The time that this request was made
+    /// The time that this request was made
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString RequestTime = "";
-    // The unique identifier for this request
+    /// The unique identifier for this request
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString RequestId = "";
-    // The url that this request was made to
+    /// The url that this request was made to
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString RequestURL = "";
-    // The HTTP Method that was used for this request
+    /// The HTTP Method that was used for this request
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString RequestMethod = "";
-    // The request parameters as a json string.
+    /// The request parameters as a json string.
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString RequestParametersJsonString = "";
 };
 
-/*
+/**
  The base response for all LootLocker Server responses
  */
 USTRUCT(BlueprintType)
@@ -67,19 +67,19 @@ struct FLootLockerServerResponse
 {
 	GENERATED_BODY()
     
-	// True if the request succeeded
+	/// True if the request succeeded
     UPROPERTY(BlueprintReadWrite, Category = "LootLockerServer")
     bool Success = false;
-    // HTTP Status code from the request to LootLockers backend 
+    /// HTTP Status code from the request to LootLockers backend 
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int StatusCode = 0;
-    // Raw text/http body from the server response
+    /// Raw text/http body from the server response
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString FullTextFromServer;
-    // If this request was not a success, this structure holds all the information needed to identify the problem
+    /// If this request was not a success, this structure holds all the information needed to identify the problem
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerErrorData ErrorData;
-    // Context information about the request
+    /// Context information about the request
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FLootLockerServerRequestContext RequestContext;
 };
@@ -97,7 +97,7 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerResponseCallback, FLootLockerServerRe
 // Definition of pagination data structures
 //==================================================
 
-/*
+/**
  Pagination data for key based pagination
  This is used for methods that have a "count" and an "after" parameter. The "after" parameter is the "next_cursor" value from the previous response, which means "where in the larger list should I start?".
  */
@@ -105,24 +105,24 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerKeyBasedPagination
 {
     GENERATED_BODY()
-    /*
+    /**
      The total number of items in the list this pagination refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
     int Total = 0;
-    /*
+    /**
      The key to use for the "after" parameter in the next request
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
     FString Next_Cursor = "";
-    /*
+    /**
      The key used for the "after" parameter in the previous request
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
     FString Previous_Cursor = "";
 };
 
-/*
+/**
  Pagination data for index based pagination
  This is used for methods that have a "count" and an "after" parameter. The "after" parameter is the "next_cursor" value from the previous response, which means "where in the larger list should I start?".
  */
@@ -130,17 +130,17 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerIndexBasedPagination
 {
     GENERATED_BODY()
-    /*
+    /**
      The total number of items in the list this pagination refers to
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
     int32 Total = 0;
-    /*
+    /**
      The index to use for the "after" parameter in the next request
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
     int32 Next_Cursor = 0;
-    /*
+    /**
      The index used for the "after" parameter in the previous request
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer")
@@ -151,12 +151,12 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerExtendedPaginationError
 {
     GENERATED_BODY()
-    /*
+    /**
      * Which field in the pagination that this error relates to
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Field;
-    /*
+    /**
      * The error message in question
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -167,42 +167,42 @@ USTRUCT(BlueprintType)
 struct FLootLockerServerExtendedIndexBasedPagination
 {
     GENERATED_BODY()
-    /*
+    /**
      * How many entries in total exists in the paginated list
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Total = 0;
-    /*
+    /**
      * How many entries (counting from the beginning of the paginated list) from the first entry that the current page starts at
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Offset = 0;
-    /*
+    /**
      * Number of entries on each page
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Per_page = 0;
-    /*
+    /**
      * The page index to use for fetching the last page of entries
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Last_page = 0;
-    /*
+    /**
      * The page index used for fetching this page of entries
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     int32 Current_page = 0;
-    /*
+    /**
      * The page index to use for fetching the page of entries immediately succeeding this page of entries
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Next_page;
-    /*
+    /**
      * The page index to use for fetching the page of entries immediately preceding this page of entries
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Prev_page;
-    /*
+    /**
      * List of pagination errors (if any). These are errors specifically related to the pagination of the entry set.
      **/
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
