@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup PlayerFiles
-/// @{
-
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
@@ -177,7 +174,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerPlayerFileDeleteResponseDelegate, FLo
 /**
  * 
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerFileRequest : public UObject

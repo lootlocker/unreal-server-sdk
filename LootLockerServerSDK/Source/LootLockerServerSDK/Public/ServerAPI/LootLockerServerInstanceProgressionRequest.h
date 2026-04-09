@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup AssetInstanceProgressions
-/// @{
-
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "ServerAPI/LootLockerServerProgressionGenericTypes.h"
@@ -171,7 +168,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerSingleInstanceProgressionWithRewardsR
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerDeleteInstanceProgressionResponseDelegate, FLootLockerServerResponse);
 
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerInstanceProgressionRequest : public UObject

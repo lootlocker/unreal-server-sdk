@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup PlayerProgressions
-/// @{
-
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "ServerAPI/LootLockerServerProgressionGenericTypes.h"
@@ -173,7 +170,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerDeletePlayerProgressionResponseDelega
 /**
  * 
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerProgressionRequest : public UObject

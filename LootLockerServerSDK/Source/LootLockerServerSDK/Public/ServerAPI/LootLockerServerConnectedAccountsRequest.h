@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup ConnectedAccounts
-/// @{
-
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerConnectedAccountsRequest.generated.h"
@@ -115,7 +112,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerListConnectedAccountsResponseDelegate
 // API Class Definition
 //==================================================
 
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerConnectedAccountsRequest : public UObject

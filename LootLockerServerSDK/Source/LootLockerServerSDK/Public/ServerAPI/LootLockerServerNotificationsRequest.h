@@ -1,8 +1,5 @@
 #pragma once
 
-/// @addtogroup Notifications
-/// @{
-
 #include "CoreMinimal.h"
 #include "Dom/JsonValue.h"
 #include "LootLockerServerResponse.h"
@@ -105,7 +102,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerSendNotificationsResponseDelegate, FL
 /**
  *
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerNotificationsRequest : public UObject

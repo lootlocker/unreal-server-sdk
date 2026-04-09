@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup DropTables
-/// @{
-
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
@@ -154,7 +151,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerPickFromDropTableResponseDelegate, FL
 /**
  * 
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerDropTableRequest : public UObject

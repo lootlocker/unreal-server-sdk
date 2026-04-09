@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup Metadata
-/// @{
-
 #include "CoreMinimal.h"
 #include "Dom/JsonObject.h"
 #include "Dom/JsonValue.h"
@@ -487,7 +484,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerSetMetadataResponseDelegate, FLootLoc
 // API Class Definition
 //==================================================
 
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerMetadataRequest : public UObject

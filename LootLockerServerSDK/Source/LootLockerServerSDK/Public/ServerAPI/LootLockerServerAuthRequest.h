@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup Authentication
-/// @{
-
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerAuthRequest.generated.h"
@@ -60,7 +57,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerMaintainSessionResponseDelegate, FLoo
 //==================================================
 // Interface Definition
 //==================================================
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerAuthRequest : public UObject

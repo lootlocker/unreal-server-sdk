@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup TokenExchange
-/// @{
-
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerOAuthRequest.generated.h"
@@ -54,7 +51,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerTokenExchangeResponseDelegate, FLootL
 //==================================================
 // Interface Definition
 //==================================================
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerOAuthRequest : public UObject

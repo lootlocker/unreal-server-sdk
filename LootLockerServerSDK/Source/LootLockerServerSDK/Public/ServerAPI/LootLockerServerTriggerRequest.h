@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup Triggers
-/// @{
-
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "ServerAPI/LootLockerServerAssetRequest.h"
@@ -118,7 +115,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerInvokeTriggerResponseDelegate, FLootL
 /**
  * 
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerTriggerRequest : public UObject

@@ -1,8 +1,5 @@
 #pragma once
 
-/// @addtogroup Friends
-/// @{
-
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "LootLockerServerFriendsRequest.generated.h"
@@ -93,7 +90,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerListFriendsResponseDelegate, FLootLoc
 // API Class Definition
 //==================================================
 
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerFriendsRequest : public UObject
