@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup Hero
-/// @{
-
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
 #include "ServerAPI/LootLockerServerAssetRequest.h"
@@ -353,7 +350,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromHeroLoadoutResponseDe
 /**
  *
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerHeroRequest : public UObject

@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup Assets
-/// @{
-
 #include "Containers/Array.h"
 #include "CoreMinimal.h"
 #include "../LootLockerServerResponse.h"
@@ -808,7 +805,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerListContextsResponseDelegate, FLootLo
 /**
  *
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerAssetRequest : public UObject

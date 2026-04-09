@@ -2,9 +2,6 @@
 
 #pragma once
 
-/// @addtogroup PlayerStorage
-/// @{
-
 #include "CoreMinimal.h"
 
 #include "LootLockerServerResponse.h"
@@ -241,7 +238,6 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerDeletePersistentStorageForPlayersAndK
 /**
  * 
  */
-/// @}
 
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerStorageRequest : public UObject
