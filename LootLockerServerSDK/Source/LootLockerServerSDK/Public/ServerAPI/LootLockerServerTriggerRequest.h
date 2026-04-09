@@ -118,6 +118,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerInvokeTriggerResponseDelegate, FLootL
 /**
  * 
  */
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerTriggerRequest : public UObject
 {
@@ -127,4 +129,3 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerTriggerRequest : public UObject
 
 	static FString InvokeTriggerForPlayer(FString TriggerName, int PlayerId, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest);
 };
-/// @}

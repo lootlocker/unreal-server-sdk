@@ -35,6 +35,8 @@ public:
     //==================================================
     // Authentication
     //==================================================
+    /// @addtogroup Authentication
+    /// @{
     
     /**
      * Start a session connecting to the LootLocker services with the server API key
@@ -52,9 +54,13 @@ public:
      */
     static FString MaintainSession(const FLootLockerServerMaintainSessionResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Token Exchange
     //==================================================
+    /// @addtogroup TokenExchange
+    /// @{
 
     /**
      Get a new active game api session token for the player holding the supplied game api session token
@@ -78,9 +84,13 @@ public:
      */
     static FString GameApiUserImpersonation(const FString& PlayerUlid, const FLootLockerServerTokenExchangeResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Leaderboards
     //==================================================
+    /// @addtogroup Leaderboard
+    /// @{
     
     /**
      * List information about all leaderboards in the game
@@ -265,9 +275,13 @@ public:
     */
     static FString DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Leaderboard Archives
     //==================================================
+    /// @addtogroup Leaderboard
+    /// @{
 
     /**
     * List the archive of a specific Leaderboard,
@@ -287,9 +301,13 @@ public:
     */
     static FString GetLeaderboardArchive(const FString& Key, int Count, const FString& After, const FLootLockerServerLeaderboardArchiveDetailResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Triggers
     //==================================================
+    /// @addtogroup Triggers
+    /// @{
 
     /**
      * Trigger the requested trigger on behalf of the provided player
@@ -303,9 +321,13 @@ public:
      */
     static FString InvokeTriggerForPlayer(FString TriggerName, int PlayerID, const FLootLockerServerInvokeTriggerResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Player Persistent Storage
     //==================================================
+    /// @addtogroup PlayerStorage
+    /// @{
 
     /**
      * Get the persistent storage for the provided player
@@ -364,9 +386,13 @@ public:
      */
     static FString DeletePersistentStorageForPlayersAndKeys(TArray<int> PlayerIDs, TArray<FString> Keys, const FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponseDelegate& OnCompletedRequest);
     
+    /// @}
+
     //==================================================
     // Characters
     //==================================================
+    /// @addtogroup Characters
+    /// @{
     
     /**
      * List all characters for this player.
@@ -456,9 +482,13 @@ public:
      */
     static FString UnequipAssetFromPlayerCharacterLoadout(int PlayerID, int CharacterID, int InstanceID, const FLootLockerServerUnequipAssetFromCharacterLoadoutResponseDelegate& OnCompletedRequest);
     
+    /// @}
+
     //==================================================
     // Heroes
     //==================================================
+    /// @addtogroup Hero
+    /// @{
     
     /**
      * List all heroes for this player.
@@ -546,9 +576,13 @@ public:
      */
     static FString UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Player Inventory
     //==================================================
+    /// @addtogroup AssetInstance
+    /// @{
     
     /**
      * Get a list of assets that are available for all player's in the game
@@ -718,9 +752,13 @@ public:
      */
     static FString AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Assets
     //==================================================
+    /// @addtogroup Assets
+    /// @{
 
     /**
      * List all the assets from this game
@@ -758,9 +796,13 @@ public:
      */
     static FString GetAssetsByContext(int Count, int After, int Context, const FLootLockerServerGetAssetsResponseDelegate& OnCompletedRequest, bool IncludeUGC = false);
 
+    /// @}
+
     //==================================================
     // Asset Instances
     //==================================================
+    /// @addtogroup AssetInstance
+    /// @{
 
     /**
      * Get a list of key value pairs from the specified asset instance
@@ -830,9 +872,13 @@ public:
      */
     static FString DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Drop Tables
     //==================================================
+    /// @addtogroup DropTables
+    /// @{
     
     /**
      * Use this method to compute and lock the specified drop table item from the specified player's inventory
@@ -887,9 +933,13 @@ public:
      */
     static FString PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Friends
     //==================================================
+    /// @addtogroup Friends
+    /// @{
 
     /**
      * List friends for the specified player
@@ -902,9 +952,13 @@ public:
      */
     static FString ListFriendsForPlayer(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Connected Accounts
     //==================================================
+    /// @addtogroup ConnectedAccounts
+    /// @{
 
     /**
      * List connected accounts for multiple players (up to 25)
@@ -917,9 +971,13 @@ public:
      */
     static FString ListConnectedAccounts(const TArray<FString>& PlayerULIDs, const TArray<int>& LegacyPlayerIDs, const FLootLockerServerListConnectedAccountsResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Player
     //==================================================
+    /// @addtogroup Player
+    /// @{
 
     /**
      * Lookup a number of player names from the player's id
@@ -952,9 +1010,13 @@ public:
      */
     static FString CreatePlayer(ELootLockerServerCreatePlayerPlatforms Platform, const FString& PlatformPlayerIdentifier, const FLootLockerServerCreatePlayerResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Player Files
     //==================================================
+    /// @addtogroup PlayerFiles
+    /// @{
 
     /**
      * List files currently associated with the specified player
@@ -1036,9 +1098,13 @@ public:
      */
     static FString UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Game Progressions
     //==================================================
+    /// @addtogroup Progressions
+    /// @{
 
     /**
      * Get a list of progressions for the game
@@ -1089,9 +1155,13 @@ public:
      */
     static FString GetPaginatedTiersForProgression(const FString& ProgressionKey, int32 Count, int32 After, const FLootLockerServerProgressionTiersResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Player Progressions
     //==================================================
+    /// @addtogroup PlayerProgressions
+    /// @{
 
     /**
      * Get a list of progressions for the specified player
@@ -1166,9 +1236,13 @@ public:
      */
     static FString DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Character Progressions
     //==================================================
+    /// @addtogroup CharacterProgressions
+    /// @{
 
     /**
      * Get a list of progressions for the specified player and character
@@ -1251,9 +1325,13 @@ public:
     static FString DeleteProgressionForCharacter(int PlayerID, int CharacterID, const FString& ProgressionKey, const FLootLockerServerDeleteCharacterProgressionResponseDelegate& OnCompletedRequest);
 
 
+    /// @}
+
     //==================================================
     // Instance Progressions
     //==================================================
+    /// @addtogroup AssetInstanceProgressions
+    /// @{
 
     /**
     * Get a list of progressions for the specified instance
@@ -1328,9 +1406,13 @@ public:
     */
     static FString DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString& ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Currencies
     //==================================================
+    /// @addtogroup Currency
+    /// @{
 
     /**
      * Get a list of available currencies for the game
@@ -1340,9 +1422,13 @@ public:
      */
     static FString ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnCompletedRequest);
 
+    /// @}
+
     //==================================================
     // Balances
     //==================================================
+    /// @addtogroup Balances
+    /// @{
 
     /**
      * Get a list of balances in a specified wallet
@@ -1394,9 +1480,13 @@ public:
      */
     static FString DebitBalanceToWallet(const FString& WalletID, const FString& CurrencyID, const FString& Amount, const FLootLockerServerDebitWalletResponseDelegate& OnComplete);
 
+    /// @}
+
     //==================================================
     // Metadata
     //==================================================
+    /// @addtogroup Metadata
+    /// @{
 
     /**
     List Metadata for the specified source with default pagination
@@ -1521,9 +1611,13 @@ public:
         return Entry;
     }
 
+    /// @}
+
     //==================================================
     // Notifications
     //==================================================
+    /// @addtogroup Notifications
+    /// @{
 
     /*
     Send a custom notification using the notification system to the specified player.
@@ -1790,4 +1884,5 @@ public:
         return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, JsonArray, Properties, OnCompletedRequest);
     }
 
+    /// @}
 };

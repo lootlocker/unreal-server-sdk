@@ -93,6 +93,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerListFriendsResponseDelegate, FLootLoc
 // API Class Definition
 //==================================================
 
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerFriendsRequest : public UObject
 {
@@ -102,4 +104,3 @@ public:
 
     static FString ListFriends(const FString& PlayerULID, int Page, int PerPage, const FLootLockerServerListFriendsResponseDelegate& OnResponseCompleted);
 };
-/// @}

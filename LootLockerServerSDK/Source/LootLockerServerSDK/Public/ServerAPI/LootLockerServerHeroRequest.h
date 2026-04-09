@@ -353,6 +353,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromHeroLoadoutResponseDe
 /**
  *
  */
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerHeroRequest : public UObject
 {
@@ -369,4 +371,3 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerHeroRequest : public UObject
     static FString EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate& OnCompletedRequest);
     static FString UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate& OnCompletedRequest);
 };
-/// @}

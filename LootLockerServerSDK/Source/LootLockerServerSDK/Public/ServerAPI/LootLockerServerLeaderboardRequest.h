@@ -837,6 +837,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardScheduleResponseDele
 //==================================================
 // Interface Definition
 //==================================================
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerLeaderboardRequest : public UObject
 {
@@ -860,4 +862,3 @@ public:
 public:
     ULootLockerServerLeaderboardRequest();
 };
-/// @}

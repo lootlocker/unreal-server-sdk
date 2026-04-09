@@ -173,6 +173,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerDeletePlayerProgressionResponseDelega
 /**
  * 
  */
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerProgressionRequest : public UObject
 {
@@ -188,4 +190,3 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerProgressionRequest : public
     static FString ResetProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerSinglePlayerProgressionWithRewardsResponseDelegate& OnCompletedRequest);
     static FString DeleteProgressionForPlayer(int PlayerID, const FString& ProgressionKey, const FLootLockerServerDeletePlayerProgressionResponseDelegate& OnCompletedRequest);
 };
-/// @}

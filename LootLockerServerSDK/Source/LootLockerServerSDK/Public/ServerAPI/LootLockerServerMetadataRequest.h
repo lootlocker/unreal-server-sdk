@@ -487,6 +487,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerSetMetadataResponseDelegate, FLootLoc
 // API Class Definition
 //==================================================
 
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerMetadataRequest : public UObject
 {
@@ -499,4 +501,3 @@ public:
     static FString GetMultisourceMetadata(const TArray<FLootLockerServerMetadataSourceAndKeys>& SourcesAndKeysToGet, const bool IgnoreFiles, const FLootLockerServerGetMultisourceMetadataResponseDelegate& OnComplete);
     static FString SetMetadata(const ELootLockerServerMetadataSources Source, const FString& SourceID, const TArray<FLootLockerServerSetMetadataAction>& MetadataToActionsToPerform, const FLootLockerServerSetMetadataResponseDelegate& OnComplete);
 };
-/// @}

@@ -497,6 +497,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromPlayerLoadoutResponse
 /**
  *
  */
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerInventoryRequest : public UObject
 {
@@ -520,4 +522,3 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerPlayerInventoryRequest : public U
     static FString AlterPlayerInventoryAddAssetsByAssetIDAndVariationID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndVariationIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
     static FString AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
 };
-/// @}

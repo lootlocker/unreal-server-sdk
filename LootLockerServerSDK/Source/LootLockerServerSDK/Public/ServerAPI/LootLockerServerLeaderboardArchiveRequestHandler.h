@@ -88,6 +88,8 @@ struct FLootLockerServerLeaderboardArchiveResponse : public FLootLockerServerRes
 DECLARE_DELEGATE_OneParam(FLootLockerServerLeaderboardArchiveResponseDelegate, FLootLockerServerLeaderboardArchiveResponse);
 DECLARE_DELEGATE_OneParam(FLootLockerServerLeaderboardArchiveDetailResponseDelegate, FLootLockerServerLeaderboardArchiveDetailsResponse);
 
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerLeaderboardArchiveRequestHandler : public UObject
 {
@@ -98,4 +100,3 @@ public:
 public:
 	ULootLockerServerLeaderboardArchiveRequestHandler();
 };
-/// @}

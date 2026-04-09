@@ -105,6 +105,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerSendNotificationsResponseDelegate, FL
 /**
  *
  */
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerNotificationsRequest : public UObject
 {
@@ -133,4 +135,3 @@ private:
 
 	static const FString NotificationTypeValidationPatternString;
 };
-/// @}

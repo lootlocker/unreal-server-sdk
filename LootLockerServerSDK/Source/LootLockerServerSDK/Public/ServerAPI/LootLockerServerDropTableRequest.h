@@ -154,6 +154,8 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerPickFromDropTableResponseDelegate, FL
 /**
  * 
  */
+/// @}
+
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerDropTableRequest : public UObject
 {
@@ -168,4 +170,3 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerDropTableRequest : public UObject
 
 	static FString PickDropsFromDropTable(int PlayerID, int DropTableID, TArray<int> DropTableItemIDsToPick, const FLootLockerServerPickFromDropTableResponseDelegate& OnCompletedRequest);
 };
-/// @}
