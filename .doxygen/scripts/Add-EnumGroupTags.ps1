@@ -1,7 +1,7 @@
 # Add-EnumGroupTags.ps1
 #
 # PURPOSE
-#   Wraps each UENUM / enum class declaration in GameAPI handler files in a
+#   Wraps each UENUM / enum class declaration in ServerAPI handler files in a
 #   Doxygen @addtogroup/@{ ... @} block so enumerations are registered as
 #   group members.  Without this, file-scope enums have no linkable anchor
 #   (because SOURCE_BROWSER = NO; file pages aren't generated).  Adding the
@@ -9,7 +9,7 @@
 #   that other pages can link to from function signatures.
 #
 # WHEN TO RUN
-#   Run whenever a new enum class is added to a GameAPI handler file without
+#   Run whenever a new enum class is added to a ServerAPI handler file without
 #   an @addtogroup wrapper:
 #       powershell -File .doxygen/scripts/Add-EnumGroupTags.ps1
 #
@@ -28,41 +28,14 @@ param([switch]$DryRun)
 $enc = New-Object System.Text.UTF8Encoding($false)
 
 $groupMap = @{
-    "LootLockerAssetInstancesRequestHandler.h"       = "AssetInstance"
-    "LootLockerAssetsRequestHandler.h"               = "Assets"
-    "LootLockerAuthenticationRequestHandler.h"       = "Authentication"
-    "LootLockerBalanceRequestHandler.h"              = "Balances"
-    "LootLockerBroadcastRequestHandler.h"            = "Broadcasts"
-    "LootLockerCatalogRequestHandler.h"              = "Catalog"
-    "LootLockerCharacterRequestHandler.h"            = "Hero"
-    "LootLockerCollectablesRequestHandler.h"         = "Collectables"
-    "LootLockerConnectedAccountsRequestHandler.h"    = "ConnectedAccounts"
-    "LootLockerCurrencyRequestHandler.h"             = "Currency"
-    "LootLockerDropTablesRequestHandler.h"           = "DropTables"
-    "LootLockerEntitlementRequestHandler.h"          = "Entitlements"
-    "LootLockerFeedbackRequestHandler.h"             = "Feedback"
-    "LootLockerFollowersRequestHandler.h"            = "Followers"
-    "LootLockerFriendsRequestHandler.h"              = "Friends"
-    "LootLockerHeroRequestHandler.h"                 = "Hero"
-    "LootLockerLeaderboardArchiveRequestHandler.h"   = "Leaderboard"
-    "LootLockerLeaderboardRequestHandler.h"          = "Leaderboard"
-    "LootLockerMapsRequestHandler.h"                 = "Maps"
-    "LootLockerMessagesRequestHandler.h"             = "Messages"
-    "LootLockerMetadataRequestHandler.h"             = "Metadata"
-    "LootLockerMiscellaneousRequestHandler.h"        = "Misc"
-    "LootLockerMissionsRequestHandler.h"             = "Missions"
-    "LootLockerNotificationsRequestHandler.h"        = "Notifications"
-    "LootLockerPersistentStorageRequestHandler.h"    = "PlayerStorage"
-    "LootLockerPlayerFilesRequestHandler.h"          = "PlayerFiles"
-    "LootLockerPlayerRequestHandler.h"               = "Player"
-    "LootLockerProgressionsRequestHandler.h"         = "Progressions"
-    "LootLockerPurchasesRequestHandler.h"            = "Purchasing"
-    "LootLockerRemoteSessionRequestHandler.h"        = "RemoteSessions"
-    "LootLockerTriggersRequestHandler.h"             = "Triggers"
-    "LootLockerUserGeneratedContentRequestHandler.h" = "UserGeneratedContent"
+    "LootLockerServerBalanceRequest.h"       = "Balances"
+    "LootLockerServerLeaderboardRequest.h"   = "Leaderboard"
+    "LootLockerServerMetadataRequest.h"      = "Metadata"
+    "LootLockerServerNotificationsRequest.h" = "Notifications"
+    "LootLockerServerPlayerRequest.h"        = "Player"
 }
 
-$base  = "LootLockerSDK/Source/LootLockerSDK/Public/GameAPI"
+$base  = "LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI"
 $files = Get-ChildItem $base -Filter "*.h"
 $totalTagged = 0
 

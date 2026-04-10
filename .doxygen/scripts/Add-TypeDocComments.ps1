@@ -3,7 +3,7 @@
 # PURPOSE
 #   Adds Doxygen /** ... */ doc comments to undocumented DECLARE_DELEGATE_*
 #   invocations and to undocumented UENUM / enum class declarations in all
-#   GameAPI handler header files.
+#   ServerAPI handler header files.
 #
 #   Without doc comments, Doxygen will not create documentation entries for
 #   these types (EXTRACT_ALL = NO, HIDE_UNDOC_MEMBERS = YES), so they cannot
@@ -11,7 +11,7 @@
 #
 # WHEN TO RUN
 #   Run this script whenever new DECLARE_DELEGATE_* declarations or new enum
-#   classes are added to a GameAPI handler file without a doc comment.
+#   classes are added to a ServerAPI handler file without a doc comment.
 #   Run from the repo root:
 #       powershell -File .doxygen/scripts/Add-TypeDocComments.ps1 [-DryRun]
 #
@@ -29,68 +29,26 @@ $enc = New-Object System.Text.UTF8Encoding($false)
 # One-sentence descriptions for each file-scope enum class that may lack a
 # doc comment.  Add new entries here whenever new enums are introduced.
 $enumDescriptions = [ordered]@{
-    # LootLockerAssetsRequestHandler.h
-    "ELootLockerAssetFilter"                       = "Filters applicable when querying the asset list."
-    "ELootLockerOrderAssetListBy"                  = "Fields by which an asset list can be ordered."
-    "ELootLockerOrderAssetListDirection"           = "Sort direction when ordering an asset list."
+    # LootLockerServerBalanceRequest.h
+    "ELootLockerServerWalletHolderTypes"              = "Entity types that can hold a wallet."
 
-    # LootLockerAuthenticationRequestHandler.h
-    "ELootLockerGoogleClientPlatform"              = "Google client platform identifiers for Google sessions."
+    # LootLockerServerLeaderboardRequest.h
+    "ELootLockerServerLeaderboardType"                = "Types of leaderboards."
+    "ELootLockerServerLeaderboardDirection"           = "Sort direction for leaderboard entries."
+    "ELootLockerServerLeaderboardRewardEntityKind"    = "Entity kinds that can be given as leaderboard rewards."
 
-    # LootLockerBalanceRequestHandler.h
-    "ELootLockerWalletHolderTypes"                 = "Entity types that can hold a wallet."
+    # LootLockerServerMetadataRequest.h
+    "ELootLockerServerMetadataSources"                = "Sources that can own metadata entries."
+    "ELootLockerServerMetadataTypes"                  = "Value types for metadata entries."
+    "ELootLockerServerMetadataActions"                = "Batch-write operations available for metadata entries."
+    "ELootLockerServerMetadataParserOutputTypes"      = "Output types produced by the metadata content parser."
 
-    # LootLockerCatalogRequestHandler.h
-    "ELootLockerCatalogEntryEntityKind"            = "Entity kinds that can appear as entries in a catalog."
+    # LootLockerServerNotificationsRequest.h
+    "ELootLockerServerNotificationPriority"           = "Priority levels for notifications."
 
-    # LootLockerConnectedAccountsRequestHandler.h
-    "ELootLockerAccountProvider"                   = "Third-party providers available for connected accounts."
-    "EGoogleAccountProviderPlatform"               = "Platform subtype for Google connected accounts."
-
-    # LootLockerEntitlementRequestHandler.h
-    "ELootLockerEntitlementHistoryListingStore"    = "Stores from which entitlement history entries can originate."
-    "ELootLockerEntitlementHistoryListingStatus"   = "Status values for entitlement history entries."
-    "ELootLockerEntitlementHistoryListingType"     = "Types of entitlement history listing entries."
-    "ELootLockerEntitlementRewardEntityKind"       = "Entity kinds that can be provided as entitlement rewards."
-
-    # LootLockerFeedbackRequestHandler.h
-    "ELootLockerFeedbackType"                      = "Feedback category types that can be submitted."
-
-    # LootLockerLeaderboardRequestHandler.h
-    "ELootLockerLeaderboardRewardEntityKind"       = "Entity kinds that can be given as leaderboard rewards."
-
-    # LootLockerMetadataRequestHandler.h
-    "ELootLockerMetadataSources"                   = "Sources that can own metadata entries."
-    "ELootLockerMetadataTypes"                     = "Value types for metadata entries."
-    "ELootLockerMetadataActions"                   = "Batch-write operations available for metadata entries."
-    "ELootLockerMetadataParserOutputTypes"         = "Output types produced by the metadata content parser."
-
-    # LootLockerNotificationsRequestHandler.h
-    "ELootLockerNotificationPriority"              = "Priority levels for notifications."
-    "ELootLockerNotificationSource"                = "Sources that can originate a notification."
-    "ELootLockerNotificationContentBodyType"       = "Content body types within a notification payload."
-    "ELootLockerNotificationContentRewardKind"     = "Reward kinds that can be attached to a notification."
-    "ELootLockerCustomNotificationFiltering"       = "Filtering modes for listing custom notifications."
-
-    # LootLockerPlayerRequestHandler.h
-    "ELootLockerPlayerDataLookupIdType"            = "Identifier types accepted when looking up player data."
-
-    # LootLockerPurchasesRequestHandler.h
-    "ELootLockerSteamPurchaseRedemptionStatus"     = "Status values for a Steam purchase redemption."
-    "ELootLockerRefundInventoryEventAction"        = "Actions that can be taken on an inventory refund event."
-    "ELootLockerRefundNonReversibleRewardKind"     = "Kinds of non-reversible rewards involved in a refund."
-    "ELootLockerRefundWarningDetailType"           = "Warning detail types returned during a refund operation."
-    "ELootLockerAsyncPurchaseStatus"               = "Status values for an asynchronous purchase."
-
-    # LootLockerRemoteSessionRequestHandler.h
-    "ELootLockerRemoteSessionLeaseStatus"          = "Status values for a remote session lease."
-    "ELootLockerRemoteSessionLeaseIntent"          = "Intent options when leasing a remote session."
-
-    # LootLockerTriggersRequestHandler.h
-    "ELootLockerTriggerFailureReasons"             = "Reasons a trigger invocation can fail."
-
-    # LootLockerUserGeneratedContentRequestHandler.h
-    "ELootLockerAssetFilePurpose"                  = "Purpose values for files attached to an asset candidate."
+    # LootLockerServerPlayerRequest.h
+    "ELootLockerServerCreatePlayerPlatforms"          = "Platform identifiers for creating a player."
+    "ELootLockerServerPlayerNameLookupIdType"         = "Identifier types accepted when looking up player data."
 }
 
 # ---------------------------------------------------------------------------
@@ -119,7 +77,7 @@ function IsAlreadyDocumented {
 # Main
 # ---------------------------------------------------------------------------
 
-$base           = "LootLockerSDK/Source/LootLockerSDK/Public/GameAPI"
+$base           = "LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI"
 $files          = Get-ChildItem $base -Filter "*.h"
 $totalDelegates = 0
 $totalEnums     = 0
