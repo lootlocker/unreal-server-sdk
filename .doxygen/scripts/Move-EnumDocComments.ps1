@@ -6,7 +6,7 @@
 param([switch]$DryRun)
 
 $enc = New-Object System.Text.UTF8Encoding($false)
-$base = "LootLockerSDK/Source/LootLockerSDK/Public/GameAPI"
+$base = "LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI"
 $totalMoved = 0
 
 foreach ($f in (Get-ChildItem $base -Filter "*.h")) {

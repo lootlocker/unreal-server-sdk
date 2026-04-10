@@ -1,13 +1,13 @@
 # Add-DelegateGroupTags.ps1
 #
 # PURPOSE
-#   Wraps the DECLARE_DELEGATE section of each GameAPI handler file in a
+#   Wraps the DECLARE_DELEGATE section of each ServerAPI handler file in a
 #   Doxygen @addtogroup/@{ ... @} block so those typedefs are registered as
 #   members of the correct feature group.  This makes delegate names clickable
 #   in function signatures on the group documentation page.
 #
 # WHEN TO RUN
-#   Run this script whenever a new GameAPI handler file is added to the SDK.
+#   Run this script whenever a new ServerAPI handler file is added to the SDK.
 #   Add the new file and its group to $groupMap below, then run the script
 #   from the repo root:
 #       powershell -File .doxygen/scripts/Add-DelegateGroupTags.ps1
@@ -22,41 +22,32 @@ $enc = New-Object System.Text.UTF8Encoding($false)
 # Map each handler file to its primary feature group.
 # Group name must match a @defgroup declared in .doxygen/groups.dox.
 $groupMap = @{
-    "LootLockerAssetInstancesRequestHandler.h"       = "AssetInstance"
-    "LootLockerAssetsRequestHandler.h"               = "Assets"
-    "LootLockerAuthenticationRequestHandler.h"       = "Authentication"
-    "LootLockerBalanceRequestHandler.h"              = "Balances"
-    "LootLockerBroadcastRequestHandler.h"            = "Broadcasts"
-    "LootLockerCatalogRequestHandler.h"              = "Catalog"
-    "LootLockerCharacterRequestHandler.h"            = "Hero"
-    "LootLockerCollectablesRequestHandler.h"         = "Collectables"
-    "LootLockerConnectedAccountsRequestHandler.h"    = "ConnectedAccounts"
-    "LootLockerCurrencyRequestHandler.h"             = "Currency"
-    "LootLockerDropTablesRequestHandler.h"           = "DropTables"
-    "LootLockerEntitlementRequestHandler.h"          = "Entitlements"
-    "LootLockerFeedbackRequestHandler.h"             = "Feedback"
-    "LootLockerFollowersRequestHandler.h"            = "Followers"
-    "LootLockerFriendsRequestHandler.h"              = "Friends"
-    "LootLockerHeroRequestHandler.h"                 = "Hero"
-    "LootLockerLeaderboardArchiveRequestHandler.h"   = "Leaderboard"
-    "LootLockerLeaderboardRequestHandler.h"          = "Leaderboard"
-    "LootLockerMapsRequestHandler.h"                 = "Maps"
-    "LootLockerMessagesRequestHandler.h"             = "Messages"
-    "LootLockerMetadataRequestHandler.h"             = "Metadata"
-    "LootLockerMiscellaneousRequestHandler.h"        = "Misc"
-    "LootLockerMissionsRequestHandler.h"             = "Missions"
-    "LootLockerNotificationsRequestHandler.h"        = "Notifications"
-    "LootLockerPersistentStorageRequestHandler.h"    = "PlayerStorage"
-    "LootLockerPlayerFilesRequestHandler.h"          = "PlayerFiles"
-    "LootLockerPlayerRequestHandler.h"               = "Player"
-    "LootLockerProgressionsRequestHandler.h"         = "Progressions"
-    "LootLockerPurchasesRequestHandler.h"            = "Purchasing"
-    "LootLockerRemoteSessionRequestHandler.h"        = "RemoteSessions"
-    "LootLockerTriggersRequestHandler.h"             = "Triggers"
-    "LootLockerUserGeneratedContentRequestHandler.h" = "UserGeneratedContent"
+    "LootLockerServerAssetRequest.h"                    = "Assets"
+    "LootLockerServerAuthRequest.h"                     = "Authentication"
+    "LootLockerServerBalanceRequest.h"                  = "Balances"
+    "LootLockerServerCharacterProgressionRequest.h"     = "CharacterProgressions"
+    "LootLockerServerCharacterRequest.h"                = "Characters"
+    "LootLockerServerConnectedAccountsRequest.h"        = "ConnectedAccounts"
+    "LootLockerServerCurrencyRequest.h"                 = "Currency"
+    "LootLockerServerDropTableRequest.h"                = "DropTables"
+    "LootLockerServerFriendsRequest.h"                  = "Friends"
+    "LootLockerServerGameProgressionRequest.h"          = "Progressions"
+    "LootLockerServerHeroRequest.h"                     = "Hero"
+    "LootLockerServerInstanceProgressionRequest.h"      = "AssetInstanceProgressions"
+    "LootLockerServerLeaderboardArchiveRequestHandler.h" = "Leaderboard"
+    "LootLockerServerLeaderboardRequest.h"              = "Leaderboard"
+    "LootLockerServerMetadataRequest.h"                 = "Metadata"
+    "LootLockerServerNotificationsRequest.h"            = "Notifications"
+    "LootLockerServerOAuthRequest.h"                    = "TokenExchange"
+    "LootLockerServerPlayerFileRequest.h"               = "PlayerFiles"
+    "LootLockerServerPlayerInventoryRequest.h"          = "AssetInstance"
+    "LootLockerServerPlayerProgressionRequest.h"        = "PlayerProgressions"
+    "LootLockerServerPlayerRequest.h"                   = "Player"
+    "LootLockerServerStorageRequest.h"                  = "PlayerStorage"
+    "LootLockerServerTriggerRequest.h"                  = "Triggers"
 }
 
-$base  = "LootLockerSDK/Source/LootLockerSDK/Public/GameAPI"
+$base  = "LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI"
 $files = Get-ChildItem $base -Filter "*.h"
 $count = 0
 

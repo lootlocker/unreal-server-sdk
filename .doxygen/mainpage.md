@@ -30,7 +30,7 @@ from the [LootLocker console](https://console.lootlocker.com/settings/api-keys).
 ULootLockerServerAuthRequest::StartSession(
     FLootLockerServerAuthResponseDelegate::CreateLambda([](FLootLockerServerAuthenticationResponse Response)
     {
-        if (!Response.success)
+        if (!Response.Success)
         {
             UE_LOG(LogTemp, Warning, TEXT("Server session failed: %s"), *Response.ErrorData.Message);
             return;
@@ -43,7 +43,7 @@ ULootLockerServerAuthRequest::StartSession(
 All SDK calls are **static methods on the request handler classes** and return results
 asynchronously via a delegate callback whose first argument derives from
 @ref FLootLockerServerResponse.
-Check `Response.success` before accessing the payload fields.
+Check `Response.Success` before accessing the payload fields.
 
 ---
 
@@ -87,12 +87,12 @@ Every callback receives a response struct deriving from @ref FLootLockerServerRe
 
 | Field | Type | Meaning |
 |-------|------|---------|
-| `success` | `bool` | `true` when the request completed without error |
+| `Success` | `bool` | `true` when the request completed without error |
 | `StatusCode` | `int` | HTTP status code |
-| `ErrorData` | `FLootLockerErrorData` | Detail when `success == false` |
+| `ErrorData` | `FLootLockerServerErrorData` | Detail when `Success == false` |
 | `FullTextFromServer` | `FString` | Raw JSON body for debugging |
 
-Always check `Response.success` before reading payload fields.
+Always check `Response.Success` before reading payload fields.
 
 ---
 
