@@ -1007,7 +1007,7 @@ FString ULootLockerServerForBlueprints::ParseLootLockerServerMetadataEntry(const
             MetadataTypeSwitch = ELootLockerServerMetadataParserOutputTypes::OnBase64;
             return "";
         }
-        ErrorMessage = "Could not parse value \"" + ValueToParse + "\" because it is not a valid LootLockerServer Metadata Base64 Object";
+        ErrorMessage = "Could not parse value \"" + ValueToParse + "\" because it is not a valid Metadata Base64 Object";
         return "";
     }
     default:
