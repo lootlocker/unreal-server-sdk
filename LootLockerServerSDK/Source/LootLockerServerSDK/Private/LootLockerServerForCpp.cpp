@@ -626,6 +626,12 @@ FString ULootLockerServerForCpp::ListCurrencies(const FLootLockerServerListCurre
     return ULootLockerServerCurrencyRequest::ListCurrencies(OnCompletedRequest);
 }
 
+// Catalogs
+FString ULootLockerServerForCpp::ListCatalogItemsByKey(const FString& CatalogKey, int Count, const FString& After, const FLootLockerServerListCatalogPricesResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerCatalogRequest::ListCatalogItemsByKey(CatalogKey, Count, After, OnCompletedRequest);
+}
+
 // Balances
 
 FString ULootLockerServerForCpp::ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseDelegate& OnComplete)

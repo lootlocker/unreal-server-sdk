@@ -836,6 +836,14 @@ FString ULootLockerServerForBlueprints::ListCurrencies(const FLootLockerServerLi
     }));
 }
 
+// Catalogs
+FString ULootLockerServerForBlueprints::ListCatalogItemsByKey(const FString& CatalogKey, int Count, const FString& After, const FLootLockerServerListCatalogPricesResponseBP& OnCompletedRequestBP)
+{
+    return ULootLockerServerForCpp::ListCatalogItemsByKey(CatalogKey, Count, After, FLootLockerServerListCatalogPricesResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerListCatalogPricesResponse& Response) {
+        OnCompletedRequestBP.ExecuteIfBound(Response);
+    }));
+}
+
 // Balances
 
 FString ULootLockerServerForBlueprints::ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseBP& OnComplete)

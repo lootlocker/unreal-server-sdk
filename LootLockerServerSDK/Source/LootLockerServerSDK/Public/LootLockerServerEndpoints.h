@@ -164,6 +164,9 @@ public:
     // Currencies
     static FLootLockerServerEndPoint ListCurrencies;
 
+    // Catalogs
+    static FLootLockerServerEndPoint ListCatalogItemsByKey;
+
     // Balances
     static FLootLockerServerEndPoint ListBalancesInWallet;
     static FLootLockerServerEndPoint GetWalletByWalletId;

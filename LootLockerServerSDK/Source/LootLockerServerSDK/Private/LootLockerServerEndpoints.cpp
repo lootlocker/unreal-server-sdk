@@ -130,6 +130,9 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteProgressionForCharac
 // Currencies
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListCurrencies = InitEndpoint("currencies", ELootLockerServerHTTPMethod::GET);
 
+// Catalogs
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListCatalogItemsByKey = InitEndpoint("catalogs/inspired-ibex/v1/key/{0}/prices", ELootLockerServerHTTPMethod::GET);
+
 // Balances
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListBalancesInWallet = InitEndpoint("balances/wallet/{0}", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetWalletByWalletId = InitEndpoint("wallet/{0}", ELootLockerServerHTTPMethod::GET);
