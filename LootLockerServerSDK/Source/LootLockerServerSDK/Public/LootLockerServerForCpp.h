@@ -7,6 +7,7 @@
 #include "ServerAPI/LootLockerServerAssetRequest.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
 #include "ServerAPI/LootLockerServerBalanceRequest.h"
+#include "ServerAPI/LootLockerServerCatalogRequest.h"
 #include "ServerAPI/LootLockerServerCharacterProgressionRequest.h"
 #include "ServerAPI/LootLockerServerCharacterRequest.h"
 #include "ServerAPI/LootLockerServerConnectedAccountsRequest.h"
@@ -1432,6 +1433,29 @@ public:
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     static FString ListCurrencies(const FLootLockerServerListCurrenciesResponseDelegate& OnCompletedRequest);
+
+    /// @}
+
+    //==================================================
+    // Catalogs
+    //==================================================
+    /// @addtogroup Catalogs
+    /// @{
+
+    /**
+     List catalog items (entries with prices) for the catalog identified by the given key.
+
+     Use Count and After for cursor-based pagination. Pass After = "" and Count = 0 to get the
+     first page with the default page size.
+
+     @param CatalogKey The unique key of the catalog to list items for
+     @param Count Optional: number of items to return per page (0 = server default, typically 50)
+     @param After Optional: cursor from a previous response's Pagination.Next_cursor to get the next page; pass empty string for the first page
+     @param OnCompletedRequest Delegate for handling the server response
+
+     @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString ListCatalogItemsByKey(const FString& CatalogKey, int Count, const FString& After, const FLootLockerServerListCatalogPricesResponseDelegate& OnCompletedRequest);
 
     /// @}
 
