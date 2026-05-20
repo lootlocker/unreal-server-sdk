@@ -488,6 +488,23 @@ struct FLootLockerServerLeaderboardSubmitScoreRequest
 };
 
 USTRUCT(BlueprintType)
+struct FLootLockerServerLeaderboardIncrementScoreRequest
+{
+    GENERATED_BODY()
+    /**
+     The Identifying member ID for this entry in the leaderboard.
+     For player leaderboards this will be the PlayerID, for generic leaderboards you can send in any string and that will be the identifier. We recommend using the player's Public_UID or Name.
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Member_id = "";
+    /**
+    The amount to increment the score by for this entry in the leaderboard
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Amount = 0;
+};
+
+USTRUCT(BlueprintType)
 struct FLootLockerServerLeaderboardBaseRequest
 {
     GENERATED_BODY()
@@ -815,6 +832,10 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardResponseDelegate, FL
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerLeaderboardSubmitScoreResponseDelegate, FLootLockerServerLeaderboardSubmitScoreResponse);
 /*
+ C++ response delegate for leaderboard score increment
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerLeaderboardIncrementScoreResponseDelegate, FLootLockerServerLeaderboardSubmitScoreResponse);
+/*
  C++ response delegate for getting all member ranks
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerGetAllMemberRanksResponseDelegate, FLootLockerServerGetAllMemberRanksResponse);
@@ -846,6 +867,7 @@ public:
     static FString UpdateLeaderboard(const FString& LeaderboardKey, const FLootLockerServerUpdateLeaderboardRequest& UpdateLeaderboardRequest, const FLootLockerServerUpdateLeaderboardResponseDelegate& OnCompletedRequest);
     static FString DeleteLeaderboard(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardResponseDelegate& OnCompletedRequest);
     static FString SubmitScore(const FString& LeaderboardKey, const FLootLockerServerLeaderboardSubmitScoreRequest& SubmitScoreRequest, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest);
+    static FString IncrementScore(const FString& LeaderboardKey, const FLootLockerServerLeaderboardIncrementScoreRequest& IncrementScoreRequest, const FLootLockerServerLeaderboardIncrementScoreResponseDelegate& OnCompletedRequest);
     static FString GetAllMemberRanks(const FString& MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
     static FString GetPaginatedAllMemberRanks(const FString& MemberID, const int Count, const int After, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest);
     static FString GetScoresFromLeaderboard(FString LeaderboardKey, const FLootLockerServerGetScoresFromLeaderboardResponseDelegate& OnCompletedRequest);

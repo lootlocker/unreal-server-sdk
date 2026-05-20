@@ -286,6 +286,10 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardResponseBP, 
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerLeaderboardSubmitScoreResponseBP, FLootLockerServerLeaderboardSubmitScoreResponse, Response);
 /*
+ Blueprint response delegate for leaderboard score increment
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerLeaderboardIncrementScoreResponseBP, FLootLockerServerLeaderboardSubmitScoreResponse, Response);
+/*
  Blueprint response delegate for getting all member ranks
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetAllMemberRanksResponseBP, FLootLockerServerGetAllMemberRanksResponse, Response);
@@ -606,6 +610,19 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
     static UPARAM(DisplayName = "RequestId") FString SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseBP& OnCompletedRequest);
+
+    /**
+     * Increment a member's score on the given leaderboard by the specified amount.
+     *
+     * @param LeaderboardKey The key of the leaderboard to increment the score on
+     * @param MemberID The ID of the member whose score to increment. For player type leaderboards this is the PlayerID, for generic type leaderboards it can be any string.
+     * @param Amount The amount to increment the score by
+     * @param OnCompletedRequest Delegate for handling the response
+     *
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboards")
+    static UPARAM(DisplayName = "RequestId") FString IncrementScore(FString LeaderboardKey, FString MemberID, int Amount, const FLootLockerServerLeaderboardIncrementScoreResponseBP& OnCompletedRequest);
 
     /**
      * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player.

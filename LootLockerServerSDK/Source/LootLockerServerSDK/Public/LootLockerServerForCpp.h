@@ -199,6 +199,17 @@ public:
     static FString SubmitScore(FString LeaderboardKey, FString MemberID, int Score, FString Metadata, const FLootLockerServerLeaderboardSubmitScoreResponseDelegate& OnCompletedRequest);
 
     /**
+     * Increment a member's score on the given leaderboard by the specified amount.
+     *
+     * @param LeaderboardKey The key of the leaderboard to increment the score on
+     * @param MemberID The ID of the member whose score to increment. For player type leaderboards this is the PlayerID, for generic type leaderboards it can be any string.
+     * @param Amount The amount to increment the score by
+     * @param OnCompletedRequest Delegate for handling the response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString IncrementScore(FString LeaderboardKey, FString MemberID, int Amount, const FLootLockerServerLeaderboardIncrementScoreResponseDelegate& OnCompletedRequest);
+
+    /**
      * For all leaderboards that this member has scores on, get the score, member information, rank, score, and metadata (if metadata is enabled on that leaderboard), as well as player information if the leaderboard is of type player.
      *
      * @param MemberID The ID of the member to submit the score for     

@@ -82,6 +82,13 @@ FString ULootLockerServerForBlueprints::SubmitScore(FString LeaderboardKey, FStr
     }));
 }
 
+FString ULootLockerServerForBlueprints::IncrementScore(FString LeaderboardKey, FString MemberID, int Amount, const FLootLockerServerLeaderboardIncrementScoreResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::IncrementScore(LeaderboardKey, MemberID, Amount, FLootLockerServerLeaderboardIncrementScoreResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerLeaderboardSubmitScoreResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
 FString ULootLockerServerForBlueprints::GetAllMemberRanks(const FString MemberID, const FLootLockerServerGetAllMemberRanksResponseBP& OnCompletedRequest)
 {
     return ULootLockerServerForCpp::GetAllMemberRanks(MemberID, FLootLockerServerGetAllMemberRanksResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetAllMemberRanksResponse& Response) {

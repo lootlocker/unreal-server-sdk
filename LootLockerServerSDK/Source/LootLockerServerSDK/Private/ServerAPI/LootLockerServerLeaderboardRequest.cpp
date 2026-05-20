@@ -49,6 +49,11 @@ FString ULootLockerServerLeaderboardRequest::SubmitScore(const FString& Leaderbo
 	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardSubmitScoreResponse>(SubmitScoreRequest, ULootLockerServerEndpoints::SubmitScore, { LeaderboardKey }, {}, OnCompletedRequest);
 }
 
+FString ULootLockerServerLeaderboardRequest::IncrementScore(const FString& LeaderboardKey, const FLootLockerServerLeaderboardIncrementScoreRequest& IncrementScoreRequest, const FLootLockerServerLeaderboardIncrementScoreResponseDelegate& OnCompletedRequest)
+{
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerLeaderboardSubmitScoreResponse>(IncrementScoreRequest, ULootLockerServerEndpoints::IncrementScore, { LeaderboardKey }, {}, OnCompletedRequest);
+}
+
 FString ULootLockerServerLeaderboardRequest::GetAllMemberRanks(const FString& MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
 {
 	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetAllMemberRanksResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetAllMemberRanks, { MemberID }, {}, OnCompletedRequest);
