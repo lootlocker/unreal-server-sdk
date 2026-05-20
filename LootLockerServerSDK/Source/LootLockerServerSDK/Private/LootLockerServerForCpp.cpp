@@ -80,6 +80,16 @@ FString ULootLockerServerForCpp::SubmitScore(FString LeaderboardKey, FString Mem
     return ULootLockerServerLeaderboardRequest::SubmitScore(LeaderboardKey, SubmitScoreRequest, OnCompletedRequest);
 }
 
+FString ULootLockerServerForCpp::IncrementScore(FString LeaderboardKey, FString MemberID, int Amount, const FLootLockerServerLeaderboardIncrementScoreResponseDelegate& OnCompletedRequest)
+{
+    const FLootLockerServerLeaderboardIncrementScoreRequest IncrementScoreRequest
+    {
+        MemberID,
+        Amount
+    };
+    return ULootLockerServerLeaderboardRequest::IncrementScore(LeaderboardKey, IncrementScoreRequest, OnCompletedRequest);
+}
+
 FString ULootLockerServerForCpp::GetAllMemberRanks(const FString MemberID, const FLootLockerServerGetAllMemberRanksResponseDelegate& OnCompletedRequest)
 {
     return ULootLockerServerLeaderboardRequest::GetAllMemberRanks(MemberID, OnCompletedRequest);

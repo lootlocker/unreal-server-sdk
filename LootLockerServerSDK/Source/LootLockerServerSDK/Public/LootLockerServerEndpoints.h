@@ -53,6 +53,7 @@ public:
     static FLootLockerServerEndPoint UpdateLeaderboard;
     static FLootLockerServerEndPoint DeleteLeaderboard;
     static FLootLockerServerEndPoint SubmitScore;
+    static FLootLockerServerEndPoint IncrementScore;
     static FLootLockerServerEndPoint GetAllMemberRanks;
     static FLootLockerServerEndPoint GetScoresFromLeaderboard;
     static FLootLockerServerEndPoint ListLeaderboardArchive;
