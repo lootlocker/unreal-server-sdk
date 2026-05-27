@@ -1,0 +1,380 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: LootLockerServerSDK/Source/LootLockerServerSDK/Public/LootLockerServerConfig.h Source File</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.5.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('LootLockerServerConfig_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">LootLockerServerConfig.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="LootLockerServerConfig_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2021 LootLocker</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;Runtime/Launch/Resources/Version.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#if ENGINE_MAJOR_VERSION &gt;= 5</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;regex&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;LootLockerServerLogger.h&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;LootLockerServerConfig.generated.h&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>UCLASS(Config = Game, DefaultConfig, meta = (DisplayName = <span class="stringliteral">&quot;LootLocker Server SDK Settings&quot;</span>))</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html">   17</a></span>class LOOTLOCKERSERVERSDK_API <a class="code hl_class" href="classULootLockerServerConfig.html">ULootLockerServerConfig</a> : public UObject</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a9f43b22ef9d133f05c3c7e33a5e38a9c">   21</a></span>    <a class="code hl_function" href="classULootLockerServerConfig.html#a9f43b22ef9d133f05c3c7e33a5e38a9c">ULootLockerServerConfig</a>();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a5853ff3ccbca73c6f39a0554168f2ec5">   24</a></span>    FString LootLockerServerKey = &quot;&quot;;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#ad80fb14046368b67d679eb2b005aa5fb">   26</a></span>    FString LootLockerDomainKey = &quot;&quot;;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = &quot;LootLockerServer&quot;, <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (EditCondition = &quot;IsLegacyKey&quot;, EditConditionHides), <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (MultiLine = true), <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (DisplayName = &quot;WARNING:&quot;), Transient)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#ab286708bad54b020001fde94e6bcdafd">   28</a></span>    FString LegacyKeyWarning = &quot;You are using a legacy API Key, please generate a new one here: https:<span class="comment">//console.lootlocker.com/settings/api-keys&quot;;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = &quot;LootLockerServer&quot;, <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (EditCondition = &quot;!IsValidGameVersion&quot;, EditConditionHides), <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (MultiLine = true), <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (DisplayName = &quot;WARNING:&quot;), Transient)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a1bf350ccb4321a23c3303482da1363a8">   30</a></span>    FString InvalidGameVersionWarning = &quot;&quot;;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a111d9156c2f49cf625b4af5b50ad173d">   32</a></span>    FString GameVersion = &quot;&quot;;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (EditCondition = &quot;false&quot;, EditConditionHides), Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#abcc03f5f48c5623ee61e908b4d0775b4">   34</a></span>    FString LootLockerVersion = &quot;2021-06-01&quot;;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = &quot;LootLockerServer|Logging&quot;)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a9d4913c3dfbfffec301d1d4ad2c8e312">   37</a></span>    ELootLockerServerLogLevel LimitLogLevelTo = ELootLockerServerLogLevel::Display;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = &quot;LootLockerServer|Logging&quot;)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a32cd6acabadbbaa0b2948228d6e8eb1f">   39</a></span>    <span class="keywordtype">bool</span> LogOutsideOfEditor = false;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = &quot;LootLockerServer|Logging&quot;)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a5256d0d7760972d3a3890fb4282049da">   41</a></span>    <span class="keywordtype">bool</span> bEnableFileLogging = false;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = &quot;LootLockerServer|Logging&quot;)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a5c83eef8c4121379a6ea07717221c5e8">   43</a></span>    FString LogFileName = TEXT(&quot;LootLockerServerLog&quot;);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = &quot;LootLockerServer|Logging&quot;, <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (EditCondition = &quot;bEnableFileLogging&quot;, EditConditionHides), <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (MultiLine = true), <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (DisplayName = &quot;Actual Log File (on current device)&quot;), Transient)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a2c82b2fd0c9958926e333f676f99b973">   45</a></span>    FString LongLogFilePath = &quot;&quot;;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>private:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    FString LogFilePath = &quot;&quot;;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>public:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// Logging API</span></div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#aab3aa5e65d23f8a7430f14f055d6e25d">   50</a></span>    static ELootLockerServerLogLevel GetConfiguredLogLevel()</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">return</span> GetDefault&lt;ULootLockerServerConfig&gt;()-&gt;LimitLogLevelTo;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    UFUNCTION(BlueprintCallable, Category = <span class="stringliteral">&quot;LootLocker|Logging&quot;</span>)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a7fc3d8144559e9b8876a34672c671da6">   60</a></span>    static <span class="keywordtype">void</span> SetRuntimeLogLevel(ELootLockerServerLogLevel NewLevel);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    UFUNCTION(BlueprintCallable, Category = &quot;LootLocker|Logging&quot;)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a53d2657e1d35c466ec2a473442a4399d">   66</a></span>    static ELootLockerServerLogLevel GetRuntimeLogLevel();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    UFUNCTION(BlueprintCallable, Category = &quot;LootLocker|Logging&quot;)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a275c6524da340ba30ca8a142d05d1221">   73</a></span>    static <span class="keywordtype">void</span> EnableFileLogging(const FString&amp; FileName);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    UFUNCTION(BlueprintCallable, Category = &quot;LootLocker|Logging&quot;)</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a25f3826e8e0d52de228df98f6cfd8b48">   79</a></span>    static <span class="keywordtype">void</span> DisableFileLogging();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    UFUNCTION(BlueprintCallable, Category = &quot;LootLocker|Logging&quot;)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a22a30a35282d4a02664730288d4d6bad">   85</a></span>    static <span class="keywordtype">bool</span> IsFileLoggingEnabled();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    UFUNCTION(BlueprintCallable, Category = &quot;LootLocker|Logging&quot;)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classULootLockerServerConfig.html#a9d48db589046abf5c4d7ed92580c219b">   91</a></span>    static FString GetLogFilePath();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>private:</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    UFUNCTION()</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">bool</span> IsLegacyAPIKey()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">return</span> LootLockerServerKey.Find(<span class="stringliteral">&quot;dev_&quot;</span>, ESearchCase::CaseSensitive) == -1 &amp;&amp; LootLockerServerKey.Find(<span class="stringliteral">&quot;prod_&quot;</span>, ESearchCase::CaseSensitive) == -1;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    UFUNCTION()</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    static <span class="keywordtype">bool</span> ShouldLog()</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#if WITH_EDITOR</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">return</span> GetDefault&lt;ULootLockerServerConfig&gt;()-&gt;LogOutsideOfEditor;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#endif      </span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    UFUNCTION()</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    static <span class="keywordtype">bool</span> IsSemverString(const FString&amp; str)</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#if ENGINE_MAJOR_VERSION &gt;= 5</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">return</span> std::regex_match(TCHAR_TO_UTF8(*str), SemverPattern);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#if WITH_EDITOR</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> PostEditChangeProperty(FPropertyChangedEvent&amp; PropertyChangedEvent)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">if</span> (PropertyChangedEvent.GetPropertyName() == <span class="stringliteral">&quot;LootLockerServerKey&quot;</span>)</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        {</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            IsLegacyKey = IsLegacyAPIKey();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keywordflow">if</span> (PropertyChangedEvent.GetPropertyName() == <span class="stringliteral">&quot;GameVersion&quot;</span>)</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            IsValidGameVersion = IsSemverString(GameVersion);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">if</span> (PropertyChangedEvent.GetPropertyName() == <span class="stringliteral">&quot;bEnableFileLogging&quot;</span> || PropertyChangedEvent.GetPropertyName() == <span class="stringliteral">&quot;LogFileName&quot;</span>)</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            <span class="keywordflow">if</span> (bEnableFileLogging)</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                EnableFileLogging(LogFileName.IsEmpty() ? <span class="stringliteral">&quot;LootLockerServerLog&quot;</span> : LogFileName);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                DisableFileLogging();</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            }</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        UObject::PostEditChangeProperty(PropertyChangedEvent);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">#endif </span><span class="comment">//WITH_EDITOR</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> PostInitProperties()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        IsLegacyKey = IsLegacyAPIKey();</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        IsValidGameVersion = IsSemverString(GameVersion);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="keywordflow">if</span>(bEnableFileLogging)</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>            EnableFileLogging(LogFileName.IsEmpty() ? <span class="stringliteral">&quot;LootLockerServerLog&quot;</span> : LogFileName);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            DisableFileLogging();</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        UObject::PostInitProperties();</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    UPROPERTY(Config, VisibleInstanceOnly, <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (EditCondition = <span class="stringliteral">&quot;false&quot;</span>, EditConditionHides), Transient, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    bool IsLegacyKey = false;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    UPROPERTY(Config, VisibleInstanceOnly, <a class="code hl_enumvalue" href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">Meta</a> = (EditCondition = &quot;false&quot;, EditConditionHides), Transient, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">bool</span> IsValidGameVersion = true;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">#if ENGINE_MAJOR_VERSION &gt;= 5</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keyword">const</span> std::regex SemverPattern = std::regex(<span class="stringliteral">&quot;^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:\\.(0|[1-9]\\d*))?(?:\\.(0|[1-9]\\d*))?$&quot;</span>);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>};</div>
+</div>
+<div class="ttc" id="aLootLockerServerPlayerRequest_8h_html_a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9"><div class="ttname"><a href="LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405dab6755d218d5f4e1cef9cce9cc39aeda9">ELootLockerServerCreatePlayerPlatforms::Meta</a></div><div class="ttdeci">@ Meta</div></div>
+<div class="ttc" id="aclassULootLockerServerConfig_html"><div class="ttname"><a href="classULootLockerServerConfig.html">ULootLockerServerConfig</a></div><div class="ttdef"><b>Definition</b> LootLockerServerConfig.h:18</div></div>
+<div class="ttc" id="aclassULootLockerServerConfig_html_a9f43b22ef9d133f05c3c7e33a5e38a9c"><div class="ttname"><a href="classULootLockerServerConfig.html#a9f43b22ef9d133f05c3c7e33a5e38a9c">ULootLockerServerConfig::ULootLockerServerConfig</a></div><div class="ttdeci">ULootLockerServerConfig()</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_9f77ca9030fc530377179ef1ae010e8e.html">LootLockerServerSDK</a></li><li class="navelem"><a class="el" href="dir_6c67ecf51f1dd82eba34c6913e42f1aa.html">Source</a></li><li class="navelem"><a class="el" href="dir_19732b1a8e4198efc19367964d57ba95.html">LootLockerServerSDK</a></li><li class="navelem"><a class="el" href="dir_54f4648b1d151bbc23437e0756736e1c.html">Public</a></li><li class="navelem"><a class="el" href="LootLockerServerConfig_8h.html">LootLockerServerConfig.h</a></li>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

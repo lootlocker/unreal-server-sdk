@@ -1,0 +1,248 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: Data Fields - Variables</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.5.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_vars_s.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="contents">
+<div class="textblock">Here is a list of all variables with links to the structures/unions they belong to:</div>
+
+<h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>Sales_price&#160;:&#160;<a class="el" href="structFLootLockerServerAssetRentalOption.html#ad474f457fd4ad4113fd671cde6e8eb45">FLootLockerServerAssetRentalOption</a>, <a class="el" href="structFLootLockerServerAssetWithoutPackageContent.html#a56f21559dc8440447e7dc205e16d83df">FLootLockerServerAssetWithoutPackageContent</a></li>
+<li>schedule&#160;:&#160;<a class="el" href="structFLootLockerServerGetLeaderboardScheduleResponse.html#a7b19a0adce3fc6faebc646b6c3ada45d">FLootLockerServerGetLeaderboardScheduleResponse</a></li>
+<li>Schedule&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboard.html#a79dcd709007be290b162e9faba8e2c19">FLootLockerServerLeaderboard</a></li>
+<li>schedule&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardSchedule.html#a2bd1b49d23ad99b990e392f9abd66ef2">FLootLockerServerLeaderboardSchedule</a></li>
+<li>score&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardArchiveDetails.html#a9a467b1111aa701faff15a1ffb56b1fc">FLootLockerServerLeaderboardArchiveDetails</a></li>
+<li>Score&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardEntry.html#a7892ff5bf4b26c34655d70e4cb23aff4">FLootLockerServerLeaderboardEntry</a>, <a class="el" href="structFLootLockerServerLeaderboardSubmitScoreRequest.html#a97641ad1109fe65336863dbdeb587388">FLootLockerServerLeaderboardSubmitScoreRequest</a>, <a class="el" href="structFLootLockerServerLeaderboardSubmitScoreResponse.html#a5d6d882032246211f36a9555cc574ff4">FLootLockerServerLeaderboardSubmitScoreResponse</a></li>
+<li>Secondary_color&#160;:&#160;<a class="el" href="structFLootLockerServerAssetVariation.html#a77edcffb7e10a9c21f53b882f7d161dd">FLootLockerServerAssetVariation</a></li>
+<li>Sets&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedSets.html#a8e6b5c684dd7e70ba2f8e54fe6876e25">FLootLockerServerPlayerPersistentStorageEntry_NamedSets</a>, <a class="el" href="structFLootLockerServerPlayerPersistentStorageUpdateEntryOrdered.html#ac6deece776962ed8ddce6a1b14b9e23e">FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered</a></li>
+<li>Shop_thumbnail&#160;:&#160;<a class="el" href="structFLootLockerServerAssetWithoutPackageContent.html#a52c98b860f12456a88e6622051d1408f">FLootLockerServerAssetWithoutPackageContent</a></li>
+<li>Short_name&#160;:&#160;<a class="el" href="structFLootLockerServerAssetRarity.html#a4912a1378fe43b481970854b914fc9c9">FLootLockerServerAssetRarity</a></li>
+<li>Size&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerFile.html#a224e41e172ee817e34c55012d5ecc2f4">FLootLockerServerPlayerFile</a></li>
+<li>size&#160;:&#160;<a class="el" href="structFLootLockerServerSimpleAssetFile.html#aa3379e90fcedbf78873cb167da6a1929">FLootLockerServerSimpleAssetFile</a></li>
+<li>Size&#160;:&#160;<a class="el" href="structFLootLockerServerSinglePlayerFileResponse.html#a918574e3590c380053f0947ace9e891c">FLootLockerServerSinglePlayerFileResponse</a></li>
+<li>Source&#160;:&#160;<a class="el" href="structFLootLockerServerMetadataSourceAndEntries.html#ae1f948ef78b16245c627ac2bbd74c408">FLootLockerServerMetadataSourceAndEntries</a>, <a class="el" href="structFLootLockerServerMetadataSourceAndKeys.html#a85519d6c0069036a91a32b3f8028178e">FLootLockerServerMetadataSourceAndKeys</a>, <a class="el" href="structFLootLockerServerSetMetadataResponse.html#a283619e6e37f8e66041bc45b1a3ffd5d">FLootLockerServerSetMetadataResponse</a></li>
+<li>Source_id&#160;:&#160;<a class="el" href="structFLootLockerServerMetadataSourceAndEntries.html#a2faf494ba0807e8c5b9c785a125a80a8">FLootLockerServerMetadataSourceAndEntries</a>, <a class="el" href="structFLootLockerServerSetMetadataResponse.html#af2e777f97a419c97cd8c62a2e2e7469b">FLootLockerServerSetMetadataResponse</a></li>
+<li>Sources&#160;:&#160;<a class="el" href="structFLootLockerServerGetMultisourceMetadataRequest.html#a73a005121455ce7cefe7666360fa4cef">FLootLockerServerGetMultisourceMetadataRequest</a></li>
+<li>StatusCode&#160;:&#160;<a class="el" href="structFLootLockerServerResponse.html#ad02679cb687aa5a8552695d1edf5e388">FLootLockerServerResponse</a></li>
+<li>Step&#160;:&#160;<a class="el" href="structFLootLockerServerCharacterProgression.html#a3f49beeba2310d3f75883e4e3a6b6a62">FLootLockerServerCharacterProgression</a>, <a class="el" href="structFLootLockerServerInstanceProgression.html#a9ec19ea9a71aea8328729fc235787b61">FLootLockerServerInstanceProgression</a>, <a class="el" href="structFLootLockerServerPlayerProgression.html#ae20fc6cb06d06d87153cbae3aa600f59">FLootLockerServerPlayerProgression</a>, <a class="el" href="structFLootLockerServerProgressionTier.html#ac4836c2b7b16014d749c671ffe39fc1b">FLootLockerServerProgressionTier</a>, <a class="el" href="structFLootLockerServerSingleCharacterProgressionResponse.html#a98adce2e564e7293c2bcaf42a30f01a7">FLootLockerServerSingleCharacterProgressionResponse</a>, <a class="el" href="structFLootLockerServerSingleInstanceProgressionResponse.html#ad9f653f822fdc710fde5affff62eb926">FLootLockerServerSingleInstanceProgressionResponse</a>, <a class="el" href="structFLootLockerServerSinglePlayerProgressionResponse.html#a06492f9cefa03e9fad2fdf1db04ab93c">FLootLockerServerSinglePlayerProgressionResponse</a></li>
+<li>Storage&#160;:&#160;<a class="el" href="structFLootLockerServerAssetInstanceKeyValuePairItemResponse.html#ab189c6c79905e8f698d06ea440958364">FLootLockerServerAssetInstanceKeyValuePairItemResponse</a>, <a class="el" href="structFLootLockerServerAssetInstanceKeyValuePairsListResponse.html#abf3a67463450ade19468758144b054c6">FLootLockerServerAssetInstanceKeyValuePairsListResponse</a>, <a class="el" href="structFLootLockerServerAssetWithoutPackageContent.html#a6241927b88cd1ef2d95350565b7750e2">FLootLockerServerAssetWithoutPackageContent</a>, <a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedStorage.html#a83aeb81469a97f99ee541568e554754d">FLootLockerServerPlayerPersistentStorageEntry_NamedStorage</a></li>
+<li>storage&#160;:&#160;<a class="el" href="structFLootLockerServerSimpleAsset.html#ac5ecf1ce9784074fe8a62bc0e958fc52">FLootLockerServerSimpleAsset</a>, <a class="el" href="structFLootLockerServerSimpleAssetIncludes.html#acb3873560c98730543a85eac204554b5">FLootLockerServerSimpleAssetIncludes</a></li>
+<li>Storage&#160;:&#160;<a class="el" href="structFLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest.html#ac688788ec041cf8a9262753b2f2935f1">FLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest</a></li>
+<li>Storages&#160;:&#160;<a class="el" href="structFLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse.html#aec15324a02655fd7fa98ce0140b52071">FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse</a></li>
+<li>Subject_ulid&#160;:&#160;<a class="el" href="structFLootLockerServerTokenExchangeResponse.html#a062399019a9e603f987ad2dbe31caef1">FLootLockerServerTokenExchangeResponse</a></li>
+<li>Success&#160;:&#160;<a class="el" href="structFLootLockerServerResponse.html#af8fd0c9c5c584c553815f23da506905a">FLootLockerServerResponse</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

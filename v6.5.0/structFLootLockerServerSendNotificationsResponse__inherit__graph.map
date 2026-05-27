@@ -1,0 +1,5 @@
+<map id="FLootLockerServerSendNotificationsResponse" name="FLootLockerServerSendNotificationsResponse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,261,119"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="31,5,236,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,44,136,79,131,79,131,44"/>
+</map>
