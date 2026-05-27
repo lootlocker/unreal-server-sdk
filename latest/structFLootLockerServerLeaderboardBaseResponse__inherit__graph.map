@@ -1,0 +1,9 @@
+<map id="FLootLockerServerLeaderboardBaseResponse" name="FLootLockerServerLeaderboardBaseResponse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="259,37,481,77"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerCreateLeaderboardResponse.html" title=" " alt="" coords="531,5,798,45"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="495,41,531,37,531,42,495,46"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerUpdateLeaderboardResponse.html" title=" " alt="" coords="529,69,800,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="496,68,529,72,529,77,495,74"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="5,45,211,70"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,55,258,55,258,60,224,60"/>
+</map>

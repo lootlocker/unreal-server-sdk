@@ -1,0 +1,285 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: Data Fields</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.5.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_g.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="contents">
+<div class="textblock">Here is a list of all struct and union fields with links to the structures/unions they belong to:</div>
+
+<h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
+<li>Game_api_writes_enabled&#160;:&#160;<a class="el" href="structFLootLockerServerCurrency.html#ab738a23f07122864c55c07a878eb15ee">FLootLockerServerCurrency</a></li>
+<li>Game_id&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboard.html#a400452a9a951df3bb3544ffd06908a1d">FLootLockerServerLeaderboard</a>, <a class="el" href="structFLootLockerServerLeaderboardBaseResponse.html#ab0741e4d594ac29d86233444c40fbdbb">FLootLockerServerLeaderboardBaseResponse</a></li>
+<li>Game_version&#160;:&#160;<a class="el" href="structFLootLockerServerAuthenticationRequest.html#a2fffd9b6427a9aefe6e989325ab5df1a">FLootLockerServerAuthenticationRequest</a></li>
+<li>GameApiTokenExchange()&#160;:&#160;<a class="el" href="group__TokenExchange.html#ga39e49c9a8da7e86f8132cf15bfbf208a">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerOAuthRequest.html#a89ed44f8c4a217963e7b36a2696e177c">ULootLockerServerOAuthRequest</a></li>
+<li>GameApiUserImpersonation()&#160;:&#160;<a class="el" href="group__TokenExchange.html#gaeb75f30077b8ed0ffbfef3139c3cd66a">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerOAuthRequest.html#a5de26afc844b3222841fa0cd42f9a409">ULootLockerServerOAuthRequest</a></li>
+<li>GameVersion&#160;:&#160;<a class="el" href="classULootLockerServerConfig.html#a111d9156c2f49cf625b4af5b50ad173d">ULootLockerServerConfig</a></li>
+<li>GetAllMemberRanks()&#160;:&#160;<a class="el" href="group__Leaderboard.html#ga19e07bb2792c4b7094e2163d099a2400">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardRequest.html#a26acba6c1c4fe064ace87bad93a36e78">ULootLockerServerLeaderboardRequest</a></li>
+<li>GetAssetInstanceKeyValuePairFromAssetInstanceById()&#160;:&#160;<a class="el" href="classULootLockerServerAssetRequest.html#a434584e0b612f84852f8b5e3efb4be07">ULootLockerServerAssetRequest</a>, <a class="el" href="group__AssetInstance.html#ga7bbdf52cb8307a5c79c955402156a116">ULootLockerServerForCpp</a></li>
+<li>GetAssets()&#160;:&#160;<a class="el" href="classULootLockerServerAssetRequest.html#ab2880b7b1db927813d901d0573b968b0">ULootLockerServerAssetRequest</a>, <a class="el" href="group__Assets.html#ga608267126ffe02b4616a9242aec04ffd">ULootLockerServerForCpp</a></li>
+<li>GetAssetsByContext()&#160;:&#160;<a class="el" href="group__Assets.html#gad83de5676fbe65cda6b54036c8266740">ULootLockerServerForCpp</a></li>
+<li>GetConfiguredLogLevel()&#160;:&#160;<a class="el" href="classULootLockerServerConfig.html#aab3aa5e65d23f8a7430f14f055d6e25d">ULootLockerServerConfig</a></li>
+<li>GetEntirePublicPersistentStorageForPlayers()&#160;:&#160;<a class="el" href="group__PlayerStorage.html#ga9a0199a536c1e9d66c7b5de815b82f57">ULootLockerServerForCpp</a></li>
+<li>GetEnum()&#160;:&#160;<a class="el" href="classULootLockerServerEnumUtils.html#af13a5fe61d110fee35b2efc704aa45e6">ULootLockerServerEnumUtils</a></li>
+<li>GetFileForPlayerByID()&#160;:&#160;<a class="el" href="group__PlayerFiles.html#ga3c92b4d9d414594cd0cae98a1107f210">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerFileRequest.html#addc1479fa90a230d1438ba8303c3bd55">ULootLockerServerPlayerFileRequest</a></li>
+<li>GetKeyValuePairsFromAssetInstance()&#160;:&#160;<a class="el" href="classULootLockerServerAssetRequest.html#ac3c19f089fece666203e5fa21f180039">ULootLockerServerAssetRequest</a>, <a class="el" href="group__AssetInstance.html#gaf13d61dbac8b506afb758c9e651b00e0">ULootLockerServerForCpp</a></li>
+<li>GetLeaderboard()&#160;:&#160;<a class="el" href="group__Leaderboard.html#gaf8ec68810ac7b88397efca84f7672f75">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardRequest.html#ad02140ab0120aef934700b3c6ab63af8">ULootLockerServerLeaderboardRequest</a></li>
+<li>GetLeaderboardArchive()&#160;:&#160;<a class="el" href="group__Leaderboard.html#gaf2f775aa4eaf594c40006d997108c1bb">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardArchiveRequestHandler.html#a9f13c1f3225c0af40ea4cab0f0b36917">ULootLockerServerLeaderboardArchiveRequestHandler</a></li>
+<li>GetLeaderboardSchedule()&#160;:&#160;<a class="el" href="group__Leaderboard.html#ga307ab92918cc270546b449187780f4b1">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardRequest.html#a29347574492b2df0202ef8c9dc490331">ULootLockerServerLeaderboardRequest</a></li>
+<li>GetLogFilePath()&#160;:&#160;<a class="el" href="classULootLockerServerConfig.html#a9d48db589046abf5c4d7ed92580c219b">ULootLockerServerConfig</a></li>
+<li>GetMetadata()&#160;:&#160;<a class="el" href="group__Metadata.html#gacd127a41fbe5f2ac888556b3d8eede0c">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerMetadataRequest.html#a7955ffad6aa070166c6739282b4dc5d6">ULootLockerServerMetadataRequest</a></li>
+<li>GetMultisourceMetadata()&#160;:&#160;<a class="el" href="group__Metadata.html#gac0906e22b22314d6f9ca85142c74d6b9">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerMetadataRequest.html#a36140cbb262913b1db3a9a9b6ca9c568">ULootLockerServerMetadataRequest</a></li>
+<li>GetPaginatedAllMemberRanks()&#160;:&#160;<a class="el" href="group__Leaderboard.html#ga3b450d334a26df03e0452884c13ff674">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardRequest.html#a96cc678613363effda6382a9ee4a2c2b">ULootLockerServerLeaderboardRequest</a></li>
+<li>GetPaginatedAssets()&#160;:&#160;<a class="el" href="group__Assets.html#ga15a5023461734ecda06fa2fe8649a071">ULootLockerServerForCpp</a></li>
+<li>GetPaginatedPlayerCharacterInventory()&#160;:&#160;<a class="el" href="classULootLockerServerCharacterRequest.html#a0028ecded322eba3a6833f151bd6dc8e">ULootLockerServerCharacterRequest</a>, <a class="el" href="group__Characters.html#ga146962fe51d2aed37a63bdf7077f4c43">ULootLockerServerForCpp</a></li>
+<li>GetPaginatedPlayerHeroInventory()&#160;:&#160;<a class="el" href="group__Hero.html#gaa4526d3e9e24a0b18c6dd08a6181eb89">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerHeroRequest.html#ab3482277635f5e99a1f4b3d30b934330">ULootLockerServerHeroRequest</a></li>
+<li>GetPaginatedPlayerInventory()&#160;:&#160;<a class="el" href="group__AssetInstance.html#ga131d7c587f2a0884501b81a6682e4e7a">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerInventoryRequest.html#a2ea3298592d09aae3c40283395f96237">ULootLockerServerPlayerInventoryRequest</a></li>
+<li>GetPaginatedProgressionForAssetInstance()&#160;:&#160;<a class="el" href="group__AssetInstanceProgressions.html#ga9484a5514a2ac42228a5ccbd1a442614">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerInstanceProgressionRequest.html#ad20bf39791f4f25ade79d26a19cb5ed2">ULootLockerServerInstanceProgressionRequest</a></li>
+<li>GetPaginatedProgressions()&#160;:&#160;<a class="el" href="group__Progressions.html#ga5d0dd60886ae3ee629c463140b46981b">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerGameProgressionRequest.html#a6fd4993e6a714a8d78f7079b1eefd4d1">ULootLockerServerGameProgressionRequest</a></li>
+<li>GetPaginatedProgressionsForCharacter()&#160;:&#160;<a class="el" href="classULootLockerServerCharacterProgressionRequest.html#a0ac4170c24ae7afcd9cf11b1242d25d5">ULootLockerServerCharacterProgressionRequest</a>, <a class="el" href="group__CharacterProgressions.html#ga882c9540d3d52ff13af62c3f435a0b00">ULootLockerServerForCpp</a></li>
+<li>GetPaginatedProgressionsForPlayer()&#160;:&#160;<a class="el" href="group__PlayerProgressions.html#gae0236997bcfcb3828b1ddb0a48e80d03">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerProgressionRequest.html#a75b9529896543b8394a8c75ddafbcdfd">ULootLockerServerPlayerProgressionRequest</a></li>
+<li>GetPaginatedScoresFromLeaderboard()&#160;:&#160;<a class="el" href="group__Leaderboard.html#ga10544a4b033f721162046e275150223e">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardRequest.html#ac8193926339224212c17fd3520aa37db">ULootLockerServerLeaderboardRequest</a></li>
+<li>GetPaginatedTiersForProgression()&#160;:&#160;<a class="el" href="group__Progressions.html#gac8d3721b774cb5c98c75e452e2d1d190">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerGameProgressionRequest.html#a4b6ab2f0b8fa49a38bc3f13a435e0a03">ULootLockerServerGameProgressionRequest</a></li>
+<li>GetPersistentStorageForPlayer()&#160;:&#160;<a class="el" href="group__PlayerStorage.html#ga790ce9debd76461c55faafa08bf5434b">ULootLockerServerForCpp</a></li>
+<li>GetPersistentStorageForPlayers()&#160;:&#160;<a class="el" href="group__PlayerStorage.html#ga8f674f11c688b78c8d400cea5d22edf2">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerStorageRequest.html#a4fa5e2b5b3eb6519b7d85b5209f8b5b0">ULootLockerServerStorageRequest</a></li>
+<li>GetPlayerCharacterInventory()&#160;:&#160;<a class="el" href="classULootLockerServerCharacterRequest.html#a28be56e7809980acecb2b9994caebfd3">ULootLockerServerCharacterRequest</a>, <a class="el" href="group__Characters.html#gae9659ed9f6f0573a60e05d286cf9d2cb">ULootLockerServerForCpp</a></li>
+<li>GetPlayerCharacterLoadout()&#160;:&#160;<a class="el" href="classULootLockerServerCharacterRequest.html#acf48a5735fe8840177a8fc5edeaa1dc0">ULootLockerServerCharacterRequest</a>, <a class="el" href="group__Characters.html#gaddee390393ec6a3576ded5749e23915f">ULootLockerServerForCpp</a></li>
+<li>GetPlayerCharacters()&#160;:&#160;<a class="el" href="classULootLockerServerCharacterRequest.html#a68ec5e5ff06414df8a82121e39bdefff">ULootLockerServerCharacterRequest</a>, <a class="el" href="group__Characters.html#gad463fda30696d6a3287416ff7a22d0e1">ULootLockerServerForCpp</a></li>
+<li>GetPlayerHeroes()&#160;:&#160;<a class="el" href="group__Hero.html#ga25ab2d7d47dce15fda12cd8b3c7cb9ab">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerHeroRequest.html#a4d598d8ff75dbb65436948518f0e9f7c">ULootLockerServerHeroRequest</a></li>
+<li>GetPlayerHeroInventory()&#160;:&#160;<a class="el" href="group__Hero.html#ga6f811a33f5f6099d88c2617d5b4635c6">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerHeroRequest.html#a01b92aeb0cf0225e03025397c949c854">ULootLockerServerHeroRequest</a></li>
+<li>GetPlayerHeroLoadout()&#160;:&#160;<a class="el" href="group__Hero.html#ga5497257e3382bb3c2076f5654e9c29de">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerHeroRequest.html#a930bf7de3fe68bfd9154928d1b091a51">ULootLockerServerHeroRequest</a></li>
+<li>GetPlayerInfoFromGameSessionToken()&#160;:&#160;<a class="el" href="group__Player.html#ga6944888f17a3185db0bcdcd02838f290">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerRequest.html#a9fedc32c15625625356788426fdbfa1e">ULootLockerServerPlayerRequest</a></li>
+<li>GetPlayerInventory()&#160;:&#160;<a class="el" href="group__AssetInstance.html#ga02bad2a55941343c09a4d03c37aa19ef">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerInventoryRequest.html#a53f88b0fd3796af8eec5775651c6990c">ULootLockerServerPlayerInventoryRequest</a></li>
+<li>GetPlayerLoadout()&#160;:&#160;<a class="el" href="group__AssetInstance.html#ga519a81ddb50ddf0f2f3958a87e076e71">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerInventoryRequest.html#a1a0cee209fc591cf03cd4d79d84bad41">ULootLockerServerPlayerInventoryRequest</a></li>
+<li>GetProgressionByKey()&#160;:&#160;<a class="el" href="group__Progressions.html#gae41be44ed37c3cc360170dc44f1be30c">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerGameProgressionRequest.html#a6b13898b2b19bdae7cf81a511fc19178">ULootLockerServerGameProgressionRequest</a></li>
+<li>GetProgressionByKeyForAssetInstance()&#160;:&#160;<a class="el" href="group__AssetInstanceProgressions.html#ga5e777672d7121c832f7ac291664af145">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerInstanceProgressionRequest.html#a96beb8888183a176f340ccfcd6ab988b">ULootLockerServerInstanceProgressionRequest</a></li>
+<li>GetProgressionForAssetInstance()&#160;:&#160;<a class="el" href="group__AssetInstanceProgressions.html#ga7155ee7eb722c785ee5cc62ab0e21f6d">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerInstanceProgressionRequest.html#ae3decf9b01614a9deaf1495ace86f3ac">ULootLockerServerInstanceProgressionRequest</a></li>
+<li>GetProgressionForCharacterByKey()&#160;:&#160;<a class="el" href="classULootLockerServerCharacterProgressionRequest.html#a43fe0f4ea9aa5d8b708471bfd0e07354">ULootLockerServerCharacterProgressionRequest</a>, <a class="el" href="group__CharacterProgressions.html#gad0a11856da164a0b76a115be1c63d5e7">ULootLockerServerForCpp</a></li>
+<li>GetProgressionForPlayerByKey()&#160;:&#160;<a class="el" href="group__PlayerProgressions.html#ga59b5ea8e8dadc23239d5f097c387d666">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerProgressionRequest.html#afea64efec137d03092b58fde869ccbcc">ULootLockerServerPlayerProgressionRequest</a></li>
+<li>GetProgressions()&#160;:&#160;<a class="el" href="group__Progressions.html#ga324354d8bb9b157c924934b7e8122185">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerGameProgressionRequest.html#aa912d5858d3df2268ae22410b79e5b32">ULootLockerServerGameProgressionRequest</a></li>
+<li>GetProgressionsForCharacter()&#160;:&#160;<a class="el" href="classULootLockerServerCharacterProgressionRequest.html#a642c3832379375dacc34907bae1fee6f">ULootLockerServerCharacterProgressionRequest</a>, <a class="el" href="group__CharacterProgressions.html#ga1126b240ad2233cff65903d943ea7f6d">ULootLockerServerForCpp</a></li>
+<li>GetProgressionsForPlayer()&#160;:&#160;<a class="el" href="group__PlayerProgressions.html#gae20d3443a9ea7c2b7bf0f7e96616b9cb">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerProgressionRequest.html#a0eecf68022b2d948e277c1ce5476687e">ULootLockerServerPlayerProgressionRequest</a></li>
+<li>GetPublicPersistentStorageForPlayersAndKeys()&#160;:&#160;<a class="el" href="group__PlayerStorage.html#ga015594a55f449d1f90966ab0f7a58ca0">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerStorageRequest.html#a5d5744510ed2e01614504e3a736c201f">ULootLockerServerStorageRequest</a></li>
+<li>GetRuntimeLogLevel()&#160;:&#160;<a class="el" href="classULootLockerServerConfig.html#a53d2657e1d35c466ec2a473442a4399d">ULootLockerServerConfig</a></li>
+<li>GetScoresFromLeaderboard()&#160;:&#160;<a class="el" href="group__Leaderboard.html#gabe4c017b38ade76fa481ca4c3f76f1aa">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardRequest.html#a6804ea6cf31f844061358bbbf612fdf3">ULootLockerServerLeaderboardRequest</a></li>
+<li>GetTiersForProgression()&#160;:&#160;<a class="el" href="group__Progressions.html#gab1893b82a03ec194ed0b805f499d12e9">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerGameProgressionRequest.html#ac1371a08d962828f9272bc07d7ea1aaf">ULootLockerServerGameProgressionRequest</a></li>
+<li>GetUniversalInventory()&#160;:&#160;<a class="el" href="group__AssetInstance.html#gafc49006eff94c9f9a9ee6bbc527ace7b">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerInventoryRequest.html#af8cf86efe1f5d584b9c6808e2c42ed2b">ULootLockerServerPlayerInventoryRequest</a></li>
+<li>GetWalletByHolderID()&#160;:&#160;<a class="el" href="classULootLockerServerBalanceRequest.html#a8052dd5fb742e1ac97617a51937b7a21">ULootLockerServerBalanceRequest</a>, <a class="el" href="group__Balances.html#gaf5b94a3d6840b5dceec3aebb82d6ce24">ULootLockerServerForCpp</a></li>
+<li>GetWalletByWalletID()&#160;:&#160;<a class="el" href="classULootLockerServerBalanceRequest.html#ac8553f90538760d0cf7cae3b1902dd6d">ULootLockerServerBalanceRequest</a>, <a class="el" href="group__Balances.html#ga9e746592ddf134ed8fc895dd408e5bfd">ULootLockerServerForCpp</a></li>
+<li>Global_assets&#160;:&#160;<a class="el" href="structFLootLockerServerGetUniversalInventoryResponse.html#a880d95fda05d96ecebb0133d4d89f748">FLootLockerServerGetUniversalInventoryResponse</a></li>
+<li>Granted_assets&#160;:&#160;<a class="el" href="structFLootLockerServerInvokeTriggerResponse.html#a180867e8c8568549e4d3b53de5807b52">FLootLockerServerInvokeTriggerResponse</a></li>
+<li>group&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardReward.html#a059800edefec333baa7d5fa37a0b5148">FLootLockerServerLeaderboardReward</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

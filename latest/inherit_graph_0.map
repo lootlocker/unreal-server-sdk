@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$structFLootLockerServerAlterPlayerInventoryRequestBase.html" title=" " alt="" coords="5,91,220,131"/>
+<area shape="rect" id="Node000001" href="$structFLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest.html" title=" " alt="" coords="268,5,536,60"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="200,85,300,58,301,63,201,90"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest.html" title=" " alt="" coords="273,84,531,139"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="234,109,272,109,272,114,234,114"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerAlterPlayerInventoryByAssetIdRequest.html" title=" " alt="" coords="295,163,509,203"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="208,132,321,161,320,166,206,137"/>
+</map>

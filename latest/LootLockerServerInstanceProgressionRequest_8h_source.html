@@ -1,0 +1,385 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/LootLockerServerInstanceProgressionRequest.h Source File</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.5.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('LootLockerServerInstanceProgressionRequest_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">LootLockerServerInstanceProgressionRequest.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="LootLockerServerInstanceProgressionRequest_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2021 LootLocker</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="LootLockerServerResponse_8h.html">LootLockerServerResponse.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="LootLockerServerProgressionGenericTypes_8h.html">ServerAPI/LootLockerServerProgressionGenericTypes.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="LootLockerServerAssetRequest_8h.html">ServerAPI/LootLockerServerAssetRequest.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;LootLockerServerInstanceProgressionRequest.generated.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// Data Type Definitions</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgression.html">   18</a></span>struct <a class="code hl_struct" href="structFLootLockerServerInstanceProgression.html">FLootLockerServerInstanceProgression</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgression.html#acdd3b1d1506181c57c0c93217287a836">   25</a></span>    FString Id = &quot;&quot;;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgression.html#af13f8fd3447d64eccf6105b500916ee9">   30</a></span>    FString Progression_key = &quot;&quot;;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgression.html#afd3011d05d43d0359a6706c921343673">   35</a></span>    FString Progression_name = &quot;&quot;;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgression.html#a4c38b19eb3622fc3c152b311c228238c">   40</a></span>    FString Progression_id = &quot;&quot;;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgression.html#a9ec19ea9a71aea8328729fc235787b61">   45</a></span>    int32 Step = 0;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgression.html#a7291ea16c1df97ac867e9b844c1b84f2">   50</a></span>    int32 Points = 0;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgression.html#a2aa03759582d61fccfec38cf93368377">   55</a></span>    int32 Previous_threshold = 0;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgression.html#aafbca679a5043002bf5e00a9bce98055">   60</a></span>    int32 Next_threshold = 0;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgression.html#af4aefa6e879943722c75610e299768e6">   65</a></span>    FString Last_level_up = &quot;&quot;;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
+</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">// Response Definitions</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="};">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionResponse.html">   73</a></span>struct <a class="code hl_struct" href="structFLootLockerServerSingleInstanceProgressionResponse.html">FLootLockerServerSingleInstanceProgressionResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionResponse.html#a98c25f77b06b3d37aa0156fb754c55cf">   80</a></span>    FString Id = &quot;&quot;;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionResponse.html#ae588062b3a05d11136197c4a1713b532">   85</a></span>    FString Progression_key = &quot;&quot;;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionResponse.html#aabd3b1f584b105c433abe0e8da0a6b76">   90</a></span>    FString Progression_name = &quot;&quot;;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionResponse.html#a00235de2096d71deca5e0645279cdcb0">   95</a></span>    FString Progression_id = &quot;&quot;;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionResponse.html#ad9f653f822fdc710fde5affff62eb926">  100</a></span>    int32 Step = 0;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionResponse.html#a7d27a93ca5fe17b36b66f48172b5135a">  105</a></span>    int32 Points = 0;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionResponse.html#a5acb52caaa5a96c9d9ae818f097d523a">  110</a></span>    int32 Previous_threshold = 0;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionResponse.html#a2f6ad039f30fd32a85896d83b4868e7c">  115</a></span>    int32 Next_threshold = 0;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionResponse.html#aeb798dce0efe6020234f4cddeada6c3f">  120</a></span>    FString Last_level_up = &quot;&quot;;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>};</div>
+</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00124" data-start="{" data-end="};">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionWithRewardsResponse.html">  124</a></span>struct <a class="code hl_struct" href="structFLootLockerServerSingleInstanceProgressionWithRewardsResponse.html">FLootLockerServerSingleInstanceProgressionWithRewardsResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerSingleInstanceProgressionResponse.html">FLootLockerServerSingleInstanceProgressionResponse</a></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>{</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="structFLootLockerServerSingleInstanceProgressionWithRewardsResponse.html#aad2a02335ad10aafe7933b681eea309e">  131</a></span>    TArray&lt;<a class="code hl_struct" href="structFLootLockerServerProgressionTier.html">FLootLockerServerProgressionTier</a>&gt; Awarded_tiers;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>};</div>
+</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00135" data-start="{" data-end="};">
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgressionListResponse.html">  135</a></span>struct <a class="code hl_struct" href="structFLootLockerServerInstanceProgressionListResponse.html">FLootLockerServerInstanceProgressionListResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>{</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgressionListResponse.html#a68fd828d81f5a866163a4acb2cbae95c">  142</a></span>    <a class="code hl_struct" href="structFLootLockerServerKeyBasedPagination.html">FLootLockerServerKeyBasedPagination</a> Pagination;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="structFLootLockerServerInstanceProgressionListResponse.html#ab3a3521fbafb77e28daa21876c01ab11">  147</a></span>    TArray&lt;<a class="code hl_struct" href="structFLootLockerServerInstanceProgression.html">FLootLockerServerInstanceProgression</a>&gt; Items;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>};</div>
+</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">// C++ Delegate Definitions</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment"> C++ response delegate for receiving a single Instance progression</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="LootLockerServerInstanceProgressionRequest_8h.html#af914e4b65ebc6516917b0df33418dca2">  157</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#af914e4b65ebc6516917b0df33418dca2">FLootLockerServerSingleInstanceProgressionResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerSingleInstanceProgressionResponse.html">FLootLockerServerSingleInstanceProgressionResponse</a>);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment"> C++ response delegate for receiving a list of Instance progressions</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="LootLockerServerInstanceProgressionRequest_8h.html#ac1dad5d8c96bfa706ce343dfa1bb3418">  161</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#ac1dad5d8c96bfa706ce343dfa1bb3418">FLootLockerServerInstanceProgressionListResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerInstanceProgressionListResponse.html">FLootLockerServerInstanceProgressionListResponse</a>);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment"> C++ response delegate for receiving a single Instance progression with rewards</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="LootLockerServerInstanceProgressionRequest_8h.html#a00cf7aaa2296ce92a88b75d29cdb7bab">  165</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#a00cf7aaa2296ce92a88b75d29cdb7bab">FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerSingleInstanceProgressionWithRewardsResponse.html">FLootLockerServerSingleInstanceProgressionWithRewardsResponse</a>);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment"> C++ response delegate for deleting a progression. Will be empty if no error occured.</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="LootLockerServerInstanceProgressionRequest_8h.html#a3bd73dc5772682276dd379b3c8d7c9b7">  169</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#a3bd73dc5772682276dd379b3c8d7c9b7">FLootLockerServerDeleteInstanceProgressionResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a>);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>UCLASS()</div>
+<div class="foldopen" id="foldopen00173" data-start="{" data-end="};">
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classULootLockerServerInstanceProgressionRequest.html">  173</a></span>class LOOTLOCKERSERVERSDK_API <a class="code hl_class" href="classULootLockerServerInstanceProgressionRequest.html">ULootLockerServerInstanceProgressionRequest</a> : public UObject</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>{</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="classULootLockerServerInstanceProgressionRequest.html#aadedcb49c8bfc9edc51584cd73d56027">  177</a></span>    <a class="code hl_function" href="classULootLockerServerInstanceProgressionRequest.html#aadedcb49c8bfc9edc51584cd73d56027">ULootLockerServerInstanceProgressionRequest</a>();</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="classULootLockerServerInstanceProgressionRequest.html#ae3decf9b01614a9deaf1495ace86f3ac">  179</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerInstanceProgressionRequest.html#ae3decf9b01614a9deaf1495ace86f3ac">GetProgressionForAssetInstance</a>(<span class="keywordtype">int</span> PlayerId, <span class="keywordtype">int</span> AssetInstanceId, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#ac1dad5d8c96bfa706ce343dfa1bb3418">FLootLockerServerInstanceProgressionListResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classULootLockerServerInstanceProgressionRequest.html#ad20bf39791f4f25ade79d26a19cb5ed2">  180</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerInstanceProgressionRequest.html#ad20bf39791f4f25ade79d26a19cb5ed2">GetPaginatedProgressionForAssetInstance</a>(<span class="keywordtype">int</span> PlayerId, <span class="keywordtype">int</span> AssetInstanceId, int32 Count, <span class="keyword">const</span> FString&amp; After, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#ac1dad5d8c96bfa706ce343dfa1bb3418">FLootLockerServerInstanceProgressionListResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classULootLockerServerInstanceProgressionRequest.html#a96beb8888183a176f340ccfcd6ab988b">  181</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerInstanceProgressionRequest.html#a96beb8888183a176f340ccfcd6ab988b">GetProgressionByKeyForAssetInstance</a>(<span class="keywordtype">int</span> PlayerId, <span class="keywordtype">int</span> AssetInstanceId, <span class="keyword">const</span> FString&amp; ProgressionKey, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#af914e4b65ebc6516917b0df33418dca2">FLootLockerServerSingleInstanceProgressionResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classULootLockerServerInstanceProgressionRequest.html#a268606de143a4756be566fb9c19b2451">  182</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerInstanceProgressionRequest.html#a268606de143a4756be566fb9c19b2451">AddPointsToProgressionForAssetInstance</a>(<span class="keywordtype">int</span> PlayerId, <span class="keywordtype">int</span> AssetInstanceId, <span class="keyword">const</span> FString&amp; ProgressionKey, int32 Amount, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#a00cf7aaa2296ce92a88b75d29cdb7bab">FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="classULootLockerServerInstanceProgressionRequest.html#af391924b16d94e4ce6e8d67fb1f64f66">  183</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerInstanceProgressionRequest.html#af391924b16d94e4ce6e8d67fb1f64f66">SubtractPointsFromProgressionForAssetInstance</a>(<span class="keywordtype">int</span> PlayerId, <span class="keywordtype">int</span> AssetInstanceId, <span class="keyword">const</span> FString&amp; ProgressionKey, int32 Amount, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#a00cf7aaa2296ce92a88b75d29cdb7bab">FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classULootLockerServerInstanceProgressionRequest.html#a8bf29761a3079cf8429202a3da84725e">  184</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerInstanceProgressionRequest.html#a8bf29761a3079cf8429202a3da84725e">ResetProgressionForAssetInstance</a>(<span class="keywordtype">int</span> PlayerId, <span class="keywordtype">int</span> AssetInstanceId, <span class="keyword">const</span> FString&amp; ProgressionKey, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#a00cf7aaa2296ce92a88b75d29cdb7bab">FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classULootLockerServerInstanceProgressionRequest.html#a9ecf3a7731d3e0249e1d8a83eda8c0d8">  185</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerInstanceProgressionRequest.html#a9ecf3a7731d3e0249e1d8a83eda8c0d8">DeleteProgressionForAssetInstance</a>(<span class="keywordtype">int</span> PlayerId, <span class="keywordtype">int</span> AssetInstanceId, <span class="keyword">const</span> FString&amp; ProgressionKey, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerInstanceProgressionRequest_8h.html#a3bd73dc5772682276dd379b3c8d7c9b7">FLootLockerServerDeleteInstanceProgressionResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>};</div>
+</div>
+<div class="ttc" id="aLootLockerServerAssetRequest_8h_html"><div class="ttname"><a href="LootLockerServerAssetRequest_8h.html">LootLockerServerAssetRequest.h</a></div></div>
+<div class="ttc" id="aLootLockerServerInstanceProgressionRequest_8h_html_a00cf7aaa2296ce92a88b75d29cdb7bab"><div class="ttname"><a href="LootLockerServerInstanceProgressionRequest_8h.html#a00cf7aaa2296ce92a88b75d29cdb7bab">FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate)(FLootLockerServerSingleInstanceProgressionWithRewardsResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerInstanceProgressionRequest.h:165</div></div>
+<div class="ttc" id="aLootLockerServerInstanceProgressionRequest_8h_html_a3bd73dc5772682276dd379b3c8d7c9b7"><div class="ttname"><a href="LootLockerServerInstanceProgressionRequest_8h.html#a3bd73dc5772682276dd379b3c8d7c9b7">FLootLockerServerDeleteInstanceProgressionResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerDeleteInstanceProgressionResponseDelegate)(FLootLockerServerResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerInstanceProgressionRequest.h:169</div></div>
+<div class="ttc" id="aLootLockerServerInstanceProgressionRequest_8h_html_ac1dad5d8c96bfa706ce343dfa1bb3418"><div class="ttname"><a href="LootLockerServerInstanceProgressionRequest_8h.html#ac1dad5d8c96bfa706ce343dfa1bb3418">FLootLockerServerInstanceProgressionListResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerInstanceProgressionListResponseDelegate)(FLootLockerServerInstanceProgressionListResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerInstanceProgressionRequest.h:161</div></div>
+<div class="ttc" id="aLootLockerServerInstanceProgressionRequest_8h_html_af914e4b65ebc6516917b0df33418dca2"><div class="ttname"><a href="LootLockerServerInstanceProgressionRequest_8h.html#af914e4b65ebc6516917b0df33418dca2">FLootLockerServerSingleInstanceProgressionResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerSingleInstanceProgressionResponseDelegate)(FLootLockerServerSingleInstanceProgressionResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerInstanceProgressionRequest.h:157</div></div>
+<div class="ttc" id="aLootLockerServerProgressionGenericTypes_8h_html"><div class="ttname"><a href="LootLockerServerProgressionGenericTypes_8h.html">LootLockerServerProgressionGenericTypes.h</a></div></div>
+<div class="ttc" id="aLootLockerServerResponse_8h_html"><div class="ttname"><a href="LootLockerServerResponse_8h.html">LootLockerServerResponse.h</a></div></div>
+<div class="ttc" id="aclassULootLockerServerInstanceProgressionRequest_html"><div class="ttname"><a href="classULootLockerServerInstanceProgressionRequest.html">ULootLockerServerInstanceProgressionRequest</a></div><div class="ttdef"><b>Definition</b> LootLockerServerInstanceProgressionRequest.h:174</div></div>
+<div class="ttc" id="aclassULootLockerServerInstanceProgressionRequest_html_a268606de143a4756be566fb9c19b2451"><div class="ttname"><a href="classULootLockerServerInstanceProgressionRequest.html#a268606de143a4756be566fb9c19b2451">ULootLockerServerInstanceProgressionRequest::AddPointsToProgressionForAssetInstance</a></div><div class="ttdeci">static FString AddPointsToProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString &amp;ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerInstanceProgressionRequest_html_a8bf29761a3079cf8429202a3da84725e"><div class="ttname"><a href="classULootLockerServerInstanceProgressionRequest.html#a8bf29761a3079cf8429202a3da84725e">ULootLockerServerInstanceProgressionRequest::ResetProgressionForAssetInstance</a></div><div class="ttdeci">static FString ResetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString &amp;ProgressionKey, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerInstanceProgressionRequest_html_a96beb8888183a176f340ccfcd6ab988b"><div class="ttname"><a href="classULootLockerServerInstanceProgressionRequest.html#a96beb8888183a176f340ccfcd6ab988b">ULootLockerServerInstanceProgressionRequest::GetProgressionByKeyForAssetInstance</a></div><div class="ttdeci">static FString GetProgressionByKeyForAssetInstance(int PlayerId, int AssetInstanceId, const FString &amp;ProgressionKey, const FLootLockerServerSingleInstanceProgressionResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerInstanceProgressionRequest_html_a9ecf3a7731d3e0249e1d8a83eda8c0d8"><div class="ttname"><a href="classULootLockerServerInstanceProgressionRequest.html#a9ecf3a7731d3e0249e1d8a83eda8c0d8">ULootLockerServerInstanceProgressionRequest::DeleteProgressionForAssetInstance</a></div><div class="ttdeci">static FString DeleteProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString &amp;ProgressionKey, const FLootLockerServerDeleteInstanceProgressionResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerInstanceProgressionRequest_html_aadedcb49c8bfc9edc51584cd73d56027"><div class="ttname"><a href="classULootLockerServerInstanceProgressionRequest.html#aadedcb49c8bfc9edc51584cd73d56027">ULootLockerServerInstanceProgressionRequest::ULootLockerServerInstanceProgressionRequest</a></div><div class="ttdeci">ULootLockerServerInstanceProgressionRequest()</div></div>
+<div class="ttc" id="aclassULootLockerServerInstanceProgressionRequest_html_ad20bf39791f4f25ade79d26a19cb5ed2"><div class="ttname"><a href="classULootLockerServerInstanceProgressionRequest.html#ad20bf39791f4f25ade79d26a19cb5ed2">ULootLockerServerInstanceProgressionRequest::GetPaginatedProgressionForAssetInstance</a></div><div class="ttdeci">static FString GetPaginatedProgressionForAssetInstance(int PlayerId, int AssetInstanceId, int32 Count, const FString &amp;After, const FLootLockerServerInstanceProgressionListResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerInstanceProgressionRequest_html_ae3decf9b01614a9deaf1495ace86f3ac"><div class="ttname"><a href="classULootLockerServerInstanceProgressionRequest.html#ae3decf9b01614a9deaf1495ace86f3ac">ULootLockerServerInstanceProgressionRequest::GetProgressionForAssetInstance</a></div><div class="ttdeci">static FString GetProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FLootLockerServerInstanceProgressionListResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerInstanceProgressionRequest_html_af391924b16d94e4ce6e8d67fb1f64f66"><div class="ttname"><a href="classULootLockerServerInstanceProgressionRequest.html#af391924b16d94e4ce6e8d67fb1f64f66">ULootLockerServerInstanceProgressionRequest::SubtractPointsFromProgressionForAssetInstance</a></div><div class="ttdeci">static FString SubtractPointsFromProgressionForAssetInstance(int PlayerId, int AssetInstanceId, const FString &amp;ProgressionKey, int32 Amount, const FLootLockerServerSingleInstanceProgressionWithRewardsResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="astructFLootLockerServerInstanceProgressionListResponse_html"><div class="ttname"><a href="structFLootLockerServerInstanceProgressionListResponse.html">FLootLockerServerInstanceProgressionListResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerInstanceProgressionRequest.h:136</div></div>
+<div class="ttc" id="astructFLootLockerServerInstanceProgression_html"><div class="ttname"><a href="structFLootLockerServerInstanceProgression.html">FLootLockerServerInstanceProgression</a></div><div class="ttdef"><b>Definition</b> LootLockerServerInstanceProgressionRequest.h:19</div></div>
+<div class="ttc" id="astructFLootLockerServerKeyBasedPagination_html"><div class="ttname"><a href="structFLootLockerServerKeyBasedPagination.html">FLootLockerServerKeyBasedPagination</a></div><div class="ttdoc">Pagination data for key based pagination This is used for methods that have a &quot;count&quot; and an &quot;after&quot; ...</div><div class="ttdef"><b>Definition</b> LootLockerServerResponse.h:106</div></div>
+<div class="ttc" id="astructFLootLockerServerProgressionTier_html"><div class="ttname"><a href="structFLootLockerServerProgressionTier.html">FLootLockerServerProgressionTier</a></div><div class="ttdef"><b>Definition</b> LootLockerServerProgressionGenericTypes.h:135</div></div>
+<div class="ttc" id="astructFLootLockerServerResponse_html"><div class="ttname"><a href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div><div class="ttdoc">The base response for all LootLocker Server responses.</div><div class="ttdef"><b>Definition</b> LootLockerServerResponse.h:67</div></div>
+<div class="ttc" id="astructFLootLockerServerSingleInstanceProgressionResponse_html"><div class="ttname"><a href="structFLootLockerServerSingleInstanceProgressionResponse.html">FLootLockerServerSingleInstanceProgressionResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerInstanceProgressionRequest.h:74</div></div>
+<div class="ttc" id="astructFLootLockerServerSingleInstanceProgressionWithRewardsResponse_html"><div class="ttname"><a href="structFLootLockerServerSingleInstanceProgressionWithRewardsResponse.html">FLootLockerServerSingleInstanceProgressionWithRewardsResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerInstanceProgressionRequest.h:125</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_9f77ca9030fc530377179ef1ae010e8e.html">LootLockerServerSDK</a></li><li class="navelem"><a class="el" href="dir_6c67ecf51f1dd82eba34c6913e42f1aa.html">Source</a></li><li class="navelem"><a class="el" href="dir_19732b1a8e4198efc19367964d57ba95.html">LootLockerServerSDK</a></li><li class="navelem"><a class="el" href="dir_54f4648b1d151bbc23437e0756736e1c.html">Public</a></li><li class="navelem"><a class="el" href="dir_50576b1844c996962de96e8d53ce5ab2.html">ServerAPI</a></li><li class="navelem"><a class="el" href="LootLockerServerInstanceProgressionRequest_8h.html">LootLockerServerInstanceProgressionRequest.h</a></li>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: Data Structure Index</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.5.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classes.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Data Structure Index</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="qindex"><a class="qindex" href="#letter_F">F</a>&#160;|&#160;<a class="qindex" href="#letter_L">L</a>&#160;|&#160;<a class="qindex" href="#letter_U">U</a></div>
+<div class="classindex">
+<dl class="classindex even">
+<dt class="alphachar"><a id="letter_F" name="letter_F">F</a></dt>
+<dd><a class="el" href="structFLootLockerServerAddAssetToPlayerInventoryResponse.html">FLootLockerServerAddAssetToPlayerInventoryResponse</a></dd><dd><a class="el" href="structFLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest.html">FLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest.html">FLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerAlterPlayerInventoryByAssetIdRequest.html">FLootLockerServerAlterPlayerInventoryByAssetIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerAlterPlayerInventoryRequestBase.html">FLootLockerServerAlterPlayerInventoryRequestBase</a></dd><dd><a class="el" href="structFLootLockerServerAlterPlayerInventoryResponse.html">FLootLockerServerAlterPlayerInventoryResponse</a></dd><dd><a class="el" href="structFLootLockerServerAsset.html">FLootLockerServerAsset</a></dd><dd><a class="el" href="structFLootLockerServerAssetByAssetIdAndRentalOptionIdRequest.html">FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerAssetByAssetIdAndVariationIdRequest.html">FLootLockerServerAssetByAssetIdAndVariationIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerAssetByAssetIdRequest.html">FLootLockerServerAssetByAssetIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerAssetByAssetInstanceIdRequest.html">FLootLockerServerAssetByAssetInstanceIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerAssetByInstanceIDRequest.html">FLootLockerServerAssetByInstanceIDRequest</a></dd><dd><a class="el" href="structFLootLockerServerAssetCandidateInformation.html">FLootLockerServerAssetCandidateInformation</a></dd><dd><a class="el" href="structFLootLockerServerAssetFile.html">FLootLockerServerAssetFile</a></dd><dd><a class="el" href="structFLootLockerServerAssetHeroEquipException.html">FLootLockerServerAssetHeroEquipException</a></dd><dd><a class="el" href="structFLootLockerServerAssetInstanceKeyValuePairItemResponse.html">FLootLockerServerAssetInstanceKeyValuePairItemResponse</a></dd><dd><a class="el" href="structFLootLockerServerAssetInstanceKeyValuePairsListResponse.html">FLootLockerServerAssetInstanceKeyValuePairsListResponse</a></dd><dd><a class="el" href="structFLootLockerServerAssetInstanceStorageKeyValueSet.html">FLootLockerServerAssetInstanceStorageKeyValueSet</a></dd><dd><a class="el" href="structFLootLockerServerAssetRarity.html">FLootLockerServerAssetRarity</a></dd><dd><a class="el" href="structFLootLockerServerAssetRentalOption.html">FLootLockerServerAssetRentalOption</a></dd><dd><a class="el" href="structFLootLockerServerAssetReward.html">FLootLockerServerAssetReward</a></dd><dd><a class="el" href="structFLootLockerServerAssetRewardDetails.html">FLootLockerServerAssetRewardDetails</a></dd><dd><a class="el" href="structFLootLockerServerAssetStorageKeyValueSet.html">FLootLockerServerAssetStorageKeyValueSet</a></dd><dd><a class="el" href="structFLootLockerServerAssetVariation.html">FLootLockerServerAssetVariation</a></dd><dd><a class="el" href="structFLootLockerServerAssetVariationProperty.html">FLootLockerServerAssetVariationProperty</a></dd><dd><a class="el" href="structFLootLockerServerAssetWithoutPackageContent.html">FLootLockerServerAssetWithoutPackageContent</a></dd><dd><a class="el" href="structFLootLockerServerAuthenticationRequest.html">FLootLockerServerAuthenticationRequest</a></dd><dd><a class="el" href="structFLootLockerServerAuthenticationResponse.html">FLootLockerServerAuthenticationResponse</a></dd><dd><a class="el" href="structFLootLockerServerBalance.html">FLootLockerServerBalance</a></dd><dd><a class="el" href="structFLootLockerServerBalanceModifiers.html">FLootLockerServerBalanceModifiers</a></dd><dd><a class="el" href="structFLootLockerServerBalanceWithCurrencyId.html">FLootLockerServerBalanceWithCurrencyId</a></dd><dd><a class="el" href="structFLootLockerServerCharacterProgression.html">FLootLockerServerCharacterProgression</a></dd><dd><a class="el" href="structFLootLockerServerCharacterProgressionListResponse.html">FLootLockerServerCharacterProgressionListResponse</a></dd><dd><a class="el" href="structFLootLockerServerComputeAndLockDropTableResponse.html">FLootLockerServerComputeAndLockDropTableResponse</a></dd><dd><a class="el" href="structFLootLockerServerConnectedAccount.html">FLootLockerServerConnectedAccount</a></dd><dd><a class="el" href="structFLootLockerServerContext.html">FLootLockerServerContext</a></dd><dd><a class="el" href="structFLootLockerServerCreateAssetInstanceKeyValuePairRequest.html">FLootLockerServerCreateAssetInstanceKeyValuePairRequest</a></dd><dd><a class="el" href="structFLootLockerServerCreateLeaderboardRequest.html">FLootLockerServerCreateLeaderboardRequest</a></dd><dd><a class="el" href="structFLootLockerServerCreateLeaderboardResponse.html">FLootLockerServerCreateLeaderboardResponse</a></dd><dd><a class="el" href="structFLootLockerServerCreateLeaderboardScheduleRequest.html">FLootLockerServerCreateLeaderboardScheduleRequest</a></dd><dd><a class="el" href="structFLootLockerServerCreatePlayerRequest.html">FLootLockerServerCreatePlayerRequest</a></dd><dd><a class="el" href="structFLootLockerServerCreatePlayerResponse.html">FLootLockerServerCreatePlayerResponse</a></dd><dd><a class="el" href="structFLootLockerServerCreateWalletRequest.html">FLootLockerServerCreateWalletRequest</a></dd><dd><a class="el" href="structFLootLockerServerCreateWalletResponse.html">FLootLockerServerCreateWalletResponse</a></dd><dd><a class="el" href="structFLootLockerServerCreditRequest.html">FLootLockerServerCreditRequest</a></dd><dd><a class="el" href="structFLootLockerServerCreditWalletResponse.html">FLootLockerServerCreditWalletResponse</a></dd><dd><a class="el" href="structFLootLockerServerCurrency.html">FLootLockerServerCurrency</a></dd><dd><a class="el" href="structFLootLockerServerCurrencyReward.html">FLootLockerServerCurrencyReward</a></dd><dd><a class="el" href="structFLootLockerServerCurrencyRewardDetails.html">FLootLockerServerCurrencyRewardDetails</a></dd><dd><a class="el" href="structFLootLockerServerDebitRequest.html">FLootLockerServerDebitRequest</a></dd><dd><a class="el" href="structFLootLockerServerDebitWalletResponse.html">FLootLockerServerDebitWalletResponse</a></dd><dd><a class="el" href="structFLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse.html">FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse</a></dd><dd><a class="el" href="structFLootLockerServerDropTableItem.html">FLootLockerServerDropTableItem</a></dd><dd><a class="el" href="structFLootLockerServerEmptyRequest.html">FLootLockerServerEmptyRequest</a></dd><dd><a class="el" href="structFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndRentalOptionIdRequest.html">FLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndRentalOptionIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndVariationIdRequest.html">FLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndVariationIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerEquipAssetToCharacterLoadoutRequest.html">FLootLockerServerEquipAssetToCharacterLoadoutRequest</a></dd><dd><a class="el" href="structFLootLockerServerEquipAssetToCharacterLoadoutResponse.html">FLootLockerServerEquipAssetToCharacterLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest.html">FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest.html">FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest</a></dd><dd><a class="el" href="structFLootLockerServerEquipAssetToHeroLoadoutRequest.html">FLootLockerServerEquipAssetToHeroLoadoutRequest</a></dd><dd><a class="el" href="structFLootLockerServerEquipAssetToHeroLoadoutResponse.html">FLootLockerServerEquipAssetToHeroLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerEquipAssetToPlayerLoadoutResponse.html">FLootLockerServerEquipAssetToPlayerLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerErrorData.html">FLootLockerServerErrorData</a></dd><dd><a class="el" href="structFLootLockerServerExtendedIndexBasedPagination.html">FLootLockerServerExtendedIndexBasedPagination</a></dd><dd><a class="el" href="structFLootLockerServerExtendedPaginationError.html">FLootLockerServerExtendedPaginationError</a></dd><dd><a class="el" href="structFLootLockerServerFriend.html">FLootLockerServerFriend</a></dd><dd><a class="el" href="structFLootLockerServerFullCharacterLoadoutResponse.html">FLootLockerServerFullCharacterLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerFullHeroLoadoutResponse.html">FLootLockerServerFullHeroLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerFullPlayerLoadoutResponse.html">FLootLockerServerFullPlayerLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerGameProgression.html">FLootLockerServerGameProgression</a></dd><dd><a class="el" href="structFLootLockerServerGameProgressionListResponse.html">FLootLockerServerGameProgressionListResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetAllMemberRanksResponse.html">FLootLockerServerGetAllMemberRanksResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetAssetsResponse.html">FLootLockerServerGetAssetsResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetCharacterInventoryResponse.html">FLootLockerServerGetCharacterInventoryResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetCharacterLoadoutResponse.html">FLootLockerServerGetCharacterLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetHeroInventoryResponse.html">FLootLockerServerGetHeroInventoryResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetHeroLoadoutResponse.html">FLootLockerServerGetHeroLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetLeaderboardResponse.html">FLootLockerServerGetLeaderboardResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetLeaderboardScheduleResponse.html">FLootLockerServerGetLeaderboardScheduleResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetMetadataResponse.html">FLootLockerServerGetMetadataResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetMultisourceMetadataRequest.html">FLootLockerServerGetMultisourceMetadataRequest</a></dd><dd><a class="el" href="structFLootLockerServerGetMultisourceMetadataResponse.html">FLootLockerServerGetMultisourceMetadataResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetPersistentStorageForPlayersResponse.html">FLootLockerServerGetPersistentStorageForPlayersResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetPlayerCharactersResponse.html">FLootLockerServerGetPlayerCharactersResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetPlayerHeroesResponse.html">FLootLockerServerGetPlayerHeroesResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetPlayerInfoFromGameSessionTokenRequest.html">FLootLockerServerGetPlayerInfoFromGameSessionTokenRequest</a></dd><dd><a class="el" href="structFLootLockerServerGetPlayerInfoFromGameSessionTokenResponse.html">FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetPlayerInventoryResponse.html">FLootLockerServerGetPlayerInventoryResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetPlayerLoadoutResponse.html">FLootLockerServerGetPlayerLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse.html">FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetScoresFromLeaderboardResponse.html">FLootLockerServerGetScoresFromLeaderboardResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetUniversalInventoryResponse.html">FLootLockerServerGetUniversalInventoryResponse</a></dd><dd><a class="el" href="structFLootLockerServerGetWalletResponse.html">FLootLockerServerGetWalletResponse</a></dd><dd><a class="el" href="structFLootLockerServerIndexBasedPagination.html">FLootLockerServerIndexBasedPagination</a></dd><dd><a class="el" href="structFLootLockerServerInstanceProgression.html">FLootLockerServerInstanceProgression</a></dd><dd><a class="el" href="structFLootLockerServerInstanceProgressionListResponse.html">FLootLockerServerInstanceProgressionListResponse</a></dd><dd><a class="el" href="structFLootLockerServerInvokeTriggerForPlayerRequest.html">FLootLockerServerInvokeTriggerForPlayerRequest</a></dd><dd><a class="el" href="structFLootLockerServerInvokeTriggerResponse.html">FLootLockerServerInvokeTriggerResponse</a></dd><dd><a class="el" href="structFLootLockerServerKeyBasedPagination.html">FLootLockerServerKeyBasedPagination</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboard.html">FLootLockerServerLeaderboard</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardArchive.html">FLootLockerServerLeaderboardArchive</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardArchiveDetails.html">FLootLockerServerLeaderboardArchiveDetails</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardArchiveDetailsResponse.html">FLootLockerServerLeaderboardArchiveDetailsResponse</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardArchivePlayer.html">FLootLockerServerLeaderboardArchivePlayer</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardArchiveResponse.html">FLootLockerServerLeaderboardArchiveResponse</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardAssetReward.html">FLootLockerServerLeaderboardAssetReward</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardBaseRequest.html">FLootLockerServerLeaderboardBaseRequest</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardBaseResponse.html">FLootLockerServerLeaderboardBaseResponse</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardCurrencyReward.html">FLootLockerServerLeaderboardCurrencyReward</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardDetailPredicates.html">FLootLockerServerLeaderboardDetailPredicates</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardEntry.html">FLootLockerServerLeaderboardEntry</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardEntryWithLeaderboardData.html">FLootLockerServerLeaderboardEntryWithLeaderboardData</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardGroupReward.html">FLootLockerServerLeaderboardGroupReward</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardGroupRewardAssociation.html">FLootLockerServerLeaderboardGroupRewardAssociation</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardGroupRewardMetadata.html">FLootLockerServerLeaderboardGroupRewardMetadata</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardIncrementScoreRequest.html">FLootLockerServerLeaderboardIncrementScoreRequest</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardPlayer.html">FLootLockerServerLeaderboardPlayer</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardProgressionPointsReward.html">FLootLockerServerLeaderboardProgressionPointsReward</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardProgressionResetReward.html">FLootLockerServerLeaderboardProgressionResetReward</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardReward.html">FLootLockerServerLeaderboardReward</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardRewardArgs.html">FLootLockerServerLeaderboardRewardArgs</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardSchedule.html">FLootLockerServerLeaderboardSchedule</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardSubmitScoreRequest.html">FLootLockerServerLeaderboardSubmitScoreRequest</a></dd><dd><a class="el" href="structFLootLockerServerLeaderboardSubmitScoreResponse.html">FLootLockerServerLeaderboardSubmitScoreResponse</a></dd><dd><a class="el" href="structFLootLockerServerListAssetsRequest.html">FLootLockerServerListAssetsRequest</a></dd><dd><a class="el" href="structFLootLockerServerListAssetsResponse.html">FLootLockerServerListAssetsResponse</a></dd><dd><a class="el" href="structFLootLockerServerListBalancesForWalletResponse.html">FLootLockerServerListBalancesForWalletResponse</a></dd><dd><a class="el" href="structFLootLockerServerListConnectedAccountsRequest.html">FLootLockerServerListConnectedAccountsRequest</a></dd><dd><a class="el" href="structFLootLockerServerListConnectedAccountsResponse.html">FLootLockerServerListConnectedAccountsResponse</a></dd><dd><a class="el" href="structFLootLockerServerListContextsResponse.html">FLootLockerServerListContextsResponse</a></dd><dd><a class="el" href="structFLootLockerServerListCurrenciesResponse.html">FLootLockerServerListCurrenciesResponse</a></dd><dd><a class="el" href="structFLootLockerServerListFriendsResponse.html">FLootLockerServerListFriendsResponse</a></dd><dd><a class="el" href="structFLootLockerServerListLeaderboardsResponse.html">FLootLockerServerListLeaderboardsResponse</a></dd><dd><a class="el" href="structFLootLockerServerListMetadataResponse.html">FLootLockerServerListMetadataResponse</a></dd><dd><a class="el" href="structFLootLockerServerMaintainSessionResponse.html">FLootLockerServerMaintainSessionResponse</a></dd><dd><a class="el" href="structFLootLockerServerMetadataBase64Value.html">FLootLockerServerMetadataBase64Value</a></dd><dd><a class="el" href="structFLootLockerServerMetadataEntry.html">FLootLockerServerMetadataEntry</a></dd><dd><a class="el" href="structFLootLockerServerMetadataSourceAndEntries.html">FLootLockerServerMetadataSourceAndEntries</a></dd><dd><a class="el" href="structFLootLockerServerMetadataSourceAndKeys.html">FLootLockerServerMetadataSourceAndKeys</a></dd><dd><a class="el" href="structFLootLockerServerModifyScoreRequest.html">FLootLockerServerModifyScoreRequest</a></dd><dd><a class="el" href="structFLootLockerServerNotificationNoContentObject.html">FLootLockerServerNotificationNoContentObject</a></dd><dd><a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a></dd><dd><a class="el" href="structFLootLockerServerPackageContentItem.html">FLootLockerServerPackageContentItem</a></dd><dd><a class="el" href="structFLootLockerServerPickDropsFromDropTableRequest.html">FLootLockerServerPickDropsFromDropTableRequest</a></dd><dd><a class="el" href="structFLootLockerServerPickedDropTableItem.html">FLootLockerServerPickedDropTableItem</a></dd><dd><a class="el" href="structFLootLockerServerPickFromDropTableResponse.html">FLootLockerServerPickFromDropTableResponse</a></dd><dd><a class="el" href="structFLootLockerServerPlayerCharacter.html">FLootLockerServerPlayerCharacter</a></dd><dd><a class="el" href="structFLootLockerServerPlayerCharacterInventoryItem.html">FLootLockerServerPlayerCharacterInventoryItem</a></dd><dd><a class="el" href="structFLootLockerServerPlayerCharacterItemRentalData.html">FLootLockerServerPlayerCharacterItemRentalData</a></dd><dd><a class="el" href="structFLootLockerServerPlayerCharacterLoadoutItem.html">FLootLockerServerPlayerCharacterLoadoutItem</a></dd><dd><a class="el" href="structFLootLockerServerPlayerFile.html">FLootLockerServerPlayerFile</a></dd><dd><a class="el" href="structFLootLockerServerPlayerFileDeleteResponse.html">FLootLockerServerPlayerFileDeleteResponse</a></dd><dd><a class="el" href="structFLootLockerServerPlayerFileListResponse.html">FLootLockerServerPlayerFileListResponse</a></dd><dd><a class="el" href="structFLootLockerServerPlayerHero.html">FLootLockerServerPlayerHero</a></dd><dd><a class="el" href="structFLootLockerServerPlayerHeroInventoryItem.html">FLootLockerServerPlayerHeroInventoryItem</a></dd><dd><a class="el" href="structFLootLockerServerPlayerHeroItemRentalData.html">FLootLockerServerPlayerHeroItemRentalData</a></dd><dd><a class="el" href="structFLootLockerServerPlayerHeroLoadoutItem.html">FLootLockerServerPlayerHeroLoadoutItem</a></dd><dd><a class="el" href="structFLootLockerServerPlayerInfoFromToken.html">FLootLockerServerPlayerInfoFromToken</a></dd><dd><a class="el" href="structFLootLockerServerPlayerInventoryItem.html">FLootLockerServerPlayerInventoryItem</a></dd><dd><a class="el" href="structFLootLockerServerPlayerItemRentalData.html">FLootLockerServerPlayerItemRentalData</a></dd><dd><a class="el" href="structFLootLockerServerPlayerLoadoutItem.html">FLootLockerServerPlayerLoadoutItem</a></dd><dd><a class="el" href="structFLootLockerServerPlayerName.html">FLootLockerServerPlayerName</a></dd><dd><a class="el" href="structFLootLockerServerPlayerNameLookupPair.html">FLootLockerServerPlayerNameLookupPair</a></dd><dd><a class="el" href="structFLootLockerServerPlayerNameLookupResponse.html">FLootLockerServerPlayerNameLookupResponse</a></dd><dd><a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedItems.html">FLootLockerServerPlayerPersistentStorageEntry_NamedItems</a></dd><dd><a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedSets.html">FLootLockerServerPlayerPersistentStorageEntry_NamedSets</a></dd><dd><a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedStorage.html">FLootLockerServerPlayerPersistentStorageEntry_NamedStorage</a></dd><dd><a class="el" href="structFLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest.html">FLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest</a></dd><dd><a class="el" href="structFLootLockerServerPlayerPersistentStorageKeyValueSet.html">FLootLockerServerPlayerPersistentStorageKeyValueSet</a></dd><dd><a class="el" href="structFLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder.html">FLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder</a></dd><dd><a class="el" href="structFLootLockerServerPlayerPersistentStorageUpdateEntryOrdered.html">FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered</a></dd><dd><a class="el" href="structFLootLockerServerPlayerPersistentStorageUpdateRequest.html">FLootLockerServerPlayerPersistentStorageUpdateRequest</a></dd><dd><a class="el" href="structFLootLockerServerPlayerPlatform.html">FLootLockerServerPlayerPlatform</a></dd><dd><a class="el" href="structFLootLockerServerPlayerProgression.html">FLootLockerServerPlayerProgression</a></dd><dd><a class="el" href="structFLootLockerServerPlayerProgressionListResponse.html">FLootLockerServerPlayerProgressionListResponse</a></dd><dd><a class="el" href="structFLootLockerServerProgressionPointRewardDetails.html">FLootLockerServerProgressionPointRewardDetails</a></dd><dd><a class="el" href="structFLootLockerServerProgressionPointsReward.html">FLootLockerServerProgressionPointsReward</a></dd><dd><a class="el" href="structFLootLockerServerProgressionResetReward.html">FLootLockerServerProgressionResetReward</a></dd><dd><a class="el" href="structFLootLockerServerProgressionResetRewardDetails.html">FLootLockerServerProgressionResetRewardDetails</a></dd><dd><a class="el" href="structFLootLockerServerProgressionTier.html">FLootLockerServerProgressionTier</a></dd><dd><a class="el" href="structFLootLockerServerProgressionTiersResponse.html">FLootLockerServerProgressionTiersResponse</a></dd><dd><a class="el" href="structFLootLockerServerRequestContext.html">FLootLockerServerRequestContext</a></dd><dd><a class="el" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></dd><dd><a class="el" href="structFLootLockerServerRewards.html">FLootLockerServerRewards</a></dd><dd><a class="el" href="structFLootLockerServerSendNotificationsResponse.html">FLootLockerServerSendNotificationsResponse</a></dd><dd><a class="el" href="structFLootLockerServerSendNotificationsToPlayerBaseRequest.html">FLootLockerServerSendNotificationsToPlayerBaseRequest</a></dd><dd><a class="el" href="structFLootLockerServerSetMetadataAction.html">FLootLockerServerSetMetadataAction</a></dd><dd><a class="el" href="structFLootLockerServerSetMetadataError.html">FLootLockerServerSetMetadataError</a></dd><dd><a class="el" href="structFLootLockerServerSetMetadataErrorEntry.html">FLootLockerServerSetMetadataErrorEntry</a></dd><dd><a class="el" href="structFLootLockerServerSetMetadataResponse.html">FLootLockerServerSetMetadataResponse</a></dd><dd><a class="el" href="structFLootLockerServerSimpleAsset.html">FLootLockerServerSimpleAsset</a></dd><dd><a class="el" href="structFLootLockerServerSimpleAssetAuthor.html">FLootLockerServerSimpleAssetAuthor</a></dd><dd><a class="el" href="structFLootLockerServerSimpleAssetDataEntity.html">FLootLockerServerSimpleAssetDataEntity</a></dd><dd><a class="el" href="structFLootLockerServerSimpleAssetExcludes.html">FLootLockerServerSimpleAssetExcludes</a></dd><dd><a class="el" href="structFLootLockerServerSimpleAssetFile.html">FLootLockerServerSimpleAssetFile</a></dd><dd><a class="el" href="structFLootLockerServerSimpleAssetFilters.html">FLootLockerServerSimpleAssetFilters</a></dd><dd><a class="el" href="structFLootLockerServerSimpleAssetIncludes.html">FLootLockerServerSimpleAssetIncludes</a></dd><dd><a class="el" href="structFLootLockerServerSingleCharacterProgressionResponse.html">FLootLockerServerSingleCharacterProgressionResponse</a></dd><dd><a class="el" href="structFLootLockerServerSingleCharacterProgressionWithRewardsResponse.html">FLootLockerServerSingleCharacterProgressionWithRewardsResponse</a></dd><dd><a class="el" href="structFLootLockerServerSingleGameProgressionResponse.html">FLootLockerServerSingleGameProgressionResponse</a></dd><dd><a class="el" href="structFLootLockerServerSingleInstanceProgressionResponse.html">FLootLockerServerSingleInstanceProgressionResponse</a></dd><dd><a class="el" href="structFLootLockerServerSingleInstanceProgressionWithRewardsResponse.html">FLootLockerServerSingleInstanceProgressionWithRewardsResponse</a></dd><dd><a class="el" href="structFLootLockerServerSinglePlayerFileResponse.html">FLootLockerServerSinglePlayerFileResponse</a></dd><dd><a class="el" href="structFLootLockerServerSinglePlayerProgressionResponse.html">FLootLockerServerSinglePlayerProgressionResponse</a></dd><dd><a class="el" href="structFLootLockerServerSinglePlayerProgressionWithRewardsResponse.html">FLootLockerServerSinglePlayerProgressionWithRewardsResponse</a></dd><dd><a class="el" href="structFLootLockerServerTokenExchangeResponse.html">FLootLockerServerTokenExchangeResponse</a></dd><dd><a class="el" href="structFLootLockerServerTriggeredAsset.html">FLootLockerServerTriggeredAsset</a></dd><dd><a class="el" href="structFLootLockerServerTriggeredLevel.html">FLootLockerServerTriggeredLevel</a></dd><dd><a class="el" href="structFLootLockerServerTriggeredXP.html">FLootLockerServerTriggeredXP</a></dd><dd><a class="el" href="structFLootLockerServerUnequipAssetFromCharacterLoadoutResponse.html">FLootLockerServerUnequipAssetFromCharacterLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerUnequipAssetFromHeroLoadoutResponse.html">FLootLockerServerUnequipAssetFromHeroLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerUnequipAssetFromPlayerLoadoutResponse.html">FLootLockerServerUnequipAssetFromPlayerLoadoutResponse</a></dd><dd><a class="el" href="structFLootLockerServerUniversalInventoryItem.html">FLootLockerServerUniversalInventoryItem</a></dd><dd><a class="el" href="structFLootLockerServerUpdateLeaderboardRequest.html">FLootLockerServerUpdateLeaderboardRequest</a></dd><dd><a class="el" href="structFLootLockerServerUpdateLeaderboardResponse.html">FLootLockerServerUpdateLeaderboardResponse</a></dd><dd><a class="el" href="structFLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest.html">FLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest</a></dd><dd><a class="el" href="structFLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse.html">FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse</a></dd></dl>
+<dl class="classindex odd">
+<dt class="alphachar"><a id="letter_L" name="letter_L">L</a></dt>
+<dd><a class="el" href="classLootLockerServerResponseFactory.html">LootLockerServerResponseFactory</a></dd><dd><a class="el" href="structLootLockerServerStaticRequestErrorStatusCodes.html">LootLockerServerStaticRequestErrorStatusCodes</a></dd></dl>
+<dl class="classindex even">
+<dt class="alphachar"><a id="letter_U" name="letter_U">U</a></dt>
+<dd><a class="el" href="classULootLockerServerAssetRequest.html">ULootLockerServerAssetRequest</a></dd><dd><a class="el" href="classULootLockerServerAuthRequest.html">ULootLockerServerAuthRequest</a></dd><dd><a class="el" href="classULootLockerServerBalanceRequest.html">ULootLockerServerBalanceRequest</a></dd><dd><a class="el" href="classULootLockerServerCharacterProgressionRequest.html">ULootLockerServerCharacterProgressionRequest</a></dd><dd><a class="el" href="classULootLockerServerCharacterRequest.html">ULootLockerServerCharacterRequest</a></dd><dd><a class="el" href="classULootLockerServerConfig.html">ULootLockerServerConfig</a></dd><dd><a class="el" href="classULootLockerServerConnectedAccountsRequest.html">ULootLockerServerConnectedAccountsRequest</a></dd><dd><a class="el" href="classULootLockerServerCurrencyRequest.html">ULootLockerServerCurrencyRequest</a></dd><dd><a class="el" href="classULootLockerServerDropTableRequest.html">ULootLockerServerDropTableRequest</a></dd><dd><a class="el" href="classULootLockerServerEnumUtils.html">ULootLockerServerEnumUtils</a></dd><dd><a class="el" href="classULootLockerServerForCpp.html">ULootLockerServerForCpp</a></dd><dd><a class="el" href="classULootLockerServerFriendsRequest.html">ULootLockerServerFriendsRequest</a></dd><dd><a class="el" href="classULootLockerServerGameProgressionRequest.html">ULootLockerServerGameProgressionRequest</a></dd><dd><a class="el" href="classULootLockerServerHeroRequest.html">ULootLockerServerHeroRequest</a></dd><dd><a class="el" href="classULootLockerServerInstanceProgressionRequest.html">ULootLockerServerInstanceProgressionRequest</a></dd><dd><a class="el" href="classULootLockerServerLeaderboardArchiveRequestHandler.html">ULootLockerServerLeaderboardArchiveRequestHandler</a></dd><dd><a class="el" href="classULootLockerServerLeaderboardRequest.html">ULootLockerServerLeaderboardRequest</a></dd><dd><a class="el" href="classULootLockerServerMetadataRequest.html">ULootLockerServerMetadataRequest</a></dd><dd><a class="el" href="classULootLockerServerNotificationsRequest.html">ULootLockerServerNotificationsRequest</a></dd><dd><a class="el" href="classULootLockerServerOAuthRequest.html">ULootLockerServerOAuthRequest</a></dd><dd><a class="el" href="classULootLockerServerPlayerFileRequest.html">ULootLockerServerPlayerFileRequest</a></dd><dd><a class="el" href="classULootLockerServerPlayerInventoryRequest.html">ULootLockerServerPlayerInventoryRequest</a></dd><dd><a class="el" href="classULootLockerServerPlayerProgressionRequest.html">ULootLockerServerPlayerProgressionRequest</a></dd><dd><a class="el" href="classULootLockerServerPlayerRequest.html">ULootLockerServerPlayerRequest</a></dd><dd><a class="el" href="classULootLockerServerStorageRequest.html">ULootLockerServerStorageRequest</a></dd><dd><a class="el" href="classULootLockerServerTriggerRequest.html">ULootLockerServerTriggerRequest</a></dd></dl>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

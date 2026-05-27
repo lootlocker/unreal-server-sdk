@@ -1,0 +1,505 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/LootLockerServerHeroRequest.h Source File</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.5.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('LootLockerServerHeroRequest_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">LootLockerServerHeroRequest.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="LootLockerServerHeroRequest_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2021 LootLocker</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="LootLockerServerResponse_8h.html">LootLockerServerResponse.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="LootLockerServerAssetRequest_8h.html">ServerAPI/LootLockerServerAssetRequest.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;LootLockerServerHeroRequest.generated.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// Data Type Definitions</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html">   19</a></span>struct <a class="code hl_struct" href="structFLootLockerServerPlayerHero.html">FLootLockerServerPlayerHero</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html#ab95b08be50b1eaf378415feb1d704589">   26</a></span>    int Id = 0;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html#ae94e59048f4c185252406be12cf11e83">   31</a></span>    <span class="keywordtype">int</span> Hero_id = 0;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html#a142a989f591abbdb7a68eafccc4bba78">   36</a></span>    <span class="keywordtype">int</span> Character_id = 0;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html#a9d2d5d2254f4117cb1c09aca8aa3f734">   41</a></span>    <span class="keywordtype">int</span> Instance_id = 0;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html#a02b09088ce2f29196e7273abb720b1c4">   46</a></span>    FString Hero_name = &quot;&quot;;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html#a415b19067d7158c72802d82c7a5018ee">   51</a></span>    FString Character_name = &quot;&quot;;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html#a44841ee4177c9744f9035f0169002ba0">   56</a></span>    FString Class_name = &quot;&quot;;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html#a0e916a4e2b108e92c110a96f1f578546">   61</a></span>    <span class="keywordtype">bool</span> Is_default = false;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html#a0828e50dd5f04258db6117ee3316103d">   66</a></span>    <span class="keywordtype">int</span> Asset_variation_id = 0;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHero.html#ab6bc0c225d3620b0867343ae553574e4">   71</a></span>    <a class="code hl_struct" href="structFLootLockerServerAsset.html">FLootLockerServerAsset</a> <a class="code hl_enumvalue" href="LootLockerServerLeaderboardRequest_8h.html#a56af52b1508e2482aa7528645d79a064a26e9054be7f40079575582b7ad3f7363">Asset</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="};">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroItemRentalData.html">   78</a></span>struct <a class="code hl_struct" href="structFLootLockerServerPlayerHeroItemRentalData.html">FLootLockerServerPlayerHeroItemRentalData</a></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroItemRentalData.html#a3042cb93edae8231ff05d53c6421bf1a">   85</a></span>    bool Is_rental = false;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroItemRentalData.html#ab5a6766488661e6dc8742b072f36755d">   92</a></span>    FString Time_left = &quot;&quot;;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroItemRentalData.html#a5f487b71e3caf3ce77ec45c7469f675d">   99</a></span>    FString Duration = &quot;&quot;;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroItemRentalData.html#a81640e6b5e71d29f7062b4c91d7b2889">  106</a></span>    FString Is_active = &quot;&quot;;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>};</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00113" data-start="{" data-end="};">
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroInventoryItem.html">  113</a></span>struct <a class="code hl_struct" href="structFLootLockerServerPlayerHeroInventoryItem.html">FLootLockerServerPlayerHeroInventoryItem</a></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>{</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroInventoryItem.html#afc4ffbd34e9265fe4f74a5089cc8bab2">  120</a></span>    int Instance_id = 0;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroInventoryItem.html#abaf400adf68fb23cc7748e6f005565af">  127</a></span>    FString Variation_id = &quot;&quot;;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroInventoryItem.html#a295a6df0cd78a8b899614e1b52f11e0f">  134</a></span>    FString Rental_option_id = &quot;&quot;;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroInventoryItem.html#aeb34fd88d86586b275fe39fc7773647b">  139</a></span>    FString Acquisition_source = &quot;&quot;;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroInventoryItem.html#ac24b1525496215791872e3dfe437b0e0">  144</a></span>    <a class="code hl_struct" href="structFLootLockerServerAsset.html">FLootLockerServerAsset</a> <a class="code hl_enumvalue" href="LootLockerServerLeaderboardRequest_8h.html#a56af52b1508e2482aa7528645d79a064a26e9054be7f40079575582b7ad3f7363">Asset</a>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroInventoryItem.html#a67f84e3285ef40f3ae88d947f5293f9f">  149</a></span>    <a class="code hl_struct" href="structFLootLockerServerPlayerHeroItemRentalData.html">FLootLockerServerPlayerHeroItemRentalData</a> Rental;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>};</div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00156" data-start="{" data-end="};">
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroLoadoutItem.html">  156</a></span>struct <a class="code hl_struct" href="structFLootLockerServerPlayerHeroLoadoutItem.html">FLootLockerServerPlayerHeroLoadoutItem</a></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>{</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroLoadoutItem.html#a953a81fe7798668d97033aeb679b1c00">  165</a></span>    FString Variation_id = &quot;&quot;;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroLoadoutItem.html#a273cff45c11b4f1ecfe02f7a78ed7f90">  170</a></span>    <span class="keywordtype">int</span> Instance_id = 0;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroLoadoutItem.html#af7161048d1441a38f8f0ae9b21b2d747">  175</a></span>    FString Mounted_at = &quot;&quot;;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroLoadoutItem.html#a35bbedb862a536a3c310f7d05c1cf26c">  180</a></span>    <a class="code hl_struct" href="structFLootLockerServerAsset.html">FLootLockerServerAsset</a> <a class="code hl_enumvalue" href="LootLockerServerLeaderboardRequest_8h.html#a56af52b1508e2482aa7528645d79a064a26e9054be7f40079575582b7ad3f7363">Asset</a>;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerHeroLoadoutItem.html#a462498c4d4b4cf3705524445bfcb3c10">  185</a></span>    <a class="code hl_struct" href="structFLootLockerServerPlayerHeroItemRentalData.html">FLootLockerServerPlayerHeroItemRentalData</a> Rental;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>};</div>
+</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment">// Request Definitions</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00196" data-start="{" data-end="};">
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="structFLootLockerServerEquipAssetToHeroLoadoutRequest.html">  196</a></span>struct <a class="code hl_struct" href="structFLootLockerServerEquipAssetToHeroLoadoutRequest.html">FLootLockerServerEquipAssetToHeroLoadoutRequest</a></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>{</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="structFLootLockerServerEquipAssetToHeroLoadoutRequest.html#a7c2d28812bb87e961ccf345f8e7be576">  203</a></span>    int Instance_id = 0;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>};</div>
+</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00210" data-start="{" data-end="};">
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest.html">  210</a></span>struct <a class="code hl_struct" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest.html">FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest</a></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>{</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest.html#a14d37a8f26acd138dc3efc77f3a87b23">  217</a></span>    int Asset_id = 0;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest.html#a122550d02dc006401a47b78e66aff195">  222</a></span>    <span class="keywordtype">int</span> Asset_variation_id = 0;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>};</div>
+</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00229" data-start="{" data-end="};">
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest.html">  229</a></span>struct <a class="code hl_struct" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest.html">FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest</a></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>{</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest.html#a058bfbcdfab024a172c69cda0a913cc8">  236</a></span>    int Asset_id = 0;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest.html#ae7f96b9d3d1a59a0fce5058fec097ae2">  241</a></span>    <span class="keywordtype">int</span> Rental_option_id = 0;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>};</div>
+</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment">// Response Definitions</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00252" data-start="{" data-end="};">
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="structFLootLockerServerGetPlayerHeroesResponse.html">  252</a></span>struct <a class="code hl_struct" href="structFLootLockerServerGetPlayerHeroesResponse.html">FLootLockerServerGetPlayerHeroesResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>{</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="structFLootLockerServerGetPlayerHeroesResponse.html#ada3d8cc2bcc5e9af09114e5234761d95">  260</a></span>    TArray&lt;<a class="code hl_struct" href="structFLootLockerServerPlayerHero.html">FLootLockerServerPlayerHero</a>&gt; Items;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>};</div>
+</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00267" data-start="{" data-end="};">
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="structFLootLockerServerGetHeroInventoryResponse.html">  267</a></span>struct <a class="code hl_struct" href="structFLootLockerServerGetHeroInventoryResponse.html">FLootLockerServerGetHeroInventoryResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>{</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="structFLootLockerServerGetHeroInventoryResponse.html#aab4c4fe487844e97cff6738f62bd59bf">  275</a></span>    int Total = 0;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="structFLootLockerServerGetHeroInventoryResponse.html#aabee45307228dd46e37d84dbf423ac63">  280</a></span>    TArray&lt;<a class="code hl_struct" href="structFLootLockerServerPlayerHeroInventoryItem.html">FLootLockerServerPlayerHeroInventoryItem</a>&gt; Items;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>};</div>
+</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00287" data-start="{" data-end="};">
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="structFLootLockerServerFullHeroLoadoutResponse.html">  287</a></span>struct <a class="code hl_struct" href="structFLootLockerServerFullHeroLoadoutResponse.html">FLootLockerServerFullHeroLoadoutResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>{</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="structFLootLockerServerFullHeroLoadoutResponse.html#a3eab747472dfed32efb9f554417dbf56">  295</a></span>    TArray&lt;<a class="code hl_struct" href="structFLootLockerServerPlayerHeroLoadoutItem.html">FLootLockerServerPlayerHeroLoadoutItem</a>&gt; Items;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>};</div>
+</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00302" data-start="{" data-end="};">
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="structFLootLockerServerGetHeroLoadoutResponse.html">  302</a></span>struct <a class="code hl_struct" href="structFLootLockerServerGetHeroLoadoutResponse.html">FLootLockerServerGetHeroLoadoutResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerFullHeroLoadoutResponse.html">FLootLockerServerFullHeroLoadoutResponse</a></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>{</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>};</div>
+</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00311" data-start="{" data-end="};">
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="structFLootLockerServerEquipAssetToHeroLoadoutResponse.html">  311</a></span>struct <a class="code hl_struct" href="structFLootLockerServerEquipAssetToHeroLoadoutResponse.html">FLootLockerServerEquipAssetToHeroLoadoutResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerFullHeroLoadoutResponse.html">FLootLockerServerFullHeroLoadoutResponse</a></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>{</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>};</div>
+</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00320" data-start="{" data-end="};">
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="structFLootLockerServerUnequipAssetFromHeroLoadoutResponse.html">  320</a></span>struct <a class="code hl_struct" href="structFLootLockerServerUnequipAssetFromHeroLoadoutResponse.html">FLootLockerServerUnequipAssetFromHeroLoadoutResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerFullHeroLoadoutResponse.html">FLootLockerServerFullHeroLoadoutResponse</a></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>{</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>};</div>
+</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="comment">// C++ Delegate Definitions</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="comment"> C++ response delegate for getting a player&#39;s heroes</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno"><a class="line" href="LootLockerServerHeroRequest_8h.html#a6597bc6803310cf3018029724e0162d3">  332</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a6597bc6803310cf3018029724e0162d3">FLootLockerServerGetPlayerHeroResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerGetPlayerHeroesResponse.html">FLootLockerServerGetPlayerHeroesResponse</a>);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment"> C++ response delegate for getting a player heroes inventory</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno"><a class="line" href="LootLockerServerHeroRequest_8h.html#a9018c367bab8427faad1ddb1ef9a119e">  336</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a9018c367bab8427faad1ddb1ef9a119e">FLootLockerServerGetHeroInventoryResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerGetHeroInventoryResponse.html">FLootLockerServerGetHeroInventoryResponse</a>);</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="comment"> C++ response delegate for getting a player heroes loadout</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="LootLockerServerHeroRequest_8h.html#ab65c7de3953c3dce651746f471466a98">  340</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#ab65c7de3953c3dce651746f471466a98">FLootLockerServerGetHeroLoadoutResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerGetHeroLoadoutResponse.html">FLootLockerServerGetHeroLoadoutResponse</a>);</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="comment"> C++ response delegate for equipping an asset to a player heroes loadout</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="LootLockerServerHeroRequest_8h.html#a904b21816ddfc480124da87328a306b1">  344</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a904b21816ddfc480124da87328a306b1">FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerEquipAssetToHeroLoadoutResponse.html">FLootLockerServerEquipAssetToHeroLoadoutResponse</a>);</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="comment"> C++ response delegate for unequipping an asset from a player heroes loadout</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno"><a class="line" href="LootLockerServerHeroRequest_8h.html#a96dddc077e31a1ae7fb219be832228d7">  348</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a96dddc077e31a1ae7fb219be832228d7">FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerUnequipAssetFromHeroLoadoutResponse.html">FLootLockerServerUnequipAssetFromHeroLoadoutResponse</a>);</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>UCLASS()</div>
+<div class="foldopen" id="foldopen00355" data-start="{" data-end="};">
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno"><a class="line" href="classULootLockerServerHeroRequest.html">  355</a></span>class LOOTLOCKERSERVERSDK_API <a class="code hl_class" href="classULootLockerServerHeroRequest.html">ULootLockerServerHeroRequest</a> : public UObject</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>{</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno"><a class="line" href="classULootLockerServerHeroRequest.html#af0ef1dca97ffeaf324033c1e109e41f9">  359</a></span>    <a class="code hl_function" href="classULootLockerServerHeroRequest.html#af0ef1dca97ffeaf324033c1e109e41f9">ULootLockerServerHeroRequest</a>();</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span> </div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno"><a class="line" href="classULootLockerServerHeroRequest.html#a4d598d8ff75dbb65436948518f0e9f7c">  361</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerHeroRequest.html#a4d598d8ff75dbb65436948518f0e9f7c">GetPlayerHeroes</a>(<span class="keywordtype">int</span> PlayerID, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a6597bc6803310cf3018029724e0162d3">FLootLockerServerGetPlayerHeroResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno"><a class="line" href="classULootLockerServerHeroRequest.html#a01b92aeb0cf0225e03025397c949c854">  362</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerHeroRequest.html#a01b92aeb0cf0225e03025397c949c854">GetPlayerHeroInventory</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> HeroID, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a9018c367bab8427faad1ddb1ef9a119e">FLootLockerServerGetHeroInventoryResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno"><a class="line" href="classULootLockerServerHeroRequest.html#ab3482277635f5e99a1f4b3d30b934330">  363</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerHeroRequest.html#ab3482277635f5e99a1f4b3d30b934330">GetPaginatedPlayerHeroInventory</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> HeroID, <span class="keywordtype">int</span> Count, <span class="keywordtype">int</span> After, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a9018c367bab8427faad1ddb1ef9a119e">FLootLockerServerGetHeroInventoryResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno"><a class="line" href="classULootLockerServerHeroRequest.html#a930bf7de3fe68bfd9154928d1b091a51">  364</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerHeroRequest.html#a930bf7de3fe68bfd9154928d1b091a51">GetPlayerHeroLoadout</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> HeroID, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#ab65c7de3953c3dce651746f471466a98">FLootLockerServerGetHeroLoadoutResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno"><a class="line" href="classULootLockerServerHeroRequest.html#a9bc78cc29ea0110991528fe1691ba4c2">  365</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerHeroRequest.html#a9bc78cc29ea0110991528fe1691ba4c2">EquipAssetToPlayerHeroLoadoutByAssetInstanceId</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> HeroID, <span class="keywordtype">int</span> AssetInstanceID, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a904b21816ddfc480124da87328a306b1">FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="classULootLockerServerHeroRequest.html#ad25eeda8e0a16b9045a41143dfcf7dc2">  366</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerHeroRequest.html#ad25eeda8e0a16b9045a41143dfcf7dc2">EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> HeroID, <span class="keywordtype">int</span> AssetID, <span class="keywordtype">int</span> AssetVariationID, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a904b21816ddfc480124da87328a306b1">FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno"><a class="line" href="classULootLockerServerHeroRequest.html#a1540d2b47d0985f32cbfc4fb861996d7">  367</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerHeroRequest.html#a1540d2b47d0985f32cbfc4fb861996d7">EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> HeroID, <span class="keywordtype">int</span> AssetID, <span class="keywordtype">int</span> RentalOptionID, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a904b21816ddfc480124da87328a306b1">FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="classULootLockerServerHeroRequest.html#a0b82b72f4729f1684ae5b979edd4ec17">  368</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerHeroRequest.html#a0b82b72f4729f1684ae5b979edd4ec17">UnequipAssetFromPlayerHeroLoadout</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> HeroID, <span class="keywordtype">int</span> InstanceID, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerHeroRequest_8h.html#a96dddc077e31a1ae7fb219be832228d7">FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>};</div>
+</div>
+<div class="ttc" id="aLootLockerServerAssetRequest_8h_html"><div class="ttname"><a href="LootLockerServerAssetRequest_8h.html">LootLockerServerAssetRequest.h</a></div></div>
+<div class="ttc" id="aLootLockerServerHeroRequest_8h_html_a6597bc6803310cf3018029724e0162d3"><div class="ttname"><a href="LootLockerServerHeroRequest_8h.html#a6597bc6803310cf3018029724e0162d3">FLootLockerServerGetPlayerHeroResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerGetPlayerHeroResponseDelegate)(FLootLockerServerGetPlayerHeroesResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:332</div></div>
+<div class="ttc" id="aLootLockerServerHeroRequest_8h_html_a9018c367bab8427faad1ddb1ef9a119e"><div class="ttname"><a href="LootLockerServerHeroRequest_8h.html#a9018c367bab8427faad1ddb1ef9a119e">FLootLockerServerGetHeroInventoryResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerGetHeroInventoryResponseDelegate)(FLootLockerServerGetHeroInventoryResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:336</div></div>
+<div class="ttc" id="aLootLockerServerHeroRequest_8h_html_a904b21816ddfc480124da87328a306b1"><div class="ttname"><a href="LootLockerServerHeroRequest_8h.html#a904b21816ddfc480124da87328a306b1">FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate)(FLootLockerServerEquipAssetToHeroLoadoutResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:344</div></div>
+<div class="ttc" id="aLootLockerServerHeroRequest_8h_html_a96dddc077e31a1ae7fb219be832228d7"><div class="ttname"><a href="LootLockerServerHeroRequest_8h.html#a96dddc077e31a1ae7fb219be832228d7">FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate)(FLootLockerServerUnequipAssetFromHeroLoadoutResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:348</div></div>
+<div class="ttc" id="aLootLockerServerHeroRequest_8h_html_ab65c7de3953c3dce651746f471466a98"><div class="ttname"><a href="LootLockerServerHeroRequest_8h.html#ab65c7de3953c3dce651746f471466a98">FLootLockerServerGetHeroLoadoutResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerGetHeroLoadoutResponseDelegate)(FLootLockerServerGetHeroLoadoutResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:340</div></div>
+<div class="ttc" id="aLootLockerServerLeaderboardRequest_8h_html_a56af52b1508e2482aa7528645d79a064a26e9054be7f40079575582b7ad3f7363"><div class="ttname"><a href="LootLockerServerLeaderboardRequest_8h.html#a56af52b1508e2482aa7528645d79a064a26e9054be7f40079575582b7ad3f7363">ELootLockerServerLeaderboardRewardEntityKind::Asset</a></div><div class="ttdeci">@ Asset</div></div>
+<div class="ttc" id="aLootLockerServerResponse_8h_html"><div class="ttname"><a href="LootLockerServerResponse_8h.html">LootLockerServerResponse.h</a></div></div>
+<div class="ttc" id="aclassULootLockerServerHeroRequest_html"><div class="ttname"><a href="classULootLockerServerHeroRequest.html">ULootLockerServerHeroRequest</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:356</div></div>
+<div class="ttc" id="aclassULootLockerServerHeroRequest_html_a01b92aeb0cf0225e03025397c949c854"><div class="ttname"><a href="classULootLockerServerHeroRequest.html#a01b92aeb0cf0225e03025397c949c854">ULootLockerServerHeroRequest::GetPlayerHeroInventory</a></div><div class="ttdeci">static FString GetPlayerHeroInventory(int PlayerID, int HeroID, const FLootLockerServerGetHeroInventoryResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerHeroRequest_html_a0b82b72f4729f1684ae5b979edd4ec17"><div class="ttname"><a href="classULootLockerServerHeroRequest.html#a0b82b72f4729f1684ae5b979edd4ec17">ULootLockerServerHeroRequest::UnequipAssetFromPlayerHeroLoadout</a></div><div class="ttdeci">static FString UnequipAssetFromPlayerHeroLoadout(int PlayerID, int HeroID, int InstanceID, const FLootLockerServerUnequipAssetFromHeroLoadoutResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerHeroRequest_html_a1540d2b47d0985f32cbfc4fb861996d7"><div class="ttname"><a href="classULootLockerServerHeroRequest.html#a1540d2b47d0985f32cbfc4fb861996d7">ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId</a></div><div class="ttdeci">static FString EquipAssetToPlayerHeroLoadoutByAssetIdAndRentalOptionId(int PlayerID, int HeroID, int AssetID, int RentalOptionID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerHeroRequest_html_a4d598d8ff75dbb65436948518f0e9f7c"><div class="ttname"><a href="classULootLockerServerHeroRequest.html#a4d598d8ff75dbb65436948518f0e9f7c">ULootLockerServerHeroRequest::GetPlayerHeroes</a></div><div class="ttdeci">static FString GetPlayerHeroes(int PlayerID, const FLootLockerServerGetPlayerHeroResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerHeroRequest_html_a930bf7de3fe68bfd9154928d1b091a51"><div class="ttname"><a href="classULootLockerServerHeroRequest.html#a930bf7de3fe68bfd9154928d1b091a51">ULootLockerServerHeroRequest::GetPlayerHeroLoadout</a></div><div class="ttdeci">static FString GetPlayerHeroLoadout(int PlayerID, int HeroID, const FLootLockerServerGetHeroLoadoutResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerHeroRequest_html_a9bc78cc29ea0110991528fe1691ba4c2"><div class="ttname"><a href="classULootLockerServerHeroRequest.html#a9bc78cc29ea0110991528fe1691ba4c2">ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetInstanceId</a></div><div class="ttdeci">static FString EquipAssetToPlayerHeroLoadoutByAssetInstanceId(int PlayerID, int HeroID, int AssetInstanceID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerHeroRequest_html_ab3482277635f5e99a1f4b3d30b934330"><div class="ttname"><a href="classULootLockerServerHeroRequest.html#ab3482277635f5e99a1f4b3d30b934330">ULootLockerServerHeroRequest::GetPaginatedPlayerHeroInventory</a></div><div class="ttdeci">static FString GetPaginatedPlayerHeroInventory(int PlayerID, int HeroID, int Count, int After, const FLootLockerServerGetHeroInventoryResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerHeroRequest_html_ad25eeda8e0a16b9045a41143dfcf7dc2"><div class="ttname"><a href="classULootLockerServerHeroRequest.html#ad25eeda8e0a16b9045a41143dfcf7dc2">ULootLockerServerHeroRequest::EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId</a></div><div class="ttdeci">static FString EquipAssetToPlayerHeroLoadoutByAssetIdAndAssetVariationId(int PlayerID, int HeroID, int AssetID, int AssetVariationID, const FLootLockerServerEquipAssetToHeroLoadoutResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerHeroRequest_html_af0ef1dca97ffeaf324033c1e109e41f9"><div class="ttname"><a href="classULootLockerServerHeroRequest.html#af0ef1dca97ffeaf324033c1e109e41f9">ULootLockerServerHeroRequest::ULootLockerServerHeroRequest</a></div><div class="ttdeci">ULootLockerServerHeroRequest()</div></div>
+<div class="ttc" id="astructFLootLockerServerAsset_html"><div class="ttname"><a href="structFLootLockerServerAsset.html">FLootLockerServerAsset</a></div><div class="ttdef"><b>Definition</b> LootLockerServerAssetRequest.h:468</div></div>
+<div class="ttc" id="astructFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest_html"><div class="ttname"><a href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest.html">FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:230</div></div>
+<div class="ttc" id="astructFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest_html"><div class="ttname"><a href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest.html">FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:211</div></div>
+<div class="ttc" id="astructFLootLockerServerEquipAssetToHeroLoadoutRequest_html"><div class="ttname"><a href="structFLootLockerServerEquipAssetToHeroLoadoutRequest.html">FLootLockerServerEquipAssetToHeroLoadoutRequest</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:197</div></div>
+<div class="ttc" id="astructFLootLockerServerEquipAssetToHeroLoadoutResponse_html"><div class="ttname"><a href="structFLootLockerServerEquipAssetToHeroLoadoutResponse.html">FLootLockerServerEquipAssetToHeroLoadoutResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:312</div></div>
+<div class="ttc" id="astructFLootLockerServerFullHeroLoadoutResponse_html"><div class="ttname"><a href="structFLootLockerServerFullHeroLoadoutResponse.html">FLootLockerServerFullHeroLoadoutResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:288</div></div>
+<div class="ttc" id="astructFLootLockerServerGetHeroInventoryResponse_html"><div class="ttname"><a href="structFLootLockerServerGetHeroInventoryResponse.html">FLootLockerServerGetHeroInventoryResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:268</div></div>
+<div class="ttc" id="astructFLootLockerServerGetHeroLoadoutResponse_html"><div class="ttname"><a href="structFLootLockerServerGetHeroLoadoutResponse.html">FLootLockerServerGetHeroLoadoutResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:303</div></div>
+<div class="ttc" id="astructFLootLockerServerGetPlayerHeroesResponse_html"><div class="ttname"><a href="structFLootLockerServerGetPlayerHeroesResponse.html">FLootLockerServerGetPlayerHeroesResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:253</div></div>
+<div class="ttc" id="astructFLootLockerServerPlayerHeroInventoryItem_html"><div class="ttname"><a href="structFLootLockerServerPlayerHeroInventoryItem.html">FLootLockerServerPlayerHeroInventoryItem</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:114</div></div>
+<div class="ttc" id="astructFLootLockerServerPlayerHeroItemRentalData_html"><div class="ttname"><a href="structFLootLockerServerPlayerHeroItemRentalData.html">FLootLockerServerPlayerHeroItemRentalData</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:79</div></div>
+<div class="ttc" id="astructFLootLockerServerPlayerHeroLoadoutItem_html"><div class="ttname"><a href="structFLootLockerServerPlayerHeroLoadoutItem.html">FLootLockerServerPlayerHeroLoadoutItem</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:157</div></div>
+<div class="ttc" id="astructFLootLockerServerPlayerHero_html"><div class="ttname"><a href="structFLootLockerServerPlayerHero.html">FLootLockerServerPlayerHero</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:20</div></div>
+<div class="ttc" id="astructFLootLockerServerResponse_html"><div class="ttname"><a href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div><div class="ttdoc">The base response for all LootLocker Server responses.</div><div class="ttdef"><b>Definition</b> LootLockerServerResponse.h:67</div></div>
+<div class="ttc" id="astructFLootLockerServerUnequipAssetFromHeroLoadoutResponse_html"><div class="ttname"><a href="structFLootLockerServerUnequipAssetFromHeroLoadoutResponse.html">FLootLockerServerUnequipAssetFromHeroLoadoutResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerHeroRequest.h:321</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_9f77ca9030fc530377179ef1ae010e8e.html">LootLockerServerSDK</a></li><li class="navelem"><a class="el" href="dir_6c67ecf51f1dd82eba34c6913e42f1aa.html">Source</a></li><li class="navelem"><a class="el" href="dir_19732b1a8e4198efc19367964d57ba95.html">LootLockerServerSDK</a></li><li class="navelem"><a class="el" href="dir_54f4648b1d151bbc23437e0756736e1c.html">Public</a></li><li class="navelem"><a class="el" href="dir_50576b1844c996962de96e8d53ce5ab2.html">ServerAPI</a></li><li class="navelem"><a class="el" href="LootLockerServerHeroRequest_8h.html">LootLockerServerHeroRequest.h</a></li>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

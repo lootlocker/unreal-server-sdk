@@ -1,0 +1,473 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: Data Structures</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.5.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('annotated.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Data Structures</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock">Here are the data structures with brief descriptions:</div><div class="directory">
+<table class="directory">
+<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAddAssetToPlayerInventoryResponse.html" target="_self">FLootLockerServerAddAssetToPlayerInventoryResponse</a></td><td class="desc"></td></tr>
+<tr id="row_1_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest.html" target="_self">FLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest.html" target="_self">FLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_3_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAlterPlayerInventoryByAssetIdRequest.html" target="_self">FLootLockerServerAlterPlayerInventoryByAssetIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAlterPlayerInventoryRequestBase.html" target="_self">FLootLockerServerAlterPlayerInventoryRequestBase</a></td><td class="desc"></td></tr>
+<tr id="row_5_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAlterPlayerInventoryResponse.html" target="_self">FLootLockerServerAlterPlayerInventoryResponse</a></td><td class="desc"></td></tr>
+<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAsset.html" target="_self">FLootLockerServerAsset</a></td><td class="desc"></td></tr>
+<tr id="row_7_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetByAssetIdAndRentalOptionIdRequest.html" target="_self">FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetByAssetIdAndVariationIdRequest.html" target="_self">FLootLockerServerAssetByAssetIdAndVariationIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_9_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetByAssetIdRequest.html" target="_self">FLootLockerServerAssetByAssetIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_10_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetByAssetInstanceIdRequest.html" target="_self">FLootLockerServerAssetByAssetInstanceIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_11_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetByInstanceIDRequest.html" target="_self">FLootLockerServerAssetByInstanceIDRequest</a></td><td class="desc"></td></tr>
+<tr id="row_12_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetCandidateInformation.html" target="_self">FLootLockerServerAssetCandidateInformation</a></td><td class="desc"></td></tr>
+<tr id="row_13_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetFile.html" target="_self">FLootLockerServerAssetFile</a></td><td class="desc"></td></tr>
+<tr id="row_14_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetHeroEquipException.html" target="_self">FLootLockerServerAssetHeroEquipException</a></td><td class="desc"></td></tr>
+<tr id="row_15_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetInstanceKeyValuePairItemResponse.html" target="_self">FLootLockerServerAssetInstanceKeyValuePairItemResponse</a></td><td class="desc"></td></tr>
+<tr id="row_16_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetInstanceKeyValuePairsListResponse.html" target="_self">FLootLockerServerAssetInstanceKeyValuePairsListResponse</a></td><td class="desc"></td></tr>
+<tr id="row_17_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetInstanceStorageKeyValueSet.html" target="_self">FLootLockerServerAssetInstanceStorageKeyValueSet</a></td><td class="desc"></td></tr>
+<tr id="row_18_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetRarity.html" target="_self">FLootLockerServerAssetRarity</a></td><td class="desc"></td></tr>
+<tr id="row_19_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetRentalOption.html" target="_self">FLootLockerServerAssetRentalOption</a></td><td class="desc"></td></tr>
+<tr id="row_20_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetReward.html" target="_self">FLootLockerServerAssetReward</a></td><td class="desc"></td></tr>
+<tr id="row_21_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetRewardDetails.html" target="_self">FLootLockerServerAssetRewardDetails</a></td><td class="desc"></td></tr>
+<tr id="row_22_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetStorageKeyValueSet.html" target="_self">FLootLockerServerAssetStorageKeyValueSet</a></td><td class="desc"></td></tr>
+<tr id="row_23_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetVariation.html" target="_self">FLootLockerServerAssetVariation</a></td><td class="desc"></td></tr>
+<tr id="row_24_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetVariationProperty.html" target="_self">FLootLockerServerAssetVariationProperty</a></td><td class="desc"></td></tr>
+<tr id="row_25_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAssetWithoutPackageContent.html" target="_self">FLootLockerServerAssetWithoutPackageContent</a></td><td class="desc"></td></tr>
+<tr id="row_26_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAuthenticationRequest.html" target="_self">FLootLockerServerAuthenticationRequest</a></td><td class="desc"></td></tr>
+<tr id="row_27_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerAuthenticationResponse.html" target="_self">FLootLockerServerAuthenticationResponse</a></td><td class="desc"></td></tr>
+<tr id="row_28_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerBalance.html" target="_self">FLootLockerServerBalance</a></td><td class="desc"></td></tr>
+<tr id="row_29_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerBalanceModifiers.html" target="_self">FLootLockerServerBalanceModifiers</a></td><td class="desc"></td></tr>
+<tr id="row_30_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerBalanceWithCurrencyId.html" target="_self">FLootLockerServerBalanceWithCurrencyId</a></td><td class="desc"></td></tr>
+<tr id="row_31_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCharacterProgression.html" target="_self">FLootLockerServerCharacterProgression</a></td><td class="desc"></td></tr>
+<tr id="row_32_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCharacterProgressionListResponse.html" target="_self">FLootLockerServerCharacterProgressionListResponse</a></td><td class="desc"></td></tr>
+<tr id="row_33_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerComputeAndLockDropTableResponse.html" target="_self">FLootLockerServerComputeAndLockDropTableResponse</a></td><td class="desc"></td></tr>
+<tr id="row_34_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerConnectedAccount.html" target="_self">FLootLockerServerConnectedAccount</a></td><td class="desc">Details about a connected authentication provider for a player </td></tr>
+<tr id="row_35_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerContext.html" target="_self">FLootLockerServerContext</a></td><td class="desc">Represents a context for organizing assets and inventory </td></tr>
+<tr id="row_36_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCreateAssetInstanceKeyValuePairRequest.html" target="_self">FLootLockerServerCreateAssetInstanceKeyValuePairRequest</a></td><td class="desc"></td></tr>
+<tr id="row_37_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCreateLeaderboardRequest.html" target="_self">FLootLockerServerCreateLeaderboardRequest</a></td><td class="desc"></td></tr>
+<tr id="row_38_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCreateLeaderboardResponse.html" target="_self">FLootLockerServerCreateLeaderboardResponse</a></td><td class="desc"></td></tr>
+<tr id="row_39_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCreateLeaderboardScheduleRequest.html" target="_self">FLootLockerServerCreateLeaderboardScheduleRequest</a></td><td class="desc"></td></tr>
+<tr id="row_40_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCreatePlayerRequest.html" target="_self">FLootLockerServerCreatePlayerRequest</a></td><td class="desc"></td></tr>
+<tr id="row_41_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCreatePlayerResponse.html" target="_self">FLootLockerServerCreatePlayerResponse</a></td><td class="desc"></td></tr>
+<tr id="row_42_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCreateWalletRequest.html" target="_self">FLootLockerServerCreateWalletRequest</a></td><td class="desc"></td></tr>
+<tr id="row_43_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCreateWalletResponse.html" target="_self">FLootLockerServerCreateWalletResponse</a></td><td class="desc"></td></tr>
+<tr id="row_44_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCreditRequest.html" target="_self">FLootLockerServerCreditRequest</a></td><td class="desc"></td></tr>
+<tr id="row_45_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCreditWalletResponse.html" target="_self">FLootLockerServerCreditWalletResponse</a></td><td class="desc"></td></tr>
+<tr id="row_46_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCurrency.html" target="_self">FLootLockerServerCurrency</a></td><td class="desc">Details about a particular currency </td></tr>
+<tr id="row_47_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCurrencyReward.html" target="_self">FLootLockerServerCurrencyReward</a></td><td class="desc"></td></tr>
+<tr id="row_48_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerCurrencyRewardDetails.html" target="_self">FLootLockerServerCurrencyRewardDetails</a></td><td class="desc"></td></tr>
+<tr id="row_49_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerDebitRequest.html" target="_self">FLootLockerServerDebitRequest</a></td><td class="desc"></td></tr>
+<tr id="row_50_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerDebitWalletResponse.html" target="_self">FLootLockerServerDebitWalletResponse</a></td><td class="desc"></td></tr>
+<tr id="row_51_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse.html" target="_self">FLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse</a></td><td class="desc">Response for deletion of persistent storage for <a class="el" href="LootLockerServerBalanceRequest_8h.html#a42e953da49fecdac1faf04d4911bffa6a912af0dff974604f1321254ca8ff38b6">player(s)</a> and key(s), will be empty on success </td></tr>
+<tr id="row_52_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerDropTableItem.html" target="_self">FLootLockerServerDropTableItem</a></td><td class="desc"></td></tr>
+<tr id="row_53_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerEmptyRequest.html" target="_self">FLootLockerServerEmptyRequest</a></td><td class="desc">An empty type to use as empty request bodies </td></tr>
+<tr id="row_54_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndRentalOptionIdRequest.html" target="_self">FLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndRentalOptionIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_55_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndVariationIdRequest.html" target="_self">FLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndVariationIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_56_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerEquipAssetToCharacterLoadoutRequest.html" target="_self">FLootLockerServerEquipAssetToCharacterLoadoutRequest</a></td><td class="desc"></td></tr>
+<tr id="row_57_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerEquipAssetToCharacterLoadoutResponse.html" target="_self">FLootLockerServerEquipAssetToCharacterLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_58_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest.html" target="_self">FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_59_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest.html" target="_self">FLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest</a></td><td class="desc"></td></tr>
+<tr id="row_60_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerEquipAssetToHeroLoadoutRequest.html" target="_self">FLootLockerServerEquipAssetToHeroLoadoutRequest</a></td><td class="desc"></td></tr>
+<tr id="row_61_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerEquipAssetToHeroLoadoutResponse.html" target="_self">FLootLockerServerEquipAssetToHeroLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_62_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerEquipAssetToPlayerLoadoutResponse.html" target="_self">FLootLockerServerEquipAssetToPlayerLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_63_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerErrorData.html" target="_self">FLootLockerServerErrorData</a></td><td class="desc"></td></tr>
+<tr id="row_64_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerExtendedIndexBasedPagination.html" target="_self">FLootLockerServerExtendedIndexBasedPagination</a></td><td class="desc"></td></tr>
+<tr id="row_65_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerExtendedPaginationError.html" target="_self">FLootLockerServerExtendedPaginationError</a></td><td class="desc"></td></tr>
+<tr id="row_66_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerFriend.html" target="_self">FLootLockerServerFriend</a></td><td class="desc">Details about a particular friend </td></tr>
+<tr id="row_67_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerFullCharacterLoadoutResponse.html" target="_self">FLootLockerServerFullCharacterLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_68_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerFullHeroLoadoutResponse.html" target="_self">FLootLockerServerFullHeroLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_69_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerFullPlayerLoadoutResponse.html" target="_self">FLootLockerServerFullPlayerLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_70_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGameProgression.html" target="_self">FLootLockerServerGameProgression</a></td><td class="desc"></td></tr>
+<tr id="row_71_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGameProgressionListResponse.html" target="_self">FLootLockerServerGameProgressionListResponse</a></td><td class="desc"></td></tr>
+<tr id="row_72_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetAllMemberRanksResponse.html" target="_self">FLootLockerServerGetAllMemberRanksResponse</a></td><td class="desc"></td></tr>
+<tr id="row_73_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetAssetsResponse.html" target="_self">FLootLockerServerGetAssetsResponse</a></td><td class="desc"></td></tr>
+<tr id="row_74_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetCharacterInventoryResponse.html" target="_self">FLootLockerServerGetCharacterInventoryResponse</a></td><td class="desc"></td></tr>
+<tr id="row_75_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetCharacterLoadoutResponse.html" target="_self">FLootLockerServerGetCharacterLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_76_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetHeroInventoryResponse.html" target="_self">FLootLockerServerGetHeroInventoryResponse</a></td><td class="desc"></td></tr>
+<tr id="row_77_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetHeroLoadoutResponse.html" target="_self">FLootLockerServerGetHeroLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_78_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetLeaderboardResponse.html" target="_self">FLootLockerServerGetLeaderboardResponse</a></td><td class="desc"></td></tr>
+<tr id="row_79_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetLeaderboardScheduleResponse.html" target="_self">FLootLockerServerGetLeaderboardScheduleResponse</a></td><td class="desc"></td></tr>
+<tr id="row_80_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetMetadataResponse.html" target="_self">FLootLockerServerGetMetadataResponse</a></td><td class="desc"></td></tr>
+<tr id="row_81_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetMultisourceMetadataRequest.html" target="_self">FLootLockerServerGetMultisourceMetadataRequest</a></td><td class="desc"></td></tr>
+<tr id="row_82_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetMultisourceMetadataResponse.html" target="_self">FLootLockerServerGetMultisourceMetadataResponse</a></td><td class="desc"></td></tr>
+<tr id="row_83_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetPersistentStorageForPlayersResponse.html" target="_self">FLootLockerServerGetPersistentStorageForPlayersResponse</a></td><td class="desc"></td></tr>
+<tr id="row_84_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetPlayerCharactersResponse.html" target="_self">FLootLockerServerGetPlayerCharactersResponse</a></td><td class="desc"></td></tr>
+<tr id="row_85_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetPlayerHeroesResponse.html" target="_self">FLootLockerServerGetPlayerHeroesResponse</a></td><td class="desc"></td></tr>
+<tr id="row_86_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetPlayerInfoFromGameSessionTokenRequest.html" target="_self">FLootLockerServerGetPlayerInfoFromGameSessionTokenRequest</a></td><td class="desc"></td></tr>
+<tr id="row_87_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetPlayerInfoFromGameSessionTokenResponse.html" target="_self">FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse</a></td><td class="desc"></td></tr>
+<tr id="row_88_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetPlayerInventoryResponse.html" target="_self">FLootLockerServerGetPlayerInventoryResponse</a></td><td class="desc"></td></tr>
+<tr id="row_89_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetPlayerLoadoutResponse.html" target="_self">FLootLockerServerGetPlayerLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_90_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse.html" target="_self">FLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse</a></td><td class="desc"></td></tr>
+<tr id="row_91_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetScoresFromLeaderboardResponse.html" target="_self">FLootLockerServerGetScoresFromLeaderboardResponse</a></td><td class="desc"></td></tr>
+<tr id="row_92_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetUniversalInventoryResponse.html" target="_self">FLootLockerServerGetUniversalInventoryResponse</a></td><td class="desc"></td></tr>
+<tr id="row_93_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerGetWalletResponse.html" target="_self">FLootLockerServerGetWalletResponse</a></td><td class="desc"></td></tr>
+<tr id="row_94_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerIndexBasedPagination.html" target="_self">FLootLockerServerIndexBasedPagination</a></td><td class="desc">Pagination data for index based pagination This is used for methods that have a "count" and an "after" parameter </td></tr>
+<tr id="row_95_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerInstanceProgression.html" target="_self">FLootLockerServerInstanceProgression</a></td><td class="desc"></td></tr>
+<tr id="row_96_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerInstanceProgressionListResponse.html" target="_self">FLootLockerServerInstanceProgressionListResponse</a></td><td class="desc"></td></tr>
+<tr id="row_97_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerInvokeTriggerForPlayerRequest.html" target="_self">FLootLockerServerInvokeTriggerForPlayerRequest</a></td><td class="desc"></td></tr>
+<tr id="row_98_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerInvokeTriggerResponse.html" target="_self">FLootLockerServerInvokeTriggerResponse</a></td><td class="desc"></td></tr>
+<tr id="row_99_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerKeyBasedPagination.html" target="_self">FLootLockerServerKeyBasedPagination</a></td><td class="desc">Pagination data for key based pagination This is used for methods that have a "count" and an "after" parameter </td></tr>
+<tr id="row_100_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboard.html" target="_self">FLootLockerServerLeaderboard</a></td><td class="desc"></td></tr>
+<tr id="row_101_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardArchive.html" target="_self">FLootLockerServerLeaderboardArchive</a></td><td class="desc"></td></tr>
+<tr id="row_102_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardArchiveDetails.html" target="_self">FLootLockerServerLeaderboardArchiveDetails</a></td><td class="desc"></td></tr>
+<tr id="row_103_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardArchiveDetailsResponse.html" target="_self">FLootLockerServerLeaderboardArchiveDetailsResponse</a></td><td class="desc"></td></tr>
+<tr id="row_104_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardArchivePlayer.html" target="_self">FLootLockerServerLeaderboardArchivePlayer</a></td><td class="desc"></td></tr>
+<tr id="row_105_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardArchiveResponse.html" target="_self">FLootLockerServerLeaderboardArchiveResponse</a></td><td class="desc"></td></tr>
+<tr id="row_106_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardAssetReward.html" target="_self">FLootLockerServerLeaderboardAssetReward</a></td><td class="desc"></td></tr>
+<tr id="row_107_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardBaseRequest.html" target="_self">FLootLockerServerLeaderboardBaseRequest</a></td><td class="desc"></td></tr>
+<tr id="row_108_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardBaseResponse.html" target="_self">FLootLockerServerLeaderboardBaseResponse</a></td><td class="desc"></td></tr>
+<tr id="row_109_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardCurrencyReward.html" target="_self">FLootLockerServerLeaderboardCurrencyReward</a></td><td class="desc"></td></tr>
+<tr id="row_110_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardDetailPredicates.html" target="_self">FLootLockerServerLeaderboardDetailPredicates</a></td><td class="desc"></td></tr>
+<tr id="row_111_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardEntry.html" target="_self">FLootLockerServerLeaderboardEntry</a></td><td class="desc"></td></tr>
+<tr id="row_112_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardEntryWithLeaderboardData.html" target="_self">FLootLockerServerLeaderboardEntryWithLeaderboardData</a></td><td class="desc"></td></tr>
+<tr id="row_113_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardGroupReward.html" target="_self">FLootLockerServerLeaderboardGroupReward</a></td><td class="desc"></td></tr>
+<tr id="row_114_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardGroupRewardAssociation.html" target="_self">FLootLockerServerLeaderboardGroupRewardAssociation</a></td><td class="desc"></td></tr>
+<tr id="row_115_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardGroupRewardMetadata.html" target="_self">FLootLockerServerLeaderboardGroupRewardMetadata</a></td><td class="desc"></td></tr>
+<tr id="row_116_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardIncrementScoreRequest.html" target="_self">FLootLockerServerLeaderboardIncrementScoreRequest</a></td><td class="desc"></td></tr>
+<tr id="row_117_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardPlayer.html" target="_self">FLootLockerServerLeaderboardPlayer</a></td><td class="desc"></td></tr>
+<tr id="row_118_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardProgressionPointsReward.html" target="_self">FLootLockerServerLeaderboardProgressionPointsReward</a></td><td class="desc"></td></tr>
+<tr id="row_119_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardProgressionResetReward.html" target="_self">FLootLockerServerLeaderboardProgressionResetReward</a></td><td class="desc"></td></tr>
+<tr id="row_120_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardReward.html" target="_self">FLootLockerServerLeaderboardReward</a></td><td class="desc"></td></tr>
+<tr id="row_121_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardRewardArgs.html" target="_self">FLootLockerServerLeaderboardRewardArgs</a></td><td class="desc"></td></tr>
+<tr id="row_122_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardSchedule.html" target="_self">FLootLockerServerLeaderboardSchedule</a></td><td class="desc"></td></tr>
+<tr id="row_123_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardSubmitScoreRequest.html" target="_self">FLootLockerServerLeaderboardSubmitScoreRequest</a></td><td class="desc"></td></tr>
+<tr id="row_124_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerLeaderboardSubmitScoreResponse.html" target="_self">FLootLockerServerLeaderboardSubmitScoreResponse</a></td><td class="desc"></td></tr>
+<tr id="row_125_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerListAssetsRequest.html" target="_self">FLootLockerServerListAssetsRequest</a></td><td class="desc">Request payload for simple asset listing </td></tr>
+<tr id="row_126_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerListAssetsResponse.html" target="_self">FLootLockerServerListAssetsResponse</a></td><td class="desc">Response payload for simple asset listing </td></tr>
+<tr id="row_127_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerListBalancesForWalletResponse.html" target="_self">FLootLockerServerListBalancesForWalletResponse</a></td><td class="desc"></td></tr>
+<tr id="row_128_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerListConnectedAccountsRequest.html" target="_self">FLootLockerServerListConnectedAccountsRequest</a></td><td class="desc">Request to list connected accounts for multiple players </td></tr>
+<tr id="row_129_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerListConnectedAccountsResponse.html" target="_self">FLootLockerServerListConnectedAccountsResponse</a></td><td class="desc">Response for listing connected accounts for multiple players </td></tr>
+<tr id="row_130_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerListContextsResponse.html" target="_self">FLootLockerServerListContextsResponse</a></td><td class="desc">Response payload for listing contexts </td></tr>
+<tr id="row_131_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerListCurrenciesResponse.html" target="_self">FLootLockerServerListCurrenciesResponse</a></td><td class="desc"></td></tr>
+<tr id="row_132_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerListFriendsResponse.html" target="_self">FLootLockerServerListFriendsResponse</a></td><td class="desc"></td></tr>
+<tr id="row_133_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerListLeaderboardsResponse.html" target="_self">FLootLockerServerListLeaderboardsResponse</a></td><td class="desc"></td></tr>
+<tr id="row_134_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerListMetadataResponse.html" target="_self">FLootLockerServerListMetadataResponse</a></td><td class="desc"></td></tr>
+<tr id="row_135_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerMaintainSessionResponse.html" target="_self">FLootLockerServerMaintainSessionResponse</a></td><td class="desc"></td></tr>
+<tr id="row_136_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerMetadataBase64Value.html" target="_self">FLootLockerServerMetadataBase64Value</a></td><td class="desc"></td></tr>
+<tr id="row_137_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerMetadataEntry.html" target="_self">FLootLockerServerMetadataEntry</a></td><td class="desc"></td></tr>
+<tr id="row_138_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerMetadataSourceAndEntries.html" target="_self">FLootLockerServerMetadataSourceAndEntries</a></td><td class="desc"></td></tr>
+<tr id="row_139_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerMetadataSourceAndKeys.html" target="_self">FLootLockerServerMetadataSourceAndKeys</a></td><td class="desc"></td></tr>
+<tr id="row_140_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerModifyScoreRequest.html" target="_self">FLootLockerServerModifyScoreRequest</a></td><td class="desc"></td></tr>
+<tr id="row_141_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerNotificationNoContentObject.html" target="_self">FLootLockerServerNotificationNoContentObject</a></td><td class="desc"></td></tr>
+<tr id="row_142_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerNotificationProperty.html" target="_self">FLootLockerServerNotificationProperty</a></td><td class="desc"></td></tr>
+<tr id="row_143_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPackageContentItem.html" target="_self">FLootLockerServerPackageContentItem</a></td><td class="desc"></td></tr>
+<tr id="row_144_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPickDropsFromDropTableRequest.html" target="_self">FLootLockerServerPickDropsFromDropTableRequest</a></td><td class="desc"></td></tr>
+<tr id="row_145_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPickedDropTableItem.html" target="_self">FLootLockerServerPickedDropTableItem</a></td><td class="desc"></td></tr>
+<tr id="row_146_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPickFromDropTableResponse.html" target="_self">FLootLockerServerPickFromDropTableResponse</a></td><td class="desc"></td></tr>
+<tr id="row_147_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerCharacter.html" target="_self">FLootLockerServerPlayerCharacter</a></td><td class="desc"></td></tr>
+<tr id="row_148_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerCharacterInventoryItem.html" target="_self">FLootLockerServerPlayerCharacterInventoryItem</a></td><td class="desc"></td></tr>
+<tr id="row_149_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerCharacterItemRentalData.html" target="_self">FLootLockerServerPlayerCharacterItemRentalData</a></td><td class="desc"></td></tr>
+<tr id="row_150_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerCharacterLoadoutItem.html" target="_self">FLootLockerServerPlayerCharacterLoadoutItem</a></td><td class="desc"></td></tr>
+<tr id="row_151_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerFile.html" target="_self">FLootLockerServerPlayerFile</a></td><td class="desc"></td></tr>
+<tr id="row_152_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerFileDeleteResponse.html" target="_self">FLootLockerServerPlayerFileDeleteResponse</a></td><td class="desc">Response class for deleting a file, will be empty unless there's an error </td></tr>
+<tr id="row_153_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerFileListResponse.html" target="_self">FLootLockerServerPlayerFileListResponse</a></td><td class="desc"></td></tr>
+<tr id="row_154_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerHero.html" target="_self">FLootLockerServerPlayerHero</a></td><td class="desc"></td></tr>
+<tr id="row_155_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerHeroInventoryItem.html" target="_self">FLootLockerServerPlayerHeroInventoryItem</a></td><td class="desc"></td></tr>
+<tr id="row_156_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerHeroItemRentalData.html" target="_self">FLootLockerServerPlayerHeroItemRentalData</a></td><td class="desc"></td></tr>
+<tr id="row_157_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerHeroLoadoutItem.html" target="_self">FLootLockerServerPlayerHeroLoadoutItem</a></td><td class="desc"></td></tr>
+<tr id="row_158_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerInfoFromToken.html" target="_self">FLootLockerServerPlayerInfoFromToken</a></td><td class="desc"></td></tr>
+<tr id="row_159_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerInventoryItem.html" target="_self">FLootLockerServerPlayerInventoryItem</a></td><td class="desc"></td></tr>
+<tr id="row_160_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerItemRentalData.html" target="_self">FLootLockerServerPlayerItemRentalData</a></td><td class="desc"></td></tr>
+<tr id="row_161_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerLoadoutItem.html" target="_self">FLootLockerServerPlayerLoadoutItem</a></td><td class="desc"></td></tr>
+<tr id="row_162_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerName.html" target="_self">FLootLockerServerPlayerName</a></td><td class="desc"></td></tr>
+<tr id="row_163_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerNameLookupPair.html" target="_self">FLootLockerServerPlayerNameLookupPair</a></td><td class="desc"></td></tr>
+<tr id="row_164_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerNameLookupResponse.html" target="_self">FLootLockerServerPlayerNameLookupResponse</a></td><td class="desc"></td></tr>
+<tr id="row_165_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedItems.html" target="_self">FLootLockerServerPlayerPersistentStorageEntry_NamedItems</a></td><td class="desc">Describes a set of key-value pairs that are stored for a player, the appendix _NamedItems is due to the fact that the server API uses different terms for the same type of objects, in this case it's called an item, but it's the same as a key-value pair </td></tr>
+<tr id="row_166_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedSets.html" target="_self">FLootLockerServerPlayerPersistentStorageEntry_NamedSets</a></td><td class="desc">Describes a set of key-value pairs that are stored for a player, the appendix _NamedSets is due to the fact that the server API uses different terms for the same type of objects, in this case it's called a set, but it's the same as a key-value pair </td></tr>
+<tr id="row_167_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedStorage.html" target="_self">FLootLockerServerPlayerPersistentStorageEntry_NamedStorage</a></td><td class="desc">Describes a set of key-value pairs that are stored for a player, the appendix _NamedStorage is due to the fact that the server API uses different terms for the same type of objects, in this case it's called a storage, but it's the same as a key-value pair </td></tr>
+<tr id="row_168_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest.html" target="_self">FLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest</a></td><td class="desc"></td></tr>
+<tr id="row_169_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerPersistentStorageKeyValueSet.html" target="_self">FLootLockerServerPlayerPersistentStorageKeyValueSet</a></td><td class="desc"></td></tr>
+<tr id="row_170_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder.html" target="_self">FLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder</a></td><td class="desc"></td></tr>
+<tr id="row_171_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerPersistentStorageUpdateEntryOrdered.html" target="_self">FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered</a></td><td class="desc">Describes a set of key-value pairs that are stored for a player, the appendix _NamedSets is due to the fact that the server API uses different terms for the same type of objects, in this case it's called a set, but it's the same as a key-value pair </td></tr>
+<tr id="row_172_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerPersistentStorageUpdateRequest.html" target="_self">FLootLockerServerPlayerPersistentStorageUpdateRequest</a></td><td class="desc"></td></tr>
+<tr id="row_173_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerPlatform.html" target="_self">FLootLockerServerPlayerPlatform</a></td><td class="desc">Platform information for a single player including their connected accounts </td></tr>
+<tr id="row_174_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerProgression.html" target="_self">FLootLockerServerPlayerProgression</a></td><td class="desc"></td></tr>
+<tr id="row_175_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerPlayerProgressionListResponse.html" target="_self">FLootLockerServerPlayerProgressionListResponse</a></td><td class="desc"></td></tr>
+<tr id="row_176_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerProgressionPointRewardDetails.html" target="_self">FLootLockerServerProgressionPointRewardDetails</a></td><td class="desc"></td></tr>
+<tr id="row_177_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerProgressionPointsReward.html" target="_self">FLootLockerServerProgressionPointsReward</a></td><td class="desc"></td></tr>
+<tr id="row_178_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerProgressionResetReward.html" target="_self">FLootLockerServerProgressionResetReward</a></td><td class="desc"></td></tr>
+<tr id="row_179_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerProgressionResetRewardDetails.html" target="_self">FLootLockerServerProgressionResetRewardDetails</a></td><td class="desc"></td></tr>
+<tr id="row_180_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerProgressionTier.html" target="_self">FLootLockerServerProgressionTier</a></td><td class="desc"></td></tr>
+<tr id="row_181_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerProgressionTiersResponse.html" target="_self">FLootLockerServerProgressionTiersResponse</a></td><td class="desc"></td></tr>
+<tr id="row_182_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerRequestContext.html" target="_self">FLootLockerServerRequestContext</a></td><td class="desc"></td></tr>
+<tr id="row_183_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerResponse.html" target="_self">FLootLockerServerResponse</a></td><td class="desc">The base response for all LootLocker Server responses </td></tr>
+<tr id="row_184_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerRewards.html" target="_self">FLootLockerServerRewards</a></td><td class="desc"></td></tr>
+<tr id="row_185_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSendNotificationsResponse.html" target="_self">FLootLockerServerSendNotificationsResponse</a></td><td class="desc"></td></tr>
+<tr id="row_186_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSendNotificationsToPlayerBaseRequest.html" target="_self">FLootLockerServerSendNotificationsToPlayerBaseRequest</a></td><td class="desc"></td></tr>
+<tr id="row_187_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSetMetadataAction.html" target="_self">FLootLockerServerSetMetadataAction</a></td><td class="desc"></td></tr>
+<tr id="row_188_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSetMetadataError.html" target="_self">FLootLockerServerSetMetadataError</a></td><td class="desc"></td></tr>
+<tr id="row_189_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSetMetadataErrorEntry.html" target="_self">FLootLockerServerSetMetadataErrorEntry</a></td><td class="desc"></td></tr>
+<tr id="row_190_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSetMetadataResponse.html" target="_self">FLootLockerServerSetMetadataResponse</a></td><td class="desc"></td></tr>
+<tr id="row_191_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSimpleAsset.html" target="_self">FLootLockerServerSimpleAsset</a></td><td class="desc">Simplified asset object </td></tr>
+<tr id="row_192_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSimpleAssetAuthor.html" target="_self">FLootLockerServerSimpleAssetAuthor</a></td><td class="desc"></td></tr>
+<tr id="row_193_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSimpleAssetDataEntity.html" target="_self">FLootLockerServerSimpleAssetDataEntity</a></td><td class="desc"></td></tr>
+<tr id="row_194_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSimpleAssetExcludes.html" target="_self">FLootLockerServerSimpleAssetExcludes</a></td><td class="desc">Fields to exclude from the simple asset response </td></tr>
+<tr id="row_195_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSimpleAssetFile.html" target="_self">FLootLockerServerSimpleAssetFile</a></td><td class="desc"></td></tr>
+<tr id="row_196_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSimpleAssetFilters.html" target="_self">FLootLockerServerSimpleAssetFilters</a></td><td class="desc">Filters to apply to simple asset listing </td></tr>
+<tr id="row_197_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSimpleAssetIncludes.html" target="_self">FLootLockerServerSimpleAssetIncludes</a></td><td class="desc">Fields to include in the simple asset response </td></tr>
+<tr id="row_198_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSingleCharacterProgressionResponse.html" target="_self">FLootLockerServerSingleCharacterProgressionResponse</a></td><td class="desc"></td></tr>
+<tr id="row_199_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSingleCharacterProgressionWithRewardsResponse.html" target="_self">FLootLockerServerSingleCharacterProgressionWithRewardsResponse</a></td><td class="desc"></td></tr>
+<tr id="row_200_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSingleGameProgressionResponse.html" target="_self">FLootLockerServerSingleGameProgressionResponse</a></td><td class="desc"></td></tr>
+<tr id="row_201_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSingleInstanceProgressionResponse.html" target="_self">FLootLockerServerSingleInstanceProgressionResponse</a></td><td class="desc"></td></tr>
+<tr id="row_202_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSingleInstanceProgressionWithRewardsResponse.html" target="_self">FLootLockerServerSingleInstanceProgressionWithRewardsResponse</a></td><td class="desc"></td></tr>
+<tr id="row_203_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSinglePlayerFileResponse.html" target="_self">FLootLockerServerSinglePlayerFileResponse</a></td><td class="desc"></td></tr>
+<tr id="row_204_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSinglePlayerProgressionResponse.html" target="_self">FLootLockerServerSinglePlayerProgressionResponse</a></td><td class="desc"></td></tr>
+<tr id="row_205_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerSinglePlayerProgressionWithRewardsResponse.html" target="_self">FLootLockerServerSinglePlayerProgressionWithRewardsResponse</a></td><td class="desc"></td></tr>
+<tr id="row_206_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerTokenExchangeResponse.html" target="_self">FLootLockerServerTokenExchangeResponse</a></td><td class="desc"></td></tr>
+<tr id="row_207_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerTriggeredAsset.html" target="_self">FLootLockerServerTriggeredAsset</a></td><td class="desc"></td></tr>
+<tr id="row_208_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerTriggeredLevel.html" target="_self">FLootLockerServerTriggeredLevel</a></td><td class="desc"></td></tr>
+<tr id="row_209_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerTriggeredXP.html" target="_self">FLootLockerServerTriggeredXP</a></td><td class="desc"></td></tr>
+<tr id="row_210_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerUnequipAssetFromCharacterLoadoutResponse.html" target="_self">FLootLockerServerUnequipAssetFromCharacterLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_211_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerUnequipAssetFromHeroLoadoutResponse.html" target="_self">FLootLockerServerUnequipAssetFromHeroLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_212_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerUnequipAssetFromPlayerLoadoutResponse.html" target="_self">FLootLockerServerUnequipAssetFromPlayerLoadoutResponse</a></td><td class="desc"></td></tr>
+<tr id="row_213_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerUniversalInventoryItem.html" target="_self">FLootLockerServerUniversalInventoryItem</a></td><td class="desc"></td></tr>
+<tr id="row_214_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerUpdateLeaderboardRequest.html" target="_self">FLootLockerServerUpdateLeaderboardRequest</a></td><td class="desc"></td></tr>
+<tr id="row_215_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerUpdateLeaderboardResponse.html" target="_self">FLootLockerServerUpdateLeaderboardResponse</a></td><td class="desc"></td></tr>
+<tr id="row_216_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest.html" target="_self">FLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest</a></td><td class="desc"></td></tr>
+<tr id="row_217_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structFLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse.html" target="_self">FLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse</a></td><td class="desc"></td></tr>
+<tr id="row_218_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classLootLockerServerResponseFactory.html" target="_self">LootLockerServerResponseFactory</a></td><td class="desc"></td></tr>
+<tr id="row_219_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structLootLockerServerStaticRequestErrorStatusCodes.html" target="_self">LootLockerServerStaticRequestErrorStatusCodes</a></td><td class="desc">Static defines of the different predefined error status codes that can occur in responses </td></tr>
+<tr id="row_220_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerAssetRequest.html" target="_self">ULootLockerServerAssetRequest</a></td><td class="desc"></td></tr>
+<tr id="row_221_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerAuthRequest.html" target="_self">ULootLockerServerAuthRequest</a></td><td class="desc"></td></tr>
+<tr id="row_222_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerBalanceRequest.html" target="_self">ULootLockerServerBalanceRequest</a></td><td class="desc"></td></tr>
+<tr id="row_223_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerCharacterProgressionRequest.html" target="_self">ULootLockerServerCharacterProgressionRequest</a></td><td class="desc"></td></tr>
+<tr id="row_224_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerCharacterRequest.html" target="_self">ULootLockerServerCharacterRequest</a></td><td class="desc"></td></tr>
+<tr id="row_225_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerConfig.html" target="_self">ULootLockerServerConfig</a></td><td class="desc"></td></tr>
+<tr id="row_226_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerConnectedAccountsRequest.html" target="_self">ULootLockerServerConnectedAccountsRequest</a></td><td class="desc"></td></tr>
+<tr id="row_227_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerCurrencyRequest.html" target="_self">ULootLockerServerCurrencyRequest</a></td><td class="desc"></td></tr>
+<tr id="row_228_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerDropTableRequest.html" target="_self">ULootLockerServerDropTableRequest</a></td><td class="desc"></td></tr>
+<tr id="row_229_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerEnumUtils.html" target="_self">ULootLockerServerEnumUtils</a></td><td class="desc"></td></tr>
+<tr id="row_230_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerForCpp.html" target="_self">ULootLockerServerForCpp</a></td><td class="desc"></td></tr>
+<tr id="row_231_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerFriendsRequest.html" target="_self">ULootLockerServerFriendsRequest</a></td><td class="desc"></td></tr>
+<tr id="row_232_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerGameProgressionRequest.html" target="_self">ULootLockerServerGameProgressionRequest</a></td><td class="desc"></td></tr>
+<tr id="row_233_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerHeroRequest.html" target="_self">ULootLockerServerHeroRequest</a></td><td class="desc"></td></tr>
+<tr id="row_234_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerInstanceProgressionRequest.html" target="_self">ULootLockerServerInstanceProgressionRequest</a></td><td class="desc"></td></tr>
+<tr id="row_235_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerLeaderboardArchiveRequestHandler.html" target="_self">ULootLockerServerLeaderboardArchiveRequestHandler</a></td><td class="desc"></td></tr>
+<tr id="row_236_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerLeaderboardRequest.html" target="_self">ULootLockerServerLeaderboardRequest</a></td><td class="desc"></td></tr>
+<tr id="row_237_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerMetadataRequest.html" target="_self">ULootLockerServerMetadataRequest</a></td><td class="desc"></td></tr>
+<tr id="row_238_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerNotificationsRequest.html" target="_self">ULootLockerServerNotificationsRequest</a></td><td class="desc"></td></tr>
+<tr id="row_239_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerOAuthRequest.html" target="_self">ULootLockerServerOAuthRequest</a></td><td class="desc"></td></tr>
+<tr id="row_240_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerPlayerFileRequest.html" target="_self">ULootLockerServerPlayerFileRequest</a></td><td class="desc"></td></tr>
+<tr id="row_241_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerPlayerInventoryRequest.html" target="_self">ULootLockerServerPlayerInventoryRequest</a></td><td class="desc"></td></tr>
+<tr id="row_242_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerPlayerProgressionRequest.html" target="_self">ULootLockerServerPlayerProgressionRequest</a></td><td class="desc"></td></tr>
+<tr id="row_243_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerPlayerRequest.html" target="_self">ULootLockerServerPlayerRequest</a></td><td class="desc"></td></tr>
+<tr id="row_244_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerStorageRequest.html" target="_self">ULootLockerServerStorageRequest</a></td><td class="desc"></td></tr>
+<tr id="row_245_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classULootLockerServerTriggerRequest.html" target="_self">ULootLockerServerTriggerRequest</a></td><td class="desc"></td></tr>
+</table>
+</div><!-- directory -->
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>
