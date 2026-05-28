@@ -2042,7 +2042,7 @@ public:
 
      @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Catalogs", meta = (AdvancedDisplay = "Count, After", Count = 0))
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Catalogs", meta = (AdvancedDisplay = "Count,After", Count = 0, After = ""))
     static UPARAM(DisplayName = "RequestId") FString ListCatalogItemsByKey(const FString& CatalogKey, int Count, const FString& After, const FLootLockerServerListCatalogPricesResponseBP& OnCompletedRequestBP);
 
     //==================================================
