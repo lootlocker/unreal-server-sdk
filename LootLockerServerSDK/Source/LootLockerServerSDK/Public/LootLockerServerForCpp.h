@@ -289,7 +289,6 @@ public:
 
     /**
     * Request a manual reset of a leaderboard
-    * The leaderboard must have allow_manual_resets enabled.
     * @param LeaderboardKey The Key of the leaderboard to reset
     * @param Request Request body specifying an optional name and optional scheduled time for the reset
     * @param OnCompletedRequest Delegate for handling the server response

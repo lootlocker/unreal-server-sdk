@@ -439,11 +439,6 @@ struct FLootLockerServerLeaderboard
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Has_metadata = false;
     /**
-    Whether manual resets can be requested for this leaderboard via the server API
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Allow_manual_resets = false;
-    /**
     The creation time of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -556,11 +551,6 @@ public:
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Overwrite_score_on_submit = false;
-    /**
-    Allow manual resets to be requested for this leaderboard via the server API
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Allow_manual_resets = false;
 };
 
 USTRUCT(BlueprintType)
@@ -686,11 +676,6 @@ struct FLootLockerServerLeaderboardBaseResponse : public FLootLockerServerRespon
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Has_metadata = false;
-    /**
-    Whether manual resets can be requested for this leaderboard via the server API
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    bool Allow_manual_resets = false;
     /**
     The creation time of this leaderboard
      */
