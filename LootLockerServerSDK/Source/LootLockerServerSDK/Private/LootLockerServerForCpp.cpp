@@ -123,6 +123,26 @@ FString ULootLockerServerForCpp::DeleteLeaderboardSchedule(const FString& Leader
     return ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(LeaderboardKey, OnCompletedRequest);
 }
 
+FString ULootLockerServerForCpp::RequestManualLeaderboardReset(const FString& LeaderboardKey, const FLootLockerServerCreateManualLeaderboardResetRequest& Request, const FLootLockerServerRequestManualLeaderboardResetResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerLeaderboardRequest::RequestManualLeaderboardReset(LeaderboardKey, Request, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::ListManualLeaderboardResets(const FString& LeaderboardKey, const FLootLockerServerListManualLeaderboardResetsResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerLeaderboardRequest::ListManualLeaderboardResets(LeaderboardKey, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::GetManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerGetManualLeaderboardResetResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerLeaderboardRequest::GetManualLeaderboardReset(LeaderboardKey, ResetId, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::CancelManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerCancelManualLeaderboardResetResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerLeaderboardRequest::CancelManualLeaderboardReset(LeaderboardKey, ResetId, OnCompletedRequest);
+}
+
 FString ULootLockerServerForCpp::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseDelegate& OnCompletedRequest)
 {
     return ULootLockerServerLeaderboardArchiveRequestHandler::ListLeaderboardArchive(LeaderboardKey, OnCompletedRequest);
