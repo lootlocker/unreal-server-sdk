@@ -287,6 +287,43 @@ public:
     */
     static FString DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest);
 
+    /**
+    * Request a manual reset of a leaderboard
+    * The leaderboard must have allow_manual_resets enabled.
+    * @param LeaderboardKey The Key of the leaderboard to reset
+    * @param Request Request body specifying an optional name and optional scheduled time for the reset
+    * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+    */
+    static FString RequestManualLeaderboardReset(const FString& LeaderboardKey, const FLootLockerServerCreateManualLeaderboardResetRequest& Request, const FLootLockerServerRequestManualLeaderboardResetResponseDelegate& OnCompletedRequest);
+
+    /**
+    * List all manual reset requests for a leaderboard
+    * @param LeaderboardKey The Key of the leaderboard
+    * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+    */
+    static FString ListManualLeaderboardResets(const FString& LeaderboardKey, const FLootLockerServerListManualLeaderboardResetsResponseDelegate& OnCompletedRequest);
+
+    /**
+    * Get a specific manual reset request for a leaderboard
+    * @param LeaderboardKey The Key of the leaderboard
+    * @param ResetId The ID of the manual reset to retrieve
+    * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+    */
+    static FString GetManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerGetManualLeaderboardResetResponseDelegate& OnCompletedRequest);
+
+    /**
+    * Cancel a pending manual reset request for a leaderboard
+    * Only pending resets can be cancelled.
+    * @param LeaderboardKey The Key of the leaderboard
+    * @param ResetId The ID of the manual reset to cancel
+    * @param OnCompletedRequest Delegate for handling the server response
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+    */
+    static FString CancelManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerCancelManualLeaderboardResetResponseDelegate& OnCompletedRequest);
+
     /// @}
 
     //==================================================

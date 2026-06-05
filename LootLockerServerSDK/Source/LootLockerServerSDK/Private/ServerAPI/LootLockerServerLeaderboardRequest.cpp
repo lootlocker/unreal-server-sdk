@@ -103,3 +103,23 @@ FString ULootLockerServerLeaderboardRequest::DeleteLeaderboardSchedule(const FSt
 {
 	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetLeaderboardScheduleResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::DeleteLeaderboardSchedule, { LeaderboardKey }, {}, OnCompletedRequest);
 }
+
+FString ULootLockerServerLeaderboardRequest::RequestManualLeaderboardReset(const FString& LeaderboardKey, const FLootLockerServerCreateManualLeaderboardResetRequest& Request, const FLootLockerServerRequestManualLeaderboardResetResponseDelegate& OnCompletedRequest)
+{
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerManualLeaderboardResetResponse>(Request, ULootLockerServerEndpoints::RequestManualLeaderboardReset, { LeaderboardKey }, {}, OnCompletedRequest);
+}
+
+FString ULootLockerServerLeaderboardRequest::ListManualLeaderboardResets(const FString& LeaderboardKey, const FLootLockerServerListManualLeaderboardResetsResponseDelegate& OnCompletedRequest)
+{
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerListManualLeaderboardResetsResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::ListManualLeaderboardResets, { LeaderboardKey }, {}, OnCompletedRequest);
+}
+
+FString ULootLockerServerLeaderboardRequest::GetManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerGetManualLeaderboardResetResponseDelegate& OnCompletedRequest)
+{
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerManualLeaderboardResetResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::GetManualLeaderboardReset, { LeaderboardKey, ResetId }, {}, OnCompletedRequest);
+}
+
+FString ULootLockerServerLeaderboardRequest::CancelManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerCancelManualLeaderboardResetResponseDelegate& OnCompletedRequest)
+{
+	return ULootLockerServerHttpClient::SendRequest<FLootLockerServerResponse>(FLootLockerServerEmptyRequest(), ULootLockerServerEndpoints::CancelManualLeaderboardReset, { LeaderboardKey, ResetId }, {}, OnCompletedRequest);
+}

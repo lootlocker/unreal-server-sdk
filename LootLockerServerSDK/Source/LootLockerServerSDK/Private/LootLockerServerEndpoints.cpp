@@ -25,6 +25,10 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::GetLeaderboardArchive = In
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetLeaderboardSchedule = InitEndpoint("leaderboards/{0}/schedule", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::CreateLeaderboardSchedule = InitEndpoint("leaderboards/{0}/schedule", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DeleteLeaderboardSchedule = InitEndpoint("leaderboards/{0}/schedule", ELootLockerServerHTTPMethod::DELETE);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::RequestManualLeaderboardReset = InitEndpoint("leaderboards/{0}/reset", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListManualLeaderboardResets = InitEndpoint("leaderboards/{0}/reset", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetManualLeaderboardReset = InitEndpoint("leaderboards/{0}/reset/{1}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::CancelManualLeaderboardReset = InitEndpoint("leaderboards/{0}/reset/{1}", ELootLockerServerHTTPMethod::DELETE);
 
 // Assets
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetAssets = InitEndpoint("assets", ELootLockerServerHTTPMethod::GET);

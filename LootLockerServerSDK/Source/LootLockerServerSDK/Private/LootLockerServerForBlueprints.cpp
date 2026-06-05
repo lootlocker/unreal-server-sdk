@@ -138,6 +138,34 @@ FString ULootLockerServerForBlueprints::DeleteLeaderboardSchedule(const FString&
     }));
 }
 
+FString ULootLockerServerForBlueprints::RequestManualLeaderboardReset(const FString& LeaderboardKey, const FLootLockerServerCreateManualLeaderboardResetRequest& Request, const FLootLockerServerRequestManualLeaderboardResetResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::RequestManualLeaderboardReset(LeaderboardKey, Request, FLootLockerServerRequestManualLeaderboardResetResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerManualLeaderboardResetResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::ListManualLeaderboardResets(const FString& LeaderboardKey, const FLootLockerServerListManualLeaderboardResetsResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::ListManualLeaderboardResets(LeaderboardKey, FLootLockerServerListManualLeaderboardResetsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerListManualLeaderboardResetsResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::GetManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerGetManualLeaderboardResetResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::GetManualLeaderboardReset(LeaderboardKey, ResetId, FLootLockerServerGetManualLeaderboardResetResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerManualLeaderboardResetResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::CancelManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerCancelManualLeaderboardResetResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::CancelManualLeaderboardReset(LeaderboardKey, ResetId, FLootLockerServerCancelManualLeaderboardResetResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
 FString ULootLockerServerForBlueprints::ListLeaderboardArchive(const FString& LeaderboardKey, const FLootLockerServerLeaderboardArchiveResponseBP& OnCompletedRequestBP)
 {
     return ULootLockerServerForCpp::ListLeaderboardArchive(LeaderboardKey, FLootLockerServerLeaderboardArchiveResponseDelegate::CreateLambda([OnCompletedRequestBP](const FLootLockerServerLeaderboardArchiveResponse& Response) {

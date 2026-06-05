@@ -315,6 +315,22 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetLeaderboardScheduleRespons
  Blueprint response delegate for leaderboard schedule deletion
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardScheduleResponseBP, FLootLockerServerResponse, Response);
+/*
+ Blueprint response delegate for requesting a manual leaderboard reset
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerRequestManualLeaderboardResetResponseBP, FLootLockerServerManualLeaderboardResetResponse, Response);
+/*
+ Blueprint response delegate for listing manual leaderboard resets
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListManualLeaderboardResetsResponseBP, FLootLockerServerListManualLeaderboardResetsResponse, Response);
+/*
+ Blueprint response delegate for getting a specific manual leaderboard reset
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetManualLeaderboardResetResponseBP, FLootLockerServerManualLeaderboardResetResponse, Response);
+/*
+ Blueprint response delegate for cancelling a manual leaderboard reset
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerCancelManualLeaderboardResetResponseBP, FLootLockerServerResponse, Response);
 
 //==================================================
 // Metadata Response Delegates
@@ -727,6 +743,51 @@ public:
     */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
     static UPARAM(DisplayName = "RequestId") FString DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseBP& OnCompletedRequest);
+
+    /**
+    * Request a manual reset of a leaderboard
+    * The leaderboard must have allow_manual_resets enabled.
+    * @param LeaderboardKey The Key of the leaderboard to reset
+    * @param Request Request body specifying an optional name and optional scheduled time for the reset
+    * @param OnCompletedRequest Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static UPARAM(DisplayName = "RequestId") FString RequestManualLeaderboardReset(const FString& LeaderboardKey, const FLootLockerServerCreateManualLeaderboardResetRequest& Request, const FLootLockerServerRequestManualLeaderboardResetResponseBP& OnCompletedRequest);
+
+    /**
+    * List all manual reset requests for a leaderboard
+    * @param LeaderboardKey The Key of the leaderboard
+    * @param OnCompletedRequest Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static UPARAM(DisplayName = "RequestId") FString ListManualLeaderboardResets(const FString& LeaderboardKey, const FLootLockerServerListManualLeaderboardResetsResponseBP& OnCompletedRequest);
+
+    /**
+    * Get a specific manual reset request for a leaderboard
+    * @param LeaderboardKey The Key of the leaderboard
+    * @param ResetId The ID of the manual reset to retrieve
+    * @param OnCompletedRequest Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static UPARAM(DisplayName = "RequestId") FString GetManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerGetManualLeaderboardResetResponseBP& OnCompletedRequest);
+
+    /**
+    * Cancel a pending manual reset request for a leaderboard
+    * Only pending resets can be cancelled.
+    * @param LeaderboardKey The Key of the leaderboard
+    * @param ResetId The ID of the manual reset to cancel
+    * @param OnCompletedRequest Delegate for handling the server response
+    * 
+    * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+    */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Leaderboard")
+    static UPARAM(DisplayName = "RequestId") FString CancelManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerCancelManualLeaderboardResetResponseBP& OnCompletedRequest);
 
     //==================================================
     // Leaderboard Archives

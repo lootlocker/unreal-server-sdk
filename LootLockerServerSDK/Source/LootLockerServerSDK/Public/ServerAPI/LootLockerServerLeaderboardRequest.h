@@ -439,6 +439,11 @@ struct FLootLockerServerLeaderboard
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Has_metadata = false;
     /**
+    Whether manual resets can be requested for this leaderboard via the server API
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    bool Allow_manual_resets = false;
+    /**
     The creation time of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -551,6 +556,11 @@ public:
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Overwrite_score_on_submit = false;
+    /**
+    Allow manual resets to be requested for this leaderboard via the server API
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    bool Allow_manual_resets = false;
 };
 
 USTRUCT(BlueprintType)
@@ -677,6 +687,11 @@ struct FLootLockerServerLeaderboardBaseResponse : public FLootLockerServerRespon
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     bool Has_metadata = false;
     /**
+    Whether manual resets can be requested for this leaderboard via the server API
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    bool Allow_manual_resets = false;
+    /**
     The creation time of this leaderboard
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -785,6 +800,141 @@ struct FLootLockerServerGetLeaderboardScheduleResponse : public FLootLockerServe
     TArray<FString> schedule;
 };
 
+USTRUCT(BlueprintType)
+/**
+ * A manual leaderboard reset request that has been submitted to the server.
+ **/
+struct FLootLockerServerManualLeaderboardReset
+{
+    GENERATED_BODY()
+    /**
+     * The unique ID of this manual reset request.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Id = 0;
+    /**
+     * The ID of the leaderboard this reset belongs to.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Leaderboard_id = 0;
+    /**
+     * The ID of the game this reset belongs to.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Game_id = 0;
+    /**
+     * Optional human-readable name for this reset request.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Name = "";
+    /**
+     * The current processing status of this reset (pending, processing, completed, failed).
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Status = "";
+    /**
+     * The UTC time at which this reset is scheduled to be processed (ISO 8601).
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Scheduled_for = "";
+    /**
+     * The UTC time at which this reset was requested (ISO 8601).
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Requested_at = "";
+    /**
+     * The UTC time at which this reset was processed (ISO 8601). Empty if not yet processed.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Processed_at = "";
+    /**
+     * Error message if the reset failed. Empty if not failed.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Error_message = "";
+};
+
+USTRUCT(BlueprintType)
+/**
+ * Request body for creating a manual leaderboard reset.
+ **/
+struct FLootLockerServerCreateManualLeaderboardResetRequest
+{
+    GENERATED_BODY()
+    /**
+     * Optional human-readable name to identify this reset.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Name = "";
+    /**
+     * Optional UTC time at which to schedule this reset (ISO 8601). Defaults to immediate processing.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Scheduled_for = "";
+};
+
+USTRUCT(BlueprintType)
+struct FLootLockerServerManualLeaderboardResetResponse : public FLootLockerServerResponse
+{
+    GENERATED_BODY()
+    /**
+     * The unique ID of this manual reset request.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Id = 0;
+    /**
+     * The ID of the leaderboard this reset belongs to.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Leaderboard_id = 0;
+    /**
+     * The ID of the game this reset belongs to.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Game_id = 0;
+    /**
+     * Optional human-readable name for this reset request.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Name = "";
+    /**
+     * The current processing status of this reset (pending, processing, completed, failed).
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Status = "";
+    /**
+     * The UTC time at which this reset is scheduled to be processed (ISO 8601).
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Scheduled_for = "";
+    /**
+     * The UTC time at which this reset was requested (ISO 8601).
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Requested_at = "";
+    /**
+     * The UTC time at which this reset was processed (ISO 8601). Empty if not yet processed.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Processed_at = "";
+    /**
+     * Error message if the reset failed. Empty if not failed.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Error_message = "";
+};
+
+USTRUCT(BlueprintType)
+struct FLootLockerServerListManualLeaderboardResetsResponse : public FLootLockerServerResponse
+{
+    GENERATED_BODY()
+    /**
+     * List of manual reset requests for this leaderboard.
+     **/
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerManualLeaderboardReset> Items;
+};
+
 USTRUCT()
 struct FLootLockerServerListLeaderboardsResponse : public FLootLockerServerResponse
 {
@@ -851,6 +1001,22 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerGetLeaderboardScheduleResponseDelegat
  C++ response delegate for leaderboard schedule deletion
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerDeleteLeaderboardScheduleResponseDelegate, FLootLockerServerResponse);
+/*
+ C++ response delegate for requesting a manual leaderboard reset
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerRequestManualLeaderboardResetResponseDelegate, FLootLockerServerManualLeaderboardResetResponse);
+/*
+ C++ response delegate for listing manual leaderboard resets
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerListManualLeaderboardResetsResponseDelegate, FLootLockerServerListManualLeaderboardResetsResponse);
+/*
+ C++ response delegate for getting a specific manual leaderboard reset
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerGetManualLeaderboardResetResponseDelegate, FLootLockerServerManualLeaderboardResetResponse);
+/*
+ C++ response delegate for cancelling a manual leaderboard reset
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerCancelManualLeaderboardResetResponseDelegate, FLootLockerServerResponse);
 
 //==================================================
 // Interface Definition
@@ -876,6 +1042,11 @@ public:
     static FString GetLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
     static FString CreateLeaderboardSchedule(const FString& LeaderboardKey, const FString& CronExpression, const FLootLockerServerGetLeaderboardScheduleResponseDelegate& OnCompletedRequest);
     static FString DeleteLeaderboardSchedule(const FString& LeaderboardKey, const FLootLockerServerDeleteLeaderboardScheduleResponseDelegate& OnCompletedRequest);
+
+    static FString RequestManualLeaderboardReset(const FString& LeaderboardKey, const FLootLockerServerCreateManualLeaderboardResetRequest& Request, const FLootLockerServerRequestManualLeaderboardResetResponseDelegate& OnCompletedRequest);
+    static FString ListManualLeaderboardResets(const FString& LeaderboardKey, const FLootLockerServerListManualLeaderboardResetsResponseDelegate& OnCompletedRequest);
+    static FString GetManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerGetManualLeaderboardResetResponseDelegate& OnCompletedRequest);
+    static FString CancelManualLeaderboardReset(const FString& LeaderboardKey, const FString& ResetId, const FLootLockerServerCancelManualLeaderboardResetResponseDelegate& OnCompletedRequest);
 
 public:
     ULootLockerServerLeaderboardRequest();
