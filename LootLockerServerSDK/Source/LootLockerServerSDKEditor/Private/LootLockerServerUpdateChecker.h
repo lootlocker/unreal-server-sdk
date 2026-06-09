@@ -48,7 +48,7 @@ private:
         FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful, bool bManual);
 
     static void ShowUpdateNotification(
-        const FString& LatestVersion, const FString& ReleaseUrl, bool bManual);
+        const FString& LatestVersion, const FString& ReleaseUrl);
 
     static void ShowUpToDateNotification();
 
@@ -66,9 +66,8 @@ private:
     static void SaveLastCheckedTime(const FDateTime& Time);
 
     static FTSTicker::FDelegateHandle TickerHandle;
-    static double ElapsedStartupSeconds;
 
-    static constexpr double StartupDelaySeconds = 180.0;
+    static constexpr float StartupDelaySeconds = 180.0f;
     static constexpr double CheckIntervalHours = 24.0;
     static const TCHAR* ConfigSection;
     static const TCHAR* GitHubReleasesUrl;
