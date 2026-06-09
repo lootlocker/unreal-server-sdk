@@ -21,7 +21,6 @@ DEFINE_LOG_CATEGORY_STATIC(LogLootLockerServerSDKEditor, Log, All);
 
 // --- Static member definitions ---
 FTSTicker::FDelegateHandle FLootLockerServerUpdateChecker::TickerHandle;
-double FLootLockerServerUpdateChecker::ElapsedStartupSeconds = 0.0;
 const TCHAR* FLootLockerServerUpdateChecker::ConfigSection =
     TEXT("/Script/LootLockerServerSDKEditor.UpdateChecker");
 const TCHAR* FLootLockerServerUpdateChecker::GitHubReleasesUrl =
@@ -31,10 +30,10 @@ const TCHAR* FLootLockerServerUpdateChecker::GitHubReleasesUrl =
 
 void FLootLockerServerUpdateChecker::Initialize()
 {
-    ElapsedStartupSeconds = 0.0;
+    // Fire once after StartupDelaySeconds — return false in the callback to auto-unregister.
     TickerHandle = FTSTicker::GetCoreTicker().AddTicker(
         FTickerDelegate::CreateStatic(&FLootLockerServerUpdateChecker::OnStartupTick),
-        0.0f
+        StartupDelaySeconds
     );
 }
 
@@ -54,14 +53,8 @@ void FLootLockerServerUpdateChecker::ManualCheck()
 
 bool FLootLockerServerUpdateChecker::OnStartupTick(float DeltaTime)
 {
-    ElapsedStartupSeconds += DeltaTime;
-    if (ElapsedStartupSeconds >= StartupDelaySeconds)
-    {
-        TickerHandle.Reset();
-        CheckForUpdate(/*bManual=*/false);
-        return false;
-    }
-    return true;
+    CheckForUpdate(/*bManual=*/false);
+    return false;  // one-shot — unregister immediately
 }
 
 void FLootLockerServerUpdateChecker::CheckForUpdate(bool bManual)
@@ -150,8 +143,15 @@ void FLootLockerServerUpdateChecker::OnResponseReceived(
         return;
     }
 
-    FString TagName = JsonObject->GetStringField(TEXT("tag_name"));
-    const FString HtmlUrl = JsonObject->GetStringField(TEXT("html_url"));
+    FString TagName;
+    FString HtmlUrl;
+    if (!JsonObject->TryGetStringField(TEXT("tag_name"), TagName) ||
+        !JsonObject->TryGetStringField(TEXT("html_url"), HtmlUrl))
+    {
+        UE_LOG(LogLootLockerServerSDKEditor, Warning,
+            TEXT("LootLocker Server SDK update check: GitHub response is missing expected fields."));
+        return;
+    }
 
     // Strip leading 'v' or 'V'
     if (TagName.StartsWith(TEXT("v")) || TagName.StartsWith(TEXT("V")))
@@ -177,7 +177,7 @@ void FLootLockerServerUpdateChecker::OnResponseReceived(
     {
         if (bManual || ShouldNotify(TagName))
         {
-            ShowUpdateNotification(TagName, HtmlUrl, bManual);
+            ShowUpdateNotification(TagName, HtmlUrl);
         }
     }
     else if (bManual)
@@ -187,7 +187,7 @@ void FLootLockerServerUpdateChecker::OnResponseReceived(
 }
 
 void FLootLockerServerUpdateChecker::ShowUpdateNotification(
-    const FString& LatestVersion, const FString& ReleaseUrl, bool bManual)
+    const FString& LatestVersion, const FString& ReleaseUrl)
 {
     if (!FSlateApplication::IsInitialized())
     {
