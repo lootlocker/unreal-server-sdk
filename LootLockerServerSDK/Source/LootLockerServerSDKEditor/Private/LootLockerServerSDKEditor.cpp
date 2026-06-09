@@ -6,8 +6,11 @@
 #include "ToolMenus.h"
 #include "Widgets/Layout/SBox.h"
 #include "LootLockerServerLogViewerWidget.h"
+#include "LootLockerServerUpdateChecker.h"
 #include "Editor.h"
 #include "Editor/EditorEngine.h"
+#include "Framework/Application/SlateApplication.h"
+#include "Misc/App.h"
 
 static const FName LootLockerServerLogViewerTabName("LootLockerServerLogViewerTab");
 
@@ -16,6 +19,12 @@ class FLootLockerServerSDKEditorModule : public IModuleInterface
 public:
     virtual void StartupModule() override
     {
+        // Do not register Slate widgets in headless/unattended mode (automated tests, commandlets).
+        if (FApp::IsUnattended() || !FSlateApplication::IsInitialized())
+        {
+            return;
+        }
+
         FGlobalTabmanager::Get()->RegisterNomadTabSpawner(LootLockerServerLogViewerTabName,
             FOnSpawnTab::CreateLambda([](const FSpawnTabArgs& Args) {
                 return SNew(SDockTab)
@@ -33,12 +42,33 @@ public:
             if (Menu)
             {
                 FToolMenuSection& Section = Menu->AddSection("LootLocker Tools", FText::FromString("LootLocker Tools"));
+                Section.AddMenuEntry(
+                    "LootLockerServerLogViewerMenuEntry",
+                    FText::FromString("LootLocker Server Log Viewer"),
+                    FText::FromString("Open the LootLocker Server Log Viewer window."),
+                    FSlateIcon(),
+                    FUIAction(FExecuteAction::CreateLambda([]
+                    {
+                        FGlobalTabmanager::Get()->TryInvokeTab(LootLockerServerLogViewerTabName);
+                    }))
+                );
+                Section.AddMenuEntry(
+                    "LootLockerServerCheckForUpdates",
+                    FText::FromString("Check for Updates"),
+                    FText::FromString("Check if a newer version of the LootLocker Server SDK is available."),
+                    FSlateIcon(),
+                    FUIAction(FExecuteAction::CreateStatic(&FLootLockerServerUpdateChecker::ManualCheck))
+                );
             }
         }));
+
+        // Delayed update check (fires after StartupDelaySeconds)
+        FLootLockerServerUpdateChecker::Initialize();
     }
 
     virtual void ShutdownModule() override
     {
+        FLootLockerServerUpdateChecker::Shutdown();
         FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(LootLockerServerLogViewerTabName);
     }
 };
