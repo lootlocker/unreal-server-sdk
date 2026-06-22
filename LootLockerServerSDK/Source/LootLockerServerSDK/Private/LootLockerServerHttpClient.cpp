@@ -8,6 +8,7 @@
 #include "Interfaces/IHttpResponse.h"
 #include "Misc/FileHelper.h"
 #include "LootLockerServerLogger.h"
+#include "LootLockerServerConfig.h"
 #include "Interfaces/IPluginManager.h"
 #include "Misc/Guid.h"
 
@@ -30,7 +31,7 @@ ULootLockerServerHttpClient::ULootLockerServerHttpClient()
 {
 	if (SDKVersion.IsEmpty())
 	{
-		const TSharedPtr<IPlugin> Ptr = IPluginManager::Get().FindPlugin("LootLockerServerSDK");
+		const TSharedPtr<IPlugin> Ptr = IPluginManager::Get().FindPlugin(*ULootLockerServerConfig::PluginName);
 		if (Ptr.IsValid())
 		{
 			SDKVersion = Ptr->GetDescriptor().VersionName;
@@ -187,7 +188,7 @@ FString ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>&
 		if (!Response.IsValid())
 		{
 			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_HTTP, InRequest.RequestIdentifier);
-			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), RequestHeaders, TArray<FString>(), RequestTime);
+			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), RequestHeaders, Response->GetAllHeaders(), RequestTime);
 			InRequest.OnCompleteRequest.ExecuteIfBound(Error);
 			return;
 		}
