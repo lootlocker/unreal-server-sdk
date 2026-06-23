@@ -48,7 +48,7 @@ public:
 
     /**
      * Optional identifier appended to the pre-config file name, e.g. setting this to "acme" causes
-     * the SDK to look for "LootLockerServerPreConfig-acme.bytes" instead of "LootLockerServerPreConfig.bytes".
+     * the SDK to look for "<PackageName>ServerPreConfig-acme.bytes" instead of "<PackageName>ServerPreConfig.bytes".
      */
 #if ENGINE_MAJOR_VERSION >= 5
     inline static const FString ConfigFileIdentifier = TEXT("");
@@ -158,7 +158,6 @@ private:
 #if WITH_EDITOR
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override
 	{
-		ApplyFileConfigIfPresent();
 		if (PropertyChangedEvent.GetPropertyName() == "LootLockerServerKey")
 		{
 			IsLegacyKey = IsLegacyAPIKey();
@@ -187,13 +186,19 @@ private:
 		IsValidGameVersion = IsSemverString(GameVersion);
 		LoadFileConfig();
 		ApplyFileConfigIfPresent();
-		if(bEnableFileLogging)
+		// File logging is already handled by ApplyFileConfigIfPresent
+		// when a file config is active. Only apply the default behavior
+		// when no file config is governing the setting.
+		if (!bIsFileConfigLocked)
 		{
-			EnableFileLogging(LogFileName.IsEmpty() ? "LootLockerServerLog" : LogFileName);
-		}
-		else
-		{
-			DisableFileLogging();
+			if(bEnableFileLogging)
+			{
+				EnableFileLogging(LogFileName.IsEmpty() ? "LootLockerServerLog" : LogFileName);
+			}
+			else
+			{
+				DisableFileLogging();
+			}
 		}
 		UObject::PostInitProperties();
 	}
