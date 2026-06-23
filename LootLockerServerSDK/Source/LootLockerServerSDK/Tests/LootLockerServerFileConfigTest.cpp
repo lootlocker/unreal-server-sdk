@@ -6,7 +6,7 @@
 
 #if WITH_DEV_AUTOMATION_TESTS
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FLootLockerServerFileConfigTest, "LootLocker.Server.FileConfig",
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FLootLockerServerFileConfigTest, "LootLockerServer.Config.FileConfig",
     EAutomationTestFlags::EditorContext | EAutomationTestFlags::ProductFilter)
 
 bool FLootLockerServerFileConfigTest::RunTest(const FString& Parameters)
@@ -32,11 +32,11 @@ bool FLootLockerServerFileConfigTest::RunTest(const FString& Parameters)
         TestEqual(TEXT("game_version"), Result.GetValue().game_version, TEXT("2.0.0"));
     }
 
-    // Encrypted content → active
+    // Encrypted content (wrong key/invalid payload) → inactive (verify graceful failure)
     {
         // This is a pre-generated encrypted test payload
         const FString Encrypted = TEXT("t+9Vz7uXf2jKpL1mQnR5wA==");
-        // Invalid Base64 / wrong key will fail gracefully
+        // Wrong key / invalid ciphertext should fail gracefully
         const auto Result = ULootLockerServerConfig::ParseFileConfigContent(Encrypted);
         // The decryption will fail, but we just verify no crash
         TestFalse(TEXT("Invalid encrypted content is inactive"), Result.IsSet());
