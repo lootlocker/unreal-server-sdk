@@ -11,6 +11,14 @@
 #include "Misc/AES.h"
 #include "Misc/Base64.h"
 
+#if ENGINE_MAJOR_VERSION < 5
+const FString ULootLockerServerConfig::PackageName = TEXT("LootLocker");
+const FString ULootLockerServerConfig::PluginName = TEXT("LootLockerServerSDK");
+const FString ULootLockerServerConfig::ConfigFileIdentifier = TEXT("");
+bool ULootLockerServerConfig::bFileConfigChecked = false;
+TOptional<FLootLockerServerFileConfig> ULootLockerServerConfig::FileConfig;
+#endif
+
 namespace {
     static bool bRuntimeLogLevelOverrideSet = false;
     static ELootLockerServerLogLevel RuntimeLogLevelOverride = ELootLockerServerLogLevel::Ignore;
@@ -128,6 +136,12 @@ TOptional<FLootLockerServerFileConfig> ULootLockerServerConfig::ParseFileConfigC
             return {};
         }
 
+        // FAES operates on whole blocks (AES block size is 16 bytes)
+        if (EncryptedData.Num() == 0 || (EncryptedData.Num() % 16) != 0)
+        {
+            return {};
+        }
+
         const FAES::FAESKey DecryptionKey = GetServerFileConfigDecryptionKey();
         FAES::DecryptData(EncryptedData.GetData(), EncryptedData.Num(), DecryptionKey);
 
@@ -153,8 +167,9 @@ TOptional<FLootLockerServerFileConfig> ULootLockerServerConfig::ParseFileConfigC
             }
         }
 
-        // Convert decrypted bytes to UTF-8 string
-        JsonString = FString(EncryptedData.Num(), UTF8_TO_TCHAR(reinterpret_cast<const char*>(EncryptedData.GetData())));
+        // Convert decrypted bytes to UTF-8 string (ensure null-terminated for UTF8_TO_TCHAR)
+        EncryptedData.Add(0);
+        JsonString = UTF8_TO_TCHAR(reinterpret_cast<const char*>(EncryptedData.GetData()));
 
         // Re-parse the decrypted JSON
         Reader = TJsonReaderFactory<>::Create(JsonString);

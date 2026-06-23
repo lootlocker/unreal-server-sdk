@@ -188,7 +188,7 @@ FString ULootLockerServerHttpClient::UploadRawFile_Internal(const TArray<uint8>&
 		if (!Response.IsValid())
 		{
 			FLootLockerServerResponse Error = LootLockerServerResponseFactory::Error<FLootLockerServerResponse>("HTTP Response was invalid", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_HTTP, InRequest.RequestIdentifier);
-			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), RequestHeaders, Response->GetAllHeaders(), RequestTime);
+			LogFailedRequestInformation(Error, InRequest.RequestType, InRequest.EndPoint, FString("Data Stream"), RequestHeaders, TArray<FString>(), RequestTime);
 			InRequest.OnCompleteRequest.ExecuteIfBound(Error);
 			return;
 		}
