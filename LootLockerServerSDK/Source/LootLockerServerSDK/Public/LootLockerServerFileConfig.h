@@ -21,7 +21,7 @@
  *   domain_key                                    (string)
  *   game_version                                  (string, default "1.0.0.0")
  *   log_outside_of_editor                         (bool, default false)
- *   log_level                                     (string: "Error"|"Warning"|"Display"|"Verbose"|"VeryVerbose"|"NoLogging", default "Warning")
+ *   log_level                                     (string: "Ignore"|"Fatal"|"Error"|"Warning"|"Display"|"Log"|"Verbose"|"VeryVerbose", default "Warning")
  *   enable_file_logging                           (bool, default false)
  */
 USTRUCT()
