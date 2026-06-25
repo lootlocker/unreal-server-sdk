@@ -1,6 +1,5 @@
 // Copyright (c) 2025 LootLocker
 #include "LootLockerServerUpdateChecker.h"
-#include "LootLockerServerConfig.h"
 #include "SLootLockerServerUpdateNotification.h"
 #include "HttpModule.h"
 #include "Interfaces/IHttpRequest.h"
@@ -125,7 +124,7 @@ void FLootLockerServerUpdateChecker::OnResponseReceived(
                 Response.IsValid() ? Response->GetResponseCode() : 0);
 
             FNotificationInfo Info(FText::FromString(
-                FString::Printf(TEXT("%s Server SDK: Could not reach GitHub to check for updates."), *ULootLockerServerConfig::PackageName)));
+                TEXT("LootLocker Server SDK: Could not reach GitHub to check for updates.")));
             Info.ExpireDuration = 5.0f;
             Info.bFireAndForget = true;
             FSlateNotificationManager::Get().AddNotification(Info);
@@ -196,7 +195,7 @@ void FLootLockerServerUpdateChecker::ShowUpdateNotification(
     }
 
     const TSharedRef<SWindow> Window = SNew(SWindow)
-        .Title(FText::FromString(FString::Printf(TEXT("%s Server SDK Update Available"), *ULootLockerServerConfig::PackageName)))
+        .Title(FText::FromString(TEXT("LootLocker Server SDK Update Available")))
         .ClientSize(FVector2D(580.0f, 210.0f))
         .SupportsMinimize(false)
         .SupportsMaximize(false)
@@ -217,7 +216,7 @@ void FLootLockerServerUpdateChecker::ShowUpdateNotification(
 void FLootLockerServerUpdateChecker::ShowUpToDateNotification()
 {
     FNotificationInfo Info(FText::FromString(
-        FString::Printf(TEXT("%s Server SDK is up to date!"), *ULootLockerServerConfig::PackageName)));
+        TEXT("LootLocker Server SDK is up to date!")));
     Info.ExpireDuration = 5.0f;
     Info.bFireAndForget = true;
     FSlateNotificationManager::Get().AddNotification(Info);
