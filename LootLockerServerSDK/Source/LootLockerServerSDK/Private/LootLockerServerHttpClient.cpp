@@ -31,7 +31,7 @@ ULootLockerServerHttpClient::ULootLockerServerHttpClient()
 {
 	if (SDKVersion.IsEmpty())
 	{
-		const TSharedPtr<IPlugin> Ptr = IPluginManager::Get().FindPlugin(*ULootLockerServerConfig::PluginName);
+		const TSharedPtr<IPlugin> Ptr = IPluginManager::Get().FindPlugin(TEXT("LootLockerServerSDK"));
 		if (Ptr.IsValid())
 		{
 			SDKVersion = Ptr->GetDescriptor().VersionName;

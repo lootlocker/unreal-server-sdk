@@ -7,7 +7,6 @@
 #include "Widgets/Layout/SBox.h"
 #include "LootLockerServerLogViewerWidget.h"
 #include "LootLockerServerUpdateChecker.h"
-#include "LootLockerServerConfig.h"
 #include "Editor.h"
 #include "Editor/EditorEngine.h"
 #include "Framework/Application/SlateApplication.h"
@@ -34,7 +33,7 @@ public:
                         SNew(SLootLockerServerLogViewerWidget)
                     ];
             })
-        ).SetDisplayName(FText::FromString(ULootLockerServerConfig::PackageName + TEXT(" Server Log Viewer")))
+        ).SetDisplayName(FText::FromString(TEXT("LootLocker Server Log Viewer")))
          .SetMenuType(ETabSpawnerMenuType::Enabled);
 
         UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateLambda([]
@@ -42,12 +41,11 @@ public:
             UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Tools");
             if (Menu)
             {
-                const FString LLSectionName = ULootLockerServerConfig::PackageName + TEXT(" Tools");
-                FToolMenuSection& Section = Menu->AddSection(*LLSectionName, FText::FromString(LLSectionName));
+                FToolMenuSection& Section = Menu->AddSection("LootLocker Tools", FText::FromString(TEXT("LootLocker Tools")));
                 Section.AddMenuEntry(
                     "LootLockerServerLogViewerMenuEntry",
-                    FText::FromString(ULootLockerServerConfig::PackageName + TEXT(" Server Log Viewer")),
-                    FText::FromString(FString::Printf(TEXT("Open the %s Server Log Viewer window."), *ULootLockerServerConfig::PackageName)),
+                    FText::FromString(TEXT("LootLocker Server Log Viewer")),
+                    FText::FromString(TEXT("Open the LootLocker Server Log Viewer window.")),
                     FSlateIcon(),
                     FUIAction(FExecuteAction::CreateLambda([]
                     {
@@ -57,7 +55,7 @@ public:
                 Section.AddMenuEntry(
                     "LootLockerServerCheckForUpdates",
                     FText::FromString("Check for Updates"),
-                    FText::FromString(FString::Printf(TEXT("Check if a newer version of the %s Server SDK is available."), *ULootLockerServerConfig::PackageName)),
+                    FText::FromString(TEXT("Check if a newer version of the LootLocker Server SDK is available.")),
                     FSlateIcon(),
                     FUIAction(FExecuteAction::CreateStatic(&FLootLockerServerUpdateChecker::ManualCheck))
                 );

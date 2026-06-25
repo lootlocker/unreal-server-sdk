@@ -12,9 +12,7 @@
 #include "Misc/Base64.h"
 
 #if ENGINE_MAJOR_VERSION < 5
-const FString ULootLockerServerConfig::PackageName = TEXT("LootLocker");
-const FString ULootLockerServerConfig::PluginName = TEXT("LootLockerServerSDK");
-const FString ULootLockerServerConfig::ConfigFileIdentifier = TEXT("");
+const FString ULootLockerServerConfig::PreConfigFileName = TEXT("LootLockerServerPreConfig.bytes");
 bool ULootLockerServerConfig::bFileConfigChecked = false;
 TOptional<FLootLockerServerFileConfig> ULootLockerServerConfig::FileConfig;
 #endif
@@ -201,22 +199,14 @@ void ULootLockerServerConfig::LoadFileConfig()
         return;
     }
 
-    const TSharedPtr<IPlugin> Plugin = IPluginManager::Get().FindPlugin(*PluginName);
+    const TSharedPtr<IPlugin> Plugin = IPluginManager::Get().FindPlugin(TEXT("LootLockerServerSDK"));
     if (!Plugin.IsValid())
     {
         bFileConfigChecked = true;
         return;
     }
 
-    // Build filename: PackageName + "ServerPreConfig" + optional "-" + ConfigFileIdentifier + ".bytes"
-    FString FileName = PackageName + TEXT("ServerPreConfig");
-    if (!ConfigFileIdentifier.IsEmpty())
-    {
-        FileName += TEXT("-") + ConfigFileIdentifier;
-    }
-    FileName += TEXT(".bytes");
-
-    const FString FilePath = FPaths::Combine(Plugin->GetBaseDir(), TEXT("Config"), FileName);
+    const FString FilePath = FPaths::Combine(Plugin->GetBaseDir(), TEXT("Config"), PreConfigFileName);
 
     FString Content;
     if (!FFileHelper::LoadFileToString(Content, *FilePath))
