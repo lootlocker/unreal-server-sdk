@@ -17,8 +17,11 @@ This doc describes the two supported verification paths:
 From repo root:
 
 ```powershell
-# Run UAT BuildPlugin for Win64
-./scripts/verify-compile.ps1
+# Run UAT BuildPlugin for Win64 (full clean build)
+.\github\scripts\verify-compilation.ps1 -Clean
+
+# Incremental build (skip clean)
+.\github\scripts\verify-compilation.ps1
 ```
 
 ### Configuring your local Unreal Engine path
@@ -29,13 +32,11 @@ Create a repo-local, gitignored file in repo root: `unreal-dev-settings.json`
 { "unreal_engine_path": "C:\\Program Files\\Epic Games\\UE_5.5" }
 ```
 
-`scripts/verify-compile.ps1` reads this file automatically.
+`.github\scripts\verify-compilation.ps1` reads this file automatically.
 
 ### Outputs
-- Build output: `tmp/build/`
-- Log file: `tmp/logs/UAT-BuildPlugin.log`
-
-Note: `tmp/` is intentionally gitignored and should never be committed.
+- Build output: `Build~\PluginBuild\`
+- Log file: `Build~\UAT.log`
 
 ## B) CI compile verification (GitHub Actions)
 
