@@ -652,6 +652,25 @@ FString ULootLockerServerForCpp::ListCatalogItemsByKey(const FString& CatalogKey
     return ULootLockerServerCatalogRequest::ListCatalogItemsByKey(CatalogKey, Count, After, OnCompletedRequest);
 }
 
+FString ULootLockerServerForCpp::ListCatalogItemsById(const TArray<FString>& CatalogListingIds, bool IncludeMetadata, const TArray<FString>& MetadataKeys, const FLootLockerServerListCatalogItemsByIdResponseDelegate& OnCompletedRequest)
+{
+    if (CatalogListingIds.Num() == 0)
+    {
+        FLootLockerServerListCatalogItemsByIdResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerListCatalogItemsByIdResponse>("CatalogListingIds must not be empty", -1);
+        OnCompletedRequest.ExecuteIfBound(ErrorResponse);
+        return {};
+    }
+
+    if (CatalogListingIds.Num() > 100)
+    {
+        FLootLockerServerListCatalogItemsByIdResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerListCatalogItemsByIdResponse>("CatalogListingIds must not exceed 100 items", -1);
+        OnCompletedRequest.ExecuteIfBound(ErrorResponse);
+        return {};
+    }
+
+    return ULootLockerServerCatalogRequest::ListCatalogItemsById(CatalogListingIds, IncludeMetadata, MetadataKeys, OnCompletedRequest);
+}
+
 // Balances
 
 FString ULootLockerServerForCpp::ListBalancesInWallet(const FString& WalletID, const FLootLockerServerListBalancesForWalletResponseDelegate& OnComplete)

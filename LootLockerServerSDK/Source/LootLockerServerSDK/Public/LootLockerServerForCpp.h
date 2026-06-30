@@ -1493,6 +1493,16 @@ public:
      */
     static FString ListCatalogItemsByKey(const FString& CatalogKey, int Count, const FString& After, const FLootLockerServerListCatalogPricesResponseDelegate& OnCompletedRequest);
 
+    /**
+     List catalog items by their catalog_listing_ids, with entity details and optionally metadata inlined directly.
+     @param CatalogListingIds Array of catalog_listing_id strings to look up (max 100)
+     @param IncludeMetadata If true, includes metadata for each entry, filtered by MetadataKeys if provided
+     @param MetadataKeys Optional: Specific metadata keys to include. If empty, all metadata is returned.
+     @param OnCompletedRequest Delegate for handling the server response
+     @return A unique id for this request
+     */
+    static FString ListCatalogItemsById(const TArray<FString>& CatalogListingIds, bool IncludeMetadata, const TArray<FString>& MetadataKeys, const FLootLockerServerListCatalogItemsByIdResponseDelegate& OnCompletedRequest);
+
     /// @}
 
     //==================================================

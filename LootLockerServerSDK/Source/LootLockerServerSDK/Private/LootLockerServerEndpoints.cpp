@@ -136,6 +136,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::ListCurrencies = InitEndpo
 
 // Catalogs
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListCatalogItemsByKey = InitEndpoint("catalogs/inspired-ibex/v1/key/{0}/prices", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListCatalogItemsById = InitEndpoint("catalogs/inspired-ibex/v1/catalog/items", ELootLockerServerHTTPMethod::POST);
 
 // Balances
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListBalancesInWallet = InitEndpoint("balances/wallet/{0}", ELootLockerServerHTTPMethod::GET);

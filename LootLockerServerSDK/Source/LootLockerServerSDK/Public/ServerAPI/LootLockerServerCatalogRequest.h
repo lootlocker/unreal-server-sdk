@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "LootLockerServerResponse.h"
+#include "ServerAPI/LootLockerServerMetadataRequest.h"
 #include "LootLockerServerCatalogRequest.generated.h"
 
 //==================================================
@@ -498,11 +499,122 @@ struct FLootLockerServerCatalogPagination
     FString Next_cursor;
 };
 
+/**
+ * A group association with the entity detail inlined directly.
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerInlinedGroupAssociation
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    ELootLockerServerCatalogEntryEntityKind Kind = ELootLockerServerCatalogEntryEntityKind::Asset;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Id;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Catalog_listing_id;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerCatalogAssetDetails Asset_detail;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerCatalogCurrencyDetails Currency_detail;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerCatalogProgressionPointDetails Progression_point_detail;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerCatalogProgressionResetDetails Progression_reset_detail;
+};
+
+/**
+ * Group detail used by the ListCatalogItemsById endpoint, with association details inlined.
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerInlinedGroupDetailsWithAssociations
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Name;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Description;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Id;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Catalog_listing_id;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerInlinedGroupAssociation> Associations;
+};
+
+/**
+ * A catalog entry with entity details inlined directly.
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerListCatalogItemsByIdEntry : public FLootLockerServerCatalogEntry
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerCatalogAssetDetails Asset_detail;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerCatalogCurrencyDetails Currency_detail;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerCatalogProgressionPointDetails Progression_point_detail;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerCatalogProgressionResetDetails Progression_reset_detail;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerInlinedGroupDetailsWithAssociations Group_detail;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerMetadataEntry> Metadata;
+};
+
+/**
+ * Describes why a specific catalog_listing_id could not be resolved.
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerListCatalogItemsByIdError
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Id;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Reason;
+};
+
+/**
+ * Metadata include configuration for catalog items lookup.
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerCatalogMetadataInclude
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    bool All = false;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FString> Keys;
+};
+
+/**
+ * Optional includes configuration for catalog items lookup.
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerCatalogItemsIncludes
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerCatalogMetadataInclude Metadata;
+};
+
 //==================================================
 // Request Definitions
 //==================================================
 
-// N/A
+/**
+ * Request body for looking up catalog items by their catalog_listing_ids.
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerListCatalogItemsByIdRequest
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FString> Ids;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerCatalogItemsIncludes Includes;
+};
 
 //==================================================
 // Response Definitions
@@ -557,6 +669,19 @@ struct FLootLockerServerListCatalogPricesResponse : public FLootLockerServerResp
     FLootLockerServerCatalogPagination Pagination;
 };
 
+/**
+ * Response for the ListCatalogItemsById endpoint.
+ */
+USTRUCT(BlueprintType, Category = "LootLockerServer")
+struct FLootLockerServerListCatalogItemsByIdResponse : public FLootLockerServerResponse
+{
+    GENERATED_BODY()
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerListCatalogItemsByIdEntry> Items;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    TArray<FLootLockerServerListCatalogItemsByIdError> Errors;
+};
+
 //==================================================
 // C++ Delegate Definitions
 //==================================================
@@ -565,6 +690,10 @@ struct FLootLockerServerListCatalogPricesResponse : public FLootLockerServerResp
  * C++ response delegate for listing catalog prices
  */
 DECLARE_DELEGATE_OneParam(FLootLockerServerListCatalogPricesResponseDelegate, FLootLockerServerListCatalogPricesResponse);
+/**
+ * C++ response delegate for listing catalog items by ID
+ */
+DECLARE_DELEGATE_OneParam(FLootLockerServerListCatalogItemsByIdResponseDelegate, FLootLockerServerListCatalogItemsByIdResponse);
 
 //==================================================
 // API Class Definition
@@ -589,4 +718,5 @@ public:
      * @param OnResponseCompleted Delegate for handling the response
      */
     static FString ListCatalogItemsByKey(const FString& CatalogKey, int Count, const FString& After, const FLootLockerServerListCatalogPricesResponseDelegate& OnResponseCompleted);
+    static FString ListCatalogItemsById(const TArray<FString>& CatalogListingIds, bool IncludeMetadata, const TArray<FString>& MetadataKeys, const FLootLockerServerListCatalogItemsByIdResponseDelegate& OnResponseCompleted);
 };
