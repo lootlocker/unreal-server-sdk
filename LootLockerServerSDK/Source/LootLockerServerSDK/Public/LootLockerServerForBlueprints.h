@@ -175,6 +175,11 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListCurrenciesResponseBP, FLo
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListCatalogPricesResponseBP, FLootLockerServerListCatalogPricesResponse, Response);
 
+/**
+ * Blueprint response delegate for listing catalog items by ID
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListCatalogItemsByIdResponseBP, FLootLockerServerListCatalogItemsByIdResponse, Response);
+
 //==================================================
 // Drop Table Response Delegates
 //==================================================
@@ -1216,7 +1221,7 @@ public:
      *
      * @param PlayerID The ID of the player for whom to equip the asset
      * @param AssetID The ID of the asset to equip to the specified player's loadout
-     * @param RentalOptionID The ID of the rental option of the specified asset to equip to the specified player's loadout
+     * @param RentalOptionID The ID of the specific rental option of the specified asset to equip to the specified player's loadout
      * @param OnCompletedRequest Delegate for handling the server response
      * 
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
@@ -2104,6 +2109,17 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Catalogs", meta = (AdvancedDisplay = "Count,After", Count = 0, After = ""))
     static UPARAM(DisplayName = "RequestId") FString ListCatalogItemsByKey(const FString& CatalogKey, int Count, const FString& After, const FLootLockerServerListCatalogPricesResponseBP& OnCompletedRequestBP);
+
+    /**
+     List catalog items by their catalog_listing_ids, with entity details and optionally metadata inlined directly.
+     @param CatalogListingIds Array of catalog_listing_id strings to look up (max 100)
+     @param IncludeMetadata If true, includes metadata for each entry, filtered by MetadataKeys if provided
+     @param MetadataKeys Optional: Specific metadata keys to include. If empty, all metadata is returned.
+     @param OnCompletedRequestBP Delegate for handling the server response
+     @return A unique id for this request
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Catalogs", meta = (AdvancedDisplay = "IncludeMetadata,MetadataKeys"))
+    static UPARAM(DisplayName = "RequestId") FString ListCatalogItemsById(const TArray<FString>& CatalogListingIds, bool IncludeMetadata, const TArray<FString>& MetadataKeys, const FLootLockerServerListCatalogItemsByIdResponseBP& OnCompletedRequestBP);
 
     //==================================================
     // Balances
