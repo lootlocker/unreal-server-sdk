@@ -50,7 +50,7 @@ FString ULootLockerServerCatalogRequest::ListCatalogItemsById(const TArray<FStri
             OnResponseCompleted);
     }
 
-    typename ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerListCatalogItemsByIdResponse>::FLootLockerServerResponseInspectorCallback MetadataParser =
+    ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerListCatalogItemsByIdResponse>::FLootLockerServerResponseInspectorCallback MetadataParser =
         ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerListCatalogItemsByIdResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnResponseCompleted](FLootLockerServerListCatalogItemsByIdResponse& Response)
     {
         if (!Response.Success || Response.Items.Num() == 0)
@@ -83,10 +83,6 @@ FString ULootLockerServerCatalogRequest::ListCatalogItemsById(const TArray<FStri
 
             for (int j = 0; j < JsonMetadataArray.Num(); j++)
             {
-                if (j >= Entry.Metadata.Num())
-                {
-                    break;
-                }
                 TSharedPtr<FJsonObject> JsonMetadataObject = JsonMetadataArray[j]->AsObject();
                 if (!JsonMetadataObject.IsValid())
                 {
@@ -112,6 +108,6 @@ FString ULootLockerServerCatalogRequest::ListCatalogItemsById(const TArray<FStri
         ULootLockerServerEndpoints::ListCatalogItemsById,
         {},
         {},
-        OnResponseCompleted,
+        FLootLockerServerListCatalogItemsByIdResponseDelegate(),
         MetadataParser);
 }
