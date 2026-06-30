@@ -170,6 +170,7 @@ public:
 
     // Catalogs
     static FLootLockerServerEndPoint ListCatalogItemsByKey;
+    static FLootLockerServerEndPoint ListCatalogItemsById;
 
     // Balances
     static FLootLockerServerEndPoint ListBalancesInWallet;
