@@ -656,14 +656,14 @@ FString ULootLockerServerForCpp::ListCatalogItemsById(const TArray<FString>& Cat
 {
     if (CatalogListingIds.Num() == 0)
     {
-        FLootLockerServerListCatalogItemsByIdResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerListCatalogItemsByIdResponse>("CatalogListingIds must not be empty", -1);
+        FLootLockerServerListCatalogItemsByIdResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerListCatalogItemsByIdResponse>("CatalogListingIds must not be empty", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
         OnCompletedRequest.ExecuteIfBound(ErrorResponse);
         return {};
     }
 
     if (CatalogListingIds.Num() > 100)
     {
-        FLootLockerServerListCatalogItemsByIdResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerListCatalogItemsByIdResponse>("CatalogListingIds must not exceed 100 items", -1);
+        FLootLockerServerListCatalogItemsByIdResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerListCatalogItemsByIdResponse>("CatalogListingIds must not exceed 100 items", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
         OnCompletedRequest.ExecuteIfBound(ErrorResponse);
         return {};
     }

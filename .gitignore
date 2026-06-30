@@ -87,6 +87,7 @@ DemoProject/DerivedDataCache/*
 _codeql_*
 
 # Local compile verification output
+Build~/
 tmp/
 Temp~/
 

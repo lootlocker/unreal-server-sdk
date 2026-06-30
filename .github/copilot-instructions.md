@@ -9,7 +9,7 @@ You are working in the **LootLocker Unreal Server SDK** repository.
 - Treat anything under `LootLockerServerSDK/Source/LootLockerServerSDK/Public/` as **public API**.
 - Prefer implementation details in `Private/`.
 - Before declaring work complete, prefer running compile verification (local script or CI workflow); see `.github/instructions/verification.md`.
-- When asked to “verify compile” locally, run `scripts/verify-compile.ps1` (don’t substitute ad-hoc build commands unless necessary).
+- When asked to "verify compile" locally, run `.github\scripts\verify-compilation.ps1 -Clean` (don't substitute ad-hoc build commands unless necessary).
 
 ## More context
 - Architecture: `.github/instructions/architecture.md`
