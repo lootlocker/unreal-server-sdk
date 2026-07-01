@@ -41,15 +41,14 @@ public:
 #else
     static const FString PreConfigFileName;
 #endif
-
+    UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer", Meta = (EditCondition = "bIsFileConfigLocked", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "INFO:"), Transient)
+    FString FileConfigActiveNotice = "Settings are governed by the pre-configured file config shipped with the plugin and cannot be changed from the editor.";
     UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer", Meta = (EditCondition = "!bIsFileConfigLocked"))
     FString LootLockerServerKey = "";
     UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer", Meta = (EditCondition = "!bIsFileConfigLocked"))
     FString LootLockerDomainKey = "";
     UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer", Meta = (EditCondition = "IsLegacyKey", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "WARNING:"), Transient)
     FString LegacyKeyWarning = "You are using a legacy API Key, please generate a new one here: https://console.lootlocker.com/settings/api-keys";
-    UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer", Meta = (EditCondition = "bIsFileConfigLocked", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "INFO:"), Transient)
-    FString FileConfigActiveNotice = "Settings are governed by the pre-configured file config shipped with the plugin and cannot be changed from the editor.";
     UPROPERTY(Config, VisibleAnywhere, BlueprintReadOnly, Category = "LootLockerServer", Meta = (EditCondition = "!IsValidGameVersion", EditConditionHides), Meta = (MultiLine = true), Meta = (DisplayName = "WARNING:"), Transient)
     FString InvalidGameVersionWarning = "";
     UPROPERTY(Config, EditAnywhere, BlueprintReadWrite, Category = "LootLockerServer", Meta = (EditCondition = "!bIsFileConfigLocked"))
