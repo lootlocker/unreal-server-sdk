@@ -57,6 +57,7 @@ LootLockerServerSDK/Intermediate/*
 
 # Builds
 Build/*
+Build~
 
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files
 !Build/*/
