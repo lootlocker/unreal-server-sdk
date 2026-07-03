@@ -20,7 +20,11 @@
 DEFINE_LOG_CATEGORY_STATIC(LogLootLockerServerSDKEditor, Log, All);
 
 // --- Static member definitions ---
+#if ENGINE_MAJOR_VERSION >= 5
 FTSTicker::FDelegateHandle FLootLockerServerUpdateChecker::TickerHandle;
+#else
+FDelegateHandle FLootLockerServerUpdateChecker::TickerHandle;
+#endif
 const TCHAR* FLootLockerServerUpdateChecker::ConfigSection =
     TEXT("/Script/LootLockerServerSDKEditor.UpdateChecker");
 const TCHAR* FLootLockerServerUpdateChecker::GitHubReleasesUrl =
@@ -31,17 +35,28 @@ const TCHAR* FLootLockerServerUpdateChecker::GitHubReleasesUrl =
 void FLootLockerServerUpdateChecker::Initialize()
 {
     // Fire once after StartupDelaySeconds — return false in the callback to auto-unregister.
+#if ENGINE_MAJOR_VERSION >= 5
     TickerHandle = FTSTicker::GetCoreTicker().AddTicker(
         FTickerDelegate::CreateStatic(&FLootLockerServerUpdateChecker::OnStartupTick),
         StartupDelaySeconds
     );
+#else
+    TickerHandle = FTicker::GetCoreTicker().AddTicker(
+        FTickerDelegate::CreateStatic(&FLootLockerServerUpdateChecker::OnStartupTick),
+        StartupDelaySeconds
+    );
+#endif
 }
 
 void FLootLockerServerUpdateChecker::Shutdown()
 {
     if (TickerHandle.IsValid())
     {
+#if ENGINE_MAJOR_VERSION >= 5
         FTSTicker::GetCoreTicker().RemoveTicker(TickerHandle);
+#else
+        FTicker::GetCoreTicker().RemoveTicker(TickerHandle);
+#endif
         TickerHandle.Reset();
     }
 }
@@ -96,7 +111,7 @@ bool FLootLockerServerUpdateChecker::ShouldNotify(const FString& LatestVersion)
 
 void FLootLockerServerUpdateChecker::FetchLatestRelease(bool bManual)
 {
-    TSharedRef<IHttpRequest> Request = FHttpModule::Get().CreateRequest();
+    FHttpRequestPtr Request = FHttpModule::Get().CreateRequest();
     Request->SetURL(GitHubReleasesUrl);
     Request->SetVerb(TEXT("GET"));
     Request->SetHeader(TEXT("Accept"), TEXT("application/vnd.github.v3+json"));
