@@ -98,3 +98,6 @@ unreal-dev-settings.json
 
 # Doxygen generated output
 docs/
+
+# Ignore config files
+LootLockerServerSDK/Config/*.bytes
