@@ -2,12 +2,17 @@ name: Unreal Server SDK Packager
 run-name: sdk-packager
 on:
   push:
-      branches: # Made towards the following
+      branches:
         - main
         - ci/*
       tags:
         - v**
+  release:
+    types: [published]
   workflow_dispatch: {}
+
+permissions:
+  contents: write
 
 jobs: 
   package-sdk:
@@ -30,6 +35,8 @@ jobs:
           SDK_PATH="$(pwd)"
           SDK_NAME=`find "$SDK_PATH" -type f -name "*.uplugin" | sed -n -r "s/.*\/([-A-Za-z0-9_]+)\.uplugin/\1/p"`
           SDK_VERSION=`sed -n -r 's/^ +\"VersionName\": \"([0-9]+.[0-9]+.[0-9]+)\",/\1/p' < "$SDK_PATH/$SDK_NAME/$SDK_NAME.uplugin"`
+          echo "SDK_PATH=${SDK_PATH}" >> $GITHUB_ENV
+          echo "SDK_NAME=${SDK_NAME}" >> $GITHUB_ENV
           sed -i -r "s/^( +)(\"VersionName\": \"[0-9\.]+\",)/\1\2\n\1\"EngineVersion\": \"${{ matrix.UE_VERSION }}\",/g" "$SDK_PATH/$SDK_NAME/$SDK_NAME.uplugin"
           CURRENT_PACKAGE_DIR="Packaged"
           echo "PACKAGE_DIR=${CURRENT_PACKAGE_DIR}" >> $GITHUB_ENV
@@ -44,4 +51,12 @@ jobs:
         with:
           name: ${{ ENV.PACKAGE_NAME }}
           path: ${{ ENV.PACKAGE_DIR }}/${{ ENV.PACKAGE_NAME }}
+
+      - name: Attach package to release
+        if: github.event_name == 'release'
+        run: |
+          cd "$SDK_PATH"
+          gh release upload --clobber "${{ github.ref_name }}" "$PACKAGE_DIR/$PACKAGE_NAME"
+        env:
+          GH_TOKEN: ${{ secrets.UNREAL_CI_PERSONAL_ACCESS_TOKEN }}
           
