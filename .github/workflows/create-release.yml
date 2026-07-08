@@ -3,7 +3,7 @@ run-name: "Create Release from ${{ github.ref_name }}"
 
 on:
   workflow_run:
-    workflows: ["Verify compile (quick)"]
+    workflows: ["Build plugin using unreal conainer"]
     types: [completed]
     branches: [main]
   workflow_dispatch:
