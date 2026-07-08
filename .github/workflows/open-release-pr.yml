@@ -178,7 +178,7 @@ jobs:
             --body "$(cat /tmp/release-notes.md)" \
             --base main \
             --head "$BRANCH" \
-            --label "release candidate" \
+            --label "Release Candidate" \
             --reviewer "kirre-bylund"
         env:
           GH_TOKEN: ${{ github.token }}
