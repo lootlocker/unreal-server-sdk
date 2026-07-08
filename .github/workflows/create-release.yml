@@ -59,7 +59,7 @@ jobs:
           PR_JSON=$(gh pr view "$PR_NUMBER" --repo "${{ github.repository }}" --json number,body,labels,title,state)
           PR_TITLE=$(echo "$PR_JSON" | jq -r '.title')
 
-          HAS_RC_LABEL=$(echo "$PR_JSON" | jq -r '[.labels[].name] | any(.; ascii_downcase == "release candidate")')
+          HAS_RC_LABEL=$(echo "$PR_JSON" | jq -r '.labels[].name' | tr '[:upper:]' '[:lower:]' | grep -q 'release candidate' && echo "true" || echo "false")
 
           echo "Found PR #${PR_NUMBER}: ${PR_TITLE}"
           echo "PR_NUMBER=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
