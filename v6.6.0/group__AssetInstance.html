@@ -1,0 +1,1490 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: Asset Instances</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.6.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__AssetInstance.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">Asset Instances</div></div>
+</div><!--header-->
+<div class="contents">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Server-side management of asset instances in players' inventories. </p>
+<p>Grant, revoke, and query asset instances owned by players from the server. Instances are created when an asset is awarded and carry a unique Instance ID plus mutable per-instance state. This group covers server operations: listing a player's inventory, granting items, and inspecting rental states.</p>
+<p>See the <a href="https://docs.lootlocker.com/players/inventory">LootLocker documentation</a>. </p>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gac78bcfd7d36275131297769f050c8642" name="gac78bcfd7d36275131297769f050c8642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac78bcfd7d36275131297769f050c8642">&#9670;&#160;</a></span>AddAssetToPlayerInventoryByAssetID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a11f644baa10dbf2abe7b76d3f421a4fe">FLootLockerServerAddAssetToPlayerInventoryResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add the specified asset to the specified player's inventory (grant the asset) using an asset id which will equip that asset's default variation If the request is successfull, the returned list contains all assets that were granted to the player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to add the asset </td></tr>
+    <tr><td class="paramname">AssetID</td><td>The ID of the asset to add to the specified player's inventory </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga20055b353409dd4f8bd46d872c9f45c8" name="ga20055b353409dd4f8bd46d872c9f45c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga20055b353409dd4f8bd46d872c9f45c8">&#9670;&#160;</a></span>AddAssetToPlayerInventoryByAssetIDAndRentalOptionID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>RentalOptionID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a11f644baa10dbf2abe7b76d3f421a4fe">FLootLockerServerAddAssetToPlayerInventoryResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add the specified asset to the specified player's inventory (grant the asset) by specyfiying an asset id and which rental option id of the asset to equip If the request is successfull, the returned list contains all assets that were granted to the player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to add the asset </td></tr>
+    <tr><td class="paramname">AssetID</td><td>The ID of the asset to add to the specified player's inventory </td></tr>
+    <tr><td class="paramname">RentalOptionID</td><td>The ID of the specific rental option of the specified asset to add to the specified player's inventory </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="gaeaf798a2b8a084f06dfe591e11dd50b8" name="gaeaf798a2b8a084f06dfe591e11dd50b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeaf798a2b8a084f06dfe591e11dd50b8">&#9670;&#160;</a></span>AddAssetToPlayerInventoryByAssetIDAndVariationID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndVariationID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>VariationID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a11f644baa10dbf2abe7b76d3f421a4fe">FLootLockerServerAddAssetToPlayerInventoryResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add the specified asset to the specified player's inventory (grant the asset) by specifiying an asset id and which variation id of the asset to equip If the request is successfull, the returned list contains all assets that were granted to the player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to add the asset </td></tr>
+    <tr><td class="paramname">AssetID</td><td>The ID of the asset to add to the specified player's inventory </td></tr>
+    <tr><td class="paramname">VariationID</td><td>The ID of the specific variation of the specified asset to add to the specified player's inventory </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga9b37fceff9dac760051f2871971d1d53" name="ga9b37fceff9dac760051f2871971d1d53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9b37fceff9dac760051f2871971d1d53">&#9670;&#160;</a></span>AddKeyValuePairToAssetInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::AddKeyValuePairToAssetInstance </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetInstanceID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString&#160;</td>
+          <td class="paramname"><em>Key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FString&#160;</td>
+          <td class="paramname"><em>Value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9b33fcd9deae615c938d3db478a97bbf">FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a key value pair on the specified asset instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The player ID of the player that this player asset instance belongs to </td></tr>
+    <tr><td class="paramname">AssetInstanceID</td><td>The id of the asset instance on this player for which to complete the operation </td></tr>
+    <tr><td class="paramname">Key</td><td>The key to add </td></tr>
+    <tr><td class="paramname">Value</td><td>The value to set for the added key </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="gafea00b07597d8202fe04205c49265f37" name="gafea00b07597d8202fe04205c49265f37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafea00b07597d8202fe04205c49265f37">&#9670;&#160;</a></span>AlterPlayerInventoryAddAssetsByAssetID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerAssetByAssetIdRequest.html">FLootLockerServerAssetByAssetIdRequest</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>AssetsToAdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>AssetsToRemove</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a45a7e60a0f71cb650f240becd2831ce4">FLootLockerServerAlterPlayerInventoryResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bulk add (grant) and/or remove assets to/from the specified player's inventory Add assets by supplying a list of asset id's for which the default variation will be used If the request is successfull, the return will contain two lists; one specifying the id's of all the assets that were removed, one specifying all added assets. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to alter the inventory </td></tr>
+    <tr><td class="paramname">AssetsToAdd</td><td>A list of assets to add to the specified player's inventory </td></tr>
+    <tr><td class="paramname">AssetsToRemove</td><td>A list of asset instance id's of assets to remove from the specified player's inventory </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga507abd0aef956e750dab3dade67b8702" name="ga507abd0aef956e750dab3dade67b8702"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga507abd0aef956e750dab3dade67b8702">&#9670;&#160;</a></span>AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerAssetByAssetIdAndRentalOptionIdRequest.html">FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>AssetsToAdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>AssetsToRemove</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a45a7e60a0f71cb650f240becd2831ce4">FLootLockerServerAlterPlayerInventoryResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bulk add (grant) and/or remove assets to/from the specified player's inventory Add assets by supplying a list of asset ids and rental option ids of those assets to use If the request is successfull, the return will contain two lists; one specifying the id's of all the assets that were removed, one specifying all added assets. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to alter the inventory </td></tr>
+    <tr><td class="paramname">AssetsToAdd</td><td>A list of assets to add to the specified player's inventory </td></tr>
+    <tr><td class="paramname">AssetsToRemove</td><td>A list of asset instance id's of assets to remove from the specified player's inventory </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga3ac9e964b5d980389cb0f3ea91b6acb1" name="ga3ac9e964b5d980389cb0f3ea91b6acb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3ac9e964b5d980389cb0f3ea91b6acb1">&#9670;&#160;</a></span>AlterPlayerInventoryAddAssetsByAssetIDAndVariationID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerAssetByAssetIdAndVariationIdRequest.html">FLootLockerServerAssetByAssetIdAndVariationIdRequest</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>AssetsToAdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>AssetsToRemove</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a45a7e60a0f71cb650f240becd2831ce4">FLootLockerServerAlterPlayerInventoryResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bulk add (grant) and/or remove assets to/from the specified player's inventory Add assets by supplying a list of asset ids and variation ids of those assets to use If the request is successfull, the return will contain two lists; one specifying the id's of all the assets that were removed, one specifying all added assets. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to alter the inventory </td></tr>
+    <tr><td class="paramname">AssetsToAdd</td><td>A list of assets to add to the specified player's inventory </td></tr>
+    <tr><td class="paramname">AssetsToRemove</td><td>A list of asset instance id's of assets to remove from the specified player's inventory </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga0bb02c5a3dbdffe01a9abf71084a892f" name="ga0bb02c5a3dbdffe01a9abf71084a892f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0bb02c5a3dbdffe01a9abf71084a892f">&#9670;&#160;</a></span>DeleteKeyValuePairFromAssetInstanceById()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::DeleteKeyValuePairFromAssetInstanceById </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetInstanceID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>KeyValuePairID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9b33fcd9deae615c938d3db478a97bbf">FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delete a key value pair from the specified asset instance by key value pair id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The player ID of the player that this player asset instance belongs to </td></tr>
+    <tr><td class="paramname">AssetInstanceID</td><td>The id of the asset instance on this player for which to complete the operation </td></tr>
+    <tr><td class="paramname">KeyValuePairID</td><td>The ID of the specific key value pair to delete </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="gab00ba8f9245f7f26044af19ea70351e1" name="gab00ba8f9245f7f26044af19ea70351e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab00ba8f9245f7f26044af19ea70351e1">&#9670;&#160;</a></span>EquipAssetToPlayerLoadoutByAssetId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetId </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a979eb3bcc40e52b0b31cb7e7dfd3b8b0">FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Equip an asset instance to the specified player's default character's loadout using an asset id which will equip that asset's default variation If the request is successfull, the returned list contains the full loadout. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to equip the asset </td></tr>
+    <tr><td class="paramname">AssetID</td><td>The ID of the asset to equip to the specified player's loadout </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga1416fe666cc8dee4ab43581bc3db6269" name="ga1416fe666cc8dee4ab43581bc3db6269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1416fe666cc8dee4ab43581bc3db6269">&#9670;&#160;</a></span>EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetVariationID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a979eb3bcc40e52b0b31cb7e7dfd3b8b0">FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Equip an asset instance to the specified player's default character's loadout by specifiying an asset id and which variation id of the asset to equip If the request is successfull, the returned list contains the full loadout. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to equip the asset </td></tr>
+    <tr><td class="paramname">AssetID</td><td>The ID of the asset to equip to the specified player's loadout </td></tr>
+    <tr><td class="paramname">AssetVariationID</td><td>The ID of the variation of the specified asset to equip to the specified player's loadout </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga4b9fa09794dd351f1f648600defc015a" name="ga4b9fa09794dd351f1f648600defc015a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4b9fa09794dd351f1f648600defc015a">&#9670;&#160;</a></span>EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>RentalOptionID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a979eb3bcc40e52b0b31cb7e7dfd3b8b0">FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Equip an asset instance to the specified player's default character's loadout by specyfiying an asset id and which rental option id of the asset to equip If the request is successfull, the returned list contains the full loadout. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to equip the asset </td></tr>
+    <tr><td class="paramname">AssetID</td><td>The ID of the asset to equip to the specified player's loadout </td></tr>
+    <tr><td class="paramname">RentalOptionID</td><td>The ID of the rental option of the specified asset to equip to the specified player's loadout </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga6cdd8b63fab57add4cf6b80fc5f808be" name="ga6cdd8b63fab57add4cf6b80fc5f808be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6cdd8b63fab57add4cf6b80fc5f808be">&#9670;&#160;</a></span>EquipAssetToPlayerLoadoutByAssetInstanceId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetInstanceId </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetInstanceID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a979eb3bcc40e52b0b31cb7e7dfd3b8b0">FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Equip the specified asset instance to the specified player's default character's loadout If the request is successfull, the returned list contains the full loadout. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to equip the asset </td></tr>
+    <tr><td class="paramname">AssetInstanceID</td><td>The Instance ID of the asset to equip to the specified player's loadout </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga7bbdf52cb8307a5c79c955402156a116" name="ga7bbdf52cb8307a5c79c955402156a116"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7bbdf52cb8307a5c79c955402156a116">&#9670;&#160;</a></span>GetAssetInstanceKeyValuePairFromAssetInstanceById()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::GetAssetInstanceKeyValuePairFromAssetInstanceById </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetInstanceID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>KeyValuePairID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerAssetRequest_8h.html#a8c4e2f6cef56c6873fe3d8c68d94d225">FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a single Key Value Pair from the specified asset instance by key value pair id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The player ID of the player that this player asset instance belongs to </td></tr>
+    <tr><td class="paramname">AssetInstanceID</td><td>The ID of the asset instance on this player for which to complete the operation </td></tr>
+    <tr><td class="paramname">KeyValuePairID</td><td>The ID of the specific key value pair to get </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="gaf13d61dbac8b506afb758c9e651b00e0" name="gaf13d61dbac8b506afb758c9e651b00e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf13d61dbac8b506afb758c9e651b00e0">&#9670;&#160;</a></span>GetKeyValuePairsFromAssetInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::GetKeyValuePairsFromAssetInstance </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetInstanceID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9b33fcd9deae615c938d3db478a97bbf">FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a list of key value pairs from the specified asset instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The player ID of the player that this player asset instance belongs to </td></tr>
+    <tr><td class="paramname">AssetInstanceID</td><td>The id of the asset instance on this player for which to complete the operation </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga131d7c587f2a0884501b81a6682e4e7a" name="ga131d7c587f2a0884501b81a6682e4e7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga131d7c587f2a0884501b81a6682e4e7a">&#9670;&#160;</a></span>GetPaginatedPlayerInventory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::GetPaginatedPlayerInventory </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>After</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a3d223ec25f8799f76b50a11daf6ce6eb">FLootLockerServerGetPlayerInventoryResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the specified player's default character's inventory according to the specified pagination parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to get the inventory </td></tr>
+    <tr><td class="paramname">Count</td><td>The number of inventory items to get. Must be a value between 1 and 200 </td></tr>
+    <tr><td class="paramname">After</td><td>The id of the inventory item from where to start getting inventory items (non inclusive). Set to 0 to start from the first item </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga02bad2a55941343c09a4d03c37aa19ef" name="ga02bad2a55941343c09a4d03c37aa19ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga02bad2a55941343c09a4d03c37aa19ef">&#9670;&#160;</a></span>GetPlayerInventory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::GetPlayerInventory </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a3d223ec25f8799f76b50a11daf6ce6eb">FLootLockerServerGetPlayerInventoryResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the specified player's default character's inventory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to get the inventory </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga519a81ddb50ddf0f2f3958a87e076e71" name="ga519a81ddb50ddf0f2f3958a87e076e71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga519a81ddb50ddf0f2f3958a87e076e71">&#9670;&#160;</a></span>GetPlayerLoadout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::GetPlayerLoadout </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a7055ececa5884ae24178492a2c6e4f24">FLootLockerServerGetPlayerLoadoutResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the specified player's default character's loadout. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to get the loadout </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="gafc49006eff94c9f9a9ee6bbc527ace7b" name="gafc49006eff94c9f9a9ee6bbc527ace7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafc49006eff94c9f9a9ee6bbc527ace7b">&#9670;&#160;</a></span>GetUniversalInventory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::GetUniversalInventory </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#ae023604c8d38f20d245589f9cbedea2e">FLootLockerServerGetUniversalInventoryResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a list of assets that are available for all player's in the game. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga9bad8807c9f61324510067f586896b24" name="ga9bad8807c9f61324510067f586896b24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9bad8807c9f61324510067f586896b24">&#9670;&#160;</a></span>UnequipAssetFromPlayerLoadout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::UnequipAssetFromPlayerLoadout </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>InstanceID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#af22694f997e19788b82c59bc3081b2e7">FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unequip an asset instance from the specified player's default character's loadout If the request is successfull, the returned list contains the full loadout. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to unequip the asset </td></tr>
+    <tr><td class="paramname">InstanceID</td><td>The Instance ID of the asset in the specified player's loadout to unequip </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga275c9fbdc4196334b45f9e4a4672a8e8" name="ga275c9fbdc4196334b45f9e4a4672a8e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga275c9fbdc4196334b45f9e4a4672a8e8">&#9670;&#160;</a></span>UpdateKeyValuePairOnAssetInstanceById()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::UpdateKeyValuePairOnAssetInstanceById </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetInstanceID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>KeyValuePairID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString&#160;</td>
+          <td class="paramname"><em>Key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FString&#160;</td>
+          <td class="paramname"><em>Value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerAssetRequest_8h.html#a8c4e2f6cef56c6873fe3d8c68d94d225">FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update a single key value pair on the specified asset instance by key value pair id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The player ID of the player that this player asset instance belongs to </td></tr>
+    <tr><td class="paramname">AssetInstanceID</td><td>The id of the asset instance on this player for which to complete the operation </td></tr>
+    <tr><td class="paramname">KeyValuePairID</td><td>The ID of the specific key value pair to update </td></tr>
+    <tr><td class="paramname">Key</td><td>The key to set for the key value pair </td></tr>
+    <tr><td class="paramname">Value</td><td>The value to set for the updated key </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="gac8861dd116979d3f4c04e4b26da1738a" name="gac8861dd116979d3f4c04e4b26da1738a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac8861dd116979d3f4c04e4b26da1738a">&#9670;&#160;</a></span>UpdateKeyValuePairsOnAssetInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::UpdateKeyValuePairsOnAssetInstance </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PlayerID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AssetInstanceID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TArray&lt; <a class="el" href="structFLootLockerServerAssetStorageKeyValueSet.html">FLootLockerServerAssetStorageKeyValueSet</a> &gt;&#160;</td>
+          <td class="paramname"><em>KeyValuePairs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9b33fcd9deae615c938d3db478a97bbf">FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create or update a list of key value pairs on the specified asset instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PlayerID</td><td>The player ID of the player that this player asset instance belongs to </td></tr>
+    <tr><td class="paramname">AssetInstanceID</td><td>The id of the asset instance on this player for which to complete the operation </td></tr>
+    <tr><td class="paramname">KeyValuePairs</td><td>A list of key value pairs to update </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gafc49006eff94c9f9a9ee6bbc527ace7b" id="r_gafc49006eff94c9f9a9ee6bbc527ace7b"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#gafc49006eff94c9f9a9ee6bbc527ace7b">ULootLockerServerForCpp::GetUniversalInventory</a> (const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#ae023604c8d38f20d245589f9cbedea2e">FLootLockerServerGetUniversalInventoryResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:gafc49006eff94c9f9a9ee6bbc527ace7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a list of assets that are available for all player's in the game.  <br /></td></tr>
+<tr class="separator:gafc49006eff94c9f9a9ee6bbc527ace7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02bad2a55941343c09a4d03c37aa19ef" id="r_ga02bad2a55941343c09a4d03c37aa19ef"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga02bad2a55941343c09a4d03c37aa19ef">ULootLockerServerForCpp::GetPlayerInventory</a> (int PlayerID, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a3d223ec25f8799f76b50a11daf6ce6eb">FLootLockerServerGetPlayerInventoryResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga02bad2a55941343c09a4d03c37aa19ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the specified player's default character's inventory.  <br /></td></tr>
+<tr class="separator:ga02bad2a55941343c09a4d03c37aa19ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga131d7c587f2a0884501b81a6682e4e7a" id="r_ga131d7c587f2a0884501b81a6682e4e7a"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga131d7c587f2a0884501b81a6682e4e7a">ULootLockerServerForCpp::GetPaginatedPlayerInventory</a> (int PlayerID, int Count, int After, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a3d223ec25f8799f76b50a11daf6ce6eb">FLootLockerServerGetPlayerInventoryResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga131d7c587f2a0884501b81a6682e4e7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the specified player's default character's inventory according to the specified pagination parameters.  <br /></td></tr>
+<tr class="separator:ga131d7c587f2a0884501b81a6682e4e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga519a81ddb50ddf0f2f3958a87e076e71" id="r_ga519a81ddb50ddf0f2f3958a87e076e71"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga519a81ddb50ddf0f2f3958a87e076e71">ULootLockerServerForCpp::GetPlayerLoadout</a> (int PlayerID, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a7055ececa5884ae24178492a2c6e4f24">FLootLockerServerGetPlayerLoadoutResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga519a81ddb50ddf0f2f3958a87e076e71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the specified player's default character's loadout.  <br /></td></tr>
+<tr class="separator:ga519a81ddb50ddf0f2f3958a87e076e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab00ba8f9245f7f26044af19ea70351e1" id="r_gab00ba8f9245f7f26044af19ea70351e1"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#gab00ba8f9245f7f26044af19ea70351e1">ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetId</a> (int PlayerID, int AssetID, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a979eb3bcc40e52b0b31cb7e7dfd3b8b0">FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:gab00ba8f9245f7f26044af19ea70351e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equip an asset instance to the specified player's default character's loadout using an asset id which will equip that asset's default variation If the request is successfull, the returned list contains the full loadout.  <br /></td></tr>
+<tr class="separator:gab00ba8f9245f7f26044af19ea70351e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6cdd8b63fab57add4cf6b80fc5f808be" id="r_ga6cdd8b63fab57add4cf6b80fc5f808be"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga6cdd8b63fab57add4cf6b80fc5f808be">ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetInstanceId</a> (int PlayerID, int AssetInstanceID, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a979eb3bcc40e52b0b31cb7e7dfd3b8b0">FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga6cdd8b63fab57add4cf6b80fc5f808be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equip the specified asset instance to the specified player's default character's loadout If the request is successfull, the returned list contains the full loadout.  <br /></td></tr>
+<tr class="separator:ga6cdd8b63fab57add4cf6b80fc5f808be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1416fe666cc8dee4ab43581bc3db6269" id="r_ga1416fe666cc8dee4ab43581bc3db6269"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga1416fe666cc8dee4ab43581bc3db6269">ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndAssetVariationId</a> (int PlayerID, int AssetID, int AssetVariationID, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a979eb3bcc40e52b0b31cb7e7dfd3b8b0">FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga1416fe666cc8dee4ab43581bc3db6269"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equip an asset instance to the specified player's default character's loadout by specifiying an asset id and which variation id of the asset to equip If the request is successfull, the returned list contains the full loadout.  <br /></td></tr>
+<tr class="separator:ga1416fe666cc8dee4ab43581bc3db6269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b9fa09794dd351f1f648600defc015a" id="r_ga4b9fa09794dd351f1f648600defc015a"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga4b9fa09794dd351f1f648600defc015a">ULootLockerServerForCpp::EquipAssetToPlayerLoadoutByAssetIdAndRentalOptionId</a> (int PlayerID, int AssetID, int RentalOptionID, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a979eb3bcc40e52b0b31cb7e7dfd3b8b0">FLootLockerServerEquipAssetToPlayerLoadoutResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga4b9fa09794dd351f1f648600defc015a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equip an asset instance to the specified player's default character's loadout by specyfiying an asset id and which rental option id of the asset to equip If the request is successfull, the returned list contains the full loadout.  <br /></td></tr>
+<tr class="separator:ga4b9fa09794dd351f1f648600defc015a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9bad8807c9f61324510067f586896b24" id="r_ga9bad8807c9f61324510067f586896b24"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga9bad8807c9f61324510067f586896b24">ULootLockerServerForCpp::UnequipAssetFromPlayerLoadout</a> (int PlayerID, int InstanceID, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#af22694f997e19788b82c59bc3081b2e7">FLootLockerServerUnequipAssetFromPlayerLoadoutResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga9bad8807c9f61324510067f586896b24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unequip an asset instance from the specified player's default character's loadout If the request is successfull, the returned list contains the full loadout.  <br /></td></tr>
+<tr class="separator:ga9bad8807c9f61324510067f586896b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac78bcfd7d36275131297769f050c8642" id="r_gac78bcfd7d36275131297769f050c8642"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#gac78bcfd7d36275131297769f050c8642">ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetID</a> (int PlayerID, int AssetID, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a11f644baa10dbf2abe7b76d3f421a4fe">FLootLockerServerAddAssetToPlayerInventoryResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:gac78bcfd7d36275131297769f050c8642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the specified asset to the specified player's inventory (grant the asset) using an asset id which will equip that asset's default variation If the request is successfull, the returned list contains all assets that were granted to the player.  <br /></td></tr>
+<tr class="separator:gac78bcfd7d36275131297769f050c8642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeaf798a2b8a084f06dfe591e11dd50b8" id="r_gaeaf798a2b8a084f06dfe591e11dd50b8"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#gaeaf798a2b8a084f06dfe591e11dd50b8">ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndVariationID</a> (int PlayerID, int AssetID, int VariationID, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a11f644baa10dbf2abe7b76d3f421a4fe">FLootLockerServerAddAssetToPlayerInventoryResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:gaeaf798a2b8a084f06dfe591e11dd50b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the specified asset to the specified player's inventory (grant the asset) by specifiying an asset id and which variation id of the asset to equip If the request is successfull, the returned list contains all assets that were granted to the player.  <br /></td></tr>
+<tr class="separator:gaeaf798a2b8a084f06dfe591e11dd50b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga20055b353409dd4f8bd46d872c9f45c8" id="r_ga20055b353409dd4f8bd46d872c9f45c8"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga20055b353409dd4f8bd46d872c9f45c8">ULootLockerServerForCpp::AddAssetToPlayerInventoryByAssetIDAndRentalOptionID</a> (int PlayerID, int AssetID, int RentalOptionID, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a11f644baa10dbf2abe7b76d3f421a4fe">FLootLockerServerAddAssetToPlayerInventoryResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga20055b353409dd4f8bd46d872c9f45c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the specified asset to the specified player's inventory (grant the asset) by specyfiying an asset id and which rental option id of the asset to equip If the request is successfull, the returned list contains all assets that were granted to the player.  <br /></td></tr>
+<tr class="separator:ga20055b353409dd4f8bd46d872c9f45c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafea00b07597d8202fe04205c49265f37" id="r_gafea00b07597d8202fe04205c49265f37"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#gafea00b07597d8202fe04205c49265f37">ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetID</a> (int PlayerID, const TArray&lt; <a class="el" href="structFLootLockerServerAssetByAssetIdRequest.html">FLootLockerServerAssetByAssetIdRequest</a> &gt; &amp;AssetsToAdd, const TArray&lt; int &gt; AssetsToRemove, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a45a7e60a0f71cb650f240becd2831ce4">FLootLockerServerAlterPlayerInventoryResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:gafea00b07597d8202fe04205c49265f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bulk add (grant) and/or remove assets to/from the specified player's inventory Add assets by supplying a list of asset id's for which the default variation will be used If the request is successfull, the return will contain two lists; one specifying the id's of all the assets that were removed, one specifying all added assets.  <br /></td></tr>
+<tr class="separator:gafea00b07597d8202fe04205c49265f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3ac9e964b5d980389cb0f3ea91b6acb1" id="r_ga3ac9e964b5d980389cb0f3ea91b6acb1"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga3ac9e964b5d980389cb0f3ea91b6acb1">ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndVariationID</a> (int PlayerID, const TArray&lt; <a class="el" href="structFLootLockerServerAssetByAssetIdAndVariationIdRequest.html">FLootLockerServerAssetByAssetIdAndVariationIdRequest</a> &gt; &amp;AssetsToAdd, const TArray&lt; int &gt; AssetsToRemove, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a45a7e60a0f71cb650f240becd2831ce4">FLootLockerServerAlterPlayerInventoryResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga3ac9e964b5d980389cb0f3ea91b6acb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bulk add (grant) and/or remove assets to/from the specified player's inventory Add assets by supplying a list of asset ids and variation ids of those assets to use If the request is successfull, the return will contain two lists; one specifying the id's of all the assets that were removed, one specifying all added assets.  <br /></td></tr>
+<tr class="separator:ga3ac9e964b5d980389cb0f3ea91b6acb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga507abd0aef956e750dab3dade67b8702" id="r_ga507abd0aef956e750dab3dade67b8702"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga507abd0aef956e750dab3dade67b8702">ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID</a> (int PlayerID, const TArray&lt; <a class="el" href="structFLootLockerServerAssetByAssetIdAndRentalOptionIdRequest.html">FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest</a> &gt; &amp;AssetsToAdd, const TArray&lt; int &gt; AssetsToRemove, const <a class="el" href="LootLockerServerPlayerInventoryRequest_8h.html#a45a7e60a0f71cb650f240becd2831ce4">FLootLockerServerAlterPlayerInventoryResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga507abd0aef956e750dab3dade67b8702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bulk add (grant) and/or remove assets to/from the specified player's inventory Add assets by supplying a list of asset ids and rental option ids of those assets to use If the request is successfull, the return will contain two lists; one specifying the id's of all the assets that were removed, one specifying all added assets.  <br /></td></tr>
+<tr class="separator:ga507abd0aef956e750dab3dade67b8702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf13d61dbac8b506afb758c9e651b00e0" id="r_gaf13d61dbac8b506afb758c9e651b00e0"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#gaf13d61dbac8b506afb758c9e651b00e0">ULootLockerServerForCpp::GetKeyValuePairsFromAssetInstance</a> (int PlayerID, int AssetInstanceID, const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9b33fcd9deae615c938d3db478a97bbf">FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:gaf13d61dbac8b506afb758c9e651b00e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a list of key value pairs from the specified asset instance.  <br /></td></tr>
+<tr class="separator:gaf13d61dbac8b506afb758c9e651b00e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7bbdf52cb8307a5c79c955402156a116" id="r_ga7bbdf52cb8307a5c79c955402156a116"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga7bbdf52cb8307a5c79c955402156a116">ULootLockerServerForCpp::GetAssetInstanceKeyValuePairFromAssetInstanceById</a> (int PlayerID, int AssetInstanceID, int KeyValuePairID, const <a class="el" href="LootLockerServerAssetRequest_8h.html#a8c4e2f6cef56c6873fe3d8c68d94d225">FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga7bbdf52cb8307a5c79c955402156a116"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a single Key Value Pair from the specified asset instance by key value pair id.  <br /></td></tr>
+<tr class="separator:ga7bbdf52cb8307a5c79c955402156a116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b37fceff9dac760051f2871971d1d53" id="r_ga9b37fceff9dac760051f2871971d1d53"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga9b37fceff9dac760051f2871971d1d53">ULootLockerServerForCpp::AddKeyValuePairToAssetInstance</a> (int PlayerID, int AssetInstanceID, const FString Key, FString Value, const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9b33fcd9deae615c938d3db478a97bbf">FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga9b37fceff9dac760051f2871971d1d53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a key value pair on the specified asset instance.  <br /></td></tr>
+<tr class="separator:ga9b37fceff9dac760051f2871971d1d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac8861dd116979d3f4c04e4b26da1738a" id="r_gac8861dd116979d3f4c04e4b26da1738a"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#gac8861dd116979d3f4c04e4b26da1738a">ULootLockerServerForCpp::UpdateKeyValuePairsOnAssetInstance</a> (int PlayerID, int AssetInstanceID, TArray&lt; <a class="el" href="structFLootLockerServerAssetStorageKeyValueSet.html">FLootLockerServerAssetStorageKeyValueSet</a> &gt; KeyValuePairs, const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9b33fcd9deae615c938d3db478a97bbf">FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:gac8861dd116979d3f4c04e4b26da1738a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create or update a list of key value pairs on the specified asset instance.  <br /></td></tr>
+<tr class="separator:gac8861dd116979d3f4c04e4b26da1738a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga275c9fbdc4196334b45f9e4a4672a8e8" id="r_ga275c9fbdc4196334b45f9e4a4672a8e8"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga275c9fbdc4196334b45f9e4a4672a8e8">ULootLockerServerForCpp::UpdateKeyValuePairOnAssetInstanceById</a> (int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const <a class="el" href="LootLockerServerAssetRequest_8h.html#a8c4e2f6cef56c6873fe3d8c68d94d225">FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga275c9fbdc4196334b45f9e4a4672a8e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a single key value pair on the specified asset instance by key value pair id.  <br /></td></tr>
+<tr class="separator:ga275c9fbdc4196334b45f9e4a4672a8e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0bb02c5a3dbdffe01a9abf71084a892f" id="r_ga0bb02c5a3dbdffe01a9abf71084a892f"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__AssetInstance.html#ga0bb02c5a3dbdffe01a9abf71084a892f">ULootLockerServerForCpp::DeleteKeyValuePairFromAssetInstanceById</a> (int PlayerID, int AssetInstanceID, int KeyValuePairID, const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9b33fcd9deae615c938d3db478a97bbf">FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga0bb02c5a3dbdffe01a9abf71084a892f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a key value pair from the specified asset instance by key value pair id.  <br /></td></tr>
+<tr class="separator:ga0bb02c5a3dbdffe01a9abf71084a892f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,1201 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: ULootLockerServerNotificationsRequest Class Reference</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.6.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classULootLockerServerNotificationsRequest.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+  <div class="headertitle"><div class="title">ULootLockerServerNotificationsRequest Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="LootLockerServerNotificationsRequest_8h_source.html">LootLockerServerNotificationsRequest.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for ULootLockerServerNotificationsRequest:</div>
+<div class="dyncontent">
+<div class="center"><img src="classULootLockerServerNotificationsRequest__inherit__graph.png" border="0" usemap="#aULootLockerServerNotificationsRequest_inherit__map" alt="Inheritance graph"/></div>
+<map name="aULootLockerServerNotificationsRequest_inherit__map" id="aULootLockerServerNotificationsRequest_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,232,119"/>
+<area shape="rect" title=" " alt="" coords="81,5,156,31"/>
+<area shape="poly" title=" " alt="" coords="121,44,121,79,116,79,116,44"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for ULootLockerServerNotificationsRequest:</div>
+<div class="dyncontent">
+<div class="center"><img src="classULootLockerServerNotificationsRequest__coll__graph.png" border="0" usemap="#aULootLockerServerNotificationsRequest_coll__map" alt="Collaboration graph"/></div>
+<map name="aULootLockerServerNotificationsRequest_coll__map" id="aULootLockerServerNotificationsRequest_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,232,119"/>
+<area shape="rect" title=" " alt="" coords="81,5,156,31"/>
+<area shape="poly" title=" " alt="" coords="121,44,121,79,116,79,116,44"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ad2410d6a2dd05cde6c581facad21f57b" id="r_ad2410d6a2dd05cde6c581facad21f57b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#ad2410d6a2dd05cde6c581facad21f57b">ULootLockerServerNotificationsRequest</a> ()</td></tr>
+<tr class="separator:ad2410d6a2dd05cde6c581facad21f57b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a0dbe848ec10cf0390d62cb0b306f709c" id="r_a0dbe848ec10cf0390d62cb0b306f709c"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a0dbe848ec10cf0390d62cb0b306f709c">SendNotificationToPlayerWithoutContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a0dbe848ec10cf0390d62cb0b306f709c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab83f301405278a9a3c6862373be8b208" id="r_ab83f301405278a9a3c6862373be8b208"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#ab83f301405278a9a3c6862373be8b208">SendNotificationToPlayerWithBoolContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, bool Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:ab83f301405278a9a3c6862373be8b208"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c6534a4f494c407ee266fbbedae937d" id="r_a4c6534a4f494c407ee266fbbedae937d"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a4c6534a4f494c407ee266fbbedae937d">SendNotificationToPlayerWithIntContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, int Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a4c6534a4f494c407ee266fbbedae937d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a608bb5798c0ce4844e79e604638a2f18" id="r_a608bb5798c0ce4844e79e604638a2f18"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a608bb5798c0ce4844e79e604638a2f18">SendNotificationToPlayerWithLargeIntContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, long long Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a608bb5798c0ce4844e79e604638a2f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e925df5a8b39a299eb5c5fb3788f69c" id="r_a1e925df5a8b39a299eb5c5fb3788f69c"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a1e925df5a8b39a299eb5c5fb3788f69c">SendNotificationToPlayerWithDoubleContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, double Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a1e925df5a8b39a299eb5c5fb3788f69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88b6b1c2368252500360d547e80db8e7" id="r_a88b6b1c2368252500360d547e80db8e7"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a88b6b1c2368252500360d547e80db8e7">SendNotificationToPlayerWithFloatContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, float Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a88b6b1c2368252500360d547e80db8e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a178964ac021f16877c8eab6dd639fc" id="r_a3a178964ac021f16877c8eab6dd639fc"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a3a178964ac021f16877c8eab6dd639fc">SendNotificationToPlayerWithStringContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, const FString &amp;Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a3a178964ac021f16877c8eab6dd639fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f16b6631bd4c0940bd5ff6f16666e50" id="r_a5f16b6631bd4c0940bd5ff6f16666e50"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a5f16b6631bd4c0940bd5ff6f16666e50">SendNotificationToPlayerWithJsonContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, const TSharedPtr&lt; FJsonValue &gt; &amp;Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a5f16b6631bd4c0940bd5ff6f16666e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadd4d102fa9976e2d2b13b07ddff5fe1" id="r_aadd4d102fa9976e2d2b13b07ddff5fe1"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#aadd4d102fa9976e2d2b13b07ddff5fe1">SendNotificationToPlayerWithBoolArrayContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, const TArray&lt; bool &gt; &amp;Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:aadd4d102fa9976e2d2b13b07ddff5fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af89499243e0bf4c17ec1decb949ded77" id="r_af89499243e0bf4c17ec1decb949ded77"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#af89499243e0bf4c17ec1decb949ded77">SendNotificationToPlayerWithIntArrayContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, const TArray&lt; int &gt; &amp;Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:af89499243e0bf4c17ec1decb949ded77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7569c724d8623435b326cccd46ec4e0" id="r_af7569c724d8623435b326cccd46ec4e0"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#af7569c724d8623435b326cccd46ec4e0">SendNotificationToPlayerWithLargeIntArrayContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, const TArray&lt; long long &gt; &amp;Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:af7569c724d8623435b326cccd46ec4e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c3521a5b502aa400164c2a8de7ae3fa" id="r_a1c3521a5b502aa400164c2a8de7ae3fa"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a1c3521a5b502aa400164c2a8de7ae3fa">SendNotificationToPlayerWithDoubleArrayContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, const TArray&lt; double &gt; &amp;Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a1c3521a5b502aa400164c2a8de7ae3fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b00cbbeea0b25c434f7749321af51ef" id="r_a5b00cbbeea0b25c434f7749321af51ef"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a5b00cbbeea0b25c434f7749321af51ef">SendNotificationToPlayerWithFloatArrayContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, const TArray&lt; float &gt; &amp;Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a5b00cbbeea0b25c434f7749321af51ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42658a49b43b308a0d3bb6e441144473" id="r_a42658a49b43b308a0d3bb6e441144473"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a42658a49b43b308a0d3bb6e441144473">SendNotificationToPlayerWithStringArrayContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, const TArray&lt; FString &gt; &amp;Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a42658a49b43b308a0d3bb6e441144473"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7450f6c33fc96a3abfaec8e59fccef71" id="r_a7450f6c33fc96a3abfaec8e59fccef71"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerNotificationsRequest.html#a7450f6c33fc96a3abfaec8e59fccef71">SendNotificationToPlayerWithJsonArrayContent</a> (const FString &amp;NotificationType, <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a> Priority, const FString &amp;RecipientPlayerUlid, const TArray&lt; TSharedPtr&lt; FJsonValue &gt; &gt; &amp;Content, const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;Properties, const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a7450f6c33fc96a3abfaec8e59fccef71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad2410d6a2dd05cde6c581facad21f57b" name="ad2410d6a2dd05cde6c581facad21f57b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2410d6a2dd05cde6c581facad21f57b">&#9670;&#160;</a></span>ULootLockerServerNotificationsRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ULootLockerServerNotificationsRequest::ULootLockerServerNotificationsRequest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aadd4d102fa9976e2d2b13b07ddff5fe1" name="aadd4d102fa9976e2d2b13b07ddff5fe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadd4d102fa9976e2d2b13b07ddff5fe1">&#9670;&#160;</a></span>SendNotificationToPlayerWithBoolArrayContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolArrayContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; bool &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab83f301405278a9a3c6862373be8b208" name="ab83f301405278a9a3c6862373be8b208"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab83f301405278a9a3c6862373be8b208">&#9670;&#160;</a></span>SendNotificationToPlayerWithBoolContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithBoolContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1c3521a5b502aa400164c2a8de7ae3fa" name="a1c3521a5b502aa400164c2a8de7ae3fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c3521a5b502aa400164c2a8de7ae3fa">&#9670;&#160;</a></span>SendNotificationToPlayerWithDoubleArrayContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleArrayContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e925df5a8b39a299eb5c5fb3788f69c" name="a1e925df5a8b39a299eb5c5fb3788f69c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e925df5a8b39a299eb5c5fb3788f69c">&#9670;&#160;</a></span>SendNotificationToPlayerWithDoubleContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithDoubleContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b00cbbeea0b25c434f7749321af51ef" name="a5b00cbbeea0b25c434f7749321af51ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b00cbbeea0b25c434f7749321af51ef">&#9670;&#160;</a></span>SendNotificationToPlayerWithFloatArrayContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithFloatArrayContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; float &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a88b6b1c2368252500360d547e80db8e7" name="a88b6b1c2368252500360d547e80db8e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88b6b1c2368252500360d547e80db8e7">&#9670;&#160;</a></span>SendNotificationToPlayerWithFloatContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithFloatContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af89499243e0bf4c17ec1decb949ded77" name="af89499243e0bf4c17ec1decb949ded77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af89499243e0bf4c17ec1decb949ded77">&#9670;&#160;</a></span>SendNotificationToPlayerWithIntArrayContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntArrayContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c6534a4f494c407ee266fbbedae937d" name="a4c6534a4f494c407ee266fbbedae937d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c6534a4f494c407ee266fbbedae937d">&#9670;&#160;</a></span>SendNotificationToPlayerWithIntContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithIntContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7450f6c33fc96a3abfaec8e59fccef71" name="a7450f6c33fc96a3abfaec8e59fccef71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7450f6c33fc96a3abfaec8e59fccef71">&#9670;&#160;</a></span>SendNotificationToPlayerWithJsonArrayContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; TSharedPtr&lt; FJsonValue &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f16b6631bd4c0940bd5ff6f16666e50" name="a5f16b6631bd4c0940bd5ff6f16666e50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f16b6631bd4c0940bd5ff6f16666e50">&#9670;&#160;</a></span>SendNotificationToPlayerWithJsonContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TSharedPtr&lt; FJsonValue &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7569c724d8623435b326cccd46ec4e0" name="af7569c724d8623435b326cccd46ec4e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7569c724d8623435b326cccd46ec4e0">&#9670;&#160;</a></span>SendNotificationToPlayerWithLargeIntArrayContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntArrayContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; long long &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a608bb5798c0ce4844e79e604638a2f18" name="a608bb5798c0ce4844e79e604638a2f18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a608bb5798c0ce4844e79e604638a2f18">&#9670;&#160;</a></span>SendNotificationToPlayerWithLargeIntContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithLargeIntContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long long&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0dbe848ec10cf0390d62cb0b306f709c" name="a0dbe848ec10cf0390d62cb0b306f709c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dbe848ec10cf0390d62cb0b306f709c">&#9670;&#160;</a></span>SendNotificationToPlayerWithoutContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithoutContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a42658a49b43b308a0d3bb6e441144473" name="a42658a49b43b308a0d3bb6e441144473"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42658a49b43b308a0d3bb6e441144473">&#9670;&#160;</a></span>SendNotificationToPlayerWithStringArrayContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringArrayContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; FString &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a178964ac021f16877c8eab6dd639fc" name="a3a178964ac021f16877c8eab6dd639fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a178964ac021f16877c8eab6dd639fc">&#9670;&#160;</a></span>SendNotificationToPlayerWithStringContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithStringContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>NotificationType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225">ELootLockerServerNotificationPriority</a>&#160;</td>
+          <td class="paramname"><em>Priority</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>RecipientPlayerUlid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="structFLootLockerServerNotificationProperty.html">FLootLockerServerNotificationProperty</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerNotificationsRequest_8h.html#a199b2eb308c4e2826485d4a973766ebb">FLootLockerServerSendNotificationsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classULootLockerServerNotificationsRequest.html">ULootLockerServerNotificationsRequest</a></li>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

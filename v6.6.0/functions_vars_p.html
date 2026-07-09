@@ -1,0 +1,288 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: Data Fields - Variables</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.6.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_vars_p.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="contents">
+<div class="textblock">Here is a list of all variables with links to the structures/unions they belong to:</div>
+
+<h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
+<li>Package_contents&#160;:&#160;<a class="el" href="structFLootLockerServerAsset.html#a01f57ec1d6104d0ecb7ad072a432efc7">FLootLockerServerAsset</a></li>
+<li>Pagination&#160;:&#160;<a class="el" href="structFLootLockerServerCharacterProgressionListResponse.html#ae17e98075a1b51eb53a1710b380c20d9">FLootLockerServerCharacterProgressionListResponse</a>, <a class="el" href="structFLootLockerServerGameProgressionListResponse.html#abc0620c85fd34448032519b31718e97a">FLootLockerServerGameProgressionListResponse</a>, <a class="el" href="structFLootLockerServerGetAllMemberRanksResponse.html#a670045f67dab1084f51118ff61c7ae99">FLootLockerServerGetAllMemberRanksResponse</a>, <a class="el" href="structFLootLockerServerGetScoresFromLeaderboardResponse.html#a9ea3e29ecb010279847d7d584eb5c09c">FLootLockerServerGetScoresFromLeaderboardResponse</a>, <a class="el" href="structFLootLockerServerInstanceProgressionListResponse.html#a68fd828d81f5a866163a4acb2cbae95c">FLootLockerServerInstanceProgressionListResponse</a></li>
+<li>pagination&#160;:&#160;<a class="el" href="structFLootLockerServerListAssetsResponse.html#a5eb5ebdaed122dff47902d0618bc597c">FLootLockerServerListAssetsResponse</a></li>
+<li>Pagination&#160;:&#160;<a class="el" href="structFLootLockerServerListCatalogPricesResponse.html#a787d77ef5e75b0a49f533474a808766c">FLootLockerServerListCatalogPricesResponse</a>, <a class="el" href="structFLootLockerServerListContextsResponse.html#a58be41231df85c4d00fd3bb8b0c047f0">FLootLockerServerListContextsResponse</a>, <a class="el" href="structFLootLockerServerListFriendsResponse.html#aeca71717a167f397e40b91803fba3071">FLootLockerServerListFriendsResponse</a>, <a class="el" href="structFLootLockerServerListLeaderboardsResponse.html#a9642298a390dfa31ef592b7976e12205">FLootLockerServerListLeaderboardsResponse</a>, <a class="el" href="structFLootLockerServerListMetadataResponse.html#a9c659099df52bcc00c1bffd24ed10e14">FLootLockerServerListMetadataResponse</a>, <a class="el" href="structFLootLockerServerPlayerProgressionListResponse.html#ad07fa566426b6550039612312d930bd1">FLootLockerServerPlayerProgressionListResponse</a>, <a class="el" href="structFLootLockerServerProgressionTiersResponse.html#acf5bb059edbf40feff7db2bc06b20ccc">FLootLockerServerProgressionTiersResponse</a></li>
+<li>Payload&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerPersistentStorageUpdateRequest.html#ad2dae3be494e6c2db7640ff2e4e23ac0">FLootLockerServerPlayerPersistentStorageUpdateRequest</a></li>
+<li>Per_page&#160;:&#160;<a class="el" href="structFLootLockerServerExtendedIndexBasedPagination.html#a7a97ebff0b9dc2ef19c44fa36edc03b9">FLootLockerServerExtendedIndexBasedPagination</a></li>
+<li>Picks&#160;:&#160;<a class="el" href="structFLootLockerServerPickDropsFromDropTableRequest.html#ad521eaaa7b88b3686f8cfd83079befc8">FLootLockerServerPickDropsFromDropTableRequest</a></li>
+<li>Platform&#160;:&#160;<a class="el" href="structFLootLockerServerCreatePlayerRequest.html#ae76f1fdde06d0caa03602fe232a8ee14">FLootLockerServerCreatePlayerRequest</a></li>
+<li>Platform_player_id&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerName.html#ab6196a5b2c6573b7894b51b3ef5b1aea">FLootLockerServerPlayerName</a></li>
+<li>player&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardArchiveDetails.html#a8c01a6646647fa636fb37695e1e6b1ce">FLootLockerServerLeaderboardArchiveDetails</a></li>
+<li>Player&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardEntry.html#a213fb79ff6398175344d8d715354b2fa">FLootLockerServerLeaderboardEntry</a></li>
+<li>Player_id&#160;:&#160;<a class="el" href="structFLootLockerServerCreatePlayerResponse.html#aa54100a3ec39575164d37733352afb6a">FLootLockerServerCreatePlayerResponse</a>, <a class="el" href="structFLootLockerServerFriend.html#ae4a6efaceb47ec4fad703c523fdd8a0c">FLootLockerServerFriend</a>, <a class="el" href="structFLootLockerServerInvokeTriggerForPlayerRequest.html#ab5318a832c9ae27281733bfc5111946f">FLootLockerServerInvokeTriggerForPlayerRequest</a>, <a class="el" href="structFLootLockerServerPlayerName.html#a7454068528dc3ba76ab66d7117c01115">FLootLockerServerPlayerName</a>, <a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedItems.html#add1f65425e7826c86cf1e065d1408413">FLootLockerServerPlayerPersistentStorageEntry_NamedItems</a>, <a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedSets.html#a1d8b0e225bc8c5604aaa6e4849f72f1e">FLootLockerServerPlayerPersistentStorageEntry_NamedSets</a>, <a class="el" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedStorage.html#a97cd4c48651f5b004327f4c032bbcdb6">FLootLockerServerPlayerPersistentStorageEntry_NamedStorage</a>, <a class="el" href="structFLootLockerServerPlayerPersistentStorageUpdateEntryOrdered.html#a4056dc74fc0712c853638f933051f754">FLootLockerServerPlayerPersistentStorageUpdateEntryOrdered</a>, <a class="el" href="structFLootLockerServerPlayerPlatform.html#abb7d5f827fac592d8d57a1a10d9ca9e2">FLootLockerServerPlayerPlatform</a></li>
+<li>player_id&#160;:&#160;<a class="el" href="structFLootLockerServerSimpleAssetAuthor.html#a376e503260e658c7a703c0f9c24906c6">FLootLockerServerSimpleAssetAuthor</a></li>
+<li>Player_identifier&#160;:&#160;<a class="el" href="structFLootLockerServerConnectedAccount.html#a6a94b8cbfb8b144d5562446f9ae9aa4d">FLootLockerServerConnectedAccount</a>, <a class="el" href="structFLootLockerServerCreatePlayerRequest.html#a60604c2eed7ace8b0f355dcbc6253173">FLootLockerServerCreatePlayerRequest</a></li>
+<li>Player_ids&#160;:&#160;<a class="el" href="structFLootLockerServerListConnectedAccountsRequest.html#accbf5d16df323dc4baf32c7e35ccf3e3">FLootLockerServerListConnectedAccountsRequest</a>, <a class="el" href="structFLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest.html#ae661b3a4aab695cc5c6d93f4b6159d88">FLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest</a></li>
+<li>Player_info_list&#160;:&#160;<a class="el" href="structFLootLockerServerGetPlayerInfoFromGameSessionTokenResponse.html#a4ce4fdc7dddc1dd511cb0bad6ac119d5">FLootLockerServerGetPlayerInfoFromGameSessionTokenResponse</a></li>
+<li>Player_platforms&#160;:&#160;<a class="el" href="structFLootLockerServerListConnectedAccountsResponse.html#a5ec067726936f9657a5d77853d6a9188">FLootLockerServerListConnectedAccountsResponse</a></li>
+<li>Player_public_uid&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerName.html#a53a62a00a2093d729cbeca3474a5fc56">FLootLockerServerPlayerName</a></li>
+<li>Player_ulid&#160;:&#160;<a class="el" href="structFLootLockerServerCreatePlayerResponse.html#a505b8c5ada96baa635a5320f7a85739d">FLootLockerServerCreatePlayerResponse</a></li>
+<li>player_ulid&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardArchivePlayer.html#a61b2b87201b77f95ee11b70b711688a6">FLootLockerServerLeaderboardArchivePlayer</a>, <a class="el" href="structFLootLockerServerSimpleAssetAuthor.html#acf399bc824b118333d50109bf1b20d94">FLootLockerServerSimpleAssetAuthor</a></li>
+<li>Players&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerNameLookupResponse.html#a905e82facfb181920a4f5d543469e567">FLootLockerServerPlayerNameLookupResponse</a></li>
+<li>Playstation_store&#160;:&#160;<a class="el" href="structFLootLockerServerCatalogEntryListings.html#af526cf25085cd5c12a7896929e00062b">FLootLockerServerCatalogEntryListings</a></li>
+<li>Points&#160;:&#160;<a class="el" href="structFLootLockerServerCharacterProgression.html#a947760ce14d2dfe407d47dca552085f4">FLootLockerServerCharacterProgression</a>, <a class="el" href="structFLootLockerServerInstanceProgression.html#a7291ea16c1df97ac867e9b844c1b84f2">FLootLockerServerInstanceProgression</a>, <a class="el" href="structFLootLockerServerPlayerProgression.html#aaed0cdfb98d876d807a280bc66418e67">FLootLockerServerPlayerProgression</a>, <a class="el" href="structFLootLockerServerSingleCharacterProgressionResponse.html#aa174af96a492ffc225d1447d4e8c543e">FLootLockerServerSingleCharacterProgressionResponse</a>, <a class="el" href="structFLootLockerServerSingleInstanceProgressionResponse.html#a7d27a93ca5fe17b36b66f48172b5135a">FLootLockerServerSingleInstanceProgressionResponse</a>, <a class="el" href="structFLootLockerServerSinglePlayerProgressionResponse.html#a20cb2d881dc7cfa864fdd9055ccb2cd2">FLootLockerServerSinglePlayerProgressionResponse</a></li>
+<li>Points_threshold&#160;:&#160;<a class="el" href="structFLootLockerServerProgressionTier.html#a585f3916f5540a712e9fb2d2c29f203d">FLootLockerServerProgressionTier</a></li>
+<li>Pong&#160;:&#160;<a class="el" href="structFLootLockerServerMaintainSessionResponse.html#a03ede4366a0fd0eacb739c5feb167672">FLootLockerServerMaintainSessionResponse</a></li>
+<li>Popular&#160;:&#160;<a class="el" href="structFLootLockerServerAssetWithoutPackageContent.html#aa0672aabc6ec0899c3debe411992428e">FLootLockerServerAssetWithoutPackageContent</a></li>
+<li>Popularity_score&#160;:&#160;<a class="el" href="structFLootLockerServerAssetWithoutPackageContent.html#ae22f0b34dbd6f3eb3e7e096fe872c4c5">FLootLockerServerAssetWithoutPackageContent</a></li>
+<li>PreConfigFileName&#160;:&#160;<a class="el" href="classULootLockerServerConfig.html#a99c490842342c3bcd7d602c9be723b07">ULootLockerServerConfig</a></li>
+<li>predicates&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardReward.html#a7f335bf824e2591f7b8df70a6cff876a">FLootLockerServerLeaderboardReward</a></li>
+<li>Prev_page&#160;:&#160;<a class="el" href="structFLootLockerServerExtendedIndexBasedPagination.html#abee45b13e321f4d74d12dc8022af5442">FLootLockerServerExtendedIndexBasedPagination</a></li>
+<li>Previous&#160;:&#160;<a class="el" href="structFLootLockerServerTriggeredXP.html#a6edcd7cff1e7338c9a3a5bc851871eb0">FLootLockerServerTriggeredXP</a></li>
+<li>Previous_Cursor&#160;:&#160;<a class="el" href="structFLootLockerServerIndexBasedPagination.html#a8cd6e430ed1aea82238d0f9689646c5a">FLootLockerServerIndexBasedPagination</a>, <a class="el" href="structFLootLockerServerKeyBasedPagination.html#a047ad71228c209afdf9bec37109a6ce0">FLootLockerServerKeyBasedPagination</a></li>
+<li>Previous_threshold&#160;:&#160;<a class="el" href="structFLootLockerServerCharacterProgression.html#afbe1956dd09150293c235117c6586fcc">FLootLockerServerCharacterProgression</a>, <a class="el" href="structFLootLockerServerInstanceProgression.html#a2aa03759582d61fccfec38cf93368377">FLootLockerServerInstanceProgression</a>, <a class="el" href="structFLootLockerServerPlayerProgression.html#a16087d147710abbbca0b33a42d9ab205">FLootLockerServerPlayerProgression</a>, <a class="el" href="structFLootLockerServerSingleCharacterProgressionResponse.html#a6abd8d9a8b7a235cd7ab7138f068a0d3">FLootLockerServerSingleCharacterProgressionResponse</a>, <a class="el" href="structFLootLockerServerSingleInstanceProgressionResponse.html#a5acb52caaa5a96c9d9ae818f097d523a">FLootLockerServerSingleInstanceProgressionResponse</a>, <a class="el" href="structFLootLockerServerSinglePlayerProgressionResponse.html#ac4a9d1a06e02c6f205b82daa9db140f4">FLootLockerServerSinglePlayerProgressionResponse</a></li>
+<li>Price&#160;:&#160;<a class="el" href="structFLootLockerServerAssetRentalOption.html#ad607516ac1000464a43d2398ec6c106e">FLootLockerServerAssetRentalOption</a>, <a class="el" href="structFLootLockerServerAssetWithoutPackageContent.html#a4f15d2589032f358b80b388e0dc1b3fd">FLootLockerServerAssetWithoutPackageContent</a></li>
+<li>Price_id&#160;:&#160;<a class="el" href="structFLootLockerServerCatalogEntryPrice.html#a8b145c152319881552fce43796be424c">FLootLockerServerCatalogEntryPrice</a></li>
+<li>Prices&#160;:&#160;<a class="el" href="structFLootLockerServerCatalogEntry.html#ab8e119c0c296fe7687a043ce81feb1d3">FLootLockerServerCatalogEntry</a>, <a class="el" href="structFLootLockerServerCatalogSteamStoreListing.html#aac32829b01a7f12473642bf9e41b85b9">FLootLockerServerCatalogSteamStoreListing</a></li>
+<li>Primary_color&#160;:&#160;<a class="el" href="structFLootLockerServerAssetVariation.html#a4871cfbffd3e163fec18e5995c83bda3">FLootLockerServerAssetVariation</a></li>
+<li>Priority&#160;:&#160;<a class="el" href="structFLootLockerServerSendNotificationsToPlayerBaseRequest.html#ae1ffd4f4bcbb1b0d3cd1026ac3879f38">FLootLockerServerSendNotificationsToPlayerBaseRequest</a></li>
+<li>Processed_at&#160;:&#160;<a class="el" href="structFLootLockerServerManualLeaderboardReset.html#a37a1a8c7664bfb27a5dca00fffe6ed27">FLootLockerServerManualLeaderboardReset</a>, <a class="el" href="structFLootLockerServerManualLeaderboardResetResponse.html#a425f02b61a576fd6abfc52519f1fa702">FLootLockerServerManualLeaderboardResetResponse</a></li>
+<li>Product_id&#160;:&#160;<a class="el" href="structFLootLockerServerCatalogAppleAppStoreListing.html#aadf6a9f1a708762e4209e42b6182271e">FLootLockerServerCatalogAppleAppStoreListing</a>, <a class="el" href="structFLootLockerServerCatalogGooglePlayStoreListing.html#a039c6d0c408140e5e77f3f39b401f9e3">FLootLockerServerCatalogGooglePlayStoreListing</a></li>
+<li>Progression_id&#160;:&#160;<a class="el" href="structFLootLockerServerCharacterProgression.html#ac63204da051fcf652315edbae6f006cb">FLootLockerServerCharacterProgression</a>, <a class="el" href="structFLootLockerServerInstanceProgression.html#a4c38b19eb3622fc3c152b311c228238c">FLootLockerServerInstanceProgression</a></li>
+<li>progression_id&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardProgressionPointsReward.html#ab1c9cf2fa020a22a139b4473576d2d56">FLootLockerServerLeaderboardProgressionPointsReward</a>, <a class="el" href="structFLootLockerServerLeaderboardProgressionResetReward.html#a1a0d00045d12d222f39aa373444088bb">FLootLockerServerLeaderboardProgressionResetReward</a></li>
+<li>Progression_id&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerProgression.html#a610dfc7581b09e16e003ce6b65859cd3">FLootLockerServerPlayerProgression</a>, <a class="el" href="structFLootLockerServerProgressionPointsReward.html#a51ec12b2756b97a5562da5bd6f467b34">FLootLockerServerProgressionPointsReward</a>, <a class="el" href="structFLootLockerServerProgressionResetReward.html#a6c033b67d890ad54ce6fc7a50143e272">FLootLockerServerProgressionResetReward</a>, <a class="el" href="structFLootLockerServerSingleCharacterProgressionResponse.html#a621197047caf654872cac0e4ac902ce4">FLootLockerServerSingleCharacterProgressionResponse</a>, <a class="el" href="structFLootLockerServerSingleInstanceProgressionResponse.html#a00235de2096d71deca5e0645279cdcb0">FLootLockerServerSingleInstanceProgressionResponse</a>, <a class="el" href="structFLootLockerServerSinglePlayerProgressionResponse.html#add5f2940b52a0e21eb4fd2288e525f27">FLootLockerServerSinglePlayerProgressionResponse</a></li>
+<li>Progression_key&#160;:&#160;<a class="el" href="structFLootLockerServerCharacterProgression.html#a67e7960bc7785c571aeb9397dae86b2f">FLootLockerServerCharacterProgression</a>, <a class="el" href="structFLootLockerServerInstanceProgression.html#af13f8fd3447d64eccf6105b500916ee9">FLootLockerServerInstanceProgression</a>, <a class="el" href="structFLootLockerServerPlayerProgression.html#af9d102fb3d2f61ddd86924ff1fd23431">FLootLockerServerPlayerProgression</a>, <a class="el" href="structFLootLockerServerProgressionPointsReward.html#a72cf75854dcefad9b0c1c404c4398965">FLootLockerServerProgressionPointsReward</a>, <a class="el" href="structFLootLockerServerProgressionResetReward.html#a2241df04ea5e7d3d133f1e243541dce7">FLootLockerServerProgressionResetReward</a>, <a class="el" href="structFLootLockerServerSingleCharacterProgressionResponse.html#ae312bdef306e25c2a2c71423bc992dc5">FLootLockerServerSingleCharacterProgressionResponse</a>, <a class="el" href="structFLootLockerServerSingleInstanceProgressionResponse.html#ae588062b3a05d11136197c4a1713b532">FLootLockerServerSingleInstanceProgressionResponse</a>, <a class="el" href="structFLootLockerServerSinglePlayerProgressionResponse.html#af845e76d4b79f7d0f27c06f19b1d92af">FLootLockerServerSinglePlayerProgressionResponse</a></li>
+<li>Progression_name&#160;:&#160;<a class="el" href="structFLootLockerServerCharacterProgression.html#a62fdf02f338c8e09aa96e8a8556b1a17">FLootLockerServerCharacterProgression</a>, <a class="el" href="structFLootLockerServerInstanceProgression.html#afd3011d05d43d0359a6706c921343673">FLootLockerServerInstanceProgression</a>, <a class="el" href="structFLootLockerServerPlayerProgression.html#afea9601420befcc187766de968d3e6d5">FLootLockerServerPlayerProgression</a>, <a class="el" href="structFLootLockerServerProgressionPointsReward.html#adbf35f8f181d421787a83d42bcd5b3e8">FLootLockerServerProgressionPointsReward</a>, <a class="el" href="structFLootLockerServerProgressionResetReward.html#a584d8a48645a1866c86c9268ce73f68e">FLootLockerServerProgressionResetReward</a>, <a class="el" href="structFLootLockerServerSingleCharacterProgressionResponse.html#a3cdb37ee9779e913eef577b0d533eb81">FLootLockerServerSingleCharacterProgressionResponse</a>, <a class="el" href="structFLootLockerServerSingleInstanceProgressionResponse.html#aabd3b1f584b105c433abe0e8da0a6b76">FLootLockerServerSingleInstanceProgressionResponse</a>, <a class="el" href="structFLootLockerServerSinglePlayerProgressionResponse.html#ae45152bed8fc05e7eccf466169eb516a">FLootLockerServerSinglePlayerProgressionResponse</a></li>
+<li>Progression_point_detail&#160;:&#160;<a class="el" href="structFLootLockerServerInlinedGroupAssociation.html#a1e0a91b730b0e4db6b26eaeaac579b69">FLootLockerServerInlinedGroupAssociation</a>, <a class="el" href="structFLootLockerServerListCatalogItemsByIdEntry.html#a14c1546257ca76d5571e944d0c31ead4">FLootLockerServerListCatalogItemsByIdEntry</a></li>
+<li>progression_points&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardGroupRewardAssociation.html#a0ca6133534091e55da91fcf29eded79d">FLootLockerServerLeaderboardGroupRewardAssociation</a>, <a class="el" href="structFLootLockerServerLeaderboardReward.html#a5e9e2f772907b48482d0afbd4ec88de7">FLootLockerServerLeaderboardReward</a></li>
+<li>Progression_points_details&#160;:&#160;<a class="el" href="structFLootLockerServerListCatalogPricesResponse.html#a6b33d8b5531a653d0cc011c8f2392d35">FLootLockerServerListCatalogPricesResponse</a></li>
+<li>Progression_points_rewards&#160;:&#160;<a class="el" href="structFLootLockerServerRewards.html#a4b063d07752fd1cad637ab8c397c424b">FLootLockerServerRewards</a></li>
+<li>progression_reset&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardGroupRewardAssociation.html#ae78fdfd23aab80b0c3a4d64ca40e8c26">FLootLockerServerLeaderboardGroupRewardAssociation</a>, <a class="el" href="structFLootLockerServerLeaderboardReward.html#abac0d29e81a2cced7173cc73922a38b4">FLootLockerServerLeaderboardReward</a></li>
+<li>Progression_reset_detail&#160;:&#160;<a class="el" href="structFLootLockerServerInlinedGroupAssociation.html#ae1ca25e04ade66716bfcc1aa63c1cea3">FLootLockerServerInlinedGroupAssociation</a>, <a class="el" href="structFLootLockerServerListCatalogItemsByIdEntry.html#aa202a63922d436d8118db126f67ae85f">FLootLockerServerListCatalogItemsByIdEntry</a></li>
+<li>Progression_reset_rewards&#160;:&#160;<a class="el" href="structFLootLockerServerRewards.html#a12c87ee3a0dcc15a35c719f1dfa9edc5">FLootLockerServerRewards</a></li>
+<li>Progression_resets_details&#160;:&#160;<a class="el" href="structFLootLockerServerListCatalogPricesResponse.html#a8ba5cff159cecdb555cda9fcc7276eb3">FLootLockerServerListCatalogPricesResponse</a></li>
+<li>Properties&#160;:&#160;<a class="el" href="structFLootLockerServerAssetVariation.html#a20593ace8869ee69aa4ac7e551d16db8">FLootLockerServerAssetVariation</a>, <a class="el" href="structFLootLockerServerSendNotificationsToPlayerBaseRequest.html#a673b6350b24d66d88e35469cb561e4e2">FLootLockerServerSendNotificationsToPlayerBaseRequest</a></li>
+<li>Provider&#160;:&#160;<a class="el" href="structFLootLockerServerConnectedAccount.html#aaba6aadee5a1cb0502210bb597aa2769">FLootLockerServerConnectedAccount</a></li>
+<li>Provider_name&#160;:&#160;<a class="el" href="structFLootLockerServerConnectedAccount.html#afcdea4da79f91dc12581224210f26e8d">FLootLockerServerConnectedAccount</a></li>
+<li>Public&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerFile.html#a42c5aefce3af95fd4dc308a2e5a943fd">FLootLockerServerPlayerFile</a>, <a class="el" href="structFLootLockerServerSinglePlayerFileResponse.html#a9b1b64d5fc7de96f5c292d2b10536400">FLootLockerServerSinglePlayerFileResponse</a></li>
+<li>Public_uid&#160;:&#160;<a class="el" href="structFLootLockerServerFriend.html#a9f2da28adcb19cfc8b3c30090fcc9414">FLootLockerServerFriend</a></li>
+<li>public_uid&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardArchivePlayer.html#a1aa552ce13ec2a490fd3eb08f63294e2">FLootLockerServerLeaderboardArchivePlayer</a></li>
+<li>Public_uid&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardPlayer.html#a1b81bc17b0dba203c9061a44c71f707c">FLootLockerServerLeaderboardPlayer</a></li>
+<li>public_uid&#160;:&#160;<a class="el" href="structFLootLockerServerSimpleAssetAuthor.html#ac1232aa254ec7e5ad45e88ae90c94c41">FLootLockerServerSimpleAssetAuthor</a></li>
+<li>Published_at&#160;:&#160;<a class="el" href="structFLootLockerServerCurrency.html#a83e6d444af344f63b432ecbc40e9361d">FLootLockerServerCurrency</a></li>
+<li>Purchasable&#160;:&#160;<a class="el" href="structFLootLockerServerAssetWithoutPackageContent.html#a9c9f828eb2e3a4b994b43c39ad0de83b">FLootLockerServerAssetWithoutPackageContent</a>, <a class="el" href="structFLootLockerServerCatalogEntry.html#a2ad676d2bef4c4888483512ba98d035b">FLootLockerServerCatalogEntry</a></li>
+<li>Purpose&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerFile.html#ae5ab4b1eefa9f868418de0f057558340">FLootLockerServerPlayerFile</a>, <a class="el" href="structFLootLockerServerSinglePlayerFileResponse.html#a2d22c0846d8befc44b90f353bfee681b">FLootLockerServerSinglePlayerFileResponse</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<map id="FLootLockerServerListCatalogItemsByIdEntry" name="FLootLockerServerListCatalogItemsByIdEntry">
+<area shape="rect" id="Node000001" title="A catalog entry with entity details inlined directly." alt="" coords="1097,325,1312,365"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerCatalogEntry.html" title="Represents a single item in a catalog, including its entity type, prices, store listings,..." alt="" coords="679,165,871,205"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="885,195,979,214,1028,229,1074,247,1106,264,1136,284,1184,323,1180,327,1133,288,1103,268,1072,252,1026,234,978,219,884,200"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerCatalogEntryListings.html" title="Aggregates the platform&#45;specific store listing information configured for a catalog entry." alt="" coords="371,165,563,205"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="577,183,678,183,678,188,577,188"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerCatalogAppleAppStoreListing.html" title="Holds the Apple App Store product identifier for a catalog entry." alt="" coords="5,5,197,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="212,45,280,66,348,94,402,128,445,163,442,167,399,132,345,98,278,71,210,50"/>
+<area shape="rect" id="Node000005" href="$structFLootLockerServerCatalogGooglePlayStoreListing.html" title="Holds the Google Play Store product identifier for a catalog entry." alt="" coords="5,69,197,109"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="212,109,347,143,410,163,409,168,346,148,211,114"/>
+<area shape="rect" id="Node000006" href="$structFLootLockerServerCatalogSteamStoreListing.html" title="Holds the Steam Store listing for a catalog entry." alt="" coords="5,133,197,173"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="211,160,371,174,370,180,211,166"/>
+<area shape="rect" id="Node000007" href="$structFLootLockerServerCatalogStripeStoreListing.html" title="Holds the Stripe payment details for a catalog entry." alt="" coords="5,197,197,237"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="211,205,370,191,371,196,211,210"/>
+<area shape="rect" id="Node000008" href="$structFLootLockerServerCatalogEpicGamesStoreListing.html" title="Holds the Epic Games Store audience item identifier associated with a catalog entry listing." alt="" coords="5,261,197,301"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="211,256,346,223,409,203,410,208,347,228,212,261"/>
+<area shape="rect" id="Node000009" href="$structFLootLockerServerCatalogPlaystationStoreListing.html" title="Holds the PlayStation Store entitlement label associated with a catalog entry listing." alt="" coords="5,325,197,365"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="210,320,278,300,345,272,399,238,442,203,445,208,402,243,348,277,280,305,212,326"/>
+<area shape="rect" id="Node000010" href="$structFLootLockerServerCatalogAssetDetails.html" title="Holds detail information about an asset catalog entity, including its name, ULID, legacy numeric id,..." alt="" coords="679,229,871,269"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="885,262,977,279,1074,300,1148,323,1147,328,1073,305,976,284,884,268"/>
+<area shape="rect" id="Node000011" href="$structFLootLockerServerCatalogCurrencyDetails.html" title="Holds details about a currency catalog entity." alt="" coords="679,293,871,333"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="885,319,1097,335,1097,340,884,324"/>
+<area shape="rect" id="Node000012" href="$structFLootLockerServerCatalogProgressionPointDetails.html" title="Holds details about a progression&#45;points catalog entity." alt="" coords="679,357,871,397"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="884,367,1097,351,1097,356,885,372"/>
+<area shape="rect" id="Node000013" href="$structFLootLockerServerCatalogProgressionResetDetails.html" title="Holds details about a progression&#45;reset catalog entity." alt="" coords="679,421,871,461"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="884,422,976,405,1073,384,1145,363,1146,368,1074,389,977,411,885,427"/>
+<area shape="rect" id="Node000014" href="$structFLootLockerServerInlinedGroupDetailsWithAssociations.html" title="Group detail used by the ListCatalogItemsById endpoint, with association details inlined." alt="" coords="665,485,884,525"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="897,487,985,467,1072,436,1132,401,1179,364,1183,368,1135,405,1074,441,986,472,898,492"/>
+</map>

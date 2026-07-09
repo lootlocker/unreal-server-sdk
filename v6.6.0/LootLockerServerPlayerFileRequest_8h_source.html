@@ -1,0 +1,377 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/LootLockerServerPlayerFileRequest.h Source File</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.6.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('LootLockerServerPlayerFileRequest_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">LootLockerServerPlayerFileRequest.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="LootLockerServerPlayerFileRequest_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2021 LootLocker</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;Containers/Array.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="LootLockerServerResponse_8h.html">LootLockerServerResponse.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;LootLockerServerPlayerFileRequest.generated.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// Data Type Definitions</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFile.html">   19</a></span>struct <a class="code hl_struct" href="structFLootLockerServerPlayerFile.html">FLootLockerServerPlayerFile</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFile.html#a68046ff60caaed83213721e9c78c84b9">   26</a></span>    int Id = 0;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFile.html#a2878b7a084e873f9c67a5d15481df5bd">   31</a></span>    FString Revision_id = &quot;&quot;;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFile.html#a38d540346eca4b299d9dc11e9871fe08">   36</a></span>    FString Name = &quot;&quot;;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFile.html#a224e41e172ee817e34c55012d5ecc2f4">   41</a></span>    <span class="keywordtype">int</span> Size = 0;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFile.html#ae5ab4b1eefa9f868418de0f057558340">   46</a></span>    FString Purpose = &quot;&quot;;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFile.html#a42c5aefce3af95fd4dc308a2e5a943fd">   51</a></span>    <span class="keywordtype">bool</span> Public = false;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFile.html#accd4f9cf0365365d634e676112488e58">   56</a></span>    FString Url = &quot;&quot;;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFile.html#ac3d633213441883cbd610a7ca65ec886">   61</a></span>    FString Url_expires_at = &quot;&quot;;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFile.html#a87a2f8f209d76b7b56a93a2af3fd8759">   66</a></span>    FString Created_at = &quot;&quot;;    </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>};</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">// Request Definitions</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// N/A</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// Response Definitions</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="};">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structFLootLockerServerSinglePlayerFileResponse.html">   83</a></span>struct <a class="code hl_struct" href="structFLootLockerServerSinglePlayerFileResponse.html">FLootLockerServerSinglePlayerFileResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>{</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structFLootLockerServerSinglePlayerFileResponse.html#ab543f686cfc7c333f1070604b2c818d4">   90</a></span>    int Id = 0;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structFLootLockerServerSinglePlayerFileResponse.html#a3e762c5bfcf6ede97ed0f487812a733d">   95</a></span>    FString Revision_id = &quot;&quot;;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structFLootLockerServerSinglePlayerFileResponse.html#ab1dee1452a75368299648ee6d390ddb7">  100</a></span>    FString Name = &quot;&quot;;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structFLootLockerServerSinglePlayerFileResponse.html#a918574e3590c380053f0947ace9e891c">  105</a></span>    <span class="keywordtype">int</span> Size = 0;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structFLootLockerServerSinglePlayerFileResponse.html#a2d22c0846d8befc44b90f353bfee681b">  110</a></span>    FString Purpose = &quot;&quot;;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="structFLootLockerServerSinglePlayerFileResponse.html#a9b1b64d5fc7de96f5c292d2b10536400">  115</a></span>    <span class="keywordtype">bool</span> Public = false;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structFLootLockerServerSinglePlayerFileResponse.html#a5c4fd09c178ce7e54119414a66ab333d">  120</a></span>    FString Url = &quot;&quot;;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="structFLootLockerServerSinglePlayerFileResponse.html#a4aeecdd43d0f6a9d7e01026c93bc3897">  125</a></span>    FString Url_expires_at = &quot;&quot;;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = &quot;LootLockerServer&quot;)</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="structFLootLockerServerSinglePlayerFileResponse.html#a396daf05fcf643a8aa8d682c8456c00a">  130</a></span>    FString Created_at = &quot;&quot;;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>};</div>
+</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00137" data-start="{" data-end="};">
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFileListResponse.html">  137</a></span>struct <a class="code hl_struct" href="structFLootLockerServerPlayerFileListResponse.html">FLootLockerServerPlayerFileListResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>{</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = <span class="stringliteral">&quot;LootLockerServer&quot;</span>)</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFileListResponse.html#a0f623f210d6e86627568cf710cf06045">  145</a></span>    TArray&lt;<a class="code hl_struct" href="structFLootLockerServerPlayerFile.html">FLootLockerServerPlayerFile</a>&gt; Items;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>};</div>
+</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>USTRUCT(BlueprintType)</div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="};">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="structFLootLockerServerPlayerFileDeleteResponse.html">  152</a></span>struct <a class="code hl_struct" href="structFLootLockerServerPlayerFileDeleteResponse.html">FLootLockerServerPlayerFileDeleteResponse</a> : public <a class="code hl_struct" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>{</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>};</div>
+</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">// C++ Delegate Definitions</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">//==================================================</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment"> C++ response delegate for listing player files</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="LootLockerServerPlayerFileRequest_8h.html#a68cd1aee5e25da030ae3c26cf35990a3">  164</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerPlayerFileRequest_8h.html#a68cd1aee5e25da030ae3c26cf35990a3">FLootLockerServerPlayerFileListResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerPlayerFileListResponse.html">FLootLockerServerPlayerFileListResponse</a>);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment"> C++ response delegate for a single returned file</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="LootLockerServerPlayerFileRequest_8h.html#a0757abdbd0c236055b552291a44e950d">  168</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerPlayerFileRequest_8h.html#a0757abdbd0c236055b552291a44e950d">FLootLockerServerSinglePlayerFileResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerSinglePlayerFileResponse.html">FLootLockerServerSinglePlayerFileResponse</a>);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="comment"> C++ response delegate for a single returned file</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="LootLockerServerPlayerFileRequest_8h.html#a62efb307711e9b63b481abe8311e4e69">  172</a></span>DECLARE_DELEGATE_OneParam(<a class="code hl_typedef" href="LootLockerServerPlayerFileRequest_8h.html#a62efb307711e9b63b481abe8311e4e69">FLootLockerServerPlayerFileDeleteResponseDelegate</a>, <a class="code hl_struct" href="structFLootLockerServerPlayerFileDeleteResponse.html">FLootLockerServerPlayerFileDeleteResponse</a>);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>UCLASS()</div>
+<div class="foldopen" id="foldopen00179" data-start="{" data-end="};">
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="classULootLockerServerPlayerFileRequest.html">  179</a></span>class LOOTLOCKERSERVERSDK_API <a class="code hl_class" href="classULootLockerServerPlayerFileRequest.html">ULootLockerServerPlayerFileRequest</a> : public UObject</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>{</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keyword">public</span>: </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="classULootLockerServerPlayerFileRequest.html#adf82f585e25d1164b65d8750a2bca021">  183</a></span>    <a class="code hl_function" href="classULootLockerServerPlayerFileRequest.html#adf82f585e25d1164b65d8750a2bca021">ULootLockerServerPlayerFileRequest</a>();   </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classULootLockerServerPlayerFileRequest.html#a88cb3c7b7f7871c7edf9f73b354b9042">  185</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerPlayerFileRequest.html#a88cb3c7b7f7871c7edf9f73b354b9042">ListFilesForPlayer</a>(<span class="keywordtype">int</span> PlayerID, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerPlayerFileRequest_8h.html#a68cd1aee5e25da030ae3c26cf35990a3">FLootLockerServerPlayerFileListResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classULootLockerServerPlayerFileRequest.html#addc1479fa90a230d1438ba8303c3bd55">  186</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerPlayerFileRequest.html#addc1479fa90a230d1438ba8303c3bd55">GetFileForPlayerByID</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> FileID, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerPlayerFileRequest_8h.html#a0757abdbd0c236055b552291a44e950d">FLootLockerServerSinglePlayerFileResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="classULootLockerServerPlayerFileRequest.html#ad71e778cf25585a8ad6e64160aaf8479">  187</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerPlayerFileRequest.html#ad71e778cf25585a8ad6e64160aaf8479">DeleteFileForPlayerByID</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> FileID, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerPlayerFileRequest_8h.html#a62efb307711e9b63b481abe8311e4e69">FLootLockerServerPlayerFileDeleteResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classULootLockerServerPlayerFileRequest.html#a4e0417ac02276a48148b89a6bdf35b14">  188</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerPlayerFileRequest.html#a4e0417ac02276a48148b89a6bdf35b14">UploadFileForPlayer</a>(<span class="keywordtype">int</span> PlayerID, FString FilePath, FString Purpose, <span class="keywordtype">bool</span> IsPublic, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerPlayerFileRequest_8h.html#a0757abdbd0c236055b552291a44e950d">FLootLockerServerSinglePlayerFileResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classULootLockerServerPlayerFileRequest.html#ad3993d1293cc8c6ba2b31d1e0411cbeb">  189</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerPlayerFileRequest.html#ad3993d1293cc8c6ba2b31d1e0411cbeb">UploadRawDataToPlayerFile</a>(<span class="keywordtype">int</span> PlayerID, TArray&lt;uint8&gt; RawData, <span class="keyword">const</span> FString&amp; FileName, FString Purpose, <span class="keywordtype">bool</span> IsPublic, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerPlayerFileRequest_8h.html#a0757abdbd0c236055b552291a44e950d">FLootLockerServerSinglePlayerFileResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classULootLockerServerPlayerFileRequest.html#ad26e57886001b653c49008247abeb60b">  190</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerPlayerFileRequest.html#ad26e57886001b653c49008247abeb60b">UpdateFileForPlayer</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> FileID, FString FilePath, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerPlayerFileRequest_8h.html#a0757abdbd0c236055b552291a44e950d">FLootLockerServerSinglePlayerFileResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classULootLockerServerPlayerFileRequest.html#aed4a22b3bf6e142d8180f5341bb5876d">  191</a></span>    <span class="keyword">static</span> FString <a class="code hl_function" href="classULootLockerServerPlayerFileRequest.html#aed4a22b3bf6e142d8180f5341bb5876d">UpdatePlayerFileWithRawData</a>(<span class="keywordtype">int</span> PlayerID, <span class="keywordtype">int</span> FileID, TArray&lt;uint8&gt; RawData, <span class="keyword">const</span> FString&amp; FileName, <span class="keyword">const</span> <a class="code hl_typedef" href="LootLockerServerPlayerFileRequest_8h.html#a0757abdbd0c236055b552291a44e950d">FLootLockerServerSinglePlayerFileResponseDelegate</a>&amp; OnCompletedRequest);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>};</div>
+</div>
+<div class="ttc" id="aLootLockerServerPlayerFileRequest_8h_html_a0757abdbd0c236055b552291a44e950d"><div class="ttname"><a href="LootLockerServerPlayerFileRequest_8h.html#a0757abdbd0c236055b552291a44e950d">FLootLockerServerSinglePlayerFileResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerSinglePlayerFileResponseDelegate)(FLootLockerServerSinglePlayerFileResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerPlayerFileRequest.h:168</div></div>
+<div class="ttc" id="aLootLockerServerPlayerFileRequest_8h_html_a62efb307711e9b63b481abe8311e4e69"><div class="ttname"><a href="LootLockerServerPlayerFileRequest_8h.html#a62efb307711e9b63b481abe8311e4e69">FLootLockerServerPlayerFileDeleteResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerPlayerFileDeleteResponseDelegate)(FLootLockerServerPlayerFileDeleteResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerPlayerFileRequest.h:172</div></div>
+<div class="ttc" id="aLootLockerServerPlayerFileRequest_8h_html_a68cd1aee5e25da030ae3c26cf35990a3"><div class="ttname"><a href="LootLockerServerPlayerFileRequest_8h.html#a68cd1aee5e25da030ae3c26cf35990a3">FLootLockerServerPlayerFileListResponseDelegate</a></div><div class="ttdeci">void(* FLootLockerServerPlayerFileListResponseDelegate)(FLootLockerServerPlayerFileListResponse)</div><div class="ttdef"><b>Definition</b> LootLockerServerPlayerFileRequest.h:164</div></div>
+<div class="ttc" id="aLootLockerServerResponse_8h_html"><div class="ttname"><a href="LootLockerServerResponse_8h.html">LootLockerServerResponse.h</a></div></div>
+<div class="ttc" id="aclassULootLockerServerPlayerFileRequest_html"><div class="ttname"><a href="classULootLockerServerPlayerFileRequest.html">ULootLockerServerPlayerFileRequest</a></div><div class="ttdef"><b>Definition</b> LootLockerServerPlayerFileRequest.h:180</div></div>
+<div class="ttc" id="aclassULootLockerServerPlayerFileRequest_html_a4e0417ac02276a48148b89a6bdf35b14"><div class="ttname"><a href="classULootLockerServerPlayerFileRequest.html#a4e0417ac02276a48148b89a6bdf35b14">ULootLockerServerPlayerFileRequest::UploadFileForPlayer</a></div><div class="ttdeci">static FString UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerPlayerFileRequest_html_a88cb3c7b7f7871c7edf9f73b354b9042"><div class="ttname"><a href="classULootLockerServerPlayerFileRequest.html#a88cb3c7b7f7871c7edf9f73b354b9042">ULootLockerServerPlayerFileRequest::ListFilesForPlayer</a></div><div class="ttdeci">static FString ListFilesForPlayer(int PlayerID, const FLootLockerServerPlayerFileListResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerPlayerFileRequest_html_ad26e57886001b653c49008247abeb60b"><div class="ttname"><a href="classULootLockerServerPlayerFileRequest.html#ad26e57886001b653c49008247abeb60b">ULootLockerServerPlayerFileRequest::UpdateFileForPlayer</a></div><div class="ttdeci">static FString UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerPlayerFileRequest_html_ad3993d1293cc8c6ba2b31d1e0411cbeb"><div class="ttname"><a href="classULootLockerServerPlayerFileRequest.html#ad3993d1293cc8c6ba2b31d1e0411cbeb">ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile</a></div><div class="ttdeci">static FString UploadRawDataToPlayerFile(int PlayerID, TArray&lt; uint8 &gt; RawData, const FString &amp;FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerPlayerFileRequest_html_ad71e778cf25585a8ad6e64160aaf8479"><div class="ttname"><a href="classULootLockerServerPlayerFileRequest.html#ad71e778cf25585a8ad6e64160aaf8479">ULootLockerServerPlayerFileRequest::DeleteFileForPlayerByID</a></div><div class="ttdeci">static FString DeleteFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerPlayerFileDeleteResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerPlayerFileRequest_html_addc1479fa90a230d1438ba8303c3bd55"><div class="ttname"><a href="classULootLockerServerPlayerFileRequest.html#addc1479fa90a230d1438ba8303c3bd55">ULootLockerServerPlayerFileRequest::GetFileForPlayerByID</a></div><div class="ttdeci">static FString GetFileForPlayerByID(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="aclassULootLockerServerPlayerFileRequest_html_adf82f585e25d1164b65d8750a2bca021"><div class="ttname"><a href="classULootLockerServerPlayerFileRequest.html#adf82f585e25d1164b65d8750a2bca021">ULootLockerServerPlayerFileRequest::ULootLockerServerPlayerFileRequest</a></div><div class="ttdeci">ULootLockerServerPlayerFileRequest()</div></div>
+<div class="ttc" id="aclassULootLockerServerPlayerFileRequest_html_aed4a22b3bf6e142d8180f5341bb5876d"><div class="ttname"><a href="classULootLockerServerPlayerFileRequest.html#aed4a22b3bf6e142d8180f5341bb5876d">ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData</a></div><div class="ttdeci">static FString UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray&lt; uint8 &gt; RawData, const FString &amp;FileName, const FLootLockerServerSinglePlayerFileResponseDelegate &amp;OnCompletedRequest)</div></div>
+<div class="ttc" id="astructFLootLockerServerPlayerFileDeleteResponse_html"><div class="ttname"><a href="structFLootLockerServerPlayerFileDeleteResponse.html">FLootLockerServerPlayerFileDeleteResponse</a></div><div class="ttdoc">Response class for deleting a file, will be empty unless there's an error.</div><div class="ttdef"><b>Definition</b> LootLockerServerPlayerFileRequest.h:153</div></div>
+<div class="ttc" id="astructFLootLockerServerPlayerFileListResponse_html"><div class="ttname"><a href="structFLootLockerServerPlayerFileListResponse.html">FLootLockerServerPlayerFileListResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerPlayerFileRequest.h:138</div></div>
+<div class="ttc" id="astructFLootLockerServerPlayerFile_html"><div class="ttname"><a href="structFLootLockerServerPlayerFile.html">FLootLockerServerPlayerFile</a></div><div class="ttdef"><b>Definition</b> LootLockerServerPlayerFileRequest.h:20</div></div>
+<div class="ttc" id="astructFLootLockerServerResponse_html"><div class="ttname"><a href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a></div><div class="ttdoc">The base response for all LootLocker Server responses.</div><div class="ttdef"><b>Definition</b> LootLockerServerResponse.h:67</div></div>
+<div class="ttc" id="astructFLootLockerServerSinglePlayerFileResponse_html"><div class="ttname"><a href="structFLootLockerServerSinglePlayerFileResponse.html">FLootLockerServerSinglePlayerFileResponse</a></div><div class="ttdef"><b>Definition</b> LootLockerServerPlayerFileRequest.h:84</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_9f77ca9030fc530377179ef1ae010e8e.html">LootLockerServerSDK</a></li><li class="navelem"><a class="el" href="dir_6c67ecf51f1dd82eba34c6913e42f1aa.html">Source</a></li><li class="navelem"><a class="el" href="dir_19732b1a8e4198efc19367964d57ba95.html">LootLockerServerSDK</a></li><li class="navelem"><a class="el" href="dir_54f4648b1d151bbc23437e0756736e1c.html">Public</a></li><li class="navelem"><a class="el" href="dir_50576b1844c996962de96e8d53ce5ab2.html">ServerAPI</a></li><li class="navelem"><a class="el" href="LootLockerServerPlayerFileRequest_8h.html">LootLockerServerPlayerFileRequest.h</a></li>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

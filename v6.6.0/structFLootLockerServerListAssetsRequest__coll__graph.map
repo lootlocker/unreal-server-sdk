@@ -1,0 +1,9 @@
+<map id="FLootLockerServerListAssetsRequest" name="FLootLockerServerListAssetsRequest">
+<area shape="rect" id="Node000001" title="Request payload for simple asset listing." alt="" coords="339,69,547,109"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerSimpleAssetIncludes.html" title="Fields to include in the simple asset response." alt="" coords="5,5,228,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="233,45,341,67,340,72,232,51"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerSimpleAssetExcludes.html" title="Fields to exclude from the simple asset response." alt="" coords="5,69,228,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="242,87,339,87,339,92,242,92"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerSimpleAssetFilters.html" title="Filters to apply to simple asset listing." alt="" coords="5,133,228,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="232,128,340,107,341,112,233,133"/>
+</map>
