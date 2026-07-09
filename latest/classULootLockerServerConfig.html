@@ -60,7 +60,7 @@
       </a>
       <span id="ll-topnav-divider" aria-hidden="true"></span>
       <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
-      <span id="ll-topnav-version">v6.5.0</span>
+      <span id="ll-topnav-version">v6.6.0</span>
       <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
          rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -137,7 +137,7 @@ function llToggleDark() {
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
   <td id="projectalign">
-   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
    </div>
    <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
   </td>
@@ -203,9 +203,9 @@ $(document).ready(function(){initNavTree('classULootLockerServerConfig.html','')
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#pub-attribs">Data Fields</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a>  </div>
   <div class="headertitle"><div class="title">ULootLockerServerConfig Class Reference<div class="ingroups"><a class="el" href="group__Init.html">Initialization</a></div></div></div>
 </div><!--header-->
 <div class="contents">
@@ -232,13 +232,14 @@ Collaboration diagram for ULootLockerServerConfig:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a9f43b22ef9d133f05c3c7e33a5e38a9c" id="r_a9f43b22ef9d133f05c3c7e33a5e38a9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a9f43b22ef9d133f05c3c7e33a5e38a9c">ULootLockerServerConfig</a> ()</td></tr>
-<tr class="separator:a9f43b22ef9d133f05c3c7e33a5e38a9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a85aaff8ac61bf67e854bac9c1926d594" id="r_a85aaff8ac61bf67e854bac9c1926d594"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a85aaff8ac61bf67e854bac9c1926d594">IsFileConfigActive</a> ()</td></tr>
+<tr class="memdesc:a85aaff8ac61bf67e854bac9c1926d594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true when a pre-configured file config is active and governing settings.  <br /></td></tr>
+<tr class="separator:a85aaff8ac61bf67e854bac9c1926d594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17bf53a6079a9c613045a2b2e81577a2" id="r_a17bf53a6079a9c613045a2b2e81577a2"><td class="memItemLeft" align="right" valign="top">static TOptional&lt; <a class="el" href="structFLootLockerServerFileConfig.html">FLootLockerServerFileConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a17bf53a6079a9c613045a2b2e81577a2">ParseFileConfigContent</a> (const FString &amp;Content)</td></tr>
+<tr class="memdesc:a17bf53a6079a9c613045a2b2e81577a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a pre-config file's raw content (plain JSON or encrypted) into an <a class="el" href="structFLootLockerServerFileConfig.html" title="Data struct for the pre-configured file config, loaded at startup from the &quot;&lt;PackageName&gt;ServerPreCon...">FLootLockerServerFileConfig</a>.  <br /></td></tr>
+<tr class="separator:a17bf53a6079a9c613045a2b2e81577a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab3aa5e65d23f8a7430f14f055d6e25d" id="r_aab3aa5e65d23f8a7430f14f055d6e25d"><td class="memItemLeft" align="right" valign="top">static ELootLockerServerLogLevel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#aab3aa5e65d23f8a7430f14f055d6e25d">GetConfiguredLogLevel</a> ()</td></tr>
 <tr class="separator:aab3aa5e65d23f8a7430f14f055d6e25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fc3d8144559e9b8876a34672c671da6" id="r_a7fc3d8144559e9b8876a34672c671da6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a7fc3d8144559e9b8876a34672c671da6">SetRuntimeLogLevel</a> (ELootLockerServerLogLevel NewLevel)</td></tr>
@@ -262,6 +263,8 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
+<tr class="memitem:a110b910b8538f911ae961eea903bfafd" id="r_a110b910b8538f911ae961eea903bfafd"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a110b910b8538f911ae961eea903bfafd">FileConfigActiveNotice</a> = &quot;Settings are governed by the pre-configured file config shipped with the plugin and cannot be changed from the editor.&quot;</td></tr>
+<tr class="separator:a110b910b8538f911ae961eea903bfafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5853ff3ccbca73c6f39a0554168f2ec5" id="r_a5853ff3ccbca73c6f39a0554168f2ec5"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a5853ff3ccbca73c6f39a0554168f2ec5">LootLockerServerKey</a> = &quot;&quot;</td></tr>
 <tr class="separator:a5853ff3ccbca73c6f39a0554168f2ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad80fb14046368b67d679eb2b005aa5fb" id="r_ad80fb14046368b67d679eb2b005aa5fb"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#ad80fb14046368b67d679eb2b005aa5fb">LootLockerDomainKey</a> = &quot;&quot;</td></tr>
@@ -274,7 +277,7 @@ Data Fields</h2></td></tr>
 <tr class="separator:a111d9156c2f49cf625b4af5b50ad173d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcc03f5f48c5623ee61e908b4d0775b4" id="r_abcc03f5f48c5623ee61e908b4d0775b4"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#abcc03f5f48c5623ee61e908b4d0775b4">LootLockerVersion</a> = &quot;2021-06-01&quot;</td></tr>
 <tr class="separator:abcc03f5f48c5623ee61e908b4d0775b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d4913c3dfbfffec301d1d4ad2c8e312" id="r_a9d4913c3dfbfffec301d1d4ad2c8e312"><td class="memItemLeft" align="right" valign="top">ELootLockerServerLogLevel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a9d4913c3dfbfffec301d1d4ad2c8e312">LimitLogLevelTo</a> = ELootLockerServerLogLevel::Display</td></tr>
+<tr class="memitem:a9d4913c3dfbfffec301d1d4ad2c8e312" id="r_a9d4913c3dfbfffec301d1d4ad2c8e312"><td class="memItemLeft" align="right" valign="top">ELootLockerServerLogLevel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a9d4913c3dfbfffec301d1d4ad2c8e312">LimitLogLevelTo</a> = ELootLockerServerLogLevel::Warning</td></tr>
 <tr class="memdesc:a9d4913c3dfbfffec301d1d4ad2c8e312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logging configuration.  <br /></td></tr>
 <tr class="separator:a9d4913c3dfbfffec301d1d4ad2c8e312"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32cd6acabadbbaa0b2948228d6e8eb1f" id="r_a32cd6acabadbbaa0b2948228d6e8eb1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a32cd6acabadbbaa0b2948228d6e8eb1f">LogOutsideOfEditor</a> = false</td></tr>
@@ -285,25 +288,13 @@ Data Fields</h2></td></tr>
 <tr class="separator:a5c83eef8c4121379a6ea07717221c5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c82b2fd0c9958926e333f676f99b973" id="r_a2c82b2fd0c9958926e333f676f99b973"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a2c82b2fd0c9958926e333f676f99b973">LongLogFilePath</a> = &quot;&quot;</td></tr>
 <tr class="separator:a2c82b2fd0c9958926e333f676f99b973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a99c490842342c3bcd7d602c9be723b07" id="r_a99c490842342c3bcd7d602c9be723b07"><td class="memItemLeft" align="right" valign="top">static const FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerConfig.html#a99c490842342c3bcd7d602c9be723b07">PreConfigFileName</a></td></tr>
+<tr class="memdesc:a99c490842342c3bcd7d602c9be723b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filename of the pre-config file that the SDK looks for in the plugin's Config directory.  <br /></td></tr>
+<tr class="separator:a99c490842342c3bcd7d602c9be723b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9f43b22ef9d133f05c3c7e33a5e38a9c" name="a9f43b22ef9d133f05c3c7e33a5e38a9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f43b22ef9d133f05c3c7e33a5e38a9c">&#9670;&#160;</a></span>ULootLockerServerConfig()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ULootLockerServerConfig::ULootLockerServerConfig </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a25f3826e8e0d52de228df98f6cfd8b48" name="a25f3826e8e0d52de228df98f6cfd8b48"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a25f3826e8e0d52de228df98f6cfd8b48">&#9670;&#160;</a></span>DisableFileLogging()</h2>
@@ -445,6 +436,34 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
+<a id="a85aaff8ac61bf67e854bac9c1926d594" name="a85aaff8ac61bf67e854bac9c1926d594"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85aaff8ac61bf67e854bac9c1926d594">&#9670;&#160;</a></span>IsFileConfigActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool ULootLockerServerConfig::IsFileConfigActive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns true when a pre-configured file config is active and governing settings. </p>
+<p>When true, the Project Settings panel is locked to prevent drift from the file config. </p>
+
+</div>
+</div>
 <a id="a22a30a35282d4a02664730288d4d6bad" name="a22a30a35282d4a02664730288d4d6bad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a22a30a35282d4a02664730288d4d6bad">&#9670;&#160;</a></span>IsFileLoggingEnabled()</h2>
 
@@ -469,6 +488,35 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns true if file logging is enabled and a log file name is set. </p>
+
+</div>
+</div>
+<a id="a17bf53a6079a9c613045a2b2e81577a2" name="a17bf53a6079a9c613045a2b2e81577a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17bf53a6079a9c613045a2b2e81577a2">&#9670;&#160;</a></span>ParseFileConfigContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static TOptional&lt; <a class="el" href="structFLootLockerServerFileConfig.html">FLootLockerServerFileConfig</a> &gt; ULootLockerServerConfig::ParseFileConfigContent </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Content</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parses a pre-config file's raw content (plain JSON or encrypted) into an <a class="el" href="structFLootLockerServerFileConfig.html" title="Data struct for the pre-configured file config, loaded at startup from the &quot;&lt;PackageName&gt;ServerPreCon...">FLootLockerServerFileConfig</a>. </p>
+<p>Returns an empty TOptional when content is invalid or api_key is missing/empty. Exposed publicly so unit tests can call it without needing a real plugin on disk. </p>
 
 </div>
 </div>
@@ -515,6 +563,20 @@ Data Fields</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">bool ULootLockerServerConfig::bEnableFileLogging = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a110b910b8538f911ae961eea903bfafd" name="a110b910b8538f911ae961eea903bfafd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a110b910b8538f911ae961eea903bfafd">&#9670;&#160;</a></span>FileConfigActiveNotice</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString ULootLockerServerConfig::FileConfigActiveNotice = &quot;Settings are governed by the pre-configured file config shipped with the plugin and cannot be changed from the editor.&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -570,7 +632,7 @@ Data Fields</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ELootLockerServerLogLevel ULootLockerServerConfig::LimitLogLevelTo = ELootLockerServerLogLevel::Display</td>
+          <td class="memname">ELootLockerServerLogLevel ULootLockerServerConfig::LimitLogLevelTo = ELootLockerServerLogLevel::Warning</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -660,6 +722,31 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a99c490842342c3bcd7d602c9be723b07" name="a99c490842342c3bcd7d602c9be723b07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99c490842342c3bcd7d602c9be723b07">&#9670;&#160;</a></span>PreConfigFileName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const FString ULootLockerServerConfig::PreConfigFileName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Filename of the pre-config file that the SDK looks for in the plugin's Config directory. </p>
+<p>Default: "LootLockerServerPreConfig.bytes" </p>
 
 </div>
 </div>

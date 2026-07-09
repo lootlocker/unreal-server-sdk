@@ -60,7 +60,7 @@
       </a>
       <span id="ll-topnav-divider" aria-hidden="true"></span>
       <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
-      <span id="ll-topnav-version">v6.5.0</span>
+      <span id="ll-topnav-version">v6.6.0</span>
       <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
          rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -137,7 +137,7 @@ function llToggleDark() {
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
   <td id="projectalign">
-   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
    </div>
    <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
   </td>
@@ -211,11 +211,11 @@ $(document).ready(function(){initNavTree('functions_l.html',''); initResizable()
 <li>Last_page&#160;:&#160;<a class="el" href="structFLootLockerServerExtendedIndexBasedPagination.html#a2e31c0933b99c911929aca68cfb0940e">FLootLockerServerExtendedIndexBasedPagination</a></li>
 <li>last_run&#160;:&#160;<a class="el" href="structFLootLockerServerGetLeaderboardScheduleResponse.html#aefd11db09ab53f163e7ca30254143ce7">FLootLockerServerGetLeaderboardScheduleResponse</a>, <a class="el" href="structFLootLockerServerLeaderboardSchedule.html#a5cb4fb9eb808fe3f5816df244eafc563">FLootLockerServerLeaderboardSchedule</a></li>
 <li>Leaderboard&#160;:&#160;<a class="el" href="structFLootLockerServerGetLeaderboardResponse.html#a0751e636388cd6bb967ec14672b3f66e">FLootLockerServerGetLeaderboardResponse</a></li>
-<li>Leaderboard_id&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardEntryWithLeaderboardData.html#abff078e811a01311de6305fc4180e185">FLootLockerServerLeaderboardEntryWithLeaderboardData</a></li>
+<li>Leaderboard_id&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardEntryWithLeaderboardData.html#abff078e811a01311de6305fc4180e185">FLootLockerServerLeaderboardEntryWithLeaderboardData</a>, <a class="el" href="structFLootLockerServerManualLeaderboardReset.html#a99f10d0cdda258a90c478fcb8b44214e">FLootLockerServerManualLeaderboardReset</a>, <a class="el" href="structFLootLockerServerManualLeaderboardResetResponse.html#a54eb832f52d8434923bd74c87f3d4011">FLootLockerServerManualLeaderboardResetResponse</a></li>
 <li>Leaderboard_key&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardEntryWithLeaderboardData.html#a8f466b45f6fa29920488620c7a561b8d">FLootLockerServerLeaderboardEntryWithLeaderboardData</a></li>
 <li>Leaderboards&#160;:&#160;<a class="el" href="structFLootLockerServerGetAllMemberRanksResponse.html#a8cbf67db265585efddc52463ae4892a7">FLootLockerServerGetAllMemberRanksResponse</a></li>
 <li>legacy_id&#160;:&#160;<a class="el" href="structFLootLockerServerAssetRewardDetails.html#a73dc592a6fae8f59c0e340f9ca5c3e3b">FLootLockerServerAssetRewardDetails</a></li>
-<li>Legacy_id&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerInfoFromToken.html#aba62a60d0d4e69225c1a18e6241d3cdb">FLootLockerServerPlayerInfoFromToken</a></li>
+<li>Legacy_id&#160;:&#160;<a class="el" href="structFLootLockerServerCatalogAssetDetails.html#af0b2668ef14285a9b380d524e4ece987">FLootLockerServerCatalogAssetDetails</a>, <a class="el" href="structFLootLockerServerPlayerInfoFromToken.html#aba62a60d0d4e69225c1a18e6241d3cdb">FLootLockerServerPlayerInfoFromToken</a></li>
 <li>Legacy_player_id&#160;:&#160;<a class="el" href="structFLootLockerServerPlayerPlatform.html#ade2e77201eca03618b98602e7fcc93c2">FLootLockerServerPlayerPlatform</a></li>
 <li>Legacy_player_ids&#160;:&#160;<a class="el" href="structFLootLockerServerListConnectedAccountsRequest.html#ac86cf65879dd714ef94bd0334ecb3e7a">FLootLockerServerListConnectedAccountsRequest</a></li>
 <li>LegacyKeyWarning&#160;:&#160;<a class="el" href="classULootLockerServerConfig.html#ab286708bad54b020001fde94e6bcdafd">ULootLockerServerConfig</a></li>
@@ -226,20 +226,26 @@ $(document).ready(function(){initNavTree('functions_l.html',''); initResizable()
 <li>ListAssets()&#160;:&#160;<a class="el" href="classULootLockerServerAssetRequest.html#a75fae431798bfa2e2b56540d01322c9d">ULootLockerServerAssetRequest</a>, <a class="el" href="group__Leaderboard.html#gaa2788e8f44c9e8088e07fbe1ffef4852">ULootLockerServerForCpp</a></li>
 <li>ListAssetsWithDefaultParameters()&#160;:&#160;<a class="el" href="group__Leaderboard.html#gac2f33a1e7dc847c359eaa84e7b1ceeac">ULootLockerServerForCpp</a></li>
 <li>ListBalancesInWallet()&#160;:&#160;<a class="el" href="classULootLockerServerBalanceRequest.html#a2936f247d25c4f63677b30f9959f280e">ULootLockerServerBalanceRequest</a>, <a class="el" href="group__Balances.html#gaf15dee8e0f95d5d737db81db783944de">ULootLockerServerForCpp</a></li>
+<li>ListCatalogItemsById()&#160;:&#160;<a class="el" href="classULootLockerServerCatalogRequest.html#ae12451ea8ec51571c124bbd5203a446c">ULootLockerServerCatalogRequest</a>, <a class="el" href="group__Catalogs.html#gab063c462eb117375a89049cbc9ba2b4b">ULootLockerServerForCpp</a></li>
+<li>ListCatalogItemsByKey()&#160;:&#160;<a class="el" href="classULootLockerServerCatalogRequest.html#a5a3bdead764b780a73080c6185f5ab3f">ULootLockerServerCatalogRequest</a>, <a class="el" href="group__Catalogs.html#ga3d22753515d2518f83ebe77d7c553a4c">ULootLockerServerForCpp</a></li>
 <li>ListConnectedAccounts()&#160;:&#160;<a class="el" href="classULootLockerServerConnectedAccountsRequest.html#a01a32b29acd2b11d0b0333ca428b0f4a">ULootLockerServerConnectedAccountsRequest</a>, <a class="el" href="group__ConnectedAccounts.html#gabb4c4a2f8edb2419c6ab38493caaf686">ULootLockerServerForCpp</a></li>
 <li>ListContexts()&#160;:&#160;<a class="el" href="classULootLockerServerAssetRequest.html#a19cafd27a19d104b9074f33109893c2a">ULootLockerServerAssetRequest</a>, <a class="el" href="group__Leaderboard.html#gab6c3eda5bac7b0b718bf3d678d0187ff">ULootLockerServerForCpp</a></li>
 <li>ListCurrencies()&#160;:&#160;<a class="el" href="classULootLockerServerCurrencyRequest.html#a1bdcedcec1613070e38f3781e1565d31">ULootLockerServerCurrencyRequest</a>, <a class="el" href="group__Currency.html#gaa8dccfcf64c9d8992c8dc7fd83e32cef">ULootLockerServerForCpp</a></li>
 <li>ListFilesForPlayer()&#160;:&#160;<a class="el" href="group__PlayerFiles.html#ga19791d923afd17da574761bc3e80a1a0">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerFileRequest.html#a88cb3c7b7f7871c7edf9f73b354b9042">ULootLockerServerPlayerFileRequest</a></li>
 <li>ListFriends()&#160;:&#160;<a class="el" href="classULootLockerServerFriendsRequest.html#af621b3db38828be0c35b9fa0c72977c2">ULootLockerServerFriendsRequest</a></li>
 <li>ListFriendsForPlayer()&#160;:&#160;<a class="el" href="group__Friends.html#ga921b495af92329697ca087f82c2d57d1">ULootLockerServerForCpp</a></li>
+<li>Listings&#160;:&#160;<a class="el" href="structFLootLockerServerCatalogEntry.html#ad4a510380dfd17ae5b85e7d3bea3818e">FLootLockerServerCatalogEntry</a></li>
 <li>ListLeaderboardArchive()&#160;:&#160;<a class="el" href="group__Leaderboard.html#ga915b14b24cb1e230a82867b625792434">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardArchiveRequestHandler.html#a21e921173f84ec945dffd903b0830f19">ULootLockerServerLeaderboardArchiveRequestHandler</a></li>
 <li>ListLeaderboards()&#160;:&#160;<a class="el" href="group__Leaderboard.html#ga8fe383f4e66f6d7231ec5371c4427595">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardRequest.html#a7463f6abed03f8943e7f7caad7bf51b2">ULootLockerServerLeaderboardRequest</a></li>
+<li>ListManualLeaderboardResets()&#160;:&#160;<a class="el" href="group__Leaderboard.html#ga238e69cf4f8a062381ef7330d638ac21">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardRequest.html#a5919b9d1204f29bf621bdb69916ccd29">ULootLockerServerLeaderboardRequest</a></li>
 <li>ListMetadata()&#160;:&#160;<a class="el" href="group__Metadata.html#ga29414c948acd7fc45954f7292cc980d1">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerMetadataRequest.html#a8b466fc6a00635ed3deb7bc958d6bd94">ULootLockerServerMetadataRequest</a></li>
 <li>ListMetadataWithTags()&#160;:&#160;<a class="el" href="group__Metadata.html#gaeaf41c5bd354c895b63b6c8091e084b3">ULootLockerServerForCpp</a></li>
 <li>LL_ERROR_INVALID_HTTP&#160;:&#160;<a class="el" href="structLootLockerServerStaticRequestErrorStatusCodes.html#a53e607a6b32c79cf1b5711d9640430de">LootLockerServerStaticRequestErrorStatusCodes</a></li>
 <li>LL_ERROR_INVALID_INPUT&#160;:&#160;<a class="el" href="structLootLockerServerStaticRequestErrorStatusCodes.html#a77ce86bb6a19f0f2f4cef0d3faadb8c9">LootLockerServerStaticRequestErrorStatusCodes</a></li>
 <li>LL_ERROR_PARSE_ERROR&#160;:&#160;<a class="el" href="structLootLockerServerStaticRequestErrorStatusCodes.html#a0bdace6ead0e3c9fcb8374383d99044b">LootLockerServerStaticRequestErrorStatusCodes</a></li>
 <li>LL_ERROR_UNDOCUMENTED&#160;:&#160;<a class="el" href="structLootLockerServerStaticRequestErrorStatusCodes.html#acbfe811104610ecd1ecff6d4941235b1">LootLockerServerStaticRequestErrorStatusCodes</a></li>
+<li>log_level&#160;:&#160;<a class="el" href="structFLootLockerServerFileConfig.html#ab0665cfc27bdc192451393d03b245f80">FLootLockerServerFileConfig</a></li>
+<li>log_outside_of_editor&#160;:&#160;<a class="el" href="structFLootLockerServerFileConfig.html#a244ab92329409c08431a3f247f6f266b">FLootLockerServerFileConfig</a></li>
 <li>LogFileName&#160;:&#160;<a class="el" href="classULootLockerServerConfig.html#a5c83eef8c4121379a6ea07717221c5e8">ULootLockerServerConfig</a></li>
 <li>LogOutsideOfEditor&#160;:&#160;<a class="el" href="classULootLockerServerConfig.html#a32cd6acabadbbaa0b2948228d6e8eb1f">ULootLockerServerConfig</a></li>
 <li>LongLogFilePath&#160;:&#160;<a class="el" href="classULootLockerServerConfig.html#a2c82b2fd0c9958926e333f676f99b973">ULootLockerServerConfig</a></li>

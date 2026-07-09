@@ -1,0 +1,11 @@
+<map id="FLootLockerServerInlinedGroupAssociation" name="FLootLockerServerInlinedGroupAssociation">
+<area shape="rect" id="Node000001" title="A group association with the entity detail inlined directly." alt="" coords="411,101,597,141"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerCatalogAssetDetails.html" title="Holds detail information about an asset catalog entity, including its name, ULID, legacy numeric id,..." alt="" coords="5,5,197,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,40,298,56,387,77,453,99,451,104,386,83,297,61,210,45"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerCatalogCurrencyDetails.html" title="Holds details about a currency catalog entity." alt="" coords="5,69,197,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,95,411,111,410,117,211,101"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerCatalogProgressionPointDetails.html" title="Holds details about a progression&#45;points catalog entity." alt="" coords="5,133,197,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="211,143,386,129,410,127,410,133,387,135,211,148"/>
+<area shape="rect" id="Node000005" href="$structFLootLockerServerCatalogProgressionResetDetails.html" title="Holds details about a progression&#45;reset catalog entity." alt="" coords="5,197,197,237"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="211,200,297,184,386,163,454,139,456,144,387,168,298,189,211,205"/>
+</map>

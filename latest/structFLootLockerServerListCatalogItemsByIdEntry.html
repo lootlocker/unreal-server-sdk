@@ -1,0 +1,406 @@
+<!-- HTML header for doxygen 1.9.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: FLootLockerServerListCatalogItemsByIdEntry Struct Reference</title>
+<!--BEGIN PROJECT_ICON-->
+<link rel="icon" href="$projecticon" type="image/x-icon" />
+<!--END PROJECT_ICON-->
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<!--BEGIN COPY_CLIPBOARD-->
+<script type="text/javascript" src="clipboard.js"></script>
+<!--END COPY_CLIPBOARD-->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v6.6.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('structFLootLockerServerListCatalogItemsByIdEntry.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Data Fields</a>  </div>
+  <div class="headertitle"><div class="title">FLootLockerServerListCatalogItemsByIdEntry Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>A catalog entry with entity details inlined directly.  
+ <a href="structFLootLockerServerListCatalogItemsByIdEntry.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="LootLockerServerCatalogRequest_8h_source.html">LootLockerServerCatalogRequest.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for FLootLockerServerListCatalogItemsByIdEntry:</div>
+<div class="dyncontent">
+<div class="center"><img src="structFLootLockerServerListCatalogItemsByIdEntry__inherit__graph.png" border="0" usemap="#aFLootLockerServerListCatalogItemsByIdEntry_inherit__map" alt="Inheritance graph"/></div>
+<map name="aFLootLockerServerListCatalogItemsByIdEntry_inherit__map" id="aFLootLockerServerListCatalogItemsByIdEntry_inherit__map">
+<area shape="rect" title="A catalog entry with entity details inlined directly." alt="" coords="5,93,220,133"/>
+<area shape="rect" href="structFLootLockerServerCatalogEntry.html" title="Represents a single item in a catalog, including its entity type, prices, store listings,..." alt="" coords="17,5,209,45"/>
+<area shape="poly" title=" " alt="" coords="115,59,115,93,110,93,110,59"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for FLootLockerServerListCatalogItemsByIdEntry:</div>
+<div class="dyncontent">
+<div class="center"><img src="structFLootLockerServerListCatalogItemsByIdEntry__coll__graph.png" border="0" usemap="#aFLootLockerServerListCatalogItemsByIdEntry_coll__map" alt="Collaboration graph"/></div>
+<map name="aFLootLockerServerListCatalogItemsByIdEntry_coll__map" id="aFLootLockerServerListCatalogItemsByIdEntry_coll__map">
+<area shape="rect" title="A catalog entry with entity details inlined directly." alt="" coords="1097,325,1312,365"/>
+<area shape="rect" href="structFLootLockerServerCatalogEntry.html" title="Represents a single item in a catalog, including its entity type, prices, store listings,..." alt="" coords="679,165,871,205"/>
+<area shape="poly" title=" " alt="" coords="885,195,979,214,1028,229,1074,247,1106,264,1136,284,1184,323,1180,327,1133,288,1103,268,1072,252,1026,234,978,219,884,200"/>
+<area shape="rect" href="structFLootLockerServerCatalogEntryListings.html" title="Aggregates the platform&#45;specific store listing information configured for a catalog entry." alt="" coords="371,165,563,205"/>
+<area shape="poly" title=" " alt="" coords="577,183,678,183,678,188,577,188"/>
+<area shape="rect" href="structFLootLockerServerCatalogAppleAppStoreListing.html" title="Holds the Apple App Store product identifier for a catalog entry." alt="" coords="5,5,197,45"/>
+<area shape="poly" title=" " alt="" coords="212,45,280,66,348,94,402,128,445,163,442,167,399,132,345,98,278,71,210,50"/>
+<area shape="rect" href="structFLootLockerServerCatalogGooglePlayStoreListing.html" title="Holds the Google Play Store product identifier for a catalog entry." alt="" coords="5,69,197,109"/>
+<area shape="poly" title=" " alt="" coords="212,109,347,143,410,163,409,168,346,148,211,114"/>
+<area shape="rect" href="structFLootLockerServerCatalogSteamStoreListing.html" title="Holds the Steam Store listing for a catalog entry." alt="" coords="5,133,197,173"/>
+<area shape="poly" title=" " alt="" coords="211,160,371,174,370,180,211,166"/>
+<area shape="rect" href="structFLootLockerServerCatalogStripeStoreListing.html" title="Holds the Stripe payment details for a catalog entry." alt="" coords="5,197,197,237"/>
+<area shape="poly" title=" " alt="" coords="211,205,370,191,371,196,211,210"/>
+<area shape="rect" href="structFLootLockerServerCatalogEpicGamesStoreListing.html" title="Holds the Epic Games Store audience item identifier associated with a catalog entry listing." alt="" coords="5,261,197,301"/>
+<area shape="poly" title=" " alt="" coords="211,256,346,223,409,203,410,208,347,228,212,261"/>
+<area shape="rect" href="structFLootLockerServerCatalogPlaystationStoreListing.html" title="Holds the PlayStation Store entitlement label associated with a catalog entry listing." alt="" coords="5,325,197,365"/>
+<area shape="poly" title=" " alt="" coords="210,320,278,300,345,272,399,238,442,203,445,208,402,243,348,277,280,305,212,326"/>
+<area shape="rect" href="structFLootLockerServerCatalogAssetDetails.html" title="Holds detail information about an asset catalog entity, including its name, ULID, legacy numeric id,..." alt="" coords="679,229,871,269"/>
+<area shape="poly" title=" " alt="" coords="885,262,977,279,1074,300,1148,323,1147,328,1073,305,976,284,884,268"/>
+<area shape="rect" href="structFLootLockerServerCatalogCurrencyDetails.html" title="Holds details about a currency catalog entity." alt="" coords="679,293,871,333"/>
+<area shape="poly" title=" " alt="" coords="885,319,1097,335,1097,340,884,324"/>
+<area shape="rect" href="structFLootLockerServerCatalogProgressionPointDetails.html" title="Holds details about a progression&#45;points catalog entity." alt="" coords="679,357,871,397"/>
+<area shape="poly" title=" " alt="" coords="884,367,1097,351,1097,356,885,372"/>
+<area shape="rect" href="structFLootLockerServerCatalogProgressionResetDetails.html" title="Holds details about a progression&#45;reset catalog entity." alt="" coords="679,421,871,461"/>
+<area shape="poly" title=" " alt="" coords="884,422,976,405,1073,384,1145,363,1146,368,1074,389,977,411,885,427"/>
+<area shape="rect" href="structFLootLockerServerInlinedGroupDetailsWithAssociations.html" title="Group detail used by the ListCatalogItemsById endpoint, with association details inlined." alt="" coords="665,485,884,525"/>
+<area shape="poly" title=" " alt="" coords="897,487,985,467,1072,436,1132,401,1179,364,1183,368,1135,405,1074,441,986,472,898,492"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:acbaefe278805ba163474e89b2a20de40" id="r_acbaefe278805ba163474e89b2a20de40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFLootLockerServerCatalogAssetDetails.html">FLootLockerServerCatalogAssetDetails</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerListCatalogItemsByIdEntry.html#acbaefe278805ba163474e89b2a20de40">Asset_detail</a></td></tr>
+<tr class="separator:acbaefe278805ba163474e89b2a20de40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a581682c46cc99ba772445836d0bebcfc" id="r_a581682c46cc99ba772445836d0bebcfc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFLootLockerServerCatalogCurrencyDetails.html">FLootLockerServerCatalogCurrencyDetails</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerListCatalogItemsByIdEntry.html#a581682c46cc99ba772445836d0bebcfc">Currency_detail</a></td></tr>
+<tr class="separator:a581682c46cc99ba772445836d0bebcfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c1546257ca76d5571e944d0c31ead4" id="r_a14c1546257ca76d5571e944d0c31ead4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFLootLockerServerCatalogProgressionPointDetails.html">FLootLockerServerCatalogProgressionPointDetails</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerListCatalogItemsByIdEntry.html#a14c1546257ca76d5571e944d0c31ead4">Progression_point_detail</a></td></tr>
+<tr class="separator:a14c1546257ca76d5571e944d0c31ead4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa202a63922d436d8118db126f67ae85f" id="r_aa202a63922d436d8118db126f67ae85f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFLootLockerServerCatalogProgressionResetDetails.html">FLootLockerServerCatalogProgressionResetDetails</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerListCatalogItemsByIdEntry.html#aa202a63922d436d8118db126f67ae85f">Progression_reset_detail</a></td></tr>
+<tr class="separator:aa202a63922d436d8118db126f67ae85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac72f03d453833860fde31fa41e44d9d2" id="r_ac72f03d453833860fde31fa41e44d9d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFLootLockerServerInlinedGroupDetailsWithAssociations.html">FLootLockerServerInlinedGroupDetailsWithAssociations</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerListCatalogItemsByIdEntry.html#ac72f03d453833860fde31fa41e44d9d2">Group_detail</a></td></tr>
+<tr class="separator:ac72f03d453833860fde31fa41e44d9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae392038aaba25e17338e22196dffeba8" id="r_ae392038aaba25e17338e22196dffeba8"><td class="memItemLeft" align="right" valign="top">TArray&lt; <a class="el" href="structFLootLockerServerMetadataEntry.html">FLootLockerServerMetadataEntry</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerListCatalogItemsByIdEntry.html#ae392038aaba25e17338e22196dffeba8">Metadata</a></td></tr>
+<tr class="separator:ae392038aaba25e17338e22196dffeba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_structFLootLockerServerCatalogEntry"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_structFLootLockerServerCatalogEntry')"><img src="closed.png" alt="-"/>&#160;Data Fields inherited from <a class="el" href="structFLootLockerServerCatalogEntry.html">FLootLockerServerCatalogEntry</a></td></tr>
+<tr class="memitem:a6889cbf10c055da7681cac6d620e9e73 inherit pub_attribs_structFLootLockerServerCatalogEntry" id="r_a6889cbf10c055da7681cac6d620e9e73"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCatalogEntry.html#a6889cbf10c055da7681cac6d620e9e73">Created_at</a></td></tr>
+<tr class="memdesc:a6889cbf10c055da7681cac6d620e9e73 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time when this catalog entry was created.  <br /></td></tr>
+<tr class="separator:a6889cbf10c055da7681cac6d620e9e73 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00b3a49f3487c22499f9c36ab2eaa456 inherit pub_attribs_structFLootLockerServerCatalogEntry" id="r_a00b3a49f3487c22499f9c36ab2eaa456"><td class="memItemLeft" align="right" valign="top"><a class="el" href="LootLockerServerCatalogRequest_8h.html#a0cb260aa17a50402df08fbdf3117fa3b">ELootLockerServerCatalogEntryEntityKind</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCatalogEntry.html#a00b3a49f3487c22499f9c36ab2eaa456">Entity_kind</a> = <a class="el" href="LootLockerServerCatalogRequest_8h.html#a0cb260aa17a50402df08fbdf3117fa3ba26e9054be7f40079575582b7ad3f7363">ELootLockerServerCatalogEntryEntityKind::Asset</a></td></tr>
+<tr class="memdesc:a00b3a49f3487c22499f9c36ab2eaa456 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="mdescLeft">&#160;</td><td class="mdescRight">The kind of entity that this entry is.  <br /></td></tr>
+<tr class="separator:a00b3a49f3487c22499f9c36ab2eaa456 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4a510380dfd17ae5b85e7d3bea3818e inherit pub_attribs_structFLootLockerServerCatalogEntry" id="r_ad4a510380dfd17ae5b85e7d3bea3818e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFLootLockerServerCatalogEntryListings.html">FLootLockerServerCatalogEntryListings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCatalogEntry.html#ad4a510380dfd17ae5b85e7d3bea3818e">Listings</a></td></tr>
+<tr class="memdesc:ad4a510380dfd17ae5b85e7d3bea3818e inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="mdescLeft">&#160;</td><td class="mdescRight">All the listings configured for this catalog entry.  <br /></td></tr>
+<tr class="separator:ad4a510380dfd17ae5b85e7d3bea3818e inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af88c18ed4c1bd8c3df2f665868153301 inherit pub_attribs_structFLootLockerServerCatalogEntry" id="r_af88c18ed4c1bd8c3df2f665868153301"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCatalogEntry.html#af88c18ed4c1bd8c3df2f665868153301">Entity_name</a></td></tr>
+<tr class="memdesc:af88c18ed4c1bd8c3df2f665868153301 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of this entity.  <br /></td></tr>
+<tr class="separator:af88c18ed4c1bd8c3df2f665868153301 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8e119c0c296fe7687a043ce81feb1d3 inherit pub_attribs_structFLootLockerServerCatalogEntry" id="r_ab8e119c0c296fe7687a043ce81feb1d3"><td class="memItemLeft" align="right" valign="top">TArray&lt; <a class="el" href="structFLootLockerServerCatalogEntryPrice.html">FLootLockerServerCatalogEntryPrice</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCatalogEntry.html#ab8e119c0c296fe7687a043ce81feb1d3">Prices</a></td></tr>
+<tr class="memdesc:ab8e119c0c296fe7687a043ce81feb1d3 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of prices for this catalog entry.  <br /></td></tr>
+<tr class="separator:ab8e119c0c296fe7687a043ce81feb1d3 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c62faeec5e20590cd2b54c817e4bfb0 inherit pub_attribs_structFLootLockerServerCatalogEntry" id="r_a1c62faeec5e20590cd2b54c817e4bfb0"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCatalogEntry.html#a1c62faeec5e20590cd2b54c817e4bfb0">Entity_id</a></td></tr>
+<tr class="memdesc:a1c62faeec5e20590cd2b54c817e4bfb0 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="mdescLeft">&#160;</td><td class="mdescRight">The unique id of the entity that this entry refers to.  <br /></td></tr>
+<tr class="separator:a1c62faeec5e20590cd2b54c817e4bfb0 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae118c0cbe29437b1a448d33d6c6d91d0 inherit pub_attribs_structFLootLockerServerCatalogEntry" id="r_ae118c0cbe29437b1a448d33d6c6d91d0"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCatalogEntry.html#ae118c0cbe29437b1a448d33d6c6d91d0">Catalog_listing_id</a></td></tr>
+<tr class="memdesc:ae118c0cbe29437b1a448d33d6c6d91d0 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="mdescLeft">&#160;</td><td class="mdescRight">A unique listing id for this entry in this catalog, grouping the entity and the prices.  <br /></td></tr>
+<tr class="separator:ae118c0cbe29437b1a448d33d6c6d91d0 inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ad676d2bef4c4888483512ba98d035b inherit pub_attribs_structFLootLockerServerCatalogEntry" id="r_a2ad676d2bef4c4888483512ba98d035b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCatalogEntry.html#a2ad676d2bef4c4888483512ba98d035b">Purchasable</a> = false</td></tr>
+<tr class="memdesc:a2ad676d2bef4c4888483512ba98d035b inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this entry is currently purchasable.  <br /></td></tr>
+<tr class="separator:a2ad676d2bef4c4888483512ba98d035b inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9393ea1c3b046dde7b753d4bfc1e1fe inherit pub_attribs_structFLootLockerServerCatalogEntry" id="r_ab9393ea1c3b046dde7b753d4bfc1e1fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCatalogEntry.html#ab9393ea1c3b046dde7b753d4bfc1e1fe">Non_refundable</a> = false</td></tr>
+<tr class="memdesc:ab9393ea1c3b046dde7b753d4bfc1e1fe inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this entry is refundable.  <br /></td></tr>
+<tr class="separator:ab9393ea1c3b046dde7b753d4bfc1e1fe inherit pub_attribs_structFLootLockerServerCatalogEntry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A catalog entry with entity details inlined directly. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="acbaefe278805ba163474e89b2a20de40" name="acbaefe278805ba163474e89b2a20de40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbaefe278805ba163474e89b2a20de40">&#9670;&#160;</a></span>Asset_detail</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structFLootLockerServerCatalogAssetDetails.html">FLootLockerServerCatalogAssetDetails</a> FLootLockerServerListCatalogItemsByIdEntry::Asset_detail</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a581682c46cc99ba772445836d0bebcfc" name="a581682c46cc99ba772445836d0bebcfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a581682c46cc99ba772445836d0bebcfc">&#9670;&#160;</a></span>Currency_detail</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structFLootLockerServerCatalogCurrencyDetails.html">FLootLockerServerCatalogCurrencyDetails</a> FLootLockerServerListCatalogItemsByIdEntry::Currency_detail</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac72f03d453833860fde31fa41e44d9d2" name="ac72f03d453833860fde31fa41e44d9d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac72f03d453833860fde31fa41e44d9d2">&#9670;&#160;</a></span>Group_detail</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structFLootLockerServerInlinedGroupDetailsWithAssociations.html">FLootLockerServerInlinedGroupDetailsWithAssociations</a> FLootLockerServerListCatalogItemsByIdEntry::Group_detail</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae392038aaba25e17338e22196dffeba8" name="ae392038aaba25e17338e22196dffeba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae392038aaba25e17338e22196dffeba8">&#9670;&#160;</a></span>Metadata</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TArray&lt;<a class="el" href="structFLootLockerServerMetadataEntry.html">FLootLockerServerMetadataEntry</a>&gt; FLootLockerServerListCatalogItemsByIdEntry::Metadata</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a14c1546257ca76d5571e944d0c31ead4" name="a14c1546257ca76d5571e944d0c31ead4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14c1546257ca76d5571e944d0c31ead4">&#9670;&#160;</a></span>Progression_point_detail</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structFLootLockerServerCatalogProgressionPointDetails.html">FLootLockerServerCatalogProgressionPointDetails</a> FLootLockerServerListCatalogItemsByIdEntry::Progression_point_detail</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa202a63922d436d8118db126f67ae85f" name="aa202a63922d436d8118db126f67ae85f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa202a63922d436d8118db126f67ae85f">&#9670;&#160;</a></span>Progression_reset_detail</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structFLootLockerServerCatalogProgressionResetDetails.html">FLootLockerServerCatalogProgressionResetDetails</a> FLootLockerServerListCatalogItemsByIdEntry::Progression_reset_detail</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.8-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structFLootLockerServerListCatalogItemsByIdEntry.html">FLootLockerServerListCatalogItemsByIdEntry</a></li>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.9.8
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<map id="FLootLockerServerCatalogEntryListings" name="FLootLockerServerCatalogEntryListings">
+<area shape="rect" id="Node000001" title="Aggregates the platform&#45;specific store listing information configured for a catalog entry." alt="" coords="371,165,563,205"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerCatalogAppleAppStoreListing.html" title="Holds the Apple App Store product identifier for a catalog entry." alt="" coords="5,5,197,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,45,280,66,348,94,402,128,445,163,442,167,399,132,345,98,278,71,210,50"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerCatalogGooglePlayStoreListing.html" title="Holds the Google Play Store product identifier for a catalog entry." alt="" coords="5,69,197,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="212,109,347,143,410,163,409,168,346,148,211,114"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerCatalogSteamStoreListing.html" title="Holds the Steam Store listing for a catalog entry." alt="" coords="5,133,197,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="211,160,371,174,370,180,211,166"/>
+<area shape="rect" id="Node000005" href="$structFLootLockerServerCatalogStripeStoreListing.html" title="Holds the Stripe payment details for a catalog entry." alt="" coords="5,197,197,237"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="211,205,370,191,371,196,211,210"/>
+<area shape="rect" id="Node000006" href="$structFLootLockerServerCatalogEpicGamesStoreListing.html" title="Holds the Epic Games Store audience item identifier associated with a catalog entry listing." alt="" coords="5,261,197,301"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="211,257,346,224,411,203,413,208,347,229,212,262"/>
+<area shape="rect" id="Node000007" href="$structFLootLockerServerCatalogPlaystationStoreListing.html" title="Holds the PlayStation Store entitlement label associated with a catalog entry listing." alt="" coords="5,325,197,365"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="210,322,278,302,345,275,400,240,443,203,446,207,403,244,348,280,280,308,211,327"/>
+</map>

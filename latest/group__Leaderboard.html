@@ -60,7 +60,7 @@
       </a>
       <span id="ll-topnav-divider" aria-hidden="true"></span>
       <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
-      <span id="ll-topnav-version">v6.5.0</span>
+      <span id="ll-topnav-version">v6.6.0</span>
       <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
          rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -137,7 +137,7 @@ function llToggleDark() {
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
   <td id="projectalign">
-   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
    </div>
    <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
   </td>
@@ -212,6 +212,59 @@ $(document).ready(function(){initNavTree('group__Leaderboard.html',''); initResi
 <p>Two leaderboard types are supported: <b>Player Type</b> (scores tied to player IDs — traditional rankings) and <b>Generic Type</b> (scores tied to any string key — rank teams, UGC, or any entity). Submitting from the server prevents score manipulation. Periodic resets can be configured in the console to distribute rewards to top-placed players.</p>
 <p>See the <a href="https://docs.lootlocker.com/game-systems/leaderboards">LootLocker documentation</a>. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gaf03061f669f8f0462ab49d2e3dd8cf7e" name="gaf03061f669f8f0462ab49d2e3dd8cf7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf03061f669f8f0462ab49d2e3dd8cf7e">&#9670;&#160;</a></span>CancelManualLeaderboardReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::CancelManualLeaderboardReset </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>LeaderboardKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>ResetId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a7aafc0abcd7ed4c653790c984ad28a4f">FLootLockerServerCancelManualLeaderboardResetResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cancel a pending manual reset request for a leaderboard Only pending resets can be cancelled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">LeaderboardKey</td><td>The Key of the leaderboard </td></tr>
+    <tr><td class="paramname">ResetId</td><td>The ID of the manual reset to cancel </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
 <a id="ga503e71f3d277b04810c86438daede5c4" name="ga503e71f3d277b04810c86438daede5c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga503e71f3d277b04810c86438daede5c4">&#9670;&#160;</a></span>CreateLeaderboard()</h2>
 
@@ -643,6 +696,59 @@ $(document).ready(function(){initNavTree('group__Leaderboard.html',''); initResi
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">LeaderboardKey</td><td>the Key of the leaderboard for which to fetch the schedule </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga7c471b9bc64d79de2f87b6b9ab18de04" name="ga7c471b9bc64d79de2f87b6b9ab18de04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7c471b9bc64d79de2f87b6b9ab18de04">&#9670;&#160;</a></span>GetManualLeaderboardReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::GetManualLeaderboardReset </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>LeaderboardKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>ResetId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#af1e53ab6ad276d46c0bd27145940aaf4">FLootLockerServerGetManualLeaderboardResetResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a specific manual reset request for a leaderboard. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">LeaderboardKey</td><td>The Key of the leaderboard </td></tr>
+    <tr><td class="paramname">ResetId</td><td>The ID of the manual reset to retrieve </td></tr>
     <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
   </table>
   </dd>
@@ -1161,6 +1267,105 @@ $(document).ready(function(){initNavTree('group__Leaderboard.html',''); initResi
 
 </div>
 </div>
+<a id="ga238e69cf4f8a062381ef7330d638ac21" name="ga238e69cf4f8a062381ef7330d638ac21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga238e69cf4f8a062381ef7330d638ac21">&#9670;&#160;</a></span>ListManualLeaderboardResets()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::ListManualLeaderboardResets </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>LeaderboardKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a8cb05f53bd2ab9225f93dba492940029">FLootLockerServerListManualLeaderboardResetsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List all manual reset requests for a leaderboard. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">LeaderboardKey</td><td>The Key of the leaderboard </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
+<a id="ga475fcc4d16f330beb1df6a1b52ad4578" name="ga475fcc4d16f330beb1df6a1b52ad4578"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga475fcc4d16f330beb1df6a1b52ad4578">&#9670;&#160;</a></span>RequestManualLeaderboardReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::RequestManualLeaderboardReset </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>LeaderboardKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structFLootLockerServerCreateManualLeaderboardResetRequest.html">FLootLockerServerCreateManualLeaderboardResetRequest</a> &amp;&#160;</td>
+          <td class="paramname"><em>Request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a7f08ec85ad10a1f84f0608e57b3dc750">FLootLockerServerRequestManualLeaderboardResetResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Request a manual reset of a leaderboard. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">LeaderboardKey</td><td>The Key of the leaderboard to reset </td></tr>
+    <tr><td class="paramname">Request</td><td>Request body specifying an optional name and optional scheduled time for the reset </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound </dd></dl>
+
+</div>
+</div>
 <a id="gab906ffef6b1fc2db564de3e37cc3a9f0" name="gab906ffef6b1fc2db564de3e37cc3a9f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gab906ffef6b1fc2db564de3e37cc3a9f0">&#9670;&#160;</a></span>SubmitScore()</h2>
 
@@ -1366,6 +1571,18 @@ Functions</h2></td></tr>
 <tr class="memitem:gaadd8415f6df9a1dc29ff2609dda18114" id="r_gaadd8415f6df9a1dc29ff2609dda18114"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#gaadd8415f6df9a1dc29ff2609dda18114">ULootLockerServerForCpp::DeleteLeaderboardSchedule</a> (const FString &amp;LeaderboardKey, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a969d865bdbe07354890576cc29b3de90">FLootLockerServerDeleteLeaderboardScheduleResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
 <tr class="memdesc:gaadd8415f6df9a1dc29ff2609dda18114"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the schedule (if any) from the specified leadeboard.  <br /></td></tr>
 <tr class="separator:gaadd8415f6df9a1dc29ff2609dda18114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga475fcc4d16f330beb1df6a1b52ad4578" id="r_ga475fcc4d16f330beb1df6a1b52ad4578"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#ga475fcc4d16f330beb1df6a1b52ad4578">ULootLockerServerForCpp::RequestManualLeaderboardReset</a> (const FString &amp;LeaderboardKey, const <a class="el" href="structFLootLockerServerCreateManualLeaderboardResetRequest.html">FLootLockerServerCreateManualLeaderboardResetRequest</a> &amp;Request, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a7f08ec85ad10a1f84f0608e57b3dc750">FLootLockerServerRequestManualLeaderboardResetResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga475fcc4d16f330beb1df6a1b52ad4578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request a manual reset of a leaderboard.  <br /></td></tr>
+<tr class="separator:ga475fcc4d16f330beb1df6a1b52ad4578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga238e69cf4f8a062381ef7330d638ac21" id="r_ga238e69cf4f8a062381ef7330d638ac21"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#ga238e69cf4f8a062381ef7330d638ac21">ULootLockerServerForCpp::ListManualLeaderboardResets</a> (const FString &amp;LeaderboardKey, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a8cb05f53bd2ab9225f93dba492940029">FLootLockerServerListManualLeaderboardResetsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga238e69cf4f8a062381ef7330d638ac21"><td class="mdescLeft">&#160;</td><td class="mdescRight">List all manual reset requests for a leaderboard.  <br /></td></tr>
+<tr class="separator:ga238e69cf4f8a062381ef7330d638ac21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c471b9bc64d79de2f87b6b9ab18de04" id="r_ga7c471b9bc64d79de2f87b6b9ab18de04"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#ga7c471b9bc64d79de2f87b6b9ab18de04">ULootLockerServerForCpp::GetManualLeaderboardReset</a> (const FString &amp;LeaderboardKey, const FString &amp;ResetId, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#af1e53ab6ad276d46c0bd27145940aaf4">FLootLockerServerGetManualLeaderboardResetResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:ga7c471b9bc64d79de2f87b6b9ab18de04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a specific manual reset request for a leaderboard.  <br /></td></tr>
+<tr class="separator:ga7c471b9bc64d79de2f87b6b9ab18de04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf03061f669f8f0462ab49d2e3dd8cf7e" id="r_gaf03061f669f8f0462ab49d2e3dd8cf7e"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#gaf03061f669f8f0462ab49d2e3dd8cf7e">ULootLockerServerForCpp::CancelManualLeaderboardReset</a> (const FString &amp;LeaderboardKey, const FString &amp;ResetId, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a7aafc0abcd7ed4c653790c984ad28a4f">FLootLockerServerCancelManualLeaderboardResetResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:gaf03061f669f8f0462ab49d2e3dd8cf7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel a pending manual reset request for a leaderboard Only pending resets can be cancelled.  <br /></td></tr>
+<tr class="separator:gaf03061f669f8f0462ab49d2e3dd8cf7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga915b14b24cb1e230a82867b625792434" id="r_ga915b14b24cb1e230a82867b625792434"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#ga915b14b24cb1e230a82867b625792434">ULootLockerServerForCpp::ListLeaderboardArchive</a> (const FString &amp;LeaderboardKey, const <a class="el" href="LootLockerServerLeaderboardArchiveRequestHandler_8h.html#a910f165f3d8c9299e413c90c6f76cdfc">FLootLockerServerLeaderboardArchiveResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
 <tr class="memdesc:ga915b14b24cb1e230a82867b625792434"><td class="mdescLeft">&#160;</td><td class="mdescRight">List the archive of a specific Leaderboard,.  <br /></td></tr>
 <tr class="separator:ga915b14b24cb1e230a82867b625792434"><td class="memSeparator" colspan="2">&#160;</td></tr>

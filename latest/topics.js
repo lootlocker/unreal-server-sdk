@@ -22,5 +22,6 @@ var topics =
     [ "Leaderboards", "group__Leaderboard.html", "group__Leaderboard" ],
     [ "Triggers", "group__Triggers.html", "group__Triggers" ],
     [ "Metadata", "group__Metadata.html", "group__Metadata" ],
-    [ "Notifications", "group__Notifications.html", "group__Notifications" ]
+    [ "Notifications", "group__Notifications.html", "group__Notifications" ],
+    [ "Catalogs", "group__Catalogs.html", "group__Catalogs" ]
 ];

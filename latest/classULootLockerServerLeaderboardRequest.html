@@ -60,7 +60,7 @@
       </a>
       <span id="ll-topnav-divider" aria-hidden="true"></span>
       <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
-      <span id="ll-topnav-version">v6.5.0</span>
+      <span id="ll-topnav-version">v6.6.0</span>
       <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
          rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -137,7 +137,7 @@ function llToggleDark() {
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
   <td id="projectalign">
-   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.5.0</span>
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
    </div>
    <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
   </td>
@@ -266,6 +266,14 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a9c82feb06bc5d40d88395d2f5e6c0713"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad53e1f22543badb0d21123c6e9b7608a" id="r_ad53e1f22543badb0d21123c6e9b7608a"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerLeaderboardRequest.html#ad53e1f22543badb0d21123c6e9b7608a">DeleteLeaderboardSchedule</a> (const FString &amp;LeaderboardKey, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a969d865bdbe07354890576cc29b3de90">FLootLockerServerDeleteLeaderboardScheduleResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
 <tr class="separator:ad53e1f22543badb0d21123c6e9b7608a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0df9d773504f05cf9cf8854ef276f188" id="r_a0df9d773504f05cf9cf8854ef276f188"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerLeaderboardRequest.html#a0df9d773504f05cf9cf8854ef276f188">RequestManualLeaderboardReset</a> (const FString &amp;LeaderboardKey, const <a class="el" href="structFLootLockerServerCreateManualLeaderboardResetRequest.html">FLootLockerServerCreateManualLeaderboardResetRequest</a> &amp;Request, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a7f08ec85ad10a1f84f0608e57b3dc750">FLootLockerServerRequestManualLeaderboardResetResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a0df9d773504f05cf9cf8854ef276f188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5919b9d1204f29bf621bdb69916ccd29" id="r_a5919b9d1204f29bf621bdb69916ccd29"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerLeaderboardRequest.html#a5919b9d1204f29bf621bdb69916ccd29">ListManualLeaderboardResets</a> (const FString &amp;LeaderboardKey, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a8cb05f53bd2ab9225f93dba492940029">FLootLockerServerListManualLeaderboardResetsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a5919b9d1204f29bf621bdb69916ccd29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5e0cb9af258c23cafc837e53dba6fa6" id="r_ab5e0cb9af258c23cafc837e53dba6fa6"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerLeaderboardRequest.html#ab5e0cb9af258c23cafc837e53dba6fa6">GetManualLeaderboardReset</a> (const FString &amp;LeaderboardKey, const FString &amp;ResetId, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#af1e53ab6ad276d46c0bd27145940aaf4">FLootLockerServerGetManualLeaderboardResetResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:ab5e0cb9af258c23cafc837e53dba6fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fe912b47661feffc7188cd5b148cf6f" id="r_a5fe912b47661feffc7188cd5b148cf6f"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerLeaderboardRequest.html#a5fe912b47661feffc7188cd5b148cf6f">CancelManualLeaderboardReset</a> (const FString &amp;LeaderboardKey, const FString &amp;ResetId, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a7aafc0abcd7ed4c653790c984ad28a4f">FLootLockerServerCancelManualLeaderboardResetResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="separator:a5fe912b47661feffc7188cd5b148cf6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3723aab71fab7c5f9c06515aca456e10" name="a3723aab71fab7c5f9c06515aca456e10"></a>
@@ -286,6 +294,48 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5fe912b47661feffc7188cd5b148cf6f" name="a5fe912b47661feffc7188cd5b148cf6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fe912b47661feffc7188cd5b148cf6f">&#9670;&#160;</a></span>CancelManualLeaderboardReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerLeaderboardRequest::CancelManualLeaderboardReset </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>LeaderboardKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>ResetId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a7aafc0abcd7ed4c653790c984ad28a4f">FLootLockerServerCancelManualLeaderboardResetResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a33e492af423a568a73786000f6eed2f7" name="a33e492af423a568a73786000f6eed2f7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a33e492af423a568a73786000f6eed2f7">&#9670;&#160;</a></span>CreateLeaderboard()</h2>
 
@@ -544,6 +594,48 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ab5e0cb9af258c23cafc837e53dba6fa6" name="ab5e0cb9af258c23cafc837e53dba6fa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5e0cb9af258c23cafc837e53dba6fa6">&#9670;&#160;</a></span>GetManualLeaderboardReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerLeaderboardRequest::GetManualLeaderboardReset </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>LeaderboardKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>ResetId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#af1e53ab6ad276d46c0bd27145940aaf4">FLootLockerServerGetManualLeaderboardResetResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a96cc678613363effda6382a9ee4a2c2b" name="a96cc678613363effda6382a9ee4a2c2b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96cc678613363effda6382a9ee4a2c2b">&#9670;&#160;</a></span>GetPaginatedAllMemberRanks()</h2>
 
@@ -743,6 +835,84 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#aed56f9d30dd06a7130d7278ca1e7d8bb">FLootLockerServerListLeaderboardsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5919b9d1204f29bf621bdb69916ccd29" name="a5919b9d1204f29bf621bdb69916ccd29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5919b9d1204f29bf621bdb69916ccd29">&#9670;&#160;</a></span>ListManualLeaderboardResets()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerLeaderboardRequest::ListManualLeaderboardResets </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>LeaderboardKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a8cb05f53bd2ab9225f93dba492940029">FLootLockerServerListManualLeaderboardResetsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0df9d773504f05cf9cf8854ef276f188" name="a0df9d773504f05cf9cf8854ef276f188"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0df9d773504f05cf9cf8854ef276f188">&#9670;&#160;</a></span>RequestManualLeaderboardReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerLeaderboardRequest::RequestManualLeaderboardReset </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>LeaderboardKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structFLootLockerServerCreateManualLeaderboardResetRequest.html">FLootLockerServerCreateManualLeaderboardResetRequest</a> &amp;&#160;</td>
+          <td class="paramname"><em>Request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a7f08ec85ad10a1f84f0608e57b3dc750">FLootLockerServerRequestManualLeaderboardResetResponseDelegate</a> &amp;&#160;</td>
           <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
         </tr>
         <tr>
