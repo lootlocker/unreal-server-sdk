@@ -365,14 +365,14 @@ FString ULootLockerServerForCpp::GetAssetsByContext(int Count, int After, int Co
     return ULootLockerServerAssetRequest::GetAssets(Count, After, Context, IncludeUGC, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, ELootLockerServerOrderAssetListBy OrderBy, ELootLockerServerOrderAssetListDirection OrderDirection, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerAssetRequest::ListAssets(Request, PerPage, Page, OnCompletedRequest);
+    return ULootLockerServerAssetRequest::ListAssets(Request, PerPage, Page, OrderBy, OrderDirection, OnCompletedRequest);
 }
 
 FString ULootLockerServerForCpp::ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
-    return ListAssets(FLootLockerServerListAssetsRequest(), 0, 0, OnCompletedRequest);
+    return ListAssets(FLootLockerServerListAssetsRequest(), 0, 0, ELootLockerServerOrderAssetListBy::None, ELootLockerServerOrderAssetListDirection::None, OnCompletedRequest);
 }
 
 FString ULootLockerServerForCpp::ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest)

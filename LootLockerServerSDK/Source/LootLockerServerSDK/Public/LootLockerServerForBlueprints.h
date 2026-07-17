@@ -1380,12 +1380,14 @@ public:
      * @param Request Request payload specifying includes/excludes/filters
      * @param PerPage Optional: page size (ignored if 0 or negative)
      * @param Page Optional: page index (ignored if 0 or negative)
+     * @param OrderBy Optional: field to order the asset list by
+     * @param OrderDirection Optional: direction to order the asset list
      * @param OnCompletedRequest Delegate for handling the server response
      * 
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta=(AdvancedDisplay="PerPage,Page", PerPage=-1, Page=-1))
-    static UPARAM(DisplayName = "RequestId") FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseBP& OnCompletedRequest);
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Assets", meta=(AdvancedDisplay="PerPage,Page,OrderBy,OrderDirection", PerPage=-1, Page=-1))
+    static UPARAM(DisplayName = "RequestId") FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, ELootLockerServerOrderAssetListBy OrderBy, ELootLockerServerOrderAssetListDirection OrderDirection, const FLootLockerServerListAssetsResponseBP& OnCompletedRequest);
 
     /**
     * List assets with default parameters (no filters, first page, default page size)
