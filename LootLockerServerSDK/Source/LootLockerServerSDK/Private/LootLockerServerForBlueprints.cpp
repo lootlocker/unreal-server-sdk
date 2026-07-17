@@ -481,16 +481,16 @@ FString ULootLockerServerForBlueprints::GetAssetsByContext(int Count, int After,
     }), IncludeUGC);
 }
 
-FString ULootLockerServerForBlueprints::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseBP& OnCompletedRequest)
+FString ULootLockerServerForBlueprints::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, ELootLockerServerOrderAssetListBy OrderBy, ELootLockerServerOrderAssetListDirection OrderDirection, const FLootLockerServerListAssetsResponseBP& OnCompletedRequest)
 {
-    return ULootLockerServerForCpp::ListAssets(Request, PerPage, Page, FLootLockerServerListAssetsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerListAssetsResponse& Response) {
+    return ULootLockerServerForCpp::ListAssets(Request, PerPage, Page, OrderBy, OrderDirection, FLootLockerServerListAssetsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerListAssetsResponse& Response) {
         OnCompletedRequest.ExecuteIfBound(Response);
     }));
 }
 
 FString ULootLockerServerForBlueprints::ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseBP& OnCompletedRequest)
 {
-    return ListAssets(FLootLockerServerListAssetsRequest(), 0, 0, OnCompletedRequest);
+    return ListAssets(FLootLockerServerListAssetsRequest(), 0, 0, ELootLockerServerOrderAssetListBy::None, ELootLockerServerOrderAssetListDirection::None, OnCompletedRequest);
 }
 
 FString ULootLockerServerForBlueprints::ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseBP& OnCompletedRequest)

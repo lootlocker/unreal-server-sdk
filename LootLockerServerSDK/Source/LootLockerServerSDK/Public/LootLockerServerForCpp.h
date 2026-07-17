@@ -141,10 +141,12 @@ public:
      * @param Request Request payload specifying includes/excludes/filters
      * @param PerPage Optional: page size (ignored if 0 or negative)
      * @param Page Optional: page index (ignored if 0 or negative)
+     * @param OrderBy Optional: field to order the asset list by (None, Id, Name, Created_at, Updated_at)
+     * @param OrderDirection Optional: direction to order the asset list (None, Asc, Desc)
      * @param OnCompletedRequest Delegate for handling the server response
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
+    static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, ELootLockerServerOrderAssetListBy OrderBy, ELootLockerServerOrderAssetListDirection OrderDirection, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
 
     /**
     * List assets with default parameters (no filters, first page, default page size)

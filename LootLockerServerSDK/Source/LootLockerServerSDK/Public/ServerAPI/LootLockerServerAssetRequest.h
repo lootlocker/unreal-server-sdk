@@ -10,6 +10,36 @@
 #include "LootLockerServerAssetRequest.generated.h"
 
 //==================================================
+// Enums
+//==================================================
+
+/// @addtogroup Assets
+/// @{
+UENUM(BlueprintType)
+/** Fields by which an asset list can be ordered. */
+enum class ELootLockerServerOrderAssetListBy : uint8
+{
+    None = 0,
+    Id = 1,
+    Name = 2,
+    Created_at = 3,
+    Updated_at = 4
+};
+/// @}
+
+/// @addtogroup Assets
+/// @{
+UENUM(BlueprintType)
+/** Sort direction when ordering an asset list. */
+enum class ELootLockerServerOrderAssetListDirection : uint8
+{
+    None = 0,
+    Asc = 1,
+    Desc = 2
+};
+/// @}
+
+//==================================================
 // Data Type Definitions
 //==================================================
 
@@ -824,6 +854,6 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerAssetRequest : public UObject
     static FString UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
     static FString UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest);
     static FString DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
-    static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage = 0, int Page = 0, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest = FLootLockerServerListAssetsResponseDelegate());
+    static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage = 0, int Page = 0, ELootLockerServerOrderAssetListBy OrderBy = ELootLockerServerOrderAssetListBy::None, ELootLockerServerOrderAssetListDirection OrderDirection = ELootLockerServerOrderAssetListDirection::None, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest = FLootLockerServerListAssetsResponseDelegate());
     static FString ListContexts(int PerPage = 0, int Page = 0, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest = FLootLockerServerListContextsResponseDelegate());
 };
