@@ -141,6 +141,19 @@ public:
      * @param Request Request payload specifying includes/excludes/filters
      * @param PerPage Optional: page size (ignored if 0 or negative)
      * @param Page Optional: page index (ignored if 0 or negative)
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     *
+     * @deprecated Deprecated on 2026-07-17. Use the overload with OrderBy and OrderDirection parameters instead.
+     */
+    static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
+
+    /**
+     * List assets with configurable response data and optional sorting. Use this to limit the fields returned in the response and improve performance.
+     * Lightweight alternative for retrieving assets where only selected data is needed
+     * @param Request Request payload specifying includes/excludes/filters
+     * @param PerPage Optional: page size (ignored if 0 or negative)
+     * @param Page Optional: page index (ignored if 0 or negative)
      * @param OrderBy Optional: field to order the asset list by (None, Id, Name, Created_at, Updated_at)
      * @param OrderDirection Optional: direction to order the asset list (None, Asc, Desc)
      * @param OnCompletedRequest Delegate for handling the server response

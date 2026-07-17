@@ -57,6 +57,11 @@ FString ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(i
     return ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::DeleteKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, OnCompletedRequest);
 }
 
+FString ULootLockerServerAssetRequest::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
+{
+    return ListAssets(Request, PerPage, Page, ELootLockerServerOrderAssetListBy::None, ELootLockerServerOrderAssetListDirection::None, OnCompletedRequest);
+}
+
 FString ULootLockerServerAssetRequest::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, ELootLockerServerOrderAssetListBy OrderBy, ELootLockerServerOrderAssetListDirection OrderDirection, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
     TMultiMap<FString, FString> QueryParams;
@@ -64,11 +69,15 @@ FString ULootLockerServerAssetRequest::ListAssets(const FLootLockerServerListAss
     if(PerPage > 0) QueryParams.Add("per_page", FString::FromInt(PerPage));
     if(OrderBy != ELootLockerServerOrderAssetListBy::None)
     {
-        QueryParams.Add("order_by", ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerOrderAssetListBy"), static_cast<int32>(OrderBy)).ToLower());
+        FString OrderByStr = ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerOrderAssetListBy"), static_cast<int32>(OrderBy)).ToLower();
+        OrderByStr.ReplaceCharInline(TEXT(' '), TEXT('_'));
+        QueryParams.Add("order_by", OrderByStr);
     }
     if(OrderDirection != ELootLockerServerOrderAssetListDirection::None)
     {
-        QueryParams.Add("order_direction", ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerOrderAssetListDirection"), static_cast<int32>(OrderDirection)).ToLower());
+        FString OrderDirectionStr = ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerOrderAssetListDirection"), static_cast<int32>(OrderDirection)).ToLower();
+        OrderDirectionStr.ReplaceCharInline(TEXT(' '), TEXT('_'));
+        QueryParams.Add("order_direction", OrderDirectionStr);
     }
     return ULootLockerServerHttpClient::SendRequest<FLootLockerServerListAssetsResponse>(Request, ULootLockerServerEndpoints::ListAssets, {}, QueryParams, OnCompletedRequest);
 }
