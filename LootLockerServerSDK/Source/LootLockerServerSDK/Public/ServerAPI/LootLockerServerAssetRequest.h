@@ -854,6 +854,8 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerAssetRequest : public UObject
     static FString UpdateKeyValuePairsOnAssetInstance(int PlayerID, int AssetInstanceID, TArray<FLootLockerServerAssetStorageKeyValueSet> KeyValuePairs, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
     static FString UpdateKeyValuePairOnAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FString Key, FString Value, const FLootLockerServerAssetInstanceKeyValuePairItemResponseDelegate& OnCompletedRequest);
     static FString DeleteKeyValuePairFromAssetInstanceById(int PlayerID, int AssetInstanceID, int KeyValuePairID, const FLootLockerServerAssetInstanceKeyValuePairsListResponseDelegate& OnCompletedRequest);
+    // @deprecated Deprecated on 2026-07-17. Use the overload with OrderBy and OrderDirection parameters instead.
+    static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
     static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage = 0, int Page = 0, ELootLockerServerOrderAssetListBy OrderBy = ELootLockerServerOrderAssetListBy::None, ELootLockerServerOrderAssetListDirection OrderDirection = ELootLockerServerOrderAssetListDirection::None, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest = FLootLockerServerListAssetsResponseDelegate());
     static FString ListContexts(int PerPage = 0, int Page = 0, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest = FLootLockerServerListContextsResponseDelegate());
 };
