@@ -365,6 +365,11 @@ FString ULootLockerServerForCpp::GetAssetsByContext(int Count, int After, int Co
     return ULootLockerServerAssetRequest::GetAssets(Count, After, Context, IncludeUGC, OnCompletedRequest);
 }
 
+FString ULootLockerServerForCpp::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
+{
+    return ListAssets(Request, PerPage, Page, ELootLockerServerOrderAssetListBy::None, ELootLockerServerOrderAssetListDirection::None, OnCompletedRequest);
+}
+
 FString ULootLockerServerForCpp::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, ELootLockerServerOrderAssetListBy OrderBy, ELootLockerServerOrderAssetListDirection OrderDirection, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
     return ULootLockerServerAssetRequest::ListAssets(Request, PerPage, Page, OrderBy, OrderDirection, OnCompletedRequest);
