@@ -170,6 +170,49 @@ struct FLootLockerServerPlayerLoadoutItem
     FLootLockerServerPlayerItemRentalData Rental;
 };
 
+/**
+ * An item instance granted via Alter Player Inventory
+ */
+USTRUCT(BlueprintType)
+struct FLootLockerServerAlterPlayerInventoryItem
+{
+    GENERATED_BODY()
+    /**
+     The instance id of the granted inventory item
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Instance_id = 0;
+    /**
+     The ULID of the granted inventory item
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Ulid = "";
+    /**
+     Optional: The variation id of the granted item
+
+     This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Variation_id = "";
+    /**
+     Optional: The rental option id of the granted item
+
+     This variable is optional meaning it may or may not exist, which is why it's a string. To get the value from it you should first check if it is valid (for example using .IsNumeric() and then get the value from it (for example using FCString::Atoi)
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FString Rental_option_id = "";
+    /**
+     The quantity granted
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    int Quantity = 0;
+    /**
+     The asset definition for the granted item
+     */
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+    FLootLockerServerAsset Asset;
+};
+
 //==================================================
 // Request Definitions
 //==================================================
@@ -450,7 +493,7 @@ struct FLootLockerServerAlterPlayerInventoryResponse : public FLootLockerServerR
      List of asset instances added to the specified player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    TArray<FLootLockerServerAsset> Added;
+    TArray<FLootLockerServerAlterPlayerInventoryItem> Added;
     /**
      List of asset instance ids removed from the specified player's inventory
      */
