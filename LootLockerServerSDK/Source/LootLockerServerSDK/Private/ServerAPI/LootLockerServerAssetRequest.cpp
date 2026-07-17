@@ -57,11 +57,19 @@ FString ULootLockerServerAssetRequest::DeleteKeyValuePairFromAssetInstanceById(i
     return ULootLockerServerHttpClient::SendRequest<FLootLockerServerAssetInstanceKeyValuePairsListResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::DeleteKeyValuePairById, { PlayerID, AssetInstanceID, KeyValuePairID }, {}, OnCompletedRequest);
 }
 
-FString ULootLockerServerAssetRequest::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerAssetRequest::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, ELootLockerServerOrderAssetListBy OrderBy, ELootLockerServerOrderAssetListDirection OrderDirection, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
     TMultiMap<FString, FString> QueryParams;
     if(Page > 0) QueryParams.Add("page", FString::FromInt(Page));
     if(PerPage > 0) QueryParams.Add("per_page", FString::FromInt(PerPage));
+    if(OrderBy != ELootLockerServerOrderAssetListBy::None)
+    {
+        QueryParams.Add("order_by", ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerOrderAssetListBy"), static_cast<int32>(OrderBy)).ToLower());
+    }
+    if(OrderDirection != ELootLockerServerOrderAssetListDirection::None)
+    {
+        QueryParams.Add("order_direction", ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerOrderAssetListDirection"), static_cast<int32>(OrderDirection)).ToLower());
+    }
     return ULootLockerServerHttpClient::SendRequest<FLootLockerServerListAssetsResponse>(Request, ULootLockerServerEndpoints::ListAssets, {}, QueryParams, OnCompletedRequest);
 }
 
