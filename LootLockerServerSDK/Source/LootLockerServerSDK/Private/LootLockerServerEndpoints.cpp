@@ -89,6 +89,14 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerFileById = InitEn
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerFile = InitEndpoint("players/{0}/files/{1}", ELootLockerServerHTTPMethod::DELETE);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::UploadPlayerFile = InitEndpoint("players/{0}/files", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::UpdatePlayerFile = InitEndpoint("players/{0}/files/{1}", ELootLockerServerHTTPMethod::PUT);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListPlayerFileRevisions = InitEndpoint("players/{0}/files/{1}/revisions", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerFileRevision = InitEndpoint("players/{0}/files/{1}/revisions/{2}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::PromotePlayerFileRevision = InitEndpoint("players/{0}/files/{1}/revisions/{2}/current", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerFileByKey = InitEndpoint("players/{0}/files/key/{1}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListPlayerFileRevisionsByKey = InitEndpoint("players/{0}/files/key/{1}/revisions", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerFileRevisionByKey = InitEndpoint("players/{0}/files/key/{1}/revisions/{2}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::PromotePlayerFileRevisionByKey = InitEndpoint("players/{0}/files/key/{1}/revisions/{2}/current", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerFileByKey = InitEndpoint("players/{0}/files/key/{1}", ELootLockerServerHTTPMethod::DELETE);
 
 //Triggers
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InvokeTriggerForPlayer = InitEndpoint("trigger", ELootLockerServerHTTPMethod::POST);
