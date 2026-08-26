@@ -123,6 +123,14 @@ public:
     static FLootLockerServerEndPoint DeletePlayerFile;
     static FLootLockerServerEndPoint UploadPlayerFile;
     static FLootLockerServerEndPoint UpdatePlayerFile;
+    static FLootLockerServerEndPoint ListPlayerFileRevisions;
+    static FLootLockerServerEndPoint GetPlayerFileRevision;
+    static FLootLockerServerEndPoint PromotePlayerFileRevision;
+    static FLootLockerServerEndPoint GetPlayerFileByKey;
+    static FLootLockerServerEndPoint ListPlayerFileRevisionsByKey;
+    static FLootLockerServerEndPoint GetPlayerFileRevisionByKey;
+    static FLootLockerServerEndPoint PromotePlayerFileRevisionByKey;
+    static FLootLockerServerEndPoint DeletePlayerFileByKey;
 
     // Triggers
     static FLootLockerServerEndPoint InvokeTriggerForPlayer;
