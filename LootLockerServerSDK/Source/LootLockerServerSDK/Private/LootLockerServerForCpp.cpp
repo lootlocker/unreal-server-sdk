@@ -487,14 +487,14 @@ FString ULootLockerServerForCpp::DeleteFileForPlayerByID(int PlayerID, int FileI
     return ULootLockerServerPlayerFileRequest::DeleteFileForPlayerByID(PlayerID, FileID, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest, FString Key /* = "" */)
 {
-    return ULootLockerServerPlayerFileRequest::UploadFileForPlayer(PlayerID, FilePath, Purpose, IsPublic, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::UploadFileForPlayer(PlayerID, FilePath, Purpose, IsPublic, Key, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest, FString Key /* = "" */)
 {
-    return ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, Key, OnCompletedRequest);
 }
 
 FString ULootLockerServerForCpp::UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
@@ -505,6 +505,46 @@ FString ULootLockerServerForCpp::UpdateFileForPlayer(int PlayerID, int FileID, F
 FString ULootLockerServerForCpp::UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
     return ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(PlayerID, FileID, RawData, FileName, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::ListFileRevisionsForPlayer(int PlayerID, int FileID, const FLootLockerServerPlayerFileRevisionsListResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::ListFileRevisionsForPlayer(PlayerID, FileID, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::GetFileRevisionForPlayerByID(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFileContentResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::GetFileRevisionForPlayerByID(PlayerID, FileID, RevisionID, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::PromoteFileRevisionForPlayer(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::PromoteFileRevisionForPlayer(PlayerID, FileID, RevisionID, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::GetFileByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::GetFileByKeyForPlayer(PlayerID, Key, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::ListFileRevisionsByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerPlayerFileRevisionsListResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::ListFileRevisionsByKeyForPlayer(PlayerID, Key, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::GetFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFileContentResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::GetFileRevisionByKeyForPlayer(PlayerID, Key, RevisionID, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::PromoteFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::PromoteFileRevisionByKeyForPlayer(PlayerID, Key, RevisionID, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::DeleteFileByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::DeleteFileByKeyForPlayer(PlayerID, Key, OnCompletedRequest);
 }
 
 // Game Progressions

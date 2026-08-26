@@ -639,18 +639,18 @@ FString ULootLockerServerForBlueprints::DeleteFileForPlayerByID(int PlayerID, in
     }));
 }
 
-FString ULootLockerServerForBlueprints::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
+FString ULootLockerServerForBlueprints::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
 {
     return ULootLockerServerForCpp::UploadFileForPlayer(PlayerID, FilePath, Purpose, IsPublic, FLootLockerServerSinglePlayerFileResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerFileResponse& Response) {
         OnCompletedRequest.ExecuteIfBound(Response);
-    }));
+    }), Key);
 }
 
-FString ULootLockerServerForBlueprints::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
+FString ULootLockerServerForBlueprints::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
 {
     return ULootLockerServerForCpp::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, FLootLockerServerSinglePlayerFileResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerFileResponse& Response) {
         OnCompletedRequest.ExecuteIfBound(Response);
-    }));
+    }), Key);
 }
 
 FString ULootLockerServerForBlueprints::UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
@@ -663,6 +663,62 @@ FString ULootLockerServerForBlueprints::UpdateFileForPlayer(int PlayerID, int Fi
 FString ULootLockerServerForBlueprints::UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
 {
     return ULootLockerServerForCpp::UpdatePlayerFileWithRawData(PlayerID, FileID, RawData, FileName, FLootLockerServerSinglePlayerFileResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerFileResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::ListFileRevisionsForPlayer(int PlayerID, int FileID, const FLootLockerServerPlayerFileRevisionsListResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::ListFileRevisionsForPlayer(PlayerID, FileID, FLootLockerServerPlayerFileRevisionsListResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerFileRevisionsResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::GetFileRevisionForPlayerByID(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFileContentResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::GetFileRevisionForPlayerByID(PlayerID, FileID, RevisionID, FLootLockerServerPlayerFileContentResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerFileContentResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::PromoteFileRevisionForPlayer(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFileDeleteResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::PromoteFileRevisionForPlayer(PlayerID, FileID, RevisionID, FLootLockerServerPlayerFileDeleteResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerFileDeleteResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::GetFileByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::GetFileByKeyForPlayer(PlayerID, Key, FLootLockerServerSinglePlayerFileResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerFileResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::ListFileRevisionsByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerPlayerFileRevisionsListResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::ListFileRevisionsByKeyForPlayer(PlayerID, Key, FLootLockerServerPlayerFileRevisionsListResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerFileRevisionsResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::GetFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFileContentResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::GetFileRevisionByKeyForPlayer(PlayerID, Key, RevisionID, FLootLockerServerPlayerFileContentResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerFileContentResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::PromoteFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFileDeleteResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::PromoteFileRevisionByKeyForPlayer(PlayerID, Key, RevisionID, FLootLockerServerPlayerFileDeleteResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerFileDeleteResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::DeleteFileByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerPlayerFileDeleteResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::DeleteFileByKeyForPlayer(PlayerID, Key, FLootLockerServerPlayerFileDeleteResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerPlayerFileDeleteResponse& Response) {
         OnCompletedRequest.ExecuteIfBound(Response);
     }));
 }
