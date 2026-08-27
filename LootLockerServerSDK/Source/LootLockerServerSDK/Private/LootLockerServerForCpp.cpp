@@ -487,14 +487,24 @@ FString ULootLockerServerForCpp::DeleteFileForPlayerByID(int PlayerID, int FileI
     return ULootLockerServerPlayerFileRequest::DeleteFileForPlayerByID(PlayerID, FileID, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest, FString Key /* = "" */)
+FString ULootLockerServerForCpp::UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerPlayerFileRequest::UploadFileForPlayer(PlayerID, FilePath, Purpose, IsPublic, Key, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::UploadFileForPlayer(PlayerID, FilePath, Purpose, IsPublic, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest, FString Key /* = "" */)
+FString ULootLockerServerForCpp::UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, Key, OnCompletedRequest);
+    return ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::UploadFileForPlayerByKey(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::UploadFileForPlayerByKey(PlayerID, FilePath, Purpose, IsPublic, Key, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::UploadRawDataToPlayerFileByKey(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFileByKey(PlayerID, RawData, FileName, Purpose, IsPublic, Key, OnCompletedRequest);
 }
 
 FString ULootLockerServerForCpp::UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
@@ -517,7 +527,7 @@ FString ULootLockerServerForCpp::GetFileRevisionForPlayerByID(int PlayerID, int 
     return ULootLockerServerPlayerFileRequest::GetFileRevisionForPlayerByID(PlayerID, FileID, RevisionID, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::PromoteFileRevisionForPlayer(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::PromoteFileRevisionForPlayer(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFilePromoteResponseDelegate& OnCompletedRequest)
 {
     return ULootLockerServerPlayerFileRequest::PromoteFileRevisionForPlayer(PlayerID, FileID, RevisionID, OnCompletedRequest);
 }
@@ -537,7 +547,7 @@ FString ULootLockerServerForCpp::GetFileRevisionByKeyForPlayer(int PlayerID, con
     return ULootLockerServerPlayerFileRequest::GetFileRevisionByKeyForPlayer(PlayerID, Key, RevisionID, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::PromoteFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::PromoteFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFilePromoteResponseDelegate& OnCompletedRequest)
 {
     return ULootLockerServerPlayerFileRequest::PromoteFileRevisionByKeyForPlayer(PlayerID, Key, RevisionID, OnCompletedRequest);
 }

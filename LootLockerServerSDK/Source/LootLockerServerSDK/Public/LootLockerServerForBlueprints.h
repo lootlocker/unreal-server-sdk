@@ -400,6 +400,10 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerFileRevisionsListRespon
  Blueprint response delegate for a single file revision
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerFileContentResponseBP, FLootLockerServerPlayerFileContentResponse, Response);
+/*
+ Blueprint response delegate for promoting a file revision
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerPlayerFilePromoteResponseBP, FLootLockerServerPlayerFilePromoteResponse, Response);
 
 //==================================================
 // Player Inventory Response Delegates
@@ -1692,14 +1696,29 @@ public:
      * @param PlayerID ID of the player for whom to upload the specified file
      * @param FilePath The path on disk to the file you want to upload
      * @param Purpose A tag specifying the purpose of this file
-     * @param IsPublic Whether this file is publically available (accessible for other players)
-     * @param Key Optional key for upsert behavior. If a file with this key already exists, it will be updated.
+     * @param IsPublic Whether this file is publically available
      * @param OnCompletedRequest Delegate for handling the server response
      * 
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static UPARAM(DisplayName = "RequestId") FString UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
+
+    /**
+     * Upload the specified file to the specified player, using a key for upsert behavior
+     * Each file can be a maximum of 5MB and each player can have a maximum of 50 files
+     *
+     * @param PlayerID ID of the player for whom to upload the specified file
+     * @param FilePath The path on disk to the file you want to upload
+     * @param Purpose A tag specifying the purpose of this file
+     * @param IsPublic Whether this file is publically available
+     * @param Key The key for upsert behavior. If a file with this key already exists, it will be updated.
+     * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
+    static UPARAM(DisplayName = "RequestId") FString UploadFileForPlayerByKey(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
 
     /**
      * Upload the supplied raw data as a file to the specified player
@@ -1709,14 +1728,30 @@ public:
      * @param RawData The raw data to upload to a player file
      * @param FileName The name to set for the file
      * @param Purpose A tag specifying the purpose of this file
-     * @param IsPublic Whether this file is publically available (accessible for other players)
-     * @param Key Optional key for upsert behavior. If a file with this key already exists, it will be updated.
+     * @param IsPublic Whether this file is publically available
      * @param OnCompletedRequest Delegate for handling the server response
      * 
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static UPARAM(DisplayName = "RequestId") FString UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
+
+    /**
+     * Upload the supplied raw data as a file to the specified player, using a key for upsert behavior
+     * Each file can be a maximum of 5MB and each player can have a maximum of 50 files
+     *
+     * @param PlayerID ID of the player for whom to upload the specified file
+     * @param RawData The raw data to upload to a player file
+     * @param FileName The name to set for the file
+     * @param Purpose A tag specifying the purpose of this file
+     * @param IsPublic Whether this file is publically available
+     * @param Key The key for upsert behavior. If a file with this key already exists, it will be updated.
+     * @param OnCompletedRequest Delegate for handling the server response
+     * 
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
+    static UPARAM(DisplayName = "RequestId") FString UploadRawDataToPlayerFileByKey(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest);
 
     /**
      * Update the specified file for the specified player with the supplied file content
@@ -1778,7 +1813,7 @@ public:
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static UPARAM(DisplayName = "RequestId") FString PromoteFileRevisionForPlayer(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFileDeleteResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString PromoteFileRevisionForPlayer(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFilePromoteResponseBP& OnCompletedRequest);
 
     /**
      * Get a player file by its key (upsert key)
@@ -1824,7 +1859,7 @@ public:
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Files")
-    static UPARAM(DisplayName = "RequestId") FString PromoteFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFileDeleteResponseBP& OnCompletedRequest);
+    static UPARAM(DisplayName = "RequestId") FString PromoteFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFilePromoteResponseBP& OnCompletedRequest);
 
     /**
      * Delete a player file by its key
