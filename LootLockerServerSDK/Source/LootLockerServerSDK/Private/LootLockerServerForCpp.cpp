@@ -367,12 +367,17 @@ FString ULootLockerServerForCpp::GetAssetsByContext(int Count, int After, int Co
 
 FString ULootLockerServerForCpp::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerAssetRequest::ListAssets(Request, PerPage, Page, OnCompletedRequest);
+    return ListAssets(Request, PerPage, Page, ELootLockerServerOrderAssetListBy::None, ELootLockerServerOrderAssetListDirection::None, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, ELootLockerServerOrderAssetListBy OrderBy, ELootLockerServerOrderAssetListDirection OrderDirection, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerAssetRequest::ListAssets(Request, PerPage, Page, OrderBy, OrderDirection, OnCompletedRequest);
 }
 
 FString ULootLockerServerForCpp::ListAssetsWithDefaultParameters(const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest)
 {
-    return ListAssets(FLootLockerServerListAssetsRequest(), 0, 0, OnCompletedRequest);
+    return ListAssets(FLootLockerServerListAssetsRequest(), 0, 0, ELootLockerServerOrderAssetListBy::None, ELootLockerServerOrderAssetListDirection::None, OnCompletedRequest);
 }
 
 FString ULootLockerServerForCpp::ListContexts(int PerPage, int Page, const FLootLockerServerListContextsResponseDelegate& OnCompletedRequest)
@@ -492,6 +497,16 @@ FString ULootLockerServerForCpp::UploadRawDataToPlayerFile(int PlayerID, TArray<
     return ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFile(PlayerID, RawData, FileName, Purpose, IsPublic, OnCompletedRequest);
 }
 
+FString ULootLockerServerForCpp::UploadFileForPlayerByKey(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::UploadFileForPlayerByKey(PlayerID, FilePath, Purpose, IsPublic, Key, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::UploadRawDataToPlayerFileByKey(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::UploadRawDataToPlayerFileByKey(PlayerID, RawData, FileName, Purpose, IsPublic, Key, OnCompletedRequest);
+}
+
 FString ULootLockerServerForCpp::UpdateFileForPlayer(int PlayerID, int FileID, FString FilePath, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
     return ULootLockerServerPlayerFileRequest::UpdateFileForPlayer(PlayerID, FileID, FilePath, OnCompletedRequest);
@@ -500,6 +515,46 @@ FString ULootLockerServerForCpp::UpdateFileForPlayer(int PlayerID, int FileID, F
 FString ULootLockerServerForCpp::UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
 {
     return ULootLockerServerPlayerFileRequest::UpdatePlayerFileWithRawData(PlayerID, FileID, RawData, FileName, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::ListFileRevisionsForPlayer(int PlayerID, int FileID, const FLootLockerServerPlayerFileRevisionsListResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::ListFileRevisionsForPlayer(PlayerID, FileID, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::GetFileRevisionForPlayerByID(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFileContentResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::GetFileRevisionForPlayerByID(PlayerID, FileID, RevisionID, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::PromoteFileRevisionForPlayer(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFilePromoteResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::PromoteFileRevisionForPlayer(PlayerID, FileID, RevisionID, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::GetFileByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::GetFileByKeyForPlayer(PlayerID, Key, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::ListFileRevisionsByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerPlayerFileRevisionsListResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::ListFileRevisionsByKeyForPlayer(PlayerID, Key, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::GetFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFileContentResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::GetFileRevisionByKeyForPlayer(PlayerID, Key, RevisionID, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::PromoteFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFilePromoteResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::PromoteFileRevisionByKeyForPlayer(PlayerID, Key, RevisionID, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::DeleteFileByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::DeleteFileByKeyForPlayer(PlayerID, Key, OnCompletedRequest);
 }
 
 // Game Progressions

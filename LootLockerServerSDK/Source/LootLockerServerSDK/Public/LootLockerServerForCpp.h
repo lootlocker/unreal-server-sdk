@@ -143,8 +143,23 @@ public:
      * @param Page Optional: page index (ignored if 0 or negative)
      * @param OnCompletedRequest Delegate for handling the server response
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     *
+     * @deprecated Deprecated on 2026-07-17. Use the overload with OrderBy and OrderDirection parameters instead.
      */
     static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
+
+    /**
+     * List assets with configurable response data and optional sorting. Use this to limit the fields returned in the response and improve performance.
+     * Lightweight alternative for retrieving assets where only selected data is needed
+     * @param Request Request payload specifying includes/excludes/filters
+     * @param PerPage Optional: page size (ignored if 0 or negative)
+     * @param Page Optional: page index (ignored if 0 or negative)
+     * @param OrderBy Optional: field to order the asset list by (None, Id, Name, Created_at, Updated_at)
+     * @param OrderDirection Optional: direction to order the asset list (None, Asc, Desc)
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString ListAssets(const FLootLockerServerListAssetsRequest& Request, int PerPage, int Page, ELootLockerServerOrderAssetListBy OrderBy, ELootLockerServerOrderAssetListDirection OrderDirection, const FLootLockerServerListAssetsResponseDelegate& OnCompletedRequest);
 
     /**
     * List assets with default parameters (no filters, first page, default page size)
@@ -1110,6 +1125,20 @@ public:
     static FString UploadFileForPlayer(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 
     /**
+     * Upload the specified file to the specified player, using a key for upsert behavior
+     * Each file can be a maximum of 5MB and each player can have a maximum of 50 files
+     *
+     * @param PlayerID ID of the player for whom to upload the specified file
+     * @param FilePath The path on disk to the file you want to upload
+     * @param Purpose A tag specifying the purpose of this file
+     * @param IsPublic Whether this file is publically available (accessible for other players)
+     * @param Key The key for upsert behavior. If a file with this key already exists, it will be updated.
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString UploadFileForPlayerByKey(int PlayerID, FString FilePath, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+
+    /**
      * Upload the supplied raw data as a file to the specified player
      * Each file can be a maximum of 5MB and each player can have a maximum of 50 files
      *
@@ -1122,6 +1151,21 @@ public:
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     static FString UploadRawDataToPlayerFile(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Upload the supplied raw data as a file to the specified player, using a key for upsert behavior
+     * Each file can be a maximum of 5MB and each player can have a maximum of 50 files
+     *
+     * @param PlayerID ID of the player for whom to upload the specified file
+     * @param RawData The raw data to upload to a player file
+     * @param FileName The name to set for the file
+     * @param Purpose A tag specifying the purpose of this file
+     * @param IsPublic Whether this file is publically available (accessible for other players)
+     * @param Key The key for upsert behavior. If a file with this key already exists, it will be updated.
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString UploadRawDataToPlayerFileByKey(int PlayerID, TArray<uint8> RawData, const FString& FileName, FString Purpose, bool IsPublic, FString Key, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
 
     /**
      * Update the specified file for the specified player with the supplied file content
@@ -1145,6 +1189,90 @@ public:
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     static FString UpdatePlayerFileWithRawData(int PlayerID, int FileID, TArray<uint8> RawData, const FString& FileName, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+
+    /**
+     * List all revisions for a player file
+     *
+     * @param PlayerID ID of the player
+     * @param FileID ID of the file
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString ListFileRevisionsForPlayer(int PlayerID, int FileID, const FLootLockerServerPlayerFileRevisionsListResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Get a specific revision of a player file by its revision ULID
+     *
+     * @param PlayerID ID of the player
+     * @param FileID ID of the file
+     * @param RevisionID The ULID of the revision to retrieve
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString GetFileRevisionForPlayerByID(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFileContentResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Promote a specific revision to be the current (active) revision of a player file
+     *
+     * @param PlayerID ID of the player
+     * @param FileID ID of the file
+     * @param RevisionID The ULID of the revision to promote
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString PromoteFileRevisionForPlayer(int PlayerID, int FileID, const FString& RevisionID, const FLootLockerServerPlayerFilePromoteResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Get a player file by its key (upsert key)
+     *
+     * @param PlayerID ID of the player
+     * @param Key The key of the file
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString GetFileByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest);
+
+    /**
+     * List all revisions for a player file identified by its key
+     *
+     * @param PlayerID ID of the player
+     * @param Key The key of the file
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString ListFileRevisionsByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerPlayerFileRevisionsListResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Get a specific revision of a player file by its key and revision ULID
+     *
+     * @param PlayerID ID of the player
+     * @param Key The key of the file
+     * @param RevisionID The ULID of the revision to retrieve
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString GetFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFileContentResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Promote a specific revision to be the current (active) revision of a player file identified by its key
+     *
+     * @param PlayerID ID of the player
+     * @param Key The key of the file
+     * @param RevisionID The ULID of the revision to promote
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString PromoteFileRevisionByKeyForPlayer(int PlayerID, const FString& Key, const FString& RevisionID, const FLootLockerServerPlayerFilePromoteResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Delete a player file by its key
+     *
+     * @param PlayerID ID of the player
+     * @param Key The key of the file to delete
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString DeleteFileByKeyForPlayer(int PlayerID, const FString& Key, const FLootLockerServerPlayerFileDeleteResponseDelegate& OnCompletedRequest);
 
     /// @}
 
