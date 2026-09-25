@@ -16,6 +16,7 @@
 #include "ServerAPI/LootLockerServerGameProgressionRequest.h"
 #include "ServerAPI/LootLockerServerHeroRequest.h"
 #include "ServerAPI/LootLockerServerInstanceProgressionRequest.h"
+#include "ServerAPI/LootLockerServerItemRequestHandler.h"
 #include "ServerAPI/LootLockerServerLeaderboardArchiveRequestHandler.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerMetadataRequest.h"
@@ -437,6 +438,35 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerEquipAssetToPlayerLoadoutResp
  Blueprint response delegate for unequipping an asset from a player's loadout
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP, FLootLockerServerUnequipAssetFromPlayerLoadoutResponse, Response);
+
+//==================================================
+// Items (Assets 2.0) Response Delegates
+//==================================================
+
+/*
+ Blueprint response delegate for listing a player's items
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerListPlayerItemsResponseBP, FLootLockerServerListPlayerItemsResponse, Response);
+/*
+ Blueprint response delegate for getting a player item
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGetPlayerItemResponseBP, FLootLockerServerGetPlayerItemResponse, Response);
+/*
+ Blueprint response delegate for deleting a player item
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerDeletePlayerItemResponseBP, FLootLockerServerDeletePlayerItemResponse, Response);
+/*
+ Blueprint response delegate for granting an item to a player
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerGrantItemResponseBP, FLootLockerServerGrantItemResponse, Response);
+/*
+ Blueprint response delegate for splitting a player item stack
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSplitPlayerItemStackResponseBP, FLootLockerServerSplitPlayerItemStackResponse, Response);
+/*
+ Blueprint response delegate for merging player item stacks
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerMergePlayerItemStacksResponseBP, FLootLockerServerMergePlayerItemStacksResponse, Response);
 
 //==================================================
 // Player Progression Response Delegates
@@ -1339,6 +1369,78 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
     static UPARAM(DisplayName = "RequestId") FString AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Items (Assets 2.0)
+    //==================================================
+
+    /**
+     * List the specified player's items (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to list items
+     * @param Page The page of results to fetch. Set to 0 to omit the parameter
+     * @param PerPage The number of results per page. Set to 0 to omit the parameter
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
+    static UPARAM(DisplayName = "RequestId") FString ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseBP& OnCompletedRequest);
+
+    /**
+     * Get a specified player item (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to get the item
+     * @param InventoryId The unique identifier (ULID) of the inventory item instance to get
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
+    static UPARAM(DisplayName = "RequestId") FString GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseBP& OnCompletedRequest);
+
+    /**
+     * Delete a specified player item (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to delete the item
+     * @param InventoryId The unique identifier (ULID) of the inventory item instance to delete
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
+    static UPARAM(DisplayName = "RequestId") FString DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseBP& OnCompletedRequest);
+
+    /**
+     * Grant an item to the specified player (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to grant the item
+     * @param Request The grant request containing the item template id, count and source
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
+    static UPARAM(DisplayName = "RequestId") FString GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseBP& OnCompletedRequest);
+
+    /**
+     * Split a specified player item stack (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to split the item stack
+     * @param InventoryId The unique identifier (ULID) of the inventory item instance to split
+     * @param Request The split request containing the number of items to move into the new stack
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
+    static UPARAM(DisplayName = "RequestId") FString SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseBP& OnCompletedRequest);
+
+    /**
+     * Merge two player item stacks (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to merge the item stacks
+     * @param Request The merge request containing the source and target inventory item instance ids
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Player Inventory")
+    static UPARAM(DisplayName = "RequestId") FString MergePlayerItemStacks(int PlayerID, const FLootLockerServerMergeItemsRequest& Request, const FLootLockerServerMergePlayerItemStacksResponseBP& OnCompletedRequest);
 
     //==================================================
     // Assets
