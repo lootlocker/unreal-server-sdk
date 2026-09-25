@@ -459,6 +459,49 @@ FString ULootLockerServerForBlueprints::AlterPlayerInventoryAddAssetsByAssetIDAn
     }));
 }
 
+// Items (Assets 2.0)
+FString ULootLockerServerForBlueprints::ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::ListPlayerItems(PlayerID, Page, PerPage, FLootLockerServerListPlayerItemsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerListPlayerItemsResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::GetPlayerItem(PlayerID, InventoryId, FLootLockerServerGetPlayerItemResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetPlayerItemResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::DeletePlayerItem(PlayerID, InventoryId, FLootLockerServerDeletePlayerItemResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerDeletePlayerItemResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::GrantItemToPlayer(PlayerID, Request, FLootLockerServerGrantItemResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGrantItemResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::SplitPlayerItemStack(PlayerID, InventoryId, Request, FLootLockerServerSplitPlayerItemStackResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSplitPlayerItemStackResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
+FString ULootLockerServerForBlueprints::MergePlayerItemStacks(int PlayerID, const FLootLockerServerMergeItemsRequest& Request, const FLootLockerServerMergePlayerItemStacksResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::MergePlayerItemStacks(PlayerID, Request, FLootLockerServerMergePlayerItemStacksResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerMergePlayerItemStacksResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
 // Assets
 FString ULootLockerServerForBlueprints::GetAssets(bool IncludeUGC, const FLootLockerServerGetAssetsResponseBP &OnCompletedRequest) 
 {

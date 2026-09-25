@@ -199,6 +199,14 @@ public:
     // Notifications
     static FLootLockerServerEndPoint SendNotification;
 
+    // Items (Assets 2.0)
+    static FLootLockerServerEndPoint ListPlayerItems;
+    static FLootLockerServerEndPoint GetPlayerItem;
+    static FLootLockerServerEndPoint DeletePlayerItem;
+    static FLootLockerServerEndPoint GrantItemToPlayer;
+    static FLootLockerServerEndPoint SplitPlayerItemStack;
+    static FLootLockerServerEndPoint MergePlayerItemStacks;
+
 private:
     static FString GameBaseUrl;
     static FString ServerApiUrlSuffix;

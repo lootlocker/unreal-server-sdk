@@ -349,6 +349,37 @@ FString ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRental
     return ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
 }
 
+// Items (Assets 2.0)
+FString ULootLockerServerForCpp::ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerItemRequestHandler::ListPlayerItems(PlayerID, Page, PerPage, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerItemRequestHandler::GetPlayerItem(PlayerID, InventoryId, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerItemRequestHandler::DeletePlayerItem(PlayerID, InventoryId, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerItemRequestHandler::GrantItemToPlayer(PlayerID, Request, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerItemRequestHandler::SplitPlayerItemStack(PlayerID, InventoryId, Request, OnCompletedRequest);
+}
+
+FString ULootLockerServerForCpp::MergePlayerItemStacks(int PlayerID, const FLootLockerServerMergeItemsRequest& Request, const FLootLockerServerMergePlayerItemStacksResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerItemRequestHandler::MergePlayerItemStacks(PlayerID, Request, OnCompletedRequest);
+}
+
 // Assets
 FString ULootLockerServerForCpp::GetAssets(const FLootLockerServerGetAssetsResponseDelegate &OnCompletedRequest, bool IncludeUGC) 
 {
