@@ -69,11 +69,12 @@ struct FLootLockerItemTemplate
 /**
  A single item instance in a player's inventory (Assets 2.0)
 
- Note: The backend list endpoint returns the raw inventory rows. Those rows
- currently marshal in PascalCase (the backend Inventory struct is missing JSON
- tags), whereas the get-item endpoint returns snake_case. This has been flagged
- to the backend; until it is fixed the list endpoint's items will not fully
- deserialize. The DTO below mirrors the snake_case shape used by get-item.
+ Note: The backend list endpoint returns the raw inventory rows, which currently
+ marshal in PascalCase (the backend Inventory struct is missing JSON tags),
+ whereas the get-item endpoint returns snake_case. The DTO below mirrors the
+ snake_case shape used by get-item, and ListPlayerItems normalizes the
+ PascalCase keys so both endpoints deserialize correctly. Once the backend adds
+ JSON tags the normalization becomes a no-op.
  */
 USTRUCT(BlueprintType)
 struct FLootLockerServerItem
