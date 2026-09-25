@@ -17,6 +17,7 @@
 #include "ServerAPI/LootLockerServerGameProgressionRequest.h"
 #include "ServerAPI/LootLockerServerHeroRequest.h"
 #include "ServerAPI/LootLockerServerInstanceProgressionRequest.h"
+#include "ServerAPI/LootLockerServerItemRequestHandler.h"
 #include "ServerAPI/LootLockerServerLeaderboardArchiveRequestHandler.h"
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerMetadataRequest.h"
@@ -814,6 +815,76 @@ public:
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
     static FString AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseDelegate& OnCompletedRequest);
+
+    /// @}
+
+    //==================================================
+    // Items (Assets 2.0)
+    //==================================================
+    /// @addtogroup Items
+    /// @{
+
+    /**
+     * List the specified player's items (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to list items
+     * @param Page The page of results to fetch. Set to 0 to omit the parameter
+     * @param PerPage The number of results per page. Set to 0 to omit the parameter
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Get a specified player item (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to get the item
+     * @param InventoryId The unique identifier (ULID) of the inventory item instance to get
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Delete a specified player item (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to delete the item
+     * @param InventoryId The unique identifier (ULID) of the inventory item instance to delete
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Grant an item to the specified player (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to grant the item
+     * @param Request The grant request containing the item template id, count and source
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Split a specified player item stack (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to split the item stack
+     * @param InventoryId The unique identifier (ULID) of the inventory item instance to split
+     * @param Request The split request containing the number of items to move into the new stack
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseDelegate& OnCompletedRequest);
+
+    /**
+     * Merge two player item stacks (Assets 2.0)
+     *
+     * @param PlayerID The ID of the player for whom to merge the item stacks
+     * @param Request The merge request containing the source and target inventory item instance ids
+     * @param OnCompletedRequest Delegate for handling the server response
+     * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString MergePlayerItemStacks(int PlayerID, const FLootLockerServerMergeItemsRequest& Request, const FLootLockerServerMergePlayerItemStacksResponseDelegate& OnCompletedRequest);
 
     /// @}
 
