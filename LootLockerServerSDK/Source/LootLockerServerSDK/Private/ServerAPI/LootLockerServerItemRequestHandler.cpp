@@ -43,6 +43,53 @@ namespace
         }
         return bRenamedAnyKey;
     }
+
+    /**
+     * FJsonObjectConverter populates the public metadata fields, but the value itself lives in the
+     * entry's private JSON representation, so it has to be copied over explicitly. Matches entries
+     * by key, which is unique within a single item's metadata.
+     */
+    void PopulateMetadataJsonRepresentations(const TArray<TSharedPtr<FJsonValue>>& JsonItems, TArray<FLootLockerServerItem>& Items)
+    {
+        const int32 ItemCount = FMath::Min(JsonItems.Num(), Items.Num());
+        for (int32 ItemIndex = 0; ItemIndex < ItemCount; ++ItemIndex)
+        {
+            TSharedPtr<FJsonObject> JsonItemObject = JsonItems[ItemIndex].IsValid() ? JsonItems[ItemIndex]->AsObject() : nullptr;
+            if (!JsonItemObject.IsValid())
+            {
+                continue;
+            }
+
+            const TArray<TSharedPtr<FJsonValue>>* JsonEntries = nullptr;
+            if (!JsonItemObject->TryGetArrayField(TEXT("metadata"), JsonEntries) || JsonEntries == nullptr)
+            {
+                continue;
+            }
+
+            for (const TSharedPtr<FJsonValue>& JsonEntry : *JsonEntries)
+            {
+                TSharedPtr<FJsonObject> JsonEntryObject = JsonEntry.IsValid() ? JsonEntry->AsObject() : nullptr;
+                if (!JsonEntryObject.IsValid())
+                {
+                    continue;
+                }
+
+                FString EntryKey;
+                if (!JsonEntryObject->TryGetStringField(TEXT("key"), EntryKey))
+                {
+                    continue;
+                }
+
+                for (FLootLockerServerMetadataEntry& ResponseEntry : Items[ItemIndex].Metadata)
+                {
+                    if (ResponseEntry.Key.Equals(EntryKey))
+                    {
+                        ResponseEntry._INTERNAL_SetJsonRepresentation(*JsonEntryObject);
+                    }
+                }
+            }
+        }
+    }
 }
 
 ULootLockerServerItemRequestHandler::ULootLockerServerItemRequestHandler()
@@ -101,6 +148,9 @@ FString ULootLockerServerItemRequestHandler::ListPlayerItems(int PlayerID, int P
             Response.Success = true;
             Response.FullTextFromServer = LootLockerServerUtilities::FStringFromJsonObject(ResponseAsJson);
         }
+
+        // Must run after the re-deserialization above, which replaces Response.Items.
+        PopulateMetadataJsonRepresentations(*JsonItems, Response.Items);
 
         OnCompletedRequest.ExecuteIfBound(Response);
     }));
