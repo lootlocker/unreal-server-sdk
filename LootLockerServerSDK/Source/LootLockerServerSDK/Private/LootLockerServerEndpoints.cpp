@@ -165,7 +165,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::TokenExchange = InitEndpoi
 // Notifications
 FLootLockerServerEndPoint ULootLockerServerEndpoints::SendNotification = InitEndpoint("notifications/v1", ELootLockerServerHTTPMethod::POST);
 
-// Items (Assets 2.0)
+// Items
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListPlayerItems = InitEndpoint("player/inventory/v1/{0}", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerItem = InitEndpoint("player/inventory/v1/{0}/{1}", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerItem = InitEndpoint("player/inventory/v1/{0}/{1}", ELootLockerServerHTTPMethod::DELETE);

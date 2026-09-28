@@ -9,6 +9,60 @@
 #include "LootLockerServerItemRequestHandler.generated.h"
 
 //==================================================
+// Enum Definitions
+//==================================================
+
+UENUM(BlueprintType, Category = "LootLockerServer")
+/**
+ The type of an item, determining whether item instances are stackable or individually tracked.
+ */
+enum class ELootLockerServerItemType : uint8
+{
+    /** The item type could not be determined. */
+    Unknown = 0,
+    /** Each granted item is a separate, individually tracked instance. */
+    Instanced = 1,
+    /** The item is stored as a single entry with a count that can be incremented or decremented. */
+    Stackable = 2,
+};
+
+UENUM(BlueprintType, Category = "LootLockerServer")
+/**
+ The kind of reward that was granted as a result of a behaviour.
+ */
+enum class ELootLockerServerRewardKind : uint8
+{
+    /** The reward kind could not be determined. */
+    Unknown = 0,
+    /** An asset. */
+    Asset = 1,
+    /** Progression points. */
+    Progression_points = 2,
+    /** A progression reset. */
+    Progression_reset = 3,
+    /** A currency. */
+    Currency = 4,
+    /** A group. */
+    Group = 5,
+    /** A reward. */
+    Reward = 6,
+    /** A platform key. */
+    Platform_key = 7,
+    /** A publisher currency. */
+    Publisher_currency = 8,
+    /** Publisher progression points. */
+    Publisher_progression_points = 9,
+    /** Player metadata. */
+    Player_metadata = 10,
+    /** A file. */
+    File = 11,
+    /** A Discord role. */
+    Discord_role = 12,
+    /** An item template. */
+    Item_template = 13,
+};
+
+//==================================================
 // Data Type Definitions
 //==================================================
 
@@ -30,11 +84,6 @@ struct FLootLockerItemTemplate
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     FString Name;
     /**
-     The id of the game this item template belongs to
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int Game_id = 0;
-    /**
      The limited quantity of this item template (if any)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
@@ -43,7 +92,7 @@ struct FLootLockerItemTemplate
      The type of this item template (instanced or stackable)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Item_type;
+    ELootLockerServerItemType Item_type = ELootLockerServerItemType::Unknown;
     /**
      Whether this item template is consumable
      */
@@ -58,16 +107,16 @@ struct FLootLockerItemTemplate
      The time this item template was created
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Created_at;
+    FDateTime Created_at = FDateTime(0);
     /**
-     The time this item template was last updated
+     The time this item template was last updated. Unset (FDateTime(0)) when the template has never been updated.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Updated_at;
+    FDateTime Updated_at = FDateTime(0);
 };
 
 /**
- A single item instance in a player's inventory (Assets 2.0)
+ A single item instance in a player's inventory
 
  Note: The backend list endpoint returns the raw inventory rows, which currently
  marshal in PascalCase (the backend Inventory struct is missing JSON tags),
@@ -99,7 +148,7 @@ struct FLootLockerServerItem
      The type of this item (instanced or stackable)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Item_type;
+    ELootLockerServerItemType Item_type = ELootLockerServerItemType::Unknown;
     /**
      Whether this item is consumable
      */
@@ -119,12 +168,12 @@ struct FLootLockerServerItem
      The time this item instance was created
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Created_at;
+    FDateTime Created_at = FDateTime(0);
     /**
-     The time this item instance was last updated
+     The time this item instance was last updated. Unset (FDateTime(0)) when the item has never been updated.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Updated_at;
+    FDateTime Updated_at = FDateTime(0);
     /**
      Free-form metadata attached to this item instance.
 
@@ -141,7 +190,7 @@ struct FLootLockerServerItem
 //==================================================
 
 /**
- Response for listing a player's items (Assets 2.0)
+ Response for listing a player's items
  */
 USTRUCT(BlueprintType)
 struct FLootLockerServerListPlayerItemsResponse : public FLootLockerServerResponse
@@ -160,7 +209,7 @@ struct FLootLockerServerListPlayerItemsResponse : public FLootLockerServerRespon
 };
 
 /**
- Response for getting a single player item (Assets 2.0)
+ Response for getting a single player item
  Note: The backend returns the item fields at the top level of the response
  object (not wrapped in an "item" key).
  */
@@ -187,7 +236,7 @@ struct FLootLockerServerGetPlayerItemResponse : public FLootLockerServerResponse
      The type of this item (instanced or stackable)
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Item_type;
+    ELootLockerServerItemType Item_type = ELootLockerServerItemType::Unknown;
     /**
      Whether this item is consumable
      */
@@ -207,12 +256,12 @@ struct FLootLockerServerGetPlayerItemResponse : public FLootLockerServerResponse
      The time this item instance was created
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Created_at;
+    FDateTime Created_at = FDateTime(0);
     /**
-     The time this item instance was last updated
+     The time this item instance was last updated. Unset (FDateTime(0)) when the item has never been updated.
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Updated_at;
+    FDateTime Updated_at = FDateTime(0);
     /**
      Free-form metadata attached to this item instance.
      Note: The server returns this as an array of metadata entries, matching the
@@ -228,7 +277,7 @@ struct FLootLockerServerGetPlayerItemResponse : public FLootLockerServerResponse
 };
 
 /**
- Response for deleting a player item (Assets 2.0)
+ Response for deleting a player item
  */
 USTRUCT(BlueprintType)
 struct FLootLockerServerDeletePlayerItemResponse : public FLootLockerServerResponse
@@ -258,7 +307,7 @@ struct FLootLockerServerGrantedItem
      The type of the granted result ("item_template", "currency", or "publisher_currency")
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Type;
+    ELootLockerServerRewardKind Type = ELootLockerServerRewardKind::Unknown;
     /**
      The name of the granted result (when provided)
      */
@@ -272,7 +321,7 @@ struct FLootLockerServerGrantedItem
 };
 
 /**
- Response for granting an item to a player (Assets 2.0)
+ Response for granting an item to a player
  */
 USTRUCT(BlueprintType)
 struct FLootLockerServerGrantItemResponse : public FLootLockerServerResponse
@@ -291,7 +340,7 @@ struct FLootLockerServerGrantItemResponse : public FLootLockerServerResponse
 };
 
 /**
- Response for splitting a player item stack (Assets 2.0)
+ Response for splitting a player item stack
  */
 USTRUCT(BlueprintType)
 struct FLootLockerServerSplitPlayerItemStackResponse : public FLootLockerServerResponse
@@ -305,7 +354,7 @@ struct FLootLockerServerSplitPlayerItemStackResponse : public FLootLockerServerR
 };
 
 /**
- Response for merging player item stacks (Assets 2.0)
+ Response for merging player item stacks
  Note: This endpoint returns 204 No Content.
  */
 USTRUCT(BlueprintType)
@@ -319,7 +368,7 @@ struct FLootLockerServerMergePlayerItemStacksResponse : public FLootLockerServer
 //==================================================
 
 /**
- Request body for granting an item to a player (Assets 2.0)
+ Request body for granting an item to a player
  */
 USTRUCT(BlueprintType)
 struct FLootLockerServerGrantItemRequest
@@ -343,7 +392,7 @@ struct FLootLockerServerGrantItemRequest
 };
 
 /**
- Request body for splitting a player item stack (Assets 2.0)
+ Request body for splitting a player item stack
  */
 USTRUCT(BlueprintType)
 struct FLootLockerServerSplitItemRequest
@@ -357,7 +406,7 @@ struct FLootLockerServerSplitItemRequest
 };
 
 /**
- Request body for merging player item stacks (Assets 2.0)
+ Request body for merging player item stacks
  */
 USTRUCT(BlueprintType)
 struct FLootLockerServerMergeItemsRequest
@@ -405,7 +454,7 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerSplitPlayerItemStackResponseDelegate,
 DECLARE_DELEGATE_OneParam(FLootLockerServerMergePlayerItemStacksResponseDelegate, FLootLockerServerMergePlayerItemStacksResponse);
 
 /**
- Handler for the Items & Item Templates (Assets 2.0) server endpoints
+ Handler for the Items & Item Templates server endpoints
  */
 UCLASS()
 class LOOTLOCKERSERVERSDK_API ULootLockerServerItemRequestHandler : public UObject
