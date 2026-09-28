@@ -819,13 +819,13 @@ public:
     /// @}
 
     //==================================================
-    // Items (Assets 2.0)
+    // Items
     //==================================================
     /// @addtogroup Items
     /// @{
 
     /**
-     * List the specified player's items (Assets 2.0)
+     * List the specified player's items
      *
      * @param PlayerID The ID of the player for whom to list items
      * @param Page The page of results to fetch. Set to 0 to omit the parameter
@@ -836,7 +836,7 @@ public:
     static FString ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseDelegate& OnCompletedRequest);
 
     /**
-     * Get a specified player item (Assets 2.0)
+     * Get a specified player item
      *
      * @param PlayerID The ID of the player for whom to get the item
      * @param InventoryId The unique identifier (ULID) of the inventory item instance to get
@@ -846,7 +846,7 @@ public:
     static FString GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseDelegate& OnCompletedRequest);
 
     /**
-     * Delete a specified player item (Assets 2.0)
+     * Delete a specified player item
      *
      * @param PlayerID The ID of the player for whom to delete the item
      * @param InventoryId The unique identifier (ULID) of the inventory item instance to delete
@@ -856,7 +856,7 @@ public:
     static FString DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseDelegate& OnCompletedRequest);
 
     /**
-     * Grant an item to the specified player (Assets 2.0)
+     * Grant an item to the specified player
      *
      * @param PlayerID The ID of the player for whom to grant the item
      * @param Request The grant request containing the item template id, count and source
@@ -866,7 +866,7 @@ public:
     static FString GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest);
 
     /**
-     * Split a specified player item stack (Assets 2.0)
+     * Split a specified player item stack
      *
      * @param PlayerID The ID of the player for whom to split the item stack
      * @param InventoryId The unique identifier (ULID) of the inventory item instance to split
@@ -877,7 +877,7 @@ public:
     static FString SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseDelegate& OnCompletedRequest);
 
     /**
-     * Merge two player item stacks (Assets 2.0)
+     * Merge two player item stacks
      *
      * @param PlayerID The ID of the player for whom to merge the item stacks
      * @param Request The merge request containing the source and target inventory item instance ids

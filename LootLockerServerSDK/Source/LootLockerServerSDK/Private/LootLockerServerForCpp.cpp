@@ -349,7 +349,7 @@ FString ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRental
     return ULootLockerServerPlayerInventoryRequest::AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(PlayerID, AssetsToAdd, AssetsToRemove, OnCompletedRequest);
 }
 
-// Items (Assets 2.0)
+// Items
 FString ULootLockerServerForCpp::ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseDelegate& OnCompletedRequest)
 {
     return ULootLockerServerItemRequestHandler::ListPlayerItems(PlayerID, Page, PerPage, OnCompletedRequest);

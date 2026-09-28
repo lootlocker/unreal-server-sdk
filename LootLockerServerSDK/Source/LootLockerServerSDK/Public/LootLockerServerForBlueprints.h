@@ -440,7 +440,7 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerEquipAssetToPlayerLoadoutResp
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerUnequipAssetFromPlayerLoadoutResponseBP, FLootLockerServerUnequipAssetFromPlayerLoadoutResponse, Response);
 
 //==================================================
-// Items (Assets 2.0) Response Delegates
+// Items Response Delegates
 //==================================================
 
 /*
@@ -1371,11 +1371,11 @@ public:
     static UPARAM(DisplayName = "RequestId") FString AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID(int PlayerID, const TArray<FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest>& AssetsToAdd, const TArray<int> AssetsToRemove, const FLootLockerServerAlterPlayerInventoryResponseBP& OnCompletedRequest);
 
     //==================================================
-    // Items (Assets 2.0)
+    // Items
     //==================================================
 
     /**
-     * List the specified player's items (Assets 2.0)
+     * List the specified player's items
      *
      * @param PlayerID The ID of the player for whom to list items
      * @param Page The page of results to fetch. Set to 0 to omit the parameter
@@ -1387,7 +1387,7 @@ public:
     static UPARAM(DisplayName = "RequestId") FString ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseBP& OnCompletedRequest);
 
     /**
-     * Get a specified player item (Assets 2.0)
+     * Get a specified player item
      *
      * @param PlayerID The ID of the player for whom to get the item
      * @param InventoryId The unique identifier (ULID) of the inventory item instance to get
@@ -1398,7 +1398,7 @@ public:
     static UPARAM(DisplayName = "RequestId") FString GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseBP& OnCompletedRequest);
 
     /**
-     * Delete a specified player item (Assets 2.0)
+     * Delete a specified player item
      *
      * @param PlayerID The ID of the player for whom to delete the item
      * @param InventoryId The unique identifier (ULID) of the inventory item instance to delete
@@ -1409,7 +1409,7 @@ public:
     static UPARAM(DisplayName = "RequestId") FString DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseBP& OnCompletedRequest);
 
     /**
-     * Grant an item to the specified player (Assets 2.0)
+     * Grant an item to the specified player
      *
      * @param PlayerID The ID of the player for whom to grant the item
      * @param Request The grant request containing the item template id, count and source
@@ -1420,7 +1420,7 @@ public:
     static UPARAM(DisplayName = "RequestId") FString GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseBP& OnCompletedRequest);
 
     /**
-     * Split a specified player item stack (Assets 2.0)
+     * Split a specified player item stack
      *
      * @param PlayerID The ID of the player for whom to split the item stack
      * @param InventoryId The unique identifier (ULID) of the inventory item instance to split
@@ -1432,7 +1432,7 @@ public:
     static UPARAM(DisplayName = "RequestId") FString SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseBP& OnCompletedRequest);
 
     /**
-     * Merge two player item stacks (Assets 2.0)
+     * Merge two player item stacks
      *
      * @param PlayerID The ID of the player for whom to merge the item stacks
      * @param Request The merge request containing the source and target inventory item instance ids
