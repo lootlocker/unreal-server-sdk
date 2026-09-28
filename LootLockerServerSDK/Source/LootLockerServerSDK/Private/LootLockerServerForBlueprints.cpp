@@ -459,7 +459,7 @@ FString ULootLockerServerForBlueprints::AlterPlayerInventoryAddAssetsByAssetIDAn
     }));
 }
 
-// Items (Assets 2.0)
+// Items
 FString ULootLockerServerForBlueprints::ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseBP& OnCompletedRequest)
 {
     return ULootLockerServerForCpp::ListPlayerItems(PlayerID, Page, PerPage, FLootLockerServerListPlayerItemsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerListPlayerItemsResponse& Response) {
