@@ -166,12 +166,12 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::TokenExchange = InitEndpoi
 FLootLockerServerEndPoint ULootLockerServerEndpoints::SendNotification = InitEndpoint("notifications/v1", ELootLockerServerHTTPMethod::POST);
 
 // Items
-FLootLockerServerEndPoint ULootLockerServerEndpoints::ListPlayerItems = InitEndpoint("player/inventory/v1/{0}", ELootLockerServerHTTPMethod::GET);
-FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerItem = InitEndpoint("player/inventory/v1/{0}/{1}", ELootLockerServerHTTPMethod::GET);
-FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerItem = InitEndpoint("player/inventory/v1/{0}/{1}", ELootLockerServerHTTPMethod::DELETE);
-FLootLockerServerEndPoint ULootLockerServerEndpoints::GrantItemToPlayer = InitEndpoint("player/inventory/v1/{0}/grant", ELootLockerServerHTTPMethod::POST);
-FLootLockerServerEndPoint ULootLockerServerEndpoints::SplitPlayerItemStack = InitEndpoint("player/inventory/v1/{0}/{1}/split", ELootLockerServerHTTPMethod::POST);
-FLootLockerServerEndPoint ULootLockerServerEndpoints::MergePlayerItemStacks = InitEndpoint("player/inventory/v1/{0}/merge", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::ListPlayerInventoryItems = InitEndpoint("player/inventory/v1/{0}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerInventoryItem = InitEndpoint("player/inventory/v1/{0}/{1}", ELootLockerServerHTTPMethod::GET);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerInventoryItem = InitEndpoint("player/inventory/v1/{0}/{1}", ELootLockerServerHTTPMethod::DELETE);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::GrantItemToPlayerInventory = InitEndpoint("player/inventory/v1/{0}/grant", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::SplitPlayerInventoryItemStack = InitEndpoint("player/inventory/v1/{0}/{1}/split", ELootLockerServerHTTPMethod::POST);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::MergePlayerInventoryItemStacks = InitEndpoint("player/inventory/v1/{0}/merge", ELootLockerServerHTTPMethod::POST);
 
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InitEndpoint(const FString& Endpoint, ELootLockerServerHTTPMethod Method, const FString& BaseUrlSuffix /* = ServerApiUrlSuffix*/)
 {

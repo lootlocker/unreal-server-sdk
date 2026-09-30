@@ -200,12 +200,12 @@ public:
     static FLootLockerServerEndPoint SendNotification;
 
     // Items
-    static FLootLockerServerEndPoint ListPlayerItems;
-    static FLootLockerServerEndPoint GetPlayerItem;
-    static FLootLockerServerEndPoint DeletePlayerItem;
-    static FLootLockerServerEndPoint GrantItemToPlayer;
-    static FLootLockerServerEndPoint SplitPlayerItemStack;
-    static FLootLockerServerEndPoint MergePlayerItemStacks;
+    static FLootLockerServerEndPoint ListPlayerInventoryItems;
+    static FLootLockerServerEndPoint GetPlayerInventoryItem;
+    static FLootLockerServerEndPoint DeletePlayerInventoryItem;
+    static FLootLockerServerEndPoint GrantItemToPlayerInventory;
+    static FLootLockerServerEndPoint SplitPlayerInventoryItemStack;
+    static FLootLockerServerEndPoint MergePlayerInventoryItemStacks;
 
 private:
     static FString GameBaseUrl;
