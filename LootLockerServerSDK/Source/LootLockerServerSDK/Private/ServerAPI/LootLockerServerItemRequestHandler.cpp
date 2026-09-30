@@ -144,9 +144,11 @@ FString ULootLockerServerItemRequestHandler::ListPlayerInventoryItems(int Player
 
         if (bNormalizedAnyItem)
         {
+            // Preserve the raw HTTP body across re-deserialization of the normalized items.
+            const FString RawResponseBody = Response.FullTextFromServer;
             FJsonObjectConverter::JsonObjectToUStruct(ResponseAsJson.ToSharedRef(), FLootLockerServerListPlayerInventoryItemsResponse::StaticStruct(), &Response, 0, 0);
             Response.Success = true;
-            Response.FullTextFromServer = LootLockerServerUtilities::FStringFromJsonObject(ResponseAsJson);
+            Response.FullTextFromServer = RawResponseBody;
         }
 
         // Must run after the re-deserialization above, which replaces Response.Items.
