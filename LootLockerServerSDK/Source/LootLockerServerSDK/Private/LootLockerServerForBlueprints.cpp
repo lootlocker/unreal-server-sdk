@@ -460,44 +460,44 @@ FString ULootLockerServerForBlueprints::AlterPlayerInventoryAddAssetsByAssetIDAn
 }
 
 // Items
-FString ULootLockerServerForBlueprints::ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseBP& OnCompletedRequest)
+FString ULootLockerServerForBlueprints::ListPlayerInventoryItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerInventoryItemsResponseBP& OnCompletedRequest)
 {
-    return ULootLockerServerForCpp::ListPlayerItems(PlayerID, Page, PerPage, FLootLockerServerListPlayerItemsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerListPlayerItemsResponse& Response) {
+    return ULootLockerServerForCpp::ListPlayerInventoryItems(PlayerID, Page, PerPage, FLootLockerServerListPlayerInventoryItemsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerListPlayerInventoryItemsResponse& Response) {
         OnCompletedRequest.ExecuteIfBound(Response);
     }));
 }
 
-FString ULootLockerServerForBlueprints::GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseBP& OnCompletedRequest)
+FString ULootLockerServerForBlueprints::GetPlayerInventoryItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerInventoryItemResponseBP& OnCompletedRequest)
 {
-    return ULootLockerServerForCpp::GetPlayerItem(PlayerID, InventoryId, FLootLockerServerGetPlayerItemResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetPlayerItemResponse& Response) {
+    return ULootLockerServerForCpp::GetPlayerInventoryItem(PlayerID, InventoryId, FLootLockerServerGetPlayerInventoryItemResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGetPlayerInventoryItemResponse& Response) {
         OnCompletedRequest.ExecuteIfBound(Response);
     }));
 }
 
-FString ULootLockerServerForBlueprints::DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseBP& OnCompletedRequest)
+FString ULootLockerServerForBlueprints::DeletePlayerInventoryItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerInventoryItemResponseBP& OnCompletedRequest)
 {
-    return ULootLockerServerForCpp::DeletePlayerItem(PlayerID, InventoryId, FLootLockerServerDeletePlayerItemResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerDeletePlayerItemResponse& Response) {
+    return ULootLockerServerForCpp::DeletePlayerInventoryItem(PlayerID, InventoryId, FLootLockerServerDeletePlayerInventoryItemResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerDeletePlayerInventoryItemResponse& Response) {
         OnCompletedRequest.ExecuteIfBound(Response);
     }));
 }
 
-FString ULootLockerServerForBlueprints::GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseBP& OnCompletedRequest)
+FString ULootLockerServerForBlueprints::GrantItemToPlayerInventory(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseBP& OnCompletedRequest)
 {
-    return ULootLockerServerForCpp::GrantItemToPlayer(PlayerID, Request, FLootLockerServerGrantItemResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGrantItemResponse& Response) {
+    return ULootLockerServerForCpp::GrantItemToPlayerInventory(PlayerID, Request, FLootLockerServerGrantItemResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerGrantItemResponse& Response) {
         OnCompletedRequest.ExecuteIfBound(Response);
     }));
 }
 
-FString ULootLockerServerForBlueprints::SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseBP& OnCompletedRequest)
+FString ULootLockerServerForBlueprints::SplitPlayerInventoryItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitInventoryItemRequest& Request, const FLootLockerServerSplitPlayerInventoryItemStackResponseBP& OnCompletedRequest)
 {
-    return ULootLockerServerForCpp::SplitPlayerItemStack(PlayerID, InventoryId, Request, FLootLockerServerSplitPlayerItemStackResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSplitPlayerItemStackResponse& Response) {
+    return ULootLockerServerForCpp::SplitPlayerInventoryItemStack(PlayerID, InventoryId, Request, FLootLockerServerSplitPlayerInventoryItemStackResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSplitPlayerInventoryItemStackResponse& Response) {
         OnCompletedRequest.ExecuteIfBound(Response);
     }));
 }
 
-FString ULootLockerServerForBlueprints::MergePlayerItemStacks(int PlayerID, const FLootLockerServerMergeItemsRequest& Request, const FLootLockerServerMergePlayerItemStacksResponseBP& OnCompletedRequest)
+FString ULootLockerServerForBlueprints::MergePlayerInventoryItemStacks(int PlayerID, const FLootLockerServerMergeInventoryItemsRequest& Request, const FLootLockerServerMergePlayerInventoryItemStacksResponseBP& OnCompletedRequest)
 {
-    return ULootLockerServerForCpp::MergePlayerItemStacks(PlayerID, Request, FLootLockerServerMergePlayerItemStacksResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerMergePlayerItemStacksResponse& Response) {
+    return ULootLockerServerForCpp::MergePlayerInventoryItemStacks(PlayerID, Request, FLootLockerServerMergePlayerInventoryItemStacksResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerMergePlayerInventoryItemStacksResponse& Response) {
         OnCompletedRequest.ExecuteIfBound(Response);
     }));
 }

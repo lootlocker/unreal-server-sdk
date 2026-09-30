@@ -49,7 +49,7 @@ namespace
      * entry's private JSON representation, so it has to be copied over explicitly. Matches entries
      * by key, which is unique within a single item's metadata.
      */
-    void PopulateMetadataJsonRepresentations(const TArray<TSharedPtr<FJsonValue>>& JsonItems, TArray<FLootLockerServerItem>& Items)
+    void PopulateMetadataJsonRepresentations(const TArray<TSharedPtr<FJsonValue>>& JsonItems, TArray<FLootLockerServerInventoryItem>& Items)
     {
         const int32 ItemCount = FMath::Min(JsonItems.Num(), Items.Num());
         for (int32 ItemIndex = 0; ItemIndex < ItemCount; ++ItemIndex)
@@ -96,7 +96,7 @@ ULootLockerServerItemRequestHandler::ULootLockerServerItemRequestHandler()
 {
 }
 
-FString ULootLockerServerItemRequestHandler::ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerItemRequestHandler::ListPlayerInventoryItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerInventoryItemsResponseDelegate& OnCompletedRequest)
 {
     TMultiMap<FString, FString> QueryParams;
     if (Page > 0)
@@ -107,7 +107,7 @@ FString ULootLockerServerItemRequestHandler::ListPlayerItems(int PlayerID, int P
     {
         QueryParams.Add("per_page", FString::FromInt(PerPage));
     }
-    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerListPlayerItemsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListPlayerItems, { PlayerID }, QueryParams, FLootLockerServerListPlayerItemsResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerListPlayerItemsResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnCompletedRequest](FLootLockerServerListPlayerItemsResponse& Response)
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerListPlayerInventoryItemsResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::ListPlayerInventoryItems, { PlayerID }, QueryParams, FLootLockerServerListPlayerInventoryItemsResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerListPlayerInventoryItemsResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnCompletedRequest](FLootLockerServerListPlayerInventoryItemsResponse& Response)
     {
         // The response is deserialized before this inspector runs, so re-run the conversion once the
         // PascalCase keys have been rewritten to the snake_case names the DTO declares.
@@ -144,7 +144,7 @@ FString ULootLockerServerItemRequestHandler::ListPlayerItems(int PlayerID, int P
 
         if (bNormalizedAnyItem)
         {
-            FJsonObjectConverter::JsonObjectToUStruct(ResponseAsJson.ToSharedRef(), FLootLockerServerListPlayerItemsResponse::StaticStruct(), &Response, 0, 0);
+            FJsonObjectConverter::JsonObjectToUStruct(ResponseAsJson.ToSharedRef(), FLootLockerServerListPlayerInventoryItemsResponse::StaticStruct(), &Response, 0, 0);
             Response.Success = true;
             Response.FullTextFromServer = LootLockerServerUtilities::FStringFromJsonObject(ResponseAsJson);
         }
@@ -156,9 +156,9 @@ FString ULootLockerServerItemRequestHandler::ListPlayerItems(int PlayerID, int P
     }));
 }
 
-FString ULootLockerServerItemRequestHandler::GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerItemRequestHandler::GetPlayerInventoryItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerInventoryItemResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerItemResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetPlayerItem, { PlayerID, InventoryId }, {}, FLootLockerServerGetPlayerItemResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerGetPlayerItemResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnCompletedRequest](FLootLockerServerGetPlayerItemResponse& Response)
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGetPlayerInventoryItemResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::GetPlayerInventoryItem, { PlayerID, InventoryId }, {}, FLootLockerServerGetPlayerInventoryItemResponseDelegate(), ULootLockerServerHttpClient::ResponseInspector<FLootLockerServerGetPlayerInventoryItemResponse>::FLootLockerServerResponseInspectorCallback::CreateLambda([OnCompletedRequest](FLootLockerServerGetPlayerInventoryItemResponse& Response)
     {
         // FJsonObjectConverter populates the public metadata fields, but the value itself lives in the
         // entry's private JSON representation, so it has to be copied over explicitly.
@@ -209,22 +209,22 @@ FString ULootLockerServerItemRequestHandler::GetPlayerItem(int PlayerID, const F
     }));
 }
 
-FString ULootLockerServerItemRequestHandler::DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerItemRequestHandler::DeletePlayerInventoryItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerInventoryItemResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerDeletePlayerItemResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::DeletePlayerItem, { PlayerID, InventoryId }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerDeletePlayerInventoryItemResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::DeletePlayerInventoryItem, { PlayerID, InventoryId }, {}, OnCompletedRequest);
 }
 
-FString ULootLockerServerItemRequestHandler::GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerItemRequestHandler::GrantItemToPlayerInventory(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGrantItemResponse>(Request, ULootLockerServerEndpoints::GrantItemToPlayer, { PlayerID }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerGrantItemResponse>(Request, ULootLockerServerEndpoints::GrantItemToPlayerInventory, { PlayerID }, {}, OnCompletedRequest);
 }
 
-FString ULootLockerServerItemRequestHandler::SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerItemRequestHandler::SplitPlayerInventoryItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitInventoryItemRequest& Request, const FLootLockerServerSplitPlayerInventoryItemStackResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerSplitPlayerItemStackResponse>(Request, ULootLockerServerEndpoints::SplitPlayerItemStack, { PlayerID, InventoryId }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerSplitPlayerInventoryItemStackResponse>(Request, ULootLockerServerEndpoints::SplitPlayerInventoryItemStack, { PlayerID, InventoryId }, {}, OnCompletedRequest);
 }
 
-FString ULootLockerServerItemRequestHandler::MergePlayerItemStacks(int PlayerID, const FLootLockerServerMergeItemsRequest& Request, const FLootLockerServerMergePlayerItemStacksResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerItemRequestHandler::MergePlayerInventoryItemStacks(int PlayerID, const FLootLockerServerMergeInventoryItemsRequest& Request, const FLootLockerServerMergePlayerInventoryItemStacksResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerMergePlayerItemStacksResponse>(Request, ULootLockerServerEndpoints::MergePlayerItemStacks, { PlayerID }, {}, OnCompletedRequest);
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerMergePlayerInventoryItemStacksResponse>(Request, ULootLockerServerEndpoints::MergePlayerInventoryItemStacks, { PlayerID }, {}, OnCompletedRequest);
 }
