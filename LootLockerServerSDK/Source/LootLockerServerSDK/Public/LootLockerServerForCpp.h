@@ -651,6 +651,10 @@ public:
     /**
      * Get a list of assets that are available for all player's in the game
      *
+     * Operates on assets and asset instances. For the item-based inventory, see
+     * ListPlayerInventoryItems and friends, which deal with items and item templates and are a
+     * separate system.
+     *
      * @param OnCompletedRequest Delegate for handling the server response
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
@@ -658,6 +662,10 @@ public:
     
     /**
      * Get the specified player's default character's inventory
+     *
+     * Operates on assets and asset instances. For the item-based inventory, see
+     * ListPlayerInventoryItems and friends, which deal with items and item templates and are a
+     * separate system.
      *
      * @param PlayerID The ID of the player for whom to get the inventory
      * @param OnCompletedRequest Delegate for handling the server response
@@ -667,6 +675,10 @@ public:
     
     /**
      * Get the specified player's default character's inventory according to the specified pagination parameters
+     *
+     * Operates on assets and asset instances. For the item-based inventory, see
+     * ListPlayerInventoryItems and friends, which deal with items and item templates and are a
+     * separate system.
      *
      * @param PlayerID The ID of the player for whom to get the inventory
      * @param Count The number of inventory items to get. Must be a value between 1 and 200
@@ -823,6 +835,10 @@ public:
     //==================================================
     /// @addtogroup Items
     /// @{
+    ///
+    /// These methods operate on items and item templates. They are unrelated to the asset-based
+    /// inventory API above (GetPlayerInventory, GetUniversalInventory, ...), which deals with
+    /// assets and asset instances. The two share a URL prefix but are separate systems.
 
     /**
      * List the specified player's items
@@ -833,7 +849,7 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static FString ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseDelegate& OnCompletedRequest);
+    static FString ListPlayerInventoryItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerInventoryItemsResponseDelegate& OnCompletedRequest);
 
     /**
      * Get a specified player item
@@ -843,7 +859,7 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static FString GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerInventoryItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerInventoryItemResponseDelegate& OnCompletedRequest);
 
     /**
      * Delete a specified player item
@@ -853,7 +869,7 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static FString DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseDelegate& OnCompletedRequest);
+    static FString DeletePlayerInventoryItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerInventoryItemResponseDelegate& OnCompletedRequest);
 
     /**
      * Grant an item to the specified player
@@ -863,7 +879,7 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static FString GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest);
+    static FString GrantItemToPlayerInventory(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest);
 
     /**
      * Split a specified player item stack
@@ -874,7 +890,7 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static FString SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseDelegate& OnCompletedRequest);
+    static FString SplitPlayerInventoryItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitInventoryItemRequest& Request, const FLootLockerServerSplitPlayerInventoryItemStackResponseDelegate& OnCompletedRequest);
 
     /**
      * Merge two player item stacks
@@ -884,7 +900,7 @@ public:
      * @param OnCompletedRequest Delegate for handling the server response
      * @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
      */
-    static FString MergePlayerItemStacks(int PlayerID, const FLootLockerServerMergeItemsRequest& Request, const FLootLockerServerMergePlayerItemStacksResponseDelegate& OnCompletedRequest);
+    static FString MergePlayerInventoryItemStacks(int PlayerID, const FLootLockerServerMergeInventoryItemsRequest& Request, const FLootLockerServerMergePlayerInventoryItemStacksResponseDelegate& OnCompletedRequest);
 
     /// @}
 

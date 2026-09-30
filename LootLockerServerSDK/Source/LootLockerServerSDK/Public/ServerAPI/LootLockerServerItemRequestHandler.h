@@ -121,12 +121,17 @@ struct FLootLockerItemTemplate
  Note: The backend list endpoint returns the raw inventory rows, which currently
  marshal in PascalCase (the backend Inventory struct is missing JSON tags),
  whereas the get-item endpoint returns snake_case. The DTO below mirrors the
- snake_case shape used by get-item, and ListPlayerItems normalizes the
+ snake_case shape used by get-item, and ListPlayerInventoryItems normalizes the
  PascalCase keys so both endpoints deserialize correctly. Once the backend adds
  JSON tags the normalization becomes a no-op.
+
+ Note: This represents an item granted from an item template. It is unrelated to
+ FLootLockerServerPlayerInventoryItem, which represents an asset in the player's
+ inventory, and to the asset-based inventory API (GetPlayerInventory,
+ GetUniversalInventory, ...).
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerItem
+struct FLootLockerServerInventoryItem
 {
     GENERATED_BODY()
     /**
@@ -179,7 +184,7 @@ struct FLootLockerServerItem
 
      Note: The get-item endpoint returns metadata as an array of entries matching
      FLootLockerServerMetadataEntry. The list endpoint returns raw inventory rows
-     (see note on FLootLockerServerItem).
+     (see note on FLootLockerServerInventoryItem).
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerMetadataEntry> Metadata;
@@ -193,14 +198,14 @@ struct FLootLockerServerItem
  Response for listing a player's items
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerListPlayerItemsResponse : public FLootLockerServerResponse
+struct FLootLockerServerListPlayerInventoryItemsResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     /**
      The items in the player's inventory
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    TArray<FLootLockerServerItem> Items;
+    TArray<FLootLockerServerInventoryItem> Items;
     /**
      Pagination information for this listing (extended offset pagination)
      */
@@ -214,7 +219,7 @@ struct FLootLockerServerListPlayerItemsResponse : public FLootLockerServerRespon
  object (not wrapped in an "item" key).
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerGetPlayerItemResponse : public FLootLockerServerResponse
+struct FLootLockerServerGetPlayerInventoryItemResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     /**
@@ -280,7 +285,7 @@ struct FLootLockerServerGetPlayerItemResponse : public FLootLockerServerResponse
  Response for deleting a player item
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerDeletePlayerItemResponse : public FLootLockerServerResponse
+struct FLootLockerServerDeletePlayerInventoryItemResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
 };
@@ -343,7 +348,7 @@ struct FLootLockerServerGrantItemResponse : public FLootLockerServerResponse
  Response for splitting a player item stack
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerSplitPlayerItemStackResponse : public FLootLockerServerResponse
+struct FLootLockerServerSplitPlayerInventoryItemStackResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
     /**
@@ -358,7 +363,7 @@ struct FLootLockerServerSplitPlayerItemStackResponse : public FLootLockerServerR
  Note: This endpoint returns 204 No Content.
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerMergePlayerItemStacksResponse : public FLootLockerServerResponse
+struct FLootLockerServerMergePlayerInventoryItemStacksResponse : public FLootLockerServerResponse
 {
     GENERATED_BODY()
 };
@@ -395,7 +400,7 @@ struct FLootLockerServerGrantItemRequest
  Request body for splitting a player item stack
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerSplitItemRequest
+struct FLootLockerServerSplitInventoryItemRequest
 {
     GENERATED_BODY()
     /**
@@ -409,7 +414,7 @@ struct FLootLockerServerSplitItemRequest
  Request body for merging player item stacks
  */
 USTRUCT(BlueprintType)
-struct FLootLockerServerMergeItemsRequest
+struct FLootLockerServerMergeInventoryItemsRequest
 {
     GENERATED_BODY()
     /**
@@ -431,15 +436,15 @@ struct FLootLockerServerMergeItemsRequest
 /*
  C++ response delegate for listing a player's items
  */
-DECLARE_DELEGATE_OneParam(FLootLockerServerListPlayerItemsResponseDelegate, FLootLockerServerListPlayerItemsResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerServerListPlayerInventoryItemsResponseDelegate, FLootLockerServerListPlayerInventoryItemsResponse);
 /*
  C++ response delegate for getting a player item
  */
-DECLARE_DELEGATE_OneParam(FLootLockerServerGetPlayerItemResponseDelegate, FLootLockerServerGetPlayerItemResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerServerGetPlayerInventoryItemResponseDelegate, FLootLockerServerGetPlayerInventoryItemResponse);
 /*
  C++ response delegate for deleting a player item
  */
-DECLARE_DELEGATE_OneParam(FLootLockerServerDeletePlayerItemResponseDelegate, FLootLockerServerDeletePlayerItemResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerServerDeletePlayerInventoryItemResponseDelegate, FLootLockerServerDeletePlayerInventoryItemResponse);
 /*
  C++ response delegate for granting an item to a player
  */
@@ -447,11 +452,11 @@ DECLARE_DELEGATE_OneParam(FLootLockerServerGrantItemResponseDelegate, FLootLocke
 /*
  C++ response delegate for splitting a player item stack
  */
-DECLARE_DELEGATE_OneParam(FLootLockerServerSplitPlayerItemStackResponseDelegate, FLootLockerServerSplitPlayerItemStackResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerServerSplitPlayerInventoryItemStackResponseDelegate, FLootLockerServerSplitPlayerInventoryItemStackResponse);
 /*
  C++ response delegate for merging player item stacks
  */
-DECLARE_DELEGATE_OneParam(FLootLockerServerMergePlayerItemStacksResponseDelegate, FLootLockerServerMergePlayerItemStacksResponse);
+DECLARE_DELEGATE_OneParam(FLootLockerServerMergePlayerInventoryItemStacksResponseDelegate, FLootLockerServerMergePlayerInventoryItemStacksResponse);
 
 /**
  Handler for the Items & Item Templates server endpoints
@@ -463,10 +468,10 @@ class LOOTLOCKERSERVERSDK_API ULootLockerServerItemRequestHandler : public UObje
     public:
     ULootLockerServerItemRequestHandler();
 
-    static FString ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseDelegate& OnCompletedRequest);
-    static FString GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseDelegate& OnCompletedRequest);
-    static FString DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseDelegate& OnCompletedRequest);
-    static FString GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest);
-    static FString SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseDelegate& OnCompletedRequest);
-    static FString MergePlayerItemStacks(int PlayerID, const FLootLockerServerMergeItemsRequest& Request, const FLootLockerServerMergePlayerItemStacksResponseDelegate& OnCompletedRequest);
+    static FString ListPlayerInventoryItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerInventoryItemsResponseDelegate& OnCompletedRequest);
+    static FString GetPlayerInventoryItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerInventoryItemResponseDelegate& OnCompletedRequest);
+    static FString DeletePlayerInventoryItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerInventoryItemResponseDelegate& OnCompletedRequest);
+    static FString GrantItemToPlayerInventory(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest);
+    static FString SplitPlayerInventoryItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitInventoryItemRequest& Request, const FLootLockerServerSplitPlayerInventoryItemStackResponseDelegate& OnCompletedRequest);
+    static FString MergePlayerInventoryItemStacks(int PlayerID, const FLootLockerServerMergeInventoryItemsRequest& Request, const FLootLockerServerMergePlayerInventoryItemStacksResponseDelegate& OnCompletedRequest);
 };

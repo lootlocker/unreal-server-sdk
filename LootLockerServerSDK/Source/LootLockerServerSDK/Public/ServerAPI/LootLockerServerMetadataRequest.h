@@ -25,8 +25,8 @@ enum class ELootLockerServerMetadataSources : uint8
     currency = 4,
     player = 5,
     asset = 6,
-    item = 7, // This is the source for legacy items, while the "inventory" source is for item instances
-    inventory = 8, // This is the source for item instances (player inventory items)
+    item = 7, // This is the source for legacy items, while the "inventory_item" source is for item instances
+    inventory_item = 8, // This is the source for item instances (player inventory items)
     item_template = 9, // This is the source for item templates
 };
 

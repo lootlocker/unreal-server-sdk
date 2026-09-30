@@ -350,34 +350,34 @@ FString ULootLockerServerForCpp::AlterPlayerInventoryAddAssetsByAssetIDAndRental
 }
 
 // Items
-FString ULootLockerServerForCpp::ListPlayerItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerItemsResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::ListPlayerInventoryItems(int PlayerID, int Page, int PerPage, const FLootLockerServerListPlayerInventoryItemsResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerItemRequestHandler::ListPlayerItems(PlayerID, Page, PerPage, OnCompletedRequest);
+    return ULootLockerServerItemRequestHandler::ListPlayerInventoryItems(PlayerID, Page, PerPage, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::GetPlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerItemResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GetPlayerInventoryItem(int PlayerID, const FString& InventoryId, const FLootLockerServerGetPlayerInventoryItemResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerItemRequestHandler::GetPlayerItem(PlayerID, InventoryId, OnCompletedRequest);
+    return ULootLockerServerItemRequestHandler::GetPlayerInventoryItem(PlayerID, InventoryId, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::DeletePlayerItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerItemResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::DeletePlayerInventoryItem(int PlayerID, const FString& InventoryId, const FLootLockerServerDeletePlayerInventoryItemResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerItemRequestHandler::DeletePlayerItem(PlayerID, InventoryId, OnCompletedRequest);
+    return ULootLockerServerItemRequestHandler::DeletePlayerInventoryItem(PlayerID, InventoryId, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::GrantItemToPlayer(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::GrantItemToPlayerInventory(int PlayerID, const FLootLockerServerGrantItemRequest& Request, const FLootLockerServerGrantItemResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerItemRequestHandler::GrantItemToPlayer(PlayerID, Request, OnCompletedRequest);
+    return ULootLockerServerItemRequestHandler::GrantItemToPlayerInventory(PlayerID, Request, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::SplitPlayerItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitItemRequest& Request, const FLootLockerServerSplitPlayerItemStackResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::SplitPlayerInventoryItemStack(int PlayerID, const FString& InventoryId, const FLootLockerServerSplitInventoryItemRequest& Request, const FLootLockerServerSplitPlayerInventoryItemStackResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerItemRequestHandler::SplitPlayerItemStack(PlayerID, InventoryId, Request, OnCompletedRequest);
+    return ULootLockerServerItemRequestHandler::SplitPlayerInventoryItemStack(PlayerID, InventoryId, Request, OnCompletedRequest);
 }
 
-FString ULootLockerServerForCpp::MergePlayerItemStacks(int PlayerID, const FLootLockerServerMergeItemsRequest& Request, const FLootLockerServerMergePlayerItemStacksResponseDelegate& OnCompletedRequest)
+FString ULootLockerServerForCpp::MergePlayerInventoryItemStacks(int PlayerID, const FLootLockerServerMergeInventoryItemsRequest& Request, const FLootLockerServerMergePlayerInventoryItemStacksResponseDelegate& OnCompletedRequest)
 {
-    return ULootLockerServerItemRequestHandler::MergePlayerItemStacks(PlayerID, Request, OnCompletedRequest);
+    return ULootLockerServerItemRequestHandler::MergePlayerInventoryItemStacks(PlayerID, Request, OnCompletedRequest);
 }
 
 // Assets
