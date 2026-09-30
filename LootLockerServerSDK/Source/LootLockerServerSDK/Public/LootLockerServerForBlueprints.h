@@ -1377,6 +1377,8 @@ public:
     /**
      * List the specified player's items
      *
+     * These items come from item templates, not the legacy asset/asset-instance player inventory.
+     *
      * @param PlayerID The ID of the player for whom to list items
      * @param Page The page of results to fetch. Set to 0 to omit the parameter
      * @param PerPage The number of results per page. Set to 0 to omit the parameter
@@ -1389,6 +1391,8 @@ public:
     /**
      * Get a specified player item
      *
+     * These items come from item templates, not the legacy asset/asset-instance player inventory.
+     *
      * @param PlayerID The ID of the player for whom to get the item
      * @param InventoryId The unique identifier (ULID) of the inventory item instance to get
      * @param OnCompletedRequest Delegate for handling the server response
@@ -1399,6 +1403,8 @@ public:
 
     /**
      * Delete a specified player item
+     *
+     * These items come from item templates, not the legacy asset/asset-instance player inventory.
      *
      * @param PlayerID The ID of the player for whom to delete the item
      * @param InventoryId The unique identifier (ULID) of the inventory item instance to delete
@@ -1411,6 +1417,8 @@ public:
     /**
      * Grant an item to the specified player
      *
+     * These items come from item templates, not the legacy asset/asset-instance player inventory.
+     *
      * @param PlayerID The ID of the player for whom to grant the item
      * @param Request The grant request containing the item template id, count and source
      * @param OnCompletedRequest Delegate for handling the server response
@@ -1421,6 +1429,8 @@ public:
 
     /**
      * Split a specified player item stack
+     *
+     * These items come from item templates, not the legacy asset/asset-instance player inventory.
      *
      * @param PlayerID The ID of the player for whom to split the item stack
      * @param InventoryId The unique identifier (ULID) of the inventory item instance to split
@@ -1433,6 +1443,8 @@ public:
 
     /**
      * Merge two player item stacks
+     *
+     * These items come from item templates, not the legacy asset/asset-instance player inventory.
      *
      * @param PlayerID The ID of the player for whom to merge the item stacks
      * @param Request The merge request containing the source and target inventory item instance ids
