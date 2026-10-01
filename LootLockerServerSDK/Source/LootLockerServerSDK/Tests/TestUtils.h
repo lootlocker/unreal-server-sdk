@@ -11,6 +11,7 @@
 
 #include "LootLockerServerConfig.h"
 #include "LootLockerServerStateData.h"
+#include "LootLockerServerTestGame.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
 
 namespace test_util
@@ -114,6 +115,38 @@ namespace test_util
 	inline void EndSession()
 	{
 		ULootLockerServerStateData::ClearState();
+	}
+
+	/**
+	 * Provision an isolated game and bring the SDK up against it.
+	 *
+	 * On success Game holds a valid, fully provisioned game with a server key and the
+	 * SDK is configured and authenticated, ready for tests to run. On failure the
+	 * caller should report the error and skip the test body — check Game.IsValid().
+	 *
+	 * Always pair with Game.DeleteGame() in teardown.
+	 */
+	inline bool SetupTestGame(FLootLockerServerTestGame& Game, const FString& TestName)
+	{
+		if (!FLootLockerServerTestGame::CreateGame(Game, TestName))
+		{
+			UE_LOG(LogTemp, Error, TEXT("test_util: CreateGame failed for '%s'"), *TestName);
+			return false;
+		}
+
+		if (!Game.CreateServerKey())
+		{
+			return false;
+		}
+
+		Game.InitializeLootLockerServerSDK();
+
+		if (!StartSession())
+		{
+			return false;
+		}
+
+		return true;
 	}
 }
 #endif
