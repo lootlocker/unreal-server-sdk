@@ -36,7 +36,10 @@ $ErrorActionPreference = 'Stop'
 
 $RepoRoot      = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $SettingsFile  = Join-Path $RepoRoot "unreal-dev-settings.json"
-$BuildOutput   = Join-Path $RepoRoot "tmp\build"
+# Use a short temp path for build output to avoid Windows MAX_PATH (260 char) issues
+# with the server SDK's long filenames (e.g. LootLockerServerLeaderboardArchiveRequestHandler.cpp).
+# Do not move this under the repo: worktree paths are long enough to blow the limit.
+$BuildOutput   = Join-Path $env:TEMP "LLServerSdkTestBuild"
 $BuildLog      = Join-Path $RepoRoot "tmp\logs\UAT.log"
 $ProjectDir    = Join-Path $RepoRoot "Temp~\VerificationProject"
 $ProjectName   = "VerificationProject"
@@ -100,11 +103,16 @@ $noUbaXml = @'
 <Configuration xmlns="https://www.unrealengine.com/BuildConfiguration">
   <BuildConfiguration>
     <bAllowUBAExecutor>false</bAllowUBAExecutor>
+    <bAllowUBALocalExecutor>false</bAllowUBALocalExecutor>
   </BuildConfiguration>
 </Configuration>
 '@
 [IO.File]::WriteAllText($UbtConfigFile, $noUbaXml)
 $WroteUbtConfig = $true
+
+# Belt and braces: also disable UBA through the environment, which UnrealBuildTool
+# reads in preference to the config file for some options.
+$env:UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor = "false"
 
 function Restore-UbtConfig {
     if ($script:WroteUbtConfig) {
@@ -113,6 +121,7 @@ function Restore-UbtConfig {
         } else {
             Remove-Item $script:UbtConfigFile -Force -ErrorAction SilentlyContinue
         }
+        Remove-Item Env:\UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor -ErrorAction SilentlyContinue
         $script:WroteUbtConfig = $false
     }
 }

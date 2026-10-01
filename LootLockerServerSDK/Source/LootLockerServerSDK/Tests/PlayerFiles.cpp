@@ -11,14 +11,32 @@
 #if ENGINE_MAJOR_VERSION > 4
 
 BEGIN_DEFINE_SPEC(FTestLootLockerServer_PlayerFiles, "LootLockerServer", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+	FLootLockerServerTestGame Game;
 END_DEFINE_SPEC(FTestLootLockerServer_PlayerFiles)
 
 void FTestLootLockerServer_PlayerFiles::Define()
 {
+	LatentBeforeEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		if (!test_util::SetupTestGame(Game, TEXT("PlayerFiles")))
+		{
+			AddError(TEXT("Game setup failed"));
+		}
+		Done.Execute();
+	});
+
+	LatentAfterEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		Game.DeleteGame();
+		Done.Execute();
+	});
+
 	Describe("Server_PlayerFiles", [this]()
 	{
 		LatentIt("When Server PlayerFiles", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
 			int PlayerId = 0;
 			FString PlayerUlid;
 			{

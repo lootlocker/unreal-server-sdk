@@ -11,14 +11,32 @@
 #if ENGINE_MAJOR_VERSION > 4
 
 BEGIN_DEFINE_SPEC(FTestLootLockerServer_PersistentStorage, "LootLockerServer", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+	FLootLockerServerTestGame Game;
 END_DEFINE_SPEC(FTestLootLockerServer_PersistentStorage)
 
 void FTestLootLockerServer_PersistentStorage::Define()
 {
+	LatentBeforeEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		if (!test_util::SetupTestGame(Game, TEXT("PersistentStorage")))
+		{
+			AddError(TEXT("Game setup failed"));
+		}
+		Done.Execute();
+	});
+
+	LatentAfterEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		Game.DeleteGame();
+		Done.Execute();
+	});
+
 	Describe("Server_PersistentStorage", [this]()
 	{
 		LatentIt("When Server PersistentStorage", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
 			int PlayerId = 0;
 			FString PlayerUlid;
 			{

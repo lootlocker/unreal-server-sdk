@@ -11,14 +11,32 @@
 
 #if ENGINE_MAJOR_VERSION > 4
 BEGIN_DEFINE_SPEC(FTestLootLockerServer_Metadata, "LootLockerServer.Metadata", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+	FLootLockerServerTestGame Game;
 END_DEFINE_SPEC(FTestLootLockerServer_Metadata)
 
 void FTestLootLockerServer_Metadata::Define()
 {
+	LatentBeforeEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		if (!test_util::SetupTestGame(Game, TEXT("Metadata")))
+		{
+			AddError(TEXT("Game setup failed"));
+		}
+		Done.Execute();
+	});
+
+	LatentAfterEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		Game.DeleteGame();
+		Done.Execute();
+	});
+
 	Describe("Server_Metadata", [this]()
 	{
 		LatentIt("SetAndGetPlayerMetadata", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
 			FString PlayerUlid;
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerCreatePlayerResponse, FLootLockerServerCreatePlayerResponseDelegate>();
@@ -86,6 +104,8 @@ void FTestLootLockerServer_Metadata::Define()
 
 		LatentIt("ListMetadata_IncludesWrittenEntry", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
 			FString PlayerUlid;
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerCreatePlayerResponse, FLootLockerServerCreatePlayerResponseDelegate>();
