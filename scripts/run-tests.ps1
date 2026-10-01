@@ -16,8 +16,9 @@
 
 .PARAMETER NoBuild
     Skip the RunUAT BuildPlugin step and run the tests against whatever binaries are
-    already present in tmp/build. Useful for fast iteration when only test code changed
-    but you have already built once.
+    already present in %TEMP%\LLServerSdkTestBuild. Only safe when neither the plugin
+    nor the test code has changed since that build — edits to C++ test files are NOT
+    compiled by this switch, so the run would report results for the previous code.
 
 .PARAMETER Clean
     Delete the previous build output before building, forcing a full rebuild.
@@ -112,6 +113,9 @@ $WroteUbtConfig = $true
 
 # Belt and braces: also disable UBA through the environment, which UnrealBuildTool
 # reads in preference to the config file for some options.
+# Remember any pre-existing value so Restore-UbtConfig can put it back rather than
+# silently discarding the caller's setting.
+$PrevUbaEnv = [Environment]::GetEnvironmentVariable('UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor', 'Process')
 $env:UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor = "false"
 
 function Restore-UbtConfig {
@@ -121,7 +125,11 @@ function Restore-UbtConfig {
         } else {
             Remove-Item $script:UbtConfigFile -Force -ErrorAction SilentlyContinue
         }
-        Remove-Item Env:\UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor -ErrorAction SilentlyContinue
+        if ($null -eq $script:PrevUbaEnv) {
+            Remove-Item Env:\UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor -ErrorAction SilentlyContinue
+        } else {
+            $env:UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor = $script:PrevUbaEnv
+        }
         $script:WroteUbtConfig = $false
     }
 }
@@ -133,6 +141,9 @@ Write-Step ""
 # 3. Build the plugin (ensures the latest test code is compiled into binaries)
 # ---------------------------------------------------------------------------
 $ShouldBuild = $Clean -or (-not $NoBuild)
+
+# Captured before the branch so both the build and test paths can restore it.
+$prevEAP = $ErrorActionPreference
 
 if (-not $ShouldBuild)
 {

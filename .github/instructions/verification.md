@@ -74,7 +74,8 @@ admin credentials for the LootLocker backend. Offline tests (`Config.SaveConfig`
 # A single test or suite
 .\scripts\run-tests.ps1 -TestFilter "LootLockerServer.Player"
 
-# Reuse the binaries from the previous run (much faster when only test code changed)
+# Reuse the binaries from the previous run (faster, but only valid when neither the
+# plugin nor the test code changed — C++ test edits are NOT compiled by this switch)
 .\scripts\run-tests.ps1 -NoBuild
 
 # Force a full rebuild
@@ -85,8 +86,10 @@ The script exits `0` only when every selected test passed.
 
 ### Admin credentials
 
-The first run of the day signs up a throwaway account, so by default no configuration is needed.
-To reuse an existing (verified) account instead, set these environment variables:
+The harness generates a throwaway account name from the current UTC date *and hour*
+(`unreal-server+ci-testrun+YYYY-MM-DD-HHh@lootlocker.com`), so a fresh account is signed up
+once per hour rather than once per day. To reuse an existing (verified) account instead, set
+these environment variables:
 
 ```powershell
 $env:LOOTLOCKER_ADMIN_EMAIL    = "ci-testrun@example.com"

@@ -132,7 +132,9 @@ void FTestLootLockerServer_Player::Define()
 			TestTrue("LookupPlayerNames succeeded", Response.Success);
 			if (Response.Success)
 			{
-				TestTrue("At least one player name returned", Response.Players.Num() > 0);
+				const bool bFoundRequestedPlayer = Response.Players.ContainsByPredicate(
+					[&PlayerUlid](const FLootLockerServerPlayerName& Player) { return Player.Ulid == PlayerUlid; });
+				TestTrue("LookupPlayerNames returned the requested player", bFoundRequestedPlayer);
 			}
 
 			TestDone.Execute();
