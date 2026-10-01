@@ -14,11 +14,22 @@
     Automation test filter passed to "automation RunTests <filter>".
     Defaults to "LootLockerServer" which runs all LootLockerServer tests.
 
+.PARAMETER NoBuild
+    Skip the RunUAT BuildPlugin step and run the tests against whatever binaries are
+    already present in tmp/build. Useful for fast iteration when only test code changed
+    but you have already built once.
+
+.PARAMETER Clean
+    Delete the previous build output before building, forcing a full rebuild.
+    Overrides -NoBuild.
+
 .NOTES
     Exit codes: 0 = all tests passed, 1 = one or more tests failed or setup error.
 #>
 param(
-    [string]$TestFilter = "LootLockerServer"
+    [string]$TestFilter = "LootLockerServer",
+    [switch]$NoBuild,
+    [switch]$Clean
 )
 
 $ErrorActionPreference = 'Stop'
@@ -112,6 +123,20 @@ Write-Step ""
 # ---------------------------------------------------------------------------
 # 3. Build the plugin (ensures the latest test code is compiled into binaries)
 # ---------------------------------------------------------------------------
+$ShouldBuild = $Clean -or (-not $NoBuild)
+
+if (-not $ShouldBuild)
+{
+    if (-not (Test-Path $BuildOutput)) {
+        Restore-UbtConfig
+        Write-Fail "ERROR: No previous build found at $BuildOutput - run without -NoBuild first."
+        exit 1
+    }
+    Write-Step "Step 1/3 - Skipping build (-NoBuild). Reusing binaries in: $BuildOutput"
+    Write-Step ""
+}
+else
+{
 Write-Step "Step 1/3 - Building plugin via RunUAT BuildPlugin ..."
 Write-Step "Plugin  : $($PluginFile.FullName)"
 Write-Step "Engine  : $UnrealRoot"
@@ -122,7 +147,8 @@ $BuildLogDir = Split-Path $BuildLog
 if (-not (Test-Path $BuildLogDir)) { New-Item -ItemType Directory -Path $BuildLogDir -Force | Out-Null }
 if (Test-Path $BuildLog) { Remove-Item $BuildLog -Force }
 
-if (Test-Path $BuildOutput) {
+if ($Clean -and (Test-Path $BuildOutput)) {
+    Write-Step "Cleaning previous build output (-Clean) ..."
     & cmd /c "rmdir /S /Q `"$BuildOutput`"" 2>&1 | Out-Null
 }
 
@@ -162,6 +188,7 @@ if ($buildExit -ne 0) {
 Write-Step ""
 Write-Ok "Plugin built successfully."
 Write-Step ""
+}
 
 # ---------------------------------------------------------------------------
 # 4. Set up VerificationProject pointing at the compiled plugin output
