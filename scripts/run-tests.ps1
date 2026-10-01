@@ -14,18 +14,33 @@
     Automation test filter passed to "automation RunTests <filter>".
     Defaults to "LootLockerServer" which runs all LootLockerServer tests.
 
+.PARAMETER NoBuild
+    Skip the RunUAT BuildPlugin step and run the tests against whatever binaries are
+    already present in %TEMP%\LLServerSdkTestBuild. Only safe when neither the plugin
+    nor the test code has changed since that build — edits to C++ test files are NOT
+    compiled by this switch, so the run would report results for the previous code.
+
+.PARAMETER Clean
+    Delete the previous build output before building, forcing a full rebuild.
+    Overrides -NoBuild.
+
 .NOTES
     Exit codes: 0 = all tests passed, 1 = one or more tests failed or setup error.
 #>
 param(
-    [string]$TestFilter = "LootLockerServer"
+    [string]$TestFilter = "LootLockerServer",
+    [switch]$NoBuild,
+    [switch]$Clean
 )
 
 $ErrorActionPreference = 'Stop'
 
 $RepoRoot      = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $SettingsFile  = Join-Path $RepoRoot "unreal-dev-settings.json"
-$BuildOutput   = Join-Path $RepoRoot "tmp\build"
+# Use a short temp path for build output to avoid Windows MAX_PATH (260 char) issues
+# with the server SDK's long filenames (e.g. LootLockerServerLeaderboardArchiveRequestHandler.cpp).
+# Do not move this under the repo: worktree paths are long enough to blow the limit.
+$BuildOutput   = Join-Path $env:TEMP "LLServerSdkTestBuild"
 $BuildLog      = Join-Path $RepoRoot "tmp\logs\UAT.log"
 $ProjectDir    = Join-Path $RepoRoot "Temp~\VerificationProject"
 $ProjectName   = "VerificationProject"
@@ -89,11 +104,19 @@ $noUbaXml = @'
 <Configuration xmlns="https://www.unrealengine.com/BuildConfiguration">
   <BuildConfiguration>
     <bAllowUBAExecutor>false</bAllowUBAExecutor>
+    <bAllowUBALocalExecutor>false</bAllowUBALocalExecutor>
   </BuildConfiguration>
 </Configuration>
 '@
 [IO.File]::WriteAllText($UbtConfigFile, $noUbaXml)
 $WroteUbtConfig = $true
+
+# Belt and braces: also disable UBA through the environment, which UnrealBuildTool
+# reads in preference to the config file for some options.
+# Remember any pre-existing value so Restore-UbtConfig can put it back rather than
+# silently discarding the caller's setting.
+$PrevUbaEnv = [Environment]::GetEnvironmentVariable('UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor', 'Process')
+$env:UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor = "false"
 
 function Restore-UbtConfig {
     if ($script:WroteUbtConfig) {
@@ -101,6 +124,11 @@ function Restore-UbtConfig {
             Move-Item $script:UbtConfigBackup $script:UbtConfigFile -Force
         } else {
             Remove-Item $script:UbtConfigFile -Force -ErrorAction SilentlyContinue
+        }
+        if ($null -eq $script:PrevUbaEnv) {
+            Remove-Item Env:\UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor -ErrorAction SilentlyContinue
+        } else {
+            $env:UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor = $script:PrevUbaEnv
         }
         $script:WroteUbtConfig = $false
     }
@@ -112,6 +140,23 @@ Write-Step ""
 # ---------------------------------------------------------------------------
 # 3. Build the plugin (ensures the latest test code is compiled into binaries)
 # ---------------------------------------------------------------------------
+$ShouldBuild = $Clean -or (-not $NoBuild)
+
+# Captured before the branch so both the build and test paths can restore it.
+$prevEAP = $ErrorActionPreference
+
+if (-not $ShouldBuild)
+{
+    if (-not (Test-Path $BuildOutput)) {
+        Restore-UbtConfig
+        Write-Fail "ERROR: No previous build found at $BuildOutput - run without -NoBuild first."
+        exit 1
+    }
+    Write-Step "Step 1/3 - Skipping build (-NoBuild). Reusing binaries in: $BuildOutput"
+    Write-Step ""
+}
+else
+{
 Write-Step "Step 1/3 - Building plugin via RunUAT BuildPlugin ..."
 Write-Step "Plugin  : $($PluginFile.FullName)"
 Write-Step "Engine  : $UnrealRoot"
@@ -122,7 +167,8 @@ $BuildLogDir = Split-Path $BuildLog
 if (-not (Test-Path $BuildLogDir)) { New-Item -ItemType Directory -Path $BuildLogDir -Force | Out-Null }
 if (Test-Path $BuildLog) { Remove-Item $BuildLog -Force }
 
-if (Test-Path $BuildOutput) {
+if ($Clean -and (Test-Path $BuildOutput)) {
+    Write-Step "Cleaning previous build output (-Clean) ..."
     & cmd /c "rmdir /S /Q `"$BuildOutput`"" 2>&1 | Out-Null
 }
 
@@ -162,6 +208,7 @@ if ($buildExit -ne 0) {
 Write-Step ""
 Write-Ok "Plugin built successfully."
 Write-Step ""
+}
 
 # ---------------------------------------------------------------------------
 # 4. Set up VerificationProject pointing at the compiled plugin output

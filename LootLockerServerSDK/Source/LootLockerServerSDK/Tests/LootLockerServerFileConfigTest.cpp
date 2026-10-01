@@ -3,8 +3,9 @@
 #include "CoreMinimal.h"
 #include "LootLockerServerConfig.h"
 #include "Misc/AutomationTest.h"
+#include "Runtime/Launch/Resources/Version.h"
 
-#if WITH_DEV_AUTOMATION_TESTS
+#if ENGINE_MAJOR_VERSION > 4
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FLootLockerServerFileConfigTest, "LootLockerServer.Config.FileConfig",
     EAutomationTestFlags::EditorContext | EAutomationTestFlags::ProductFilter)

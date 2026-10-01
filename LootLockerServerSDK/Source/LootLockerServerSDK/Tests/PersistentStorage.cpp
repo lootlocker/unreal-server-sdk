@@ -4,22 +4,56 @@
 #include "Runtime/Launch/Resources/Version.h"
 #include "ServerAPI/LootLockerServerStorageRequest.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
+#include "ServerAPI/LootLockerServerPlayerRequest.h"
 #include "Tests/AutomationCommon.h"
 #include "TestUtils.h"
 
 #if ENGINE_MAJOR_VERSION > 4
+
 BEGIN_DEFINE_SPEC(FTestLootLockerServer_PersistentStorage, "LootLockerServer", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+	FLootLockerServerTestGame Game;
 END_DEFINE_SPEC(FTestLootLockerServer_PersistentStorage)
 
 void FTestLootLockerServer_PersistentStorage::Define()
 {
+	LatentBeforeEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		if (!test_util::SetupTestGame(Game, TEXT("PersistentStorage")))
+		{
+			AddError(TEXT("Game setup failed"));
+		}
+		Done.Execute();
+	});
+
+	LatentAfterEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		Game.DeleteGame();
+		Done.Execute();
+	});
+
 	Describe("Server_PersistentStorage", [this]()
 	{
 		LatentIt("When Server PersistentStorage", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
-			ULootLockerServerAuthRequest::StartSession(FLootLockerServerAuthResponseDelegate());
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
 
-			const int PlayerId = 3245521;
+			int PlayerId = 0;
+			FString PlayerUlid;
+			{
+				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerCreatePlayerResponse, FLootLockerServerCreatePlayerResponseDelegate>();
+
+				ULootLockerServerPlayerRequest::CreatePlayer(ELootLockerServerCreatePlayerPlatforms::Guest, FGuid::NewGuid().ToString(), Delegate);
+
+				const auto Response = test_util::WaitAndGet(Promise);
+				TestTrue("CreatePlayer Ok", Response.Success);
+				if (!Response.Success)
+				{
+					TestDone.Execute();
+					return;
+				}
+				PlayerId = Response.Player_id;
+				PlayerUlid = Response.Player_ulid;
+			}
 
 			FLootLockerServerPlayerPersistentStorageKeyValueSet TestItem;
 			TestItem.Key = "test_key";
@@ -40,7 +74,7 @@ void FTestLootLockerServer_PersistentStorage::Define()
 
 				ULootLockerServerStorageRequest::UpdatePersistentStorageForPlayersAndKeys(StorageEntriesToUpdate, Delegate);
 
-				const auto Response = Promise->get_future().get();
+				const auto Response = test_util::WaitAndGet(Promise);
 				TestTrue("Server_AddItemsToPersistentStorage success", Response.Success);
 
 				if (Response.Success)
@@ -53,7 +87,6 @@ void FTestLootLockerServer_PersistentStorage::Define()
 						return key == target.Key;
 					}));
 				}
-				delete(Promise);
 			}
 
 			{
@@ -61,7 +94,7 @@ void FTestLootLockerServer_PersistentStorage::Define()
 
 				ULootLockerServerStorageRequest::GetPersistentStorageForPlayers(TArray<int>{ PlayerId }, Delegate);
 
-				const auto Response = Promise->get_future().get();
+				const auto Response = test_util::WaitAndGet(Promise);
 				TestTrue("Server_GetPlayerPersistentStorage success", Response.Success);
 
 				if (Response.Success)
@@ -69,7 +102,6 @@ void FTestLootLockerServer_PersistentStorage::Define()
 					TestEqual("Server_GetPlayerPersistentStorage items returned", Response.Items.Num(), 1u);
 					TestEqual("Server_GetPlayerPersistentStorage player items returned", Response.Items[0].Player_id, PlayerId);
 				}
-				delete(Promise);
 			}
 		
 			{
@@ -80,9 +112,8 @@ void FTestLootLockerServer_PersistentStorage::Define()
 
 				ULootLockerServerStorageRequest::DeletePersistentStorageForPlayersAndKeys(PlayerIDs, Keys, Delegate);
 
-				const auto Response = Promise->get_future().get();
+				const auto Response = test_util::WaitAndGet(Promise);
 				TestTrue("DeleteItemFromPersistentStorage success", Response.Success);
-				delete(Promise);
 			}
 
 			TestDone.Execute();
