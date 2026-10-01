@@ -1348,8 +1348,8 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	    {
 	        if (FStructProperty* StructProperty = CastField<FStructProperty>(ContentProperty))
 	        {
-	            TSharedPtr<FJsonObject> Out = MakeShared<FJsonObject>();
-	            if (FJsonObjectConverter::UStructToJsonAttributes(StructProperty->Struct, ContentAddress, Out->Values))
+	            TSharedPtr<FJsonObject> Out = FJsonObjectConverter::UStructToJsonObject(StructProperty->Struct, ContentAddress);
+	            if (Out.IsValid())
 	            {
                     TSharedPtr<FJsonValue> JsonValue = MakeShared<FJsonValueObject>(Out);
 	                ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, JsonValue, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
@@ -1444,8 +1444,8 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	                FScriptArrayHelper ArrayHelper(ArrayProperty, StructProperty->ContainerPtrToValuePtr<void>(ContentAddress));
 	                for (int i = 0; i < ArrayHelper.Num(); ++i)
 	                {
-	                    TSharedPtr<FJsonObject> Out = MakeShared<FJsonObject>();
-	                    if (FJsonObjectConverter::UStructToJsonAttributes(StructProperty->Struct, ArrayHelper.GetRawPtr(i), Out->Values))
+	                    TSharedPtr<FJsonObject> Out = FJsonObjectConverter::UStructToJsonObject(StructProperty->Struct, ArrayHelper.GetRawPtr(i));
+	                    if (Out.IsValid())
 	                    {
 	                        JsonArrVal.Add(MakeShared<FJsonValueObject>(Out));
 	                    }
