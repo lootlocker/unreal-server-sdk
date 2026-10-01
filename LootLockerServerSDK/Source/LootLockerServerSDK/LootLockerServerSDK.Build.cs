@@ -4,6 +4,11 @@ using UnrealBuildTool;
 
 public class LootLockerServerSDK : ModuleRules
 {
+	// Set bForceLocalDevEnv = true here to always target localhost regardless of the environment variable.
+	// Leave false (the default) so the env var LOOTLOCKER_USE_LOCAL_DEVENV controls it at build time.
+	public static bool bForceLocalDevEnv = false;
+	public static bool bTargetLocalDevEnv = bForceLocalDevEnv || !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("LOOTLOCKER_USE_LOCAL_DEVENV"));
+
 	public LootLockerServerSDK(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
@@ -49,5 +54,10 @@ public class LootLockerServerSDK : ModuleRules
 				// ... add any modules that your module loads dynamically here ...
 			}
 			);
+
+		if (bTargetLocalDevEnv)
+		{
+			PublicDefinitions.Add("LOOTLOCKER_USE_LOCAL_DEVENV=1");
+		}
 }
 }

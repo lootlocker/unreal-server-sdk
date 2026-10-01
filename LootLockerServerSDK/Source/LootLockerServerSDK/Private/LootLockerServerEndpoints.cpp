@@ -2,7 +2,11 @@
 
 #include "LootLockerServerEndpoints.h"
 
+#ifdef LOOTLOCKER_USE_LOCAL_DEVENV
+FString ULootLockerServerEndpoints::GameBaseUrl = "http://localhost:8080/";
+#else
 FString ULootLockerServerEndpoints::GameBaseUrl = "https://{domainKey}api.lootlocker.com/";
+#endif
 FString ULootLockerServerEndpoints::ServerApiUrlSuffix = "server/";
 FString ULootLockerServerEndpoints::ClientApiUrlSuffix = "client/";
 
