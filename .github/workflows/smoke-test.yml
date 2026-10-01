@@ -26,7 +26,12 @@ concurrency:
 jobs:
   smoke-test:
     name: Smoke test with ${{ matrix.UE_IMAGE }}
-    if: github.event.pull_request.head.repo.fork != true
+    # Skipped until the smoke test is configured for this repo: it needs the
+    # CI_SMOKE_TEST_IMAGES variable and the SMOKE_TEST_SERVER_KEY secret, plus the
+    # private lootlocker/unreal-server-sdk-smoketest-project repo.
+    if: >-
+      github.event.pull_request.head.repo.fork != true &&
+      vars.CI_SMOKE_TEST_IMAGES != ''
     runs-on: ubuntu-22.04-4-core
     timeout-minutes: 90
     strategy:
