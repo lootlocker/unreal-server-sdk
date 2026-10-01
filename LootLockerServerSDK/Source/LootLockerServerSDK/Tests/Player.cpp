@@ -10,14 +10,32 @@
 
 #if ENGINE_MAJOR_VERSION > 4
 BEGIN_DEFINE_SPEC(FTestLootLockerServer_Player, "LootLockerServer.Player", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+	FLootLockerServerTestGame Game;
 END_DEFINE_SPEC(FTestLootLockerServer_Player)
 
 void FTestLootLockerServer_Player::Define()
 {
+	LatentBeforeEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		if (!test_util::SetupTestGame(Game, TEXT("Player")))
+		{
+			AddError(TEXT("Game setup failed"));
+		}
+		Done.Execute();
+	});
+
+	LatentAfterEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		Game.DeleteGame();
+		Done.Execute();
+	});
+
 	Describe("Server_Player", [this]()
 	{
 		LatentIt("CreatePlayer_ReturnsIdentifiers", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
 			const FString PlatformIdentifier = FGuid::NewGuid().ToString();
 
 			const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerCreatePlayerResponse, FLootLockerServerCreatePlayerResponseDelegate>();
@@ -38,6 +56,8 @@ void FTestLootLockerServer_Player::Define()
 
 		LatentIt("CreatePlayer_IsIdempotentForSameIdentifier", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
 			const FString PlatformIdentifier = FGuid::NewGuid().ToString();
 
 			int32 FirstPlayerId = 0;
@@ -77,6 +97,8 @@ void FTestLootLockerServer_Player::Define()
 
 		LatentIt("LookupPlayerNames_ReturnsRequestedPlayers", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
 			int32 PlayerId = 0;
 			FString PlayerUlid;
 			{

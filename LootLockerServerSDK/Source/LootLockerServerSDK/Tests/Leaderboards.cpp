@@ -11,14 +11,32 @@
 
 #if ENGINE_MAJOR_VERSION > 4
 BEGIN_DEFINE_SPEC(FTestLootLockerServer_Leaderboards, "LootLockerServer.Leaderboards", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+	FLootLockerServerTestGame Game;
 END_DEFINE_SPEC(FTestLootLockerServer_Leaderboards)
 
 void FTestLootLockerServer_Leaderboards::Define()
 {
+	LatentBeforeEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		if (!test_util::SetupTestGame(Game, TEXT("Leaderboards")))
+		{
+			AddError(TEXT("Game setup failed"));
+		}
+		Done.Execute();
+	});
+
+	LatentAfterEach(EAsyncExecution::ThreadPool, [this](const FDoneDelegate& Done)
+	{
+		Game.DeleteGame();
+		Done.Execute();
+	});
+
 	Describe("Server_Leaderboards", [this]()
 	{
 		LatentIt("CreateAndDeleteLeaderboard", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
 			const FString Key = TEXT("ci_lb_") + FGuid::NewGuid().ToString(EGuidFormats::Digits).ToLower();
 
 			{
@@ -52,6 +70,8 @@ void FTestLootLockerServer_Leaderboards::Define()
 
 		LatentIt("GetLeaderboard_ReturnsCreatedLeaderboard", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
 			const FString Key = TEXT("ci_lb_") + FGuid::NewGuid().ToString(EGuidFormats::Digits).ToLower();
 
 			{
@@ -97,6 +117,8 @@ void FTestLootLockerServer_Leaderboards::Define()
 
 		LatentIt("ListLeaderboards_IncludesCreatedLeaderboard", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
 			const FString Key = TEXT("ci_lb_") + FGuid::NewGuid().ToString(EGuidFormats::Digits).ToLower();
 
 			{
@@ -143,7 +165,9 @@ void FTestLootLockerServer_Leaderboards::Define()
 
 		LatentIt("SubmitScore_IsReflectedInMemberRanks", EAsyncExecution::ThreadPool, [this](const FDoneDelegate TestDone)
 		{
-			const FString Key = TEXT("ci_lb_") + FGuid::NewGuid().ToString(EGuidFormats::Digits).ToLower();
+			if (!Game.IsValid()) { TestDone.Execute(); return; }
+
+			FString Key = TEXT("ci_lb_") + FGuid::NewGuid().ToString(EGuidFormats::Digits).ToLower();
 
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerCreateLeaderboardResponse, FLootLockerServerCreateLeaderboardResponseDelegate>();
@@ -162,7 +186,9 @@ void FTestLootLockerServer_Leaderboards::Define()
 				}
 			}
 
-			FString PlayerUlid;
+			// A player leaderboard is keyed by the numeric player id, so both the score
+			// submission and the member-rank lookup use that rather than the ULID.
+			int32 PlayerId = 0;
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerCreatePlayerResponse, FLootLockerServerCreatePlayerResponseDelegate>();
 
@@ -176,26 +202,32 @@ void FTestLootLockerServer_Leaderboards::Define()
 					TestDone.Execute();
 					return;
 				}
-				PlayerUlid = Response.Player_ulid;
+				PlayerId = Response.Player_id;
 			}
+
+			const FString MemberId = FString::FromInt(PlayerId);
 
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerLeaderboardSubmitScoreResponse, FLootLockerServerLeaderboardSubmitScoreResponseDelegate>();
 
 				FLootLockerServerLeaderboardSubmitScoreRequest Request;
-				Request.Member_id = PlayerUlid;
+				Request.Member_id = MemberId;
 				Request.Score = 1000;
 
 				ULootLockerServerLeaderboardRequest::SubmitScore(Key, Request, Delegate);
 
 				const auto Response = test_util::WaitAndGet(Promise);
 				TestTrue("SubmitScore succeeded", Response.Success);
+				if (Response.Success)
+				{
+					TestEqual("Submitted score is echoed back", Response.Score, 1000);
+				}
 			}
 
 			{
 				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerGetAllMemberRanksResponse, FLootLockerServerGetAllMemberRanksResponseDelegate>();
 
-				ULootLockerServerLeaderboardRequest::GetAllMemberRanks(PlayerUlid, Delegate);
+				ULootLockerServerLeaderboardRequest::GetAllMemberRanks(MemberId, Delegate);
 
 				const auto Response = test_util::WaitAndGet(Promise);
 				TestTrue("GetAllMemberRanks succeeded", Response.Success);
