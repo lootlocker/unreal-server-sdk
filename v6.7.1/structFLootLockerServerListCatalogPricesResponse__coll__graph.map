@@ -1,0 +1,13 @@
+<map id="FLootLockerServerListCatalogPricesResponse" name="FLootLockerServerListCatalogPricesResponse">
+<area shape="rect" id="Node000001" title="Response containing catalog entries with entity&#45;typed detail arrays and cursor&#45;based pagination." alt="" coords="693,75,908,115"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="367,33,572,59"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="571,58,670,73,694,76,693,82,669,78,571,63"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerErrorData.html" title=" " alt="" coords="5,5,209,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="223,24,367,35,366,41,223,30"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerRequestContext.html" title=" " alt="" coords="10,55,205,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="218,64,342,54,366,52,367,57,343,59,219,69"/>
+<area shape="rect" id="Node000005" href="$structFLootLockerServerCatalog.html" title="Represents a catalog with its name, unique key, identifier, and creation timestamp." alt="" coords="373,83,565,108"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="579,93,693,93,693,98,579,98"/>
+<area shape="rect" id="Node000006" href="$structFLootLockerServerCatalogPagination.html" title="Cursor&#45;based pagination information for a catalog listing response." alt="" coords="373,133,565,173"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="579,131,692,111,693,117,579,136"/>
+</map>

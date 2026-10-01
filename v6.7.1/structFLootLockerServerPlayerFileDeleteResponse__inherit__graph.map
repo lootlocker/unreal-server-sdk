@@ -1,0 +1,5 @@
+<map id="FLootLockerServerPlayerFileDeleteResponse" name="FLootLockerServerPlayerFileDeleteResponse">
+<area shape="rect" id="Node000001" title="Response class for deleting a file, will be empty unless there&#39;s an error." alt="" coords="5,79,212,119"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="6,5,211,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,44,111,79,106,79,106,44"/>
+</map>

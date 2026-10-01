@@ -1,0 +1,7 @@
+<map id="FLootLockerServerSingleCharacterProgressionWithRewardsResponse" name="FLootLockerServerSingleCharacterProgressionWithRewardsResponse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,167,252,207"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerSingleCharacterProgressionResponse.html" title=" " alt="" coords="6,79,251,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,133,131,166,126,166,126,133"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="26,5,231,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="131,44,131,79,126,79,126,44"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="FLootLockerServerFullCharacterLoadoutResponse" name="FLootLockerServerFullCharacterLoadoutResponse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="259,69,487,109"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerEquipAssetToCharacterLoadoutResponse.html" title=" " alt="" coords="562,5,777,45"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="479,64,576,43,577,48,480,69"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerGetCharacterLoadoutResponse.html" title=" " alt="" coords="555,69,783,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="501,87,555,87,555,92,501,92"/>
+<area shape="rect" id="Node000005" href="$structFLootLockerServerUnequipAssetFromCharacterLoadoutResponse.html" title=" " alt="" coords="535,133,804,173"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="480,110,577,131,576,136,479,115"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="5,77,211,102"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,87,258,87,258,92,225,92"/>
+</map>
