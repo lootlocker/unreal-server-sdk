@@ -17,16 +17,17 @@
  * game SDK's FLootLockerTestGame: a server key must be created explicitly via the
  * admin API before the SDK can be pointed at the game.
  *
+ * This type only covers *admin-side* provisioning (game lifecycle, server key,
+ * platform enablement, currencies, progressions). Server-API entities such as players,
+ * leaderboards and triggers are created through the SDK itself — see the
+ * test_util::CreatePlayer / CreateLeaderboard / CreateTrigger helpers.
+ *
  * Usage pattern:
  *
  *   // --- Setup ---
  *   FLootLockerServerTestGame Game;
- *   bool bOk = FLootLockerServerTestGame::CreateGame(Game, TEXT("MyTest"));
- *   bOk = bOk && Game.CreateServerKey();
- *   // Provision any feature-specific entities:
- *   bOk = bOk && Game.CreateLeaderboard(TEXT("my_lb"), TEXT("My Leaderboard"));
- *   Game.InitializeLootLockerServerSDK();   // points the SDK at the provisioned game
- *   test_util::StartSession();              // regular server session
+ *   test_util::SetupTestGame(Game, TEXT("MyTest"));   // provisions + starts a session
+ *   if (!Game.IsValid()) { /* skip the test body *\/ }
  *
  *   // --- Teardown (always, even on failure) ---
  *   Game.DeleteGame();
@@ -55,10 +56,24 @@ struct FLootLockerServerTestGame
 	/** True when the game was supplied via LOOTLOCKER_SERVER_KEY rather than provisioned. */
 	bool bUsingEnvKey = false;
 
+	/**
+	 * True once SetupTestGame() has fully provisioned the game *and* started a session.
+	 * Distinct from the game identity (GameId) so that teardown can still delete a game
+	 * whose later setup steps failed, while test bodies reliably skip.
+	 */
+	bool bSetupComplete = false;
+
 	/** Platform used when provisioning players. */
 	FString GuestPlatform = TEXT("guest");
 
-	bool IsValid() const { return GameId != 0 || bUsingEnvKey; }
+	/**
+	 * True when the game identity is known, so DeleteGame() can clean up.
+	 * Note this does NOT mean the SDK is ready — check bSetupComplete for that.
+	 */
+	bool HasGameIdentity() const { return GameId != 0 || bUsingEnvKey; }
+
+	/** True when the game is provisioned and a server session is established. */
+	bool IsValid() const { return bSetupComplete; }
 
 	void SwitchToProdEnvironment()
 	{
@@ -94,8 +109,6 @@ struct FLootLockerServerTestGame
 	 */
 	bool DeleteGame();
 
-	// ─── Credentials ──────────────────────────────────────────────────────────
-
 	/**
 	 * Create a server API key for the active game and store it in ServerKey.
 	 * Must be called after CreateGame() and before InitializeLootLockerServerSDK().
@@ -111,37 +124,7 @@ struct FLootLockerServerTestGame
 	 */
 	bool EnsureGuestPlatformEnabled();
 
-	// ─── Entity provisioning ──────────────────────────────────────────────────
-
-	/**
-	 * Create a player via the server API and return its identifiers.
-	 * Requires a valid session (call test_util::StartSession() first).
-	 * The guest platform must be enabled — see EnsureGuestPlatformEnabled().
-	 *
-	 * @param OutPlayerId    Populated with the numeric legacy player ID.
-	 * @param OutPlayerUlid  Populated with the player ULID.
-	 * @param PlatformId     Optional platform player identifier; a GUID is generated when empty.
-	 */
-	bool CreatePlayer(int32& OutPlayerId, FString& OutPlayerUlid, const FString& PlatformId = TEXT(""));
-
-	/**
-	 * Create a leaderboard via the server API.
-	 * Requires a valid session (call test_util::StartSession() first).
-	 *
-	 * @param Key              Unique leaderboard key. Only a-z, 0-9 and underscores are allowed.
-	 * @param Name             Display name.
-	 * @param OutLeaderboardId Populated with the created leaderboard's numeric ID.
-	 */
-	bool CreateLeaderboard(const FString& Key, const FString& Name, int32& OutLeaderboardId);
-
-	/**
-	 * Create a trigger via the server API.
-	 * Requires a valid session (call test_util::StartSession() first).
-	 *
-	 * @param Name      Display name.
-	 * @param PlayerId  Numeric player ID the trigger is scoped to.
-	 */
-	bool CreateTrigger(const FString& Name, int32 PlayerId);
+	// ─── Entity provisioning (admin API) ──────────────────────────────────────
 
 	/**
 	 * Create a virtual currency via the admin API. Currency codes must be 1-3
