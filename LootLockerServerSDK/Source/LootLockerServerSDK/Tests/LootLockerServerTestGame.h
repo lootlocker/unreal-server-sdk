@@ -27,7 +27,7 @@
  *   // --- Setup ---
  *   FLootLockerServerTestGame Game;
  *   test_util::SetupTestGame(Game, TEXT("MyTest"));   // provisions + starts a session
- *   if (!Game.IsValid()) { /* skip the test body *\/ }
+ *   if (!Game.IsValid()) { return; }                  // skip the test body
  *
  *   // --- Teardown (always, even on failure) ---
  *   Game.DeleteGame();
