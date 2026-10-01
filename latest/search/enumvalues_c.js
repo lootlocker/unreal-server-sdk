@@ -1,11 +1,7 @@
 var searchData=
 [
-  ['onbase64_0',['OnBase64',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601a9dcced0abe7554df05f16c12b17cea5b',1,'LootLockerServerMetadataRequest.h']]],
-  ['onbool_1',['OnBool',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601aef1867752a0c7050c655c827d9ff34df',1,'LootLockerServerMetadataRequest.h']]],
-  ['onerror_2',['OnError',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601a44cdeb54c6f2aebad54611201c26d6f0',1,'LootLockerServerMetadataRequest.h']]],
-  ['onfloat_3',['OnFloat',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601a484fa9391469a0779c26a575c90db38e',1,'LootLockerServerMetadataRequest.h']]],
-  ['oninteger_4',['OnInteger',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601aaf3689136beb58f79a85c2c67044f3c8',1,'LootLockerServerMetadataRequest.h']]],
-  ['onjson_5',['OnJson',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601ae9697cb9bc63b1652f16f34e2c8b2d74',1,'LootLockerServerMetadataRequest.h']]],
-  ['onnumber_6',['OnNumber',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601a4b9e5617d1edc08518fd19931c3b94d9',1,'LootLockerServerMetadataRequest.h']]],
-  ['onstring_7',['OnString',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601a1ad7fd3adea0f02d25b43a1fde6325c8',1,'LootLockerServerMetadataRequest.h']]]
+  ['name_0',['Name',['../group__Assets.html#gga0f2a2b1939ae671a854deb4d2c7e7d9aa49ee3087348e8d44e1feda1917443987',1,'LootLockerServerAssetRequest.h']]],
+  ['nintendoswitch_1',['NintendoSwitch',['../LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405da013ed2500604451a094b5aaf9ad2827c',1,'LootLockerServerPlayerRequest.h']]],
+  ['none_2',['none',['../group__Assets.html#gga0f2a2b1939ae671a854deb4d2c7e7d9aa6adf97f83acf6453d4a6a4b1070f3754',1,'None:&#160;LootLockerServerAssetRequest.h'],['../group__Assets.html#gga63ff79f1b2f70ab2059f26c28326781ca6adf97f83acf6453d4a6a4b1070f3754',1,'None:&#160;LootLockerServerAssetRequest.h']]],
+  ['number_3',['Number',['../LootLockerServerMetadataRequest_8h.html#a41e2f064eb724e79217327d27d7259a2ab2ee912b91d69b435159c7c3f6df7f5f',1,'LootLockerServerMetadataRequest.h']]]
 ];

@@ -60,7 +60,7 @@
       </a>
       <span id="ll-topnav-divider" aria-hidden="true"></span>
       <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
-      <span id="ll-topnav-version">v6.6.0</span>
+      <span id="ll-topnav-version">v6.7.1</span>
       <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
          rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -137,7 +137,7 @@ function llToggleDark() {
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
   <td id="projectalign">
-   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.7.1</span>
    </div>
    <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
   </td>
@@ -219,7 +219,10 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetConfiguredLogLevel()&#160;:&#160;<a class="el" href="classULootLockerServerConfig.html#aab3aa5e65d23f8a7430f14f055d6e25d">ULootLockerServerConfig</a></li>
 <li>GetEntirePublicPersistentStorageForPlayers()&#160;:&#160;<a class="el" href="group__PlayerStorage.html#ga9a0199a536c1e9d66c7b5de815b82f57">ULootLockerServerForCpp</a></li>
 <li>GetEnum()&#160;:&#160;<a class="el" href="classULootLockerServerEnumUtils.html#af13a5fe61d110fee35b2efc704aa45e6">ULootLockerServerEnumUtils</a></li>
+<li>GetFileByKeyForPlayer()&#160;:&#160;<a class="el" href="group__PlayerFiles.html#ga7c74f016851f5d41fa716e42b0befe4b">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerFileRequest.html#a4a425711731db547210723789b684d72">ULootLockerServerPlayerFileRequest</a></li>
 <li>GetFileForPlayerByID()&#160;:&#160;<a class="el" href="group__PlayerFiles.html#ga3c92b4d9d414594cd0cae98a1107f210">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerFileRequest.html#addc1479fa90a230d1438ba8303c3bd55">ULootLockerServerPlayerFileRequest</a></li>
+<li>GetFileRevisionByKeyForPlayer()&#160;:&#160;<a class="el" href="group__PlayerFiles.html#ga7afa46b98ed1c83f2ea56cf62e407080">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerFileRequest.html#a624842a02469a6a2c5d0b293bcb67d39">ULootLockerServerPlayerFileRequest</a></li>
+<li>GetFileRevisionForPlayerByID()&#160;:&#160;<a class="el" href="group__PlayerFiles.html#ga1f2279eec6b69895f782d18085474f7c">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerFileRequest.html#af60c04fea0c6af1ea471c556ae29f405">ULootLockerServerPlayerFileRequest</a></li>
 <li>GetKeyValuePairsFromAssetInstance()&#160;:&#160;<a class="el" href="classULootLockerServerAssetRequest.html#ac3c19f089fece666203e5fa21f180039">ULootLockerServerAssetRequest</a>, <a class="el" href="group__AssetInstance.html#gaf13d61dbac8b506afb758c9e651b00e0">ULootLockerServerForCpp</a></li>
 <li>GetLeaderboard()&#160;:&#160;<a class="el" href="group__Leaderboard.html#gaf8ec68810ac7b88397efca84f7672f75">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardRequest.html#ad02140ab0120aef934700b3c6ab63af8">ULootLockerServerLeaderboardRequest</a></li>
 <li>GetLeaderboardArchive()&#160;:&#160;<a class="el" href="group__Leaderboard.html#gaf2f775aa4eaf594c40006d997108c1bb">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerLeaderboardArchiveRequestHandler.html#a9f13c1f3225c0af40ea4cab0f0b36917">ULootLockerServerLeaderboardArchiveRequestHandler</a></li>
@@ -249,6 +252,7 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetPlayerHeroLoadout()&#160;:&#160;<a class="el" href="group__Hero.html#ga5497257e3382bb3c2076f5654e9c29de">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerHeroRequest.html#a930bf7de3fe68bfd9154928d1b091a51">ULootLockerServerHeroRequest</a></li>
 <li>GetPlayerInfoFromGameSessionToken()&#160;:&#160;<a class="el" href="group__Player.html#ga6944888f17a3185db0bcdcd02838f290">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerRequest.html#a9fedc32c15625625356788426fdbfa1e">ULootLockerServerPlayerRequest</a></li>
 <li>GetPlayerInventory()&#160;:&#160;<a class="el" href="group__AssetInstance.html#ga02bad2a55941343c09a4d03c37aa19ef">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerInventoryRequest.html#a53f88b0fd3796af8eec5775651c6990c">ULootLockerServerPlayerInventoryRequest</a></li>
+<li>GetPlayerInventoryItem()&#160;:&#160;<a class="el" href="group__Items.html#gaca485b7de20539fb3438e720ace73f37">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerItemRequestHandler.html#abf68918d5d9c42b8f8f272c8f332ea55">ULootLockerServerItemRequestHandler</a></li>
 <li>GetPlayerLoadout()&#160;:&#160;<a class="el" href="group__AssetInstance.html#ga519a81ddb50ddf0f2f3958a87e076e71">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerPlayerInventoryRequest.html#a1a0cee209fc591cf03cd4d79d84bad41">ULootLockerServerPlayerInventoryRequest</a></li>
 <li>GetProgressionByKey()&#160;:&#160;<a class="el" href="group__Progressions.html#gae41be44ed37c3cc360170dc44f1be30c">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerGameProgressionRequest.html#a6b13898b2b19bdae7cf81a511fc19178">ULootLockerServerGameProgressionRequest</a></li>
 <li>GetProgressionByKeyForAssetInstance()&#160;:&#160;<a class="el" href="group__AssetInstanceProgressions.html#ga5e777672d7121c832f7ac291664af145">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerInstanceProgressionRequest.html#a96beb8888183a176f340ccfcd6ab988b">ULootLockerServerInstanceProgressionRequest</a></li>
@@ -268,6 +272,7 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>Global_assets&#160;:&#160;<a class="el" href="structFLootLockerServerGetUniversalInventoryResponse.html#a880d95fda05d96ecebb0133d4d89f748">FLootLockerServerGetUniversalInventoryResponse</a></li>
 <li>Google_play_store&#160;:&#160;<a class="el" href="structFLootLockerServerCatalogEntryListings.html#a3831635f6cf33ef88f9e25d5e51f7dd5">FLootLockerServerCatalogEntryListings</a></li>
 <li>Granted_assets&#160;:&#160;<a class="el" href="structFLootLockerServerInvokeTriggerResponse.html#a180867e8c8568549e4d3b53de5807b52">FLootLockerServerInvokeTriggerResponse</a></li>
+<li>GrantItemToPlayerInventory()&#160;:&#160;<a class="el" href="group__Items.html#ga54f729bd5258ff91b0571b47bf2a0ab6">ULootLockerServerForCpp</a>, <a class="el" href="classULootLockerServerItemRequestHandler.html#afec2d751183ca30ee79d00dc95a8e53d">ULootLockerServerItemRequestHandler</a></li>
 <li>group&#160;:&#160;<a class="el" href="structFLootLockerServerLeaderboardReward.html#a059800edefec333baa7d5fa37a0b5148">FLootLockerServerLeaderboardReward</a></li>
 <li>Group_detail&#160;:&#160;<a class="el" href="structFLootLockerServerListCatalogItemsByIdEntry.html#ac72f03d453833860fde31fa41e44d9d2">FLootLockerServerListCatalogItemsByIdEntry</a></li>
 <li>Group_details&#160;:&#160;<a class="el" href="structFLootLockerServerListCatalogPricesResponse.html#aade8347d441b3dd957facef688761856">FLootLockerServerListCatalogPricesResponse</a></li>

@@ -15,6 +15,7 @@ var group__Leaderboard =
     [ "ULootLockerServerForCpp::GetScoresFromLeaderboard", "group__Leaderboard.html#gabe4c017b38ade76fa481ca4c3f76f1aa", null ],
     [ "ULootLockerServerForCpp::IncrementScore", "group__Leaderboard.html#ga3c544c3d3f85989573c194775207f925", null ],
     [ "ULootLockerServerForCpp::ListAssets", "group__Leaderboard.html#gaa2788e8f44c9e8088e07fbe1ffef4852", null ],
+    [ "ULootLockerServerForCpp::ListAssets", "group__Leaderboard.html#gab0ed45e29009e5d457879c759f3293df", null ],
     [ "ULootLockerServerForCpp::ListAssetsWithDefaultParameters", "group__Leaderboard.html#gac2f33a1e7dc847c359eaa84e7b1ceeac", null ],
     [ "ULootLockerServerForCpp::ListContexts", "group__Leaderboard.html#gab6c3eda5bac7b0b718bf3d678d0187ff", null ],
     [ "ULootLockerServerForCpp::ListLeaderboardArchive", "group__Leaderboard.html#ga915b14b24cb1e230a82867b625792434", null ],

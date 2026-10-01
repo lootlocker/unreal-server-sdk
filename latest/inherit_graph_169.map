@@ -1,0 +1,59 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,804,80,829"/>
+<area shape="rect" id="Node000001" href="$classULootLockerServerAssetRequest.html" title=" " alt="" coords="142,5,375,31"/>
+<area shape="poly" id="edge100_Node000000_Node000001" title=" " alt="" coords="42,790,50,626,66,388,78,269,91,164,107,84,116,57,126,40,140,29,143,33,130,44,121,59,112,86,96,165,83,269,72,389,56,627,48,790"/>
+<area shape="rect" id="Node000002" href="$classULootLockerServerAuthRequest.html" title=" " alt="" coords="145,55,372,80"/>
+<area shape="poly" id="edge101_Node000000_Node000002" title=" " alt="" coords="43,790,51,636,68,414,93,206,108,132,117,107,126,91,143,77,147,81,130,94,122,109,113,133,98,207,73,415,57,636,48,790"/>
+<area shape="rect" id="Node000003" href="$classULootLockerServerBalanceRequest.html" title=" " alt="" coords="161,105,357,145"/>
+<area shape="poly" id="edge102_Node000000_Node000003" title=" " alt="" coords="41,790,42,657,51,467,61,369,76,280,97,206,111,177,126,155,141,142,159,132,162,137,144,146,130,158,115,180,102,208,81,281,66,370,56,468,47,658,46,790"/>
+<area shape="rect" id="Node000004" href="$classULootLockerServerCatalogRequest.html" title=" " alt="" coords="161,169,356,209"/>
+<area shape="poly" id="edge103_Node000000_Node000004" title=" " alt="" coords="41,790,44,669,55,498,65,410,80,330,100,264,112,239,126,219,142,206,160,196,162,201,145,210,130,222,117,241,105,266,85,332,70,411,60,498,49,669,47,790"/>
+<area shape="rect" id="Node000005" href="$classULootLockerServerCharacterProgressionRequest.html" title=" " alt="" coords="155,233,362,273"/>
+<area shape="poly" id="edge104_Node000000_Node000005" title=" " alt="" coords="42,790,46,681,58,529,69,452,84,381,102,323,126,283,153,263,156,268,130,286,107,325,89,382,74,453,64,530,51,681,47,790"/>
+<area shape="rect" id="Node000006" href="$classULootLockerServerCharacterRequest.html" title=" " alt="" coords="155,297,362,337"/>
+<area shape="poly" id="edge105_Node000000_Node000006" title=" " alt="" coords="42,790,49,692,63,560,74,493,87,432,105,381,126,347,153,327,157,332,130,350,110,384,93,433,79,494,68,561,54,693,48,790"/>
+<area shape="rect" id="Node000007" href="$classULootLockerServerConfig.html" title=" " alt="" coords="166,361,351,387"/>
+<area shape="poly" id="edge106_Node000000_Node000007" title=" " alt="" coords="43,790,50,702,65,584,76,525,90,471,106,427,126,397,144,384,165,375,167,380,147,389,130,401,111,430,95,473,81,526,71,585,56,702,48,790"/>
+<area shape="rect" id="Node000008" href="$classULootLockerServerConnectedAccountsRequest.html" title=" " alt="" coords="152,411,365,451"/>
+<area shape="poly" id="edge107_Node000000_Node000008" title=" " alt="" coords="44,790,54,714,70,616,94,523,109,487,126,461,150,444,153,449,130,465,114,489,99,525,76,617,59,715,49,791"/>
+<area shape="rect" id="Node000009" href="$classULootLockerServerCurrencyRequest.html" title=" " alt="" coords="157,475,360,515"/>
+<area shape="poly" id="edge108_Node000000_Node000009" title=" " alt="" coords="41,790,44,735,55,663,66,626,81,589,101,555,126,525,156,506,159,511,130,529,105,558,86,592,71,628,61,665,49,735,46,790"/>
+<area shape="rect" id="Node000010" href="$classULootLockerServerDropTableRequest.html" title=" " alt="" coords="154,539,363,579"/>
+<area shape="poly" id="edge109_Node000000_Node000010" title=" " alt="" coords="43,790,50,746,64,692,89,637,106,611,126,589,152,573,155,577,130,593,110,615,93,639,69,694,55,747,49,791"/>
+<area shape="rect" id="Node000011" href="$classULootLockerServerEnumUtils.html" title=" " alt="" coords="153,604,364,629"/>
+<area shape="poly" id="edge110_Node000000_Node000011" title=" " alt="" coords="46,790,55,755,71,714,94,673,126,639,152,624,155,629,130,643,98,676,76,716,60,756,51,791"/>
+<area shape="rect" id="Node000012" href="$classULootLockerServerForCpp.html" title=" " alt="" coords="164,653,353,679"/>
+<area shape="poly" id="edge111_Node000000_Node000012" title=" " alt="" coords="52,790,80,738,101,711,127,689,163,673,165,678,129,694,105,715,84,741,56,793"/>
+<area shape="rect" id="Node000013" href="$classULootLockerServerFriendsRequest.html" title=" " alt="" coords="163,703,354,743"/>
+<area shape="poly" id="edge112_Node000000_Node000013" title=" " alt="" coords="67,793,94,772,127,753,162,740,164,745,129,758,97,776,70,797"/>
+<area shape="rect" id="Node000014" href="$classULootLockerServerGameProgressionRequest.html" title=" " alt="" coords="129,767,388,807"/>
+<area shape="poly" id="edge113_Node000000_Node000014" title=" " alt="" coords="93,807,129,802,129,808,94,813"/>
+<area shape="rect" id="Node000015" href="$classULootLockerServerHeroRequest.html" title=" " alt="" coords="145,832,373,857"/>
+<area shape="poly" id="edge114_Node000000_Node000015" title=" " alt="" coords="94,821,161,829,160,835,93,826"/>
+<area shape="rect" id="Node000016" href="$classULootLockerServerInstanceProgressionRequest.html" title=" " alt="" coords="159,882,358,922"/>
+<area shape="poly" id="edge115_Node000000_Node000016" title=" " alt="" coords="74,835,129,866,166,879,164,884,127,871,71,839"/>
+<area shape="rect" id="Node000017" href="$classULootLockerServerItemRequestHandler.html" title="Handler for the Items &amp; Item Templates server endpoints." alt="" coords="145,946,372,986"/>
+<area shape="poly" id="edge116_Node000000_Node000017" title=" " alt="" coords="58,840,86,888,106,912,130,932,151,943,148,948,126,936,102,915,82,891,53,843"/>
+<area shape="rect" id="Node000018" href="$classULootLockerServerLeaderboardArchiveRequestHandler.html" title=" " alt="" coords="146,1010,371,1050"/>
+<area shape="poly" id="edge117_Node000000_Node000018" title=" " alt="" coords="51,842,60,877,76,919,98,961,130,996,148,1008,145,1012,126,1000,94,964,71,921,55,879,46,844"/>
+<area shape="rect" id="Node000019" href="$classULootLockerServerLeaderboardRequest.html" title=" " alt="" coords="146,1074,371,1114"/>
+<area shape="poly" id="edge118_Node000000_Node000019" title=" " alt="" coords="48,843,53,890,66,949,91,1009,108,1036,130,1060,147,1072,144,1077,126,1064,104,1039,86,1011,61,950,48,891,42,844"/>
+<area shape="rect" id="Node000020" href="$classULootLockerServerMetadataRequest.html" title=" " alt="" coords="155,1138,362,1178"/>
+<area shape="poly" id="edge119_Node000000_Node000020" title=" " alt="" coords="46,843,47,901,58,977,68,1017,83,1056,104,1092,130,1124,157,1142,154,1146,126,1128,99,1095,78,1058,63,1019,53,978,42,901,40,843"/>
+<area shape="rect" id="Node000021" href="$classULootLockerServerNotificationsRequest.html" title=" " alt="" coords="145,1202,372,1242"/>
+<area shape="poly" id="edge120_Node000000_Node000021" title=" " alt="" coords="49,843,58,922,74,1026,98,1125,113,1163,130,1188,146,1201,143,1205,126,1192,108,1165,93,1126,69,1027,53,923,44,843"/>
+<area shape="rect" id="Node000022" href="$classULootLockerServerOAuthRequest.html" title=" " alt="" coords="140,1267,377,1292"/>
+<area shape="poly" id="edge121_Node000000_Node000022" title=" " alt="" coords="48,843,55,935,69,1058,80,1120,94,1176,110,1222,130,1252,146,1264,143,1268,126,1256,105,1224,89,1178,75,1121,64,1059,49,935,43,843"/>
+<area shape="rect" id="Node000023" href="$classULootLockerServerPlayerFileRequest.html" title=" " alt="" coords="155,1317,363,1357"/>
+<area shape="poly" id="edge122_Node000000_Node000023" title=" " alt="" coords="48,843,53,944,67,1081,78,1151,92,1215,109,1267,130,1302,156,1320,153,1324,126,1305,104,1269,86,1216,72,1152,62,1082,48,944,42,843"/>
+<area shape="rect" id="Node000024" href="$classULootLockerServerPlayerInventoryRequest.html" title=" " alt="" coords="135,1381,382,1421"/>
+<area shape="poly" id="edge123_Node000000_Node000024" title=" " alt="" coords="47,843,51,956,63,1114,73,1194,88,1267,106,1327,118,1350,130,1367,143,1378,140,1382,126,1370,113,1352,101,1329,82,1268,68,1195,57,1114,45,956,42,843"/>
+<area shape="rect" id="Node000025" href="$classULootLockerServerPlayerProgressionRequest.html" title=" " alt="" coords="128,1445,389,1485"/>
+<area shape="poly" id="edge124_Node000000_Node000025" title=" " alt="" coords="46,843,48,967,59,1144,69,1235,84,1317,104,1385,116,1411,130,1431,143,1442,140,1446,126,1434,112,1414,99,1387,79,1319,64,1235,53,1144,43,967,41,843"/>
+<area shape="rect" id="Node000026" href="$classULootLockerServerPlayerRequest.html" title=" " alt="" coords="139,1509,378,1535"/>
+<area shape="poly" id="edge125_Node000000_Node000026" title=" " alt="" coords="48,843,58,989,75,1196,100,1390,114,1459,122,1481,130,1495,145,1507,142,1511,126,1498,117,1484,109,1460,94,1391,70,1197,52,989,43,843"/>
+<area shape="rect" id="Node000027" href="$classULootLockerServerStorageRequest.html" title=" " alt="" coords="161,1559,356,1599"/>
+<area shape="poly" id="edge126_Node000000_Node000027" title=" " alt="" coords="48,843,57,997,74,1220,99,1430,114,1505,122,1529,130,1544,145,1557,162,1566,160,1571,142,1561,126,1548,117,1532,109,1506,93,1431,69,1221,52,998,43,843"/>
+<area shape="rect" id="Node000028" href="$classULootLockerServerTriggerRequest.html" title=" " alt="" coords="165,1623,353,1663"/>
+<area shape="poly" id="edge127_Node000000_Node000028" title=" " alt="" coords="48,843,56,1011,72,1254,83,1377,97,1485,112,1566,121,1593,130,1610,146,1623,166,1633,163,1638,143,1628,126,1613,116,1595,107,1567,91,1485,78,1377,66,1255,50,1011,42,844"/>
+</map>

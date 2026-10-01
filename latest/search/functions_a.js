@@ -9,5 +9,6 @@ var searchData=
   ['makejsonobjectentry_6',['MakeJsonObjectEntry',['../structFLootLockerServerMetadataEntry.html#a58ecde5ffa31ba45f13450560d98baaf',1,'FLootLockerServerMetadataEntry']]],
   ['makejsonvalueentry_7',['MakeJsonValueEntry',['../structFLootLockerServerMetadataEntry.html#afca7198d2f43a09ff54c9755dda806eb',1,'FLootLockerServerMetadataEntry']]],
   ['makemetadataentrywithustructvalue_8',['MakeMetadataEntryWithUStructValue',['../group__Metadata.html#ga10fe64ad917ef80dc1e127eb2499e0e9',1,'ULootLockerServerForCpp']]],
-  ['makestringentry_9',['MakeStringEntry',['../structFLootLockerServerMetadataEntry.html#ad8dcab65094506ea80803524a807e63f',1,'FLootLockerServerMetadataEntry']]]
+  ['makestringentry_9',['MakeStringEntry',['../structFLootLockerServerMetadataEntry.html#ad8dcab65094506ea80803524a807e63f',1,'FLootLockerServerMetadataEntry']]],
+  ['mergeplayerinventoryitemstacks_10',['mergeplayerinventoryitemstacks',['../group__Items.html#ga1bad18b6950d0babe19c571b9abdb6f6',1,'ULootLockerServerForCpp::MergePlayerInventoryItemStacks()'],['../classULootLockerServerItemRequestHandler.html#a75083088dc5b757c8fbdd6a18e123cbc',1,'ULootLockerServerItemRequestHandler::MergePlayerInventoryItemStacks()']]]
 ];

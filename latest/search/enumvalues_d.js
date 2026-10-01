@@ -1,14 +1,11 @@
 var searchData=
 [
-  ['player_0',['player',['../LootLockerServerBalanceRequest_8h.html#a42e953da49fecdac1faf04d4911bffa6a912af0dff974604f1321254ca8ff38b6',1,'player:&#160;LootLockerServerBalanceRequest.h'],['../LootLockerServerLeaderboardRequest_8h.html#a6553b41b9de74794c2b62ba5a16f88d6a912af0dff974604f1321254ca8ff38b6',1,'player:&#160;LootLockerServerLeaderboardRequest.h'],['../LootLockerServerMetadataRequest_8h.html#a9f605650fc3e1dbc61f329e3de525233a912af0dff974604f1321254ca8ff38b6',1,'player:&#160;LootLockerServerMetadataRequest.h']]],
-  ['player_5fguest_5flogin_5fid_1',['Player_guest_login_id',['../LootLockerServerPlayerRequest_8h.html#a1c799199c675bd3993402cb12a195708ab077f08bc7a2dd9ceb6fda15ae3dfa17',1,'LootLockerServerPlayerRequest.h']]],
-  ['player_5fid_2',['Player_id',['../LootLockerServerPlayerRequest_8h.html#a1c799199c675bd3993402cb12a195708aaa89ce023d01d1cf3dac349911fcfd5f',1,'LootLockerServerPlayerRequest.h']]],
-  ['player_5fname_3',['Player_name',['../LootLockerServerPlayerRequest_8h.html#a1c799199c675bd3993402cb12a195708a82d6915ffcb1d25a3eb03a4ed7a377c1',1,'LootLockerServerPlayerRequest.h']]],
-  ['player_5fpublic_5fuid_4',['Player_public_uid',['../LootLockerServerPlayerRequest_8h.html#a1c799199c675bd3993402cb12a195708a3ed0afa893dd90f0b19c530d7b8cb8c2',1,'LootLockerServerPlayerRequest.h']]],
-  ['player_5fulid_5',['Player_ulid',['../LootLockerServerPlayerRequest_8h.html#a1c799199c675bd3993402cb12a195708a5a34302afdc9d8994b041587c4d0db4e',1,'LootLockerServerPlayerRequest.h']]],
-  ['playstation_6',['PlayStation',['../LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405da3f6fb6f058deeea1407bacefec5265a2',1,'LootLockerServerPlayerRequest.h']]],
-  ['progression_7',['progression',['../LootLockerServerMetadataRequest_8h.html#a9f605650fc3e1dbc61f329e3de525233a9dc57f4fdd090e9f7681ffe9a8f23b08',1,'LootLockerServerMetadataRequest.h']]],
-  ['progression_5fpoints_8',['progression_points',['../LootLockerServerCatalogRequest_8h.html#a0cb260aa17a50402df08fbdf3117fa3ba57110c4e7cd03218864bf9155573e1dd',1,'Progression_Points:&#160;LootLockerServerCatalogRequest.h'],['../LootLockerServerLeaderboardRequest_8h.html#a56af52b1508e2482aa7528645d79a064a57110c4e7cd03218864bf9155573e1dd',1,'Progression_Points:&#160;LootLockerServerLeaderboardRequest.h']]],
-  ['progression_5freset_9',['progression_reset',['../LootLockerServerCatalogRequest_8h.html#a0cb260aa17a50402df08fbdf3117fa3ba6b177f161f23a5b58f59f1784891f575',1,'Progression_Reset:&#160;LootLockerServerCatalogRequest.h'],['../LootLockerServerLeaderboardRequest_8h.html#a56af52b1508e2482aa7528645d79a064a6b177f161f23a5b58f59f1784891f575',1,'Progression_Reset:&#160;LootLockerServerLeaderboardRequest.h']]],
-  ['psn_5fid_10',['Psn_id',['../LootLockerServerPlayerRequest_8h.html#a1c799199c675bd3993402cb12a195708a7bca684fc03dd6a3731b47edbbb8d0eb',1,'LootLockerServerPlayerRequest.h']]]
+  ['onbase64_0',['OnBase64',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601a9dcced0abe7554df05f16c12b17cea5b',1,'LootLockerServerMetadataRequest.h']]],
+  ['onbool_1',['OnBool',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601aef1867752a0c7050c655c827d9ff34df',1,'LootLockerServerMetadataRequest.h']]],
+  ['onerror_2',['OnError',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601a44cdeb54c6f2aebad54611201c26d6f0',1,'LootLockerServerMetadataRequest.h']]],
+  ['onfloat_3',['OnFloat',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601a484fa9391469a0779c26a575c90db38e',1,'LootLockerServerMetadataRequest.h']]],
+  ['oninteger_4',['OnInteger',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601aaf3689136beb58f79a85c2c67044f3c8',1,'LootLockerServerMetadataRequest.h']]],
+  ['onjson_5',['OnJson',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601ae9697cb9bc63b1652f16f34e2c8b2d74',1,'LootLockerServerMetadataRequest.h']]],
+  ['onnumber_6',['OnNumber',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601a4b9e5617d1edc08518fd19931c3b94d9',1,'LootLockerServerMetadataRequest.h']]],
+  ['onstring_7',['OnString',['../LootLockerServerMetadataRequest_8h.html#af59cef187718a8d7f8c004a16fb16601a1ad7fd3adea0f02d25b43a1fde6325c8',1,'LootLockerServerMetadataRequest.h']]]
 ];

@@ -6,7 +6,8 @@ var classULootLockerServerAssetRequest =
     [ "GetAssetInstanceKeyValuePairFromAssetInstanceById", "classULootLockerServerAssetRequest.html#a434584e0b612f84852f8b5e3efb4be07", null ],
     [ "GetAssets", "classULootLockerServerAssetRequest.html#ab2880b7b1db927813d901d0573b968b0", null ],
     [ "GetKeyValuePairsFromAssetInstance", "classULootLockerServerAssetRequest.html#ac3c19f089fece666203e5fa21f180039", null ],
-    [ "ListAssets", "classULootLockerServerAssetRequest.html#a75fae431798bfa2e2b56540d01322c9d", null ],
+    [ "ListAssets", "classULootLockerServerAssetRequest.html#a3d5972c9fa48d35c5a3b71a807ca53aa", null ],
+    [ "ListAssets", "classULootLockerServerAssetRequest.html#a419155d042d81858e7185dec425f1836", null ],
     [ "ListContexts", "classULootLockerServerAssetRequest.html#a19cafd27a19d104b9074f33109893c2a", null ],
     [ "UpdateKeyValuePairOnAssetInstanceById", "classULootLockerServerAssetRequest.html#ab1951bc1d7b93a3b5564b9578163250f", null ],
     [ "UpdateKeyValuePairsOnAssetInstance", "classULootLockerServerAssetRequest.html#ae2d37abb8ce3e0d94fba4ceec56b4177", null ]

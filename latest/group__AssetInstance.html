@@ -60,7 +60,7 @@
       </a>
       <span id="ll-topnav-divider" aria-hidden="true"></span>
       <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
-      <span id="ll-topnav-version">v6.6.0</span>
+      <span id="ll-topnav-version">v6.7.1</span>
       <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
          rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -137,7 +137,7 @@ function llToggleDark() {
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
   <td id="projectalign">
-   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.7.1</span>
    </div>
    <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
   </td>
@@ -1078,6 +1078,7 @@ $(document).ready(function(){initNavTree('group__AssetInstance.html',''); initRe
 </div><div class="memdoc">
 
 <p>Get the specified player's default character's inventory according to the specified pagination parameters. </p>
+<p>Operates on assets and asset instances. For the item-based inventory, see ListPlayerInventoryItems and friends, which deal with items and item templates and are a separate system.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to get the inventory </td></tr>
@@ -1126,6 +1127,7 @@ $(document).ready(function(){initNavTree('group__AssetInstance.html',''); initRe
 </div><div class="memdoc">
 
 <p>Get the specified player's default character's inventory. </p>
+<p>Operates on assets and asset instances. For the item-based inventory, see ListPlayerInventoryItems and friends, which deal with items and item templates and are a separate system.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">PlayerID</td><td>The ID of the player for whom to get the inventory </td></tr>
@@ -1208,6 +1210,7 @@ $(document).ready(function(){initNavTree('group__AssetInstance.html',''); initRe
 </div><div class="memdoc">
 
 <p>Get a list of assets that are available for all player's in the game. </p>
+<p>Operates on assets and asset instances. For the item-based inventory, see ListPlayerInventoryItems and friends, which deal with items and item templates and are a separate system.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>

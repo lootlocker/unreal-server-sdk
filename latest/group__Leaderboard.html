@@ -60,7 +60,7 @@
       </a>
       <span id="ll-topnav-divider" aria-hidden="true"></span>
       <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
-      <span id="ll-topnav-version">v6.6.0</span>
+      <span id="ll-topnav-version">v6.7.1</span>
       <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
          rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -137,7 +137,7 @@ function llToggleDark() {
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"$logosize/></td>
   <td id="projectalign">
-   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.6.0</span>
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;6.7.1</span>
    </div>
    <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
   </td>
@@ -986,7 +986,7 @@ $(document).ready(function(){initNavTree('group__Leaderboard.html',''); initResi
 </div>
 </div>
 <a id="gaa2788e8f44c9e8088e07fbe1ffef4852" name="gaa2788e8f44c9e8088e07fbe1ffef4852"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa2788e8f44c9e8088e07fbe1ffef4852">&#9670;&#160;</a></span>ListAssets()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa2788e8f44c9e8088e07fbe1ffef4852">&#9670;&#160;</a></span>ListAssets() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1037,6 +1037,81 @@ $(document).ready(function(){initNavTree('group__Leaderboard.html',''); initResi
     <tr><td class="paramname">Request</td><td>Request payload specifying includes/excludes/filters </td></tr>
     <tr><td class="paramname">PerPage</td><td>Optional: page size (ignored if 0 or negative) </td></tr>
     <tr><td class="paramname">Page</td><td>Optional: page index (ignored if 0 or negative) </td></tr>
+    <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Deprecated on 2026-07-17. Use the overload with OrderBy and OrderDirection parameters instead. </dd></dl>
+
+</div>
+</div>
+<a id="gab0ed45e29009e5d457879c759f3293df" name="gab0ed45e29009e5d457879c759f3293df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab0ed45e29009e5d457879c759f3293df">&#9670;&#160;</a></span>ListAssets() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString ULootLockerServerForCpp::ListAssets </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structFLootLockerServerListAssetsRequest.html">FLootLockerServerListAssetsRequest</a> &amp;&#160;</td>
+          <td class="paramname"><em>Request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>PerPage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Page</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__Assets.html#ga0f2a2b1939ae671a854deb4d2c7e7d9a">ELootLockerServerOrderAssetListBy</a>&#160;</td>
+          <td class="paramname"><em>OrderBy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__Assets.html#ga63ff79f1b2f70ab2059f26c28326781c">ELootLockerServerOrderAssetListDirection</a>&#160;</td>
+          <td class="paramname"><em>OrderDirection</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9a9af43515b7f1b5bbd7a5fe3f75351f">FLootLockerServerListAssetsResponseDelegate</a> &amp;&#160;</td>
+          <td class="paramname"><em>OnCompletedRequest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List assets with configurable response data and optional sorting. </p>
+<p>Use this to limit the fields returned in the response and improve performance. Lightweight alternative for retrieving assets where only selected data is needed </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Request</td><td>Request payload specifying includes/excludes/filters </td></tr>
+    <tr><td class="paramname">PerPage</td><td>Optional: page size (ignored if 0 or negative) </td></tr>
+    <tr><td class="paramname">Page</td><td>Optional: page index (ignored if 0 or negative) </td></tr>
+    <tr><td class="paramname">OrderBy</td><td>Optional: field to order the asset list by (None, Id, Name, Created_at, Updated_at) </td></tr>
+    <tr><td class="paramname">OrderDirection</td><td>Optional: direction to order the asset list (None, Asc, Desc) </td></tr>
     <tr><td class="paramname">OnCompletedRequest</td><td>Delegate for handling the server response </td></tr>
   </table>
   </dd>
@@ -1526,19 +1601,22 @@ Functions</h2></td></tr>
 <tr class="memitem:gaf8ec68810ac7b88397efca84f7672f75" id="r_gaf8ec68810ac7b88397efca84f7672f75"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#gaf8ec68810ac7b88397efca84f7672f75">ULootLockerServerForCpp::GetLeaderboard</a> (const FString &amp;LeaderboardKey, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a5778d9e641f63af3586f555dcc1ef0b0">FLootLockerServerGetLeaderboardResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
 <tr class="memdesc:gaf8ec68810ac7b88397efca84f7672f75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get information about a given leaderboard.  <br /></td></tr>
 <tr class="separator:gaf8ec68810ac7b88397efca84f7672f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga503e71f3d277b04810c86438daede5c4" id="r_ga503e71f3d277b04810c86438daede5c4"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#ga503e71f3d277b04810c86438daede5c4">ULootLockerServerForCpp::CreateLeaderboard</a> (FString LeaderboardKey, FString Name, <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a6553b41b9de74794c2b62ba5a16f88d6">ELootLockerServerLeaderboardType</a> Type, bool HasMetadata, <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#aa3ce89a29d78c4b2034b5f571e35718b">ELootLockerServerLeaderboardDirection</a> DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#ae70f06387cb8e1a8b5e2be0eef448ecb">FLootLockerServerCreateLeaderboardResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memitem:ga503e71f3d277b04810c86438daede5c4" id="r_ga503e71f3d277b04810c86438daede5c4"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#ga503e71f3d277b04810c86438daede5c4">ULootLockerServerForCpp::CreateLeaderboard</a> (FString LeaderboardKey, FString <a class="el" href="group__Assets.html#gga0f2a2b1939ae671a854deb4d2c7e7d9aa49ee3087348e8d44e1feda1917443987">Name</a>, <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a6553b41b9de74794c2b62ba5a16f88d6">ELootLockerServerLeaderboardType</a> Type, bool HasMetadata, <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#aa3ce89a29d78c4b2034b5f571e35718b">ELootLockerServerLeaderboardDirection</a> DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#ae70f06387cb8e1a8b5e2be0eef448ecb">FLootLockerServerCreateLeaderboardResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
 <tr class="memdesc:ga503e71f3d277b04810c86438daede5c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new leaderboard with the provided details.  <br /></td></tr>
 <tr class="separator:ga503e71f3d277b04810c86438daede5c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa2788e8f44c9e8088e07fbe1ffef4852" id="r_gaa2788e8f44c9e8088e07fbe1ffef4852"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#gaa2788e8f44c9e8088e07fbe1ffef4852">ULootLockerServerForCpp::ListAssets</a> (const <a class="el" href="structFLootLockerServerListAssetsRequest.html">FLootLockerServerListAssetsRequest</a> &amp;Request, int PerPage, int Page, const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9a9af43515b7f1b5bbd7a5fe3f75351f">FLootLockerServerListAssetsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
 <tr class="memdesc:gaa2788e8f44c9e8088e07fbe1ffef4852"><td class="mdescLeft">&#160;</td><td class="mdescRight">List assets with configurable response data.  <br /></td></tr>
 <tr class="separator:gaa2788e8f44c9e8088e07fbe1ffef4852"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab0ed45e29009e5d457879c759f3293df" id="r_gab0ed45e29009e5d457879c759f3293df"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#gab0ed45e29009e5d457879c759f3293df">ULootLockerServerForCpp::ListAssets</a> (const <a class="el" href="structFLootLockerServerListAssetsRequest.html">FLootLockerServerListAssetsRequest</a> &amp;Request, int PerPage, int Page, <a class="el" href="group__Assets.html#ga0f2a2b1939ae671a854deb4d2c7e7d9a">ELootLockerServerOrderAssetListBy</a> OrderBy, <a class="el" href="group__Assets.html#ga63ff79f1b2f70ab2059f26c28326781c">ELootLockerServerOrderAssetListDirection</a> OrderDirection, const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9a9af43515b7f1b5bbd7a5fe3f75351f">FLootLockerServerListAssetsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memdesc:gab0ed45e29009e5d457879c759f3293df"><td class="mdescLeft">&#160;</td><td class="mdescRight">List assets with configurable response data and optional sorting.  <br /></td></tr>
+<tr class="separator:gab0ed45e29009e5d457879c759f3293df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac2f33a1e7dc847c359eaa84e7b1ceeac" id="r_gac2f33a1e7dc847c359eaa84e7b1ceeac"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#gac2f33a1e7dc847c359eaa84e7b1ceeac">ULootLockerServerForCpp::ListAssetsWithDefaultParameters</a> (const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9a9af43515b7f1b5bbd7a5fe3f75351f">FLootLockerServerListAssetsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
 <tr class="memdesc:gac2f33a1e7dc847c359eaa84e7b1ceeac"><td class="mdescLeft">&#160;</td><td class="mdescRight">List assets with default parameters (no filters, first page, default page size) Lightweight alternative for retrieving assets where only selected data is needed.  <br /></td></tr>
 <tr class="separator:gac2f33a1e7dc847c359eaa84e7b1ceeac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab6c3eda5bac7b0b718bf3d678d0187ff" id="r_gab6c3eda5bac7b0b718bf3d678d0187ff"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#gab6c3eda5bac7b0b718bf3d678d0187ff">ULootLockerServerForCpp::ListContexts</a> (int PerPage, int Page, const <a class="el" href="LootLockerServerAssetRequest_8h.html#a9309bdcd7d114551a4b064f7231a9a37">FLootLockerServerListContextsResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
 <tr class="memdesc:gab6c3eda5bac7b0b718bf3d678d0187ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">List contexts with pagination support.  <br /></td></tr>
 <tr class="separator:gab6c3eda5bac7b0b718bf3d678d0187ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9d9f3c984b86324bf7acbeb0b4d446f5" id="r_ga9d9f3c984b86324bf7acbeb0b4d446f5"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#ga9d9f3c984b86324bf7acbeb0b4d446f5">ULootLockerServerForCpp::UpdateLeaderboard</a> (FString LeaderboardKey, FString NewLeaderboardKey, FString Name, <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#aa3ce89a29d78c4b2034b5f571e35718b">ELootLockerServerLeaderboardDirection</a> DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#ac97c605e23da8dd93ec33621829cb0f3">FLootLockerServerUpdateLeaderboardResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
+<tr class="memitem:ga9d9f3c984b86324bf7acbeb0b4d446f5" id="r_ga9d9f3c984b86324bf7acbeb0b4d446f5"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#ga9d9f3c984b86324bf7acbeb0b4d446f5">ULootLockerServerForCpp::UpdateLeaderboard</a> (FString LeaderboardKey, FString NewLeaderboardKey, FString <a class="el" href="group__Assets.html#gga0f2a2b1939ae671a854deb4d2c7e7d9aa49ee3087348e8d44e1feda1917443987">Name</a>, <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#aa3ce89a29d78c4b2034b5f571e35718b">ELootLockerServerLeaderboardDirection</a> DirectionMethod, bool EnableGameApiWrites, bool OverwriteScoreOnSubmit, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#ac97c605e23da8dd93ec33621829cb0f3">FLootLockerServerUpdateLeaderboardResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
 <tr class="memdesc:ga9d9f3c984b86324bf7acbeb0b4d446f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update an existing leaderboard with the provided details.  <br /></td></tr>
 <tr class="separator:ga9d9f3c984b86324bf7acbeb0b4d446f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2fe7dcb85ae21bd0fa49187dd0dc6bed" id="r_ga2fe7dcb85ae21bd0fa49187dd0dc6bed"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Leaderboard.html#ga2fe7dcb85ae21bd0fa49187dd0dc6bed">ULootLockerServerForCpp::DeleteLeaderboard</a> (FString LeaderboardKey, const <a class="el" href="LootLockerServerLeaderboardRequest_8h.html#a8f1573d0ad3fecf9fb45a53ace14726e">FLootLockerServerDeleteLeaderboardResponseDelegate</a> &amp;OnCompletedRequest)</td></tr>
