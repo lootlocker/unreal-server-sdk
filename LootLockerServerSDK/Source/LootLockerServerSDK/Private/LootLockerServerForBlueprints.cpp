@@ -1348,8 +1348,12 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	    {
 	        if (FStructProperty* StructProperty = CastField<FStructProperty>(ContentProperty))
 	        {
-	            TSharedPtr<FJsonObject> Out = FJsonObjectConverter::UStructToJsonObject(StructProperty->Struct, ContentAddress);
-	            if (Out.IsValid())
+	            TSharedPtr<FJsonObject> Out = MakeShared<FJsonObject>();
+#if ((ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 8) || ENGINE_MAJOR_VERSION >= 6)
+	            if (FJsonObjectConverter::UStructToJsonAttributes(StructProperty->Struct, ContentAddress, Out.ToSharedRef()))
+#else
+	            if (FJsonObjectConverter::UStructToJsonAttributes(StructProperty->Struct, ContentAddress, Out->Values))
+#endif
 	            {
                     TSharedPtr<FJsonValue> JsonValue = MakeShared<FJsonValueObject>(Out);
 	                ULootLockerServerForCpp::SendNotificationToPlayer(NotificationType, Priority, RecipientPlayerUlid, JsonValue, Properties, FLootLockerServerSendNotificationsResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSendNotificationsResponse& Response) {
@@ -1444,8 +1448,12 @@ DEFINE_FUNCTION(ULootLockerServerForBlueprints::execSendNotificationToPlayer)
 	                FScriptArrayHelper ArrayHelper(ArrayProperty, StructProperty->ContainerPtrToValuePtr<void>(ContentAddress));
 	                for (int i = 0; i < ArrayHelper.Num(); ++i)
 	                {
-	                    TSharedPtr<FJsonObject> Out = FJsonObjectConverter::UStructToJsonObject(StructProperty->Struct, ArrayHelper.GetRawPtr(i));
-	                    if (Out.IsValid())
+	                    TSharedPtr<FJsonObject> Out = MakeShared<FJsonObject>();
+#if ((ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 8) || ENGINE_MAJOR_VERSION >= 6)
+	                    if (FJsonObjectConverter::UStructToJsonAttributes(StructProperty->Struct, ArrayHelper.GetRawPtr(i), Out.ToSharedRef()))
+#else
+	                    if (FJsonObjectConverter::UStructToJsonAttributes(StructProperty->Struct, ArrayHelper.GetRawPtr(i), Out->Values))
+#endif
 	                    {
 	                        JsonArrVal.Add(MakeShared<FJsonValueObject>(Out));
 	                    }
