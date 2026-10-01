@@ -13,6 +13,9 @@
 #include "LootLockerServerStateData.h"
 #include "LootLockerServerTestGame.h"
 #include "ServerAPI/LootLockerServerAuthRequest.h"
+#include "ServerAPI/LootLockerServerLeaderboardRequest.h"
+#include "ServerAPI/LootLockerServerPlayerRequest.h"
+#include "ServerAPI/LootLockerServerTriggerRequest.h"
 
 namespace test_util
 {
@@ -146,6 +149,121 @@ namespace test_util
 			return false;
 		}
 
+		// Only now is the game usable by a test body. Kept separate from the game
+		// identity so teardown can still delete a game whose later steps failed.
+		Game.bSetupComplete = true;
+		return true;
+	}
+
+	// ─── Server-API entity helpers ────────────────────────────────────────────
+	//
+	// These go through the SDK's own transport (and therefore the server session),
+	// unlike FLootLockerServerTestGame's admin-API helpers.
+
+	/**
+	 * Create a player through the server API.
+	 * Requires a started session and the guest platform enabled on the game.
+	 *
+	 * @param OutPlayerId    Populated with the numeric legacy player ID.
+	 * @param OutPlayerUlid  Populated with the player ULID.
+	 * @param PlatformId     Optional platform player identifier; a GUID is generated when empty.
+	 */
+	inline bool CreatePlayer(int32& OutPlayerId, FString& OutPlayerUlid, const FString& PlatformId = TEXT(""))
+	{
+		const FString EffectivePlatformId =
+			PlatformId.IsEmpty() ? FGuid::NewGuid().ToString() : PlatformId;
+
+		const auto [Promise, Delegate] =
+			CreateDelegate<FLootLockerServerCreatePlayerResponse, FLootLockerServerCreatePlayerResponseDelegate>();
+
+		ULootLockerServerPlayerRequest::CreatePlayer(
+			ELootLockerServerCreatePlayerPlatforms::Guest, EffectivePlatformId, Delegate);
+
+		const FLootLockerServerCreatePlayerResponse Response = WaitAndGet(Promise);
+		if (!Response.Success || Response.Player_id == 0)
+		{
+			UE_LOG(LogTemp, Error, TEXT("test_util: CreatePlayer failed (%d): %s"),
+				Response.StatusCode, *Response.FullTextFromServer);
+			return false;
+		}
+
+		OutPlayerId = Response.Player_id;
+		OutPlayerUlid = Response.Player_ulid;
+		return true;
+	}
+
+	/**
+	 * Create a leaderboard through the server API.
+	 * Requires a started session.
+	 *
+	 * @param Key   Unique leaderboard key. Only a-z, 0-9 and underscores are allowed.
+	 * @param Name  Display name.
+	 */
+	inline bool CreateLeaderboard(const FString& Key, const FString& Name)
+	{
+		FLootLockerServerCreateLeaderboardRequest Request;
+		Request.Key = Key;
+		Request.Name = Name;
+		Request.Type = ELootLockerServerLeaderboardType::player;
+		Request.Direction_method = ELootLockerServerLeaderboardDirection::descending;
+		Request.Enable_game_api_writes = true;
+		Request.Overwrite_score_on_submit = true;
+
+		const auto [Promise, Delegate] =
+			CreateDelegate<FLootLockerServerCreateLeaderboardResponse, FLootLockerServerCreateLeaderboardResponseDelegate>();
+
+		ULootLockerServerLeaderboardRequest::CreateLeaderboard(Request, Delegate);
+
+		const FLootLockerServerCreateLeaderboardResponse Response = WaitAndGet(Promise);
+		if (!Response.Success)
+		{
+			UE_LOG(LogTemp, Error, TEXT("test_util: CreateLeaderboard '%s' failed (%d): %s"),
+				*Key, Response.StatusCode, *Response.FullTextFromServer);
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Delete a leaderboard through the server API.
+	 * Requires a started session.
+	 */
+	inline bool DeleteLeaderboard(const FString& Key)
+	{
+		const auto [Promise, Delegate] =
+			CreateDelegate<FLootLockerServerResponse, FLootLockerServerDeleteLeaderboardResponseDelegate>();
+
+		ULootLockerServerLeaderboardRequest::DeleteLeaderboard(Key, Delegate);
+
+		const FLootLockerServerResponse Response = WaitAndGet(Promise);
+		if (!Response.Success)
+		{
+			UE_LOG(LogTemp, Error, TEXT("test_util: DeleteLeaderboard '%s' failed (%d): %s"),
+				*Key, Response.StatusCode, *Response.FullTextFromServer);
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Invoke a trigger for a player through the server API.
+	 * Requires a started session. Triggers are fire-and-forget: a success response
+	 * does not imply any reward was granted.
+	 */
+	inline bool InvokeTriggerForPlayer(const FString& TriggerName, int32 PlayerId)
+	{
+		const auto [Promise, Delegate] =
+			CreateDelegate<FLootLockerServerInvokeTriggerResponse, FLootLockerServerInvokeTriggerResponseDelegate>();
+
+		ULootLockerServerTriggerRequest::InvokeTriggerForPlayer(TriggerName, PlayerId, Delegate);
+
+		const FLootLockerServerInvokeTriggerResponse Response = WaitAndGet(Promise);
+		if (!Response.Success)
+		{
+			UE_LOG(LogTemp, Error, TEXT("test_util: InvokeTriggerForPlayer '%s' failed (%d): %s"),
+				*TriggerName, Response.StatusCode, *Response.FullTextFromServer);
+			return false;
+		}
 		return true;
 	}
 }
