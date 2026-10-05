@@ -53,6 +53,12 @@ public:
 	static bool EnsureSignedIn();
 
 	/**
+	 * True when the harness is pointed at the live LootLocker backend rather than a local stack.
+	 * Used to refuse creating throwaway accounts on production without an explicit opt-in.
+	 */
+	static bool IsProductionTarget();
+
+	/**
 	 * Authenticate with the given credentials and populate AdminToken / OrganisationId.
 	 * If OutWas401 is non-null it will be set to true when the server returns HTTP 401.
 	 */

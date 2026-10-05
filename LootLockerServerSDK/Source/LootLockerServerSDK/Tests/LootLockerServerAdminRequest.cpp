@@ -59,6 +59,15 @@ bool FLootLockerServerAdminRequest::GetCredentials(FString& OutEmail, FString& O
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 
+bool FLootLockerServerAdminRequest::IsProductionTarget()
+{
+#ifdef LOOTLOCKER_USE_LOCAL_DEVENV
+	return false;
+#else
+	return true;
+#endif
+}
+
 bool FLootLockerServerAdminRequest::EnsureSignedIn()
 {
 	if (!AdminToken.IsEmpty())
@@ -71,6 +80,21 @@ bool FLootLockerServerAdminRequest::EnsureSignedIn()
 
 	if (!bHaveExplicitCredentials)
 	{
+		// Refuse to create throwaway accounts on the live backend unless the caller has
+		// explicitly opted in. Without this guard a casual local run would pollute real
+		// customer data with games, players and admin users.
+		if (IsProductionTarget() &&
+			FPlatformMisc::GetEnvironmentVariable(TEXT("LOOTLOCKER_ALLOW_PRODUCTION_TESTS")) != TEXT("1"))
+		{
+			UE_LOG(LogTemp, Error,
+				TEXT("LootLockerServerAdmin: refusing to run against production. ")
+				TEXT("Set LOOTLOCKER_USE_LOCAL_DEVENV=1 to target a local stack, or set ")
+				TEXT("LOOTLOCKER_ADMIN_EMAIL/LOOTLOCKER_ADMIN_PASSWORD to use a dedicated account, ")
+				TEXT("or set LOOTLOCKER_ALLOW_PRODUCTION_TESTS=1 to accept that real games and ")
+				TEXT("players will be created."));
+			return false;
+		}
+
 		// Generate deterministic date-based credentials (mirrors the Unity SDK pattern).
 		// Email and password are both derived from the current UTC date+hour so that all
 		// test processes in the same hour reuse the same account, and a new one is created
