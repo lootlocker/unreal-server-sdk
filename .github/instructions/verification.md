@@ -63,6 +63,16 @@ This check is intentionally narrower than the full matrix builds (it is meant to
 
 ## C) Running the automation tests locally (Windows)
 
+> **These tests are not run in CI.** They are a local aid only. No workflow executes them, so a
+> green CI run does **not** mean these tests passed.
+
+> **Warning — the default target is production.** Unless `LOOTLOCKER_USE_LOCAL_DEVENV=1` is set
+> (see below), the harness talks to the live LootLocker API and **creates real games, players and
+> admin accounts**. To prevent accidental pollution, the harness **refuses to run** in that
+> configuration unless you either supply dedicated credentials
+> (`LOOTLOCKER_ADMIN_EMAIL`/`LOOTLOCKER_ADMIN_PASSWORD`) or explicitly opt in with
+> `LOOTLOCKER_ALLOW_PRODUCTION_TESTS=1`. Never point it at a shared or customer-facing environment.
+
 Backend-dependent tests provision their own isolated game through the admin API, so they need
 admin credentials for the LootLocker backend. Offline tests (`Config.SaveConfig`,
 `Config.FileConfig`) run without any credentials.
@@ -96,8 +106,8 @@ $env:LOOTLOCKER_ADMIN_EMAIL    = "ci-testrun@example.com"
 $env:LOOTLOCKER_ADMIN_PASSWORD = "..."
 ```
 
-If they are set, the harness never attempts a signup — a login failure is reported as-is. This is
-what CI uses.
+If they are set, the harness never attempts a signup — a login failure is reported as-is. Use this
+to point the harness at a dedicated, verified account instead of creating throwaway ones.
 
 ### Running against a local backend (devenv)
 
@@ -116,8 +126,10 @@ changing it. See the repository README for how to start the local stack.
 > (`GET /server/ping` and `/server/players/storage`) reject the session token that go-backend
 > minted, because php-backend binds the token to a client IP that no longer matches once the
 > request passes through the proxy. Two tests (`When Start/End server session` and
-> `When Server PersistentStorage`) therefore fail locally. They pass in CI, which runs against the
-> real backend. This is tracked as a devenv limitation, not a test suite defect.
+> `When Server PersistentStorage`) therefore fail locally.
+>
+> This is a devenv limitation, not a test suite defect, and it is **not** currently covered by CI —
+> no workflow runs these tests. Tracked as lootlocker/index#1755.
 
 ### Troubleshooting
 
