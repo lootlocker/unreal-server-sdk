@@ -32,12 +32,12 @@ jobs:
           echo "SDK_PATH=${SDK_PATH}" >> $GITHUB_ENV
           echo "SDK_NAME=${SDK_NAME}" >> $GITHUB_ENV
           sed -i -r "s/^( +)(\"VersionName\": \"[0-9\.]+\",)/\1\2\n\1\"EngineVersion\": \"${{ matrix.UE_VERSION }}\",/g" "$SDK_PATH/$SDK_NAME/$SDK_NAME.uplugin"
-          CURRENT_PACKAGE_DIR="Packaged"
+          CURRENT_PACKAGE_DIR="$SDK_PATH/Packaged"
           echo "PACKAGE_DIR=${CURRENT_PACKAGE_DIR}" >> $GITHUB_ENV
           mkdir -p "$CURRENT_PACKAGE_DIR"
           PACKAGE_NAME="${SDK_NAME}v${SDK_VERSION}_for_Unreal_Engine_${{ matrix.UE_VERSION }}.zip"
           echo "PACKAGE_NAME=${PACKAGE_NAME}" >> $GITHUB_ENV
-          tar -a -cf "$CURRENT_PACKAGE_DIR/$PACKAGE_NAME" -C "$SDK_PATH" "$SDK_NAME"
+          (cd "$SDK_PATH" && zip -r "$CURRENT_PACKAGE_DIR/$PACKAGE_NAME" "$SDK_NAME")
           echo "  Package $PACKAGE_NAME produced to path $CURRENT_PACKAGE_DIR"
           
       - name: Expose packaged artifact
