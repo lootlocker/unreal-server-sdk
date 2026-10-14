@@ -70,7 +70,7 @@ enum class ELootLockerServerRewardKind : uint8
  The template an item instance (player inventory item) is based on
  */
 USTRUCT(BlueprintType)
-struct FLootLockerItemTemplate
+struct FLootLockerServerItemTemplate
 {
     GENERATED_BODY()
     /**
@@ -278,7 +278,7 @@ struct FLootLockerServerGetPlayerInventoryItemResponse : public FLootLockerServe
      The full item template this item is based on
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FLootLockerItemTemplate Template;
+    FLootLockerServerItemTemplate Template;
 };
 
 /**
