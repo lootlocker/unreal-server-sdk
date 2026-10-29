@@ -146,7 +146,8 @@ bool FLootLockerServerAdminRequest::Login(const FString& Email, const FString& P
 	FJsonSerializer::Serialize(RequestJson, Writer);
 
 	const FLootLockerServerAdminResponse Response =
-		SendOnce(GetBaseUrl() + TEXT("v1/session"), TEXT("POST"), JsonBody);
+		SendOnce(GetBaseUrl() + TEXT("v1/session"), TEXT("POST"), JsonBody,
+			/*bIncludeOrganisationHeader=*/false);
 
 	if (!Response.bSuccess)
 	{
@@ -216,7 +217,8 @@ bool FLootLockerServerAdminRequest::Signup(
 	FJsonSerializer::Serialize(RequestJson, Writer);
 
 	const FLootLockerServerAdminResponse Response =
-		SendOnce(GetBaseUrl() + TEXT("v1/signup"), TEXT("POST"), JsonBody);
+		SendOnce(GetBaseUrl() + TEXT("v1/signup"), TEXT("POST"), JsonBody,
+			/*bIncludeOrganisationHeader=*/false);
 
 	if (!Response.bSuccess)
 	{
@@ -230,7 +232,8 @@ bool FLootLockerServerAdminRequest::Signup(
 }
 
 FLootLockerServerAdminResponse FLootLockerServerAdminRequest::SendOnce(
-	const FString& FullUrl, const FString& Method, const FString& JsonBody)
+	const FString& FullUrl, const FString& Method, const FString& JsonBody,
+	bool bIncludeOrganisationHeader)
 {
 	// Use a heap-allocated promise so the lambda can capture it by raw pointer.
 	// The promise is deleted on this thread after get() returns.
@@ -249,6 +252,15 @@ FLootLockerServerAdminResponse FLootLockerServerAdminRequest::SendOnce(
 	if (!AdminToken.IsEmpty())
 	{
 		Request->SetHeader(TEXT("x-auth-token"), AdminToken);
+	}
+
+	// The admin API takes its acting organisation from x-org-id rather than from the session
+	// token, so every organisation-carried route (game creation, uploads, CRM) needs it sent
+	// explicitly. Omitted while no organisation is known - and on the login/signup routes,
+	// which do not require it - because an empty value is rejected rather than ignored.
+	if (bIncludeOrganisationHeader && OrganisationId > 0)
+	{
+		Request->SetHeader(TEXT("x-org-id"), FString::FromInt(OrganisationId));
 	}
 
 	if (!JsonBody.IsEmpty())
