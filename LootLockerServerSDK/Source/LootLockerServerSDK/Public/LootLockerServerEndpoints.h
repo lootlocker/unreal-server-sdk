@@ -131,6 +131,7 @@ public:
     static FLootLockerServerEndPoint GetPlayerFileRevisionByKey;
     static FLootLockerServerEndPoint PromotePlayerFileRevisionByKey;
     static FLootLockerServerEndPoint DeletePlayerFileByKey;
+    static FLootLockerServerEndPoint CreatePlayerFileDownloadLink;
 
     // Triggers
     static FLootLockerServerEndPoint InvokeTriggerForPlayer;
