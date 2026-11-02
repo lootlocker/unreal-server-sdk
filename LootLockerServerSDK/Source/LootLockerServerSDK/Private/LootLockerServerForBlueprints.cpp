@@ -780,6 +780,13 @@ FString ULootLockerServerForBlueprints::DeleteFileByKeyForPlayer(int PlayerID, c
     }));
 }
 
+FString ULootLockerServerForBlueprints::CreateFileDownloadLinkForPlayer(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseBP& OnCompletedRequest)
+{
+    return ULootLockerServerForCpp::CreateFileDownloadLinkForPlayer(PlayerID, FileID, FLootLockerServerSinglePlayerFileResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerSinglePlayerFileResponse& Response) {
+        OnCompletedRequest.ExecuteIfBound(Response);
+    }));
+}
+
 // Game Progressions
 FString ULootLockerServerForBlueprints::GetProgressions(const FLootLockerServerGameProgressionListResponseBP& OnCompletedRequest)
 {

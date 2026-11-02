@@ -588,6 +588,11 @@ FString ULootLockerServerForCpp::DeleteFileByKeyForPlayer(int PlayerID, const FS
     return ULootLockerServerPlayerFileRequest::DeleteFileByKeyForPlayer(PlayerID, Key, OnCompletedRequest);
 }
 
+FString ULootLockerServerForCpp::CreateFileDownloadLinkForPlayer(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerPlayerFileRequest::CreateFileDownloadLinkForPlayer(PlayerID, FileID, OnCompletedRequest);
+}
+
 // Game Progressions
 FString ULootLockerServerForCpp::GetProgressions(const FLootLockerServerGameProgressionListResponseDelegate& OnCompletedRequest)
 {

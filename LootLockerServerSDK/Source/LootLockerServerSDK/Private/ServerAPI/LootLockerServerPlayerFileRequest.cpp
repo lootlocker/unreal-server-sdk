@@ -112,3 +112,8 @@ FString ULootLockerServerPlayerFileRequest::DeleteFileByKeyForPlayer(int PlayerI
 {
     return ULootLockerServerHttpClient::SendRequest<FLootLockerServerPlayerFileDeleteResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::DeletePlayerFileByKey, { PlayerID, Key }, {}, OnCompletedRequest);
 }
+
+FString ULootLockerServerPlayerFileRequest::CreateFileDownloadLinkForPlayer(int PlayerID, int FileID, const FLootLockerServerSinglePlayerFileResponseDelegate& OnCompletedRequest)
+{
+    return ULootLockerServerHttpClient::SendRequest<FLootLockerServerSinglePlayerFileResponse>(FLootLockerServerEmptyRequest{}, ULootLockerServerEndpoints::CreatePlayerFileDownloadLink, { PlayerID, FileID }, {}, OnCompletedRequest);
+}

@@ -101,6 +101,7 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::ListPlayerFileRevisionsByK
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerFileRevisionByKey = InitEndpoint("players/{0}/files/key/{1}/revisions/{2}", ELootLockerServerHTTPMethod::GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::PromotePlayerFileRevisionByKey = InitEndpoint("players/{0}/files/key/{1}/revisions/{2}/current", ELootLockerServerHTTPMethod::POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerFileByKey = InitEndpoint("players/{0}/files/key/{1}", ELootLockerServerHTTPMethod::DELETE);
+FLootLockerServerEndPoint ULootLockerServerEndpoints::CreatePlayerFileDownloadLink = InitEndpoint("players/{0}/files/{1}/download-link/v1", ELootLockerServerHTTPMethod::POST);
 
 //Triggers
 FLootLockerServerEndPoint ULootLockerServerEndpoints::InvokeTriggerForPlayer = InitEndpoint("trigger", ELootLockerServerHTTPMethod::POST);
