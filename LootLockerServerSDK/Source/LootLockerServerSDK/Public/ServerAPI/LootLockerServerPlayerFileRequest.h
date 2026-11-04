@@ -70,7 +70,7 @@ struct FLootLockerServerPlayerFile
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Created_at = "";	
 	/**
-	 True for a gated file (such as a private file reward): Url is intentionally empty and the client must call CreateFileDownloadLink to obtain a short-lived link
+	 True for a gated file (such as a private file reward): Url is intentionally empty and the client must call CreateFileDownloadLinkForPlayer to obtain a short-lived link
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	bool Requires_download_link = false;
@@ -144,7 +144,7 @@ struct FLootLockerServerSinglePlayerFileResponse : public FLootLockerServerRespo
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Created_at = "";
 	/**
-	 True for a gated file (such as a private file reward): Url is intentionally empty and the client must call CreateFileDownloadLink to obtain a short-lived link
+	 True for a gated file (such as a private file reward): Url is intentionally empty and the client must call CreateFileDownloadLinkForPlayer to obtain a short-lived link
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	bool Requires_download_link = false;
@@ -202,7 +202,7 @@ struct FLootLockerServerPlayerFileContentResponse : public FLootLockerServerResp
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	FString Created_at = "";
 	/**
-	 True for a gated file (such as a private file reward): Url is intentionally empty and must be minted with CreateFileDownloadLink
+	 True for a gated file (such as a private file reward): Url is intentionally empty and must be minted with CreateFileDownloadLinkForPlayer
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	bool Requires_download_link = false;
@@ -241,7 +241,7 @@ struct FLootLockerServerPlayerFileMetadata
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	int Id = 0;
 	/**
-	 True for a gated file (such as a private file reward): the file's download Url is intentionally empty and must be minted with CreateFileDownloadLink
+	 True for a gated file (such as a private file reward): no download URL is returned for it, so mint one with CreateFileDownloadLinkForPlayer
 	 */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
 	bool Requires_download_link = false;
