@@ -135,6 +135,22 @@ void FTestLootLockerServer_PlayerFiles::Define()
 				}
 			}
 
+			// Mint a short lived download link for the file
+			{
+				const auto [Promise, Delegate] = test_util::CreateDelegate<FLootLockerServerSinglePlayerFileResponse, FLootLockerServerSinglePlayerFileResponseDelegate>();
+
+				ULootLockerServerPlayerFileRequest::CreateFileDownloadLinkForPlayer(PlayerId, FileId, Delegate);
+
+				const auto Response = test_util::WaitAndGet(Promise);
+				TestTrue("CreateFileDownloadLinkForPlayer Ok", Response.Success);
+				if (Response.Success)
+				{
+					TestFalse("CreateFileDownloadLinkForPlayer Url Ok", Response.Url.IsEmpty());
+					TestFalse("CreateFileDownloadLinkForPlayer UrlExpiresAt Ok", Response.Url_expires_at.IsEmpty());
+					TestFalse("CreateFileDownloadLinkForPlayer RequiresDownloadLink False", Response.Requires_download_link);
+				}
+			}
+
 			// Delete File
 			{
 				const auto [Promise , Delegate] = test_util::CreateDelegate<FLootLockerServerPlayerFileDeleteResponse, FLootLockerServerPlayerFileDeleteResponseDelegate>();
