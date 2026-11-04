@@ -5,6 +5,7 @@
 #include "LootLockerServerConfig.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
+#include "Utils/LootLockerServerUtilities.h"
 
 DEFINE_LOG_CATEGORY(LogLootLockerServer);
 
@@ -56,7 +57,7 @@ void FLootLockerServerLogger::LogHttpRequest(const FLootLockerServerHttpLogEntry
             LogString += FString::Printf(TEXT("\n   Trace ID: %s"), *Entry.ErrorData.Trace_id);
     }
     LogString += FString::Printf(TEXT("\n   Request Data: %s"), *Entry.RequestData);
-    LogString += FString::Printf(TEXT("\n   Response Data: %s"), *Entry.ResponseData);
+    LogString += FString::Printf(TEXT("\n   Response Data: %s"), *LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Entry.ResponseData));
     LogString += FString::Printf(TEXT("\n   Request Headers: %s"), *Entry.RequestHeaders);
     LogString += TEXT("\n###");
     Log(LogString, Entry.bSuccess ? ELootLockerServerLogLevel::VeryVerbose : ELootLockerServerLogLevel::Warning);

@@ -11,6 +11,7 @@
 #include "LootLockerServerConfig.h"
 #include "Interfaces/IPluginManager.h"
 #include "Misc/Guid.h"
+#include "Utils/LootLockerServerUtilities.h"
 
 ULootLockerServerHttpClient* ULootLockerServerHttpClient::Instance = nullptr;
 
@@ -244,7 +245,9 @@ void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerS
     LogEntry.StatusCode = Response.StatusCode;
     LogEntry.Duration = (FDateTime::Now() - RequestStartTime).GetTotalSeconds();
     LogEntry.RequestData = Data;
-    LogEntry.ResponseData = Response.FullTextFromServer;
+    // Redact signed download URLs here so both the log line and the OnHttpLogEntry broadcast
+    // (which feeds the in-editor log UI) never carry a usable bearer credential.
+    LogEntry.ResponseData = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Response.FullTextFromServer);
     LogEntry.RequestHeaders = DelimitedRequestHeaders;
     LogEntry.ResponseHeaders = FString::Join(ResponseHeaders, TEXT("\n"));
     LogEntry.bSuccess = false;
@@ -261,7 +264,9 @@ void ULootLockerServerHttpClient::LogSuccessfulRequestInformation(const FLootLoc
     LogEntry.StatusCode = Response.StatusCode;
     LogEntry.Duration = (FDateTime::Now() - RequestStartTime).GetTotalSeconds();;
     LogEntry.RequestData = Data;
-    LogEntry.ResponseData = Response.FullTextFromServer;
+    // Redact signed download URLs here so both the log line and the OnHttpLogEntry broadcast
+    // (which feeds the in-editor log UI) never carry a usable bearer credential.
+    LogEntry.ResponseData = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Response.FullTextFromServer);
     LogEntry.RequestHeaders = DelimitedRequestHeaders;
     LogEntry.ResponseHeaders = FString::Join(ResponseHeaders, TEXT("\n"));
     LogEntry.bSuccess = true;
