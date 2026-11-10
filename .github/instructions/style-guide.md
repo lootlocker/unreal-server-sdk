@@ -129,7 +129,7 @@ Use:
 
 ### Endpoints
 - Endpoints are defined in `Public/LootLockerServerEndpoints.h` and initialized in `Private/LootLockerServerEndpoints.cpp`.
-- Endpoints are `FLootLockerServerEndPoint` values created via `InitEndpoint("path", ELootLockerServerHTTPMethod::GET/POST/...)`.
+- Endpoints are `FLootLockerServerEndPoint` values created via `InitEndpoint("path", ELootLockerServerHTTPMethod::LL_GET/LL_POST/...)`.
 
 ### Path params and query params
 - Path params are passed as ordered `TArray<FStringFormatArg>` and are URL-encoded by the HTTP client.

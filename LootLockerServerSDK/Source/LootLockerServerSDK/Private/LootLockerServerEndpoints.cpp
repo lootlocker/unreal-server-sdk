@@ -101,7 +101,6 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::ListPlayerFileRevisionsByK
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerFileRevisionByKey = InitEndpoint("players/{0}/files/key/{1}/revisions/{2}", ELootLockerServerHTTPMethod::LL_GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::PromotePlayerFileRevisionByKey = InitEndpoint("players/{0}/files/key/{1}/revisions/{2}/current", ELootLockerServerHTTPMethod::LL_POST);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::DeletePlayerFileByKey = InitEndpoint("players/{0}/files/key/{1}", ELootLockerServerHTTPMethod::LL_DELETE);
->>>>>>> 4e03a54 (fix: prefix HTTP method enumerators to avoid Windows macro collision)
 FLootLockerServerEndPoint ULootLockerServerEndpoints::CreatePlayerFileDownloadLink = InitEndpoint("players/{0}/files/{1}/download-link/v1", ELootLockerServerHTTPMethod::LL_POST);
 
 //Triggers
