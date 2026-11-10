@@ -13,7 +13,7 @@ Before adding a new request method, confirm the endpoint exists in:
 
 Conventions:
 - Search first: reuse an existing `ULootLockerServerEndpoints::<Name>` if it already matches.
-- Endpoints are initialized in the `.cpp` via `InitEndpoint("path", ELootLockerServerHTTPMethod::GET/POST/...)`.
+- Endpoints are initialized in the `.cpp` via `InitEndpoint("path", ELootLockerServerHTTPMethod::LL_GET/LL_POST/...)`.
 - Prefer adding new endpoints only when a new backend route is introduced.
 
 ### 1) Add models + delegates + request entrypoint (Public)
