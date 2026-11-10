@@ -21,6 +21,37 @@ enum class ELootLockerServerHTTPMethod : uint8
     LL_UPLOAD = 8      UMETA(DisplayName = "UPLOAD")
 };
 
+/**
+ * Maps ELootLockerServerHTTPMethod to the verb sent in the HTTP request line.
+ *
+ * The mapping is written out explicitly rather than read back from the enum's DisplayName
+ * metadata: UEnum::GetDisplayNameTextByValue() only honours UMETA(DisplayName=...) when
+ * WITH_EDITOR is set (WITH_METADATA is WITH_EDITORONLY_DATA, so the metadata is stripped at
+ * cook time) and silently falls back to the C++ enumerator name in a packaged build.
+ *
+ * Keep this switch exhaustive; it has no default so that adding a member to the enum produces
+ * a -Wswitch build error rather than a silently wrong verb.
+ */
+namespace LootLockerServerHttpMethodUtils
+{
+    inline FString GetVerbString(ELootLockerServerHTTPMethod Method)
+    {
+        switch (Method)
+        {
+        case ELootLockerServerHTTPMethod::LL_GET:     return TEXT("GET");
+        case ELootLockerServerHTTPMethod::LL_POST:    return TEXT("POST");
+        case ELootLockerServerHTTPMethod::LL_DELETE:  return TEXT("DELETE");
+        case ELootLockerServerHTTPMethod::LL_PUT:     return TEXT("PUT");
+        case ELootLockerServerHTTPMethod::LL_HEAD:    return TEXT("HEAD");
+        case ELootLockerServerHTTPMethod::LL_CREATE:  return TEXT("CREATE");
+        case ELootLockerServerHTTPMethod::LL_OPTIONS: return TEXT("OPTIONS");
+        case ELootLockerServerHTTPMethod::LL_PATCH:   return TEXT("PATCH");
+        case ELootLockerServerHTTPMethod::LL_UPLOAD:  return TEXT("UPLOAD");
+        }
+        return TEXT("");
+    }
+}
+
 USTRUCT(BlueprintType)
 struct FLootLockerServerEndPoint
 {
@@ -33,7 +64,7 @@ public:
 
 	FString GetRequestMethodString() const
     {
-        return ULootLockerServerEnumUtils::GetEnum(TEXT("ELootLockerServerHTTPMethod"), static_cast<int32>(requestMethod));
+        return LootLockerServerHttpMethodUtils::GetVerbString(requestMethod);
     }
 };
 
