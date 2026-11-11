@@ -41,27 +41,34 @@ void FLootLockerServerLogger::Log(const FString& Message, ELootLockerServerLogLe
 
 void FLootLockerServerLogger::LogHttpRequest(const FLootLockerServerHttpLogEntry& Entry)
 {
+    // Sanitize once and use the sanitized copy for every surface: the log line, the file log and
+    // the OnHttpLogEntry broadcast. The error message can carry the raw response body when parsing
+    // fails, so it is redacted alongside the response data.
+    FLootLockerServerHttpLogEntry SanitizedEntry = Entry;
+    SanitizedEntry.ResponseData = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Entry.ResponseData);
+    SanitizedEntry.ErrorData.Message = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Entry.ErrorData.Message);
+
     FString LogString;
-    LogString += FString::Printf(TEXT("[HTTP] %s %s  Status: %d  Duration: %.3fs"), *Entry.Method, *Entry.Path, Entry.StatusCode, Entry.Duration);
-    if (!Entry.bSuccess)
+    LogString += FString::Printf(TEXT("[HTTP] %s %s  Status: %d  Duration: %.3fs"), *SanitizedEntry.Method, *SanitizedEntry.Path, SanitizedEntry.StatusCode, SanitizedEntry.Duration);
+    if (!SanitizedEntry.bSuccess)
     {
-        if (!Entry.ErrorData.Code.IsEmpty())
-            LogString += FString::Printf(TEXT("\n   Error Code: %s"), *Entry.ErrorData.Code);
-        if (!Entry.ErrorData.Message.IsEmpty())
-            LogString += FString::Printf(TEXT("\n   Error Message: %s"), *Entry.ErrorData.Message);
-        if (!Entry.ErrorData.Doc_url.IsEmpty())
-            LogString += FString::Printf(TEXT("\n   Further Information: %s"), *Entry.ErrorData.Doc_url);
-        if (!Entry.ErrorData.Request_id.IsEmpty())
-            LogString += FString::Printf(TEXT("\n   Request ID: %s"), *Entry.ErrorData.Request_id);
-        if (!Entry.ErrorData.Trace_id.IsEmpty())
-            LogString += FString::Printf(TEXT("\n   Trace ID: %s"), *Entry.ErrorData.Trace_id);
+        if (!SanitizedEntry.ErrorData.Code.IsEmpty())
+            LogString += FString::Printf(TEXT("\n   Error Code: %s"), *SanitizedEntry.ErrorData.Code);
+        if (!SanitizedEntry.ErrorData.Message.IsEmpty())
+            LogString += FString::Printf(TEXT("\n   Error Message: %s"), *SanitizedEntry.ErrorData.Message);
+        if (!SanitizedEntry.ErrorData.Doc_url.IsEmpty())
+            LogString += FString::Printf(TEXT("\n   Further Information: %s"), *SanitizedEntry.ErrorData.Doc_url);
+        if (!SanitizedEntry.ErrorData.Request_id.IsEmpty())
+            LogString += FString::Printf(TEXT("\n   Request ID: %s"), *SanitizedEntry.ErrorData.Request_id);
+        if (!SanitizedEntry.ErrorData.Trace_id.IsEmpty())
+            LogString += FString::Printf(TEXT("\n   Trace ID: %s"), *SanitizedEntry.ErrorData.Trace_id);
     }
-    LogString += FString::Printf(TEXT("\n   Request Data: %s"), *Entry.RequestData);
-    LogString += FString::Printf(TEXT("\n   Response Data: %s"), *LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Entry.ResponseData));
-    LogString += FString::Printf(TEXT("\n   Request Headers: %s"), *Entry.RequestHeaders);
+    LogString += FString::Printf(TEXT("\n   Request Data: %s"), *SanitizedEntry.RequestData);
+    LogString += FString::Printf(TEXT("\n   Response Data: %s"), *SanitizedEntry.ResponseData);
+    LogString += FString::Printf(TEXT("\n   Request Headers: %s"), *SanitizedEntry.RequestHeaders);
     LogString += TEXT("\n###");
-    Log(LogString, Entry.bSuccess ? ELootLockerServerLogLevel::VeryVerbose : ELootLockerServerLogLevel::Warning);
-    OnHttpLogEntry.Broadcast(Entry);
+    Log(LogString, SanitizedEntry.bSuccess ? ELootLockerServerLogLevel::VeryVerbose : ELootLockerServerLogLevel::Warning);
+    OnHttpLogEntry.Broadcast(SanitizedEntry);
 }
 
 void FLootLockerServerLogger::WriteToFile(const FString& Message)

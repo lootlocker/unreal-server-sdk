@@ -42,6 +42,11 @@ namespace test_util
 	 * On success the promise is deleted. On timeout the promise is intentionally leaked
 	 * (the HTTP callback may still fire and call set_value on it later).
 	 * Returns a default-constructed (success=false) ResponseType on timeout.
+	 *
+	 * A timed-out request is not cancelled, so its completion delegate can still run later and
+	 * mutate shared session state (StartSession's inspector calls SetServerToken). Callers that
+	 * write shared state from the callback must gate it on the current setup generation; see
+	 * StartSession below.
 	 */
 	template <typename ResponseType>
 	static ResponseType WaitAndGet(std::promise<ResponseType>* Promise, int32 TimeoutSeconds = ResponseTimeoutSeconds)
@@ -58,6 +63,17 @@ namespace test_util
 		ResponseType Result = Future.get();
 		delete Promise;
 		return Result;
+	}
+
+	/**
+	 * Incremented for every StartSession attempt. A late callback from a timed-out attempt
+	 * compares against this and skips writing the token, so it cannot authenticate the next
+	 * test against the previous game.
+	 */
+	inline int32& SessionGeneration()
+	{
+		static int32 Generation = 0;
+		return Generation;
 	}
 
 	/**
@@ -98,7 +114,24 @@ namespace test_util
 		const auto [Promise, Delegate] =
 			CreateDelegate<FLootLockerServerAuthenticationResponse, FLootLockerServerAuthResponseDelegate>();
 
-		ULootLockerServerAuthRequest::StartSession(Delegate);
+		// Capture the generation for this attempt. A late callback from a timed-out attempt sees a
+		// newer generation and must not write the token, or the next test would authenticate
+		// against the previous game.
+		const int32 AttemptGeneration = ++SessionGeneration();
+		FLootLockerServerAuthResponseDelegate GatedDelegate =
+			FLootLockerServerAuthResponseDelegate::CreateLambda(
+				[Delegate, AttemptGeneration](const FLootLockerServerAuthenticationResponse Response)
+				{
+					if (SessionGeneration() != AttemptGeneration)
+					{
+						UE_LOG(LogTemp, Warning,
+							TEXT("test_util: ignoring a late session response from a superseded setup attempt"));
+						return;
+					}
+					Delegate.ExecuteIfBound(Response);
+				});
+
+		ULootLockerServerAuthRequest::StartSession(GatedDelegate);
 
 		const FLootLockerServerAuthenticationResponse Response = WaitAndGet(Promise);
 		if (!Response.Success)
