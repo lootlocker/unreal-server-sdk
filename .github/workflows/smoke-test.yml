@@ -80,6 +80,7 @@ jobs:
           chmod 777 tmp
           chmod 777 packaged
           chmod -R 777 smoketest-project
+          set -o pipefail
           docker run --rm \
             -v "$(pwd)/sdk:/mnt/sdk" \
             -v "$(pwd)/smoketest-project:/mnt/smoketest-project" \
