@@ -253,6 +253,9 @@ void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerS
     LogEntry.bSuccess = false;
     LogEntry.Timestamp = FDateTime::Now();
     LogEntry.ErrorData = Response.ErrorData;
+    // The error message can carry the raw response body when parsing fails, so it is a second
+    // path for a signed URL to reach the log line and the OnHttpLogEntry broadcast.
+    LogEntry.ErrorData.Message = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(LogEntry.ErrorData.Message);
     FLootLockerServerLogger::LogHttpRequest(LogEntry);
 }
 
