@@ -45,6 +45,19 @@ bool FLootLockerServerTestGame::CreateGame(FLootLockerServerTestGame& OutGame, c
 	const FString EnvKey = FPlatformMisc::GetEnvironmentVariable(TEXT("LOOTLOCKER_SERVER_KEY"));
 	if (!EnvKey.IsEmpty())
 	{
+		// This path skips EnsureSignedIn(), so it must apply the same production guard itself:
+		// DeleteGame() is a no-op here, so tests would otherwise leave data behind in a shared game.
+		if (FLootLockerServerAdminRequest::IsProductionTarget() &&
+			FPlatformMisc::GetEnvironmentVariable(TEXT("LOOTLOCKER_ALLOW_PRODUCTION_TESTS")) != TEXT("1"))
+		{
+			UE_LOG(LogTemp, Error,
+				TEXT("LootLockerServerTestGame: refusing to run against production with LOOTLOCKER_SERVER_KEY. ")
+				TEXT("Point LOOTLOCKER_SERVER_KEY at a non-production game, ")
+				TEXT("or set LOOTLOCKER_ALLOW_PRODUCTION_TESTS=1 to accept that real games and ")
+				TEXT("players will be modified."));
+			return false;
+		}
+
 		OutGame.ServerKey    = EnvKey;
 		OutGame.GameDomainKey =
 			FPlatformMisc::GetEnvironmentVariable(TEXT("LOOTLOCKER_SERVER_DOMAIN_KEY"));

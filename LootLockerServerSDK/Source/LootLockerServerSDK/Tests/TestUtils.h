@@ -131,6 +131,10 @@ namespace test_util
 	 */
 	inline bool SetupTestGame(FLootLockerServerTestGame& Game, const FString& TestName)
 	{
+		// Game is reused across every LatentIt in a spec, so a previous test's success must not
+		// leak into this one: clear the flag before setup so a failure below leaves IsValid() false.
+		Game.bSetupComplete = false;
+
 		if (!FLootLockerServerTestGame::CreateGame(Game, TestName))
 		{
 			UE_LOG(LogTemp, Error, TEXT("test_util: CreateGame failed for '%s'"), *TestName);
