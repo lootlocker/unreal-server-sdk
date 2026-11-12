@@ -42,11 +42,14 @@ void FLootLockerServerLogger::Log(const FString& Message, ELootLockerServerLogLe
 void FLootLockerServerLogger::LogHttpRequest(const FLootLockerServerHttpLogEntry& Entry)
 {
     // Sanitize once and use the sanitized copy for every surface: the log line, the file log and
-    // the OnHttpLogEntry broadcast. The error message can carry the raw response body when parsing
-    // fails, so it is redacted alongside the response data.
+    // the OnHttpLogEntry broadcast. Only player-file endpoints can carry a signed URL, so every
+    // other entry is used as-is and the common path does no copying or JSON traversal.
     FLootLockerServerHttpLogEntry SanitizedEntry = Entry;
-    SanitizedEntry.ResponseData = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Entry.ResponseData);
-    SanitizedEntry.ErrorData.Message = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Entry.ErrorData.Message);
+    if (LootLockerServerUtilities::CanReturnSignedDownloadUrl(Entry.Path))
+    {
+        SanitizedEntry.ResponseData = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Entry.ResponseData);
+        SanitizedEntry.ErrorData.Message = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Entry.ErrorData.Message);
+    }
 
     FString LogString;
     LogString += FString::Printf(TEXT("[HTTP] %s %s  Status: %d  Duration: %.3fs"), *SanitizedEntry.Method, *SanitizedEntry.Path, SanitizedEntry.StatusCode, SanitizedEntry.Duration);

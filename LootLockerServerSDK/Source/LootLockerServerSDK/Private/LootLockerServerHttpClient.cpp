@@ -245,9 +245,13 @@ void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerS
     LogEntry.StatusCode = Response.StatusCode;
     LogEntry.Duration = (FDateTime::Now() - RequestStartTime).GetTotalSeconds();
     LogEntry.RequestData = Data;
-    // Redact signed download URLs here so both the log line and the OnHttpLogEntry broadcast
-    // (which feeds the in-editor log UI) never carry a usable bearer credential.
-    LogEntry.ResponseData = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Response.FullTextFromServer);
+    // Only player-file endpoints can return a signed download URL, so every other response skips
+    // the redaction entirely. When it does apply, redact here so both the log line and the
+    // OnHttpLogEntry broadcast (which feeds the in-editor log UI) never carry a bearer credential.
+    const bool bCanCarrySignedUrl = LootLockerServerUtilities::CanReturnSignedDownloadUrl(Endpoint);
+    LogEntry.ResponseData = bCanCarrySignedUrl
+        ? LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Response.FullTextFromServer)
+        : Response.FullTextFromServer;
     LogEntry.RequestHeaders = DelimitedRequestHeaders;
     LogEntry.ResponseHeaders = FString::Join(ResponseHeaders, TEXT("\n"));
     LogEntry.bSuccess = false;
@@ -255,7 +259,10 @@ void ULootLockerServerHttpClient::LogFailedRequestInformation(const FLootLockerS
     LogEntry.ErrorData = Response.ErrorData;
     // The error message can carry the raw response body when parsing fails, so it is a second
     // path for a signed URL to reach the log line and the OnHttpLogEntry broadcast.
-    LogEntry.ErrorData.Message = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(LogEntry.ErrorData.Message);
+    if (bCanCarrySignedUrl)
+    {
+        LogEntry.ErrorData.Message = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(LogEntry.ErrorData.Message);
+    }
     FLootLockerServerLogger::LogHttpRequest(LogEntry);
 }
 
@@ -267,9 +274,11 @@ void ULootLockerServerHttpClient::LogSuccessfulRequestInformation(const FLootLoc
     LogEntry.StatusCode = Response.StatusCode;
     LogEntry.Duration = (FDateTime::Now() - RequestStartTime).GetTotalSeconds();;
     LogEntry.RequestData = Data;
-    // Redact signed download URLs here so both the log line and the OnHttpLogEntry broadcast
-    // (which feeds the in-editor log UI) never carry a usable bearer credential.
-    LogEntry.ResponseData = LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Response.FullTextFromServer);
+    // Only player-file endpoints can return a signed download URL, so every other response skips
+    // the redaction entirely.
+    LogEntry.ResponseData = LootLockerServerUtilities::CanReturnSignedDownloadUrl(Endpoint)
+        ? LootLockerServerUtilities::RedactSignedDownloadUrlsForLogging(Response.FullTextFromServer)
+        : Response.FullTextFromServer;
     LogEntry.RequestHeaders = DelimitedRequestHeaders;
     LogEntry.ResponseHeaders = FString::Join(ResponseHeaders, TEXT("\n"));
     LogEntry.bSuccess = true;
