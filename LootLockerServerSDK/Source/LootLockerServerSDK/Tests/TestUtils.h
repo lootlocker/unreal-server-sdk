@@ -114,13 +114,17 @@ namespace test_util
 		const auto [Promise, Delegate] =
 			CreateDelegate<FLootLockerServerAuthenticationResponse, FLootLockerServerAuthResponseDelegate>();
 
+		// Copy out of the structured binding: C++17 does not allow capturing a structured binding
+		// in a lambda, and UE 5.0/5.2 compile this header as C++17.
+		FLootLockerServerAuthResponseDelegate InnerDelegate = Delegate;
+
 		// Capture the generation for this attempt. A late callback from a timed-out attempt sees a
 		// newer generation and must not write the token, or the next test would authenticate
 		// against the previous game.
 		const int32 AttemptGeneration = ++SessionGeneration();
 		FLootLockerServerAuthResponseDelegate GatedDelegate =
 			FLootLockerServerAuthResponseDelegate::CreateLambda(
-				[Delegate, AttemptGeneration](const FLootLockerServerAuthenticationResponse Response)
+				[InnerDelegate, AttemptGeneration](const FLootLockerServerAuthenticationResponse Response)
 				{
 					if (SessionGeneration() != AttemptGeneration)
 					{
@@ -128,7 +132,7 @@ namespace test_util
 							TEXT("test_util: ignoring a late session response from a superseded setup attempt"));
 						return;
 					}
-					Delegate.ExecuteIfBound(Response);
+					InnerDelegate.ExecuteIfBound(Response);
 				});
 
 		ULootLockerServerAuthRequest::StartSession(GatedDelegate);
