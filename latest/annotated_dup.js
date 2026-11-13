@@ -1,6 +1,5 @@
 var annotated_dup =
 [
-    [ "FLootLockerItemTemplate", "structFLootLockerItemTemplate.html", "structFLootLockerItemTemplate" ],
     [ "FLootLockerServerAddAssetToPlayerInventoryResponse", "structFLootLockerServerAddAssetToPlayerInventoryResponse.html", "structFLootLockerServerAddAssetToPlayerInventoryResponse" ],
     [ "FLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest", "structFLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest.html", "structFLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest" ],
     [ "FLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest", "structFLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest.html", "structFLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest" ],
@@ -130,6 +129,7 @@ var annotated_dup =
     [ "FLootLockerServerInventoryItem", "structFLootLockerServerInventoryItem.html", "structFLootLockerServerInventoryItem" ],
     [ "FLootLockerServerInvokeTriggerForPlayerRequest", "structFLootLockerServerInvokeTriggerForPlayerRequest.html", "structFLootLockerServerInvokeTriggerForPlayerRequest" ],
     [ "FLootLockerServerInvokeTriggerResponse", "structFLootLockerServerInvokeTriggerResponse.html", "structFLootLockerServerInvokeTriggerResponse" ],
+    [ "FLootLockerServerItemTemplate", "structFLootLockerServerItemTemplate.html", "structFLootLockerServerItemTemplate" ],
     [ "FLootLockerServerKeyBasedPagination", "structFLootLockerServerKeyBasedPagination.html", "structFLootLockerServerKeyBasedPagination" ],
     [ "FLootLockerServerLeaderboard", "structFLootLockerServerLeaderboard.html", "structFLootLockerServerLeaderboard" ],
     [ "FLootLockerServerLeaderboardArchive", "structFLootLockerServerLeaderboardArchive.html", "structFLootLockerServerLeaderboardArchive" ],

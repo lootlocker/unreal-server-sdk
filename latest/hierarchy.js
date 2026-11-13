@@ -1,6 +1,5 @@
 var hierarchy =
 [
-    [ "FLootLockerItemTemplate", "structFLootLockerItemTemplate.html", null ],
     [ "FLootLockerServerAlterPlayerInventoryItem", "structFLootLockerServerAlterPlayerInventoryItem.html", null ],
     [ "FLootLockerServerAlterPlayerInventoryRequestBase", "structFLootLockerServerAlterPlayerInventoryRequestBase.html", [
       [ "FLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest", "structFLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest.html", null ],
@@ -90,6 +89,7 @@ var hierarchy =
     [ "FLootLockerServerInstanceProgression", "structFLootLockerServerInstanceProgression.html", null ],
     [ "FLootLockerServerInventoryItem", "structFLootLockerServerInventoryItem.html", null ],
     [ "FLootLockerServerInvokeTriggerForPlayerRequest", "structFLootLockerServerInvokeTriggerForPlayerRequest.html", null ],
+    [ "FLootLockerServerItemTemplate", "structFLootLockerServerItemTemplate.html", null ],
     [ "FLootLockerServerKeyBasedPagination", "structFLootLockerServerKeyBasedPagination.html", null ],
     [ "FLootLockerServerLeaderboard", "structFLootLockerServerLeaderboard.html", null ],
     [ "FLootLockerServerLeaderboardArchive", "structFLootLockerServerLeaderboardArchive.html", null ],

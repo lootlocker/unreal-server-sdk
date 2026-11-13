@@ -4,5 +4,6 @@ var structFLootLockerServerPlayerFileMetadata =
     [ "Id", "structFLootLockerServerPlayerFileMetadata.html#a09cfd9910aa0eb6e6a69483cdb6b8b42", null ],
     [ "Key", "structFLootLockerServerPlayerFileMetadata.html#a3c5c8f1a13e97b86f43832f23c55dcba", null ],
     [ "Name", "structFLootLockerServerPlayerFileMetadata.html#a97530dad930faf04b8e12f79cab82b60", null ],
-    [ "Purpose", "structFLootLockerServerPlayerFileMetadata.html#ac248adc2110b9c360f86c4aa5aa210fe", null ]
+    [ "Purpose", "structFLootLockerServerPlayerFileMetadata.html#ac248adc2110b9c360f86c4aa5aa210fe", null ],
+    [ "Requires_download_link", "structFLootLockerServerPlayerFileMetadata.html#a7dd08bbbb71bb9f16a3118cc15cbf401", null ]
 ];

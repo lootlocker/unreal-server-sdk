@@ -1,6 +1,7 @@
 var classULootLockerServerPlayerFileRequest =
 [
     [ "ULootLockerServerPlayerFileRequest", "classULootLockerServerPlayerFileRequest.html#adf82f585e25d1164b65d8750a2bca021", null ],
+    [ "CreateFileDownloadLinkForPlayer", "classULootLockerServerPlayerFileRequest.html#a710725f700b464d38a9c8940fa853805", null ],
     [ "DeleteFileByKeyForPlayer", "classULootLockerServerPlayerFileRequest.html#a7b5ea278bd866018be8f5de640305a0e", null ],
     [ "DeleteFileForPlayerByID", "classULootLockerServerPlayerFileRequest.html#ad71e778cf25585a8ad6e64160aaf8479", null ],
     [ "GetFileByKeyForPlayer", "classULootLockerServerPlayerFileRequest.html#a4a425711731db547210723789b684d72", null ],

@@ -36,20 +36,30 @@ var NAVTREE =
         [ "Variables", "functions_vars.html", "functions_vars" ]
       ] ]
     ] ],
-    [ "Topics", "topics.html", "topics" ]
+    [ "Topics", "topics.html", "topics" ],
+    [ "AppendParametersToUrl", "namespaceLootLockerServerUtilities.html#a118556bbc1147a0e9b8f9277b4294eac", null ],
+    [ "CanReturnSignedDownloadUrl", "namespaceLootLockerServerUtilities.html#ac380244c292181747d1299d3e94febd0", null ],
+    [ "FStringArrayToCommaSeparatedString", "namespaceLootLockerServerUtilities.html#a8a260b36670c0f4bb1ddaafd36bf50d8", null ],
+    [ "FStringFromJsonArray", "namespaceLootLockerServerUtilities.html#ae3ac36e29cc48a0660ba4b5f0cd488ec", null ],
+    [ "FStringFromJsonObject", "namespaceLootLockerServerUtilities.html#aaaebd37e5d3d5e4d99a3bfa629e18b66", null ],
+    [ "IntArrayToCommaSeparatedString", "namespaceLootLockerServerUtilities.html#a64f4daee8d0f084484966c859df6092a", null ],
+    [ "JsonArrayFromFString", "namespaceLootLockerServerUtilities.html#a891857e97e49fa806bb2290eef59301a", null ],
+    [ "JsonObjectFromFString", "namespaceLootLockerServerUtilities.html#a4e5ab61ec8d55b4f46f8cf80b4e20a77", null ],
+    [ "RedactSignedDownloadUrlsForLogging", "namespaceLootLockerServerUtilities.html#a6a921a72a28ee61f3f65a144a0c49599", null ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
 "annotated.html",
-"functions_func_f.html",
-"group__Progressions.html#gae41be44ed37c3cc360170dc44f1be30c",
-"structFLootLockerServerCatalogProgressionResetDetails.html#a03d90d31b187c300ea7ea8cc09c0c594",
-"structFLootLockerServerInlinedGroupAssociation.html#a319d3e1cbbf9f0b58448fb8fb26951d5",
-"structFLootLockerServerListMetadataResponse.html#a9c659099df52bcc00c1bffd24ed10e14",
-"structFLootLockerServerPlayerProgression.html#aaed0cdfb98d876d807a280bc66418e67"
+"functions_func_e.html",
+"group__Progressions.html#gab1893b82a03ec194ed0b805f499d12e9",
+"structFLootLockerServerCatalogSteamStoreListingPrice.html",
+"structFLootLockerServerInlinedGroupDetailsWithAssociations.html#a45e735ec0228d05a2861b6adfdc181c4",
+"structFLootLockerServerListMetadataResponse.html",
+"structFLootLockerServerPlayerPlatform.html#ade2e77201eca03618b98602e7fcc93c2"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';

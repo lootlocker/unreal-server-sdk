@@ -1,5 +1,5 @@
 <map id="FLootLockerServerListFriendsResponse" name="FLootLockerServerListFriendsResponse">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,217,119"/>
-<area shape="rect" id="Node000002" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="9,5,214,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,44,114,79,109,79,109,44"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,217,126"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="9,5,213,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,47,113,81,109,79,109,51"/>
 </map>

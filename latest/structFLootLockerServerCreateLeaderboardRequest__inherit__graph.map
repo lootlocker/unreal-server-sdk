@@ -1,5 +1,5 @@
 <map id="FLootLockerServerCreateLeaderboardRequest" name="FLootLockerServerCreateLeaderboardRequest">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,93,272,133"/>
-<area shape="rect" id="Node000002" href="$structFLootLockerServerLeaderboardBaseRequest.html" title=" " alt="" coords="27,5,250,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,59,141,93,136,93,136,59"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,98,271,143"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerLeaderboardBaseRequest.html" title=" " alt="" coords="27,5,249,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,64,140,99,136,97,136,68"/>
 </map>

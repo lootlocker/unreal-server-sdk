@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['—_20api_20reference_0',['LootLocker Unreal Server SDK — API Reference',['../index.html',1,'']]]
+  ['reference_0',['Reference',['../index.html',1,'LootLocker Unreal Server SDK — API Reference'],['../index.html#mainpage_navigation',1,'Navigating This Reference']]],
+  ['response_20conventions_1',['Response Conventions',['../index.html#mainpage_response',1,'']]]
 ];

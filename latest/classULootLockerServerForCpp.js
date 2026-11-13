@@ -15,6 +15,7 @@ var classULootLockerServerForCpp =
     [ "ComputeAndLockDropTableForTag", "group__DropTables.html#gac3acd85668a1a85357db83ef1f111561", null ],
     [ "ComputeAndLockDropTableForTagWithAssetInformation", "group__DropTables.html#ga0fdb4b2c8b40dd2757a903c50fb88339", null ],
     [ "ComputeAndLockDropTableWithAssetInformation", "group__DropTables.html#ga66feed294e50a392f9e743a191d1705b", null ],
+    [ "CreateFileDownloadLinkForPlayer", "group__PlayerFiles.html#gadfba31a5853084bf2c061de3c34c68aa", null ],
     [ "CreateLeaderboard", "group__Leaderboard.html#ga503e71f3d277b04810c86438daede5c4", null ],
     [ "CreateLeaderboardSchedule", "group__Leaderboard.html#ga07a2559b7dee9e6696473e7cca9aa176", null ],
     [ "CreatePlayer", "group__Player.html#gaa833e2d9bb038d54d813b0d043d83ad2", null ],

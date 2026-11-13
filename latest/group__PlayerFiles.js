@@ -1,5 +1,6 @@
 var group__PlayerFiles =
 [
+    [ "ULootLockerServerForCpp::CreateFileDownloadLinkForPlayer", "group__PlayerFiles.html#gadfba31a5853084bf2c061de3c34c68aa", null ],
     [ "ULootLockerServerForCpp::DeleteFileByKeyForPlayer", "group__PlayerFiles.html#ga5f4df3e509c05f4f0125d5318fd80dc0", null ],
     [ "ULootLockerServerForCpp::DeleteFileForPlayerByID", "group__PlayerFiles.html#ga7b2eba4262ca2bd29343662dc786aa6d", null ],
     [ "ULootLockerServerForCpp::GetFileByKeyForPlayer", "group__PlayerFiles.html#ga7c74f016851f5d41fa716e42b0befe4b", null ],

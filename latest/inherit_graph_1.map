@@ -1,3 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structFLootLockerServerAlterPlayerInventoryItem.html" title="An item instance granted via Alter Player Inventory." alt="" coords="5,5,220,45"/>
+<area shape="rect" id="Node000000" href="$structFLootLockerServerAlterPlayerInventoryRequestBase.html" title=" " alt="" coords="5,99,219,144"/>
+<area shape="rect" id="Node000001" href="$structFLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest.html" title=" " alt="" coords="267,5,534,67"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="204,92,296,66,292,69,206,97"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest.html" title=" " alt="" coords="271,91,530,152"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="234,119,274,121,268,122,235,124"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerAlterPlayerInventoryByAssetIdRequest.html" title=" " alt="" coords="294,176,507,221"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="209,146,267,162,313,176,308,176,266,167,209,151"/>
 </map>
