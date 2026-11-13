@@ -1,0 +1,21 @@
+<map id="FLootLockerServerLeaderboardReward" name="FLootLockerServerLeaderboardReward">
+<area shape="rect" id="Node000001" title=" " alt="" coords="733,147,955,191"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerLeaderboardCurrencyReward.html" title=" " alt="" coords="332,8,554,53"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="569,45,640,61,710,84,767,113,815,146,810,146,764,117,708,89,639,66,569,50"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerCurrencyRewardDetails.html" title=" " alt="" coords="19,8,218,53"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="233,28,333,29,329,32,235,33"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerLeaderboardProgressionResetReward.html" title=" " alt="" coords="332,77,554,122"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="569,113,709,136,750,146,744,146,709,141,569,119"/>
+<area shape="rect" id="Node000005" href="$structFLootLockerServerProgressionResetRewardDetails.html" title=" " alt="" coords="10,77,227,122"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="242,97,334,98,329,101,243,102"/>
+<area shape="rect" id="Node000006" href="$structFLootLockerServerLeaderboardProgressionPointsReward.html" title=" " alt="" coords="332,147,554,191"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="569,166,735,168,730,170,570,172"/>
+<area shape="rect" id="Node000007" href="$structFLootLockerServerProgressionPointRewardDetails.html" title=" " alt="" coords="10,147,227,191"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="242,166,334,168,329,170,243,172"/>
+<area shape="rect" id="Node000008" href="$structFLootLockerServerLeaderboardAssetReward.html" title=" " alt="" coords="332,216,554,261"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="569,219,709,197,743,192,748,191,709,202,570,225"/>
+<area shape="rect" id="Node000009" href="$structFLootLockerServerAssetRewardDetails.html" title=" " alt="" coords="5,216,232,261"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="247,236,334,238,329,239,247,241"/>
+<area shape="rect" id="Node000010" href="$structFLootLockerServerLeaderboardGroupReward.html" title=" " alt="" coords="332,285,554,330"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="569,288,639,272,708,249,764,221,810,193,815,191,767,225,710,254,640,277,570,293"/>
+</map>

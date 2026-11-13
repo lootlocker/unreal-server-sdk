@@ -1,0 +1,11 @@
+<map id="FLootLockerServerGetScoresFromLeaderboardResponse" name="FLootLockerServerGetScoresFromLeaderboardResponse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="231,241,439,285"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="116,132,320,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,167,316,240,310,240,240,172"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerErrorData.html" title=" " alt="" coords="5,14,209,42"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,50,208,130,202,132,129,55"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerRequestContext.html" title=" " alt="" coords="232,5,427,50"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="300,60,232,133,228,129,296,63"/>
+<area shape="rect" id="Node000005" href="$structFLootLockerServerIndexBasedPagination.html" title="Pagination data for index based pagination This is used for methods that have a &quot;count&quot; and an &quot;after..." alt="" coords="344,123,561,168"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="422,178,358,242,356,238,417,180"/>
+</map>

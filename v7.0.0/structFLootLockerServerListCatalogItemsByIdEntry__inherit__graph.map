@@ -1,0 +1,5 @@
+<map id="FLootLockerServerListCatalogItemsByIdEntry" name="FLootLockerServerListCatalogItemsByIdEntry">
+<area shape="rect" id="Node000001" title="A catalog entry with entity details inlined directly." alt="" coords="5,98,220,143"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerCatalogEntry.html" title="Represents a single item in a catalog, including its entity type, prices, store listings,..." alt="" coords="17,5,208,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,64,115,99,110,97,111,68"/>
+</map>

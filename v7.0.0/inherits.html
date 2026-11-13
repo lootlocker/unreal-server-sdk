@@ -1,0 +1,1339 @@
+<!-- HTML header for doxygen 1.15.0-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: Class Hierarchy</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">var page_layout=1;</script>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v7.0.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="side-nav" class="ui-resizable side-nav-resizable"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;7.0.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</td></tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('hierarchy.html','',''); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',false,false,'search.php','Search',true);
+});
+</script>
+<div id="main-nav"></div>
+<div id="container"><div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Class Hierarchy</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock">
+<p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
+</div><table border="0" cellspacing="10" cellpadding="0">
+<tr><td><img src="inherit_graph_0.png" border="0" usemap="#aFLootLockerServerAlterPlayerInventoryItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAlterPlayerInventoryItem" id="aFLootLockerServerAlterPlayerInventoryItem">
+<area shape="rect" href="structFLootLockerServerAlterPlayerInventoryItem.html" title="An item instance granted via Alter Player Inventory." alt="" coords="5,5,219,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_1.png" border="0" usemap="#aFLootLockerServerAlterPlayerInventoryRequestBase" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAlterPlayerInventoryRequestBase" id="aFLootLockerServerAlterPlayerInventoryRequestBase">
+<area shape="rect" href="structFLootLockerServerAlterPlayerInventoryRequestBase.html" title=" " alt="" coords="5,99,219,144"/>
+<area shape="rect" href="structFLootLockerServerAlterPlayerInventoryByAssetIdAndAssetVariationIdRequest.html" title=" " alt="" coords="267,5,534,67"/>
+<area shape="poly" title=" " alt="" coords="204,92,296,66,292,69,206,97"/>
+<area shape="rect" href="structFLootLockerServerAlterPlayerInventoryByAssetIdAndRentalOptionIdRequest.html" title=" " alt="" coords="271,91,530,152"/>
+<area shape="poly" title=" " alt="" coords="234,119,274,121,268,122,235,124"/>
+<area shape="rect" href="structFLootLockerServerAlterPlayerInventoryByAssetIdRequest.html" title=" " alt="" coords="294,176,507,221"/>
+<area shape="poly" title=" " alt="" coords="209,146,267,162,313,176,308,176,266,167,209,151"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_2.png" border="0" usemap="#aFLootLockerServerAssetByAssetIdAndRentalOptionIdRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetByAssetIdAndRentalOptionIdRequest" id="aFLootLockerServerAssetByAssetIdAndRentalOptionIdRequest">
+<area shape="rect" href="structFLootLockerServerAssetByAssetIdAndRentalOptionIdRequest.html" title=" " alt="" coords="5,5,250,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_3.png" border="0" usemap="#aFLootLockerServerAssetByAssetIdAndVariationIdRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetByAssetIdAndVariationIdRequest" id="aFLootLockerServerAssetByAssetIdAndVariationIdRequest">
+<area shape="rect" href="structFLootLockerServerAssetByAssetIdAndVariationIdRequest.html" title=" " alt="" coords="5,5,223,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_4.png" border="0" usemap="#aFLootLockerServerAssetByAssetIdRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetByAssetIdRequest" id="aFLootLockerServerAssetByAssetIdRequest">
+<area shape="rect" href="structFLootLockerServerAssetByAssetIdRequest.html" title=" " alt="" coords="5,5,200,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_5.png" border="0" usemap="#aFLootLockerServerAssetByAssetInstanceIdRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetByAssetInstanceIdRequest" id="aFLootLockerServerAssetByAssetInstanceIdRequest">
+<area shape="rect" href="structFLootLockerServerAssetByAssetInstanceIdRequest.html" title=" " alt="" coords="5,5,200,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_6.png" border="0" usemap="#aFLootLockerServerAssetByInstanceIDRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetByInstanceIDRequest" id="aFLootLockerServerAssetByInstanceIDRequest">
+<area shape="rect" href="structFLootLockerServerAssetByInstanceIDRequest.html" title=" " alt="" coords="5,5,200,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_7.png" border="0" usemap="#aFLootLockerServerAssetCandidateInformation" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetCandidateInformation" id="aFLootLockerServerAssetCandidateInformation">
+<area shape="rect" href="structFLootLockerServerAssetCandidateInformation.html" title=" " alt="" coords="5,5,249,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_8.png" border="0" usemap="#aFLootLockerServerAssetFile" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetFile" id="aFLootLockerServerAssetFile">
+<area shape="rect" href="structFLootLockerServerAssetFile.html" title=" " alt="" coords="5,5,206,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_9.png" border="0" usemap="#aFLootLockerServerAssetHeroEquipException" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetHeroEquipException" id="aFLootLockerServerAssetHeroEquipException">
+<area shape="rect" href="structFLootLockerServerAssetHeroEquipException.html" title=" " alt="" coords="5,5,214,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_10.png" border="0" usemap="#aFLootLockerServerAssetInstanceStorageKeyValueSet" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetInstanceStorageKeyValueSet" id="aFLootLockerServerAssetInstanceStorageKeyValueSet">
+<area shape="rect" href="structFLootLockerServerAssetInstanceStorageKeyValueSet.html" title=" " alt="" coords="5,5,238,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_11.png" border="0" usemap="#aFLootLockerServerAssetRarity" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetRarity" id="aFLootLockerServerAssetRarity">
+<area shape="rect" href="structFLootLockerServerAssetRarity.html" title=" " alt="" coords="5,5,222,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_12.png" border="0" usemap="#aFLootLockerServerAssetRentalOption" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetRentalOption" id="aFLootLockerServerAssetRentalOption">
+<area shape="rect" href="structFLootLockerServerAssetRentalOption.html" title=" " alt="" coords="5,5,225,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_13.png" border="0" usemap="#aFLootLockerServerAssetReward" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetReward" id="aFLootLockerServerAssetReward">
+<area shape="rect" href="structFLootLockerServerAssetReward.html" title=" " alt="" coords="5,5,232,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_14.png" border="0" usemap="#aFLootLockerServerAssetRewardDetails" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetRewardDetails" id="aFLootLockerServerAssetRewardDetails">
+<area shape="rect" href="structFLootLockerServerAssetRewardDetails.html" title=" " alt="" coords="5,5,232,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_15.png" border="0" usemap="#aFLootLockerServerAssetStorageKeyValueSet" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetStorageKeyValueSet" id="aFLootLockerServerAssetStorageKeyValueSet">
+<area shape="rect" href="structFLootLockerServerAssetStorageKeyValueSet.html" title=" " alt="" coords="5,5,233,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_16.png" border="0" usemap="#aFLootLockerServerAssetVariation" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetVariation" id="aFLootLockerServerAssetVariation">
+<area shape="rect" href="structFLootLockerServerAssetVariation.html" title=" " alt="" coords="5,5,241,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_17.png" border="0" usemap="#aFLootLockerServerAssetVariationProperty" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetVariationProperty" id="aFLootLockerServerAssetVariationProperty">
+<area shape="rect" href="structFLootLockerServerAssetVariationProperty.html" title=" " alt="" coords="5,5,241,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_18.png" border="0" usemap="#aFLootLockerServerAssetWithoutPackageContent" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAssetWithoutPackageContent" id="aFLootLockerServerAssetWithoutPackageContent">
+<area shape="rect" href="structFLootLockerServerAssetWithoutPackageContent.html" title=" " alt="" coords="5,5,234,50"/>
+<area shape="rect" href="structFLootLockerServerAsset.html" title=" " alt="" coords="282,14,459,42"/>
+<area shape="poly" title=" " alt="" coords="249,25,284,28,279,28,249,30"/>
+<area shape="rect" href="structFLootLockerServerTriggeredAsset.html" title=" " alt="" coords="507,5,708,50"/>
+<area shape="poly" title=" " alt="" coords="475,25,509,28,504,28,475,30"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_19.png" border="0" usemap="#aFLootLockerServerAuthenticationRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerAuthenticationRequest" id="aFLootLockerServerAuthenticationRequest">
+<area shape="rect" href="structFLootLockerServerAuthenticationRequest.html" title=" " alt="" coords="5,5,242,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_20.png" border="0" usemap="#aFLootLockerServerBalance" loading="lazy" alt=""/>
+<map name="aFLootLockerServerBalance" id="aFLootLockerServerBalance">
+<area shape="rect" href="structFLootLockerServerBalance.html" title=" " alt="" coords="5,5,199,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_21.png" border="0" usemap="#aFLootLockerServerBalanceModifiers" loading="lazy" alt=""/>
+<map name="aFLootLockerServerBalanceModifiers" id="aFLootLockerServerBalanceModifiers">
+<area shape="rect" href="structFLootLockerServerBalanceModifiers.html" title=" " alt="" coords="5,5,199,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_22.png" border="0" usemap="#aFLootLockerServerBalanceWithCurrencyId" loading="lazy" alt=""/>
+<map name="aFLootLockerServerBalanceWithCurrencyId" id="aFLootLockerServerBalanceWithCurrencyId">
+<area shape="rect" href="structFLootLockerServerBalanceWithCurrencyId.html" title=" " alt="" coords="5,5,199,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_23.png" border="0" usemap="#aFLootLockerServerCatalog" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalog" id="aFLootLockerServerCatalog">
+<area shape="rect" href="structFLootLockerServerCatalog.html" title="Represents a catalog with its name, unique key, identifier, and creation timestamp." alt="" coords="5,5,197,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_24.png" border="0" usemap="#aFLootLockerServerCatalogAppleAppStoreListing" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogAppleAppStoreListing" id="aFLootLockerServerCatalogAppleAppStoreListing">
+<area shape="rect" href="structFLootLockerServerCatalogAppleAppStoreListing.html" title="Holds the Apple App Store product identifier for a catalog entry." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_25.png" border="0" usemap="#aFLootLockerServerCatalogAssetDetails" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogAssetDetails" id="aFLootLockerServerCatalogAssetDetails">
+<area shape="rect" href="structFLootLockerServerCatalogAssetDetails.html" title="Holds detail information about an asset catalog entity, including its name, ULID, legacy numeric id,..." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_26.png" border="0" usemap="#aFLootLockerServerCatalogCurrencyDetails" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogCurrencyDetails" id="aFLootLockerServerCatalogCurrencyDetails">
+<area shape="rect" href="structFLootLockerServerCatalogCurrencyDetails.html" title="Holds details about a currency catalog entity." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_27.png" border="0" usemap="#aFLootLockerServerCatalogEntry" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogEntry" id="aFLootLockerServerCatalogEntry">
+<area shape="rect" href="structFLootLockerServerCatalogEntry.html" title="Represents a single item in a catalog, including its entity type, prices, store listings,..." alt="" coords="5,5,197,50"/>
+<area shape="rect" href="structFLootLockerServerListCatalogItemsByIdEntry.html" title="A catalog entry with entity details inlined directly." alt="" coords="245,5,459,50"/>
+<area shape="poly" title=" " alt="" coords="212,25,247,27,241,28,213,30"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_28.png" border="0" usemap="#aFLootLockerServerCatalogEntryListings" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogEntryListings" id="aFLootLockerServerCatalogEntryListings">
+<area shape="rect" href="structFLootLockerServerCatalogEntryListings.html" title="Aggregates the platform&#45;specific store listing information configured for a catalog entry." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_29.png" border="0" usemap="#aFLootLockerServerCatalogEntryPrice" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogEntryPrice" id="aFLootLockerServerCatalogEntryPrice">
+<area shape="rect" href="structFLootLockerServerCatalogEntryPrice.html" title="Represents a price for a catalog entry in a specific currency, including the numeric amount,..." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_30.png" border="0" usemap="#aFLootLockerServerCatalogEpicGamesStoreListing" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogEpicGamesStoreListing" id="aFLootLockerServerCatalogEpicGamesStoreListing">
+<area shape="rect" href="structFLootLockerServerCatalogEpicGamesStoreListing.html" title="Holds the Epic Games Store audience item identifier associated with a catalog entry listing." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_31.png" border="0" usemap="#aFLootLockerServerCatalogGooglePlayStoreListing" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogGooglePlayStoreListing" id="aFLootLockerServerCatalogGooglePlayStoreListing">
+<area shape="rect" href="structFLootLockerServerCatalogGooglePlayStoreListing.html" title="Holds the Google Play Store product identifier for a catalog entry." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_32.png" border="0" usemap="#aFLootLockerServerCatalogGroupDetails" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogGroupDetails" id="aFLootLockerServerCatalogGroupDetails">
+<area shape="rect" href="structFLootLockerServerCatalogGroupDetails.html" title="Holds details about a catalog group entity." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_33.png" border="0" usemap="#aFLootLockerServerCatalogItemsIncludes" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogItemsIncludes" id="aFLootLockerServerCatalogItemsIncludes">
+<area shape="rect" href="structFLootLockerServerCatalogItemsIncludes.html" title="Optional includes configuration for catalog items lookup." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_34.png" border="0" usemap="#aFLootLockerServerCatalogMetadataInclude" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogMetadataInclude" id="aFLootLockerServerCatalogMetadataInclude">
+<area shape="rect" href="structFLootLockerServerCatalogMetadataInclude.html" title="Metadata include configuration for catalog items lookup." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_35.png" border="0" usemap="#aFLootLockerServerCatalogPagination" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogPagination" id="aFLootLockerServerCatalogPagination">
+<area shape="rect" href="structFLootLockerServerCatalogPagination.html" title="Cursor&#45;based pagination information for a catalog listing response." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_36.png" border="0" usemap="#aFLootLockerServerCatalogPlaystationStoreListing" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogPlaystationStoreListing" id="aFLootLockerServerCatalogPlaystationStoreListing">
+<area shape="rect" href="structFLootLockerServerCatalogPlaystationStoreListing.html" title="Holds the PlayStation Store entitlement label associated with a catalog entry listing." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_37.png" border="0" usemap="#aFLootLockerServerCatalogProgressionPointDetails" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogProgressionPointDetails" id="aFLootLockerServerCatalogProgressionPointDetails">
+<area shape="rect" href="structFLootLockerServerCatalogProgressionPointDetails.html" title="Holds details about a progression&#45;points catalog entity." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_38.png" border="0" usemap="#aFLootLockerServerCatalogProgressionResetDetails" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogProgressionResetDetails" id="aFLootLockerServerCatalogProgressionResetDetails">
+<area shape="rect" href="structFLootLockerServerCatalogProgressionResetDetails.html" title="Holds details about a progression&#45;reset catalog entity." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_39.png" border="0" usemap="#aFLootLockerServerCatalogSteamStoreListing" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogSteamStoreListing" id="aFLootLockerServerCatalogSteamStoreListing">
+<area shape="rect" href="structFLootLockerServerCatalogSteamStoreListing.html" title="Holds the Steam Store listing for a catalog entry." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_40.png" border="0" usemap="#aFLootLockerServerCatalogSteamStoreListingPrice" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogSteamStoreListingPrice" id="aFLootLockerServerCatalogSteamStoreListingPrice">
+<area shape="rect" href="structFLootLockerServerCatalogSteamStoreListingPrice.html" title="Represents a single price point for a Steam Store listing." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_41.png" border="0" usemap="#aFLootLockerServerCatalogStripeStoreListing" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCatalogStripeStoreListing" id="aFLootLockerServerCatalogStripeStoreListing">
+<area shape="rect" href="structFLootLockerServerCatalogStripeStoreListing.html" title="Holds the Stripe payment details for a catalog entry." alt="" coords="5,5,197,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_42.png" border="0" usemap="#aFLootLockerServerCharacterProgression" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCharacterProgression" id="aFLootLockerServerCharacterProgression">
+<area shape="rect" href="structFLootLockerServerCharacterProgression.html" title=" " alt="" coords="5,5,210,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_43.png" border="0" usemap="#aFLootLockerServerConnectedAccount" loading="lazy" alt=""/>
+<map name="aFLootLockerServerConnectedAccount" id="aFLootLockerServerConnectedAccount">
+<area shape="rect" href="structFLootLockerServerConnectedAccount.html" title="Details about a connected authentication provider for a player." alt="" coords="5,5,216,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_44.png" border="0" usemap="#aFLootLockerServerContext" loading="lazy" alt=""/>
+<map name="aFLootLockerServerContext" id="aFLootLockerServerContext">
+<area shape="rect" href="structFLootLockerServerContext.html" title="Represents a context for organizing assets and inventory." alt="" coords="5,5,198,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_45.png" border="0" usemap="#aFLootLockerServerCreateAssetInstanceKeyValuePairRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCreateAssetInstanceKeyValuePairRequest" id="aFLootLockerServerCreateAssetInstanceKeyValuePairRequest">
+<area shape="rect" href="structFLootLockerServerCreateAssetInstanceKeyValuePairRequest.html" title=" " alt="" coords="5,5,226,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_46.png" border="0" usemap="#aFLootLockerServerCreateLeaderboardScheduleRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCreateLeaderboardScheduleRequest" id="aFLootLockerServerCreateLeaderboardScheduleRequest">
+<area shape="rect" href="structFLootLockerServerCreateLeaderboardScheduleRequest.html" title=" " alt="" coords="5,5,271,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_47.png" border="0" usemap="#aFLootLockerServerCreateManualLeaderboardResetRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCreateManualLeaderboardResetRequest" id="aFLootLockerServerCreateManualLeaderboardResetRequest">
+<area shape="rect" href="structFLootLockerServerCreateManualLeaderboardResetRequest.html" title="Request body for creating a manual leaderboard reset." alt="" coords="5,5,238,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_48.png" border="0" usemap="#aFLootLockerServerCreatePlayerRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCreatePlayerRequest" id="aFLootLockerServerCreatePlayerRequest">
+<area shape="rect" href="structFLootLockerServerCreatePlayerRequest.html" title=" " alt="" coords="5,5,231,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_49.png" border="0" usemap="#aFLootLockerServerCreateWalletRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCreateWalletRequest" id="aFLootLockerServerCreateWalletRequest">
+<area shape="rect" href="structFLootLockerServerCreateWalletRequest.html" title=" " alt="" coords="5,5,231,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_50.png" border="0" usemap="#aFLootLockerServerCreditRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCreditRequest" id="aFLootLockerServerCreditRequest">
+<area shape="rect" href="structFLootLockerServerCreditRequest.html" title=" " alt="" coords="5,5,239,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_51.png" border="0" usemap="#aFLootLockerServerCurrency" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCurrency" id="aFLootLockerServerCurrency">
+<area shape="rect" href="structFLootLockerServerCurrency.html" title="Details about a particular currency." alt="" coords="5,5,205,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_52.png" border="0" usemap="#aFLootLockerServerCurrencyReward" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCurrencyReward" id="aFLootLockerServerCurrencyReward">
+<area shape="rect" href="structFLootLockerServerCurrencyReward.html" title=" " alt="" coords="5,5,205,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_53.png" border="0" usemap="#aFLootLockerServerCurrencyRewardDetails" loading="lazy" alt=""/>
+<map name="aFLootLockerServerCurrencyRewardDetails" id="aFLootLockerServerCurrencyRewardDetails">
+<area shape="rect" href="structFLootLockerServerCurrencyRewardDetails.html" title=" " alt="" coords="5,5,205,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_54.png" border="0" usemap="#aFLootLockerServerDebitRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerDebitRequest" id="aFLootLockerServerDebitRequest">
+<area shape="rect" href="structFLootLockerServerDebitRequest.html" title=" " alt="" coords="5,5,235,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_55.png" border="0" usemap="#aFLootLockerServerDropTableItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerDropTableItem" id="aFLootLockerServerDropTableItem">
+<area shape="rect" href="structFLootLockerServerDropTableItem.html" title=" " alt="" coords="5,5,242,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_56.png" border="0" usemap="#aFLootLockerServerEmptyRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerEmptyRequest" id="aFLootLockerServerEmptyRequest">
+<area shape="rect" href="structFLootLockerServerEmptyRequest.html" title="An empty type to use as empty request bodies." alt="" coords="5,5,242,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_57.png" border="0" usemap="#aFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndRentalOptionIdRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndRentalOptionIdRequest" id="aFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndRentalOptionIdRequest">
+<area shape="rect" href="structFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndRentalOptionIdRequest.html" title=" " alt="" coords="5,5,288,67"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_58.png" border="0" usemap="#aFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndVariationIdRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndVariationIdRequest" id="aFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndVariationIdRequest">
+<area shape="rect" href="structFLootLockerServerEquipAssetToCharacterLoadoutByAssetIdAndVariationIdRequest.html" title=" " alt="" coords="5,5,304,67"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_59.png" border="0" usemap="#aFLootLockerServerEquipAssetToCharacterLoadoutRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerEquipAssetToCharacterLoadoutRequest" id="aFLootLockerServerEquipAssetToCharacterLoadoutRequest">
+<area shape="rect" href="structFLootLockerServerEquipAssetToCharacterLoadoutRequest.html" title=" " alt="" coords="5,5,219,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_60.png" border="0" usemap="#aFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest" id="aFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest">
+<area shape="rect" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndRentalOptionIdRequest.html" title=" " alt="" coords="5,5,256,67"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_61.png" border="0" usemap="#aFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest" id="aFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest">
+<area shape="rect" href="structFLootLockerServerEquipAssetToHeroLoadoutByAssetIdAndVariationIdRequest.html" title=" " alt="" coords="5,5,272,67"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_62.png" border="0" usemap="#aFLootLockerServerEquipAssetToHeroLoadoutRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerEquipAssetToHeroLoadoutRequest" id="aFLootLockerServerEquipAssetToHeroLoadoutRequest">
+<area shape="rect" href="structFLootLockerServerEquipAssetToHeroLoadoutRequest.html" title=" " alt="" coords="5,5,219,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_63.png" border="0" usemap="#aFLootLockerServerErrorData" loading="lazy" alt=""/>
+<map name="aFLootLockerServerErrorData" id="aFLootLockerServerErrorData">
+<area shape="rect" href="structFLootLockerServerErrorData.html" title=" " alt="" coords="5,5,209,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_64.png" border="0" usemap="#aFLootLockerServerExtendedIndexBasedPagination" loading="lazy" alt=""/>
+<map name="aFLootLockerServerExtendedIndexBasedPagination" id="aFLootLockerServerExtendedIndexBasedPagination">
+<area shape="rect" href="structFLootLockerServerExtendedIndexBasedPagination.html" title=" " alt="" coords="5,5,208,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_65.png" border="0" usemap="#aFLootLockerServerExtendedPaginationError" loading="lazy" alt=""/>
+<map name="aFLootLockerServerExtendedPaginationError" id="aFLootLockerServerExtendedPaginationError">
+<area shape="rect" href="structFLootLockerServerExtendedPaginationError.html" title=" " alt="" coords="5,5,208,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_66.png" border="0" usemap="#aFLootLockerServerFileConfig" loading="lazy" alt=""/>
+<map name="aFLootLockerServerFileConfig" id="aFLootLockerServerFileConfig">
+<area shape="rect" href="structFLootLockerServerFileConfig.html" title="Data struct for the pre&#45;configured file config, loaded at startup from the &quot;&lt;PackageName&gt;ServerPreCon..." alt="" coords="5,5,211,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_67.png" border="0" usemap="#aFLootLockerServerFriend" loading="lazy" alt=""/>
+<map name="aFLootLockerServerFriend" id="aFLootLockerServerFriend">
+<area shape="rect" href="structFLootLockerServerFriend.html" title="Details about a particular friend." alt="" coords="5,5,187,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_68.png" border="0" usemap="#aFLootLockerServerGameProgression" loading="lazy" alt=""/>
+<map name="aFLootLockerServerGameProgression" id="aFLootLockerServerGameProgression">
+<area shape="rect" href="structFLootLockerServerGameProgression.html" title=" " alt="" coords="5,5,262,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_69.png" border="0" usemap="#aFLootLockerServerGetMultisourceMetadataRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerGetMultisourceMetadataRequest" id="aFLootLockerServerGetMultisourceMetadataRequest">
+<area shape="rect" href="structFLootLockerServerGetMultisourceMetadataRequest.html" title=" " alt="" coords="5,5,246,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_70.png" border="0" usemap="#aFLootLockerServerGetPlayerInfoFromGameSessionTokenRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerGetPlayerInfoFromGameSessionTokenRequest" id="aFLootLockerServerGetPlayerInfoFromGameSessionTokenRequest">
+<area shape="rect" href="structFLootLockerServerGetPlayerInfoFromGameSessionTokenRequest.html" title=" " alt="" coords="5,5,264,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_71.png" border="0" usemap="#aFLootLockerServerGrantedItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerGrantedItem" id="aFLootLockerServerGrantedItem">
+<area shape="rect" href="structFLootLockerServerGrantedItem.html" title="A single result produced by a grant behaviour (e.g." alt="" coords="5,5,229,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_72.png" border="0" usemap="#aFLootLockerServerGrantItemRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerGrantItemRequest" id="aFLootLockerServerGrantItemRequest">
+<area shape="rect" href="structFLootLockerServerGrantItemRequest.html" title="Request body for granting an item to a player." alt="" coords="5,5,213,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_73.png" border="0" usemap="#aFLootLockerServerIndexBasedPagination" loading="lazy" alt=""/>
+<map name="aFLootLockerServerIndexBasedPagination" id="aFLootLockerServerIndexBasedPagination">
+<area shape="rect" href="structFLootLockerServerIndexBasedPagination.html" title="Pagination data for index based pagination This is used for methods that have a &quot;count&quot; and an &quot;after..." alt="" coords="5,5,223,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_74.png" border="0" usemap="#aFLootLockerServerInlinedGroupAssociation" loading="lazy" alt=""/>
+<map name="aFLootLockerServerInlinedGroupAssociation" id="aFLootLockerServerInlinedGroupAssociation">
+<area shape="rect" href="structFLootLockerServerInlinedGroupAssociation.html" title="A group association with the entity detail inlined directly." alt="" coords="5,5,191,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_75.png" border="0" usemap="#aFLootLockerServerInlinedGroupDetailsWithAssociations" loading="lazy" alt=""/>
+<map name="aFLootLockerServerInlinedGroupDetailsWithAssociations" id="aFLootLockerServerInlinedGroupDetailsWithAssociations">
+<area shape="rect" href="structFLootLockerServerInlinedGroupDetailsWithAssociations.html" title="Group detail used by the ListCatalogItemsById endpoint, with association details inlined." alt="" coords="5,5,224,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_76.png" border="0" usemap="#aFLootLockerServerInstanceProgression" loading="lazy" alt=""/>
+<map name="aFLootLockerServerInstanceProgression" id="aFLootLockerServerInstanceProgression">
+<area shape="rect" href="structFLootLockerServerInstanceProgression.html" title=" " alt="" coords="5,5,202,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_77.png" border="0" usemap="#aFLootLockerServerInventoryItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerInventoryItem" id="aFLootLockerServerInventoryItem">
+<area shape="rect" href="structFLootLockerServerInventoryItem.html" title="A single item instance in a player&#39;s inventory." alt="" coords="5,5,239,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_78.png" border="0" usemap="#aFLootLockerServerInvokeTriggerForPlayerRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerInvokeTriggerForPlayerRequest" id="aFLootLockerServerInvokeTriggerForPlayerRequest">
+<area shape="rect" href="structFLootLockerServerInvokeTriggerForPlayerRequest.html" title=" " alt="" coords="5,5,234,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_79.png" border="0" usemap="#aFLootLockerServerItemTemplate" loading="lazy" alt=""/>
+<map name="aFLootLockerServerItemTemplate" id="aFLootLockerServerItemTemplate">
+<area shape="rect" href="structFLootLockerServerItemTemplate.html" title="The template an item instance (player inventory item) is based on." alt="" coords="5,5,237,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_80.png" border="0" usemap="#aFLootLockerServerKeyBasedPagination" loading="lazy" alt=""/>
+<map name="aFLootLockerServerKeyBasedPagination" id="aFLootLockerServerKeyBasedPagination">
+<area shape="rect" href="structFLootLockerServerKeyBasedPagination.html" title="Pagination data for key based pagination This is used for methods that have a &quot;count&quot; and an &quot;after&quot; ..." alt="" coords="5,5,211,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_81.png" border="0" usemap="#aFLootLockerServerLeaderboard" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboard" id="aFLootLockerServerLeaderboard">
+<area shape="rect" href="structFLootLockerServerLeaderboard.html" title=" " alt="" coords="5,5,228,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_82.png" border="0" usemap="#aFLootLockerServerLeaderboardArchive" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardArchive" id="aFLootLockerServerLeaderboardArchive">
+<area shape="rect" href="structFLootLockerServerLeaderboardArchive.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_83.png" border="0" usemap="#aFLootLockerServerLeaderboardArchiveDetails" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardArchiveDetails" id="aFLootLockerServerLeaderboardArchiveDetails">
+<area shape="rect" href="structFLootLockerServerLeaderboardArchiveDetails.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_84.png" border="0" usemap="#aFLootLockerServerLeaderboardArchivePlayer" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardArchivePlayer" id="aFLootLockerServerLeaderboardArchivePlayer">
+<area shape="rect" href="structFLootLockerServerLeaderboardArchivePlayer.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_85.png" border="0" usemap="#aFLootLockerServerLeaderboardAssetReward" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardAssetReward" id="aFLootLockerServerLeaderboardAssetReward">
+<area shape="rect" href="structFLootLockerServerLeaderboardAssetReward.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_86.png" border="0" usemap="#aFLootLockerServerLeaderboardBaseRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardBaseRequest" id="aFLootLockerServerLeaderboardBaseRequest">
+<area shape="rect" href="structFLootLockerServerLeaderboardBaseRequest.html" title=" " alt="" coords="5,40,228,85"/>
+<area shape="rect" href="structFLootLockerServerCreateLeaderboardRequest.html" title=" " alt="" coords="278,5,543,50"/>
+<area shape="poly" title=" " alt="" coords="243,45,280,43,274,44,244,50"/>
+<area shape="rect" href="structFLootLockerServerUpdateLeaderboardRequest.html" title=" " alt="" coords="276,75,545,119"/>
+<area shape="poly" title=" " alt="" coords="244,75,278,81,272,81,244,80"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_87.png" border="0" usemap="#aFLootLockerServerLeaderboardCurrencyReward" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardCurrencyReward" id="aFLootLockerServerLeaderboardCurrencyReward">
+<area shape="rect" href="structFLootLockerServerLeaderboardCurrencyReward.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_88.png" border="0" usemap="#aFLootLockerServerLeaderboardDetailPredicates" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardDetailPredicates" id="aFLootLockerServerLeaderboardDetailPredicates">
+<area shape="rect" href="structFLootLockerServerLeaderboardDetailPredicates.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_89.png" border="0" usemap="#aFLootLockerServerLeaderboardEntry" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardEntry" id="aFLootLockerServerLeaderboardEntry">
+<area shape="rect" href="structFLootLockerServerLeaderboardEntry.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_90.png" border="0" usemap="#aFLootLockerServerLeaderboardEntryWithLeaderboardData" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardEntryWithLeaderboardData" id="aFLootLockerServerLeaderboardEntryWithLeaderboardData">
+<area shape="rect" href="structFLootLockerServerLeaderboardEntryWithLeaderboardData.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_91.png" border="0" usemap="#aFLootLockerServerLeaderboardGroupReward" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardGroupReward" id="aFLootLockerServerLeaderboardGroupReward">
+<area shape="rect" href="structFLootLockerServerLeaderboardGroupReward.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_92.png" border="0" usemap="#aFLootLockerServerLeaderboardGroupRewardAssociation" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardGroupRewardAssociation" id="aFLootLockerServerLeaderboardGroupRewardAssociation">
+<area shape="rect" href="structFLootLockerServerLeaderboardGroupRewardAssociation.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_93.png" border="0" usemap="#aFLootLockerServerLeaderboardGroupRewardMetadata" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardGroupRewardMetadata" id="aFLootLockerServerLeaderboardGroupRewardMetadata">
+<area shape="rect" href="structFLootLockerServerLeaderboardGroupRewardMetadata.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_94.png" border="0" usemap="#aFLootLockerServerLeaderboardIncrementScoreRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardIncrementScoreRequest" id="aFLootLockerServerLeaderboardIncrementScoreRequest">
+<area shape="rect" href="structFLootLockerServerLeaderboardIncrementScoreRequest.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_95.png" border="0" usemap="#aFLootLockerServerLeaderboardPlayer" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardPlayer" id="aFLootLockerServerLeaderboardPlayer">
+<area shape="rect" href="structFLootLockerServerLeaderboardPlayer.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_96.png" border="0" usemap="#aFLootLockerServerLeaderboardProgressionPointsReward" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardProgressionPointsReward" id="aFLootLockerServerLeaderboardProgressionPointsReward">
+<area shape="rect" href="structFLootLockerServerLeaderboardProgressionPointsReward.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_97.png" border="0" usemap="#aFLootLockerServerLeaderboardProgressionResetReward" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardProgressionResetReward" id="aFLootLockerServerLeaderboardProgressionResetReward">
+<area shape="rect" href="structFLootLockerServerLeaderboardProgressionResetReward.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_98.png" border="0" usemap="#aFLootLockerServerLeaderboardReward" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardReward" id="aFLootLockerServerLeaderboardReward">
+<area shape="rect" href="structFLootLockerServerLeaderboardReward.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_99.png" border="0" usemap="#aFLootLockerServerLeaderboardRewardArgs" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardRewardArgs" id="aFLootLockerServerLeaderboardRewardArgs">
+<area shape="rect" href="structFLootLockerServerLeaderboardRewardArgs.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_100.png" border="0" usemap="#aFLootLockerServerLeaderboardSchedule" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardSchedule" id="aFLootLockerServerLeaderboardSchedule">
+<area shape="rect" href="structFLootLockerServerLeaderboardSchedule.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_101.png" border="0" usemap="#aFLootLockerServerLeaderboardSubmitScoreRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerLeaderboardSubmitScoreRequest" id="aFLootLockerServerLeaderboardSubmitScoreRequest">
+<area shape="rect" href="structFLootLockerServerLeaderboardSubmitScoreRequest.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_102.png" border="0" usemap="#aFLootLockerServerListAssetsRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerListAssetsRequest" id="aFLootLockerServerListAssetsRequest">
+<area shape="rect" href="structFLootLockerServerListAssetsRequest.html" title="Request payload for simple asset listing." alt="" coords="5,5,213,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_103.png" border="0" usemap="#aFLootLockerServerListCatalogItemsByIdError" loading="lazy" alt=""/>
+<map name="aFLootLockerServerListCatalogItemsByIdError" id="aFLootLockerServerListCatalogItemsByIdError">
+<area shape="rect" href="structFLootLockerServerListCatalogItemsByIdError.html" title="Describes why a specific catalog_listing_id could not be resolved." alt="" coords="5,5,220,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_104.png" border="0" usemap="#aFLootLockerServerListCatalogItemsByIdRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerListCatalogItemsByIdRequest" id="aFLootLockerServerListCatalogItemsByIdRequest">
+<area shape="rect" href="structFLootLockerServerListCatalogItemsByIdRequest.html" title="Request body for looking up catalog items by their catalog_listing_ids." alt="" coords="5,5,220,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_105.png" border="0" usemap="#aFLootLockerServerListConnectedAccountsRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerListConnectedAccountsRequest" id="aFLootLockerServerListConnectedAccountsRequest">
+<area shape="rect" href="structFLootLockerServerListConnectedAccountsRequest.html" title="Request to list connected accounts for multiple players." alt="" coords="5,5,239,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_106.png" border="0" usemap="#aFLootLockerServerManualLeaderboardReset" loading="lazy" alt=""/>
+<map name="aFLootLockerServerManualLeaderboardReset" id="aFLootLockerServerManualLeaderboardReset">
+<area shape="rect" href="structFLootLockerServerManualLeaderboardReset.html" title="A manual leaderboard reset request that has been submitted to the server." alt="" coords="5,5,276,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_107.png" border="0" usemap="#aFLootLockerServerMergeInventoryItemsRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerMergeInventoryItemsRequest" id="aFLootLockerServerMergeInventoryItemsRequest">
+<area shape="rect" href="structFLootLockerServerMergeInventoryItemsRequest.html" title="Request body for merging player item stacks." alt="" coords="5,5,250,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_108.png" border="0" usemap="#aFLootLockerServerMetadataBase64Value" loading="lazy" alt=""/>
+<map name="aFLootLockerServerMetadataBase64Value" id="aFLootLockerServerMetadataBase64Value">
+<area shape="rect" href="structFLootLockerServerMetadataBase64Value.html" title=" " alt="" coords="5,5,209,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_109.png" border="0" usemap="#aFLootLockerServerMetadataEntry" loading="lazy" alt=""/>
+<map name="aFLootLockerServerMetadataEntry" id="aFLootLockerServerMetadataEntry">
+<area shape="rect" href="structFLootLockerServerMetadataEntry.html" title=" " alt="" coords="5,5,209,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_110.png" border="0" usemap="#aFLootLockerServerMetadataSourceAndEntries" loading="lazy" alt=""/>
+<map name="aFLootLockerServerMetadataSourceAndEntries" id="aFLootLockerServerMetadataSourceAndEntries">
+<area shape="rect" href="structFLootLockerServerMetadataSourceAndEntries.html" title=" " alt="" coords="5,5,209,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_111.png" border="0" usemap="#aFLootLockerServerMetadataSourceAndKeys" loading="lazy" alt=""/>
+<map name="aFLootLockerServerMetadataSourceAndKeys" id="aFLootLockerServerMetadataSourceAndKeys">
+<area shape="rect" href="structFLootLockerServerMetadataSourceAndKeys.html" title=" " alt="" coords="5,5,209,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_112.png" border="0" usemap="#aFLootLockerServerModifyScoreRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerModifyScoreRequest" id="aFLootLockerServerModifyScoreRequest">
+<area shape="rect" href="structFLootLockerServerModifyScoreRequest.html" title=" " alt="" coords="5,5,227,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_113.png" border="0" usemap="#aFLootLockerServerNotificationNoContentObject" loading="lazy" alt=""/>
+<map name="aFLootLockerServerNotificationNoContentObject" id="aFLootLockerServerNotificationNoContentObject">
+<area shape="rect" href="structFLootLockerServerNotificationNoContentObject.html" title=" " alt="" coords="5,5,222,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_114.png" border="0" usemap="#aFLootLockerServerNotificationProperty" loading="lazy" alt=""/>
+<map name="aFLootLockerServerNotificationProperty" id="aFLootLockerServerNotificationProperty">
+<area shape="rect" href="structFLootLockerServerNotificationProperty.html" title=" " alt="" coords="5,5,222,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_115.png" border="0" usemap="#aFLootLockerServerPackageContentItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPackageContentItem" id="aFLootLockerServerPackageContentItem">
+<area shape="rect" href="structFLootLockerServerPackageContentItem.html" title=" " alt="" coords="5,5,200,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_116.png" border="0" usemap="#aFLootLockerServerPickDropsFromDropTableRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPickDropsFromDropTableRequest" id="aFLootLockerServerPickDropsFromDropTableRequest">
+<area shape="rect" href="structFLootLockerServerPickDropsFromDropTableRequest.html" title=" " alt="" coords="5,5,212,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_117.png" border="0" usemap="#aFLootLockerServerPickedDropTableItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPickedDropTableItem" id="aFLootLockerServerPickedDropTableItem">
+<area shape="rect" href="structFLootLockerServerPickedDropTableItem.html" title=" " alt="" coords="5,5,220,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_118.png" border="0" usemap="#aFLootLockerServerPlayerCharacter" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerCharacter" id="aFLootLockerServerPlayerCharacter">
+<area shape="rect" href="structFLootLockerServerPlayerCharacter.html" title=" " alt="" coords="5,5,251,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_119.png" border="0" usemap="#aFLootLockerServerPlayerCharacterInventoryItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerCharacterInventoryItem" id="aFLootLockerServerPlayerCharacterInventoryItem">
+<area shape="rect" href="structFLootLockerServerPlayerCharacterInventoryItem.html" title=" " alt="" coords="5,5,251,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_120.png" border="0" usemap="#aFLootLockerServerPlayerCharacterItemRentalData" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerCharacterItemRentalData" id="aFLootLockerServerPlayerCharacterItemRentalData">
+<area shape="rect" href="structFLootLockerServerPlayerCharacterItemRentalData.html" title=" " alt="" coords="5,5,251,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_121.png" border="0" usemap="#aFLootLockerServerPlayerCharacterLoadoutItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerCharacterLoadoutItem" id="aFLootLockerServerPlayerCharacterLoadoutItem">
+<area shape="rect" href="structFLootLockerServerPlayerCharacterLoadoutItem.html" title=" " alt="" coords="5,5,251,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_122.png" border="0" usemap="#aFLootLockerServerPlayerFile" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerFile" id="aFLootLockerServerPlayerFile">
+<area shape="rect" href="structFLootLockerServerPlayerFile.html" title=" " alt="" coords="5,5,211,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_123.png" border="0" usemap="#aFLootLockerServerPlayerFileMetadata" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerFileMetadata" id="aFLootLockerServerPlayerFileMetadata">
+<area shape="rect" href="structFLootLockerServerPlayerFileMetadata.html" title="Metadata about a player file, returned as part of the revisions response." alt="" coords="5,5,211,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_124.png" border="0" usemap="#aFLootLockerServerPlayerHero" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerHero" id="aFLootLockerServerPlayerHero">
+<area shape="rect" href="structFLootLockerServerPlayerHero.html" title=" " alt="" coords="5,5,219,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_125.png" border="0" usemap="#aFLootLockerServerPlayerHeroInventoryItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerHeroInventoryItem" id="aFLootLockerServerPlayerHeroInventoryItem">
+<area shape="rect" href="structFLootLockerServerPlayerHeroInventoryItem.html" title=" " alt="" coords="5,5,219,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_126.png" border="0" usemap="#aFLootLockerServerPlayerHeroItemRentalData" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerHeroItemRentalData" id="aFLootLockerServerPlayerHeroItemRentalData">
+<area shape="rect" href="structFLootLockerServerPlayerHeroItemRentalData.html" title=" " alt="" coords="5,5,219,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_127.png" border="0" usemap="#aFLootLockerServerPlayerHeroLoadoutItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerHeroLoadoutItem" id="aFLootLockerServerPlayerHeroLoadoutItem">
+<area shape="rect" href="structFLootLockerServerPlayerHeroLoadoutItem.html" title=" " alt="" coords="5,5,219,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_128.png" border="0" usemap="#aFLootLockerServerPlayerInfoFromToken" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerInfoFromToken" id="aFLootLockerServerPlayerInfoFromToken">
+<area shape="rect" href="structFLootLockerServerPlayerInfoFromToken.html" title=" " alt="" coords="5,5,213,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_129.png" border="0" usemap="#aFLootLockerServerPlayerInventoryItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerInventoryItem" id="aFLootLockerServerPlayerInventoryItem">
+<area shape="rect" href="structFLootLockerServerPlayerInventoryItem.html" title=" " alt="" coords="5,5,280,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_130.png" border="0" usemap="#aFLootLockerServerPlayerItemRentalData" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerItemRentalData" id="aFLootLockerServerPlayerItemRentalData">
+<area shape="rect" href="structFLootLockerServerPlayerItemRentalData.html" title=" " alt="" coords="5,5,218,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_131.png" border="0" usemap="#aFLootLockerServerPlayerLoadoutItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerLoadoutItem" id="aFLootLockerServerPlayerLoadoutItem">
+<area shape="rect" href="structFLootLockerServerPlayerLoadoutItem.html" title=" " alt="" coords="5,5,270,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_132.png" border="0" usemap="#aFLootLockerServerPlayerName" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerName" id="aFLootLockerServerPlayerName">
+<area shape="rect" href="structFLootLockerServerPlayerName.html" title=" " alt="" coords="5,5,227,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_133.png" border="0" usemap="#aFLootLockerServerPlayerNameLookupPair" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerNameLookupPair" id="aFLootLockerServerPlayerNameLookupPair">
+<area shape="rect" href="structFLootLockerServerPlayerNameLookupPair.html" title=" " alt="" coords="5,5,227,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_134.png" border="0" usemap="#aFLootLockerServerPlayerPersistentStorageEntry__NamedItems" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerPersistentStorageEntry__NamedItems" id="aFLootLockerServerPlayerPersistentStorageEntry__NamedItems">
+<area shape="rect" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedItems.html" title="Describes a set of key&#45;value pairs that are stored for a player, the appendix _NamedItems is due to t..." alt="" coords="5,5,253,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_135.png" border="0" usemap="#aFLootLockerServerPlayerPersistentStorageEntry__NamedSets" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerPersistentStorageEntry__NamedSets" id="aFLootLockerServerPlayerPersistentStorageEntry__NamedSets">
+<area shape="rect" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedSets.html" title="Describes a set of key&#45;value pairs that are stored for a player, the appendix _NamedSets is due to th..." alt="" coords="5,5,253,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_136.png" border="0" usemap="#aFLootLockerServerPlayerPersistentStorageEntry__NamedStorage" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerPersistentStorageEntry__NamedStorage" id="aFLootLockerServerPlayerPersistentStorageEntry__NamedStorage">
+<area shape="rect" href="structFLootLockerServerPlayerPersistentStorageEntry__NamedStorage.html" title="Describes a set of key&#45;value pairs that are stored for a player, the appendix _NamedStorage is due to..." alt="" coords="5,5,253,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_137.png" border="0" usemap="#aFLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest" id="aFLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest">
+<area shape="rect" href="structFLootLockerServerPlayerPersistentStorageGetPublicStorageForPlayersAndKeysRequest.html" title=" " alt="" coords="5,5,282,67"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_138.png" border="0" usemap="#aFLootLockerServerPlayerPersistentStorageKeyValueSet" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerPersistentStorageKeyValueSet" id="aFLootLockerServerPlayerPersistentStorageKeyValueSet">
+<area shape="rect" href="structFLootLockerServerPlayerPersistentStorageKeyValueSet.html" title=" " alt="" coords="5,5,253,50"/>
+<area shape="rect" href="structFLootLockerServerPlayerPersistentStorageKeyValueSetWithOrder.html" title=" " alt="" coords="301,5,548,50"/>
+<area shape="poly" title=" " alt="" coords="268,25,303,28,297,28,269,30"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_139.png" border="0" usemap="#aFLootLockerServerPlayerPersistentStorageUpdateEntryOrdered" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerPersistentStorageUpdateEntryOrdered" id="aFLootLockerServerPlayerPersistentStorageUpdateEntryOrdered">
+<area shape="rect" href="structFLootLockerServerPlayerPersistentStorageUpdateEntryOrdered.html" title="Describes a set of key&#45;value pairs that are stored for a player, the appendix _NamedSets is due to th..." alt="" coords="5,5,253,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_140.png" border="0" usemap="#aFLootLockerServerPlayerPersistentStorageUpdateRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerPersistentStorageUpdateRequest" id="aFLootLockerServerPlayerPersistentStorageUpdateRequest">
+<area shape="rect" href="structFLootLockerServerPlayerPersistentStorageUpdateRequest.html" title=" " alt="" coords="5,5,253,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_141.png" border="0" usemap="#aFLootLockerServerPlayerPlatform" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerPlatform" id="aFLootLockerServerPlayerPlatform">
+<area shape="rect" href="structFLootLockerServerPlayerPlatform.html" title="Platform information for a single player including their connected accounts." alt="" coords="5,5,244,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_142.png" border="0" usemap="#aFLootLockerServerPlayerProgression" loading="lazy" alt=""/>
+<map name="aFLootLockerServerPlayerProgression" id="aFLootLockerServerPlayerProgression">
+<area shape="rect" href="structFLootLockerServerPlayerProgression.html" title=" " alt="" coords="5,5,264,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_143.png" border="0" usemap="#aFLootLockerServerProgressionPointRewardDetails" loading="lazy" alt=""/>
+<map name="aFLootLockerServerProgressionPointRewardDetails" id="aFLootLockerServerProgressionPointRewardDetails">
+<area shape="rect" href="structFLootLockerServerProgressionPointRewardDetails.html" title=" " alt="" coords="5,5,223,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_144.png" border="0" usemap="#aFLootLockerServerProgressionPointsReward" loading="lazy" alt=""/>
+<map name="aFLootLockerServerProgressionPointsReward" id="aFLootLockerServerProgressionPointsReward">
+<area shape="rect" href="structFLootLockerServerProgressionPointsReward.html" title=" " alt="" coords="5,5,223,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_145.png" border="0" usemap="#aFLootLockerServerProgressionResetReward" loading="lazy" alt=""/>
+<map name="aFLootLockerServerProgressionResetReward" id="aFLootLockerServerProgressionResetReward">
+<area shape="rect" href="structFLootLockerServerProgressionResetReward.html" title=" " alt="" coords="5,5,223,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_146.png" border="0" usemap="#aFLootLockerServerProgressionResetRewardDetails" loading="lazy" alt=""/>
+<map name="aFLootLockerServerProgressionResetRewardDetails" id="aFLootLockerServerProgressionResetRewardDetails">
+<area shape="rect" href="structFLootLockerServerProgressionResetRewardDetails.html" title=" " alt="" coords="5,5,223,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_147.png" border="0" usemap="#aFLootLockerServerProgressionTier" loading="lazy" alt=""/>
+<map name="aFLootLockerServerProgressionTier" id="aFLootLockerServerProgressionTier">
+<area shape="rect" href="structFLootLockerServerProgressionTier.html" title=" " alt="" coords="5,5,248,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_148.png" border="0" usemap="#aFLootLockerServerRequestContext" loading="lazy" alt=""/>
+<map name="aFLootLockerServerRequestContext" id="aFLootLockerServerRequestContext">
+<area shape="rect" href="structFLootLockerServerRequestContext.html" title=" " alt="" coords="5,5,200,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_149.png" border="0" usemap="#aFLootLockerServerResponse" loading="lazy" alt=""/>
+<map name="aFLootLockerServerResponse" id="aFLootLockerServerResponse">
+<area shape="rect" href="structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="5,2630,210,2658"/>
+<area shape="rect" href="structFLootLockerServerAddAssetToPlayerInventoryResponse.html" title=" " alt="" coords="292,5,494,50"/>
+<area shape="poly" title=" " alt="" coords="107,2614,121,2113,151,1273,172,842,197,466,210,312,224,190,239,104,247,77,256,61,271,46,292,36,290,41,274,51,260,64,252,79,245,106,230,191,216,313,202,466,178,843,157,1273,126,2113,112,2615"/>
+<area shape="rect" href="structFLootLockerServerAlterPlayerInventoryResponse.html" title=" " alt="" coords="286,75,500,119"/>
+<area shape="poly" title=" " alt="" coords="107,2614,121,2125,153,1308,174,889,198,524,225,256,240,173,247,146,256,130,269,117,287,108,284,113,272,122,260,133,252,148,245,174,230,256,203,524,179,890,158,1308,127,2125,112,2615"/>
+<area shape="rect" href="structFLootLockerServerAssetInstanceKeyValuePairItemResponse.html" title=" " alt="" coords="277,144,509,189"/>
+<area shape="poly" title=" " alt="" coords="106,2614,106,2153,110,1786,119,1382,136,981,149,794,163,623,181,473,202,349,227,257,241,223,256,199,278,182,275,187,260,203,245,226,232,258,208,351,187,474,169,624,154,794,142,981,125,1382,115,1786,111,2153,111,2614"/>
+<area shape="rect" href="structFLootLockerServerAssetInstanceKeyValuePairsListResponse.html" title=" " alt="" coords="277,213,509,258"/>
+<area shape="poly" title=" " alt="" coords="106,2614,107,2165,111,1808,121,1416,139,1027,165,680,183,534,204,414,228,324,241,292,256,269,278,252,275,256,260,272,246,294,233,326,209,415,188,535,171,680,144,1027,126,1416,116,1809,112,2165,111,2614"/>
+<area shape="rect" href="structFLootLockerServerAuthenticationResponse.html" title=" " alt="" coords="275,283,511,327"/>
+<area shape="poly" title=" " alt="" coords="106,2614,107,2177,113,1831,123,1450,141,1073,167,737,185,596,205,479,228,392,241,360,256,338,275,323,273,327,260,341,246,363,233,394,210,480,190,596,173,737,146,1073,128,1450,118,1831,113,2177,111,2614"/>
+<area shape="rect" href="structFLootLockerServerCharacterProgressionListResponse.html" title=" " alt="" coords="291,352,495,397"/>
+<area shape="poly" title=" " alt="" coords="106,2614,108,2189,114,1854,125,1485,143,1119,169,793,186,657,206,544,229,460,242,429,256,407,271,393,292,383,289,388,274,397,260,411,247,432,234,461,211,545,192,658,175,794,148,1119,130,1485,119,1854,114,2189,111,2614"/>
+<area shape="rect" href="structFLootLockerServerComputeAndLockDropTableResponse.html" title=" " alt="" coords="291,421,495,466"/>
+<area shape="poly" title=" " alt="" coords="106,2614,109,2201,116,1875,127,1518,145,1165,171,850,188,718,208,609,230,527,242,498,256,477,271,463,292,453,289,457,274,467,260,480,247,500,235,529,213,610,193,719,177,850,150,1165,132,1518,121,1875,115,2201,111,2614"/>
+<area shape="rect" href="structFLootLockerServerCreatePlayerResponse.html" title=" " alt="" coords="280,491,506,535"/>
+<area shape="poly" title=" " alt="" coords="106,2614,110,2212,117,1897,129,1552,147,1210,173,906,190,779,209,674,231,595,243,566,256,546,281,527,278,532,260,549,247,569,236,596,214,675,195,780,179,907,153,1211,134,1552,122,1897,116,2212,112,2614"/>
+<area shape="rect" href="structFLootLockerServerCreateWalletResponse.html" title=" " alt="" coords="280,560,506,605"/>
+<area shape="poly" title=" " alt="" coords="106,2614,111,2224,119,1919,131,1586,149,1256,176,963,192,840,210,738,231,662,243,635,256,615,281,597,278,601,260,619,248,637,236,664,216,740,197,841,181,963,155,1257,136,1586,124,1920,117,2224,112,2614"/>
+<area shape="rect" href="structFLootLockerServerCreditWalletResponse.html" title=" " alt="" coords="282,629,504,674"/>
+<area shape="poly" title=" " alt="" coords="106,2614,112,2236,120,1942,133,1620,152,1302,178,1019,193,901,212,803,232,730,244,704,256,685,283,665,281,669,260,688,248,706,237,732,217,805,199,902,183,1020,157,1303,138,1620,125,1942,118,2236,112,2614"/>
+<area shape="rect" href="structFLootLockerServerDebitWalletResponse.html" title=" " alt="" coords="284,699,502,743"/>
+<area shape="poly" title=" " alt="" coords="106,2614,113,2248,122,1964,135,1654,154,1348,180,1076,195,962,213,868,233,798,256,754,285,733,283,738,260,757,238,800,218,869,200,963,185,1077,159,1349,140,1655,127,1965,119,2248,112,2614"/>
+<area shape="rect" href="structFLootLockerServerDeletePersistentStorageForPlayersAndKeysResponse.html" title="Response for deletion of persistent storage for player(s) and key(s), will be empty on success." alt="" coords="264,768,522,813"/>
+<area shape="poly" title=" " alt="" coords="107,2614,114,2260,123,1987,137,1689,156,1394,182,1133,197,1023,214,933,234,865,256,823,271,811,269,816,260,827,239,867,220,934,202,1024,187,1134,161,1395,142,1689,129,1987,120,2260,112,2614"/>
+<area shape="rect" href="structFLootLockerServerDeletePlayerInventoryItemResponse.html" title="Response for deleting a player item." alt="" coords="280,837,506,882"/>
+<area shape="poly" title=" " alt="" coords="107,2614,115,2272,125,2010,139,1723,158,1441,184,1190,199,1085,216,998,235,933,256,893,281,874,278,879,260,896,239,935,221,999,204,1086,189,1190,164,1441,144,1724,130,2010,121,2272,112,2614"/>
+<area shape="rect" href="structFLootLockerServerFullCharacterLoadoutResponse.html" title=" " alt="" coords="279,907,506,951"/>
+<area shape="poly" title=" " alt="" coords="107,2615,116,2285,141,1759,160,1488,186,1247,200,1146,217,1063,235,1001,256,962,280,944,278,948,260,965,240,1003,222,1064,206,1147,191,1248,166,1488,146,1759,122,2286,112,2615"/>
+<area shape="rect" href="structFLootLockerServerFullHeroLoadoutResponse.html" title=" " alt="" coords="295,976,490,1021"/>
+<area shape="poly" title=" " alt="" coords="107,2614,117,2297,143,1793,163,1534,188,1304,202,1207,218,1128,236,1068,256,1031,273,1016,296,1006,293,1010,276,1020,260,1035,241,1070,223,1129,207,1208,193,1304,168,1534,148,1793,123,2298,112,2615"/>
+<area shape="rect" href="structFLootLockerServerFullPlayerLoadoutResponse.html" title=" " alt="" coords="290,1045,496,1090"/>
+<area shape="poly" title=" " alt="" coords="107,2614,118,2308,145,1826,165,1579,190,1360,204,1268,220,1193,237,1136,256,1101,271,1087,291,1077,289,1082,274,1091,260,1104,242,1138,225,1194,209,1269,195,1361,170,1580,150,1827,124,2309,112,2614"/>
+<area shape="rect" href="structFLootLockerServerGameProgressionListResponse.html" title=" " alt="" coords="265,1115,521,1159"/>
+<area shape="poly" title=" " alt="" coords="107,2615,119,2322,147,1862,167,1626,192,1417,206,1330,221,1258,238,1203,256,1170,272,1157,270,1162,260,1173,242,1206,226,1259,211,1331,197,1418,172,1627,152,1862,125,2322,112,2615"/>
+<area shape="rect" href="structFLootLockerServerGetAllMemberRanksResponse.html" title=" " alt="" coords="275,1184,510,1229"/>
+<area shape="poly" title=" " alt="" coords="107,2614,121,2334,149,1896,169,1672,194,1474,222,1322,238,1271,256,1239,276,1224,274,1229,260,1243,243,1273,227,1324,199,1475,175,1673,154,1896,126,2334,113,2614"/>
+<area shape="rect" href="structFLootLockerServerGetAssetsResponse.html" title=" " alt="" coords="289,1253,496,1298"/>
+<area shape="poly" title=" " alt="" coords="107,2614,122,2347,151,1931,172,1719,196,1531,224,1387,239,1339,256,1309,270,1295,290,1286,287,1290,274,1300,260,1312,244,1341,229,1389,201,1532,177,1719,156,1931,127,2347,113,2615"/>
+<area shape="rect" href="structFLootLockerServerGetCharacterInventoryResponse.html" title=" " alt="" coords="279,1323,506,1367"/>
+<area shape="poly" title=" " alt="" coords="108,2614,123,2359,153,1965,174,1765,198,1587,225,1452,240,1406,256,1378,280,1360,277,1365,260,1381,245,1409,230,1454,203,1588,179,1765,159,1966,128,2359,113,2615"/>
+<area shape="rect" href="structFLootLockerServerGetHeroInventoryResponse.html" title=" " alt="" coords="295,1392,490,1437"/>
+<area shape="poly" title=" " alt="" coords="108,2614,124,2371,155,2000,176,1811,200,1644,226,1517,241,1474,256,1447,273,1432,296,1422,293,1427,276,1437,260,1451,245,1476,231,1519,205,1645,181,1812,161,2001,129,2372,113,2615"/>
+<area shape="rect" href="structFLootLockerServerGetLeaderboardResponse.html" title=" " alt="" coords="270,1461,516,1506"/>
+<area shape="poly" title=" " alt="" coords="106,2614,107,2399,113,2241,124,2069,142,1897,168,1738,186,1668,206,1606,229,1555,256,1517,272,1504,270,1509,260,1520,234,1558,211,1608,191,1669,174,1739,147,1897,129,2070,118,2242,113,2399,111,2614"/>
+<area shape="rect" href="structFLootLockerServerGetLeaderboardScheduleResponse.html" title=" " alt="" coords="270,1531,516,1575"/>
+<area shape="poly" title=" " alt="" coords="106,2614,110,2411,116,2263,128,2102,146,1940,173,1792,189,1727,208,1670,231,1622,256,1586,272,1573,270,1578,260,1589,235,1625,213,1672,194,1728,178,1793,151,1941,133,2102,122,2263,115,2411,111,2614"/>
+<area shape="rect" href="structFLootLockerServerGetMetadataResponse.html" title=" " alt="" coords="280,1600,506,1645"/>
+<area shape="poly" title=" " alt="" coords="106,2614,112,2423,119,2285,132,2135,151,1985,177,1847,193,1786,211,1733,232,1689,256,1655,281,1637,278,1642,260,1659,237,1692,216,1735,198,1788,182,1848,156,1985,137,2135,125,2285,117,2423,112,2614"/>
+<area shape="rect" href="structFLootLockerServerGetMultisourceMetadataResponse.html" title=" " alt="" coords="273,1669,513,1714"/>
+<area shape="poly" title=" " alt="" coords="107,2614,114,2434,123,2306,136,2167,155,2028,181,1901,196,1845,214,1796,234,1756,256,1725,273,1711,271,1716,260,1728,238,1758,219,1798,201,1847,186,1902,160,2029,141,2168,128,2306,119,2434,112,2614"/>
+<area shape="rect" href="structFLootLockerServerGetPersistentStorageForPlayersResponse.html" title=" " alt="" coords="278,1739,508,1783"/>
+<area shape="poly" title=" " alt="" coords="107,2614,117,2446,140,2200,160,2073,185,1956,216,1860,235,1822,256,1794,279,1777,277,1782,260,1798,240,1825,221,1862,190,1957,165,2074,146,2201,122,2447,113,2614"/>
+<area shape="rect" href="structFLootLockerServerGetPlayerCharactersResponse.html" title=" " alt="" coords="290,1808,496,1853"/>
+<area shape="poly" title=" " alt="" coords="108,2614,119,2458,145,2233,164,2117,189,2011,219,1923,237,1889,256,1863,271,1850,291,1841,288,1846,274,1855,260,1867,241,1892,224,1925,194,2012,169,2118,150,2234,124,2459,113,2614"/>
+<area shape="rect" href="structFLootLockerServerGetPlayerHeroesResponse.html" title=" " alt="" coords="290,1877,496,1922"/>
+<area shape="poly" title=" " alt="" coords="108,2614,122,2471,149,2267,169,2162,193,2065,222,1987,238,1956,256,1932,271,1920,291,1911,288,1915,274,1924,260,1936,242,1959,227,1989,198,2067,174,2163,154,2267,127,2472,114,2615"/>
+<area shape="rect" href="structFLootLockerServerGetPlayerInfoFromGameSessionTokenResponse.html" title=" " alt="" coords="259,1947,527,1991"/>
+<area shape="poly" title=" " alt="" coords="109,2614,124,2483,154,2299,173,2206,197,2120,224,2050,240,2023,256,2002,273,1989,271,1994,260,2006,244,2026,229,2052,202,2122,179,2207,159,2300,130,2484,114,2614"/>
+<area shape="rect" href="structFLootLockerServerGetPlayerInventoryItemResponse.html" title="Response for getting a single player item Note: The backend returns the item fields at the top level ..." alt="" coords="290,2016,496,2061"/>
+<area shape="poly" title=" " alt="" coords="110,2614,127,2496,158,2333,178,2251,201,2175,227,2113,256,2071,291,2050,288,2054,260,2075,232,2116,206,2177,183,2252,163,2335,133,2497,115,2615"/>
+<area shape="rect" href="structFLootLockerServerGetPlayerInventoryResponse.html" title=" " alt="" coords="290,2085,496,2130"/>
+<area shape="poly" title=" " alt="" coords="106,2614,110,2523,117,2462,129,2395,147,2327,174,2259,210,2196,256,2140,291,2120,288,2124,259,2144,214,2199,179,2261,152,2328,134,2396,122,2463,115,2523,111,2614"/>
+<area shape="rect" href="structFLootLockerServerGetPublicPersistentStorageForPlayersAndKeysResponse.html" title=" " alt="" coords="278,2154,508,2216"/>
+<area shape="poly" title=" " alt="" coords="108,2614,118,2537,141,2433,161,2377,185,2322,217,2271,256,2226,279,2210,276,2215,259,2230,221,2274,190,2325,165,2379,147,2434,123,2538,113,2614"/>
+<area shape="rect" href="structFLootLockerServerGetScoresFromLeaderboardResponse.html" title=" " alt="" coords="289,2240,496,2285"/>
+<area shape="poly" title=" " alt="" coords="110,2614,123,2548,149,2462,168,2416,192,2372,221,2331,256,2295,290,2276,287,2281,259,2299,225,2334,197,2375,173,2419,154,2464,128,2549,115,2615"/>
+<area shape="rect" href="structFLootLockerServerGetUniversalInventoryResponse.html" title=" " alt="" coords="280,2309,506,2354"/>
+<area shape="poly" title=" " alt="" coords="113,2614,130,2561,159,2493,200,2423,226,2392,256,2364,281,2351,278,2355,259,2368,230,2395,205,2426,164,2495,135,2562,119,2615"/>
+<area shape="rect" href="structFLootLockerServerGetWalletResponse.html" title=" " alt="" coords="290,2379,496,2423"/>
+<area shape="poly" title=" " alt="" coords="118,2615,139,2574,169,2525,209,2475,256,2433,291,2417,288,2422,259,2438,212,2479,174,2528,144,2577,123,2617"/>
+<area shape="rect" href="structFLootLockerServerGrantItemResponse.html" title="Response for granting an item to a player." alt="" coords="289,2448,496,2493"/>
+<area shape="poly" title=" " alt="" coords="127,2617,182,2559,217,2528,256,2503,290,2489,287,2493,259,2507,221,2533,185,2562,132,2619"/>
+<area shape="rect" href="structFLootLockerServerInstanceProgressionListResponse.html" title=" " alt="" coords="295,2517,491,2562"/>
+<area shape="poly" title=" " alt="" coords="147,2621,199,2595,257,2572,296,2560,293,2565,259,2577,201,2600,151,2624"/>
+<area shape="rect" href="structFLootLockerServerInvokeTriggerResponse.html" title=" " alt="" coords="279,2587,507,2631"/>
+<area shape="poly" title=" " alt="" coords="223,2628,280,2621,277,2625,227,2631"/>
+<area shape="rect" href="structFLootLockerServerLeaderboardArchiveDetailsResponse.html" title=" " alt="" coords="282,2656,504,2701"/>
+<area shape="poly" title=" " alt="" coords="223,2656,283,2663,279,2667,227,2660"/>
+<area shape="rect" href="structFLootLockerServerLeaderboardArchiveResponse.html" title=" " alt="" coords="282,2725,504,2770"/>
+<area shape="poly" title=" " alt="" coords="148,2663,201,2687,259,2710,297,2723,292,2726,257,2716,199,2692,150,2667"/>
+<area shape="rect" href="structFLootLockerServerLeaderboardBaseResponse.html" title=" " alt="" coords="282,2795,504,2839"/>
+<area shape="poly" title=" " alt="" coords="129,2667,185,2725,221,2755,259,2780,286,2793,281,2795,256,2785,217,2759,182,2729,130,2672"/>
+<area shape="rect" href="structFLootLockerServerLeaderboardSubmitScoreResponse.html" title=" " alt="" coords="282,2864,504,2909"/>
+<area shape="poly" title=" " alt="" coords="120,2669,144,2711,174,2759,212,2808,259,2849,284,2863,279,2866,256,2854,209,2812,169,2762,139,2713,121,2674"/>
+<area shape="rect" href="structFLootLockerServerListAssetsResponse.html" title="Response payload for simple asset listing." alt="" coords="289,2933,496,2978"/>
+<area shape="poly" title=" " alt="" coords="116,2670,135,2725,164,2792,205,2861,230,2892,259,2919,291,2937,286,2940,256,2923,226,2896,200,2864,159,2794,130,2727,116,2675"/>
+<area shape="rect" href="structFLootLockerServerListBalancesForWalletResponse.html" title=" " alt="" coords="281,3003,504,3047"/>
+<area shape="poly" title=" " alt="" coords="112,2670,128,2738,154,2824,173,2869,197,2913,225,2953,259,2988,283,3004,278,3006,256,2992,221,2957,192,2915,168,2871,149,2825,123,2739,113,2676"/>
+<area shape="rect" href="structFLootLockerServerListCatalogItemsByIdResponse.html" title="Response for the ListCatalogItemsById endpoint." alt="" coords="286,3072,500,3117"/>
+<area shape="poly" title=" " alt="" coords="110,2670,122,2750,145,2854,164,2910,189,2964,220,3014,259,3058,288,3077,283,3079,256,3062,216,3017,184,2966,159,2911,140,2856,117,2751,110,2676"/>
+<area shape="rect" href="structFLootLockerServerListCatalogPricesResponse.html" title="Response containing catalog entries with entity&#45;typed detail arrays and cursor&#45;based pagination." alt="" coords="286,3141,500,3186"/>
+<area shape="poly" title=" " alt="" coords="109,2671,116,2762,124,2820,136,2884,155,2950,181,3015,215,3075,259,3127,288,3146,283,3148,256,3131,211,3078,176,3017,150,2952,131,2885,118,2821,111,2762,109,2676"/>
+<area shape="rect" href="structFLootLockerServerListConnectedAccountsResponse.html" title="Response for listing connected accounts for multiple players." alt="" coords="276,3211,510,3255"/>
+<area shape="poly" title=" " alt="" coords="113,2670,133,2787,164,2945,184,3025,207,3098,232,3157,260,3196,278,3211,273,3213,256,3200,228,3159,202,3099,179,3026,159,2946,128,2788,113,2675"/>
+<area shape="rect" href="structFLootLockerServerListContextsResponse.html" title="Response payload for listing contexts." alt="" coords="282,3280,504,3325"/>
+<area shape="poly" title=" " alt="" coords="112,2670,130,2800,160,2979,180,3070,203,3153,230,3220,244,3246,260,3266,284,3284,279,3286,256,3270,240,3249,225,3223,198,3154,174,3071,155,2980,125,2801,112,2675"/>
+<area shape="rect" href="structFLootLockerServerListCurrenciesResponse.html" title=" " alt="" coords="276,3349,510,3394"/>
+<area shape="poly" title=" " alt="" coords="111,2671,128,2813,155,3013,175,3115,199,3208,227,3284,243,3313,260,3335,278,3350,273,3352,256,3339,238,3316,222,3286,194,3209,170,3116,150,3014,122,2814,111,2676"/>
+<area shape="rect" href="structFLootLockerServerListFriendsResponse.html" title=" " alt="" coords="287,3419,498,3463"/>
+<area shape="poly" title=" " alt="" coords="110,2670,125,2825,151,3046,170,3159,195,3263,225,3347,241,3380,260,3404,289,3426,285,3428,256,3408,237,3383,220,3350,190,3264,165,3160,146,3046,120,2826,111,2676"/>
+<area shape="rect" href="structFLootLockerServerListLeaderboardsResponse.html" title=" " alt="" coords="267,3488,519,3533"/>
+<area shape="poly" title=" " alt="" coords="110,2670,122,2837,147,3078,166,3203,191,3317,222,3411,240,3447,260,3474,274,3486,269,3488,256,3477,235,3450,217,3413,186,3319,161,3204,141,3079,117,2837,110,2675"/>
+<area shape="rect" href="structFLootLockerServerListManualLeaderboardResetsResponse.html" title=" " alt="" coords="287,3557,499,3602"/>
+<area shape="poly" title=" " alt="" coords="110,2671,120,2850,129,2976,142,3112,161,3248,187,3372,202,3427,219,3474,238,3514,260,3543,289,3564,284,3566,256,3547,234,3516,214,3476,197,3428,182,3373,156,3249,137,3113,124,2976,115,2850,110,2676"/>
+<area shape="rect" href="structFLootLockerServerListMetadataResponse.html" title=" " alt="" coords="280,3627,506,3671"/>
+<area shape="poly" title=" " alt="" coords="109,2670,118,2862,126,2997,138,3145,157,3292,183,3427,199,3486,217,3538,237,3580,260,3612,282,3630,277,3632,256,3616,232,3583,212,3540,193,3488,177,3428,152,3293,133,3145,120,2998,112,2862,109,2676"/>
+<area shape="rect" href="structFLootLockerServerListPlayerInventoryItemsResponse.html" title="Response for listing a player&#39;s items." alt="" coords="290,3696,496,3741"/>
+<area shape="poly" title=" " alt="" coords="109,2671,115,2874,122,3019,134,3178,152,3336,179,3481,195,3545,214,3601,235,3647,260,3682,274,3694,292,3705,287,3707,271,3699,256,3685,231,3650,209,3603,190,3547,173,3483,147,3337,129,3178,117,3020,110,2874,109,2676"/>
+<area shape="rect" href="structFLootLockerServerMaintainSessionResponse.html" title=" " alt="" coords="294,3765,492,3810"/>
+<area shape="poly" title=" " alt="" coords="109,2671,113,2886,119,3041,130,3210,148,3380,175,3536,192,3605,211,3664,234,3714,260,3751,275,3765,295,3776,291,3778,272,3769,256,3755,229,3717,206,3666,187,3606,169,3537,143,3381,125,3211,114,3041,108,2886,108,2676"/>
+<area shape="rect" href="structFLootLockerServerManualLeaderboardResetResponse.html" title=" " alt="" coords="258,3835,528,3879"/>
+<area shape="poly" title=" " alt="" coords="108,2670,111,2897,116,3062,126,3242,144,3424,171,3590,188,3664,209,3728,233,3781,260,3821,273,3833,268,3835,256,3824,228,3783,204,3730,183,3665,165,3591,138,3424,121,3243,111,3062,106,2897,108,2676"/>
+<area shape="rect" href="structFLootLockerServerMergePlayerInventoryItemStacksResponse.html" title="Response for merging player item stacks Note: This endpoint returns 204 No Content." alt="" coords="281,3904,504,3949"/>
+<area shape="poly" title=" " alt="" coords="110,2670,128,2926,159,3314,180,3511,204,3686,230,3819,245,3863,260,3890,283,3909,278,3911,256,3893,240,3865,225,3820,198,3687,174,3512,154,3314,123,2926,110,2676"/>
+<area shape="rect" href="structFLootLockerServerPickFromDropTableResponse.html" title=" " alt="" coords="292,3973,494,4018"/>
+<area shape="poly" title=" " alt="" coords="110,2670,127,2938,157,3348,177,3558,202,3743,229,3884,244,3931,260,3959,275,3972,294,3983,289,3986,272,3977,256,3963,239,3933,224,3885,196,3744,172,3558,152,3349,122,2938,110,2676"/>
+<area shape="rect" href="structFLootLockerServerPlayerFileContentResponse.html" title="Response class for a single file revision." alt="" coords="290,4043,496,4087"/>
+<area shape="poly" title=" " alt="" coords="110,2670,126,2950,155,3383,175,3604,199,3799,228,3948,243,3999,260,4029,274,4041,293,4052,288,4054,271,4046,256,4032,238,4001,223,3950,194,3800,170,3604,150,3383,121,2950,110,2675"/>
+<area shape="rect" href="structFLootLockerServerPlayerFileDeleteResponse.html" title="Response class for deleting a file, will be empty unless there&#39;s an error." alt="" coords="290,4112,496,4157"/>
+<area shape="poly" title=" " alt="" coords="110,2670,125,2963,153,3417,173,3650,197,3856,211,3943,226,4013,243,4066,260,4098,274,4111,293,4121,288,4124,271,4115,256,4101,238,4068,221,4015,206,3944,192,3857,168,3651,147,3418,120,2963,110,2676"/>
+<area shape="rect" href="structFLootLockerServerPlayerFileListResponse.html" title=" " alt="" coords="290,4181,496,4226"/>
+<area shape="poly" title=" " alt="" coords="110,2670,124,2975,151,3452,171,3697,195,3913,210,4004,225,4078,242,4134,260,4167,274,4180,293,4191,288,4193,271,4184,256,4171,237,4136,220,4080,204,4005,190,3914,165,3697,145,3453,119,2975,110,2676"/>
+<area shape="rect" href="structFLootLockerServerPlayerFilePromoteResponse.html" title="Response class for promoting a file revision, will be empty unless there&#39;s an error." alt="" coords="290,4251,496,4295"/>
+<area shape="poly" title=" " alt="" coords="110,2670,123,2988,149,3487,168,3743,193,3970,208,4065,224,4143,241,4202,260,4237,274,4249,292,4260,288,4262,271,4254,256,4240,236,4204,219,4145,203,4066,188,3971,163,3743,143,3487,118,2988,110,2676"/>
+<area shape="rect" href="structFLootLockerServerPlayerFileRevisionsResponse.html" title="Response class for listing file revisions." alt="" coords="290,4320,496,4365"/>
+<area shape="poly" title=" " alt="" coords="110,2670,122,3000,147,3521,166,3789,191,4027,206,4126,222,4208,240,4269,260,4306,274,4319,292,4330,288,4332,271,4323,256,4309,235,4271,217,4209,201,4127,186,4028,161,3790,141,3521,116,3000,109,2676"/>
+<area shape="rect" href="structFLootLockerServerPlayerNameLookupResponse.html" title=" " alt="" coords="282,4389,504,4434"/>
+<area shape="poly" title=" " alt="" coords="109,2670,121,3012,130,3272,145,3555,164,3835,189,4084,204,4187,221,4273,240,4337,260,4375,284,4395,279,4397,256,4379,235,4339,216,4274,199,4188,184,4084,159,3836,139,3556,125,3272,115,3012,109,2676"/>
+<area shape="rect" href="structFLootLockerServerPlayerProgressionListResponse.html" title=" " alt="" coords="264,4459,522,4503"/>
+<area shape="poly" title=" " alt="" coords="109,2670,120,3024,129,3294,143,3590,162,3881,187,4140,203,4249,220,4338,239,4405,260,4445,273,4457,268,4459,256,4448,234,4407,215,4339,197,4250,182,4141,157,3882,137,3590,124,3295,114,3024,109,2676"/>
+<area shape="rect" href="structFLootLockerServerProgressionTiersResponse.html" title=" " alt="" coords="284,4528,502,4573"/>
+<area shape="poly" title=" " alt="" coords="109,2671,119,3036,127,3317,141,3624,160,3928,185,4197,201,4310,218,4403,238,4472,260,4514,287,4535,282,4537,256,4517,233,4474,213,4404,196,4311,180,4198,154,3928,135,3625,122,3317,113,3036,109,2676"/>
+<area shape="rect" href="structFLootLockerServerSendNotificationsResponse.html" title=" " alt="" coords="265,4597,520,4642"/>
+<area shape="poly" title=" " alt="" coords="109,2671,118,3048,126,3340,139,3659,157,3974,183,4254,199,4371,217,4468,237,4540,248,4565,260,4583,273,4596,267,4597,256,4587,244,4568,232,4542,212,4469,194,4372,178,4255,152,3974,133,3659,120,3340,112,3048,109,2676"/>
+<area shape="rect" href="structFLootLockerServerSetMetadataResponse.html" title=" " alt="" coords="281,4667,505,4711"/>
+<area shape="poly" title=" " alt="" coords="109,2670,117,3060,124,3362,137,3693,155,4020,181,4311,197,4432,216,4533,237,4608,248,4634,260,4653,283,4672,278,4673,256,4656,243,4637,232,4609,211,4534,192,4433,176,4311,150,4020,131,3693,119,3362,111,3060,109,2676"/>
+<area shape="rect" href="structFLootLockerServerSingleCharacterProgressionResponse.html" title=" " alt="" coords="271,4736,515,4781"/>
+<area shape="poly" title=" " alt="" coords="109,2670,116,3072,123,3384,135,3727,153,4066,179,4367,196,4493,214,4597,236,4675,248,4703,260,4722,273,4735,267,4736,256,4725,243,4705,231,4677,209,4599,190,4494,174,4368,148,4066,129,3727,117,3384,111,3072,109,2676"/>
+<area shape="rect" href="structFLootLockerServerSingleGameProgressionResponse.html" title=" " alt="" coords="283,4805,503,4850"/>
+<area shape="poly" title=" " alt="" coords="109,2670,115,3083,121,3406,133,3761,151,4111,177,4424,194,4554,213,4662,235,4743,247,4771,260,4791,285,4812,279,4813,256,4795,242,4774,230,4745,208,4663,189,4555,172,4424,146,4112,127,3761,116,3406,110,3083,109,2676"/>
+<area shape="rect" href="structFLootLockerServerSingleInstanceProgressionResponse.html" title=" " alt="" coords="275,4875,511,4919"/>
+<area shape="poly" title=" " alt="" coords="109,2670,114,3096,120,3429,131,3795,149,4158,175,4481,192,4616,212,4727,234,4811,247,4840,260,4861,277,4877,271,4877,256,4864,242,4842,229,4812,207,4728,187,4616,170,4481,143,4158,125,3795,114,3429,109,3096,109,2676"/>
+<area shape="rect" href="structFLootLockerServerSinglePlayerFileResponse.html" title=" " alt="" coords="282,4944,504,4989"/>
+<area shape="poly" title=" " alt="" coords="109,2671,113,3108,118,3452,129,3829,147,4204,173,4537,190,4677,210,4792,234,4878,246,4909,260,4930,284,4950,279,4951,256,4933,242,4911,229,4880,205,4793,185,4678,168,4538,141,4204,124,3830,113,3452,108,3108,109,2676"/>
+<area shape="rect" href="structFLootLockerServerSinglePlayerProgressionResponse.html" title=" " alt="" coords="282,5013,504,5058"/>
+<area shape="poly" title=" " alt="" coords="109,2671,112,3120,117,3474,127,3864,144,4250,171,4594,189,4738,209,4857,233,4946,246,4977,260,4999,284,5020,279,5020,256,5003,241,4980,228,4948,204,4858,183,4739,166,4595,139,4250,122,3864,111,3474,107,3120,109,2676"/>
+<area shape="rect" href="structFLootLockerServerSplitPlayerInventoryItemStackResponse.html" title="Response for splitting a player item stack." alt="" coords="287,5083,499,5127"/>
+<area shape="poly" title=" " alt="" coords="109,2670,111,3131,115,3495,125,3897,142,4295,154,4481,169,4650,187,4799,208,4922,232,5013,246,5046,260,5069,272,5081,289,5092,284,5092,269,5085,256,5072,241,5048,227,5015,203,4923,182,4800,164,4651,149,4481,137,4296,120,3897,110,3496,106,3131,109,2676"/>
+<area shape="rect" href="structFLootLockerServerTokenExchangeResponse.html" title=" " alt="" coords="272,5152,514,5197"/>
+<area shape="poly" title=" " alt="" coords="110,2670,127,3160,158,3971,179,4387,203,4750,231,5016,245,5098,252,5124,260,5138,274,5153,269,5152,256,5141,248,5126,240,5099,225,5016,198,4751,174,4387,153,3971,122,3160,110,2676"/>
+<area shape="rect" href="structFLootLockerServerUpdatePersistentStorageForPlayersAndKeysResponse.html" title=" " alt="" coords="264,5221,522,5266"/>
+<area shape="poly" title=" " alt="" coords="110,2670,126,3172,157,4006,178,4434,202,4808,216,4960,230,5081,245,5166,252,5192,260,5207,273,5221,267,5220,256,5211,247,5194,240,5167,225,5082,210,4961,197,4808,173,4435,152,4007,121,3172,109,2676"/>
+<area shape="rect" href="structFLootLockerServerEquipAssetToCharacterLoadoutResponse.html" title=" " alt="" coords="604,699,817,743"/>
+<area shape="poly" title=" " alt="" coords="517,900,526,892,540,876,546,860,549,825,552,789,560,771,574,754,605,735,602,740,578,758,564,774,558,790,555,825,552,861,544,879,530,896,522,903"/>
+<area shape="rect" href="structFLootLockerServerGetCharacterLoadoutResponse.html" title=" " alt="" coords="597,768,824,813"/>
+<area shape="poly" title=" " alt="" coords="518,898,526,892,542,876,550,859,558,840,574,823,598,811,595,815,578,827,562,843,554,861,546,879,530,896,523,901"/>
+<area shape="rect" href="structFLootLockerServerUnequipAssetFromCharacterLoadoutResponse.html" title=" " alt="" coords="576,837,845,882"/>
+<area shape="poly" title=" " alt="" coords="511,901,607,881,603,885,515,905"/>
+<area shape="rect" href="structFLootLockerServerEquipAssetToHeroLoadoutResponse.html" title=" " alt="" coords="604,907,817,951"/>
+<area shape="poly" title=" " alt="" coords="504,972,607,950,603,954,507,976"/>
+<area shape="rect" href="structFLootLockerServerGetHeroLoadoutResponse.html" title=" " alt="" coords="613,976,808,1021"/>
+<area shape="poly" title=" " alt="" coords="504,996,615,997,611,1000,508,1000"/>
+<area shape="rect" href="structFLootLockerServerUnequipAssetFromHeroLoadoutResponse.html" title=" " alt="" coords="592,1045,829,1090"/>
+<area shape="poly" title=" " alt="" coords="504,1021,607,1043,603,1046,507,1025"/>
+<area shape="rect" href="structFLootLockerServerEquipAssetToPlayerLoadoutResponse.html" title=" " alt="" coords="604,1115,817,1159"/>
+<area shape="poly" title=" " alt="" coords="510,1091,607,1113,603,1116,512,1096"/>
+<area shape="rect" href="structFLootLockerServerGetPlayerLoadoutResponse.html" title=" " alt="" coords="608,1184,813,1229"/>
+<area shape="poly" title=" " alt="" coords="508,1089,530,1100,546,1118,554,1136,562,1153,578,1170,610,1187,605,1189,574,1174,558,1156,550,1138,542,1121,526,1104,511,1094"/>
+<area shape="rect" href="structFLootLockerServerUnequipAssetFromPlayerLoadoutResponse.html" title=" " alt="" coords="588,1253,834,1298"/>
+<area shape="poly" title=" " alt="" coords="508,1086,530,1100,544,1118,552,1136,555,1171,558,1206,564,1223,578,1239,595,1252,590,1254,574,1243,560,1226,552,1208,549,1172,546,1137,540,1121,526,1104,510,1091"/>
+<area shape="rect" href="structFLootLockerServerCreateLeaderboardResponse.html" title=" " alt="" coords="578,2760,843,2805"/>
+<area shape="poly" title=" " alt="" coords="518,2801,579,2795,576,2799,521,2805"/>
+<area shape="rect" href="structFLootLockerServerUpdateLeaderboardResponse.html" title=" " alt="" coords="576,2829,845,2874"/>
+<area shape="poly" title=" " alt="" coords="518,2829,578,2835,574,2839,521,2833"/>
+<area shape="rect" href="structFLootLockerServerSingleCharacterProgressionWithRewardsResponse.html" title=" " alt="" coords="588,4736,834,4781"/>
+<area shape="poly" title=" " alt="" coords="530,4756,589,4757,585,4759,531,4761"/>
+<area shape="rect" href="structFLootLockerServerSingleInstanceProgressionWithRewardsResponse.html" title=" " alt="" coords="588,4875,834,4919"/>
+<area shape="poly" title=" " alt="" coords="526,4894,590,4896,585,4898,527,4900"/>
+<area shape="rect" href="structFLootLockerServerSinglePlayerProgressionWithRewardsResponse.html" title=" " alt="" coords="588,5013,834,5058"/>
+<area shape="poly" title=" " alt="" coords="519,5033,590,5035,585,5036,520,5038"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_150.png" border="0" usemap="#aFLootLockerServerRewards" loading="lazy" alt=""/>
+<map name="aFLootLockerServerRewards" id="aFLootLockerServerRewards">
+<area shape="rect" href="structFLootLockerServerRewards.html" title=" " alt="" coords="5,5,203,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_151.png" border="0" usemap="#aFLootLockerServerSendNotificationsToPlayerBaseRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSendNotificationsToPlayerBaseRequest" id="aFLootLockerServerSendNotificationsToPlayerBaseRequest">
+<area shape="rect" href="structFLootLockerServerSendNotificationsToPlayerBaseRequest.html" title=" " alt="" coords="5,5,261,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_152.png" border="0" usemap="#aFLootLockerServerSetMetadataAction" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSetMetadataAction" id="aFLootLockerServerSetMetadataAction">
+<area shape="rect" href="structFLootLockerServerSetMetadataAction.html" title=" " alt="" coords="5,5,230,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_153.png" border="0" usemap="#aFLootLockerServerSetMetadataError" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSetMetadataError" id="aFLootLockerServerSetMetadataError">
+<area shape="rect" href="structFLootLockerServerSetMetadataError.html" title=" " alt="" coords="5,5,230,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_154.png" border="0" usemap="#aFLootLockerServerSetMetadataErrorEntry" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSetMetadataErrorEntry" id="aFLootLockerServerSetMetadataErrorEntry">
+<area shape="rect" href="structFLootLockerServerSetMetadataErrorEntry.html" title=" " alt="" coords="5,5,230,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_155.png" border="0" usemap="#aFLootLockerServerSimpleAsset" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSimpleAsset" id="aFLootLockerServerSimpleAsset">
+<area shape="rect" href="structFLootLockerServerSimpleAsset.html" title="Simplified asset object." alt="" coords="5,5,228,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_156.png" border="0" usemap="#aFLootLockerServerSimpleAssetAuthor" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSimpleAssetAuthor" id="aFLootLockerServerSimpleAssetAuthor">
+<area shape="rect" href="structFLootLockerServerSimpleAssetAuthor.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_157.png" border="0" usemap="#aFLootLockerServerSimpleAssetDataEntity" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSimpleAssetDataEntity" id="aFLootLockerServerSimpleAssetDataEntity">
+<area shape="rect" href="structFLootLockerServerSimpleAssetDataEntity.html" title=" " alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_158.png" border="0" usemap="#aFLootLockerServerSimpleAssetExcludes" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSimpleAssetExcludes" id="aFLootLockerServerSimpleAssetExcludes">
+<area shape="rect" href="structFLootLockerServerSimpleAssetExcludes.html" title="Fields to exclude from the simple asset response." alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_159.png" border="0" usemap="#aFLootLockerServerSimpleAssetFile" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSimpleAssetFile" id="aFLootLockerServerSimpleAssetFile">
+<area shape="rect" href="structFLootLockerServerSimpleAssetFile.html" title=" " alt="" coords="5,5,251,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_160.png" border="0" usemap="#aFLootLockerServerSimpleAssetFilters" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSimpleAssetFilters" id="aFLootLockerServerSimpleAssetFilters">
+<area shape="rect" href="structFLootLockerServerSimpleAssetFilters.html" title="Filters to apply to simple asset listing." alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_161.png" border="0" usemap="#aFLootLockerServerSimpleAssetIncludes" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSimpleAssetIncludes" id="aFLootLockerServerSimpleAssetIncludes">
+<area shape="rect" href="structFLootLockerServerSimpleAssetIncludes.html" title="Fields to include in the simple asset response." alt="" coords="5,5,228,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_162.png" border="0" usemap="#aFLootLockerServerSplitInventoryItemRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerSplitInventoryItemRequest" id="aFLootLockerServerSplitInventoryItemRequest">
+<area shape="rect" href="structFLootLockerServerSplitInventoryItemRequest.html" title="Request body for splitting a player item stack." alt="" coords="5,5,238,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_163.png" border="0" usemap="#aFLootLockerServerTriggeredLevel" loading="lazy" alt=""/>
+<map name="aFLootLockerServerTriggeredLevel" id="aFLootLockerServerTriggeredLevel">
+<area shape="rect" href="structFLootLockerServerTriggeredLevel.html" title=" " alt="" coords="5,5,207,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_164.png" border="0" usemap="#aFLootLockerServerTriggeredXP" loading="lazy" alt=""/>
+<map name="aFLootLockerServerTriggeredXP" id="aFLootLockerServerTriggeredXP">
+<area shape="rect" href="structFLootLockerServerTriggeredXP.html" title=" " alt="" coords="5,5,224,33"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_165.png" border="0" usemap="#aFLootLockerServerUniversalInventoryItem" loading="lazy" alt=""/>
+<map name="aFLootLockerServerUniversalInventoryItem" id="aFLootLockerServerUniversalInventoryItem">
+<area shape="rect" href="structFLootLockerServerUniversalInventoryItem.html" title=" " alt="" coords="5,5,209,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_166.png" border="0" usemap="#aFLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest" loading="lazy" alt=""/>
+<map name="aFLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest" id="aFLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest">
+<area shape="rect" href="structFLootLockerServerUpdateOneOrMoreKeyValuePairsOnAssetInstanceRequest.html" title=" " alt="" coords="5,5,275,67"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_167.png" border="0" usemap="#aLootLockerServerResponseFactory" loading="lazy" alt=""/>
+<map name="aLootLockerServerResponseFactory" id="aLootLockerServerResponseFactory">
+<area shape="rect" href="classLootLockerServerResponseFactory.html" title=" " alt="" coords="5,5,202,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_168.png" border="0" usemap="#aLootLockerServerStaticRequestErrorStatusCodes" loading="lazy" alt=""/>
+<map name="aLootLockerServerStaticRequestErrorStatusCodes" id="aLootLockerServerStaticRequestErrorStatusCodes">
+<area shape="rect" href="structLootLockerServerStaticRequestErrorStatusCodes.html" title="Static defines of the different predefined error status codes that can occur in responses." alt="" coords="5,5,229,50"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_169.png" border="0" usemap="#aUObject" loading="lazy" alt=""/>
+<map name="aUObject" id="aUObject">
+<area shape="rect" title=" " alt="" coords="5,856,79,884"/>
+<area shape="rect" href="classULootLockerServerAssetRequest.html" title=" " alt="" coords="141,5,373,33"/>
+<area shape="poly" title=" " alt="" coords="42,840,49,665,64,413,75,286,89,175,105,91,114,62,125,44,142,31,140,36,129,48,119,64,110,92,94,176,81,287,70,413,54,666,47,840"/>
+<area shape="rect" href="classULootLockerServerAuthRequest.html" title=" " alt="" coords="144,57,370,85"/>
+<area shape="poly" title=" " alt="" coords="42,840,50,675,66,439,77,321,90,217,106,138,115,111,125,95,145,81,142,85,129,98,120,114,111,140,96,218,82,321,71,439,55,675,47,841"/>
+<area shape="rect" href="classULootLockerServerBalanceRequest.html" title=" " alt="" coords="159,109,354,154"/>
+<area shape="poly" title=" " alt="" coords="42,841,52,689,69,475,93,275,108,204,116,180,125,164,140,151,160,141,157,146,143,155,129,168,121,182,113,205,99,276,74,476,57,690,48,841"/>
+<area shape="rect" href="classULootLockerServerCatalogRequest.html" title=" " alt="" coords="160,178,354,223"/>
+<area shape="poly" title=" " alt="" coords="40,840,42,711,52,530,62,437,77,352,97,282,110,255,125,233,140,220,161,210,159,214,143,224,129,237,115,257,102,284,82,353,67,438,57,530,47,711,46,840"/>
+<area shape="rect" href="classULootLockerServerCharacterProgressionRequest.html" title=" " alt="" coords="154,248,360,292"/>
+<area shape="poly" title=" " alt="" coords="41,841,44,724,56,563,67,482,81,407,100,345,112,321,125,303,154,283,152,287,129,306,116,324,105,347,86,408,72,483,61,564,50,724,46,841"/>
+<area shape="rect" href="classULootLockerServerCharacterRequest.html" title=" " alt="" coords="154,317,360,362"/>
+<area shape="poly" title=" " alt="" coords="42,840,47,737,60,597,71,526,85,462,103,409,125,372,155,352,152,357,129,376,108,411,90,463,76,527,66,598,52,737,47,841"/>
+<area shape="rect" href="classULootLockerServerConfig.html" title=" " alt="" coords="165,385,349,413"/>
+<area shape="poly" title=" " alt="" coords="42,840,49,746,63,621,73,558,87,501,104,455,125,423,143,409,166,401,163,405,145,414,129,426,109,457,92,503,79,559,68,622,54,746,47,841"/>
+<area shape="rect" href="classULootLockerServerConnectedAccountsRequest.html" title=" " alt="" coords="151,437,363,482"/>
+<area shape="poly" title=" " alt="" coords="43,840,52,759,69,655,92,557,107,519,125,492,151,474,149,479,129,496,112,521,97,559,74,656,58,760,49,840"/>
+<area shape="rect" href="classULootLockerServerCurrencyRequest.html" title=" " alt="" coords="156,506,358,551"/>
+<area shape="poly" title=" " alt="" coords="40,840,42,782,53,707,64,668,79,629,99,593,125,561,157,541,155,546,128,565,103,596,83,631,69,669,58,708,47,782,45,840"/>
+<area shape="rect" href="classULootLockerServerDropTableRequest.html" title=" " alt="" coords="153,576,361,620"/>
+<area shape="poly" title=" " alt="" coords="42,841,49,795,62,738,87,680,104,654,125,630,154,613,151,618,128,635,108,657,91,683,67,740,54,796,48,841"/>
+<area shape="rect" href="classULootLockerServerEnumUtils.html" title=" " alt="" coords="152,644,362,672"/>
+<area shape="poly" title=" " alt="" coords="45,840,54,803,69,761,93,718,125,682,153,668,150,672,128,687,97,721,74,763,59,805,51,841"/>
+<area shape="rect" href="classULootLockerServerForCpp.html" title=" " alt="" coords="163,696,351,724"/>
+<area shape="poly" title=" " alt="" coords="50,841,78,785,99,757,125,733,164,716,160,721,128,737,103,760,82,788,55,842"/>
+<area shape="rect" href="classULootLockerServerFriendsRequest.html" title=" " alt="" coords="162,748,352,792"/>
+<area shape="poly" title=" " alt="" coords="66,844,94,822,125,802,163,788,160,793,128,807,97,826,71,847"/>
+<area shape="rect" href="classULootLockerServerGameProgressionRequest.html" title=" " alt="" coords="128,817,386,862"/>
+<area shape="poly" title=" " alt="" coords="92,861,129,856,126,860,96,864"/>
+<area shape="rect" href="classULootLockerServerHeroRequest.html" title=" " alt="" coords="143,885,370,913"/>
+<area shape="poly" title=" " alt="" coords="93,875,153,883,149,886,96,879"/>
+<area shape="rect" href="classULootLockerServerInstanceProgressionRequest.html" title=" " alt="" coords="158,937,356,982"/>
+<area shape="poly" title=" " alt="" coords="73,891,128,922,160,935,155,938,126,927,75,896"/>
+<area shape="rect" href="classULootLockerServerItemRequestHandler.html" title="Handler for the Items &amp; Item Templates server endpoints." alt="" coords="144,1006,370,1051"/>
+<area shape="poly" title=" " alt="" coords="54,895,85,946,105,971,128,992,149,1004,144,1007,125,996,101,974,81,949,55,900"/>
+<area shape="rect" href="classULootLockerServerLeaderboardArchiveRequestHandler.html" title=" " alt="" coords="145,1076,369,1120"/>
+<area shape="poly" title=" " alt="" coords="48,896,59,936,74,980,97,1024,128,1061,147,1074,142,1077,125,1065,92,1027,69,982,54,937,48,901"/>
+<area shape="rect" href="classULootLockerServerLeaderboardRequest.html" title=" " alt="" coords="145,1145,369,1190"/>
+<area shape="poly" title=" " alt="" coords="44,897,51,950,64,1012,89,1076,106,1105,128,1131,147,1145,142,1147,125,1134,102,1108,84,1078,59,1013,46,950,44,902"/>
+<area shape="rect" href="classULootLockerServerMetadataRequest.html" title=" " alt="" coords="154,1214,360,1259"/>
+<area shape="poly" title=" " alt="" coords="47,896,60,970,77,1061,100,1146,114,1178,129,1200,156,1220,152,1222,125,1204,109,1181,95,1147,72,1062,55,971,47,902"/>
+<area shape="rect" href="classULootLockerServerNotificationsRequest.html" title=" " alt="" coords="144,1284,370,1328"/>
+<area shape="poly" title=" " alt="" coords="45,896,56,984,72,1095,96,1201,111,1242,129,1269,146,1284,141,1286,125,1273,106,1244,91,1202,67,1096,51,985,45,901"/>
+<area shape="rect" href="classULootLockerServerOAuthRequest.html" title=" " alt="" coords="139,1352,375,1380"/>
+<area shape="poly" title=" " alt="" coords="44,896,53,998,66,1130,77,1197,91,1257,108,1306,129,1339,143,1351,138,1352,125,1342,103,1308,86,1259,72,1198,61,1131,47,998,44,902"/>
+<area shape="rect" href="classULootLockerServerPlayerFileRequest.html" title=" " alt="" coords="153,1404,360,1448"/>
+<area shape="poly" title=" " alt="" coords="44,896,51,1007,64,1154,75,1228,89,1296,107,1352,129,1389,155,1410,150,1411,125,1393,102,1354,84,1298,69,1229,59,1155,46,1007,44,901"/>
+<area shape="rect" href="classULootLockerServerPlayerInventoryRequest.html" title=" " alt="" coords="134,1473,380,1518"/>
+<area shape="poly" title=" " alt="" coords="43,896,49,1020,60,1188,70,1273,85,1351,104,1415,116,1440,129,1459,143,1472,137,1473,125,1462,111,1443,99,1417,80,1353,65,1274,55,1188,43,1020,43,902"/>
+<area shape="rect" href="classULootLockerServerPlayerProgressionRequest.html" title=" " alt="" coords="127,1542,387,1587"/>
+<area shape="poly" title=" " alt="" coords="43,897,46,1033,56,1222,66,1318,81,1407,102,1479,114,1507,129,1528,143,1541,137,1542,125,1532,110,1510,97,1481,76,1408,60,1319,50,1222,41,1033,43,902"/>
+<area shape="rect" href="classULootLockerServerPlayerRequest.html" title=" " alt="" coords="138,1611,376,1638"/>
+<area shape="poly" title=" " alt="" coords="45,896,56,1055,72,1277,97,1485,112,1559,120,1583,129,1597,142,1610,137,1611,125,1601,115,1585,107,1560,92,1486,67,1278,51,1056,45,901"/>
+<area shape="rect" href="classULootLockerServerStorageRequest.html" title=" " alt="" coords="160,1662,354,1707"/>
+<area shape="poly" title=" " alt="" coords="45,897,55,1066,72,1303,83,1422,96,1527,112,1606,120,1632,129,1648,143,1661,162,1673,157,1673,140,1665,125,1651,115,1634,107,1607,91,1528,78,1423,66,1304,50,1066,44,902"/>
+<area shape="rect" href="classULootLockerServerTriggerRequest.html" title=" " alt="" coords="163,1732,350,1776"/>
+<area shape="poly" title=" " alt="" coords="44,897,54,1078,70,1339,81,1469,94,1584,110,1671,119,1700,129,1718,145,1731,166,1744,160,1744,142,1736,125,1721,114,1702,105,1672,89,1585,75,1470,64,1339,49,1079,44,902"/>
+</map>
+</td></tr>
+</table>
+</div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- HTML footer for doxygen 1.15.0-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.15.0
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!-- HTML header for doxygen 1.15.0-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LootLocker Unreal Server SDK: LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/LootLockerServerLeaderboardRequest.h File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">var page_layout=1;</script>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="custom-layout-fixes.css" rel="stylesheet" type="text/css"/>
+<link href="lootlocker-theme.css" rel="stylesheet" type="text/css"/>
+<!-- Apply saved color scheme before first paint to prevent flash -->
+<script type="text/javascript">
+(function () {
+  try {
+    var saved = localStorage.getItem('ll-colorscheme');
+    var html = document.documentElement;
+    if (saved === 'dark') {
+      html.classList.remove('light-mode');
+      html.classList.add('dark-mode');
+    } else if (saved === 'light') {
+      html.classList.remove('dark-mode');
+      html.classList.add('light-mode');
+    }
+    // No saved pref: OS preference handled by CSS media query
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<!-- ================================================================
+     LootLocker top navigation bar
+     ================================================================ -->
+<nav id="ll-topnav" role="navigation" aria-label="LootLocker navigation">
+  <div id="ll-topnav-inner">
+    <!-- Left: logo + product name + section tabs -->
+    <div id="ll-topnav-left">
+      <a href="index.html" id="ll-topnav-logo-link"
+         aria-label="LootLocker Unreal Server SDK — home">
+        <img src="lootlocker-logo.png" alt="LootLocker" id="ll-topnav-logo-img"/>
+      </a>
+      <span id="ll-topnav-divider" aria-hidden="true"></span>
+      <a href="index.html" id="ll-topnav-product">Unreal Server SDK</a>
+      <span id="ll-topnav-version">v7.0.0</span>
+      <a href="https://github.com/lootlocker/unreal-server-sdk" target="_blank"
+         rel="noopener noreferrer" id="ll-topnav-github" aria-label="GitHub repository">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <div id="ll-topnav-links">
+        <a href="https://ref.lootlocker.com/server" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Server API &#8599;</a>
+        <a href="https://console.lootlocker.com" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Console &#8599;</a>
+        <a href="https://docs.lootlocker.com/" target="_blank"
+           rel="noopener noreferrer" class="ll-topnav-tab">Docs &#8599;</a>
+      </div>
+    </div>
+    <!-- Right: sign-up CTA + dark mode toggle -->
+    <div id="ll-topnav-right">
+      <a href="https://lootlocker.com/sign-up" target="_blank"
+         rel="noopener noreferrer" class="ll-topnav-signup">Sign Up</a>
+      <button id="ll-dark-toggle" type="button"
+              aria-label="Toggle dark mode" title="Toggle dark/light mode"
+              onclick="llToggleDark()">
+        <!-- Sun icon — shown in dark mode -->
+        <svg id="ll-icon-sun" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon — shown in light mode -->
+        <svg id="ll-icon-moon" xmlns="http://www.w3.org/2000/svg"
+             width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+function llToggleDark() {
+  var html = document.documentElement;
+  var isDark = html.classList.contains('dark-mode') ||
+               (!html.classList.contains('light-mode') &&
+                window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) {
+    html.classList.remove('dark-mode');
+    html.classList.add('light-mode');
+    try { localStorage.setItem('ll-colorscheme', 'light'); } catch (e) {}
+  } else {
+    html.classList.remove('light-mode');
+    html.classList.add('dark-mode');
+    try { localStorage.setItem('ll-colorscheme', 'dark'); } catch (e) {}
+  }
+}
+</script>
+<script type="text/javascript" src="version-picker.js" defer="defer"></script>
+<div id="side-nav" class="ui-resizable side-nav-resizable"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="lootlocker-logo.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">LootLocker Unreal Server SDK<span id="projectnumber">&#160;7.0.0</span>
+   </div>
+   <div id="projectbrief">Server-side backend SDK for Unreal Engine</div>
+  </td>
+ </tr>
+   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</td></tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+</div><!-- top -->
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('LootLockerServerLeaderboardRequest_8h.html','',''); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',false,false,'search.php','Search',true);
+});
+</script>
+<div id="main-nav"></div>
+<div id="container"><div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">LootLockerServerLeaderboardRequest.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;CoreMinimal.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="LootLockerServerResponse_8h_source.html">LootLockerServerResponse.h</a>&quot;</code><br />
+<code>#include &quot;LootLockerServerLeaderboardRequest.generated.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for LootLockerServerLeaderboardRequest.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="LootLockerServerLeaderboardRequest_8h__incl.png" border="0" usemap="#aLootLockerServerSDK_2Source_2LootLockerServerSDK_2Public_2ServerAPI_2LootLockerServerLeaderboardRequest_8h" loading="lazy" alt=""/></div>
+<map name="aLootLockerServerSDK_2Source_2LootLockerServerSDK_2Public_2ServerAPI_2LootLockerServerLeaderboardRequest_8h" id="aLootLockerServerSDK_2Source_2LootLockerServerSDK_2Public_2ServerAPI_2LootLockerServerLeaderboardRequest_8h">
+<area shape="rect" title=" " alt="" coords="126,5,374,84"/>
+<area shape="rect" title=" " alt="" coords="5,140,122,168"/>
+<area shape="poly" title=" " alt="" coords="181,87,101,135,98,130,184,82"/>
+<area shape="rect" href="LootLockerServerResponse_8h.html" title=" " alt="" coords="146,140,354,168"/>
+<area shape="poly" title=" " alt="" coords="252,82,253,126,248,124,249,87"/>
+<area shape="rect" title=" " alt="" coords="379,132,593,177"/>
+<area shape="poly" title=" " alt="" coords="336,82,427,125,422,126,335,87"/>
+<area shape="rect" title=" " alt="" coords="111,225,389,252"/>
+<area shape="poly" title=" " alt="" coords="252,167,252,211,248,208,248,171"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="LootLockerServerLeaderboardRequest_8h__dep__incl.png" border="0" usemap="#aLootLockerServerSDK_2Source_2LootLockerServerSDK_2Public_2ServerAPI_2LootLockerServerLeaderboardRequest_8hdep" loading="lazy" alt=""/></div>
+<map name="aLootLockerServerSDK_2Source_2LootLockerServerSDK_2Public_2ServerAPI_2LootLockerServerLeaderboardRequest_8hdep" id="aLootLockerServerSDK_2Source_2LootLockerServerSDK_2Public_2ServerAPI_2LootLockerServerLeaderboardRequest_8hdep">
+<area shape="rect" title=" " alt="" coords="5,5,253,84"/>
+<area shape="rect" href="LootLockerServerForCpp_8h.html" title=" " alt="" coords="10,132,248,194"/>
+<area shape="poly" title=" " alt="" coords="131,98,131,133,127,131,127,102"/>
+</map>
+</div>
+</div>
+<p><a href="LootLockerServerLeaderboardRequest_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardPlayer" id="r_FLootLockerServerLeaderboardPlayer"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardPlayer.html">FLootLockerServerLeaderboardPlayer</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardEntry" id="r_FLootLockerServerLeaderboardEntry"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardEntry.html">FLootLockerServerLeaderboardEntry</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardEntryWithLeaderboardData" id="r_FLootLockerServerLeaderboardEntryWithLeaderboardData"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardEntryWithLeaderboardData.html">FLootLockerServerLeaderboardEntryWithLeaderboardData</a></td></tr>
+<tr class="memitem:FLootLockerServerAssetRewardDetails" id="r_FLootLockerServerAssetRewardDetails"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerAssetRewardDetails.html">FLootLockerServerAssetRewardDetails</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardAssetReward" id="r_FLootLockerServerLeaderboardAssetReward"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardAssetReward.html">FLootLockerServerLeaderboardAssetReward</a></td></tr>
+<tr class="memitem:FLootLockerServerCurrencyRewardDetails" id="r_FLootLockerServerCurrencyRewardDetails"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCurrencyRewardDetails.html">FLootLockerServerCurrencyRewardDetails</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardCurrencyReward" id="r_FLootLockerServerLeaderboardCurrencyReward"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardCurrencyReward.html">FLootLockerServerLeaderboardCurrencyReward</a></td></tr>
+<tr class="memitem:FLootLockerServerProgressionResetRewardDetails" id="r_FLootLockerServerProgressionResetRewardDetails"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerProgressionResetRewardDetails.html">FLootLockerServerProgressionResetRewardDetails</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardProgressionResetReward" id="r_FLootLockerServerLeaderboardProgressionResetReward"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardProgressionResetReward.html">FLootLockerServerLeaderboardProgressionResetReward</a></td></tr>
+<tr class="memitem:FLootLockerServerProgressionPointRewardDetails" id="r_FLootLockerServerProgressionPointRewardDetails"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerProgressionPointRewardDetails.html">FLootLockerServerProgressionPointRewardDetails</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardProgressionPointsReward" id="r_FLootLockerServerLeaderboardProgressionPointsReward"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardProgressionPointsReward.html">FLootLockerServerLeaderboardProgressionPointsReward</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardRewardArgs" id="r_FLootLockerServerLeaderboardRewardArgs"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardRewardArgs.html">FLootLockerServerLeaderboardRewardArgs</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardDetailPredicates" id="r_FLootLockerServerLeaderboardDetailPredicates"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardDetailPredicates.html">FLootLockerServerLeaderboardDetailPredicates</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardSchedule" id="r_FLootLockerServerLeaderboardSchedule"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardSchedule.html">FLootLockerServerLeaderboardSchedule</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardGroupRewardAssociation" id="r_FLootLockerServerLeaderboardGroupRewardAssociation"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardGroupRewardAssociation.html">FLootLockerServerLeaderboardGroupRewardAssociation</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardGroupRewardMetadata" id="r_FLootLockerServerLeaderboardGroupRewardMetadata"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardGroupRewardMetadata.html">FLootLockerServerLeaderboardGroupRewardMetadata</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardGroupReward" id="r_FLootLockerServerLeaderboardGroupReward"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardGroupReward.html">FLootLockerServerLeaderboardGroupReward</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardReward" id="r_FLootLockerServerLeaderboardReward"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardReward.html">FLootLockerServerLeaderboardReward</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboard" id="r_FLootLockerServerLeaderboard"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboard.html">FLootLockerServerLeaderboard</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardSubmitScoreRequest" id="r_FLootLockerServerLeaderboardSubmitScoreRequest"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardSubmitScoreRequest.html">FLootLockerServerLeaderboardSubmitScoreRequest</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardIncrementScoreRequest" id="r_FLootLockerServerLeaderboardIncrementScoreRequest"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardIncrementScoreRequest.html">FLootLockerServerLeaderboardIncrementScoreRequest</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardBaseRequest" id="r_FLootLockerServerLeaderboardBaseRequest"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardBaseRequest.html">FLootLockerServerLeaderboardBaseRequest</a></td></tr>
+<tr class="memitem:FLootLockerServerCreateLeaderboardRequest" id="r_FLootLockerServerCreateLeaderboardRequest"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCreateLeaderboardRequest.html">FLootLockerServerCreateLeaderboardRequest</a></td></tr>
+<tr class="memitem:FLootLockerServerUpdateLeaderboardRequest" id="r_FLootLockerServerUpdateLeaderboardRequest"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerUpdateLeaderboardRequest.html">FLootLockerServerUpdateLeaderboardRequest</a></td></tr>
+<tr class="memitem:FLootLockerServerCreateLeaderboardScheduleRequest" id="r_FLootLockerServerCreateLeaderboardScheduleRequest"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCreateLeaderboardScheduleRequest.html">FLootLockerServerCreateLeaderboardScheduleRequest</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardBaseResponse" id="r_FLootLockerServerLeaderboardBaseResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardBaseResponse.html">FLootLockerServerLeaderboardBaseResponse</a></td></tr>
+<tr class="memitem:FLootLockerServerGetLeaderboardResponse" id="r_FLootLockerServerGetLeaderboardResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerGetLeaderboardResponse.html">FLootLockerServerGetLeaderboardResponse</a></td></tr>
+<tr class="memitem:FLootLockerServerCreateLeaderboardResponse" id="r_FLootLockerServerCreateLeaderboardResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCreateLeaderboardResponse.html">FLootLockerServerCreateLeaderboardResponse</a></td></tr>
+<tr class="memitem:FLootLockerServerUpdateLeaderboardResponse" id="r_FLootLockerServerUpdateLeaderboardResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerUpdateLeaderboardResponse.html">FLootLockerServerUpdateLeaderboardResponse</a></td></tr>
+<tr class="memitem:FLootLockerServerLeaderboardSubmitScoreResponse" id="r_FLootLockerServerLeaderboardSubmitScoreResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerLeaderboardSubmitScoreResponse.html">FLootLockerServerLeaderboardSubmitScoreResponse</a></td></tr>
+<tr class="memitem:FLootLockerServerGetAllMemberRanksResponse" id="r_FLootLockerServerGetAllMemberRanksResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerGetAllMemberRanksResponse.html">FLootLockerServerGetAllMemberRanksResponse</a></td></tr>
+<tr class="memitem:FLootLockerServerGetScoresFromLeaderboardResponse" id="r_FLootLockerServerGetScoresFromLeaderboardResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerGetScoresFromLeaderboardResponse.html">FLootLockerServerGetScoresFromLeaderboardResponse</a></td></tr>
+<tr class="memitem:FLootLockerServerGetLeaderboardScheduleResponse" id="r_FLootLockerServerGetLeaderboardScheduleResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerGetLeaderboardScheduleResponse.html">FLootLockerServerGetLeaderboardScheduleResponse</a></td></tr>
+<tr class="memitem:FLootLockerServerManualLeaderboardReset" id="r_FLootLockerServerManualLeaderboardReset"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerManualLeaderboardReset.html">FLootLockerServerManualLeaderboardReset</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A manual leaderboard reset request that has been submitted to the server.  <a href="structFLootLockerServerManualLeaderboardReset.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FLootLockerServerCreateManualLeaderboardResetRequest" id="r_FLootLockerServerCreateManualLeaderboardResetRequest"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerCreateManualLeaderboardResetRequest.html">FLootLockerServerCreateManualLeaderboardResetRequest</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request body for creating a manual leaderboard reset.  <a href="structFLootLockerServerCreateManualLeaderboardResetRequest.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FLootLockerServerManualLeaderboardResetResponse" id="r_FLootLockerServerManualLeaderboardResetResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerManualLeaderboardResetResponse.html">FLootLockerServerManualLeaderboardResetResponse</a></td></tr>
+<tr class="memitem:FLootLockerServerListManualLeaderboardResetsResponse" id="r_FLootLockerServerListManualLeaderboardResetsResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerListManualLeaderboardResetsResponse.html">FLootLockerServerListManualLeaderboardResetsResponse</a></td></tr>
+<tr class="memitem:FLootLockerServerListLeaderboardsResponse" id="r_FLootLockerServerListLeaderboardsResponse"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFLootLockerServerListLeaderboardsResponse.html">FLootLockerServerListLeaderboardsResponse</a></td></tr>
+<tr class="memitem:ULootLockerServerLeaderboardRequest" id="r_ULootLockerServerLeaderboardRequest"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classULootLockerServerLeaderboardRequest.html">ULootLockerServerLeaderboardRequest</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:aed56f9d30dd06a7130d7278ca1e7d8bb" id="r_aed56f9d30dd06a7130d7278ca1e7d8bb"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed56f9d30dd06a7130d7278ca1e7d8bb">FLootLockerServerListLeaderboardsResponseDelegate</a>) (<a class="el" href="structFLootLockerServerListLeaderboardsResponse.html">FLootLockerServerListLeaderboardsResponse</a>)</td></tr>
+<tr class="memitem:a5778d9e641f63af3586f555dcc1ef0b0" id="r_a5778d9e641f63af3586f555dcc1ef0b0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5778d9e641f63af3586f555dcc1ef0b0">FLootLockerServerGetLeaderboardResponseDelegate</a>) (<a class="el" href="structFLootLockerServerGetLeaderboardResponse.html">FLootLockerServerGetLeaderboardResponse</a>)</td></tr>
+<tr class="memitem:ae70f06387cb8e1a8b5e2be0eef448ecb" id="r_ae70f06387cb8e1a8b5e2be0eef448ecb"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae70f06387cb8e1a8b5e2be0eef448ecb">FLootLockerServerCreateLeaderboardResponseDelegate</a>) (<a class="el" href="structFLootLockerServerCreateLeaderboardResponse.html">FLootLockerServerCreateLeaderboardResponse</a>)</td></tr>
+<tr class="memitem:ac97c605e23da8dd93ec33621829cb0f3" id="r_ac97c605e23da8dd93ec33621829cb0f3"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac97c605e23da8dd93ec33621829cb0f3">FLootLockerServerUpdateLeaderboardResponseDelegate</a>) (<a class="el" href="structFLootLockerServerUpdateLeaderboardResponse.html">FLootLockerServerUpdateLeaderboardResponse</a>)</td></tr>
+<tr class="memitem:a8f1573d0ad3fecf9fb45a53ace14726e" id="r_a8f1573d0ad3fecf9fb45a53ace14726e"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f1573d0ad3fecf9fb45a53ace14726e">FLootLockerServerDeleteLeaderboardResponseDelegate</a>) (<a class="el" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a>)</td></tr>
+<tr class="memitem:a117596e4166eca87d9dbf60cbff8043b" id="r_a117596e4166eca87d9dbf60cbff8043b"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a117596e4166eca87d9dbf60cbff8043b">FLootLockerServerLeaderboardSubmitScoreResponseDelegate</a>) (<a class="el" href="structFLootLockerServerLeaderboardSubmitScoreResponse.html">FLootLockerServerLeaderboardSubmitScoreResponse</a>)</td></tr>
+<tr class="memitem:ae79397ce766379d2037940921d771ef6" id="r_ae79397ce766379d2037940921d771ef6"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae79397ce766379d2037940921d771ef6">FLootLockerServerLeaderboardIncrementScoreResponseDelegate</a>) (<a class="el" href="structFLootLockerServerLeaderboardSubmitScoreResponse.html">FLootLockerServerLeaderboardSubmitScoreResponse</a>)</td></tr>
+<tr class="memitem:a556a06eb5a88339a69772f3ff865ed2f" id="r_a556a06eb5a88339a69772f3ff865ed2f"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a556a06eb5a88339a69772f3ff865ed2f">FLootLockerServerGetAllMemberRanksResponseDelegate</a>) (<a class="el" href="structFLootLockerServerGetAllMemberRanksResponse.html">FLootLockerServerGetAllMemberRanksResponse</a>)</td></tr>
+<tr class="memitem:a5374d62fdd3d9e6f0ef66326d6a4e185" id="r_a5374d62fdd3d9e6f0ef66326d6a4e185"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5374d62fdd3d9e6f0ef66326d6a4e185">FLootLockerServerGetScoresFromLeaderboardResponseDelegate</a>) (<a class="el" href="structFLootLockerServerGetScoresFromLeaderboardResponse.html">FLootLockerServerGetScoresFromLeaderboardResponse</a>)</td></tr>
+<tr class="memitem:a46d25b4d9ee27a234aae06ef53f65e40" id="r_a46d25b4d9ee27a234aae06ef53f65e40"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46d25b4d9ee27a234aae06ef53f65e40">FLootLockerServerGetLeaderboardScheduleResponseDelegate</a>) (<a class="el" href="structFLootLockerServerGetLeaderboardScheduleResponse.html">FLootLockerServerGetLeaderboardScheduleResponse</a>)</td></tr>
+<tr class="memitem:a969d865bdbe07354890576cc29b3de90" id="r_a969d865bdbe07354890576cc29b3de90"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a969d865bdbe07354890576cc29b3de90">FLootLockerServerDeleteLeaderboardScheduleResponseDelegate</a>) (<a class="el" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a>)</td></tr>
+<tr class="memitem:a7f08ec85ad10a1f84f0608e57b3dc750" id="r_a7f08ec85ad10a1f84f0608e57b3dc750"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f08ec85ad10a1f84f0608e57b3dc750">FLootLockerServerRequestManualLeaderboardResetResponseDelegate</a>) (<a class="el" href="structFLootLockerServerManualLeaderboardResetResponse.html">FLootLockerServerManualLeaderboardResetResponse</a>)</td></tr>
+<tr class="memitem:a8cb05f53bd2ab9225f93dba492940029" id="r_a8cb05f53bd2ab9225f93dba492940029"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cb05f53bd2ab9225f93dba492940029">FLootLockerServerListManualLeaderboardResetsResponseDelegate</a>) (<a class="el" href="structFLootLockerServerListManualLeaderboardResetsResponse.html">FLootLockerServerListManualLeaderboardResetsResponse</a>)</td></tr>
+<tr class="memitem:af1e53ab6ad276d46c0bd27145940aaf4" id="r_af1e53ab6ad276d46c0bd27145940aaf4"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1e53ab6ad276d46c0bd27145940aaf4">FLootLockerServerGetManualLeaderboardResetResponseDelegate</a>) (<a class="el" href="structFLootLockerServerManualLeaderboardResetResponse.html">FLootLockerServerManualLeaderboardResetResponse</a>)</td></tr>
+<tr class="memitem:a7aafc0abcd7ed4c653790c984ad28a4f" id="r_a7aafc0abcd7ed4c653790c984ad28a4f"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aafc0abcd7ed4c653790c984ad28a4f">FLootLockerServerCancelManualLeaderboardResetResponseDelegate</a>) (<a class="el" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a>)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a6553b41b9de74794c2b62ba5a16f88d6" id="r_a6553b41b9de74794c2b62ba5a16f88d6"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6553b41b9de74794c2b62ba5a16f88d6">ELootLockerServerLeaderboardType</a> : uint8 { <a class="el" href="#a6553b41b9de74794c2b62ba5a16f88d6a912af0dff974604f1321254ca8ff38b6">player</a> = 0
+, <a class="el" href="#a6553b41b9de74794c2b62ba5a16f88d6a3d517f8924ac7fd03699a29d97dc52d9">generic</a> = 1
+ }</td></tr>
+<tr class="memitem:aa3ce89a29d78c4b2034b5f571e35718b" id="r_aa3ce89a29d78c4b2034b5f571e35718b"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3ce89a29d78c4b2034b5f571e35718b">ELootLockerServerLeaderboardDirection</a> : uint8 { <a class="el" href="#aa3ce89a29d78c4b2034b5f571e35718ba9c9ab624360885fcf93b7643c93b6748">ascending</a> = 0
+, <a class="el" href="#aa3ce89a29d78c4b2034b5f571e35718bab19e9805fd7727c52ca04dfa3d24a2e5">descending</a> = 1
+ }</td></tr>
+<tr class="memdesc:aa3ce89a29d78c4b2034b5f571e35718b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which direction should the leaderboard be sorted in.  <a href="#aa3ce89a29d78c4b2034b5f571e35718b">More...</a><br /></td></tr>
+<tr class="memitem:a56af52b1508e2482aa7528645d79a064" id="r_a56af52b1508e2482aa7528645d79a064"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56af52b1508e2482aa7528645d79a064">ELootLockerServerLeaderboardRewardEntityKind</a> : uint8 { <br />
+&#160;&#160;<a class="el" href="#a56af52b1508e2482aa7528645d79a064a26e9054be7f40079575582b7ad3f7363">Asset</a> = 0
+, <a class="el" href="#a56af52b1508e2482aa7528645d79a064a386c339d37e737a436499d423a77df0c">Currency</a> = 1
+, <a class="el" href="#a56af52b1508e2482aa7528645d79a064a57110c4e7cd03218864bf9155573e1dd">Progression_Points</a> = 2
+, <a class="el" href="#a56af52b1508e2482aa7528645d79a064a6b177f161f23a5b58f59f1784891f575">Progression_Reset</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="#a56af52b1508e2482aa7528645d79a064a03937134cedab9078be39a77ee3a48a0">Group</a> = 4
+<br />
+ }</td></tr>
+<tr class="memdesc:a56af52b1508e2482aa7528645d79a064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which kind of reward this leaderboard contains.  <a href="#a56af52b1508e2482aa7528645d79a064">More...</a><br /></td></tr>
+</table>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="a7aafc0abcd7ed4c653790c984ad28a4f" name="a7aafc0abcd7ed4c653790c984ad28a4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aafc0abcd7ed4c653790c984ad28a4f">&#9670;&#160;</a></span>FLootLockerServerCancelManualLeaderboardResetResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerCancelManualLeaderboardResetResponseDelegate) (<a class="el" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae70f06387cb8e1a8b5e2be0eef448ecb" name="ae70f06387cb8e1a8b5e2be0eef448ecb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae70f06387cb8e1a8b5e2be0eef448ecb">&#9670;&#160;</a></span>FLootLockerServerCreateLeaderboardResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerCreateLeaderboardResponseDelegate) (<a class="el" href="structFLootLockerServerCreateLeaderboardResponse.html">FLootLockerServerCreateLeaderboardResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f1573d0ad3fecf9fb45a53ace14726e" name="a8f1573d0ad3fecf9fb45a53ace14726e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f1573d0ad3fecf9fb45a53ace14726e">&#9670;&#160;</a></span>FLootLockerServerDeleteLeaderboardResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerDeleteLeaderboardResponseDelegate) (<a class="el" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a969d865bdbe07354890576cc29b3de90" name="a969d865bdbe07354890576cc29b3de90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a969d865bdbe07354890576cc29b3de90">&#9670;&#160;</a></span>FLootLockerServerDeleteLeaderboardScheduleResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerDeleteLeaderboardScheduleResponseDelegate) (<a class="el" href="structFLootLockerServerResponse.html">FLootLockerServerResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a556a06eb5a88339a69772f3ff865ed2f" name="a556a06eb5a88339a69772f3ff865ed2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a556a06eb5a88339a69772f3ff865ed2f">&#9670;&#160;</a></span>FLootLockerServerGetAllMemberRanksResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerGetAllMemberRanksResponseDelegate) (<a class="el" href="structFLootLockerServerGetAllMemberRanksResponse.html">FLootLockerServerGetAllMemberRanksResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5778d9e641f63af3586f555dcc1ef0b0" name="a5778d9e641f63af3586f555dcc1ef0b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5778d9e641f63af3586f555dcc1ef0b0">&#9670;&#160;</a></span>FLootLockerServerGetLeaderboardResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerGetLeaderboardResponseDelegate) (<a class="el" href="structFLootLockerServerGetLeaderboardResponse.html">FLootLockerServerGetLeaderboardResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46d25b4d9ee27a234aae06ef53f65e40" name="a46d25b4d9ee27a234aae06ef53f65e40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46d25b4d9ee27a234aae06ef53f65e40">&#9670;&#160;</a></span>FLootLockerServerGetLeaderboardScheduleResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerGetLeaderboardScheduleResponseDelegate) (<a class="el" href="structFLootLockerServerGetLeaderboardScheduleResponse.html">FLootLockerServerGetLeaderboardScheduleResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1e53ab6ad276d46c0bd27145940aaf4" name="af1e53ab6ad276d46c0bd27145940aaf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1e53ab6ad276d46c0bd27145940aaf4">&#9670;&#160;</a></span>FLootLockerServerGetManualLeaderboardResetResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerGetManualLeaderboardResetResponseDelegate) (<a class="el" href="structFLootLockerServerManualLeaderboardResetResponse.html">FLootLockerServerManualLeaderboardResetResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5374d62fdd3d9e6f0ef66326d6a4e185" name="a5374d62fdd3d9e6f0ef66326d6a4e185"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5374d62fdd3d9e6f0ef66326d6a4e185">&#9670;&#160;</a></span>FLootLockerServerGetScoresFromLeaderboardResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerGetScoresFromLeaderboardResponseDelegate) (<a class="el" href="structFLootLockerServerGetScoresFromLeaderboardResponse.html">FLootLockerServerGetScoresFromLeaderboardResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae79397ce766379d2037940921d771ef6" name="ae79397ce766379d2037940921d771ef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae79397ce766379d2037940921d771ef6">&#9670;&#160;</a></span>FLootLockerServerLeaderboardIncrementScoreResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerLeaderboardIncrementScoreResponseDelegate) (<a class="el" href="structFLootLockerServerLeaderboardSubmitScoreResponse.html">FLootLockerServerLeaderboardSubmitScoreResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a117596e4166eca87d9dbf60cbff8043b" name="a117596e4166eca87d9dbf60cbff8043b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a117596e4166eca87d9dbf60cbff8043b">&#9670;&#160;</a></span>FLootLockerServerLeaderboardSubmitScoreResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerLeaderboardSubmitScoreResponseDelegate) (<a class="el" href="structFLootLockerServerLeaderboardSubmitScoreResponse.html">FLootLockerServerLeaderboardSubmitScoreResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aed56f9d30dd06a7130d7278ca1e7d8bb" name="aed56f9d30dd06a7130d7278ca1e7d8bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed56f9d30dd06a7130d7278ca1e7d8bb">&#9670;&#160;</a></span>FLootLockerServerListLeaderboardsResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerListLeaderboardsResponseDelegate) (<a class="el" href="structFLootLockerServerListLeaderboardsResponse.html">FLootLockerServerListLeaderboardsResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8cb05f53bd2ab9225f93dba492940029" name="a8cb05f53bd2ab9225f93dba492940029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cb05f53bd2ab9225f93dba492940029">&#9670;&#160;</a></span>FLootLockerServerListManualLeaderboardResetsResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerListManualLeaderboardResetsResponseDelegate) (<a class="el" href="structFLootLockerServerListManualLeaderboardResetsResponse.html">FLootLockerServerListManualLeaderboardResetsResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f08ec85ad10a1f84f0608e57b3dc750" name="a7f08ec85ad10a1f84f0608e57b3dc750"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f08ec85ad10a1f84f0608e57b3dc750">&#9670;&#160;</a></span>FLootLockerServerRequestManualLeaderboardResetResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerRequestManualLeaderboardResetResponseDelegate) (<a class="el" href="structFLootLockerServerManualLeaderboardResetResponse.html">FLootLockerServerManualLeaderboardResetResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac97c605e23da8dd93ec33621829cb0f3" name="ac97c605e23da8dd93ec33621829cb0f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac97c605e23da8dd93ec33621829cb0f3">&#9670;&#160;</a></span>FLootLockerServerUpdateLeaderboardResponseDelegate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* FLootLockerServerUpdateLeaderboardResponseDelegate) (<a class="el" href="structFLootLockerServerUpdateLeaderboardResponse.html">FLootLockerServerUpdateLeaderboardResponse</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="aa3ce89a29d78c4b2034b5f571e35718b" name="aa3ce89a29d78c4b2034b5f571e35718b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3ce89a29d78c4b2034b5f571e35718b">&#9670;&#160;</a></span>ELootLockerServerLeaderboardDirection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#aa3ce89a29d78c4b2034b5f571e35718b">ELootLockerServerLeaderboardDirection</a> : uint8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Which direction should the leaderboard be sorted in. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa3ce89a29d78c4b2034b5f571e35718ba9c9ab624360885fcf93b7643c93b6748" name="aa3ce89a29d78c4b2034b5f571e35718ba9c9ab624360885fcf93b7643c93b6748"></a>ascending&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa3ce89a29d78c4b2034b5f571e35718bab19e9805fd7727c52ca04dfa3d24a2e5" name="aa3ce89a29d78c4b2034b5f571e35718bab19e9805fd7727c52ca04dfa3d24a2e5"></a>descending&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a56af52b1508e2482aa7528645d79a064" name="a56af52b1508e2482aa7528645d79a064"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56af52b1508e2482aa7528645d79a064">&#9670;&#160;</a></span>ELootLockerServerLeaderboardRewardEntityKind</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a56af52b1508e2482aa7528645d79a064">ELootLockerServerLeaderboardRewardEntityKind</a> : uint8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Which kind of reward this leaderboard contains. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a56af52b1508e2482aa7528645d79a064a26e9054be7f40079575582b7ad3f7363" name="a56af52b1508e2482aa7528645d79a064a26e9054be7f40079575582b7ad3f7363"></a>Asset&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a56af52b1508e2482aa7528645d79a064a386c339d37e737a436499d423a77df0c" name="a56af52b1508e2482aa7528645d79a064a386c339d37e737a436499d423a77df0c"></a>Currency&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a56af52b1508e2482aa7528645d79a064a57110c4e7cd03218864bf9155573e1dd" name="a56af52b1508e2482aa7528645d79a064a57110c4e7cd03218864bf9155573e1dd"></a>Progression_Points&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a56af52b1508e2482aa7528645d79a064a6b177f161f23a5b58f59f1784891f575" name="a56af52b1508e2482aa7528645d79a064a6b177f161f23a5b58f59f1784891f575"></a>Progression_Reset&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a56af52b1508e2482aa7528645d79a064a03937134cedab9078be39a77ee3a48a0" name="a56af52b1508e2482aa7528645d79a064a03937134cedab9078be39a77ee3a48a0"></a>Group&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a6553b41b9de74794c2b62ba5a16f88d6" name="a6553b41b9de74794c2b62ba5a16f88d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6553b41b9de74794c2b62ba5a16f88d6">&#9670;&#160;</a></span>ELootLockerServerLeaderboardType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a6553b41b9de74794c2b62ba5a16f88d6">ELootLockerServerLeaderboardType</a> : uint8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6553b41b9de74794c2b62ba5a16f88d6a912af0dff974604f1321254ca8ff38b6" name="a6553b41b9de74794c2b62ba5a16f88d6a912af0dff974604f1321254ca8ff38b6"></a>player&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6553b41b9de74794c2b62ba5a16f88d6a3d517f8924ac7fd03699a29d97dc52d9" name="a6553b41b9de74794c2b62ba5a16f88d6a3d517f8924ac7fd03699a29d97dc52d9"></a>generic&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- HTML footer for doxygen 1.15.0-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_9f77ca9030fc530377179ef1ae010e8e.html">LootLockerServerSDK</a></li><li class="navelem"><a href="dir_6c67ecf51f1dd82eba34c6913e42f1aa.html">Source</a></li><li class="navelem"><a href="dir_19732b1a8e4198efc19367964d57ba95.html">LootLockerServerSDK</a></li><li class="navelem"><a href="dir_54f4648b1d151bbc23437e0756736e1c.html">Public</a></li><li class="navelem"><a href="dir_50576b1844c996962de96e8d53ce5ab2.html">ServerAPI</a></li><li class="navelem"><a href="LootLockerServerLeaderboardRequest_8h.html">LootLockerServerLeaderboardRequest.h</a></li>
+    <li class="footer">
+      Generated by <a href="https://www.doxygen.org/index.html">Doxygen</a> 1.15.0
+      &nbsp;&mdash;&nbsp;
+      <a href="https://lootlocker.com" target="_blank" rel="noopener noreferrer">LootLocker</a>
+    </li>
+  </ul>
+</div>
+<script src="nav-customization.js" type="text/javascript"></script>
+</body>
+</html>

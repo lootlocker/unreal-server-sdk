@@ -1,0 +1,11 @@
+<map id="FLootLockerServerListMetadataResponse" name="FLootLockerServerListMetadataResponse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="218,241,444,285"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="116,132,320,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,168,313,240,307,240,240,173"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerErrorData.html" title=" " alt="" coords="5,14,209,42"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,50,208,130,202,132,129,55"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerRequestContext.html" title=" " alt="" coords="232,5,427,50"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="300,60,232,133,228,129,296,63"/>
+<area shape="rect" id="Node000005" href="$structFLootLockerServerExtendedIndexBasedPagination.html" title=" " alt="" coords="344,123,547,168"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="416,178,354,242,351,238,411,180"/>
+</map>
