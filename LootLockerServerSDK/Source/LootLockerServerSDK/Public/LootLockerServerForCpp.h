@@ -22,6 +22,7 @@
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerMetadataRequest.h"
 #include "ServerAPI/LootLockerServerNotificationsRequest.h"
+#include "ServerAPI/LootLockerServerReferralRequest.h"
 #include "ServerAPI/LootLockerServerOAuthRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerInventoryRequest.h"
@@ -2197,6 +2198,25 @@ public:
 
         return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, JsonArray, Properties, OnCompletedRequest);
     }
+
+    /// @}
+
+    //==================================================
+    // Referrals
+    //==================================================
+    /// @addtogroup Referrals
+    /// @{
+
+    /*
+    Report that a player met the qualifying action of their game_asserted referral program(s). The
+    referral is rewarded when this succeeds, so only call it once the game has authoritatively observed
+    the qualifying action.
+
+    @param PlayerULID The ULID of the player to assert
+    @param OnCompletedRequest Delegate for handling the server response
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    static FString AssertPlayerReferralQualification(const FString& PlayerULID, const FLootLockerServerAssertReferralResponseDelegate& OnCompletedRequest);
 
     /// @}
 };

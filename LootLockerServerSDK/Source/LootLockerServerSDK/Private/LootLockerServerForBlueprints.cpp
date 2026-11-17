@@ -1486,3 +1486,11 @@ FString ULootLockerServerForBlueprints::SendNotificationToPlayerWithoutContent(c
         OnCompletedRequest.ExecuteIfBound(Response);
     }));
 }
+
+FString ULootLockerServerForBlueprints::AssertPlayerReferralQualification(const FString& PlayerULID,
+	const FLootLockerServerAssertReferralResponseBP& OnCompletedRequest)
+{
+	return ULootLockerServerForCpp::AssertPlayerReferralQualification(PlayerULID, FLootLockerServerAssertReferralResponseDelegate::CreateLambda([OnCompletedRequest](const FLootLockerServerAssertReferralResponse& Response) {
+		OnCompletedRequest.ExecuteIfBound(Response);
+	}));
+}

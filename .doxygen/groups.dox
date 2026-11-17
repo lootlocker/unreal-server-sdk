@@ -279,3 +279,15 @@
 /// the event occurred.
 ///
 /// See the [LootLocker documentation](https://docs.lootlocker.com/shared-systems/notifications).
+
+/// @defgroup Referrals Referrals
+/// @brief Assert that a player met the qualifying action of a game_asserted referral program.
+///
+/// A publisher defines referral programs in the Web Console, each with a
+/// qualifying action and a reward for the referrer and optionally for the
+/// referee. When a program's qualifier is \c game_asserted, only the game server
+/// can observe the qualifying action, so it reports it here. The referral then
+/// becomes \c qualified and both sides are rewarded. Asserting is idempotent: a
+/// referral that already qualified is not rewarded twice.
+///
+/// See the [LootLocker documentation](https://docs.lootlocker.com/game-systems/referrals).
