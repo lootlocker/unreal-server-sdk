@@ -170,6 +170,9 @@ FLootLockerServerEndPoint ULootLockerServerEndpoints::TokenExchange = InitEndpoi
 // Notifications
 FLootLockerServerEndPoint ULootLockerServerEndpoints::SendNotification = InitEndpoint("notifications/v1", ELootLockerServerHTTPMethod::LL_POST);
 
+// Referrals
+FLootLockerServerEndPoint ULootLockerServerEndpoints::AssertPlayerReferralQualification = InitEndpoint("referrals/v1/player/{0}/assert", ELootLockerServerHTTPMethod::LL_POST);
+
 // Items
 FLootLockerServerEndPoint ULootLockerServerEndpoints::ListPlayerInventoryItems = InitEndpoint("player/inventory/v1/{0}", ELootLockerServerHTTPMethod::LL_GET);
 FLootLockerServerEndPoint ULootLockerServerEndpoints::GetPlayerInventoryItem = InitEndpoint("player/inventory/v1/{0}/{1}", ELootLockerServerHTTPMethod::LL_GET);
