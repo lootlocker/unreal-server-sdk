@@ -21,6 +21,7 @@
 #include "ServerAPI/LootLockerServerLeaderboardRequest.h"
 #include "ServerAPI/LootLockerServerMetadataRequest.h"
 #include "ServerAPI/LootLockerServerNotificationsRequest.h"
+#include "ServerAPI/LootLockerServerReferralRequest.h"
 #include "ServerAPI/LootLockerServerOAuthRequest.h"
 #include "ServerAPI/LootLockerServerPlayerFileRequest.h"
 #include "ServerAPI/LootLockerServerPlayerInventoryRequest.h"
@@ -367,6 +368,15 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSetMetadataResponseBP, FLootL
  Blueprint response delegate for sending notifications
  */
 DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerSendNotificationsResponseBP, FLootLockerServerSendNotificationsResponse, Response);
+
+//==================================================
+// Referral Response Delegates
+//==================================================
+
+/**
+ * Blueprint response delegate for asserting a player's referral qualification
+ */
+DECLARE_DYNAMIC_DELEGATE_OneParam(FLootLockerServerAssertReferralResponseBP, FLootLockerServerAssertReferralResponse, Response);
 
 //==================================================
 // OAuth Response Delegates
@@ -2685,4 +2695,21 @@ public:
      */
     UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Notifications", meta = (AutoCreateRefTerm = "Properties"))
     static UPARAM(DisplayName = "RequestId") FString SendNotificationToPlayerWithoutContent(const FString& NotificationType, ELootLockerServerNotificationPriority Priority, const FString& RecipientPlayerUlid, const TArray<FLootLockerServerNotificationProperty>& Properties, const FLootLockerServerSendNotificationsResponseBP& OnCompletedRequest);
+
+    //==================================================
+    // Referrals
+    //==================================================
+
+    /*
+    Report that a player met the qualifying action of their game_asserted referral program(s). The
+    referral is rewarded when this succeeds, so only call it once the game has authoritatively observed
+    the qualifying action.
+
+    @param PlayerULID The ULID of the player to assert
+    @param OnCompletedRequest Delegate for handling the server response
+
+    @return A unique id for this request, use this to match callbacks to requests when you have multiple simultaneous requests outbound
+     */
+    UFUNCTION(BlueprintCallable, Category = "LootLockerServer Methods | Referrals")
+    static UPARAM(DisplayName = "RequestId") FString AssertPlayerReferralQualification(const FString& PlayerULID, const FLootLockerServerAssertReferralResponseBP& OnCompletedRequest);
 };

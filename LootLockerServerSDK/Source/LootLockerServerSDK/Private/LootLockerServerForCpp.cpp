@@ -955,3 +955,9 @@ FString ULootLockerServerForCpp::SendNotificationToPlayer(const FString& Notific
 {
 	return ULootLockerServerNotificationsRequest::SendNotificationToPlayerWithJsonArrayContent(NotificationType, Priority, RecipientPlayerUlid, Content, Properties, OnCompletedRequest);
 }
+
+FString ULootLockerServerForCpp::AssertPlayerReferralQualification(const FString& PlayerULID,
+	const FLootLockerServerAssertReferralResponseDelegate& OnCompletedRequest)
+{
+	return ULootLockerServerReferralRequest::AssertPlayerReferralQualification(PlayerULID, OnCompletedRequest);
+}

@@ -231,6 +231,9 @@ public:
     // Notifications
     static FLootLockerServerEndPoint SendNotification;
 
+    // Referrals
+    static FLootLockerServerEndPoint AssertPlayerReferralQualification;
+
     // Items
     static FLootLockerServerEndPoint ListPlayerInventoryItems;
     static FLootLockerServerEndPoint GetPlayerInventoryItem;
