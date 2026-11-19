@@ -5,6 +5,21 @@
 #include "LootLockerServerReferralRequest.generated.h"
 
 //==================================================
+// Enum Definitions
+//==================================================
+
+/**
+ * The state of a referral relation.
+ */
+UENUM(BlueprintType, Category = "LootLockerServer")
+enum class ELootLockerServerReferralStatus : uint8
+{
+	claimed = 0,
+	qualified = 1,
+	Void = 2,
+};
+
+//==================================================
 // Data Type Definitions
 //==================================================
 
@@ -14,67 +29,72 @@
 USTRUCT(BlueprintType, Category = "LootLockerServer")
 struct FLootLockerServerReferral
 {
-    GENERATED_BODY()
-    /**
-     The referral ULID
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Id = "";
-    /**
-     The legacy integer id of the game this referral belongs to
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    int32 Game_id = 0;
-    /**
-     The ULID of the referral program the referral was made under
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Program_id = "";
-    /**
-     The ULID of the player who invited
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Referrer_player_id = "";
-    /**
-     The ULID of the player who was invited
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Referee_player_id = "";
-    /**
-     The ULID of the cross-game identity the referral is deduplicated on
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Referee_identity_id = "";
-    /**
-     The referral code that was redeemed, which is the referrer's public UID
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Code = "";
-    /**
-     The state of the referral: claimed (pending the qualifying action), qualified (rewarded) or void (voided)
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Status = "";
-    /**
-     When the referral was claimed
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Claimed_at = "";
-    /**
-     When the referral qualified. Empty while it is still pending
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Qualified_at = "";
-    /**
-     When the referral row was created
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Created_at = "";
-    /**
-     When the referral row was last updated. Empty if it never has been
-     */
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
-    FString Updated_at = "";
+	GENERATED_BODY()
+	/**
+	 The referral ULID
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Id = "";
+	/**
+	 The ULID of the referral program the referral was made under
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Program_id = "";
+	/**
+	 The ULID of the player who invited
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Referrer_player_id = "";
+	/**
+	 The ULID of the player who was invited
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Referee_player_id = "";
+	/**
+	 The ULID of the cross-game identity the referral is deduplicated on
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Referee_identity_id = "";
+	/**
+	 The referral code that was redeemed, which is the referrer's public UID
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FString Code = "";
+	/**
+	 The state of the referral
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	ELootLockerServerReferralStatus Status = ELootLockerServerReferralStatus::claimed;
+	/**
+	 When the referral was claimed
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FDateTime Claimed_at = FDateTime(0);
+	/**
+	 When the referral qualified. Only meaningful when HasQualifiedAt is true
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FDateTime Qualified_at = FDateTime(0);
+	/**
+	 True when the referral has qualified and Qualified_at holds the time. False while it is still pending
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	bool HasQualifiedAt = false;
+	/**
+	 When the referral row was created
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FDateTime Created_at = FDateTime(0);
+	/**
+	 When the referral row was last updated. Only meaningful when HasUpdatedAt is true
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	FDateTime Updated_at = FDateTime(0);
+	/**
+	 True when the referral row has been updated and Updated_at holds the time
+	 */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
+	bool HasUpdatedAt = false;
 };
 
 //==================================================
@@ -94,6 +114,12 @@ struct FLootLockerServerAssertReferralResponse : public FLootLockerServerRespons
      */
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "LootLockerServer")
     TArray<FLootLockerServerReferral> Referrals;
+
+    /**
+     Populate the convenience structures that FJsonObjectConverter cannot derive on its own, notably the
+     status enum and the nullable qualified_at and updated_at timestamps.
+     */
+    void PopulateConvenienceStructures();
 };
 
 //==================================================
