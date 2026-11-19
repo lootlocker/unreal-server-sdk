@@ -2211,6 +2211,8 @@ public:
     Report that a player met the qualifying action of their game_asserted referral program(s). The
     referral is rewarded when this succeeds, so only call it once the game has authoritatively observed
     the qualifying action.
+    Requires an authenticated server session: call StartSession first, otherwise the request is
+    rejected with a 401 because no x-auth-token is available.
 
     @param PlayerULID The ULID of the player to assert
     @param OnCompletedRequest Delegate for handling the server response
