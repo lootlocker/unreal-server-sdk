@@ -16,8 +16,8 @@ namespace
             return false;
         }
 
-        const TSharedPtr<FJsonValue>* Value = JsonObject->Values.Find(FieldName);
-        return Value != nullptr && (*Value).IsValid() && (*Value)->Type != EJson::Null;
+        const TSharedPtr<FJsonValue> Value = JsonObject->TryGetField(FieldName);
+        return Value.IsValid() && Value->Type != EJson::Null;
     }
 }
 
