@@ -82,6 +82,7 @@ jobs:
           chmod -R 777 smoketest-project
           set -o pipefail
           docker run --rm \
+            --shm-size=2g \
             -v "$(pwd)/sdk:/mnt/sdk" \
             -v "$(pwd)/smoketest-project:/mnt/smoketest-project" \
             -v "$(pwd)/packaged:/mnt/packaged" \
