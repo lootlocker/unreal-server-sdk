@@ -81,8 +81,13 @@ jobs:
           chmod 777 packaged
           chmod -R 777 smoketest-project
           set -o pipefail
+          # UBA's local executor can segfault in UbaSessionServer (opendir/directory_iterator)
+          # before compiling anything, which hangs the build indefinitely. Disable it so UBT
+          # falls back to its standard parallel local executor. Same workaround as
+          # unreal-sdk's .github/workflows/build-with-image.yml.
           docker run --rm \
             --shm-size=2g \
+            -e UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor=false \
             -v "$(pwd)/sdk:/mnt/sdk" \
             -v "$(pwd)/smoketest-project:/mnt/smoketest-project" \
             -v "$(pwd)/packaged:/mnt/packaged" \
