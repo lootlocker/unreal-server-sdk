@@ -1,0 +1,11 @@
+<map id="FLootLockerServerGetPlayerInventoryItemResponse" name="FLootLockerServerGetPlayerInventoryItemResponse">
+<area shape="rect" id="Node000001" title="Response for getting a single player item Note: The backend returns the item fields at the top level ..." alt="" coords="235,224,440,268"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerResponse.html" title="The base response for all LootLocker Server responses." alt="" coords="116,123,320,151"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,159,316,223,311,223,242,164"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerErrorData.html" title=" " alt="" coords="5,14,209,42"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="132,50,207,122,201,123,131,55"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerRequestContext.html" title=" " alt="" coords="232,5,427,50"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="298,59,233,125,229,121,294,62"/>
+<area shape="rect" id="Node000005" href="$structFLootLockerServerItemTemplate.html" title="The template an item instance (player inventory item) is based on." alt="" coords="343,123,575,151"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="435,160,364,225,361,221,430,162"/>
+</map>

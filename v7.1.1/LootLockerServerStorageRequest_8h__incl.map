@@ -1,0 +1,11 @@
+<map id="LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/LootLockerServerStorageRequest.h" name="LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/LootLockerServerStorageRequest.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="126,5,374,84"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,132,122,160"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,87,103,127,100,122,179,83"/>
+<area shape="rect" id="Node000003" href="$LootLockerServerResponse_8h.html" title=" " alt="" coords="146,132,354,160"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="252,82,253,118,248,115,249,87"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="379,132,697,160"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="363,82,488,126,483,127,363,87"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="111,208,389,235"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="252,158,252,193,248,191,248,162"/>
+</map>

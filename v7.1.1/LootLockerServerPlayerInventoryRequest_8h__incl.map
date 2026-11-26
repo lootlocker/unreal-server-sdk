@@ -1,0 +1,30 @@
+<map id="LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/LootLockerServerPlayerInventoryRequest.h" name="LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/LootLockerServerPlayerInventoryRequest.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="225,5,472,84"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="36,233,176,261"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="296,86,239,134,133,225,130,221,235,130,299,82"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,326,122,354"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="223,81,170,105,114,136,64,176,43,200,26,226,20,247,23,270,33,292,45,313,40,314,28,295,18,271,15,247,21,224,39,197,61,172,111,132,167,100,227,77"/>
+<area shape="rect" id="Node000004" href="$LootLockerServerResponse_8h.html" title=" " alt="" coords="707,326,916,354"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="473,53,563,70,611,84,659,102,705,124,748,151,786,184,819,223,828,245,831,268,823,313,819,309,826,268,823,246,815,226,783,188,745,156,702,129,657,107,610,89,562,76,474,58"/>
+<area shape="rect" id="Node000006" href="$LootLockerServerAssetRequest_8h.html" title=" " alt="" coords="249,132,449,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="350,82,351,117,346,115,348,87"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="900,132,1136,177"/>
+<area shape="poly" id="edge16_Node000001_Node000012" title=" " alt="" coords="473,63,887,130,882,133,473,69"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="672,410,951,438"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="813,352,814,396,809,393,810,356"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="289,179,157,230,155,225,292,175"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="309,179,241,227,216,249,190,271,148,298,106,321,103,316,145,294,187,267,213,245,238,223,313,176"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="449,156,544,163,643,175,730,194,764,207,788,223,803,242,811,265,816,312,811,309,806,266,798,245,784,227,762,212,729,199,642,180,543,168,450,161"/>
+<area shape="rect" id="Node000007" href="$LootLockerServerMetadataRequest_8h.html" title=" " alt="" coords="251,225,446,269"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="350,175,351,210,346,208,347,179"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="470,233,774,261"/>
+<area shape="poly" id="edge15_Node000006_Node000011" title=" " alt="" coords="414,175,571,227,565,229,414,180"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="280,272,120,323,118,318,281,267"/>
+<area shape="poly" id="edge13_Node000007_Node000004" title=" " alt="" coords="447,265,732,321,727,323,447,270"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="146,326,283,354"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="319,269,247,319,245,315,314,271"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="307,326,438,354"/>
+<area shape="poly" id="edge12_Node000007_Node000009" title=" " alt="" coords="356,267,368,312,363,310,353,272"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="463,317,658,362"/>
+<area shape="poly" id="edge14_Node000007_Node000010" title=" " alt="" coords="400,267,499,311,494,311,399,273"/>
+</map>
