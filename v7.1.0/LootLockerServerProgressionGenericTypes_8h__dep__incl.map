@@ -1,0 +1,16 @@
+<map id="LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/LootLockerServerProgressionGenericTypes.h" name="LootLockerServerSDK/Source/LootLockerServerSDK/Public/ServerAPI/LootLockerServerProgressionGenericTypes.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="413,5,661,84"/>
+<area shape="rect" id="Node000002" href="$LootLockerServerCharacterProgressionRequest_8h.html" title=" " alt="" coords="5,132,253,211"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="396,90,254,135,252,130,401,87"/>
+<area shape="rect" id="Node000004" href="$LootLockerServerGameProgressionRequest_8h.html" title=" " alt="" coords="277,132,525,211"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="486,93,445,134,442,129,481,96"/>
+<area shape="rect" id="Node000005" href="$LootLockerServerInstanceProgressionRequest_8h.html" title=" " alt="" coords="549,132,797,211"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="591,92,633,132,628,131,590,97"/>
+<area shape="rect" id="Node000006" href="$LootLockerServerPlayerProgressionRequest_8h.html" title=" " alt="" coords="821,132,1069,211"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="676,85,823,132,818,133,675,91"/>
+<area shape="rect" id="Node000003" href="$LootLockerServerForCpp_8h.html" title=" " alt="" coords="418,259,656,320"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="268,209,433,257,428,259,267,215"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="458,218,504,259,499,258,457,223"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="619,220,573,261,571,256,614,222"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="809,211,644,261,643,255,804,212"/>
+</map>

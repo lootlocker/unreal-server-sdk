@@ -1,0 +1,13 @@
+<map id="FLootLockerServerUniversalInventoryItem" name="FLootLockerServerUniversalInventoryItem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="302,335,506,379"/>
+<area shape="rect" id="Node000002" href="$structFLootLockerServerAsset.html" title=" " alt="" coords="152,226,329,253"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="272,260,376,334,371,335,270,265"/>
+<area shape="rect" id="Node000003" href="$structFLootLockerServerAssetWithoutPackageContent.html" title=" " alt="" coords="126,123,354,168"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="242,181,243,226,238,224,239,186"/>
+<area shape="rect" id="Node000004" href="$structFLootLockerServerAssetRarity.html" title=" " alt="" coords="5,14,222,42"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="139,49,219,122,214,124,138,54"/>
+<area shape="rect" id="Node000005" href="$structFLootLockerServerAssetCandidateInformation.html" title=" " alt="" coords="245,5,488,50"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="330,63,266,124,262,121,334,59"/>
+<area shape="rect" id="Node000006" href="$structFLootLockerServerPlayerItemRentalData.html" title=" " alt="" coords="353,217,565,262"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="444,275,416,336,413,332,440,277"/>
+</map>
