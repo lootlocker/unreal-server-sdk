@@ -10,6 +10,7 @@ var classULootLockerServerForCpp =
     [ "AlterPlayerInventoryAddAssetsByAssetID", "group__AssetInstance.html#gafea00b07597d8202fe04205c49265f37", null ],
     [ "AlterPlayerInventoryAddAssetsByAssetIDAndRentalOptionID", "group__AssetInstance.html#ga507abd0aef956e750dab3dade67b8702", null ],
     [ "AlterPlayerInventoryAddAssetsByAssetIDAndVariationID", "group__AssetInstance.html#ga3ac9e964b5d980389cb0f3ea91b6acb1", null ],
+    [ "AssertPlayerReferralQualification", "group__Referrals.html#ga11e0ae8f7344d15fe00ce308f7ef921a", null ],
     [ "CancelManualLeaderboardReset", "group__Leaderboard.html#gaf03061f669f8f0462ab49d2e3dd8cf7e", null ],
     [ "ComputeAndLockDropTable", "group__DropTables.html#gae1e41681a3c52e9984575d44df831b11", null ],
     [ "ComputeAndLockDropTableForTag", "group__DropTables.html#gac3acd85668a1a85357db83ef1f111561", null ],

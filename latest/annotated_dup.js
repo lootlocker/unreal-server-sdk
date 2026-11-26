@@ -7,6 +7,7 @@ var annotated_dup =
     [ "FLootLockerServerAlterPlayerInventoryItem", "structFLootLockerServerAlterPlayerInventoryItem.html", "structFLootLockerServerAlterPlayerInventoryItem" ],
     [ "FLootLockerServerAlterPlayerInventoryRequestBase", "structFLootLockerServerAlterPlayerInventoryRequestBase.html", "structFLootLockerServerAlterPlayerInventoryRequestBase" ],
     [ "FLootLockerServerAlterPlayerInventoryResponse", "structFLootLockerServerAlterPlayerInventoryResponse.html", "structFLootLockerServerAlterPlayerInventoryResponse" ],
+    [ "FLootLockerServerAssertReferralResponse", "structFLootLockerServerAssertReferralResponse.html", "structFLootLockerServerAssertReferralResponse" ],
     [ "FLootLockerServerAsset", "structFLootLockerServerAsset.html", "structFLootLockerServerAsset" ],
     [ "FLootLockerServerAssetByAssetIdAndRentalOptionIdRequest", "structFLootLockerServerAssetByAssetIdAndRentalOptionIdRequest.html", "structFLootLockerServerAssetByAssetIdAndRentalOptionIdRequest" ],
     [ "FLootLockerServerAssetByAssetIdAndVariationIdRequest", "structFLootLockerServerAssetByAssetIdAndVariationIdRequest.html", "structFLootLockerServerAssetByAssetIdAndVariationIdRequest" ],
@@ -228,6 +229,7 @@ var annotated_dup =
     [ "FLootLockerServerProgressionResetRewardDetails", "structFLootLockerServerProgressionResetRewardDetails.html", "structFLootLockerServerProgressionResetRewardDetails" ],
     [ "FLootLockerServerProgressionTier", "structFLootLockerServerProgressionTier.html", "structFLootLockerServerProgressionTier" ],
     [ "FLootLockerServerProgressionTiersResponse", "structFLootLockerServerProgressionTiersResponse.html", "structFLootLockerServerProgressionTiersResponse" ],
+    [ "FLootLockerServerReferral", "structFLootLockerServerReferral.html", "structFLootLockerServerReferral" ],
     [ "FLootLockerServerRequestContext", "structFLootLockerServerRequestContext.html", "structFLootLockerServerRequestContext" ],
     [ "FLootLockerServerResponse", "structFLootLockerServerResponse.html", "structFLootLockerServerResponse" ],
     [ "FLootLockerServerRewards", "structFLootLockerServerRewards.html", "structFLootLockerServerRewards" ],
@@ -294,6 +296,7 @@ var annotated_dup =
     [ "ULootLockerServerPlayerInventoryRequest", "classULootLockerServerPlayerInventoryRequest.html", "classULootLockerServerPlayerInventoryRequest" ],
     [ "ULootLockerServerPlayerProgressionRequest", "classULootLockerServerPlayerProgressionRequest.html", "classULootLockerServerPlayerProgressionRequest" ],
     [ "ULootLockerServerPlayerRequest", "classULootLockerServerPlayerRequest.html", "classULootLockerServerPlayerRequest" ],
+    [ "ULootLockerServerReferralRequest", "classULootLockerServerReferralRequest.html", "classULootLockerServerReferralRequest" ],
     [ "ULootLockerServerStorageRequest", "classULootLockerServerStorageRequest.html", "classULootLockerServerStorageRequest" ],
     [ "ULootLockerServerTriggerRequest", "classULootLockerServerTriggerRequest.html", "classULootLockerServerTriggerRequest" ]
 ];

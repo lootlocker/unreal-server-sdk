@@ -23,6 +23,7 @@ var topics =
     [ "Triggers", "group__Triggers.html", "group__Triggers" ],
     [ "Metadata", "group__Metadata.html", "group__Metadata" ],
     [ "Notifications", "group__Notifications.html", "group__Notifications" ],
+    [ "Referrals", "group__Referrals.html", "group__Referrals" ],
     [ "Items", "group__Items.html", "group__Items" ],
     [ "Catalogs", "group__Catalogs.html", "group__Catalogs" ]
 ];

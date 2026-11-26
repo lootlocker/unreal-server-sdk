@@ -27,8 +27,9 @@ var searchData=
   ['lootlockerserverplayerprogressionrequest_2eh_24',['LootLockerServerPlayerProgressionRequest.h',['../LootLockerServerPlayerProgressionRequest_8h.html',1,'']]],
   ['lootlockerserverplayerrequest_2eh_25',['LootLockerServerPlayerRequest.h',['../LootLockerServerPlayerRequest_8h.html',1,'']]],
   ['lootlockerserverprogressiongenerictypes_2eh_26',['LootLockerServerProgressionGenericTypes.h',['../LootLockerServerProgressionGenericTypes_8h.html',1,'']]],
-  ['lootlockerserverresponse_2eh_27',['LootLockerServerResponse.h',['../LootLockerServerResponse_8h.html',1,'']]],
-  ['lootlockerserverstoragerequest_2eh_28',['LootLockerServerStorageRequest.h',['../LootLockerServerStorageRequest_8h.html',1,'']]],
-  ['lootlockerservertriggerrequest_2eh_29',['LootLockerServerTriggerRequest.h',['../LootLockerServerTriggerRequest_8h.html',1,'']]],
-  ['lootlockerserverutilities_2eh_30',['LootLockerServerUtilities.h',['../LootLockerServerUtilities_8h.html',1,'']]]
+  ['lootlockerserverreferralrequest_2eh_27',['LootLockerServerReferralRequest.h',['../LootLockerServerReferralRequest_8h.html',1,'']]],
+  ['lootlockerserverresponse_2eh_28',['LootLockerServerResponse.h',['../LootLockerServerResponse_8h.html',1,'']]],
+  ['lootlockerserverstoragerequest_2eh_29',['LootLockerServerStorageRequest.h',['../LootLockerServerStorageRequest_8h.html',1,'']]],
+  ['lootlockerservertriggerrequest_2eh_30',['LootLockerServerTriggerRequest.h',['../LootLockerServerTriggerRequest_8h.html',1,'']]],
+  ['lootlockerserverutilities_2eh_31',['LootLockerServerUtilities.h',['../LootLockerServerUtilities_8h.html',1,'']]]
 ];

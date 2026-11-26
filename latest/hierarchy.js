@@ -163,10 +163,12 @@ var hierarchy =
     [ "FLootLockerServerProgressionResetReward", "structFLootLockerServerProgressionResetReward.html", null ],
     [ "FLootLockerServerProgressionResetRewardDetails", "structFLootLockerServerProgressionResetRewardDetails.html", null ],
     [ "FLootLockerServerProgressionTier", "structFLootLockerServerProgressionTier.html", null ],
+    [ "FLootLockerServerReferral", "structFLootLockerServerReferral.html", null ],
     [ "FLootLockerServerRequestContext", "structFLootLockerServerRequestContext.html", null ],
     [ "FLootLockerServerResponse", "structFLootLockerServerResponse.html", [
       [ "FLootLockerServerAddAssetToPlayerInventoryResponse", "structFLootLockerServerAddAssetToPlayerInventoryResponse.html", null ],
       [ "FLootLockerServerAlterPlayerInventoryResponse", "structFLootLockerServerAlterPlayerInventoryResponse.html", null ],
+      [ "FLootLockerServerAssertReferralResponse", "structFLootLockerServerAssertReferralResponse.html", null ],
       [ "FLootLockerServerAssetInstanceKeyValuePairItemResponse", "structFLootLockerServerAssetInstanceKeyValuePairItemResponse.html", null ],
       [ "FLootLockerServerAssetInstanceKeyValuePairsListResponse", "structFLootLockerServerAssetInstanceKeyValuePairsListResponse.html", null ],
       [ "FLootLockerServerAuthenticationResponse", "structFLootLockerServerAuthenticationResponse.html", null ],
@@ -309,6 +311,7 @@ var hierarchy =
       [ "ULootLockerServerPlayerInventoryRequest", "classULootLockerServerPlayerInventoryRequest.html", null ],
       [ "ULootLockerServerPlayerProgressionRequest", "classULootLockerServerPlayerProgressionRequest.html", null ],
       [ "ULootLockerServerPlayerRequest", "classULootLockerServerPlayerRequest.html", null ],
+      [ "ULootLockerServerReferralRequest", "classULootLockerServerReferralRequest.html", null ],
       [ "ULootLockerServerStorageRequest", "classULootLockerServerStorageRequest.html", null ],
       [ "ULootLockerServerTriggerRequest", "classULootLockerServerTriggerRequest.html", null ]
     ] ]

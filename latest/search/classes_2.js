@@ -26,6 +26,7 @@ var searchData=
   ['ulootlockerserverplayerinventoryrequest_23',['ULootLockerServerPlayerInventoryRequest',['../classULootLockerServerPlayerInventoryRequest.html',1,'']]],
   ['ulootlockerserverplayerprogressionrequest_24',['ULootLockerServerPlayerProgressionRequest',['../classULootLockerServerPlayerProgressionRequest.html',1,'']]],
   ['ulootlockerserverplayerrequest_25',['ULootLockerServerPlayerRequest',['../classULootLockerServerPlayerRequest.html',1,'']]],
-  ['ulootlockerserverstoragerequest_26',['ULootLockerServerStorageRequest',['../classULootLockerServerStorageRequest.html',1,'']]],
-  ['ulootlockerservertriggerrequest_27',['ULootLockerServerTriggerRequest',['../classULootLockerServerTriggerRequest.html',1,'']]]
+  ['ulootlockerserverreferralrequest_26',['ULootLockerServerReferralRequest',['../classULootLockerServerReferralRequest.html',1,'']]],
+  ['ulootlockerserverstoragerequest_27',['ULootLockerServerStorageRequest',['../classULootLockerServerStorageRequest.html',1,'']]],
+  ['ulootlockerservertriggerrequest_28',['ULootLockerServerTriggerRequest',['../classULootLockerServerTriggerRequest.html',1,'']]]
 ];

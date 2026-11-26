@@ -14,6 +14,7 @@ var searchData=
   ['elootlockerserverorderassetlistby_11',['ELootLockerServerOrderAssetListBy',['../group__Assets.html#ga0f2a2b1939ae671a854deb4d2c7e7d9a',1,'LootLockerServerAssetRequest.h']]],
   ['elootlockerserverorderassetlistdirection_12',['ELootLockerServerOrderAssetListDirection',['../group__Assets.html#ga63ff79f1b2f70ab2059f26c28326781c',1,'LootLockerServerAssetRequest.h']]],
   ['elootlockerserverplayernamelookupidtype_13',['ELootLockerServerPlayerNameLookupIdType',['../LootLockerServerPlayerRequest_8h.html#a1c799199c675bd3993402cb12a195708',1,'LootLockerServerPlayerRequest.h']]],
-  ['elootlockerserverrewardkind_14',['ELootLockerServerRewardKind',['../LootLockerServerItemRequestHandler_8h.html#ad95b1418ec28e3921f2f4110a80a30d8',1,'LootLockerServerItemRequestHandler.h']]],
-  ['elootlockerserverwalletholdertypes_15',['ELootLockerServerWalletHolderTypes',['../LootLockerServerBalanceRequest_8h.html#a42e953da49fecdac1faf04d4911bffa6',1,'LootLockerServerBalanceRequest.h']]]
+  ['elootlockerserverreferralstatus_14',['ELootLockerServerReferralStatus',['../LootLockerServerReferralRequest_8h.html#a5588c0ca648adbce115bd18349d2ed8a',1,'LootLockerServerReferralRequest.h']]],
+  ['elootlockerserverrewardkind_15',['ELootLockerServerRewardKind',['../LootLockerServerItemRequestHandler_8h.html#ad95b1418ec28e3921f2f4110a80a30d8',1,'LootLockerServerItemRequestHandler.h']]],
+  ['elootlockerserverwalletholdertypes_16',['ELootLockerServerWalletHolderTypes',['../LootLockerServerBalanceRequest_8h.html#a42e953da49fecdac1faf04d4911bffa6',1,'LootLockerServerBalanceRequest.h']]]
 ];

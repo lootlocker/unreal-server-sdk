@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['unknown_0',['Unknown',['../LootLockerServerItemRequestHandler_8h.html#a03aecaaccda6085cdbd13edc183f43b3a88183b946cc5f0e8c96b2e66e1c74a7e',1,'Unknown:&#160;LootLockerServerItemRequestHandler.h'],['../LootLockerServerItemRequestHandler_8h.html#ad95b1418ec28e3921f2f4110a80a30d8a88183b946cc5f0e8c96b2e66e1c74a7e',1,'Unknown:&#160;LootLockerServerItemRequestHandler.h']]],
-  ['update_1',['Update',['../LootLockerServerMetadataRequest_8h.html#a595cb64af32aac3cc0a61a1231281925a06933067aafd48425d67bcb01bba5cb6',1,'LootLockerServerMetadataRequest.h']]],
-  ['updated_5fat_2',['Updated_at',['../group__Assets.html#gga0f2a2b1939ae671a854deb4d2c7e7d9aa96436d7e279bd89d1c47c17ef0d5050a',1,'LootLockerServerAssetRequest.h']]],
-  ['upsert_3',['Upsert',['../LootLockerServerMetadataRequest_8h.html#a595cb64af32aac3cc0a61a1231281925ac4ead0b03a124a25304b4c9cf7b7be1a',1,'LootLockerServerMetadataRequest.h']]]
+  ['stackable_0',['Stackable',['../LootLockerServerItemRequestHandler_8h.html#a03aecaaccda6085cdbd13edc183f43b3a2f926bb2101ec30b73983332ddb9f661',1,'LootLockerServerItemRequestHandler.h']]],
+  ['steam_1',['Steam',['../LootLockerServerPlayerRequest_8h.html#a1e793ad0f5bc9092b3397bb32527405da4db4563826bad0eb2f60ee6e42d0ea4b',1,'LootLockerServerPlayerRequest.h']]],
+  ['steam_5fid_2',['Steam_id',['../LootLockerServerPlayerRequest_8h.html#a1c799199c675bd3993402cb12a195708a1c71924fd6b220e3ee1d126767703e2b',1,'LootLockerServerPlayerRequest.h']]],
+  ['string_3',['String',['../LootLockerServerMetadataRequest_8h.html#a41e2f064eb724e79217327d27d7259a2a27118326006d3829667a400ad23d5d98',1,'LootLockerServerMetadataRequest.h']]]
 ];

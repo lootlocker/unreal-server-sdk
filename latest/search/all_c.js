@@ -81,13 +81,14 @@ var searchData=
   ['lootlockerserverplayerprogressionrequest_2eh_78',['LootLockerServerPlayerProgressionRequest.h',['../LootLockerServerPlayerProgressionRequest_8h.html',1,'']]],
   ['lootlockerserverplayerrequest_2eh_79',['LootLockerServerPlayerRequest.h',['../LootLockerServerPlayerRequest_8h.html',1,'']]],
   ['lootlockerserverprogressiongenerictypes_2eh_80',['LootLockerServerProgressionGenericTypes.h',['../LootLockerServerProgressionGenericTypes_8h.html',1,'']]],
-  ['lootlockerserverresponse_2eh_81',['LootLockerServerResponse.h',['../LootLockerServerResponse_8h.html',1,'']]],
-  ['lootlockerserverresponsefactory_82',['LootLockerServerResponseFactory',['../classLootLockerServerResponseFactory.html',1,'']]],
-  ['lootlockerserverstaticrequesterrorstatuscodes_83',['LootLockerServerStaticRequestErrorStatusCodes',['../structLootLockerServerStaticRequestErrorStatusCodes.html',1,'']]],
-  ['lootlockerserverstoragerequest_2eh_84',['LootLockerServerStorageRequest.h',['../LootLockerServerStorageRequest_8h.html',1,'']]],
-  ['lootlockerservertriggerrequest_2eh_85',['LootLockerServerTriggerRequest.h',['../LootLockerServerTriggerRequest_8h.html',1,'']]],
-  ['lootlockerserverutilities_86',['LootLockerServerUtilities',['../namespaceLootLockerServerUtilities.html',1,'']]],
-  ['lootlockerserverutilities_2eh_87',['LootLockerServerUtilities.h',['../LootLockerServerUtilities_8h.html',1,'']]],
-  ['lootlockerversion_88',['LootLockerVersion',['../classULootLockerServerConfig.html#abcc03f5f48c5623ee61e908b4d0775b4',1,'ULootLockerServerConfig']]],
-  ['low_89',['low',['../LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225a53cced8d281a1a0ace3cb6594daaa4f7',1,'LootLockerServerNotificationsRequest.h']]]
+  ['lootlockerserverreferralrequest_2eh_81',['LootLockerServerReferralRequest.h',['../LootLockerServerReferralRequest_8h.html',1,'']]],
+  ['lootlockerserverresponse_2eh_82',['LootLockerServerResponse.h',['../LootLockerServerResponse_8h.html',1,'']]],
+  ['lootlockerserverresponsefactory_83',['LootLockerServerResponseFactory',['../classLootLockerServerResponseFactory.html',1,'']]],
+  ['lootlockerserverstaticrequesterrorstatuscodes_84',['LootLockerServerStaticRequestErrorStatusCodes',['../structLootLockerServerStaticRequestErrorStatusCodes.html',1,'']]],
+  ['lootlockerserverstoragerequest_2eh_85',['LootLockerServerStorageRequest.h',['../LootLockerServerStorageRequest_8h.html',1,'']]],
+  ['lootlockerservertriggerrequest_2eh_86',['LootLockerServerTriggerRequest.h',['../LootLockerServerTriggerRequest_8h.html',1,'']]],
+  ['lootlockerserverutilities_87',['LootLockerServerUtilities',['../namespaceLootLockerServerUtilities.html',1,'']]],
+  ['lootlockerserverutilities_2eh_88',['LootLockerServerUtilities.h',['../LootLockerServerUtilities_8h.html',1,'']]],
+  ['lootlockerversion_89',['LootLockerVersion',['../classULootLockerServerConfig.html#abcc03f5f48c5623ee61e908b4d0775b4',1,'ULootLockerServerConfig']]],
+  ['low_90',['low',['../LootLockerServerNotificationsRequest_8h.html#a2b228d0d86fb7ed5e7444cff89ce5225a53cced8d281a1a0ace3cb6594daaa4f7',1,'LootLockerServerNotificationsRequest.h']]]
 ];

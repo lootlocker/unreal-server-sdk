@@ -52,12 +52,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"functions_func_e.html",
-"group__Progressions.html#gab1893b82a03ec194ed0b805f499d12e9",
-"structFLootLockerServerCatalogSteamStoreListingPrice.html",
-"structFLootLockerServerInlinedGroupDetailsWithAssociations.html#a45e735ec0228d05a2861b6adfdc181c4",
-"structFLootLockerServerListMetadataResponse.html",
-"structFLootLockerServerPlayerPlatform.html#ade2e77201eca03618b98602e7fcc93c2"
+"functions_func_a.html",
+"group__Progressions.html",
+"structFLootLockerServerCatalogProgressionResetDetails.html",
+"structFLootLockerServerInlinedGroupAssociation.html#a1e0a91b730b0e4db6b26eaeaac579b69",
+"structFLootLockerServerListFriendsResponse.html",
+"structFLootLockerServerPlayerPersistentStorageUpdateEntryOrdered.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
