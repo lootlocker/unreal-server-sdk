@@ -18,6 +18,9 @@ jobs:
   build-sdk:
     name: Build SDK with ${{ matrix.UE_IMAGE }}
     runs-on: ubuntu-22.04-4-core
+    # A cold plugin build takes ~10 min per target. Fail fast instead of burning
+    # GitHub's 6-hour default when a build hangs.
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
@@ -56,7 +59,17 @@ jobs:
           mkdir build
           chmod 777 build
           chmod 777 tmp
-          docker run --rm -v "$(pwd):/mnt/source" ghcr.io/epicgames/unreal-engine:${{ matrix.UE_IMAGE }} sh -c "/home/ue4/UnrealEngine/Engine/Build/BatchFiles/RunUAT.sh BuildPlugin -TargetPlatforms="Linux" -Plugin="/mnt/source/${SDK_NAME}/${SDK_NAME}.uplugin" -Package="/mnt/source/build" -Rocket -enablecodeanalysis" 2>&1 | tee tmp/logs/UAT.log
+          # --shm-size: without it UBA's storage server falls back to disk-backed file
+          # mappings (/dev/shm is 64MB in the container), which is much slower.
+          # bAllowUBAExecutor=false: UBA's local executor can segfault in UbaSessionServer
+          # (opendir/directory_iterator) and hang the build indefinitely. Same workaround as
+          # .github/workflows/smoke-test.yml.
+          docker run --rm \
+            --shm-size=2g \
+            -e UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor=false \
+            -v "$(pwd):/mnt/source" \
+            ghcr.io/epicgames/unreal-engine:${{ matrix.UE_IMAGE }} \
+            sh -c "/home/ue4/UnrealEngine/Engine/Build/BatchFiles/RunUAT.sh BuildPlugin -TargetPlatforms="Linux" -Plugin="/mnt/source/${SDK_NAME}/${SDK_NAME}.uplugin" -Package="/mnt/source/build" -Rocket -enablecodeanalysis" 2>&1 | tee tmp/logs/UAT.log
           
       - name: Expose log as artifact
         uses: actions/upload-artifact@v4

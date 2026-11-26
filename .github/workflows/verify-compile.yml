@@ -51,7 +51,14 @@ jobs:
         continue-on-error: true
         run: |
           chmod -R 777 tmp
+          # --shm-size: without it UBA's storage server falls back to disk-backed file
+          # mappings (/dev/shm is 64MB in the container), which is much slower.
+          # bAllowUBAExecutor=false: UBA's local executor can segfault in UbaSessionServer
+          # (opendir/directory_iterator) and hang the build indefinitely. Same workaround as
+          # .github/workflows/smoke-test.yml.
           docker run --rm \
+            --shm-size=2g \
+            -e UnrealBuildTool_BuildConfiguration__bAllowUBAExecutor=false \
             -v "$(pwd):/mnt/source" \
             -e TARGET_PLATFORM=Linux \
             ghcr.io/epicgames/unreal-engine:${{ env.UE_IMAGE }} \
