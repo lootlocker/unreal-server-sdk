@@ -203,7 +203,7 @@ FString ULootLockerServerNotificationsRequest::SendNotificationToPlayer(
 	}
 
 	TSharedPtr<FJsonObject> SerializedRequest = FJsonObjectConverter::UStructToJsonObject(Request);
-	SerializedRequest->SetField("content", Content);
+	SerializedRequest->SetField(TEXT("content"), Content);
 	if (!SerializedRequest.IsValid())
 	{
 		FLootLockerServerSendNotificationsResponse ErrorResponse = LootLockerServerResponseFactory::Error<FLootLockerServerSendNotificationsResponse>("Failed to serialize request", LootLockerServerStaticRequestErrorStatusCodes::LL_ERROR_INVALID_INPUT);
